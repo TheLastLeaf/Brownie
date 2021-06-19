@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>kr.co.brownie</groupId>
-	<artifactId>Brownie</artifactId>
-	<packaging>war</packaging>
-	<version>1.0.0</version>
-	<name>Brownie</name>
-	<url>http://www.egovframe.go.kr</url>
+    <artifactId>Brownie</artifactId>
+    <packaging>war</packaging>
+    <version>1.0.0</version>
+    <name>Brownie</name>
+    <url>http://www.egovframe.go.kr</url>
 
-	<licenses>
+    <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
-    
-	<properties>
-	    <spring.maven.artifact.version>4.3.22.RELEASE</spring.maven.artifact.version>
-		<egovframework.rte.version>3.9.0</egovframework.rte.version>
-	</properties>
 
-	<repositories>
-		<repository>
-			<id>mvn2s</id>
-			<url>https://repo1.maven.org/maven2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>egovframe</id>
-			<url>http://maven.egovframe.kr:8080/maven/</url>			
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
+    <properties>
+        <spring.maven.artifact.version>4.3.22.RELEASE</spring.maven.artifact.version>
+        <egovframework.rte.version>3.9.0</egovframework.rte.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>mvn2s</id>
+            <url>https://repo1.maven.org/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>egovframe</id>
+            <url>http://maven.egovframe.kr:8080/maven/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>egovframe2</id>
             <url>http://www.egovframe.go.kr/maven/</url>
@@ -52,68 +52,68 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
-	</repositories>
+    </repositories>
 
-	<dependencies>
-		<!-- 표준프레임워크 실행환경 -->
+    <dependencies>
+        <!-- 표준프레임워크 실행환경 -->
         <dependency>
-		    <groupId>egovframework.rte</groupId>
-		    <artifactId>egovframework.rte.ptl.mvc</artifactId>
-		    <version>${egovframework.rte.version}</version>
-		    <exclusions>
-		    	<exclusion>
-		    		<artifactId>commons-logging</artifactId>
-		    		<groupId>commons-logging</groupId>
-		    	</exclusion>
-		    </exclusions>
+            <groupId>egovframework.rte</groupId>
+            <artifactId>egovframework.rte.ptl.mvc</artifactId>
+            <version>${egovframework.rte.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-		    <groupId>egovframework.rte</groupId>
-		    <artifactId>egovframework.rte.psl.dataaccess</artifactId>
-		    <version>${egovframework.rte.version}</version>
+            <groupId>egovframework.rte</groupId>
+            <artifactId>egovframework.rte.psl.dataaccess</artifactId>
+            <version>${egovframework.rte.version}</version>
         </dependency>
         <dependency>
-			<groupId>egovframework.rte</groupId>
-			<artifactId>egovframework.rte.fdl.idgnr</artifactId>
-			<version>${egovframework.rte.version}</version>
-		</dependency>
-       	<dependency>
-			<groupId>egovframework.rte</groupId>
-			<artifactId>egovframework.rte.fdl.property</artifactId>
-			<version>${egovframework.rte.version}</version>
-		</dependency>
-
+            <groupId>egovframework.rte</groupId>
+            <artifactId>egovframework.rte.fdl.idgnr</artifactId>
+            <version>${egovframework.rte.version}</version>
+        </dependency>
         <dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>servlet-api</artifactId>
-		    <scope>provided</scope>
-		    <version>2.5</version>
+            <groupId>egovframework.rte</groupId>
+            <artifactId>egovframework.rte.fdl.property</artifactId>
+            <version>${egovframework.rte.version}</version>
         </dependency>
 
         <dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>jstl</artifactId>
-		    <version>1.2</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+            <version>2.5</version>
         </dependency>
 
         <dependency>
-		    <groupId>taglibs</groupId>
-		    <artifactId>standard</artifactId>
-		    <version>1.1.2</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
 
-		<dependency>
-	        <groupId>org.antlr</groupId>
-	        <artifactId>antlr</artifactId>
-	        <version>3.5</version>
-   		</dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.3.2</version>
-		</dependency>
-        
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr</artifactId>
+            <version>3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
         <!-- mysql이나 oracle DB 사용시 아래 설정 추가  
         <dependency>
             <groupId>com.googlecode.log4jdbc</groupId>
@@ -147,26 +147,26 @@
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc-14.jar</systemPath>
         </dependency>
         -->
-	</dependencies>
+    </dependencies>
 
-	<build>
+    <build>
         <defaultGoal>install</defaultGoal>
         <directory>${basedir}/target</directory>
         <finalName>${artifactId}-${version}</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
-	                <groupId>org.apache.tomcat.maven</groupId>
-	                <artifactId>tomcat7-maven-plugin</artifactId>
-	                <version>2.2</version>
-	                <configuration>
-	                    <port>80</port>
-	                    <path>/</path>
-	                    <systemProperties>
-	                        <JAVA_OPTS>-Xms256m -Xmx768m -XX:MaxPermSize=256m</JAVA_OPTS>
-	                    </systemProperties>
-	                </configuration>
-	            </plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <port>80</port>
+                        <path>/</path>
+                        <systemProperties>
+                            <JAVA_OPTS>-Xms256m -Xmx768m -XX:MaxPermSize=256m</JAVA_OPTS>
+                        </systemProperties>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
