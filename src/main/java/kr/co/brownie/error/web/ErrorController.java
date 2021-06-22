@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ErrorController {
 	@GetMapping
 	public String defaultError() {
-		return "common/500";
+		return "error/500";
 	}
 
 	@GetMapping("/no-resource")
 	public String noResource() {
-		return "common/404";
+		return "error/404";
 	}
 
 	@GetMapping("/server-error")
 	public String serverError() {
-		return "common/500";
+		return "error/500";
 	}
 }
