@@ -1,12 +1,13 @@
 package kr.co.brownie.gallery.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.gallery.service.GalleryService;
 
 @Controller
 public class GalleryController {
-	@Autowired
+	@Resource(name = "galleryService")
 	GalleryService galleryService;
 }

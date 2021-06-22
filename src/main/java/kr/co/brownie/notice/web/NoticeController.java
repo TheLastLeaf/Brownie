@@ -1,12 +1,13 @@
 package kr.co.brownie.notice.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.notice.service.NoticeService;
 
 @Controller
 public class NoticeController {
-	@Autowired
+	@Resource(name = "noticeService")
 	NoticeService noticeService;
 }

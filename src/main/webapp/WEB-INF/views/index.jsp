@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -16,14 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -36,20 +37,20 @@
     <div class="humberger-menu-overlay"></div>
     <div class="humberger-menu-wrapper">
         <div class="hw-logo">
-            <a href="#"><img src="img/f-logo.png" alt=""></a>
+            <a href="#"><img src="${path}/img/f-logo.png" alt=""></a>
         </div>
         <div class="hw-menu mobile-menu">
             <ul>
-                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index">Home</a></li>
                 <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown">
-                        <li><a href="./categories-list.html">Categories</a></li>
-                        <li><a href="./categories-grid.html">Categories grid</a></li>
-                        <li><a href="./typography.html">Typography</a></li>
-                        <li><a href="./details-post-default.html">Post default</a></li>
-                        <li><a href="./details-post-gallery.html">Post gallery</a></li>
-                        <li><a href="./details-post-review.html">Post review</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="./categories-list">Categories</a></li>
+                        <li><a href="./categories-grid">Categories grid</a></li>
+                        <li><a href="./typography">Typography</a></li>
+                        <li><a href="./details-post-default">Post default</a></li>
+                        <li><a href="./details-post-gallery">Post gallery</a></li>
+                        <li><a href="./details-post-review">Post review</a></li>
+                        <li><a href="./contact">Contact</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Reviews <i class="fa fa-angle-down"></i></a>
@@ -93,10 +94,10 @@
                 <h5>Instagram</h5>
             </div>
             <div class="insta-pic">
-                <img src="img/instagram/ip-1.jpg" alt="">
-                <img src="img/instagram/ip-2.jpg" alt="">
-                <img src="img/instagram/ip-3.jpg" alt="">
-                <img src="img/instagram/ip-4.jpg" alt="">
+                <img src="${path}/img/instagram/ip-1.jpg" alt="">
+                <img src="${path}/img/instagram/ip-2.jpg" alt="">
+                <img src="${path}/img/instagram/ip-3.jpg" alt="">
+                <img src="${path}/img/instagram/ip-4.jpg" alt="">
             </div>
         </div>
     </div>
@@ -133,7 +134,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                       <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                       <a href="./index"><img src="${path}/img/logo.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -148,7 +149,7 @@
                 </div>
                 <div class="nav-menu">
                     <ul>
-                        <li class="active"><a href="./index.html"><span>Home</span></a></li>
+                        <li class="active"><a href="./index"><span>Home</span></a></li>
                         <li class="mega-menu"><a href="#"><span>Platform <i class="fa fa-angle-down"></i></span></a>
                             <div class="megamenu-wrapper">
                                 <ul class="mw-nav">
@@ -160,7 +161,7 @@
                                 <div class="mw-post">
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-1.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-1.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach
@@ -173,7 +174,7 @@
                                     </div>
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-2.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-2.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">A new Borderlands 3 trailer introduces Moze and her...</a>
@@ -186,7 +187,7 @@
                                     </div>
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-3.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-3.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">Teamfight Tactics is in chaos after today's patch...</a>
@@ -199,7 +200,7 @@
                                     </div>
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-4.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-4.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">Borderlands 2 dev explains why there's mysterious
@@ -212,7 +213,7 @@
                                     </div>
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-5.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-5.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">Capcom asks select fans to test new Resident Evil game</a>
@@ -229,13 +230,13 @@
                         <li>
                             <a href="#"><span>Pages <i class="fa fa-angle-down"></i></span></a>
                             <ul class="dropdown">
-                                <li><a href="./categories-list.html">Categories</a></li>
-                                <li><a href="./categories-grid.html">Categories grid</a></li>
-                                <li><a href="./typography.html">Typography</a></li>
-                                <li><a href="./details-post-default.html">Post default</a></li>
-                                <li><a href="./details-post-gallery.html">Post gallery</a></li>
-                                <li><a href="./details-post-review.html">Post review</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li><a href="./categories-list">Categories</a></li>
+                                <li><a href="./categories-grid">Categories grid</a></li>
+                                <li><a href="./typography">Typography</a></li>
+                                <li><a href="./details-post-default">Post default</a></li>
+                                <li><a href="./details-post-gallery">Post gallery</a></li>
+                                <li><a href="./details-post-review">Post review</a></li>
+                                <li><a href="./contact">Contact</a></li>
                             </ul>
                         </li>
                         <li><a href="#"><span>Reviews <i class="fa fa-angle-down"></i></span></a></li>
@@ -257,7 +258,7 @@
                         <div class="label"><span>Playstation</span></div>
                         <h3>Downwell and Space Hulk: Tactics are coming to Xbox Game Pass for PC</h3>
                         <div class="ht-meta">
-                            <img src="img/hero/meta-pic.jpg" alt="">
+                            <img src="${path}/img/hero/meta-pic.jpg" alt="">
                             <ul>
                                 <li>by Marcin Jankowski</li>
                                 <li>Aug 01, 2019</li>
@@ -274,7 +275,7 @@
                             <div class="single-trending-item">
                                 <div class="trending-item">
                                     <div class="ti-pic">
-                                        <img src="img/trending/trending-1.jpg" alt="">
+                                        <img src="${path}/img/trending/trending-1.jpg" alt="">
                                     </div>
                                     <div class="ti-text">
                                         <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
@@ -287,7 +288,7 @@
                                 </div>
                                 <div class="trending-item">
                                     <div class="ti-pic">
-                                        <img src="img/trending/trending-2.jpg" alt="">
+                                        <img src="${path}/img/trending/trending-2.jpg" alt="">
                                     </div>
                                     <div class="ti-text">
                                         <h6><a href="#">Valve updates Steam's new Interactive Reco- mmender, teases
@@ -300,7 +301,7 @@
                                 </div>
                                 <div class="trending-item">
                                     <div class="ti-pic">
-                                        <img src="img/trending/trending-3.jpg" alt="">
+                                        <img src="${path}/img/trending/trending-3.jpg" alt="">
                                     </div>
                                     <div class="ti-text">
                                         <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
@@ -313,7 +314,7 @@
                                 </div>
                                 <div class="trending-item">
                                     <div class="ti-pic">
-                                        <img src="img/trending/trending-4.jpg" alt="">
+                                        <img src="${path}/img/trending/trending-4.jpg" alt="">
                                     </div>
                                     <div class="ti-text">
                                         <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
@@ -328,7 +329,7 @@
                             <div class="single-trending-item">
                                 <div class="trending-item">
                                     <div class="ti-pic">
-                                        <img src="img/trending/trending-5.jpg" alt="">
+                                        <img src="${path}/img/trending/trending-5.jpg" alt="">
                                     </div>
                                     <div class="ti-text">
                                         <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
@@ -341,7 +342,7 @@
                                 </div>
                                 <div class="trending-item">
                                     <div class="ti-pic">
-                                        <img src="img/trending/trending-6.jpg" alt="">
+                                        <img src="${path}/img/trending/trending-6.jpg" alt="">
                                     </div>
                                     <div class="ti-text">
                                         <h6><a href="#">Valve updates Steam's new Interactive Reco- mmender, teases
@@ -354,7 +355,7 @@
                                 </div>
                                 <div class="trending-item">
                                     <div class="ti-pic">
-                                        <img src="img/trending/trending-7.jpg" alt="">
+                                        <img src="${path}/img/trending/trending-7.jpg" alt="">
                                     </div>
                                     <div class="ti-text">
                                         <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
@@ -367,7 +368,7 @@
                                 </div>
                                 <div class="trending-item">
                                     <div class="ti-pic">
-                                        <img src="img/trending/trending-8.jpg" alt="">
+                                        <img src="${path}/img/trending/trending-8.jpg" alt="">
                                     </div>
                                     <div class="ti-text">
                                         <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
@@ -385,9 +386,9 @@
             </div>
         </div>
         <div class="hero-slider owl-carousel">
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-1.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-2.jpg"></div>
-            <div class="hs-item set-bg" data-setbg="img/hero/hero-3.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-1.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-2.jpg"></div>
+            <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-3.jpg"></div>
         </div>
     </section>
     <!-- Hero Section End -->
@@ -406,7 +407,7 @@
                 <div class="lp-slider owl-carousel">
                     <div class="col-lg-3">
                         <div class="lp-item">
-                            <div class="lp-pic set-bg" data-setbg="img/latest-preview/lp-1.jpg">
+                            <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-1.jpg">
                                 <div class="review-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
@@ -428,7 +429,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="lp-item">
-                            <div class="lp-pic set-bg" data-setbg="img/latest-preview/lp-2.jpg">
+                            <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-2.jpg">
                                 <div class="review-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
@@ -450,7 +451,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="lp-item">
-                            <div class="lp-pic set-bg" data-setbg="img/latest-preview/lp-3.jpg">
+                            <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-3.jpg">
                                 <div class="review-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
@@ -472,7 +473,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="lp-item">
-                            <div class="lp-pic set-bg" data-setbg="img/latest-preview/lp-4.jpg">
+                            <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-4.jpg">
                                 <div class="review-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
@@ -494,7 +495,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="lp-item">
-                            <div class="lp-pic set-bg" data-setbg="img/latest-preview/lp-4.jpg">
+                            <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-4.jpg">
                                 <div class="review-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
@@ -516,7 +517,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="lp-item">
-                            <div class="lp-pic set-bg" data-setbg="img/latest-preview/lp-4.jpg">
+                            <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-4.jpg">
                                 <div class="review-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
@@ -538,7 +539,7 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="lp-item">
-                            <div class="lp-pic set-bg" data-setbg="img/latest-preview/lp-4.jpg">
+                            <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-4.jpg">
                                 <div class="review-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
@@ -592,7 +593,7 @@
                                 <div class="row">
                                     <div class="un-slider owl-carousel">
                                         <div class="col-lg-12">
-                                            <div class="un-big-item set-bg" data-setbg="img/news/news-1.jpg">
+                                            <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
                                                 <div class="ub-text">
                                                     <div class="label"><span>Reviews</span></div>
                                                     <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
@@ -607,7 +608,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-3.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -622,7 +623,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-4.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -637,7 +638,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-2.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -653,7 +654,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="un-big-item set-bg" data-setbg="img/news/news-1.jpg">
+                                            <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
                                                 <div class="ub-text">
                                                     <div class="label"><span>Reviews</span></div>
                                                     <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
@@ -668,7 +669,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-3.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -683,7 +684,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-4.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -698,7 +699,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-2.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -720,7 +721,7 @@
                                 <div class="row">
                                     <div class="un-slider owl-carousel">
                                         <div class="col-lg-12">
-                                            <div class="un-big-item set-bg" data-setbg="img/news/news-1.jpg">
+                                            <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
                                                 <div class="ub-text">
                                                     <div class="label"><span>Reviews</span></div>
                                                     <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
@@ -735,7 +736,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-3.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -750,7 +751,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-4.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -765,7 +766,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-2.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -781,7 +782,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="un-big-item set-bg" data-setbg="img/news/news-1.jpg">
+                                            <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
                                                 <div class="ub-text">
                                                     <div class="label"><span>Reviews</span></div>
                                                     <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
@@ -796,7 +797,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-3.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -811,7 +812,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-4.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -826,7 +827,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-2.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -848,7 +849,7 @@
                                 <div class="row">
                                     <div class="un-slider owl-carousel">
                                         <div class="col-lg-12">
-                                            <div class="un-big-item set-bg" data-setbg="img/news/news-1.jpg">
+                                            <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
                                                 <div class="ub-text">
                                                     <div class="label"><span>Reviews</span></div>
                                                     <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
@@ -863,7 +864,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-3.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -878,7 +879,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-4.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -893,7 +894,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-2.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -909,7 +910,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="un-big-item set-bg" data-setbg="img/news/news-1.jpg">
+                                            <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
                                                 <div class="ub-text">
                                                     <div class="label"><span>Reviews</span></div>
                                                     <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
@@ -924,7 +925,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-3.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -939,7 +940,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-4.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -954,7 +955,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-2.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -976,7 +977,7 @@
                                 <div class="row">
                                     <div class="un-slider owl-carousel">
                                         <div class="col-lg-12">
-                                            <div class="un-big-item set-bg" data-setbg="img/news/news-1.jpg">
+                                            <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
                                                 <div class="ub-text">
                                                     <div class="label"><span>Reviews</span></div>
                                                     <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
@@ -991,7 +992,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-3.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -1006,7 +1007,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-4.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -1021,7 +1022,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-2.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -1037,7 +1038,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
-                                            <div class="un-big-item set-bg" data-setbg="img/news/news-1.jpg">
+                                            <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
                                                 <div class="ub-text">
                                                     <div class="label"><span>Reviews</span></div>
                                                     <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
@@ -1052,7 +1053,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-3.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -1067,7 +1068,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-4.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -1082,7 +1083,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="un-item">
-                                                        <div class="un_pic set-bg" data-setbg="img/news/news-2.jpg">
+                                                        <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
                                                             <div class="label"><span>Reviews</span></div>
                                                         </div>
                                                         <div class="un_text">
@@ -1138,7 +1139,7 @@
                             </div>
                             <div class="trending-item">
                                 <div class="ti-pic">
-                                    <img src="img/trending/trending-5.jpg" alt="">
+                                    <img src="${path}/img/trending/trending-5.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
                                     <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
@@ -1151,7 +1152,7 @@
                             </div>
                             <div class="trending-item">
                                 <div class="ti-pic">
-                                    <img src="img/trending/trending-6.jpg" alt="">
+                                    <img src="${path}/img/trending/trending-6.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
                                     <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a></h6>
@@ -1163,7 +1164,7 @@
                             </div>
                             <div class="trending-item">
                                 <div class="ti-pic">
-                                    <img src="img/trending/trending-7.jpg" alt="">
+                                    <img src="${path}/img/trending/trending-7.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
                                     <h6><a href="#">This gaming laptop with a GTX 1660 Ti and 32GB of RAM is down...</a>
@@ -1176,7 +1177,7 @@
                             </div>
                             <div class="trending-item">
                                 <div class="ti-pic">
-                                    <img src="img/trending/trending-8.jpg" alt="">
+                                    <img src="${path}/img/trending/trending-8.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
                                     <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a></h6>
@@ -1226,7 +1227,7 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-1.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-1.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1240,7 +1241,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-2.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-2.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1256,7 +1257,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-3.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1265,7 +1266,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-4.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1274,7 +1275,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-5.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1287,7 +1288,7 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-1.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-1.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1301,7 +1302,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-2.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-2.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1317,7 +1318,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-3.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1326,7 +1327,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-4.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1335,7 +1336,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-5.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1354,7 +1355,7 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-1.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-1.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1368,7 +1369,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-2.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-2.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1384,7 +1385,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-3.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1393,7 +1394,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-4.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1402,7 +1403,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-5.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1415,7 +1416,7 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-1.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-1.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1429,7 +1430,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-2.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-2.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1445,7 +1446,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-3.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1454,7 +1455,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-4.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1463,7 +1464,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-5.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1482,7 +1483,7 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-1.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-1.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1496,7 +1497,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-2.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-2.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1512,7 +1513,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-3.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1521,7 +1522,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-4.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1530,7 +1531,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-5.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1543,7 +1544,7 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-1.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-1.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1557,7 +1558,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-2.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-2.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1573,7 +1574,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-3.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1582,7 +1583,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-4.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1591,7 +1592,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-5.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1610,7 +1611,7 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-1.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-1.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1624,7 +1625,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-2.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-2.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1640,7 +1641,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-3.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1649,7 +1650,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-4.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1658,7 +1659,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-5.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1671,7 +1672,7 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-1.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-1.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1685,7 +1686,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="vg-item large-vg set-bg" data-setbg="img/videos/videos-2.jpg">
+                                            <div class="vg-item large-vg set-bg" data-setbg="${path}/img/videos/videos-2.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1701,7 +1702,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-3.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1710,7 +1711,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-4.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1719,7 +1720,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
-                                            <div class="vg-item set-bg" data-setbg="img/videos/videos-5.jpg">
+                                            <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
                                                 <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                                                     class="play-btn video-popup"><i class="fa fa-play"></i></a>
                                                 <div class="vg-text">
@@ -1748,7 +1749,7 @@
                     </div>
                     <div class="ip-item">
                         <div class="ip-pic">
-                            <img src="img/instagram/insta-1.jpg" alt="">
+                            <img src="${path}/img/instagram/insta-1.jpg" alt="">
                         </div>
                         <div class="ip-text">
                             <div class="label"><span>Reviews</span></div>
@@ -1764,7 +1765,7 @@
                     </div>
                     <div class="ip-item">
                         <div class="ip-pic">
-                            <img src="img/instagram/insta-2.jpg" alt="">
+                            <img src="${path}/img/instagram/insta-2.jpg" alt="">
                         </div>
                         <div class="ip-text">
                             <div class="label"><span>Windows</span></div>
@@ -1780,7 +1781,7 @@
                     </div>
                     <div class="ip-item">
                         <div class="ip-pic">
-                            <img src="img/instagram/insta-3.jpg" alt="">
+                            <img src="${path}/img/instagram/insta-3.jpg" alt="">
                         </div>
                         <div class="ip-text">
                             <div class="label"><span>Hardware</span></div>
@@ -1796,7 +1797,7 @@
                     </div>
                     <div class="ip-item">
                         <div class="ip-pic">
-                            <img src="img/instagram/insta-4.jpg" alt="">
+                            <img src="${path}/img/instagram/insta-4.jpg" alt="">
                         </div>
                         <div class="ip-text">
                             <div class="label"><span>Playstation</span></div>
@@ -1824,10 +1825,10 @@
                                 <h5>Instagram</h5>
                             </div>
                             <div class="insta-pic">
-                                <img src="img/instagram/ip-1.jpg" alt="">
-                                <img src="img/instagram/ip-2.jpg" alt="">
-                                <img src="img/instagram/ip-3.jpg" alt="">
-                                <img src="img/instagram/ip-4.jpg" alt="">
+                                <img src="${path}/img/instagram/ip-1.jpg" alt="">
+                                <img src="${path}/img/instagram/ip-2.jpg" alt="">
+                                <img src="${path}/img/instagram/ip-3.jpg" alt="">
+                                <img src="${path}/img/instagram/ip-4.jpg" alt="">
                             </div>
                         </div>
                         <div class="best-of-post">
@@ -1932,7 +1933,7 @@
                 <div class="col-lg-4">
                     <div class="footer-about">
                         <div class="fa-logo">
-                            <a href="#"><img src="img/f-logo.png" alt=""></a>
+                            <a href="#"><img src="${path}/img/f-logo.png" alt=""></a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua lacus vel facilisis.</p>
@@ -1951,7 +1952,7 @@
                         </div>
                         <div class="ec-item">
                             <div class="ec-pic">
-                                <img src="img/trending/editor-1.jpg" alt="">
+                                <img src="${path}/img/trending/editor-1.jpg" alt="">
                             </div>
                             <div class="ec-text">
                                 <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
@@ -1964,7 +1965,7 @@
                         </div>
                         <div class="ec-item">
                             <div class="ec-pic">
-                                <img src="img/trending/editor-2.jpg" alt="">
+                                <img src="${path}/img/trending/editor-2.jpg" alt="">
                             </div>
                             <div class="ec-text">
                                 <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a>
@@ -2061,14 +2062,14 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/circle-progress.min.js"></script>
-    <script src="js/jquery.barfiller.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="${path}/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/js/bootstrap.min.js"></script>
+    <script src="${path}/js/jquery.magnific-popup.min.js"></script>
+    <script src="${path}/js/circle-progress.min.js"></script>
+    <script src="${path}/js/jquery.barfiller.js"></script>
+    <script src="${path}/js/jquery.slicknav.js"></script>
+    <script src="${path}/js/owl.carousel.min.js"></script>
+    <script src="${path}/js/main.js"></script>
 </body>
 
 </html>

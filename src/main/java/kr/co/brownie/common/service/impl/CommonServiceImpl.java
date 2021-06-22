@@ -1,11 +1,13 @@
 package kr.co.brownie.common.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
+
 import kr.co.brownie.common.service.CommonService;
 
 @Service("commonService")
 public class CommonServiceImpl implements CommonService {
-	@Autowired
+	@Resource(name = "commonDAO")
 	CommonDAO commonDAO;
 }

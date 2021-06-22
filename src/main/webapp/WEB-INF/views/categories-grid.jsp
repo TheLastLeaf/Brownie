@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -16,14 +17,14 @@
     <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -36,20 +37,20 @@
     <div class="humberger-menu-overlay"></div>
     <div class="humberger-menu-wrapper">
         <div class="hw-logo">
-            <a href="#"><img src="img/f-logo.png" alt=""></a>
+            <a href="#"><img src="${path}/img/f-logo.png" alt=""></a>
         </div>
         <div class="hw-menu mobile-menu">
             <ul>
-                <li><a href="./index.html">Home</a></li>
+                <li><a href="./index">Home</a></li>
                 <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown">
-                        <li><a href="./categories-list.html">Categories</a></li>
-                        <li><a href="./categories-grid.html">Categories grid</a></li>
-                        <li><a href="./typography.html">Typography</a></li>
-                        <li><a href="./details-post-default.html">Post default</a></li>
-                        <li><a href="./details-post-gallery.html">Post gallery</a></li>
-                        <li><a href="./details-post-review.html">Post review</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="./categories-list">Categories</a></li>
+                        <li><a href="./categories-grid">Categories grid</a></li>
+                        <li><a href="./typography">Typography</a></li>
+                        <li><a href="./details-post-default">Post default</a></li>
+                        <li><a href="./details-post-gallery">Post gallery</a></li>
+                        <li><a href="./details-post-review">Post review</a></li>
+                        <li><a href="./contact">Contact</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Reviews <i class="fa fa-angle-down"></i></a>
@@ -93,10 +94,10 @@
                 <h5>Instagram</h5>
             </div>
             <div class="insta-pic">
-                <img src="img/instagram/ip-1.jpg" alt="">
-                <img src="img/instagram/ip-2.jpg" alt="">
-                <img src="img/instagram/ip-3.jpg" alt="">
-                <img src="img/instagram/ip-4.jpg" alt="">
+                <img src="${path}/img/instagram/ip-1.jpg" alt="">
+                <img src="${path}/img/instagram/ip-2.jpg" alt="">
+                <img src="${path}/img/instagram/ip-3.jpg" alt="">
+                <img src="${path}/img/instagram/ip-4.jpg" alt="">
             </div>
         </div>
     </div>
@@ -133,7 +134,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                       <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                       <a href="./index"><img src="${path}/img/logo.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -148,7 +149,7 @@
                 </div>
                 <div class="nav-menu">
                     <ul>
-                        <li><a href="./index.html"><span>Home</span></a></li>
+                        <li><a href="./index"><span>Home</span></a></li>
                         <li class="mega-menu"><a href="#"><span>Platform <i class="fa fa-angle-down"></i></span></a>
                             <div class="megamenu-wrapper">
                                 <ul class="mw-nav">
@@ -160,7 +161,7 @@
                                 <div class="mw-post">
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-1.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-1.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach
@@ -173,7 +174,7 @@
                                     </div>
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-2.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-2.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">A new Borderlands 3 trailer introduces Moze and her...</a>
@@ -186,7 +187,7 @@
                                     </div>
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-3.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-3.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">Teamfight Tactics is in chaos after today's patch...</a>
@@ -199,7 +200,7 @@
                                     </div>
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-4.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-4.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">Borderlands 2 dev explains why there's mysterious
@@ -212,7 +213,7 @@
                                     </div>
                                     <div class="mw-post-item">
                                         <div class="mw-pic">
-                                            <img src="img/megamenu/mm-5.jpg" alt="">
+                                            <img src="${path}/img/megamenu/mm-5.jpg" alt="">
                                         </div>
                                         <div class="mw-text">
                                             <h6><a href="#">Capcom asks select fans to test new Resident Evil game</a>
@@ -228,13 +229,13 @@
                         </li>
                         <li class="active"><a href="#"><span>Pages <i class="fa fa-angle-down"></i></span></a>
                             <ul class="dropdown">
-                                <li><a href="./categories-list.html">Categories</a></li>
-                                <li><a href="./categories-grid.html">Categories grid</a></li>
-                                <li><a href="./typography.html">Typography</a></li>
-                                <li><a href="./details-post-default.html">Post default</a></li>
-                                <li><a href="./details-post-gallery.html">Post gallery</a></li>
-                                <li><a href="./details-post-review.html">Post review</a></li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                <li><a href="./categories-list">Categories</a></li>
+                                <li><a href="./categories-grid">Categories grid</a></li>
+                                <li><a href="./typography">Typography</a></li>
+                                <li><a href="./details-post-default">Post default</a></li>
+                                <li><a href="./details-post-gallery">Post gallery</a></li>
+                                <li><a href="./details-post-review">Post review</a></li>
+                                <li><a href="./contact">Contact</a></li>
                             </ul>
                         </li>
                         <li><a href="#"><span>Reviews <i class="fa fa-angle-down"></i></span></a></li>
@@ -248,7 +249,7 @@
     <!-- Header End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg spad" data-setbg="img/breadcrumb-bg.jpg">
+    <section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -274,7 +275,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-1.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-1.jpg">
                                     <div class="label"><span>Reviews</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -291,7 +292,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-2.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-2.jpg">
                                     <div class="label"><span>Windows</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -308,7 +309,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-3.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-3.jpg">
                                     <div class="label"><span>Hardware</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -325,7 +326,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-4.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-4.jpg">
                                     <div class="label"><span>Playstation</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -342,7 +343,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-5.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-5.jpg">
                                     <div class="label"><span>Reviews</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -359,7 +360,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-6.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-6.jpg">
                                     <div class="label"><span>Windows</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -376,7 +377,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-7.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-7.jpg">
                                     <div class="label"><span>Hardware</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -393,7 +394,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-8.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-8.jpg">
                                     <div class="label"><span>Playstation</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -410,7 +411,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-9.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-9.jpg">
                                     <div class="label"><span>Hardware</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -427,7 +428,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cg-item">
-                                <div class="cg-pic set-bg" data-setbg="img/categories-grid/cg-10.jpg">
+                                <div class="cg-pic set-bg" data-setbg="${path}/img/categories-grid/cg-10.jpg">
                                     <div class="label"><span>Playstation</span></div>
                                 </div>
                                 <div class="cg-text">
@@ -485,7 +486,7 @@
                             </div>
                             <div class="trending-item">
                                 <div class="ti-pic">
-                                    <img src="img/trending/trending-5.jpg" alt="">
+                                    <img src="${path}/img/trending/trending-5.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
                                     <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
@@ -498,7 +499,7 @@
                             </div>
                             <div class="trending-item">
                                 <div class="ti-pic">
-                                    <img src="img/trending/trending-6.jpg" alt="">
+                                    <img src="${path}/img/trending/trending-6.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
                                     <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a></h6>
@@ -510,7 +511,7 @@
                             </div>
                             <div class="trending-item">
                                 <div class="ti-pic">
-                                    <img src="img/trending/trending-7.jpg" alt="">
+                                    <img src="${path}/img/trending/trending-7.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
                                     <h6><a href="#">This gaming laptop with a GTX 1660 Ti and 32GB of RAM is down...</a>
@@ -523,7 +524,7 @@
                             </div>
                             <div class="trending-item">
                                 <div class="ti-pic">
-                                    <img src="img/trending/trending-8.jpg" alt="">
+                                    <img src="${path}/img/trending/trending-8.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
                                     <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a></h6>
@@ -539,10 +540,10 @@
                                 <h5>Instagram</h5>
                             </div>
                             <div class="insta-pic">
-                                <img src="img/instagram/ip-1.jpg" alt="">
-                                <img src="img/instagram/ip-2.jpg" alt="">
-                                <img src="img/instagram/ip-3.jpg" alt="">
-                                <img src="img/instagram/ip-4.jpg" alt="">
+                                <img src="${path}/img/instagram/ip-1.jpg" alt="">
+                                <img src="${path}/img/instagram/ip-2.jpg" alt="">
+                                <img src="${path}/img/instagram/ip-3.jpg" alt="">
+                                <img src="${path}/img/instagram/ip-4.jpg" alt="">
                             </div>
                         </div>
                         <div class="best-of-post">
@@ -647,7 +648,7 @@
                 <div class="col-lg-4">
                     <div class="footer-about">
                         <div class="fa-logo">
-                            <a href="#"><img src="img/f-logo.png" alt=""></a>
+                            <a href="#"><img src="${path}/img/f-logo.png" alt=""></a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua lacus vel facilisis.</p>
@@ -666,7 +667,7 @@
                         </div>
                         <div class="ec-item">
                             <div class="ec-pic">
-                                <img src="img/trending/editor-1.jpg" alt="">
+                                <img src="${path}/img/trending/editor-1.jpg" alt="">
                             </div>
                             <div class="ec-text">
                                 <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
@@ -679,7 +680,7 @@
                         </div>
                         <div class="ec-item">
                             <div class="ec-pic">
-                                <img src="img/trending/editor-2.jpg" alt="">
+                                <img src="${path}/img/trending/editor-2.jpg" alt="">
                             </div>
                             <div class="ec-text">
                                 <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a>
@@ -776,14 +777,14 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/circle-progress.min.js"></script>
-    <script src="js/jquery.barfiller.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="${path}/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/js/bootstrap.min.js"></script>
+    <script src="${path}/js/jquery.magnific-popup.min.js"></script>
+    <script src="${path}/js/circle-progress.min.js"></script>
+    <script src="${path}/js/jquery.barfiller.js"></script>
+    <script src="${path}/js/jquery.slicknav.js"></script>
+    <script src="${path}/js/owl.carousel.min.js"></script>
+    <script src="${path}/js/main.js"></script>
 </body>
 
 </html>
