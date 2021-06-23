@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2021-06-22 21:40:22</creation_date>
-			<updated_date>2021-06-23 13:47:15</updated_date>
+			<updated_date>2021-06-23 13:49:07</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -5011,8 +5011,8 @@
 			<width>362</width>
 				<font_name>D2Coding</font_name>
 				<font_size>10</font_size>
-			<x>69</x>
-			<y>229</y>
+			<x>96</x>
+			<y>234</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
