@@ -12,19 +12,19 @@
     <title>Amin | Template</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/${path}?family=Montserrat:300,400,500,600,700,800,900&display=swap"
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/${path}?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
-    <!-- ${path} Styles -->
-    <link rel="stylesheet" href="${path}/bootstrap.min.${path}" type="text/${path}">
-    <link rel="stylesheet" href="${path}/font-awesome.min.${path}" type="text/${path}">
-    <link rel="stylesheet" href="${path}/elegant-icons.${path}" type="text/${path}">
-    <link rel="stylesheet" href="${path}/owl.carousel.min.${path}" type="text/${path}">
-    <link rel="stylesheet" href="${path}/barfiller.${path}" type="text/${path}">
-    <link rel="stylesheet" href="${path}/magnific-popup.${path}" type="text/${path}">
-    <link rel="stylesheet" href="${path}/slicknav.min.${path}" type="text/${path}">
-    <link rel="stylesheet" href="${path}/style.${path}" type="text/${path}">
+    <!-- css Styles -->
+    <link rel="stylesheet" href="${path}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${path}/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -607,14 +607,14 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/circle-progress.min.js"></script>
-    <script src="js/jquery.barfiller.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="${path}/js/jquery-3.3.1.min.js"></script>
+    <script src="${path}/js/bootstrap.min.js"></script>
+    <script src="${path}/js/jquery.magnific-popup.min.js"></script>
+    <script src="${path}/js/circle-progress.min.js"></script>
+    <script src="${path}/js/jquery.barfiller.js"></script>
+    <script src="${path}/js/jquery.slicknav.js"></script>
+    <script src="${path}/js/owl.carousel.min.js"></script>
+    <script src="${path}/js/main.js"></script>
 </body>
 
 </html>
