@@ -26,22 +26,7 @@
     <link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${path}/css/style.css" type="text/css">
-      <style type="text/css">
-    	#floating-left{
-    		position: absolute;
-    		left: 6%;
-    		top: 35%;
-    		margin-left: 90px;
-    		width: 150px;
-    	}
-    	#floating-right{
-    		position: absolute;
-    		right: 50%;
-    		top: 35%;
-    		margin-right: -750px;
-    		width: 150px;
-    	}
-    </style>
+
 </head>
 
 <body>
@@ -265,18 +250,7 @@
     </header>
     <!-- Header End -->
     
-    <!-- aside start -->
-	<div id="floating-left" class="">
-		<div>
-			<img src="${path}/img/details/gameAd1.png">
-		</div>
-	</div>
-	<div id="floating-right" class="">
-		<div>
-			<img src="${path}/img/details/gameAd2.gif">
-		</div>
-	</div>
-	<!-- aside end -->
+
 
     <!-- Details Post Section Begin -->
     <section class="details-post-section spad">

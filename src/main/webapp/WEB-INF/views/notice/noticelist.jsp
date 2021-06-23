@@ -26,22 +26,6 @@
     <link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${path}/css/style.css" type="text/css">
-    <style type="text/css">
-    	#floating-left{
-    		position: absolute;
-    		left: 6%;
-    		top: 72%;
-    		margin-left: 90px;
-    		width: 150px;
-    	}
-    	#floating-right{
-    		position: absolute;
-    		right: 50%;
-    		top: 72%;
-    		margin-right: -750px;
-    		width: 150px;
-    	}
-    </style>
 </head>
 
 <body>
@@ -267,18 +251,7 @@
     </header>
     <!-- Header End -->
 	
-	<!-- aside start -->
-	<aside id="floating-left" class="" style="float: left;">
-		<ul>
-			<li><img src="${path}/img/details/gameAd1.png"></li>
-		</ul>
-	</aside>
-	<aside id="floating-right" class="" style="float: left;">
-		<ul>
-			<li><img src="${path}/img/details/gameAd2.gif"></li>
-		</ul>
-	</aside>
-	<!-- aside end -->
+
 	
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
