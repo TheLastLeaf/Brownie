@@ -16,9 +16,4 @@ public class GalleryController {
 	public String galleryList() {
 		return "gallery/categories-grid";
 	}
-
-	@RequestMapping(path = "/galleryDetail")
-	public String galleryDetail() {
-		return "gallery/details-post-gallery";
-	}
 }

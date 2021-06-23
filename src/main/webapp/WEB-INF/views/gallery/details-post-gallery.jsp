@@ -255,7 +255,7 @@
                 <div class="col-lg-12">
                     <div class="dg-slider owl-carousel">
                         <div class="dg-item set-bg" data-setbg="${path}/img/details/gallery/gallery-1.jpg"></div>
-                        <div class="dg-item set-bg" data-setbg="${path}/img/details/gallery/gallery-2.jpg"></div>
+                        <div class="dg-item set-bg" data-setbg="${path}/img/details/gallery/gallery-1.jpg"></div>
                     </div>
                 </div>
             </div>
