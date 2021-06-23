@@ -12,19 +12,19 @@
     <title>Amin | Template</title>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap"
+    <link href="https://fonts.googleapis.com/${path}?family=Montserrat:300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/${path}?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- ${path} Styles -->
+    <link rel="stylesheet" href="${path}/bootstrap.min.${path}" type="text/${path}">
+    <link rel="stylesheet" href="${path}/font-awesome.min.${path}" type="text/${path}">
+    <link rel="stylesheet" href="${path}/elegant-icons.${path}" type="text/${path}">
+    <link rel="stylesheet" href="${path}/owl.carousel.min.${path}" type="text/${path}">
+    <link rel="stylesheet" href="${path}/barfiller.${path}" type="text/${path}">
+    <link rel="stylesheet" href="${path}/magnific-popup.${path}" type="text/${path}">
+    <link rel="stylesheet" href="${path}/slicknav.min.${path}" type="text/${path}">
+    <link rel="stylesheet" href="${path}/style.${path}" type="text/${path}">
 </head>
 
 <body>
