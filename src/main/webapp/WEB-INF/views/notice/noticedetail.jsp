@@ -10,7 +10,7 @@
     <meta name="keywords" content="Amin, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Amin | NoticeList</title>
+    <title>Amin | NoticeDetail</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap"
@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${path}/css/style.css" type="text/css">
+
 </head>
 
 <body>
@@ -82,9 +83,7 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="hw-copyright">
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            Copyright Â© 2019 Colorlib Inc. All rights reserved
         </div>
         <div class="hw-social">
             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -250,127 +249,117 @@
         </div>
     </header>
     <!-- Header End -->
-	
+    
 
-	
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
+
+    <!-- Details Post Section Begin -->
+    <section class="details-post-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb-text">
-                        <h3>공지사항</h3>
-                        <div class="bt-option">
-                            <a href="#">Home</a>
-                            <a href="#	">Latest posts</a>
+                <div class="col-lg-12 p-0">
+                    <div class="details-text typography-page">
+                        <div class="dt-breadcrumb">
+                            <div class="dt-bread-option">
+                                <a href="/">Home</a>
+                                <span>Typography</span>
+                            </div>
+                            <h3>제목</h3>
+                             <div class="dp-pic">
+                                <img src="${path}/img/details/dp-p1.jpg" alt="">
+                            </div>
                         </div>
+                        <div class="dt-desc">
+                            <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                                in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                                <p>Vestibulum commodo nulla eu augue tincidunt rutrum. Suspendisse interdum lacus in
+                                    ligula finibus luctus. Vivamus mollis libero vel orci finibus, sit amet malesuada
+                                    lectus aliquam. In auctor viverra eros. Maecenas elit mi, dictum et consectetur nec,
+                                    sollicitudin sed arcu.Curabitur tempor tempor pharetra.Sed imperdiet sem at nunc
+                                    luctus, sed cursus nulla mollis. Orci varius natoque penatibus et magnis dis
+                                    parturient montes, nascetur ridiculus mus porta tincidunt, purus enim laoreet.</p>
+                                <p>Mauris ipsum libero, luctus non tempor sed, luctus nec dui. Cras ac ante quis neque
+                                    viverra mollis vel sed metus. Donec suscipit imperdiet neque, at euismod mauris
+                                    faucibus nec. Etiam varius ornare celerisque. Excepteur sint occaecat cupidatat non
+                                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+                            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                himenaeos. Mauris vel magna ex. Integer gravida tincidunt accumsan. Vestibulum nulla
+                                mauris, condimentum id felis ac, volutpat volutpat mi. In vitae tempor velit of the
+                                impenetrable foliage xcepteur sint occaecat cupidatat non proident.</p>
+                            <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+                                himenaeos. Suspen potenti. Pellentesque massa enim, fringilla ut ullamcorper sit amet,
+                                ornare at ipsum.</p>
+                            <p>Proin rhoncus mauris arcu, vel rutrum quam dictum quis. Fusce aliquam magna dolor, non
+                                efficitur metus semper nec. Vivamus ac elit at dui fermentum dapibus. Pellentesque
+                                habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut sed
+                                diam id neque feugiat.</p>
+                            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
+                                vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
+                                odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+                                nesciunt tempora incidunt ut labore . Neque porro quisquam est, qui dolorem ipsum quia
+                            <p>Duis aute irure dolor inenim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                nisi ut aliquip ex ea commodo conslaboris nisi ut aliquip ex ea commodo consequat. Duis
+                                aute irure Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore.</p>
+                            <p>Integer vel commodo erat. Mauris dun fringilla eleifend lobortis. Aenean idas venenatis
+                                ligula. Cras indo nibh facilisis, tincidunt quamto nec, fringilla neque. Morbi ornare in
+                                nisi atc cond mentum. Interdum etc malesuada fames ate ipsum primis in faucibus. Nullam
+                                sagitis et nulla sed posuere magna aliqua.</p>
+                            <p>Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            </p>
+                        </div>
+                        <div class="dt-author" style="border: 1px solid gray">
+                            <div class="da-pic">
+                                <img src="${path}/img/details/author-pic.jpg" alt="">
+                            </div>
+                            <div class="da-text">
+                               	<a href="/mypage">
+	                                <h5>
+                                		작성자
+	                                </h5>
+                                </a>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </div>
+                        </div>
+			                <div class="col-lg-6" style="margin-left: 80%;">
+			                    <div class="details-hero-text">
+			                        <ul>
+			                            <li>by <span>Admin</span></li>
+			                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+			                        </ul>
+			                    </div>
+			                </div>
+            			<input type="button" class="btn btn-dark" value="목록" onclick="location.href='noticelist'" style="margin-left: 93%;">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Breadcrumb Section End -->
-
-    <!-- Categories list Section Begin -->
-    <section class="categories-list-section spad">
-    <div>
-	   	<select name="notice" style="height:30px; margin-left:75%;">
-	    	<option value="" selected="selected">선택</option>
-	    	<option value="title" >제목</option>
-	    	<option value="content" >내용</option>
-	    	<option value="writer" >작성자</option>
-		</select>
-	    <input type="button" class="btn btn-light btn-sm" value="조회">
-	    <input type="button" class="btn btn-light btn-sm" value="글쓰기" onclick="location.href='noticeAdd'">
-    </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img src="${path}/img/categories-list/cl-1.jpg" alt="">
-                        </div>
-                        <div class="cl-text">
-                            <div class="label"><span>공지사항</span></div>
-                            <h5><a href="/noticedetail	">자유게시판</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p>자유게시판 공지사항</p>
-                        </div>
-                    </div>
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img src="${path}/img/categories-list/cl-2.jpg" alt="">
-                        </div>
-                        <div class="cl-text">
-                            <div class="label"><span>공지사항</span></div>
-                            <h5><a href="#">팬아트갤러리</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p>팬아트 공지사항</p>
-                        </div>
-                    </div>
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img src="${path}/img/categories-list/cl-3.jpg" alt="">
-                        </div>
-                        <div class="cl-text">
-                            <div class="label"><span>공지사항</span></div>
-                            <h5><a href="#">팬아트 갤러리</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p>팬아트 갤러리 공지사항	</p>
-                        </div>
-                    </div>
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img src="${path}/img/categories-list/cl-4.jpg" alt="">
-                        </div>
-                        <div class="cl-text">
-                            <div class="label"><span>공지사항</span></div>
-                            <h5><a href="#">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p>평소의 궁금증을 풀기도 하고 다양한 고민도 해결할 수 있는 곳.
-									무엇이든 물어보세요 게시판이 새롭게 열렸습니다.   
-									질문 및 답변을 남겨주실 때는 본인뿐만 아니라 타인의 입장에서
-									상처가 되진 않을지 혹은 좋지 않은 표현이 담겨 있지 않은지
-									한 번씩만 생각해서 글을 남겨주시면 많은 이야기를 나눌 수 있는 게시판이 될 것 같습니다.</p>
-                        </div>
-                    </div>
-                    <div class="pagination-item">
-                        <a href="#"><span>1</span></a>
-                        <a href="#"><span>2</span></a>
-                        <a href="#"><span>3</span></a>
-                        <a href="#"><span>Next</span></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- Categories List Section End -->
+    <!-- Details Post Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
             <div class="row" >
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <div class="footer-about">
                         <div class="fa-logo">
                             <a href="#"><img src="${path}/img/f-logo.png" alt=""></a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua lacus vel facilisis.</p>
-                        <div class="col-lg-6" >
+                         <div class="col-lg-6" >
                         	<div class="ca-text">
                         		<p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved</p>
 						  	</div>
-              	      	</div>
+              	      	</div> 
                     </div>
                 </div>
             </div>
@@ -387,7 +376,6 @@
                     <h2>Sign up</h2>
                     <p>Fill out the form below to recieve a free and confidential</p>
                 </div>
-                                 
                 <form action="#" class="signup-form">
                     <div class="sf-input-list">
                         <input type="text" class="input-value" placeholder="User Name*">
@@ -428,7 +416,7 @@
     <script src="${path}/js/jquery.barfiller.js"></script>
     <script src="${path}/js/jquery.slicknav.js"></script>
     <script src="${path}/js/owl.carousel.min.js"></script>
-    <script src="${path}/js/main.js"></script>
+    <script src="${path}/	js/main.js"></script>
 </body>
 
 </html>
