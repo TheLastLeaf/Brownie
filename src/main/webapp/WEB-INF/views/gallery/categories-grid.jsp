@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -342,7 +343,7 @@
 					</tr>
 					<tr>
 						<td>[공지]</td>
-						<td><a href="#"><strong>강아진 짖고있다. 2014-01-28</strong></a></td>
+						<td><a href="#"><strong>강아진 짖고있다.</strong></a></td>
 						<td>곽지훈</td>
 						<td>2014-01-28</td>
 						<td>12</td>
@@ -350,7 +351,7 @@
 					</tr>
 					<tr>
 						<td>[공지]</td>
-						<td><a href="#"><strong>강아진 물리고있다. 2014-01-28</strong></a></td>
+						<td><a href="#"><strong>강아진 물리고있다.</strong></a></td>
 						<td>곽지훈</td>
 						<td>2014-01-28</td>
 						<td>12</td>
@@ -364,25 +365,25 @@
 				<ul>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>움짤</span> <img src="img/1.jpeg" alt="">
+							<a href="#"> <span>움짤</span> <img src="${path}/img/gallery/1.jpeg" alt="">
 							</a>
 						</p> <a href="#"><strong>치타는 웃고있다.</strong></a>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>팬아트</span> <img src="img/2.jpg" alt="">
+							<a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/2.jpg" alt="">
 							</a>
 						</p> <a href="#"><strong>고양인 울고있다.</strong></a>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>팬아트</span> <img src="img/3.jpg" alt="">
+							<a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/3.jpg" alt="">
 							</a>
 						</p> <a href="#"><strong>강아진 짖고있다.</strong></a>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>습작</span> <img src="img/4.jpg" alt="">
+							<a href="#"> <span>습작</span> <img src="${path}/img/gallery/4.jpg" alt="">
 							</a>
 						</p> <a href="#"><strong>강아진 물리고있다.</strong></a>
 					</li>
@@ -412,49 +413,49 @@
 				<ul>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>움짤</span> <img class="img-thumbnail" src="img/1.jpeg" alt="">
+							<a href="#"> <span>움짤</span> <img class="img-thumbnail" src="${path}/img/gallery/1.jpeg" alt="">
 							</a>
 						</p> <a href="#"><strong>치타는 웃고있다.</strong></a>
 						<p class="tx_brief">2014-01-28</p>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>팬아트</span> <img src="img/2.jpg" alt="">
+							<a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/2.jpg" alt="">
 							</a>
 						</p> <a href="#"><strong>고양인 울고있다.</strong></a>
 						<p class="tx_brief">2014-01-28</p>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>팬아트</span> <img src="img/3.jpg" alt="">
+							<a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/3.jpg" alt="">
 							</a>
 						</p> <a href="#"><strong>강아진 짖고있다.</strong></a>
 						<p class="tx_brief">2014-01-28</p>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>습작</span> <img src="img/4.jpg" alt="">
+							<a href="#"> <span>습작</span> <img src="${path}/img/gallery/4.jpg" alt="">
 							</a>
 						</p> <a href="#"><strong>강아진 물리고있다.</strong></a>
 						<p class="tx_brief">2014-01-28</p>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>연재</span> <img src="img/5.gif" alt="">
+							<a href="#"> <span>연재</span> <img src="${path}/img/gallery/5.gif" alt="">
 							</a>
 						</p> <a href="#"><strong>기립박수</strong></a>
 						<p class="tx_brief">2014-01-28</p>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>연재</span> <img src="img/6.jpg" alt="">
+							<a href="#"> <span>연재</span> <img src="${path}/img/gallery/6.jpg" alt="">
 							</a>
 						</p> <a href="#"><strong>이색기야</strong></a>
 						<p class="tx_brief">2014-01-28</p>
 					</li>
 					<li>
 						<p class="thmb">
-							<a href="#"> <span>연재</span> <img src="img/7.gif" alt="">
+							<a href="#"> <span>연재</span> <img src="${path}/img/gallery/7.gif" alt="">
 							</a>
 						</p> <a href="#"><strong>도게자 박겠습니다</strong></a>
 						<p class="tx_brief">2014-01-28</p>
