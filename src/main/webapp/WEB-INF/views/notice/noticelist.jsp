@@ -39,11 +39,11 @@
     <div class="humberger-menu-overlay"></div>
     <div class="humberger-menu-wrapper">
         <div class="hw-logo">
-            <a href="/"><img src="${path}/img/f-logo.png" alt=""></a>
+            <a href="/index"><img src="${path}/img/f-logo.png" alt=""></a>
         </div>
         <div class="hw-menu mobile-menu">
             <ul>
-                <li><a href="/">Home</a></li>
+                <li><a href="/index">Home</a></li>
                 <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown">
                         <li><a href="./categories-list.html">Categories</a></li>
@@ -138,7 +138,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center">
-                       <a href="./index.html"><img src="${path}/img/logo.png" alt=""></a>
+                       <a href="/index"><img src="${path}/img/logo.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="nav-menu">
                     <ul>
-                        <li><a href="./index.html"><span>Home</span></a></li>
+                        <li><a href="/index"><span>Home</span></a></li>
                         <li class="mega-menu"><a href="#"><span>Platform <i class="fa fa-angle-down"></i></span></a>
                             <div class="megamenu-wrapper">
                                 <ul class="mw-nav">
