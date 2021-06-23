@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2021-06-22 21:40:22</creation_date>
-			<updated_date>2021-06-23 14:13:18</updated_date>
+			<updated_date>2021-06-23 14:15:13</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -5313,7 +5313,7 @@
 					<id>78</id>
 					<referenced_column>0</referenced_column>
 					<relation>16</relation>
-					<description>용의자&#x0D;&#x0A;</description>
+					<description>용책상</description>
 					<unique_key_name></unique_key_name>
 					<logical_name>용의자</logical_name>
 					<physical_name></physical_name>
