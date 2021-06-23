@@ -42,7 +42,7 @@
         </div>
         <div class="hw-menu mobile-menu">
             <ul>
-                <li><a href="./index.html">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown">
                         <li><a href="./categories-list.html">Categories</a></li>
@@ -261,8 +261,8 @@
                     <div class="breadcrumb-text">
                         <h3>공지사항</h3>
                         <div class="bt-option">
-                            <a href="#">Home</a>
-                            <a href="#	">Latest posts</a>
+                            <a href="/index">Home</a>
+                            <a href="#">Latest posts</a>
                         </div>
                     </div>
                 </div>
@@ -292,7 +292,7 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
-                            <h5><a href="/noticedetail	">자유게시판</a></h5>
+                            <h5><a href="/noticedetail">자유게시판</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -305,7 +305,7 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
-                            <h5><a href="#">팬아트갤러리</a></h5>
+                            <h5><a href="/noticedetail">팬아트갤러리</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -318,7 +318,7 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
-                            <h5><a href="#">팬아트 갤러리</a></h5>
+                            <h5><a href="/noticedetail">팬아트 갤러리</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -331,7 +331,7 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
-                            <h5><a href="#">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
+                            <h5><a href="/noticedetail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
