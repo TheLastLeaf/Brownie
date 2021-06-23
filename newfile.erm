@@ -5313,7 +5313,7 @@
 					<id>78</id>
 					<referenced_column>0</referenced_column>
 					<relation>16</relation>
-					<description>용책상</description>
+					<description>용의자</description>
 					<unique_key_name></unique_key_name>
 					<logical_name>용의자</logical_name>
 					<physical_name></physical_name>
