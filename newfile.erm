@@ -1541,7 +1541,7 @@
 			<char_semantics>false</char_semantics>
 			<description>회원 아이디</description>
 			<logical_name>회원 아이디</logical_name>
-			<physical_name>user_id</physical_name>
+		<physical_name>user_id</physical_name>
 			<type>varchar(n)</type>
 		</word>
 	</dictionary>
