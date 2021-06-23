@@ -7,6 +7,7 @@
 bin/
 tmp/
 target/
+.idea/
 *.tmp
 *.bak
 *.swp
