@@ -313,7 +313,7 @@
                                 cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </p>
                         </div>
-                        <div class="dt-author" style="border: 1px solid gray">
+                        <div class="dt-author" style="border: 1px solid gray;">
                             <div class="da-pic">
                                 <img src="${path}/img/details/author-pic.jpg" alt="">
                             </div>
@@ -328,15 +328,57 @@
                                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             </div>
                         </div>
-			                <div class="col-lg-6" style="margin-left: 80%;">
-			                    <div class="details-hero-text">
-			                        <ul>
-			                            <li>by <span>Admin</span></li>
-			                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-			                        </ul>
-			                    </div>
-			                </div>
-            			<input type="button" class="btn btn-dark" value="목록" onclick="location.href='noticelist'" style="margin-left: 93%;">
+                        <div class="col-md-6" style="margin-left: 78%;">
+                            <div class="details-hero-text">
+                                <ul>
+                                    <li>by <span>Admin</span></li>
+                                    <li class="fa fa-clock-o">Aug 01, 2019</li>
+                                    <li><span onclick="location.href='noticelist'" style="color:#666666; cursor: pointer;">목록</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="dt-comment" style="1px solid gray">
+                            <h4>3 comment</h4>
+                            <div class="dc-item">
+                                <div class="dc-pic">
+                                    <img src="${path}/img/details/comment/comment-1.jpg" alt="">
+                                </div>
+                                <div class="dc-text">
+                                    <h5>Brandon Kelley</h5>
+                                    <span class="c-date">15 Aug 2017</span>
+                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+                                        dolore magnam.</p>
+                                    <a href="#" class="reply-btn"><span>Reply</span></a>
+                                </div>
+                            </div>
+                            <div class="dc-item reply-item">
+                                <div class="dc-pic">
+                                    <img src="${path}/img/details/comment/comment-2.jpg" alt="">
+                                </div>
+                                <div class="dc-text">
+                                    <h5>Brandon Kelley</h5>
+                                    <span class="c-date">15 Aug 2017</span>
+                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+                                        dolore magnam.</p>
+                                    <a href="#" class="reply-btn"><span>Reply</span></a>
+                                </div>
+                            </div>
+                            <div class="dc-item">
+                                <div class="dc-pic">
+                                    <img src="${path}/img/details/comment/comment-3.jpg" alt="">
+                                </div>
+                                <div class="dc-text">
+                                    <h5>Matthew Nelson</h5>
+                                    <span class="c-date">15 Aug 2017</span>
+                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+                                        dolore magnam.</p>
+                                    <a href="#" class="reply-btn"><span>Reply</span></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
