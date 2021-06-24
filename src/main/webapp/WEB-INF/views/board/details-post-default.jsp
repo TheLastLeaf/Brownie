@@ -405,4 +405,4 @@
     </div>
 </section>
 <!-- Details Post Section End -->
-<c:import url="../layout/footer.jsp"/><c:param name="path" value="${path}"/></c:import>
+<c:import url="../layout/footer.jsp"><c:param name="path" value="${path}"/></c:import>
