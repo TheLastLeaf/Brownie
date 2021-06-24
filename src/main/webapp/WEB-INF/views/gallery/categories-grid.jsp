@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp"/>
+
+
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="img/breadcrumb-bg.jpg">
     <div class="container">

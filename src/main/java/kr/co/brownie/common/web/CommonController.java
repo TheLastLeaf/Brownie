@@ -56,4 +56,17 @@ public class CommonController {
     public String typography() {
         return "common/typography";
     }
+    
+    @RequestMapping(path = "teamMaker")
+    public String teamMaker() {
+    	return "teamgame/teamMaker";
+    }
+    @RequestMapping(path = "makeRoom")
+    public String makeRoom() {
+    	return "teamgame/makeRoom";
+    }
+    @RequestMapping(path = "chatRoom")
+    public String chatRoom() {
+    	return "teamgame/chatRoom";
+    }
 }
