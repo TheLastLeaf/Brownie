@@ -27,7 +27,7 @@
         height: auto;
         border: 1px solid white;
         color: white;
-        margin: 2px 10px 2px 0px;
+        margin: 2px 10px 2px 0;
         text-align: center;
         position: relative;
         background: #1C1C1C;
@@ -69,12 +69,11 @@
 
     #message {
         margin: 5px;
-        margin-bottom: 5px;
         word-break: break-all;
     }
 
     #Gmode {
-        margin-bottom: 0px;
+        margin-bottom: 0;
         margin-top: 7px;
         background: grey;
         color: white;
@@ -103,7 +102,7 @@
     }
 </script>
 <!-- Main Content Post Section Begin -->
-<section class="details-post-section spad" style="padding: 0px;">
+<section class="details-post-section spad" style="padding: 0;">
     <!-- class="container"는 글을 가운데 정렬해주는 역할 -->
     <div class="container" style="width: 900px;">
 
@@ -114,16 +113,15 @@
                         <a href="#">team</a>
                         <span>slave</span>
                     </div>
-                    <h4 style="color: white;">Make your own TEAM</h4>
+                    <h4 class="text-white">Make your own TEAM</h4>
                 </div>
                 <div class="dt-desc" style="display: block;">
                     <!-- <p>가장 완성된 팀을 만들어 챌린저에 도전하세요!</p> -->
                     <div class="row outBox" style="margin-left: 5px;">
                         <!-- 방만들기 begin -->
-                        <div class="innerBox"
-                             style="text-align: center; display: flex; justify-content: center; align-items: center;">
+                        <div class="innerBox text-center justify-content-center align-items-center d-flex">
                             <label for="makeRoom" onclick="fn_makeRoom()">
-                                <img id="makeRoom" name="makeRoom" style="width: 40px; margin: 5px"
+                                <img id="makeRoom" style="width: 40px; margin: 5px"
                                      src="${path}/img/details/plusButton.png">
                                 &nbsp; 방만들기
                             </label>
@@ -132,11 +130,11 @@
 
                         <!-- 만들어진 방 begin -->
                         <!-- <div class="innerBox" style="text-align: center"> -->
-                        <div class="innerBox" style="text-align: center">
-                            <p style="margin: 0px; background: #848484; color: white; font-size: 14px;">
+                        <div class="innerBox text-center">
+                            <p class="text-white" style="margin: 0; background: #848484; font-size: 14px;">
                                 <b>그마이상구함!</b>
                             </p>
-                            <p id="nickname">
+                            <p class="nickname">
                                 Faker |
                                 <img style="width: 35px; height: 35px;" src="${path}/img/lol/bronze.png"/>
                                 |
@@ -160,8 +158,8 @@
                                     <img src="${path}/img/lol/Position_Grandmaster-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message">가나다라마바사아자차카타</p>
-                            <p id="Gmode">
+                            <p class="message">가나다라마바사아자차카타</p>
+                            <p class="Gmode">
                                 <b class="adapt">솔로랭크</b>
                             </p>
                         </div>
@@ -170,14 +168,14 @@
                         <!-- 만들어진 방 begin -->
                         <!-- <div class="innerBox" style="text-align: center"> -->
                         <div class="innerBox" style="text-align: center">
-                            <p style="margin: 0px; background: lightblue; color: black; font-size: 18px;">
+                            <p style="margin: 0; background: lightblue; color: black; font-size: 18px;">
                                 <b>다이아이상구함!</b>
                             </p>
-                            <p id="nickname" style="margin: 5px;">
+                            <p class="nickname" style="margin: 5px;">
                                 RIRINTO |
                                 <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png"/>
                                 |
-                                <img id="micUse" src="${path}/img/details/mic_o.jpg"/>
+                                <img class="micUse" src="${path}/img/details/mic_o.jpg"/>
                             </p>
                             <p style="margin: 3px;">
                                 <button type="button" class="positionTop">
@@ -196,8 +194,8 @@
                                     <img src="${path}/img/lol/Position_Diamond-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message">좆나못하니깐 캐리할사람만 들어오셈 히히!</p>
-                            <p id="Gmode">
+                            <p class="message">좆나못하니깐 캐리할사람만 들어오셈 히히!</p>
+                            <p class="Gmode">
                                 <b>일반게임</b>
                             </p>
                         </div>
@@ -206,14 +204,14 @@
                         <!-- 만들어진 방 begin -->
                         <!-- <div class="innerBox" style="text-align: center"> -->
                         <div class="innerBox">
-                            <p style="margin: 0px; background: brown; color: black; font-size: 18px;">
+                            <p style="margin: 0; background: brown; color: black; font-size: 18px;">
                                 <b>브론즈이상구함!!</b>
                             </p>
-                            <p id="nickname" style="margin: 5px;">
+                            <p class="nickname" style="margin: 5px;">
                                 안뇽하세욤 |
                                 <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png"/>
                                 |
-                                <img id="micUse" src="${path}/img/details/mic_o.jpg"/>
+                                <img class="micUse" src="${path}/img/details/mic_o.jpg"/>
                             </p>
                             <p style="margin: 3px;">
                                 <button type="button" class="positionTop">
@@ -232,8 +230,8 @@
                                     <img src="${path}/img/lol/Position_Bronze-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message">1235678903456780123563</p>
-                            <p id="Gmode">
+                            <p class="message">1235678903456780123563</p>
+                            <p class="Gmode">
                                 <b>자유랭크</b>
                             </p>
                         </div>
@@ -242,10 +240,10 @@
                         <!-- 만들어진 방 begin -->
                         <!-- 							<div class="innerBox" style="text-align: center"> -->
                         <div class="innerBox" style="text-align: center">
-                            <p style="margin: 0px; background: gold; color: black; font-size: 18px;">
+                            <p style="margin: 0; background: gold; color: black; font-size: 18px;">
                                 <b>챌린저이상구함!!</b>
                             </p>
-                            <p id="nickname" style="margin: 5px;">
+                            <p class="nickname" style="margin: 5px;">
                                 궁각예술 |
                                 <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png"/>
                             </p>
@@ -266,8 +264,8 @@
                                     <img src="${path}/img/lol/Position_Challenger-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message">TLdldldlqkf 왜 밑으로 안내려가</p>
-                            <p id="Gmode">
+                            <p class="message">TLdldldlqkf 왜 밑으로 안내려가</p>
+                            <p class="Gmode">
                                 <b>일반게임</b>
                             </p>
                         </div>
@@ -276,10 +274,10 @@
                         <!-- 만들어진 방 begin -->
                         <!-- <div class="innerBox" style="text-align: center"> -->
                         <div class="innerBox" style="text-align: center">
-                            <p style="margin: 0px; background: white; color: black; font-size: 18px;">
+                            <p style="margin: 0; background: white; color: black; font-size: 18px;">
                                 <b>아이언안구함!!</b>
                             </p>
-                            <p id="nickname" style="margin: 5px;">
+                            <p class="nickname" style="margin: 5px;">
                                 싯벨룜 |
                                 <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png"/>
                             </p>
@@ -300,8 +298,8 @@
                                     <img src="${path}/img/lol/Position_Iron-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message"></p>
-                            <p id="Gmode">
+                            <p class="message"></p>
+                            <p class="Gmode">
                                 <b>칼바람</b>
                             </p>
                         </div>
@@ -310,14 +308,14 @@
                         <!-- 만들어진 방 begin -->
                         <!-- <div class="innerBox" style="text-align: center"> -->
                         <div class="innerBox" style="text-align: center">
-                            <p id="nickname" style="margin: 0px; background: yellow; color: black; font-size: 18px;">
+                            <p class="nickname" style="margin: 0; background: yellow; color: black; font-size: 18px;">
                                 <b>골드구함!!</b>
                             </p>
                             <p style="margin: 5px;">
                                 regolas |
                                 <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png"/>
                                 |
-                                <img id="micUse" src="${path}/img/details/mic_o.jpg"/>
+                                <img class="micUse" src="${path}/img/details/mic_o.jpg"/>
                             </p>
                             <p style="margin: 3px;">
                                 <button type="button" class="positionTop">
@@ -336,8 +334,8 @@
                                     <img src="${path}/img/lol/Position_Gold-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message">div 내부 p 태그를 가장 아랫쪽으로 내리고 싶어요..</p>
-                            <p id="Gmode">
+                            <p class="message">div 내부 p 태그를 가장 아랫쪽으로 내리고 싶어요..</p>
+                            <p class="Gmode">
                                 <b>일반게임</b>
                             </p>
                         </div>
@@ -346,10 +344,10 @@
                         <!-- 만들어진 방 begin -->
                         <!-- <div class="innerBox" style="text-align: center"> -->
                         <div class="innerBox" style="text-align: center">
-                            <p style="margin: 0px; background: silver; color: black; font-size: 18px;">
+                            <p style="margin: 0; background: silver; color: black; font-size: 18px;">
                                 <b>실버구함!!!</b>
                             </p>
-                            <p id="nickname" id="nickname" style="margin: 5px;">
+                            <p class="nickname" style="margin: 5px;">
                                 PAKA |
                                 <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png"/>
                             </p>
@@ -370,8 +368,8 @@
                                     <img src="${path}/img/lol/Position_Silver-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message">좆나 보기 싫네 ㅋㅋ</p>
-                            <p id="Gmode">
+                            <p class="message">좆나 보기 싫네 ㅋㅋ</p>
+                            <p class="Gmode">
                                 <b>일반게임</b>
                             </p>
                         </div>
@@ -380,10 +378,10 @@
                         <!-- 만들어진 방 begin -->
                         <!-- <div class="innerBox" style="text-align: center"> -->
                         <div class="innerBox" style="text-align: center">
-                            <p style="margin: 0px; background: green; color: black; font-size: 18px;">
+                            <p style="margin: 0; background: green; color: black; font-size: 18px;">
                                 <b>플래티넘구함!!!</b>
                             </p>
-                            <p id="nickname" style="margin: 5px;">
+                            <p class="nickname" style="margin: 5px;">
                                 또뽀끼 |
                                 <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png"/>
                             </p>
@@ -404,8 +402,8 @@
                                     <img src="${path}/img/lol/Position_Plat-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message">기괴하게 변해버린 팀게시판..</p>
-                            <p id="Gmode">
+                            <p class="message">기괴하게 변해버린 팀게시판..</p>
+                            <p class="Gmode">
                                 <b>일반게임</b>
                             </p>
                         </div>
@@ -414,10 +412,10 @@
                         <!-- 만들어진 방 begin -->
                         <!-- <div class="innerBox" style="text-align: center"> -->
                         <div class="innerBox" style="text-align: center">
-                            <p style="margin: 0px; background: purple; color: black; font-size: 18px;">
+                            <p style="margin: 0; background: purple; color: black; font-size: 18px;">
                                 <b>마스터구함!!</b>
                             </p>
-                            <p id="nickname" style="margin: 5px;">
+                            <p class="nickname" style="margin: 5px;">
                                 Greenday |
                                 <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png"/>
                             </p>
@@ -438,8 +436,8 @@
                                     <img src="${path}/img/lol/Position_Master-Support.png"/>
                                 </button>
                             </p>
-                            <p id="message">성공해주세요성공해주세요성공해주세요성공해주세요</p>
-                            <p id="Gmode">
+                            <p class="message">성공해주세요성공해주세요성공해주세요성공해주세요</p>
+                            <p class="Gmode">
                                 <b>일반게임</b>
                             </p>
                         </div>
@@ -466,7 +464,7 @@
                             <i class="fa fa-google-plus"></i>
                         </a>
                         <a href="#">
-                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-instagram"></i>z
                         </a>
                         <a href="#">
                             <i class="fa fa-youtube-play"></i>
