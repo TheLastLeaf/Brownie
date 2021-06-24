@@ -36,7 +36,7 @@
                                     </div>
                                     <textarea placeholder="Message" style="height: 500px;" id="notice_content" class="notice_content" ></textarea>
                                     <div id="file">
-                                   		<input type="file" value="파일선택" style="width: 20%; color: gray;">
+                                   		<input type="file" value="파일선택" style="width: 20%; color: #666666;">
                                     </div>
                                     <br/>
                                     <button type="submit">등록</button>
