@@ -91,7 +91,7 @@
                         </div>
                     </div>
                 <form>
-                    <div style="text-align: center;">
+                    <div class="innerBox text-center">
                         <span>
                             <select name="notice" style="height:30px; background: black; color: #666666;">
                                 <option value="" selected="selected">선택</option>
