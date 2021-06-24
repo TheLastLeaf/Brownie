@@ -37,27 +37,27 @@
 	border: none;
 }
 
-#positionTop {
+.positionTop {
 	background: red;
 	color: white;
 }
 
-#positionJun {
+.positionJun {
 	background: lightblue;
 	color: black;
 }
 
-#positionMid {
+.positionMid {
 	background: lightblue;
 	color: black;
 }
 
-#positionAd {
+.positionAd {
 	background: red;
 	color: white;
 }
 
-#positionSup {
+.positionSup {
 	background: lightblue;
 	color: black;
 }
@@ -141,19 +141,19 @@ button>img {
 									<img style="width: 25px; height: 25px; margin: 3px;" src="${path}/img/details/mic_o.jpg" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 									</button>
 								</p>
@@ -177,19 +177,19 @@ button>img {
 									<img id="micUse" src="${path}/img/details/mic_o.jpg" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Diamond-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Diamond-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Diamond-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Diamond-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Diamond-Support.png" />
 									</button>
 								</p>
@@ -213,19 +213,19 @@ button>img {
 									<img id="micUse" src="${path}/img/details/mic_o.jpg" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Bronze-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Bronze-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Bronze-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Bronze-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Bronze-Support.png" />
 									</button>
 								</p>
@@ -247,19 +247,19 @@ button>img {
 									<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Challenger-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Challenger-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Challenger-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Challenger-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Challenger-Support.png" />
 									</button>
 								</p>
@@ -281,19 +281,19 @@ button>img {
 									<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Iron-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Iron-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Iron-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Iron-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Iron-Support.png" />
 									</button>
 								</p>
@@ -317,19 +317,19 @@ button>img {
 									<img id="micUse" src="${path}/img/details/mic_o.jpg" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Gold-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Gold-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Gold-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Gold-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Gold-Support.png" />
 									</button>
 								</p>
@@ -351,19 +351,19 @@ button>img {
 									<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Silver-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Silver-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Silver-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Silver-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Silver-Support.png" />
 									</button>
 								</p>
@@ -385,19 +385,19 @@ button>img {
 									<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Plat-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Plat-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Plat-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Plat-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Plat-Support.png" />
 									</button>
 								</p>
@@ -419,19 +419,19 @@ button>img {
 									<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 								</p>
 								<p style="margin: 3px;">
-									<button type="button" id="positionTop">
+									<button type="button" class="positionTop">
 										<img src="${path}/img/lol/Position_Master-Top.png" />
 									</button>
-									<button type="button" id="positionJun">
+									<button type="button" class="positionJun">
 										<img src="${path}/img/lol/Position_Master-Jungle.png" />
 									</button>
-									<button type="button" id="positionMid">
+									<button type="button" class="positionMid">
 										<img src="${path}/img/lol/Position_Master-Mid.png" />
 									</button>
-									<button type="button" id="positionAd">
+									<button type="button" class="positionAd">
 										<img src="${path}/img/lol/Position_Master-Bot.png" />
 									</button>
-									<button type="button" id="positionSup">
+									<button type="button" class="positionSup">
 										<img src="${path}/img/lol/Position_Master-Support.png" />
 									</button>
 								</p>
