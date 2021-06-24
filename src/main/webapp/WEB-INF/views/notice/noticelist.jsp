@@ -262,7 +262,7 @@
                         <div class="">
                             <span onclick="location.href='index'" style="color: white; cursor: pointer;">Home</span>
                             <span style="color: #666666"> / </span>
-                            <span onclick="location.href='index'" style="color: red; cursor: pointer;">Latest posts</span>
+                            <span onclick="location.href='noticelist'" style="color: red; cursor: pointer;">Latest posts</span>
                         </div>
                     </div>
                 </div>
@@ -273,8 +273,11 @@
 
     <!-- Categories list Section Begin -->
     <section class="categories-list-section spad">
-        <div style="margin-left: 80%;">
+        <div style="margin-left: 83.5%;">
             <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='noticeAdd'">
+        </div>
+        <div>
+            <hr style="background-color: white; width: 75%; text-align: center;">
         </div>
         <div class="container">
             <div class="row">
@@ -345,7 +348,7 @@
                             </select>
                             <input type="text" value="" style="background: black; color: #666666">
                         </span>
-                        <input type="button" class="btn btn-outline-dark" value="조회" style="color: #666666">
+                        <input type="button" class="btn btn-outline-dark" value="조회" style="color: #666666;">
                     </div>
                     <div class="pagination-item">
                         <a href="#"><span>1</span></a>

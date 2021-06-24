@@ -34,7 +34,6 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
     <!-- Humberger Menu Begin -->
     <div class="humberger-menu-overlay"></div>
     <div class="humberger-menu-wrapper">
@@ -66,7 +65,7 @@
                 <li><a href="#">Windows <i class="fa fa-angle-down"></i></a>
                     <ul class="dropdown">
                         <li><a href="#">Playstation</a></li>
-                        <li><a href="#">Windows</a></li>
+                        <li><a href="#"><W></W>indows</a></li>
                         <li><a href="#">Mobile</a></li>
                         <li><a href="#">Xbox</a></li>
                     </ul>
@@ -394,7 +393,7 @@
     <footer class="footer-section">
         <div class="container">
             <div class="row" >
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <div class="footer-about">
                         <div class="fa-logo">
                             <a href="#"><img src="${path}/img/f-logo.png" alt=""></a>
@@ -462,7 +461,7 @@
     <script src="${path}/js/jquery.barfiller.js"></script>
     <script src="${path}/js/jquery.slicknav.js"></script>
     <script src="${path}/js/owl.carousel.min.js"></script>
-    <script src="${path}/	js/main.js"></script>
+    <script src="${path}/js/main.js"></script>
 </body>
 
 </html>
