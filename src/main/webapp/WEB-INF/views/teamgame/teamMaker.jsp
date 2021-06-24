@@ -67,12 +67,12 @@
         height: 17px;
     }
 
-    #message {
+    .message {
         margin: 5px;
         word-break: break-all;
     }
 
-    #Gmode {
+    .Gmode {
         margin-bottom: 0;
         margin-top: 7px;
         background: grey;
@@ -82,13 +82,13 @@
         width: 100%;
     }
 
-    #nickname {
+    .nickname {
         font-family: mapleBold;
         font-weight: bolder;
         margin: 5px;
     }
 
-    #micUse {
+    .micUse {
         width: 25px;
         height: 25px;
         margin: 3px;
