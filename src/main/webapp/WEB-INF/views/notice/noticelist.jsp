@@ -27,7 +27,7 @@
         <div style="margin-left: 83.5%;">
             <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='noticeAdd'">
         </div>
-        <div>
+        <div style="margin-bottom: 2%">
             <hr style="background-color: white; width: 75%; text-align: center;">
         </div>
         <div class="container">

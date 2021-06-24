@@ -71,7 +71,7 @@
                                 cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                             </p>
                         </div>
-                        <div class="dt-author" style="border: 1px solid gray;">
+                        <div class="dt-author" style="border: 1px solid #666666;">
                             <div class="da-pic">
                                 <img src="${path}/img/details/author-pic.jpg" alt="">
                             </div>
@@ -95,7 +95,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="dt-comment">
+                        <div class="dt-comment" style="margin-top: 5%;">
                             <h4>REPLY</h4>
                             <div class="dc-item">
                                 <div class="dc-pic">
