@@ -9,5 +9,5 @@ import kr.co.brownie.auth.service.AuthService;
 @Controller
 public class AuthController {
 	@Resource(name = "authService")
-	AuthService authService;
+	AuthService authService;;
 }
