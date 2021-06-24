@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp"/>
@@ -12,15 +12,16 @@
                     <div class="details-text typography-page">
                         <div class="dt-breadcrumb">
                             <div class="dt-bread-option">
-                                <a href="/">Home</a>
+                                <a href="/index">Home</a>
                                 <span>Typography</span>
                             </div>
-                            <h3>제목</h3>
-                            <div class="details-hero-text" style="margin-left: 95%;">
+                            <div class="details-hero-text" style="margin-left: 96%;">
                                 <ul>
                                     <li><input type="button" class="btn btn-outline-dark btn-sm" onclick="location.href='noticelist'" style="color:#c20000; cursor: pointer;" value="삭제"></li>
                                 </ul>
                             </div>
+                            <hr style="width: auto; background-color: white;">
+                            <h3>제목</h3>
                              <div class="dp-pic">
                                 <img src="${path}/img/details/dp-p1.jpg" alt="">
                             </div>
@@ -92,8 +93,8 @@
                                     <li class="fa fa-clock-o">Aug 01, 2019</li>
                                     <li><span onclick="location.href='noticelist'" style="color:#666666; cursor: pointer;">목록</span></li>
                                 </ul>
-                        </div>
                             </div>
+                        </div>
                         <div class="dt-comment">
                             <h4>REPLY</h4>
                             <div class="dc-item">
