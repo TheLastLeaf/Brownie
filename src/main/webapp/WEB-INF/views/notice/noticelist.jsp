@@ -3,8 +3,6 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zxx">
-
-<!-- 박세웅이고침 -->
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Amin Template">
@@ -261,9 +259,10 @@
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb-text">
                         <h3>공지사항</h3>
-                        <div class="bt-option">
-                            <a href="/index">Home</a>
-                            <a href="#">Latest posts</a>
+                        <div class="">
+                            <span onclick="location.href='index'" style="color: white; cursor: pointer;">Home</span>
+                            <span style="color: #666666"> / </span>
+                            <span onclick="location.href='index'" style="color: red; cursor: pointer;">Latest posts</span>
                         </div>
                     </div>
                 </div>
@@ -274,16 +273,9 @@
 
     <!-- Categories list Section Begin -->
     <section class="categories-list-section spad">
-    <div>
-	   	<select name="notice" style="height:30px; margin-left:75%;">
-	    	<option value="" selected="selected">선택</option>
-	    	<option value="title" >제목</option>
-	    	<option value="content" >내용</option>
-	    	<option value="writer" >작성자</option>
-		</select>
-	    <input type="button" class="btn btn-light btn-sm" value="조회">
-	    <input type="button" class="btn btn-light btn-sm" value="글쓰기" onclick="location.href='noticeAdd'">
-    </div>
+        <div style="margin-left: 80%;">
+            <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='noticeAdd'">
+        </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -343,6 +335,18 @@
 									한 번씩만 생각해서 글을 남겨주시면 많은 이야기를 나눌 수 있는 게시판이 될 것 같습니다.</p>
                         </div>
                     </div>
+                    <div style="text-align: center;">
+                        <span>
+                            <select name="notice" style="height:30px; background: black; color: #666666;">
+                                <option value="" selected="selected">선택</option>
+                                <option value="title" >제목</option>
+                                <option value="content" >내용</option>
+                                <option value="writer" >작성자</option>
+                            </select>
+                            <input type="text" value="" style="background: black; color: #666666">
+                        </span>
+                        <input type="button" class="btn btn-outline-dark" value="조회" style="color: #666666">
+                    </div>
                     <div class="pagination-item">
                         <a href="#"><span>1</span></a>
                         <a href="#"><span>2</span></a>
@@ -350,7 +354,6 @@
                         <a href="#"><span>Next</span></a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -363,7 +366,7 @@
                 <div class="col-lg-12">
                     <div class="footer-about">
                         <div class="fa-logo">
-                            <a href="#"><img src="${path}/img/f-logo.png" alt=""></a>
+                            <a href="/index"><img src="${path}/img/f-logo.png" alt=""></a>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua lacus vel facilisis.</p>

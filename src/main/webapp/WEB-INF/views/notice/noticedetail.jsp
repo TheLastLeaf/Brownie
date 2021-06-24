@@ -264,6 +264,11 @@
                                 <span>Typography</span>
                             </div>
                             <h3>제목</h3>
+                            <div class="details-hero-text" style="margin-left: 95%;">
+                                <ul>
+                                    <li><input type="button" class="btn btn-outline-dark btn-sm" onclick="location.href='noticelist'" style="color:#c20000; cursor: pointer;" value="삭제"></li>
+                                </ul>
+                            </div>
                              <div class="dp-pic">
                                 <img src="${path}/img/details/dp-p1.jpg" alt="">
                             </div>
@@ -335,10 +340,10 @@
                                     <li class="fa fa-clock-o">Aug 01, 2019</li>
                                     <li><span onclick="location.href='noticelist'" style="color:#666666; cursor: pointer;">목록</span></li>
                                 </ul>
-                            </div>
                         </div>
-                        <div class="dt-comment" style="1px solid gray">
-                            <h4>3 comment</h4>
+                            </div>
+                        <div class="dt-comment">
+                            <h4>REPLY</h4>
                             <div class="dc-item">
                                 <div class="dc-pic">
                                     <img src="${path}/img/details/comment/comment-1.jpg" alt="">
