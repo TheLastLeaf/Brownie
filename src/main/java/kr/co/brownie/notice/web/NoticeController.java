@@ -12,18 +12,12 @@ public class NoticeController {
 	@Resource(name = "noticeService")
 	NoticeService noticeService;
 
-	@RequestMapping(path = "/noticeAdd")
-	public String noticeAdd() {
-		return "notice/noticeAdd";
-	}
+	@RequestMapping(path = "noticeAdd")
+	public String noticeAdd() { return "notice/noticeAdd"; }
 
-	@RequestMapping(path = "/noticelist")
-	public String noticelist() {
-		return "notice/noticelist";
-	}
+	@RequestMapping(path = "noticelist")
+	public String noticelist() { return "notice/noticelist"; }
 
-	@RequestMapping(path = "/noticedetail")
-	public String notice() {
-		return "notice/noticedetail";
-	}
+	@RequestMapping(path = "noticedetail")
+	public String notice() { return "notice/noticedetail"; }
 }
