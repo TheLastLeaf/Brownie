@@ -119,7 +119,7 @@
         display: inline-block;
         position: relative;
         top: 0;
-        _top: -2px;
+        _top: 2px;
         _width: 75px;
         border: 1px solid #b4b4b4;
         color: #ccc;
@@ -315,32 +315,43 @@
                     <h3 style="color: white;">오늘의 붐업!</h3>
                     <ul>
                         <li>
-                            <p class="thmb">
-                                <a href="#"> <span>움짤</span>
-                            <div class="thumbnail"><img class="thumbnail" src="${path}/img/gallery/1.jpeg" alt=""></div>
+                            <a href="#">
+                                <p class="thmb">
+                                    <span>움짤</span>
+                                <div class="thumbnail">
+                                    <img class="thumbnail" src="${path}/img/gallery/1.jpeg" alt="">
+                                </div>
                             </a>
-                            </p> <a href="#"><strong>치타는 웃고있다.</strong></a>
+                            <a href="#"><strong>치타는 웃고있다.</strong></a>
                         </li>
                         <li>
-                            <p class="thmb">
-                                <a href="#"> <span>팬아트</span>
-                            <div class="thumbnail"><img class="thumbnail" src="${path}/img/gallery/2.jpg" alt=""></div>
+                            <a href="#">
+                                <p class="thmb">
+                                    <span>팬아트</span>
+                                <div class="thumbnail">
+                                    <img class="thumbnail" src="${path}/img/gallery/2.jpg" alt="">
+                                </div>
                             </a>
-                            </p> <a href="#"><strong>고양인 울고있다.</strong></a>
+                            <a href="#"><strong>고양인 울고있다.</strong></a>
                         </li>
                         <li>
-                            <p class="thmb">
-                                <a href="#"> <span>팬아트</span>
-                            <div class="thumbnail"><img class="thumbnail" src="${path}/img/gallery/3.jpg" alt=""></div>
-                            </a>
-                            </p> <a href="#"><strong>강아진 짖고있다.</strong></a>
+                            <a href="#">
+                                <p class="thmb">
+                                    <span>팬아트</span>
+                                <div class="thumbnail">
+                                    <img class="thumbnail" src="${path}/img/gallery/3.jpg" alt="">
+                                </div>
+                            </a> <a href="#"><strong>강아진 짖고있다.</strong></a>
                         </li>
                         <li>
-                            <p class="thmb">
-                                <a href="#"> <span>습작</span>
-                            <div class="thumbnail"><img class="thumbnail" src="${path}/img/gallery/4.jpg" alt=""></div>
+                            <a href="#">
+                                <p class="thmb">
+                                    <span>습작</span>
+                                <div class="thumbnail">
+                                    <img class="thumbnail" src="${path}/img/gallery/4.jpg" alt="">
+                                </div>
                             </a>
-                            </p> <a href="#"><strong>강아진 물리고있다.</strong></a>
+                            <a href="#"><strong>강아진 물리고있다.</strong></a>
                         </li>
                     </ul>
                 </div>
@@ -362,8 +373,9 @@
                                                                                           style="margin-left: 3px;">인기만점</a>
                     <a href="" class=""
                        style="margin-left: 3px;">내가쓴글</a>
-                    <input style="margin-left: 83.5%;" type="button" class="btn btn-outline-dark btn-sm" value="글쓰기"
-                           style="color: white;" onclick="location.href='noticeAdd'">
+                    <input style="margin-left: 83.5%;color: white;" type="button" class="btn btn-outline-dark btn-sm"
+                           value="글쓰기"
+                           onclick="location.href='noticeAdd'">
                 </div>
 
                 <hr class="gallery_hr">
