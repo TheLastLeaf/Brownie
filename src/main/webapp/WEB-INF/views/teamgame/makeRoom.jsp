@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -38,7 +38,7 @@
     }
 
     p {
-        margin: 20px 0px;
+        margin: 20px 0;
         color: #D8D8D8;
     }
 
@@ -144,14 +144,14 @@
 <!-- <span style="text-align: right;"> -->
 <!-- 	포인트 -->
 <!-- </span> -->
-<div class="container" style="display: flex; justify-content: flex-end;">Lv.백신 / exp : 2810</div>
+<div class="container d-flex justify-content-end">Lv.백신 / exp : 2810</div>
 <div class="container">
     <div class="row">
-        <div class="col" style="text-align: center;">
+        <div class="col text-center">
             <p>
             <h5 style="font-family: mapleBold">닉네임 : FFF</h5>
             </p>
-            <p id="title" style="margin-bottom: 10px;">
+            <p id="title" class="botton" style="margin-bottom: 10px;">
                 <b style="font-family: mapleBold;">제목 :&nbsp; <input type="text" maxlength='12'/></b>
             </p>
             <p id="message" style="margin-top: 10px; margin-bottom: 15px;">
@@ -159,23 +159,23 @@
             </p>
 
             <div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label id="Gmode" class="btn btn-danger btn-gmode">
-                    <input type="radio" name="jb-radio" id="jb-radio-1">일반게임
+                <label class="btn btn-danger btn-gmode Gmode">
+                    <input type="radio" name="jb-radio" class="jb-radio-1">일반게임
                     <!-- 						<img src="${path}/img/lol/Position_Challenger-Top.png" /> -->
                 </label>
                 &nbsp;
-                <label id="Gmode" class="btn btn-danger btn-gmode">
-                    <input type="radio" name="jb-radio" id="jb-radio-2">랭크게임
+                <label class="btn btn-danger btn-gmode Gmode">
+                    <input type="radio" name="jb-radio" class="jb-radio-2">랭크게임
                     <!-- 						<img src="${path}/img/lol/Position_Challenger-Jungle.png" /> -->
                 </label>
                 &nbsp;
-                <label id="Gmode" class="btn btn-danger btn-gmode">
-                    <input type="radio" name="jb-radio" id="jb-radio-3">자유랭크
+                <label class="btn btn-danger btn-gmode Gmode">
+                    <input type="radio" name="jb-radio" class="jb-radio-3">자유랭크
                     <!-- 						<img src="${path}/img/lol/Position_Challenger-Mid.png" /> -->
                 </label>
                 &nbsp;
-                <label id="Gmode" class="btn btn-danger btn-gmode">
-                    <input type="radio" name="jb-radio" id="jb-radio-4">칼바람
+                <label class="btn btn-danger btn-gmode Gmode">
+                    <input type="radio" name="jb-radio" class="jb-radio-4">칼바람
                     <!-- 						<img src="${path}/img/lol/Position_Challenger-Bot.png" /> -->
                 </label>
                 &nbsp;
@@ -184,29 +184,29 @@
             <br/>
 
             <div style="margin-bottom: 3px; margin-top: 10px;" class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label id="position" class="btn btn-danger">
-                    <input type="radio" name="jb-radio" id="jb-radio-1" value="top">
-                    <img src="${path}/img/lol/Position_Challenger-Top.png"/>
+                <label class="btn btn-danger position">
+                    <input type="radio" name="jb-radio" class="jb-radio-1" value="top">
+                    <img src="${path}/img/lol/Position_Challenger-Top.png" alt=""/>
                 </label>
                 &nbsp;
-                <label id="position" class="btn btn-danger">
-                    <input type="radio" name="jb-radio" id="jb-radio-2" value="jun">
-                    <img src="${path}/img/lol/Position_Challenger-Jungle.png"/>
+                <label class="btn btn-danger position">
+                    <input type="radio" name="jb-radio" class="jb-radio-2" value="jun">
+                    <img src="${path}/img/lol/Position_Challenger-Jungle.png" alt=""/>
                 </label>
                 &nbsp;
-                <label id="position" class="btn btn-danger">
-                    <input type="radio" name="jb-radio" id="jb-radio-3" value="mid">
-                    <img src="${path}/img/lol/Position_Challenger-Mid.png"/>
+                <label class="btn btn-danger position">
+                    <input type="radio" name="jb-radio" class="jb-radio-3" value="mid">
+                    <img src="${path}/img/lol/Position_Challenger-Mid.png" alt=""/>
                 </label>
                 &nbsp;
-                <label id="position" class="btn btn-danger">
-                    <input type="radio" name="jb-radio" id="jb-radio-4" value="bot">
-                    <img src="${path}/img/lol/Position_Challenger-Bot.png"/>
+                <label class="btn btn-danger position">
+                    <input type="radio" name="jb-radio" class="jb-radio-4" value="bot">
+                    <img src="${path}/img/lol/Position_Challenger-Bot.png" alt=""/>
                 </label>
                 &nbsp;
-                <label id="position" class="btn btn-danger">
-                    <input type="radio" name="jb-radio" id="jb-radio-5" value="sup">
-                    <img src="${path}/img/lol/Position_Challenger-Support.png"/>
+                <label class="btn btn-danger position">
+                    <input type="radio" name="jb-radio" class="jb-radio-5" value="sup">
+                    <img src="${path}/img/lol/Position_Challenger-Support.png" alt=""/>
                 </label>
                 &nbsp;
             </div>
@@ -216,14 +216,14 @@
             <div class="container">
                 <p style="margin-bottom: 3px;">방끌어올리기!!(-1000px)</p>
                 <div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label id="roomOn" class="btn btn-danger btn-usepoint">
-                        <input type="radio" name="jb-radio" id="jb-radio-1" value="top">
-                        <img style="width: 20px; height: 20px;" src="${path}/img/details/check_o.png"/>
+                    <label class="btn btn-danger btn-usepoint roomOn">
+                        <input type="radio" name="jb-radio" class="jb-radio-1" value="top">
+                        <img style="width: 20px; height: 20px;" src="${path}/img/details/check_o.png" alt=""/>
                     </label>
                     &nbsp;
-                    <label id="roomOn" class="btn btn-danger btn-usepoint">
-                        <input type="radio" name="jb-radio" id="jb-radio-2" value="jun">
-                        <img style="width: 20px; height: 20px;" src="${path}/img/details/check_x.png"/>
+                    <label class="btn btn-danger btn-usepoint roomOn">
+                        <input type="radio" name="jb-radio" class="jb-radio-2" value="jun">
+                        <img style="width: 20px; height: 20px;" src="${path}/img/details/check_x.png" alt=""/>
                     </label>
                     &nbsp;
                 </div>
