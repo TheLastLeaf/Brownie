@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%><c:set var="path" value="${pageContext.request.contextPath}"/>
-
-<c:import url="../layout/header.jsp"><c:param name="path" value="${path}"/></c:import>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:import url="../layout/header.jsp">
+    <c:param name="path" value="${path}"/>
+</c:import>
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="img/breadcrumb-bg.jpg">
@@ -195,11 +196,12 @@
         border: 2px solid white;
     }
 
-    .gallery_hr{
+    .gallery_hr {
         background-color: white;
         width: 100%;
         text-align: center;
     }
+
     #preview {
         z-index: 9999;
         position: absolute;
@@ -345,7 +347,7 @@
 
                 <hr style="background-color: white; width: 80%; text-align: center;">
 
-                <div >
+                <div>
                     <select
                             onchange="location.href = INVEN.QueryMaker.getLink('https://www.inven.co.kr/board/lol/2775', 'come_idx->2775,category->' + this.value, 'remove->p,category2');"
                             style="color: black; display: inline; float: left;">
@@ -360,7 +362,8 @@
                                                                                           style="margin-left: 3px;">인기만점</a>
                     <a href="" class=""
                        style="margin-left: 3px;">내가쓴글</a>
-                    <input style="margin-left: 83.5%;" type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='noticeAdd'">
+                    <input style="margin-left: 83.5%;" type="button" class="btn btn-outline-dark btn-sm" value="글쓰기"
+                           style="color: white;" onclick="location.href='noticeAdd'">
                 </div>
 
                 <hr class="gallery_hr">
@@ -463,4 +466,6 @@
     </div>
 </section>
 <!-- Categories Grid Section End -->
-<c:import url="../layout/footer.jsp"><c:param name="path" value="${path}"/></c:import>
+<c:import url="../layout/footer.jsp">
+    <c:param name="path" value="${path}"/>
+</c:import>
