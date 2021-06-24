@@ -5,7 +5,7 @@
     <c:param name="path" value="${path}"/>
 </c:import>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
+<section class="breadcrumb-section set-bg spad" data-setbg="/${path}/img/breadcrumb-bg.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -36,7 +36,7 @@
                 <div class="col-lg-12">
                     <div class="cl-item">
                         <div class="cl-pic">
-                            <img src="${path}/img/categories-list/cl-1.jpg" alt="">
+                            <img src="/${path}/img/categories-list/cl-1.jpg" alt="">
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="cl-item">
                         <div class="cl-pic">
-                            <img src="${path}/img/categories-list/cl-2.jpg" alt="">
+                            <img src="/${path}/img/categories-list/cl-2.jpg" alt="">
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="cl-item">
                         <div class="cl-pic">
-                            <img src="${path}/img/categories-list/cl-3.jpg" alt="">
+                            <img src="/${path}/img/categories-list/cl-3.jpg" alt="">
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="cl-item">
                         <div class="cl-pic">
-                            <img src="${path}/img/categories-list/cl-4.jpg" alt="">
+                            <img src="/${path}/img/categories-list/cl-4.jpg" alt="">
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
