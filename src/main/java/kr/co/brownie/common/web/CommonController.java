@@ -24,12 +24,12 @@ public class CommonController {
 
     @RequestMapping(path = "categories-grid")
     public String categories_grid() {
-        return "common/categories-grid";
+        return "gallery/categories-grid";
     }
 
     @RequestMapping(path = "categories-list")
     public String categories_list() {
-        return "common/categories-list";
+        return "gallery/categories-list";
     }
 
     @RequestMapping(path = "contact")
