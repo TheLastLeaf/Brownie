@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp"/>
@@ -200,166 +200,165 @@
 <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<!-- Categories Grid Section Begin -->
-<section class="categories-grid-section spad">
-    <div class="container">
-        <div class="notice"
-             style="height: 200px; width: 1150px; border: 3px solid white;">
-            <h3 style="color: white;">갤러리아 공지사항</h3>
-            <table class="gallery_notice">
-                <tr>
-                    <th>분류</th>
-                    <th>제목</th>
-                    <th>글쓴이</th>
-                    <th>등록일</th>
-                    <th>조회</th>
-                    <th>추천</th>
-                </tr>
-                <tr>
-                    <td>[공지]</td>
-                    <td><a href="#"><strong>치타는 웃고있다. </strong></a></td>
-                    <td>곽지훈</td>
-                    <td>2014-01-28</td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>[공지]</td>
-                    <td><a href="#"><strong>고양인 울고있다.</strong></a></td>
-                    <td>곽지훈</td>
-                    <td>2014-01-28</td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>[공지]</td>
-                    <td><a href="#"><strong>강아진 짖고있다.</strong></a></td>
-                    <td>곽지훈</td>
-                    <td>2014-01-28</td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>[공지]</td>
-                    <td><a href="#"><strong>강아진 물리고있다.</strong></a></td>
-                    <td>곽지훈</td>
-                    <td>2014-01-28</td>
-                    <td>12</td>
-                    <td>3</td>
-                </tr>
+	<!-- Categories Grid Section Begin -->
+	<section class="categories-grid-section spad">
+		<div class="container">
+			<div class="notice"
+				style="height: 200px; width: 1150px; border: 3px solid white;">
+				<h3 style="color: white;">갤러리아 공지사항</h3>
+				<table class="gallery_notice">
+					<tr>
+						<th>분류</th>
+						<th>제목</th>
+						<th>글쓴이</th>
+						<th>등록일</th>
+						<th>조회</th>
+						<th>추천</th>
+					</tr>
+					<tr>
+						<td>[공지]</td>
+						<td><a href="#"><strong>치타는 웃고있다. </strong></a></td>
+						<td>곽지훈</td>
+						<td>2014-01-28</td>
+						<td>12</td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>[공지]</td>
+						<td><a href="#"><strong>고양인 울고있다.</strong></a></td>
+						<td>곽지훈</td>
+						<td>2014-01-28</td>
+						<td>12</td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>[공지]</td>
+						<td><a href="#"><strong>강아진 짖고있다.</strong></a></td>
+						<td>곽지훈</td>
+						<td>2014-01-28</td>
+						<td>12</td>
+						<td>3</td>
+					</tr>
+					<tr>
+						<td>[공지]</td>
+						<td><a href="#"><strong>강아진 물리고있다.</strong></a></td>
+						<td>곽지훈</td>
+						<td>2014-01-28</td>
+						<td>12</td>
+						<td>3</td>
+					</tr>
+					
+				</table>
+			</div>
+			<div class="todayHot" style="height: 300px; width: 1150px; border: 3px solid white;">
+			<h3 style="color: white;">오늘의 붐업!</h3>
+				<ul>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>움짤</span> <div class="list_image"><img class="thumbnail" src="${path}/img/gallery/1.jpeg" alt=""></div>
+							</a>
+						</p> <a href="#"><strong>치타는 웃고있다.</strong></a>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>팬아트</span> <div class="list_image"><img onmouseenter="zoomIn(event)" onmouseleave="zoomOut(event)" src="${path}/img/gallery/2.jpg" alt=""></div>
+							</a>
+						</p> <a href="#"><strong>고양인 울고있다.</strong></a>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>팬아트</span> <div class="list_image"><img src="${path}/img/gallery/3.jpg" alt=""></div>
+							</a>
+						</p> <a href="#"><strong>강아진 짖고있다.</strong></a>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>습작</span> <div class="list_image"><img src="${path}/img/gallery/4.jpg" alt=""></div>
+							</a>
+						</p> <a href="#"><strong>강아진 물리고있다.</strong></a>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<select
+					onchange="location.href = INVEN.QueryMaker.getLink('https://www.inven.co.kr/board/lol/2775', 'come_idx->2775,category->' + this.value, 'remove->p,category2');"
+					style="display: inline; float: left;">
+					<option value="">전체</option>
+					<option value="장례식">장례식</option>
+					<option value="자작">자작</option>
+					<option value="연재">연재</option>
+					<option value="퍼온글">퍼온글</option>
+					<option value="기타">기타</option>
+				</select> <a href="" class="" style="margin-left: 3px;">오늘의 화제</a> <a href=""
+					class="" style="margin-left: 3px;">인기만점</a> <a href="" class=""
+					style="margin-left: 3px;">내가쓴글</a>
+			</div>
 
-            </table>
-        </div>
-        <div class="todayHot" style="height: 300px; width: 1150px; border: 3px solid white;">
-            <h3 style="color: white;">오늘의 붐업!</h3>
-            <ul>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>움짤</span> <img src="${path}/img/gallery/1.jpeg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>치타는 웃고있다.</strong></a>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/2.jpg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>고양인 울고있다.</strong></a>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/3.jpg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>강아진 짖고있다.</strong></a>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>습작</span> <img src="${path}/img/gallery/4.jpg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>강아진 물리고있다.</strong></a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <select
-                    onchange="location.href = INVEN.QueryMaker.getLink('https://www.inven.co.kr/board/lol/2775', 'come_idx->2775,category->' + this.value, 'remove->p,category2');"
-                    style="display: inline; float: left;">
-                <option value="">전체</option>
-                <option value="장례식">장례식</option>
-                <option value="자작">자작</option>
-                <option value="연재">연재</option>
-                <option value="퍼온글">퍼온글</option>
-                <option value="기타">기타</option>
-            </select> <a href="" class="" style="margin-left: 3px;">오늘의 화제</a> <a href=""
-                                                                                  class="" style="margin-left: 3px;">인기만점</a>
-            <a href="" class=""
-               style="margin-left: 3px;">내가쓴글</a>
-        </div>
-
-        <div class="sub_photo" style="height: 700px; width: 1150px; border: 3px solid white;">
-            <div class="title_area">
-                <h4 class="hh_photo">
-                    <strong class="blind">갤러리</strong>
-                </h4>
-            </div>
-            <ul>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>움짤</span> <img class="img-thumbnail" src="${path}/img/gallery/1.jpeg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>치타는 웃고있다.</strong></a>
-                    <p class="tx_brief">2014-01-28</p>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/2.jpg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>고양인 울고있다.</strong></a>
-                    <p class="tx_brief">2014-01-28</p>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/3.jpg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>강아진 짖고있다.</strong></a>
-                    <p class="tx_brief">2014-01-28</p>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>습작</span> <img src="${path}/img/gallery/4.jpg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>강아진 물리고있다.</strong></a>
-                    <p class="tx_brief">2014-01-28</p>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>연재</span> <img src="${path}/img/gallery/5.gif" alt="">
-                        </a>
-                    </p> <a href="#"><strong>기립박수</strong></a>
-                    <p class="tx_brief">2014-01-28</p>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>연재</span> <img src="${path}/img/gallery/6.jpg" alt="">
-                        </a>
-                    </p> <a href="#"><strong>이색기야</strong></a>
-                    <p class="tx_brief">2014-01-28</p>
-                </li>
-                <li>
-                    <p class="thmb">
-                        <a href="#"> <span>연재</span> <img src="${path}/img/gallery/7.gif" alt="">
-                        </a>
-                    </p> <a href="#"><strong>도게자 박겠습니다</strong></a>
-                    <p class="tx_brief">2014-01-28</p>
-                </li>
-                <!-- li가 게시판 1개글입니다 보일 갤러리 갯수만큼 li반복합니다.-->
-            </ul>
-        </div>
-        <!-- 갤러리끝 -->
-    </div>
-    <div class="paginate">
-        <a href="#"><span>1</span></a> <a href="#"><span>2</span></a> <a
-            href="#"><span>3</span></a> <a href="#"><span>Next</span></a>
-    </div>
-</section>
-<!-- Categories Grid Section End -->
+			<div class="sub_photo" style="height: 700px; width: 1150px; border: 3px solid white;">
+				<div class="title_area">
+					<h4 class="hh_photo">
+						<strong class="blind">갤러리</strong>
+					</h4>
+				</div>
+				<ul>
+					<li>
+						<p class="thmb">
+                            <a href="#"> <span>움짤</span> <div class="list_image"><img class="img-thumbnail" src="${path}/img/gallery/1.jpeg" alt=""></div>
+							</a>
+						</p> <a href="#"><strong>치타는 웃고있다.</strong></a>
+						<p class="tx_brief">2014-01-28</p>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/2.jpg" alt="">
+							</a>
+						</p> <a href="#"><strong>고양인 울고있다.</strong></a>
+						<p class="tx_brief">2014-01-28</p>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>팬아트</span> <img src="${path}/img/gallery/3.jpg" alt="">
+							</a>
+						</p> <a href="#"><strong>강아진 짖고있다.</strong></a>
+						<p class="tx_brief">2014-01-28</p>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>습작</span> <img src="${path}/img/gallery/4.jpg" alt="">
+							</a>
+						</p> <a href="#"><strong>강아진 물리고있다.</strong></a>
+						<p class="tx_brief">2014-01-28</p>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>연재</span> <img src="${path}/img/gallery/5.gif" alt="">
+							</a>
+						</p> <a href="#"><strong>기립박수</strong></a>
+						<p class="tx_brief">2014-01-28</p>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>연재</span> <img src="${path}/img/gallery/6.jpg" alt="">
+							</a>
+						</p> <a href="#"><strong>이색기야</strong></a>
+						<p class="tx_brief">2014-01-28</p>
+					</li>
+					<li>
+						<p class="thmb">
+							<a href="#"> <span>연재</span> <img src="${path}/img/gallery/7.gif" alt="">
+							</a>
+						</p> <a href="#"><strong>도게자 박겠습니다</strong></a>
+						<p class="tx_brief">2014-01-28</p>
+					</li>
+					<!-- li가 게시판 1개글입니다 보일 갤러리 갯수만큼 li반복합니다.-->
+				</ul>
+			</div>
+			<!-- 갤러리끝 -->
+		</div>
+		<div class="paginate">
+			<a href="#"><span>1</span></a> <a href="#"><span>2</span></a> <a
+				href="#"><span>3</span></a> <a href="#"><span>Next</span></a>
+		</div>
+	</section>
+	<!-- Categories Grid Section End -->
 <c:import url="../layout/footer.jsp"/>
