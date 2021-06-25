@@ -15,12 +15,15 @@
                             <a href="${path}/index">Home</a>
                             <span>Typography</span>
                         </div>
-                        <div class="details-hero-text" style="margin-left: 96%;">
-                            <ul>
-                                <li><input type="button" class="btn btn-outline-dark btn-sm"
-                                           onclick="location.href='noticelist'" style="color:#c20000; cursor: pointer;"
-                                           value="삭제"></li>
-                            </ul>
+                        <div class="innerBox text-right">
+                            <div class="details-hero-text">
+                                <ul>
+                                    <li>by <span>Admin</span></li>
+                                    <li class="fa fa-clock-o">Aug 01, 2019</li>
+                                    <li><span onclick="location.href='noticelist'" style="color:#666666; cursor: pointer;">목록</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <hr style="width: auto; background-color: white;">
                         <h3>제목</h3>
@@ -86,16 +89,13 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6" style="margin-left: 78%;">
-                        <div class="details-hero-text">
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                                <li class="fa fa-clock-o">Aug 01, 2019</li>
-                                <li><span onclick="location.href='noticelist'" style="color:#666666; cursor: pointer;">목록</span>
-                                </li>
-                            </ul>
+                            <div class="innerBox text-right">
+                                <ul>
+                                    <li><input type="button" class="btn btn-outline-dark btn-sm"
+                                               onclick="location.href='noticelist'" style="color:#c20000; cursor: pointer;"
+                                               value="삭제"></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="dt-comment" style="margin-top: 5%;">
