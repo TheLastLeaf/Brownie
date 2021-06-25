@@ -18,14 +18,14 @@
     <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="${param.path}/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/${param.path}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/${param.path}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/${param.path}/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/${param.path}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/${param.path}/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="/${param.path}/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/${param.path}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/${param.path}/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -38,20 +38,20 @@
 <div class="humberger-menu-overlay"></div>
 <div class="humberger-menu-wrapper">
     <div class="hw-logo">
-        <a href="#"><img src="${param.path}/img/f-logo.png" alt=""></a>
+        <a href="#"><img src="/${param.path}/img/f-logo.png" alt=""></a>
     </div>
     <div class="hw-menu mobile-menu">
         <ul>
-            <li><a href="${param.path}/index">Home</a></li>
+            <li><a href="/${param.path}/index">Home</a></li>
             <li><a href="#">Pages <i class="fa fa-angle-down"></i></a>
                 <ul class="dropdown">
-                    <li><a href="${param.path}/categories-list">Categories</a></li>
-                    <li><a href="${param.path}/categories-grid">Categories grid</a></li>
-                    <li><a href="${param.path}/typography">Typography</a></li>
-                    <li><a href="${param.path}/details-post-default">Post default</a></li>
-                    <li><a href="${param.path}/details-post-gallery">Post gallery</a></li>
-                    <li><a href="${param.path}/details-post-review">Post review</a></li>
-                    <li><a href="${param.path}/contact">Contact</a></li>
+                    <li><a href="/${param.path}/categories-list">Categories</a></li>
+                    <li><a href="/${param.path}/categories-grid">Categories grid</a></li>
+                    <li><a href="/${param.path}/typography">Typography</a></li>
+                    <li><a href="/${param.path}/details-post-default">Post default</a></li>
+                    <li><a href="/${param.path}/details-post-gallery">Post gallery</a></li>
+                    <li><a href="/${param.path}/details-post-review">Post review</a></li>
+                    <li><a href="/${param.path}/contact">Contact</a></li>
                 </ul>
             </li>
             <li><a href="#">Reviews <i class="fa fa-angle-down"></i></a>
@@ -95,10 +95,10 @@
             <h5>Instagram</h5>
         </div>
         <div class="insta-pic">
-            <img src="${param.path}/img/instagram/ip-1.jpg" alt="">
-            <img src="${param.path}/img/instagram/ip-2.jpg" alt="">
-            <img src="${param.path}/img/instagram/ip-3.jpg" alt="">
-            <img src="${param.path}/img/instagram/ip-4.jpg" alt="">
+            <img src="/${param.path}/img/instagram/ip-1.jpg" alt="">
+            <img src="/${param.path}/img/instagram/ip-2.jpg" alt="">
+            <img src="/${param.path}/img/instagram/ip-3.jpg" alt="">
+            <img src="/${param.path}/img/instagram/ip-4.jpg" alt="">
         </div>
     </div>
 </div>
@@ -135,7 +135,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="${param.path}/index"><img src="${param.path}/img/logo.png" alt=""></a>
+                    <a href="/${param.path}/index"><img src="/${param.path}/img/logo.png" alt=""></a>
                 </div>
             </div>
         </div>
@@ -150,7 +150,7 @@
             </div>
             <div class="nav-menu">
                 <ul>
-                    <li class="active"><a href="${param.path}/index"><span>Home</span></a></li>
+                    <li class="active"><a href="/${param.path}/index"><span>Home</span></a></li>
                     <li class="mega-menu"><a href="#"><span>Platform <i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <ul class="mw-nav">
@@ -162,7 +162,7 @@
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic">
-                                        <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="/${param.path}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach
@@ -175,7 +175,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic">
-                                        <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="/${param.path}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6><a href="#">A new Borderlands 3 trailer introduces Moze and her...</a>
@@ -188,7 +188,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic">
-                                        <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="/${param.path}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6><a href="#">Teamfight Tactics is in chaos after today's patch...</a>
@@ -201,7 +201,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic">
-                                        <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="/${param.path}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6><a href="#">Borderlands 2 dev explains why there's mysterious
@@ -214,7 +214,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic">
-                                        <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="/${param.path}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6><a href="#">Capcom asks select fans to test new Resident Evil game</a>
@@ -231,13 +231,13 @@
                     <li>
                         <a href="#"><span>Pages <i class="fa fa-angle-down"></i></span></a>
                         <ul class="dropdown">
-                            <li><a href="${param.path}/categories-list">Categories</a></li>
-                            <li><a href="${param.path}/categories-grid">Categories grid</a></li>
-                            <li><a href="${param.path}/typography">Typography</a></li>
-                            <li><a href="${param.path}/details-post-default">Post default</a></li>
-                            <li><a href="${param.path}/details-post-gallery">Post gallery</a></li>
-                            <li><a href="${param.path}/details-post-review">Post review</a></li>
-                            <li><a href="${param.path}/contact">Contact</a></li>
+                            <li><a href="/${param.path}/categories-list">Categories</a></li>
+                            <li><a href="/${param.path}/categories-grid">Categories grid</a></li>
+                            <li><a href="/${param.path}/typography">Typography</a></li>
+                            <li><a href="/${param.path}/details-post-default">Post default</a></li>
+                            <li><a href="/${param.path}/details-post-gallery">Post gallery</a></li>
+                            <li><a href="/${param.path}/details-post-review">Post review</a></li>
+                            <li><a href="/${param.path}/contact">Contact</a></li>
                         </ul>
                     </li>
                     <li><a href="#"><span>Reviews <i class="fa fa-angle-down"></i></span></a></li>
