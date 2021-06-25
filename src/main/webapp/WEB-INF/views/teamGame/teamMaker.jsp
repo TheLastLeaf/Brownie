@@ -180,7 +180,9 @@ button>img {
 								<p class="col-sm" style="margin: 0; text-align: left;">
 									<b>솔로랭크 </b>
 								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">GAME ON</p>
+								<p class="col-sm" style="margin: 0; text-align: right;">
+									<img style="width: 30px; height: 30px;" src="${path}/img/details/mic_o.jpg" />
+								</p>
 							</div>
 							<div class="roomTitle">
 								제목을 넣는 곳
