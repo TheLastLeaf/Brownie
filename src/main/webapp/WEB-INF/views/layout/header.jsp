@@ -63,7 +63,7 @@
     <div class="hw-menu mobile-menu">
         <ul>
             <li><a href="${param.path}/index">MAIN</a></li>
-            <li><a href="#">NOTICE</a></li>
+            <li><a href="${param.path}/notice/list">NOTICE</a></li>
             <li><a href="#">GROUP</a></li>
             <li><a href="#">GUIDE</a></li>
             <li><a href="#">FANART</a></li>
@@ -104,7 +104,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="./index.html"><img src="${param.path}/img/brownie-header.png"
+                    <a href="${param.path}/index"><img src="${param.path}/img/brownie-header.png"
                                                 alt=""></a>
                 </div>
             </div>
