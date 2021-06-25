@@ -5,7 +5,20 @@
     <c:param name="path" value="${path}"/>
 </c:import>
 
-실수로 ㄴ날렸음 금방 다시 복구해서 올려두게1ㅅ습니다
+
+<!-- Hero Section Begin -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-1.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-3.jpg"></div>
+    </div>
+</section>
+<!-- Hero Section End -->
 
 <c:import url="../layout/footer.jsp">
     <c:param name="path" value="${path}"/>
