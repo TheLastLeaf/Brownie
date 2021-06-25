@@ -19,7 +19,7 @@ public class BoardController {
         return "board/categories-grid";
     }
 
-    @GetMapping("/")
+    @GetMapping
     public String main() {
         return list();
     }

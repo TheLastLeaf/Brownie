@@ -282,7 +282,7 @@
                     </li>
                     <li class="mega-menu"><a href="${param.path}/tip"><span>GUIDE
 						<i class="fa fa-angle-down"></i></span></a>
-                        <div class="megamenu-wrapper">
+                        <div class="megamenu-wrapper">1
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
