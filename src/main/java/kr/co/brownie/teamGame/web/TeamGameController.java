@@ -1,10 +1,10 @@
-package kr.co.brownie.teamgame.web;
+package kr.co.brownie.teamGame.web;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 
-import kr.co.brownie.teamgame.service.TeamGameService;
+import kr.co.brownie.teamGame.service.TeamGameService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,5 +27,10 @@ public class TeamGameController {
 	@GetMapping("/teamMaker")
 	public String teamMaker() {
 		return "teamGame/teamMaker";
+	}
+
+	@GetMapping
+	public String main() {
+		return teamMaker();
 	}
 }

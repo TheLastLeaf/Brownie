@@ -12,36 +12,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/gallery")
 public class GalleryController {
-	@Resource(name = "galleryService")
-	GalleryService galleryService;
+    @Resource(name = "galleryService")
+    GalleryService galleryService;
 
-	@GetMapping("/categories-grid")
-	public String categories_grid() {
-		return "gallery/categories-grid";
-	}
+    @GetMapping
+    public String main() {
+        return list();
+    }
 
-	@GetMapping("/categories-list")
-	public String categories_list() {
-		return "gallery/categories-list";
-	}
-	
-	@GetMapping("/details-post-default")
-	public String details_post_default() {
-		return "gallery/details-post-default";
-	}
+    @GetMapping("/list")
+    public String list() {
+        return "gallery/list";
+    }
 
-	@GetMapping("/details-post-gallery")
-	public String details_post_gallery() {
-		return "gallery/details-post-gallery";
-	}
+    @GetMapping("/categories-list")
+    public String categories_list() {
+        return "gallery/categories-list";
+    }
 
-	@GetMapping("/details-post-review")
-	public String details_post_review() {
-		return "gallery/details-post-review";
-	}
+    @GetMapping("/details-post-default")
+    public String details_post_default() {
+        return "gallery/details-post-default";
+    }
 
-	@GetMapping("/typography")
-	public String typography() {
-		return "gallery/typography";
-	}
+    @GetMapping("/details-post-gallery")
+    public String details_post_gallery() {
+        return "gallery/details-post-gallery";
+    }
+
+    @GetMapping("/details-post-review")
+    public String details_post_review() {
+        return "gallery/details-post-review";
+    }
+
+    @GetMapping("/typography")
+    public String typography() {
+        return "gallery/typography";
+    }
 }

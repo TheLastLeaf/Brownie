@@ -8,7 +8,12 @@
     .notice-img{
         height: 130px;
     }
+    .cl-item .cl-text h5 {
+        margin-bottom: 8px;
+        margin-top: 4px;
+    }
     .cl-text{
+        margin-top: 4px;
         height: 130px;
     }
     .cl-text > .content-text{
@@ -101,30 +106,36 @@
 									한 번씩만 생각해서 글을 남겨주시면 많은 이야기를 나눌 수 있는 게시판이 될 것 같습니다.</p>
                         </div>
                     </div>
-                <form>
-                    <div class="innerBox text-center">
-                        <span>
-                            <select name="notice" style="height:30px; background: black; color: #666666;">
-                                <option value="" selected="selected">선택</option>
-                                <option value="title">제목</option>
-                                <option value="content">내용</option>
-                                <option value="writer">작성자</option>
-                            </select>
-                            <input type="text" value="" style="background: black; color: #666666">
-                        </span>
-                    <input type="submit" class="btn btn-outline-dark" value="조회" style="color: #666666">
-                   </div>
-                </form>
-                <div class="pagination-item">
-                    <a href="#"><span>1</span></a>
-                    <a href="#"><span>2</span></a>
-                    <a href="#"><span>3</span></a>
-                    <a href="#"><span>Next</span></a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 p-0">
+                    <form>
+                        <div class="innerBox text-center">
+                                    <span>
+                                        <select name="notice" style="height:30px; background: black; color: #666666;">
+                                            <option value="" selected="selected">선택</option>
+                                            <option value="title">제목</option>
+                                            <option value="content">내용</option>
+                                            <option value="writer">작성자</option>
+                                        </select>
+                                        <input type="text" value="" style="background: black; color: #666666">
+                                    </span>
+                            <input type="submit" class="btn btn-outline-dark" value="조회" style="color: #666666">
+                        </div>
+                    </form>
+                    <div class="pagination-item">
+                        <a href="#"><span>1</span></a>
+                        <a href="#"><span>2</span></a>
+                        <a href="#"><span>3</span></a>
+                        <a href="#"><span>Next</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <!-- Categories List Section End -->
 <c:import url="../layout/footer.jsp">
     <c:param name="path" value="${path}"/>

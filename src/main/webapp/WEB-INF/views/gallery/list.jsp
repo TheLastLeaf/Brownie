@@ -5,8 +5,6 @@
 	<c:param name="path" value="${path}" />
 </c:import>
 
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
 	data-setbg="img/breadcrumb-bg.jpg">
@@ -15,7 +13,7 @@
 			<div class="col-lg-12 text-center">
 				<div class="breadcrumb-text">
 					<h3>
-						팬아트 게시판<span><i class="fas fa-camera fa-sm fa-spin"></i></span>
+						팬아트 게시판<span>❤</span>
 					</h3>
 					<div class="bt-option">
 						<a href="#">인기글</a> <a href="#">Latest posts</a> <span>Hardware</span>
@@ -114,12 +112,11 @@
 		<div class="row">
 			<div class="col-lg-12 p-0">
 
+				<h3 style="color: white;">갤러리아 공지사항</h3>
 
 				<div class="row">
 
 					<div class="col-lg-12">
-						<h3 style="color: white;">팬아트 공지사항</h3>
-						<br/><br/><br/>
 						<table class="table text-center text-white">
 							<tr>
 								<th>분류</th>

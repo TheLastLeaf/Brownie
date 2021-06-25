@@ -19,9 +19,14 @@ public class TipController {
         return "tip/categories-grid";
     }
 
-    @GetMapping("/categories-list")
-    public String categories_list() {
-        return "tip/categories-list";
+    @GetMapping
+    public String main() {
+        return list();
+    }
+
+    @GetMapping("/list")
+    public String list() {
+        return "tip/list";
     }
 
     @GetMapping("/details-post-default")
