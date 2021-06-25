@@ -63,7 +63,7 @@
     <div class="hw-menu mobile-menu">
         <ul>
             <li><a href="${param.path}/index">MAIN</a></li>
-            <li><a href="${param.path}/notice/list">NOTICE</a></li>
+            <li><a href="${param.path}/notice">NOTICE</a></li>
             <li><a href="#">GROUP</a></li>
             <li><a href="#">GUIDE</a></li>
             <li><a href="#">FANART</a></li>
@@ -93,7 +93,9 @@
                 </div>
                 <div class="col-lg-6 col-md-4">
                     <div class="ht-social nav-search ">
-                        <input type="text"  style="width: 150px; border:1px solid black; font-size: 11px; color: #ffffff; background-color: #222222;" placeholder="search" />&nbsp;&nbsp;<i
+                        <input type="text"
+                               style="width: 150px; border:1px solid black; font-size: 11px; color: #ffffff; background-color: #222222;"
+                               placeholder="search"/>&nbsp;&nbsp;<i
                             class="fa fa-search"></i>
                     </div>
                 </div>
@@ -105,7 +107,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <a href="${param.path}/index"><img src="${param.path}/img/brownie-header.png"
-                                                alt=""></a>
+                                                       alt=""></a>
                 </div>
             </div>
         </div>
@@ -118,7 +120,7 @@
             <div class="nav-menu">
                 <ul>
                     <!-- 						<li class="active"><a href="notice"><span>공지사항</span></a></li> -->
-                    <li class="mega-menu"><a href="makeTeam"><span>NOTICE
+                    <li class="mega-menu"><a href="${param.path}/notice"><span>NOTICE
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
@@ -211,7 +213,7 @@
                                     </div>
                                     <div class="mw-text">
                                         <h6>
-                                            <a href="#">게시글  제목</a>
+                                            <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
                                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>

@@ -12,21 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
-	@Resource(name = "galleryService")
-	GalleryService galleryService;
+    @Resource(name = "galleryService")
+    GalleryService galleryService;
 
-	@GetMapping("/add")
-	public String noticeAdd() {
-		return "notice/add";
-	}
+    @GetMapping("/add")
+    public String noticeAdd() {
+        return "notice/add";
+    }
 
-	@GetMapping("/detail")
-	public String detail() {
-		return "notice/detail";
-	}
+    @GetMapping("/detail")
+    public String detail() {
+        return "notice/detail";
+    }
 
-	@GetMapping("/list")
-	public String list() {
-		return "notice/list";
-	}
+    @GetMapping("/list")
+    public String list() {
+        return "notice/list";
+    }
+
+    @GetMapping
+    public String main() {
+        return list();
+    }
 }
