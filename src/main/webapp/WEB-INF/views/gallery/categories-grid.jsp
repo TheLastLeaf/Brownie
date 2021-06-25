@@ -319,7 +319,7 @@
                                 <p class="thmb">
                                     <span>움짤</span>
                                 <div class="thumbnail">
-                                    <img class="thumbnail" src="/${path}/img/gallery/1.jpeg" alt="">
+                                    <img class="thumbnail" src="${path}/img/gallery/1.jpeg" alt="">
                                 </div>
                             </a>
                             <a href="#"><strong>치타는 웃고있다.</strong></a>
@@ -329,7 +329,7 @@
                                 <p class="thmb">
                                     <span>팬아트</span>
                                 <div class="thumbnail">
-                                    <img class="thumbnail" src="/${path}/img/gallery/2.jpg" alt="">
+                                    <img class="thumbnail" src="${path}/img/gallery/2.jpg" alt="">
                                 </div>
                             </a>
                             <a href="#"><strong>고양인 울고있다.</strong></a>
@@ -339,7 +339,7 @@
                                 <p class="thmb">
                                     <span>팬아트</span>
                                 <div class="thumbnail">
-                                    <img class="thumbnail" src="/${path}/img/gallery/3.jpg" alt="">
+                                    <img class="thumbnail" src="${path}/img/gallery/3.jpg" alt="">
                                 </div>
                             </a> <a href="#"><strong>강아진 짖고있다.</strong></a>
                         </li>
@@ -348,7 +348,7 @@
                                 <p class="thmb">
                                     <span>습작</span>
                                 <div class="thumbnail">
-                                    <img class="thumbnail" src="/${path}/img/gallery/4.jpg" alt="">
+                                    <img class="thumbnail" src="${path}/img/gallery/4.jpg" alt="">
                                 </div>
                             </a>
                             <a href="#"><strong>강아진 물리고있다.</strong></a>
@@ -390,14 +390,14 @@
                         <li>
                             <p class="thmb">
                                 <a href="#"> <span>움짤</span>
-                                    <img class="thumbnail" src="/${path}/img/gallery/1.jpeg" alt="">
+                                    <img class="thumbnail" src="${path}/img/gallery/1.jpeg" alt="">
                                 </a>
                             </p> <a href="#"><strong>치타는 웃고있다.</strong></a>
                             <p class="tx_brief">2014-01-28</p>
                         </li>
                         <li>
                             <p class="thmb">
-                                <a href="#"> <span>팬아트</span> <img class="thumbnail" src="/${path}/img/gallery/2.jpg"
+                                <a href="#"> <span>팬아트</span> <img class="thumbnail" src="${path}/img/gallery/2.jpg"
                                                                    alt="">
                                 </a>
                             </p> <a href="#"><strong>고양인 울고있다.</strong></a>
@@ -405,7 +405,7 @@
                         </li>
                         <li>
                             <p class="thmb">
-                                <a href="#"> <span>팬아트</span> <img class="thumbnail" src="/${path}/img/gallery/3.jpg"
+                                <a href="#"> <span>팬아트</span> <img class="thumbnail" src="${path}/img/gallery/3.jpg"
                                                                    alt="">
                                 </a>
                             </p> <a href="#"><strong>강아진 짖고있다.</strong></a>
@@ -413,7 +413,7 @@
                         </li>
                         <li>
                             <p class="thmb">
-                                <a href="#"> <span>습작</span> <img class="thumbnail" src="/${path}/img/gallery/4.jpg"
+                                <a href="#"> <span>습작</span> <img class="thumbnail" src="${path}/img/gallery/4.jpg"
                                                                   alt="">
                                 </a>
                             </p> <a href="#"><strong>강아진 물리고있다.</strong></a>
@@ -421,7 +421,7 @@
                         </li>
                         <li>
                             <p class="thmb">
-                                <a href="#"> <span>연재</span> <img class="thumbnail" src="/${path}/img/gallery/5.gif"
+                                <a href="#"> <span>연재</span> <img class="thumbnail" src="${path}/img/gallery/5.gif"
                                                                   alt="">
                                 </a>
                             </p> <a href="#"><strong>기립박수</strong></a>
@@ -430,7 +430,7 @@
                         <li>
                             <p class="thmb">
                                 <a href="#"> <span>연재</span>
-                                    <img class="thumbnail" src="/${path}/img/gallery/6.jpg" alt="">
+                                    <img class="thumbnail" src="${path}/img/gallery/6.jpg" alt="">
                                 </a>
                             </p>
                             <a href="#"><strong>이색기야</strong></a>
@@ -438,7 +438,7 @@
                         </li>
                         <li>
                             <p class="thmb">
-                                <a href="#"> <span>연재</span> <img class="thumbnail" src="/${path}/img/gallery/7.gif"
+                                <a href="#"> <span>연재</span> <img class="thumbnail" src="${path}/img/gallery/7.gif"
                                                                   alt="">
                                 </a>
                             </p> <a href="#"><strong>도게자 박겠습니다</strong></a>

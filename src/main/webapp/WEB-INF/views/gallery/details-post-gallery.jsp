@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="dg-slider owl-carousel">
-                    <div class="dg-item set-bg" data-setbg="/${path}/img/gallery/1.jpeg"></div>
-                    <div class="dg-item set-bg" data-setbg="/${path}/img/gallery/2.jpg"></div>
-                    <div class="dg-item set-bg" data-setbg="/${path}/img/gallery/3.jpg"></div>
-                    <div class="dg-item set-bg" data-setbg="/${path}/img/gallery/4.jpg"></div>
-                    <div class="dg-item set-bg" data-setbg="/${path}/img/gallery/5.gif"></div>
-                    <div class="dg-item set-bg" data-setbg="/${path}/img/gallery/6.jpg"></div>
-                    <div class="dg-item set-bg" data-setbg="/${path}/img/gallery/7.gif"></div>
+                    <div class="dg-item set-bg" data-setbg="${path}/img/gallery/1.jpeg"></div>
+                    <div class="dg-item set-bg" data-setbg="${path}/img/gallery/2.jpg"></div>
+                    <div class="dg-item set-bg" data-setbg="${path}/img/gallery/3.jpg"></div>
+                    <div class="dg-item set-bg" data-setbg="${path}/img/gallery/4.jpg"></div>
+                    <div class="dg-item set-bg" data-setbg="${path}/img/gallery/5.gif"></div>
+                    <div class="dg-item set-bg" data-setbg="${path}/img/gallery/6.jpg"></div>
+                    <div class="dg-item set-bg" data-setbg="${path}/img/gallery/7.gif"></div>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
                                 <a href="#" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
-                                        <img src="/${path}/img/details/prev.jpg" alt="">
+                                        <img src="${path}/img/details/prev.jpg" alt="">
                                     </div>
                                     <div class="rp-text">
                                         <h6>The Real-Estate Developers Are the Enemy</h6>
@@ -82,7 +82,7 @@
                                 <a href="#" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
-                                        <img src="/${path}/img/details/next.jpg" alt="">
+                                        <img src="${path}/img/details/next.jpg" alt="">
                                     </div>
                                     <div class="rp-text">
                                         <h6>Montreal real estate: Bargains in cottage countrya</h6>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="dt-author">
                         <div class="da-pic">
-                            <img src="/${path}/img/details/author-pic.jpg" alt="">
+                            <img src="${path}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
                             <h5>Almil Hmaper</h5>
@@ -109,7 +109,7 @@
                         <h4>3 comment</h4>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="/${path}/img/details/comment/comment-1.jpg" alt="">
+                                <img src="${path}/img/details/comment/comment-1.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Brandon Kelley</h5>
@@ -122,7 +122,7 @@
                         </div>
                         <div class="dc-item reply-item">
                             <div class="dc-pic">
-                                <img src="/${path}/img/details/comment/comment-2.jpg" alt="">
+                                <img src="${path}/img/details/comment/comment-2.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Brandon Kelley</h5>
@@ -135,7 +135,7 @@
                         </div>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="/${path}/img/details/comment/comment-3.jpg" alt="">
+                                <img src="${path}/img/details/comment/comment-3.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Matthew Nelson</h5>

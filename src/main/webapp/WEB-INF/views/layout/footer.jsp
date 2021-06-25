@@ -14,7 +14,7 @@
             <div class="col-lg-4">
                 <div class="footer-about">
                     <div class="fa-logo">
-                        <a href="#"><img src="/${param.path}/img/f-logo.png" alt=""></a>
+                        <a href="#"><img src="${param.path}/img/f-logo.png" alt=""></a>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua lacus vel facilisis.</p>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="ec-item">
                         <div class="ec-pic">
-                            <img src="/${param.path}/img/trending/editor-1.jpg" alt="">
+                            <img src="${param.path}/img/trending/editor-1.jpg" alt="">
                         </div>
                         <div class="ec-text">
                             <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="ec-item">
                         <div class="ec-pic">
-                            <img src="/${param.path}/img/trending/editor-2.jpg" alt="">
+                            <img src="${param.path}/img/trending/editor-2.jpg" alt="">
                         </div>
                         <div class="ec-text">
                             <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a>
@@ -148,14 +148,14 @@
 <!-- Search model end -->
 
 <!-- Js Plugins -->
-<script src="/${param.path}/js/jquery-3.3.1.min.js"></script>
-<script src="/${param.path}/js/bootstrap.min.js"></script>
-<script src="/${param.path}/js/jquery.magnific-popup.min.js"></script>
-<script src="/${param.path}/js/circle-progress.min.js"></script>
-<script src="/${param.path}/js/jquery.barfiller.js"></script>
-<script src="/${param.path}/js/jquery.slicknav.js"></script>
-<script src="/${param.path}/js/owl.carousel.min.js"></script>
-<script src="/${param.path}/js/main.js"></script>
+<script src="${param.path}/js/jquery-3.3.1.min.js"></script>
+<script src="${param.path}/js/bootstrap.min.js"></script>
+<script src="${param.path}/js/jquery.magnific-popup.min.js"></script>
+<script src="${param.path}/js/circle-progress.min.js"></script>
+<script src="${param.path}/js/jquery.barfiller.js"></script>
+<script src="${param.path}/js/jquery.slicknav.js"></script>
+<script src="${param.path}/js/owl.carousel.min.js"></script>
+<script src="${param.path}/js/main.js"></script>
 </body>
 
 </html>

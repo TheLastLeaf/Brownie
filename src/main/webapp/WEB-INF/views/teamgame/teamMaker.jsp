@@ -125,7 +125,7 @@ button>img {
 					<div class="row outBox" style="margin-left: 5px;">
 						<!-- 방만들기 begin -->
 						<div class="innerBox text-center justify-content-center align-items-center d-flex">
-							<label for="makeRoom" onclick="fn_makeRoom()"> <img id="makeRoom" style="width: 40px; margin: 5px" src="/${path}/img/details/plusButton.png"> &nbsp; 방만들기
+							<label for="makeRoom" onclick="fn_makeRoom()"> <img id="makeRoom" style="width: 40px; margin: 5px" src="${path}/img/details/plusButton.png"> &nbsp; 방만들기
 							</label>
 						</div>
 						<!-- 방만들기 end -->
@@ -141,23 +141,23 @@ button>img {
 								</p>
 							</div>
 							<p class="nickname">
-								Faker | <img style="width: 35px; height: 35px;" src="/${path}/img/lol/bronze.png" /> | <img style="width: 25px; height: 25px; margin: 3px;" src="/${path}/img/details/mic_o.jpg" />
+								Faker | <img style="width: 35px; height: 35px;" src="${path}/img/lol/bronze.png" /> | <img style="width: 25px; height: 25px; margin: 3px;" src="${path}/img/details/mic_o.jpg" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Grandmaster-Top.png" />
+									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Grandmaster-Jungle.png" />
+									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Grandmaster-Mid.png" />
+									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Grandmaster-Bot.png" />
+									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Grandmaster-Support.png" />
+									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
 							<p class="message">가나다라마바사아자차카타</p>
@@ -173,23 +173,23 @@ button>img {
 								<b>다이아이상구함!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								RIRINTO | <img style="width: 30px; height: 30px;" src="/${path}/img/lol/challenger.png" /> | <img class="micUse" src="/${path}/img/details/mic_o.jpg" />
+								RIRINTO | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" /> | <img class="micUse" src="${path}/img/details/mic_o.jpg" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Diamond-Top.png" />
+									<img src="${path}/img/lol/Position_Diamond-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Diamond-Jungle.png" />
+									<img src="${path}/img/lol/Position_Diamond-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Diamond-Mid.png" />
+									<img src="${path}/img/lol/Position_Diamond-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Diamond-Bot.png" />
+									<img src="${path}/img/lol/Position_Diamond-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Diamond-Support.png" />
+									<img src="${path}/img/lol/Position_Diamond-Support.png" />
 								</button>
 							</p>
 							<p class="message">좆나못하니깐 캐리할사람만 들어오셈 히히!</p>
@@ -205,23 +205,23 @@ button>img {
 								<b>브론즈이상구함!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								안뇽하세욤 | <img style="width: 30px; height: 30px;" src="/${path}/img/lol/challenger.png" /> | <img class="micUse" src="/${path}/img/details/mic_o.jpg" />
+								안뇽하세욤 | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" /> | <img class="micUse" src="${path}/img/details/mic_o.jpg" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Bronze-Top.png" />
+									<img src="${path}/img/lol/Position_Bronze-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Bronze-Jungle.png" />
+									<img src="${path}/img/lol/Position_Bronze-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Bronze-Mid.png" />
+									<img src="${path}/img/lol/Position_Bronze-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Bronze-Bot.png" />
+									<img src="${path}/img/lol/Position_Bronze-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Bronze-Support.png" />
+									<img src="${path}/img/lol/Position_Bronze-Support.png" />
 								</button>
 							</p>
 							<p class="message">1235678903456780123563</p>
@@ -237,23 +237,23 @@ button>img {
 								<b>챌린저이상구함!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								궁각예술 | <img style="width: 30px; height: 30px;" src="/${path}/img/lol/challenger.png" />
+								궁각예술 | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Challenger-Top.png" />
+									<img src="${path}/img/lol/Position_Challenger-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Challenger-Jungle.png" />
+									<img src="${path}/img/lol/Position_Challenger-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Challenger-Mid.png" />
+									<img src="${path}/img/lol/Position_Challenger-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Challenger-Bot.png" />
+									<img src="${path}/img/lol/Position_Challenger-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Challenger-Support.png" />
+									<img src="${path}/img/lol/Position_Challenger-Support.png" />
 								</button>
 							</p>
 							<p class="message">TLdldldlqkf 왜 밑으로 안내려가</p>
@@ -269,23 +269,23 @@ button>img {
 								<b>아이언안구함!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								싯벨룜 | <img style="width: 30px; height: 30px;" src="/${path}/img/lol/challenger.png" />
+								싯벨룜 | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Iron-Top.png" />
+									<img src="${path}/img/lol/Position_Iron-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Iron-Jungle.png" />
+									<img src="${path}/img/lol/Position_Iron-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Iron-Mid.png" />
+									<img src="${path}/img/lol/Position_Iron-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Iron-Bot.png" />
+									<img src="${path}/img/lol/Position_Iron-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Iron-Support.png" />
+									<img src="${path}/img/lol/Position_Iron-Support.png" />
 								</button>
 							</p>
 							<p class="message"></p>
@@ -301,23 +301,23 @@ button>img {
 								<b>골드구함!!</b>
 							</p>
 							<p style="margin: 5px;">
-								regolas | <img style="width: 30px; height: 30px;" src="/${path}/img/lol/challenger.png" /> | <img class="micUse" src="/${path}/img/details/mic_o.jpg" />
+								regolas | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" /> | <img class="micUse" src="${path}/img/details/mic_o.jpg" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Gold-Top.png" />
+									<img src="${path}/img/lol/Position_Gold-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Gold-Jungle.png" />
+									<img src="${path}/img/lol/Position_Gold-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Gold-Mid.png" />
+									<img src="${path}/img/lol/Position_Gold-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Gold-Bot.png" />
+									<img src="${path}/img/lol/Position_Gold-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Gold-Support.png" />
+									<img src="${path}/img/lol/Position_Gold-Support.png" />
 								</button>
 							</p>
 							<p class="message">div 내부 p 태그를 가장 아랫쪽으로 내리고 싶어요..</p>
@@ -333,23 +333,23 @@ button>img {
 								<b>실버구함!!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								PAKA | <img style="width: 30px; height: 30px;" src="/${path}/img/lol/challenger.png" />
+								PAKA | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Silver-Top.png" />
+									<img src="${path}/img/lol/Position_Silver-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Silver-Jungle.png" />
+									<img src="${path}/img/lol/Position_Silver-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Silver-Mid.png" />
+									<img src="${path}/img/lol/Position_Silver-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Silver-Bot.png" />
+									<img src="${path}/img/lol/Position_Silver-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Silver-Support.png" />
+									<img src="${path}/img/lol/Position_Silver-Support.png" />
 								</button>
 							</p>
 							<p class="message">좆나 보기 싫네 ㅋㅋ</p>
@@ -365,23 +365,23 @@ button>img {
 								<b>플래티넘구함!!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								또뽀끼 | <img style="width: 30px; height: 30px;" src="/${path}/img/lol/challenger.png" />
+								또뽀끼 | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Plat-Top.png" />
+									<img src="${path}/img/lol/Position_Plat-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Plat-Jungle.png" />
+									<img src="${path}/img/lol/Position_Plat-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Plat-Mid.png" />
+									<img src="${path}/img/lol/Position_Plat-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Plat-Bot.png" />
+									<img src="${path}/img/lol/Position_Plat-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Plat-Support.png" />
+									<img src="${path}/img/lol/Position_Plat-Support.png" />
 								</button>
 							</p>
 							<p class="message">기괴하게 변해버린 팀게시판..</p>
@@ -397,23 +397,23 @@ button>img {
 								<b>마스터구함!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								Greenday | <img style="width: 30px; height: 30px;" src="/${path}/img/lol/challenger.png" />
+								Greenday | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
-									<img src="/${path}/img/lol/Position_Master-Top.png" />
+									<img src="${path}/img/lol/Position_Master-Top.png" />
 								</button>
 								<button type="button" class="positionJun">
-									<img src="/${path}/img/lol/Position_Master-Jungle.png" />
+									<img src="${path}/img/lol/Position_Master-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid">
-									<img src="/${path}/img/lol/Position_Master-Mid.png" />
+									<img src="${path}/img/lol/Position_Master-Mid.png" />
 								</button>
 								<button type="button" class="positionAd">
-									<img src="/${path}/img/lol/Position_Master-Bot.png" />
+									<img src="${path}/img/lol/Position_Master-Bot.png" />
 								</button>
 								<button type="button" class="positionSup">
-									<img src="/${path}/img/lol/Position_Master-Support.png" />
+									<img src="${path}/img/lol/Position_Master-Support.png" />
 								</button>
 							</p>
 							<p class="message">성공해주세요성공해주세요성공해주세요성공해주세요</p>
