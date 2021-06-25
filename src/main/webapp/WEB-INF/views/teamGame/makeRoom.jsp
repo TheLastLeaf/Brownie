@@ -126,12 +126,16 @@
         left: 20px;
         box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
     }
+    .submit{
+    	margin: 15px;
+    }
 </style>
 
 <script type="text/javascript">
     function fn_chatRoom() {
         window.open("chatRoom", "chatingRoom",
             "width=800, height=600, left=500, top=250");
+        
     }
 </script>
 <body>
@@ -147,7 +151,7 @@
 <div class="container d-flex justify-content-end">Lv.백신 / exp : 2810</div>
 <div class="container">
     <div class="row">
-        <div class="col text-center">
+        <div class="col text-center" style="border: 1px solid white;">
             <p>
             <h5 style="font-family: mapleBold">닉네임 : FFF</h5>
             </p>
@@ -232,8 +236,11 @@
                 </div>
                 <input class="apple-switch" type="checkbox" id="flexSwitchCheckChecked" checked>
             </div>
-            <br/> <input type="submit" value="방만들고 채팅창으로 이동!" onclick="fn_chatRoom()">
-        </div>
+            <br/>
+				<div class="submit">
+					<input type="submit" value="방만들고 채팅창으로 이동!" onclick="fn_chatRoom()">
+				</div>
+			</div>
     </div>
 </div>
 
