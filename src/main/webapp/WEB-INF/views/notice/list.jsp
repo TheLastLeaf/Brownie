@@ -4,6 +4,7 @@
 <c:import url="../layout/header.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
+
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
     <div class="container">
@@ -12,9 +13,9 @@
                 <div class="breadcrumb-text">
                     <h3>공지사항</h3>
                     <div class="">
-                        <span onclick="location.href='index'" style="color: white; cursor: pointer;">Home</span>
+                        <span onclick="location.href='/index'" style="color: white; cursor: pointer;">Home</span>
                         <span style="color: #666666"> / </span>
-                        <span onclick="location.href='index'" style="color: red; cursor: pointer;">Latest posts</span>
+                        <span onclick="location.href='/index'" style="color: red; cursor: pointer;">Latest posts</span>
                     </div>
                 </div>
             </div>
