@@ -29,10 +29,6 @@
 </head>
 
 <body>
-param.path : ${param.path } <br/>
-param : ${param }<br/>
-
-
 <!-- Page Preloder -->
 <div id="preloder">
     <div class="loader"></div>

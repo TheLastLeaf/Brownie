@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.gallery.service.GalleryService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,7 +24,7 @@ public class GalleryController {
 	public String categories_list() {
 		return "gallery/categories-list";
 	}
-
+	
 	@GetMapping("/details-post-default")
 	public String details_post_default() {
 		return "gallery/details-post-default";

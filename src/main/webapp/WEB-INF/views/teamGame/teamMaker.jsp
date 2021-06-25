@@ -28,7 +28,7 @@
 	border: 1px solid white;
 	border-radius: 5px;
 	color: white;
-	margin: 2px 10px 2px 0;
+	margin: 4px 10px 4px 0;
 	text-align: center;
 	position: relative;
 	background: #1C1C1C;
@@ -64,7 +64,7 @@
 
 .positionSup {
 	background: lightblue;
-	color: black; 
+	color: black;
 	border-radius: 5px;
 }
 
@@ -88,10 +88,12 @@ button>img {
 	width: 100%;
 }
 
-.nickname {
+.roomTitle {
 	font-family: mapleBold;
 	font-weight: bolder;
 	margin: 5px;
+	border-radius: 5px;
+	background: grey;
 }
 
 .micUse {
@@ -116,7 +118,8 @@ button>img {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">team</a> <span>slave</span>
+						<a href="#">team</a>
+						<span>slave</span>
 					</div>
 					<h4 class="text-white">Make your own TEAM</h4>
 				</div>
@@ -125,25 +128,26 @@ button>img {
 					<div class="row outBox" style="margin-left: 5px;">
 						<!-- 방만들기 begin -->
 						<div class="innerBox text-center justify-content-center align-items-center d-flex">
-							<label for="makeRoom" onclick="fn_makeRoom()"> <img id="makeRoom" style="width: 40px; margin: 5px" src="${path}/img/details/plusButton.png"> &nbsp; 방만들기
+							<label for="makeRoom" onclick="fn_makeRoom()">
+								<img id="makeRoom" style="width: 40px; margin: 5px" src="${path}/img/details/plusButton.png">
+								&nbsp; 방만들기
 							</label>
 						</div>
 						<!-- 방만들기 end -->
 						<!-- 만들어진 방 begin -->
 						<!-- <div class="innerBox" style="text-align: center"> -->
 						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: #848484; font-size: 14px;">
+							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
 								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>그마이상구함!!!</b>
+									<b>솔로랭크 </b>
 								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<b>하위!!!</b>
-								</p>
+								<p class="col-sm" style="margin: 0; text-align: right;">GAME ON</p>
 							</div>
-							<p class="nickname">
-								Faker | <img style="width: 35px; height: 35px;" src="${path}/img/lol/bronze.png" /> | <img style="width: 25px; height: 25px; margin: 3px;" src="${path}/img/details/mic_o.jpg" />
-							</p>
-							<p style="margin: 3px;">
+							<div class="roomTitle">
+								제목을 넣는 곳
+								<%-- 								Faker | <img style="width: 35px; height: 35px;" src="${path}/img/lol/bronze.png" /> | <img style="width: 25px; height: 25px; margin: 3px;" src="${path}/img/details/mic_o.jpg" /> --%>
+							</div>
+							<p style="margin: 10px 0px 3px;">
 								<button type="button" class="positionTop">
 									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 								</button>
@@ -160,22 +164,29 @@ button>img {
 									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
-							<p class="message">가나다라마바사아자차카타</p>
-							<p class="Gmode">
-								<b class="adapt">솔로랭크</b>
-							</p>
+							<div class="" style="width:100%; display: flex; justify-content: center; margin-bottom: 20px;">
+								<p class="message"></p>
+							</div>   
+							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white">
+								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임 </div>
+								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">NO MIC </div>
+							</div>
 						</div>
 						<!-- 만들어진 방 end -->
 						<!-- 만들어진 방 begin -->
 						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox" style="text-align: center">
-							<p style="margin: 0; background: lightblue; color: black; font-size: 18px;">
-								<b>다이아이상구함!</b>
-							</p>
-							<p class="nickname" style="margin: 5px;">
-								RIRINTO | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" /> | <img class="micUse" src="${path}/img/details/mic_o.jpg" />
-							</p>
-							<p style="margin: 3px;">
+						<div class="innerBox text-center">
+							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
+								<p class="col-sm" style="margin: 0; text-align: left;">
+									<b>솔로랭크 </b>
+								</p>
+								<p class="col-sm" style="margin: 0; text-align: right;">GAME ON</p>
+							</div>
+							<div class="roomTitle">
+								제목을 넣는 곳
+								<%-- 								Faker | <img style="width: 35px; height: 35px;" src="${path}/img/lol/bronze.png" /> | <img style="width: 25px; height: 25px; margin: 3px;" src="${path}/img/details/mic_o.jpg" /> --%>
+							</div>
+							<p style="margin: 10px 0px 3px;">
 								<button type="button" class="positionTop">
 									<img src="${path}/img/lol/Position_Diamond-Top.png" />
 								</button>
@@ -192,10 +203,13 @@ button>img {
 									<img src="${path}/img/lol/Position_Diamond-Support.png" />
 								</button>
 							</p>
-							<p class="message">좆나못하니깐 캐리할사람만 들어오셈 히히!</p>
-							<p class="Gmode">
-								<b>일반게임</b>
-							</p>
+							<div>
+							<p class="message">1 메시지보낼거1메시지보낼거</p>
+							</div>
+							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%;">
+								<div class="col-sm-6" style="margin: 0;">닉네임</div>
+								<div class="col-sm-6" style="margin: 0;">NO MIC</div>
+							</div>
 						</div>
 						<!-- 만들어진 방 end -->
 						<!-- 만들어진 방 begin -->
@@ -205,7 +219,10 @@ button>img {
 								<b>브론즈이상구함!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								안뇽하세욤 | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" /> | <img class="micUse" src="${path}/img/details/mic_o.jpg" />
+								안뇽하세욤 |
+								<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
+								|
+								<img class="micUse" src="${path}/img/details/mic_o.jpg" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
@@ -224,7 +241,7 @@ button>img {
 									<img src="${path}/img/lol/Position_Bronze-Support.png" />
 								</button>
 							</p>
-							<p class="message">1235678903456780123563</p>
+							<p class="message">1235678903456780123563123567890345678012356312356789034123563</p>
 							<p class="Gmode">
 								<b>자유랭크</b>
 							</p>
@@ -237,7 +254,8 @@ button>img {
 								<b>챌린저이상구함!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								궁각예술 | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
+								궁각예술 |
+								<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
@@ -256,7 +274,7 @@ button>img {
 									<img src="${path}/img/lol/Position_Challenger-Support.png" />
 								</button>
 							</p>
-							<p class="message">TLdldldlqkf 왜 밑으로 안내려가</p>
+							<p class="message">TLdldldlqkf 왜 밑으로 안내려가 TLdldldlqkf 왜 밑으로 안내려가</p>
 							<p class="Gmode">
 								<b>일반게임</b>
 							</p>
@@ -269,7 +287,8 @@ button>img {
 								<b>아이언안구함!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								싯벨룜 | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
+								싯벨룜 |
+								<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
@@ -301,7 +320,10 @@ button>img {
 								<b>골드구함!!</b>
 							</p>
 							<p style="margin: 5px;">
-								regolas | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" /> | <img class="micUse" src="${path}/img/details/mic_o.jpg" />
+								regolas |
+								<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
+								|
+								<img class="micUse" src="${path}/img/details/mic_o.jpg" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
@@ -320,7 +342,7 @@ button>img {
 									<img src="${path}/img/lol/Position_Gold-Support.png" />
 								</button>
 							</p>
-							<p class="message">div 내부 p 태그를 가장 아랫쪽으로 내리고 싶어요..</p>
+							<p class="message">div 내부 p 태그를 가장 아랫쪽으로 내리고 싶어요.. div 내부 p 태그를 가장 아랫쪽으로 내리고 싶어요..</p>
 							<p class="Gmode">
 								<b>일반게임</b>
 							</p>
@@ -333,7 +355,8 @@ button>img {
 								<b>실버구함!!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								PAKA | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
+								PAKA |
+								<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
@@ -365,7 +388,8 @@ button>img {
 								<b>플래티넘구함!!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								또뽀끼 | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
+								또뽀끼 |
+								<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
@@ -397,7 +421,8 @@ button>img {
 								<b>마스터구함!!</b>
 							</p>
 							<p class="nickname" style="margin: 5px;">
-								Greenday | <img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
+								Greenday |
+								<img style="width: 30px; height: 30px;" src="${path}/img/lol/challenger.png" />
 							</p>
 							<p style="margin: 3px;">
 								<button type="button" class="positionTop">
@@ -429,12 +454,25 @@ button>img {
 				<div style="border: 1px solid white; display: block;" class="dt-share">
 					<div class="ds-title">share;;</div>
 					<div class="ds-links">
-						<a href="#" class="wide"> <i class="fa fa-heart-o"></i> <span>120</span>
-						</a> <a href="#"> <i class="fa fa-facebook"></i>
-						</a> <a href="#"> <i class="fa fa-twitter"></i>
-						</a> <a href="#"> <i class="fa fa-google-plus"></i>
-						</a> <a href="#"> <i class="fa fa-instagram"></i>z
-						</a> <a href="#"> <i class="fa fa-youtube-play"></i>
+						<a href="#" class="wide">
+							<i class="fa fa-heart-o"></i>
+							<span>120</span>
+						</a>
+						<a href="#">
+							<i class="fa fa-facebook"></i>
+						</a>
+						<a href="#">
+							<i class="fa fa-twitter"></i>
+						</a>
+						<a href="#">
+							<i class="fa fa-google-plus"></i>
+						</a>
+						<a href="#">
+							<i class="fa fa-instagram"></i>
+							z
+						</a>
+						<a href="#">
+							<i class="fa fa-youtube-play"></i>
 						</a>
 					</div>
 				</div>
