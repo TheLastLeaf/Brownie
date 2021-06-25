@@ -113,7 +113,7 @@
                                     <img src="${path}/img/trending/trending-7.jpg" alt="">
                                 </div>
                                 <div class="ti-text">
-                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
+                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff.,..</a>
                                     </h6>
                                     <ul>
                                         <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>

@@ -22,7 +22,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="editor-choice">
 						<div class="section-title">
-							<h5>여기다 광고넣을까?</h5>
+							<h5>여기다 광고넣을 까?</h5>
 						</div>
 						<div class="ec-item">
 							<div class="ec-pic">

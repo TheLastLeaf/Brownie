@@ -213,7 +213,7 @@
                                     </div>
                                     <div class="mw-text">
                                         <h6>
-                                            <a href="#">게시글 제목</a>
+                                            <a href="#">게 시글 제목</a>
                                         </h6>
                                         <ul>
                                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
