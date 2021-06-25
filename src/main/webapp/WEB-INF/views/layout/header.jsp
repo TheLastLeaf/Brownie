@@ -104,7 +104,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="./index.html"><img src="${param.path}/img/brownie-header.png"
+                    <a href="${path}/index"><img src="${param.path}/img/brownie-header.png"
                                                 alt=""></a>
                 </div>
             </div>
