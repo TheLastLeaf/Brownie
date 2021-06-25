@@ -26,7 +26,7 @@
 						</div>
 						<div class="ec-item">
 							<div class="ec-pic">
-								<img src="${path}/img/trending/editor-1.jpg" alt="">
+								<img src="${param.path}/img/trending/editor-1.jpg" alt="">
 							</div>
 							<div class="ec-text">
 								<h6>

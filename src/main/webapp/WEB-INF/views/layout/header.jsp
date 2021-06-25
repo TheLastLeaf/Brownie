@@ -66,7 +66,7 @@
 <!-- 								<li class="signup-switch signup-open"><i -->
 <!-- 									class="fa fa-sign-out"></i> Login / Sign up</li> -->
 								<li class="signup-switch signup-open"><i
-									class="fa fa-sign-out"></i> <img src="${path}/img/kakao_login_small.png"
+									class="fa fa-sign-out"></i> <img src="${param.path}/img/kakao_login_small.png"
 							alt=""></li>
 							</ul>
 						</div>
@@ -83,7 +83,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 text-center">
-						<a href="./index.html"><img src="${path}/img/brownie_logo.png"
+						<a href="./index.html"><img src="${param.path}/img/brownie_logo.png"
 							alt=""></a>
 					</div>
 				</div>
@@ -103,7 +103,7 @@
 								<div class="mw-post">
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-1.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -117,7 +117,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-2.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -131,7 +131,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-3.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -145,7 +145,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-4.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -159,7 +159,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-5.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -185,7 +185,7 @@
 								<div class="mw-post">
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-1.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -199,7 +199,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-2.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -213,7 +213,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-3.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -227,7 +227,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-4.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -241,7 +241,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-5.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -261,7 +261,7 @@
 								<div class="mw-post">
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-1.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -275,7 +275,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-2.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -289,7 +289,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-3.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -303,7 +303,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-4.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -317,7 +317,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-5.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -337,7 +337,7 @@
 								<div class="mw-post">
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-1.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -351,7 +351,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-2.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -365,7 +365,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-3.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -379,7 +379,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-4.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -393,7 +393,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-5.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -413,7 +413,7 @@
 								<div class="mw-post">
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-1.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -427,7 +427,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-2.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -441,7 +441,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-3.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -455,7 +455,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-4.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
@@ -469,7 +469,7 @@
 									</div>
 									<div class="mw-post-item">
 										<div class="mw-pic">
-											<img src="${path}/img/megamenu/mm-5.jpg" alt="">
+											<img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
 										</div>
 										<div class="mw-text">
 											<h6>
