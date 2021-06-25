@@ -12,7 +12,7 @@
                 <div class="breadcrumb-text">
                     <h3>공지사항 등록</h3>
                     <div class="bt-option">
-                        <a href="/">Home</a>
+                        <a href="/index">Home</a>
                         <span>notice Add</span>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                 <div class="contact-text">
                     <div class="contact-form">
                         <div class="dt-leave-comment">
-                            <form action="/noticedetail">
+                            <form action="/notice/detail">
                                 <div class="input-list">
                                     <input type="text" placeholder="Title" style="width: 98%;">
                                 </div>
