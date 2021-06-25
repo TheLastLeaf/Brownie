@@ -4,6 +4,7 @@
 <c:import url="../layout/header.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
+
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
     <div class="container">
@@ -12,9 +13,9 @@
                 <div class="breadcrumb-text">
                     <h3>공지사항</h3>
                     <div class="">
-                        <span onclick="location.href='index'" style="color: white; cursor: pointer;">Home</span>
+                        <span onclick="location.href='/index'" style="color: white; cursor: pointer;">Home</span>
                         <span style="color: #666666"> / </span>
-                        <span onclick="location.href='index'" style="color: red; cursor: pointer;">Latest posts</span>
+                        <span onclick="location.href='/index'" style="color: red; cursor: pointer;">Latest posts</span>
                     </div>
                 </div>
             </div>
@@ -26,7 +27,7 @@
     <!-- Categories list Section Begin -->
     <section class="categories-list-section spad">
         <div style="margin-left: 83.5%;">
-            <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='noticeAdd'">
+            <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='add'">
         </div>
         <div style="margin-bottom: 2%">
             <hr style="background-color: white; width: 75%; text-align: center;">
@@ -40,7 +41,7 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
-                            <h5><a href="/noticedetail">자유게시판</a></h5>
+                            <h5><a href="/notice/detail">자유게시판</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -53,7 +54,7 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
-                            <h5><a href="/noticedetail">팬아트갤러리</a></h5>
+                            <h5><a href="/notice/detail">팬아트갤러리</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -66,7 +67,7 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
-                            <h5><a href="/noticedetail">팬아트 갤러리</a></h5>
+                            <h5><a href="/notice/detail">팬아트 갤러리</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -79,7 +80,7 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>공지사항</span></div>
-                            <h5><a href="/noticedetail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
+                            <h5><a href="/notice/detail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
