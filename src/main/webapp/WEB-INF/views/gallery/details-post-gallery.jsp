@@ -28,7 +28,7 @@
 <section class="details-post-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 p-0">
+            <div class="col-lg-12 p-0">
                 <div class="details-text gallery-page">
                     <div class="dt-title-gallery details-hero-text">
                         <h1 style="color: white">안녕하세요 !!! 씨파아아아ㅏ</h1>
