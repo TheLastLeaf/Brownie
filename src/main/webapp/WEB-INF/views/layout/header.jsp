@@ -64,10 +64,10 @@
         <ul>
             <li><a href="${param.path}/index">MAIN</a></li>
             <li><a href="${param.path}/notice">NOTICE</a></li>
-            <li><a href="#">GROUP</a></li>
-            <li><a href="#">GUIDE</a></li>
-            <li><a href="#">FANART</a></li>
-            <li><a href="#">LOUNGE</a></li>
+            <li><a href="${param.path}/teamGame">GROUP</a></li>
+            <li><a href="${param.path}/tip">GUIDE</a></li>
+            <li><a href="${param.path}/gallery">FANART</a></li>
+            <li><a href="${param.path}/board">LOUNGE</a></li>
         </ul>
     </div>
     <div id="mobile-menu-wrap"></div>
@@ -197,7 +197,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="makeTeam"><span>GROUP
+                    <li class="mega-menu"><a href="${param.path}/teamGame"><span>GROUP
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <ul class="mw-nav">
@@ -280,7 +280,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="makeTeam"><span>GUIDE
+                    <li class="mega-menu"><a href="${param.path}/tip"><span>GUIDE
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
@@ -357,7 +357,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="makeTeam"><span>FANART
+                    <li class="mega-menu"><a href="${param.path}/gallery"><span>FANART
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
@@ -434,7 +434,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="makeTeam"><span>LOUNGE
+                    <li class="mega-menu"><a href="${param.path}/board"><span>LOUNGE
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">

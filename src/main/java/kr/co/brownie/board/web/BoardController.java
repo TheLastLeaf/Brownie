@@ -11,36 +11,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
-	@Resource(name = "boardService")
-	BoardService boardService;
+    @Resource(name = "boardService")
+    BoardService boardService;
 
-	@GetMapping("/categories-grid")
-	public String categories_grid() {
-		return "board/categories-grid";
-	}
+    @GetMapping("/categories-grid")
+    public String categories_grid() {
+        return "board/categories-grid";
+    }
 
-	@GetMapping("/categories-list")
-	public String categories_list() {
-		return "board/categories-list";
-	}
+    @GetMapping("/")
+    public String main() {
+        return list();
+    }
 
-	@GetMapping("/details-post-default")
-	public String details_post_default() {
-		return "board/details-post-default";
-	}
+    @GetMapping("/list")
+    public String list() {
+        return "board/list";
+    }
 
-	@GetMapping("/details-post-gallery")
-	public String details_post_gallery() {
-		return "board/details-post-gallery";
-	}
+    @GetMapping("/details-post-default")
+    public String details_post_default() {
+        return "board/details-post-default";
+    }
 
-	@GetMapping("/details-post-review")
-	public String details_post_review() {
-		return "board/details-post-review";
-	}
+    @GetMapping("/details-post-gallery")
+    public String details_post_gallery() {
+        return "board/details-post-gallery";
+    }
 
-	@GetMapping("/typography")
-	public String typography() {
-		return "board/typography";
-	}
+    @GetMapping("/details-post-review")
+    public String details_post_review() {
+        return "board/details-post-review";
+    }
+
+    @GetMapping("/typography")
+    public String typography() {
+        return "board/typography";
+    }
 }
