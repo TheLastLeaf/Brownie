@@ -14,14 +14,14 @@ public class GalleryController {
     @Resource(name = "galleryService")
     GalleryService galleryService;
 
-    @GetMapping("/categories-grid")
-    public String categories_grid() {
-        return "gallery/categories-grid";
+    @GetMapping
+    public String main() {
+        return list();
     }
 
-    @GetMapping("/categories-grid2")
-    public String categories_grid2() {
-        return "gallery/categories-grid2";
+    @GetMapping("/list")
+    public String list() {
+        return "gallery/list";
     }
 
     @GetMapping("/categories-list")
