@@ -29,7 +29,7 @@
             <div class="col-lg-8 p-0">
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" style="height: 70px;" alt="">
+                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                     </div>
                     <div class="cl-text">
                         <h5><a href="#">우리동네 소갈비살 1kg 오만오천원</a></h5>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" style="height: 70px;" alt="">
+                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                     </div>
                     <div class="cl-text">
                         <h5><a href="#">왜 살이 안빠지지 ..</a></h5>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" style="height: 70px;" alt="">
+                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                     </div>
                     <div class="cl-text">
                         <h5><a href="#">존나 처먹으니까 안빠지지...</a></h5>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" style="height: 70px;" alt="">
+                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                     </div>
                     <div class="cl-text">
                         <h5><a href="#">먹고싶은걸 어떻게 참는걸까?</a></h5>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" style="height: 70px;" alt="">
+                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                     </div>
                     <div class="cl-text">
                         <h5><a href="#">날린거 다시쓰기 존나귀찮다</a></h5>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" style="height: 70px;" alt="">
+                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                     </div>
                     <div class="cl-text">
                         <h5><a href="#">ㄴㅇㄻㅇㅎㄴㅇㅁㅇㄴㅇㅁㄴㅇ..</a></h5>
