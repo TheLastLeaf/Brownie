@@ -12,61 +12,18 @@ public class CommonController {
     @Resource(name = "commonService")
     CommonService commonService;
 
-    @RequestMapping(path = "index")
+    @RequestMapping(path = "/")
+    public String main() {
+        return index();
+    }
+
+    @RequestMapping(path = "/index")
     public String index() {
         return "common/index";
     }
 
-    @RequestMapping(path = "/")
-    public String main() {
-        return "redirect:/index";
-    }
-
-    @RequestMapping(path = "categories-grid")
-    public String categories_grid() {
-        return "gallery/categories-grid";
-    }
-
-    @RequestMapping(path = "categories-list")
-    public String categories_list() {
-        return "gallery/categories-list";
-    }
-
-    @RequestMapping(path = "contact")
+    @RequestMapping(path = "/contact")
     public String contact() {
         return "common/contact";
-    }
-
-    @RequestMapping(path = "details-post-default")
-    public String details_post_default() {
-        return "common/details-post-default";
-    }
-
-    @RequestMapping(path = "details-post-gallery")
-    public String details_post_gallery() {
-        return "common/details-post-gallery";
-    }
-
-    @RequestMapping(path = "details-post-review")
-    public String details_post_review() {
-        return "common/details-post-review";
-    }
-
-    @RequestMapping(path = "typography")
-    public String typography() {
-        return "common/typography";
-    }
-    
-    @RequestMapping(path = "teamMaker")
-    public String teamMaker() {
-    	return "teamgame/teamMaker";
-    }
-    @RequestMapping(path = "makeRoom")
-    public String makeRoom() {
-    	return "teamgame/makeRoom";
-    }
-    @RequestMapping(path = "chatRoom")
-    public String chatRoom() {
-    	return "teamgame/chatRoom";
     }
 }

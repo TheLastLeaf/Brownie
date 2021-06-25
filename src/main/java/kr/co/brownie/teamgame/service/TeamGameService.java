@@ -1,5 +1,5 @@
 package kr.co.brownie.teamgame.service;
 
-public interface TeamgameService {
+public interface TeamGameService {
 
 }
