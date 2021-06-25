@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-lg-6 col-md-4">
                     <div class="ht-social nav-search ">
-                        <input type="text" style="width: 150px; font-size: 11px;"/>&nbsp;&nbsp;<i
+                        <input type="text"  style="width: 150px; border:1px solid black; font-size: 11px; color: #ffffff; background-color: #222222;" placeholder="search" />&nbsp;&nbsp;<i
                             class="fa fa-search"></i>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -151,7 +151,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -179,7 +179,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -199,19 +199,19 @@
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <ul class="mw-nav">
-                                <li><a href="#"><span>Choose Mode</span></a></li>
                                 <li><a href="#"><span>normal</span></a></li>
+                                <li><a href="#"><span>Howling Abyss</span></a></li>
                                 <li><a href="#"><span>Solo Rank</span></a></li>
                                 <li><a href="#"><span>Team Rank</span></a></li>
                             </ul>
                             <div class="mw-post">
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
-                                            <a href="#">게시글 제목</a>
+                                            <a href="#">게시글  제목</a>
                                         </h6>
                                         <ul>
                                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -220,7 +220,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -234,7 +234,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -248,7 +248,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -262,7 +262,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -283,7 +283,7 @@
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -297,7 +297,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -311,7 +311,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -325,7 +325,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -339,7 +339,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -360,7 +360,7 @@
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -374,7 +374,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -388,7 +388,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -402,7 +402,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -416,7 +416,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -437,7 +437,7 @@
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -451,7 +451,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -465,7 +465,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -479,7 +479,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
@@ -493,7 +493,7 @@
                                     </div>
                                 </div>
                                 <div class="mw-post-item">
-                                    <div class="mw-pic">
+                                    <div class="mw-pic col-xl-">
                                         <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
