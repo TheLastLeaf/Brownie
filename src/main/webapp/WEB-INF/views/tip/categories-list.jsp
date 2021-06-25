@@ -332,7 +332,7 @@
                     </div>
                     <div class="cl-text">
                         <div class="label"><span>Ahri</span></div>
-                        <h5><a href="#">Here's an hour of side-quests from The Outer Worlds...</a></h5>
+                        <h5><a href="#">브론즈 4 0LP가 알려주는 "아리"란?</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -347,7 +347,7 @@
                     </div>
                     <div class="cl-text">
                         <div class="label"><span>Aatrox</span></div>
-                        <h5><a href="#">Infinity Ward's focus isn't on battle royale, Call of...</a></h5>
+                        <h5><a href="#">챔피언 폭을 늘려보자. 서폿 아트로 다이아가기</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -362,7 +362,7 @@
                     </div>
                     <div class="cl-text">
                         <div class="label"><span>Akali</span></div>
-                        <h5><a href="#">Capcom asks select fans to test new Resident Evil game</a></h5>
+                        <h5><a href="#">야, 너도 "아칼리"하면 이길 수 있어.</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -377,7 +377,7 @@
                     </div>
                     <div class="cl-text">
                         <div class="label"><span>Alistar</span></div>
-                        <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
+                        <h5><a href="#">롤은 팀게임! 이상혁이 전하는 "오더형 미드라이너"의 현실</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -392,7 +392,7 @@
                     </div>
                     <div class="cl-text">
                         <div class="label"><span>Amumu</span></div>
-                        <h5><a href="#">Republican politicians say videogames partly...</a></h5>
+                        <h5><a href="#">똥템보다 똥덜싸는 탑무무 공략</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -407,7 +407,7 @@
                     </div>
                     <div class="cl-text">
                         <div class="label"><span>Anivia</span></div>
-                        <h5><a href="#">Borderlands 2 dev explains why there's mysterious boxes...</a></h5>
+                        <h5><a href="#">시즌 11 비주류 애니비아 (몰라서 대처하기 힘든) 팁</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -422,7 +422,7 @@
                     </div>
                     <div class="cl-text">
                         <div class="label"><span>Annie</span></div>
-                        <h5><a href="#">Automachef and Wonder Boy among four free games...</a></h5>
+                        <h5><a href="#">요즘 누가 애니하나요? 네 제가 합니다.</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -437,7 +437,7 @@
                     </div>
                     <div class="cl-text">
                         <div class="label"><span>Aphelios</span></div>
-                        <h5><a href="#">A new Borderlands 3 trailer introduces Moze and her...</a></h5>
+                        <h5><a href="#">개사기캐 씹0티어 숨겨져있지도 않은 아펠리오스 공략과 대처법</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -446,9 +446,12 @@
                     </div>
                 </div>
                 <div class="pagination-item">
+                    <a href="#"><span>Prev</span></a>
                     <a href="#"><span>1</span></a>
                     <a href="#"><span>2</span></a>
                     <a href="#"><span>3</span></a>
+                    <a href="#"><span>4</span></a>
+                    <a href="#"><span>5</span></a>
                     <a href="#"><span>Next</span></a>
                 </div>
             </div>
