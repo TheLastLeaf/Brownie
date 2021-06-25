@@ -45,275 +45,273 @@
 <section class="breadcrumb-section set-bg search-section"
          data-setbg="${path}/img/tip/Annieversary_Nexus_Image_Optimized-1_d4lcnldtijc00k5n8gko.jpg">
     <div class="container-fluid search-box">
-        <div class="container row margin-left-auto margin-right-auto">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb-text padding-top-50px padding-bottom-50px">
-                    <h3>챔피언 선택</h3>
-                    <div class="row champion-select overflow-auto">
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Aatrox.png" alt=""/>
-                            <p>아트록스</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Ahri.png" alt=""/>
-                            <p>아리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Akali.png" alt=""/>
-                            <p>아칼리</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Alistar.png" alt=""/>
-                            <p>알리스타</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Amumu.png" alt=""/>
-                            <p>아무무</p>
-                        </div>
-                        <div class="col-sm-2 col-lg-1">
-                            <img src="${path}/img/champion/Anivia.png" alt=""/>
-                            <p>애니비아</p>
-                        </div>
+        <div class="container margin-left-auto margin-right-auto text-center">
+            <div class="breadcrumb-text padding-top-50px padding-bottom-50px">
+                <h3>챔피언 선택</h3>
+                <div class="row champion-select overflow-auto rounded">
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <p>아트록스</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <p>아리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <p>아칼리</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <p>알리스타</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <p>아무무</p>
+                    </div>
+                    <div class="col-sm-2 col-lg-1">
+                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <p>애니비아</p>
                     </div>
                 </div>
             </div>
@@ -333,7 +331,7 @@
                              alt="">
                     </div>
                     <div class="cl-text">
-                        <div class="label"><span>Reviews</span></div>
+                        <div class="label"><span>Ahri</span></div>
                         <h5><a href="#">Here's an hour of side-quests from The Outer Worlds...</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
@@ -348,7 +346,7 @@
                              alt="">
                     </div>
                     <div class="cl-text">
-                        <div class="label"><span>Windows</span></div>
+                        <div class="label"><span>Aatrox</span></div>
                         <h5><a href="#">Infinity Ward's focus isn't on battle royale, Call of...</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
@@ -363,7 +361,7 @@
                              alt="">
                     </div>
                     <div class="cl-text">
-                        <div class="label"><span>Hardware</span></div>
+                        <div class="label"><span>Akali</span></div>
                         <h5><a href="#">Capcom asks select fans to test new Resident Evil game</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
@@ -378,7 +376,7 @@
                              alt="">
                     </div>
                     <div class="cl-text">
-                        <div class="label"><span>Playstation</span></div>
+                        <div class="label"><span>Alistar</span></div>
                         <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
@@ -393,7 +391,7 @@
                              alt="">
                     </div>
                     <div class="cl-text">
-                        <div class="label"><span>Reviews</span></div>
+                        <div class="label"><span>Amumu</span></div>
                         <h5><a href="#">Republican politicians say videogames partly...</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
@@ -408,7 +406,7 @@
                              alt="">
                     </div>
                     <div class="cl-text">
-                        <div class="label"><span>Windows</span></div>
+                        <div class="label"><span>Anivia</span></div>
                         <h5><a href="#">Borderlands 2 dev explains why there's mysterious boxes...</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
@@ -423,7 +421,7 @@
                              alt="">
                     </div>
                     <div class="cl-text">
-                        <div class="label"><span>Hardware</span></div>
+                        <div class="label"><span>Annie</span></div>
                         <h5><a href="#">Automachef and Wonder Boy among four free games...</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
@@ -438,7 +436,7 @@
                              alt="">
                     </div>
                     <div class="cl-text">
-                        <div class="label"><span>Playstation</span></div>
+                        <div class="label"><span>Aphelios</span></div>
                         <h5><a href="#">A new Borderlands 3 trailer introduces Moze and her...</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
