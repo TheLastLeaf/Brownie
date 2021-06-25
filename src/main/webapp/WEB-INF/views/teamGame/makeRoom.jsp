@@ -133,9 +133,10 @@
 
 <script type="text/javascript">
     function fn_chatRoom() {
-        window.open("chatRoom", "chatingRoom",
-            "width=800, height=600, left=500, top=250");
-        
+        makeRoom = window.open("chatRoom", "chatingRoom",
+            "width=1030, height=400, scroll=no, left=500, top=250");
+        opener = makeRoom;
+		window.close();	
     }
 </script>
 <body>
@@ -218,7 +219,7 @@
             <br/>
 
             <div class="container">
-                <p style="margin-bottom: 3px;">방끌어올리기!!(-1000px)</p>
+                <p style="margin-bottom: 3px;">10분간 1페이지 노출!(-1000px)</p>
                 <div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-danger btn-usepoint roomOn">
                         <input type="radio" name="jb-radio" class="jb-radio-1" value="top">
