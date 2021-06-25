@@ -34,53 +34,110 @@ body {
 	display: flex;
 	justify-content: flex-start;
 	color: white;
+	background: maroon;
+	border-radius: 5px;
 }
 
 .container {
 	margin: 8px;
 	/* 	border: 1px solid white; */
 	width: 960px;
-	height: 400px;
+	height: 650px;
 	overflow: auto;
 }
 
 #containBox {
-	height: 400px;
+	height: 600px;
 	display: flex;
 	justify-content: center;
 }
 
-.enterBox { 
+.enterBox {
 	position: absolute;
 	bottom: 0;
-}
-
-.userBox {
-	color: white;
-	border: 1px solid white;
+	border-top: 1px solid white;
+	width: 100%;
+	border-radius: 10px;
 }
 
 #includeBox {
 	color: white;
 	border: 1px solid white;
-	overflow: auto;
+	border-radius: 10px;
 }
 
 .chatBox {
-	margin: 25px;
-	margin-bottom: 45px;
-	overflow: auto;
+	margin: 10px 25px 55px;
+	word-break: break-all;
+}
+
+.user {
+	margin-top: 10px;
+	position: relative;
+	bottom: 0;
+}
+
+.userBox {
+	border: 1px solid white;
+	color: white;
+	border-radius: 10px;
+	word-break: break-all;
+	color: white;
+}
+
+.caution {
+	margin: 5px;
+	text-align: right;
+	text-decoration: underline;
+	font-style: italic;
 }
 
 body {
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
+
+input[type="text"] {
+	margin-top: 2px;
+	width: 530px;
+	height: 40px;
+	width: 530px;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: .4em .75em;
+	color: #999;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fdfdfd;
+	cursor: pointer;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+	margin: 3px 0px 0px 0px;
+}
+
+.filebox input[type="file"] { /* 파일 필드 숨기기 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+img {
+	width: 40px;
+	height: 40px;
+}
 </style>
 
+
 <body>
-
-
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
@@ -89,17 +146,42 @@ body {
 		<div id="cr_title" class="row">&nbsp;Faker | 그마이상구함!</div>
 		<div id="containBox" class="row">
 			<div id="includeBox" class="col-sm-9">
-				<div class="chatBox">
-				
+				<div class="caution">상처가 되는 말은 하지 말아주세요!</div>
+				<div class="chatBox" style="font-size: 14px;">
+					박세웅: 오호오호!<br /> 박세웅: 채팅은 조금 많이 어려울거 같습니다.<br /> 박세웅: 소켓에 대한 이해가 많이 필요한 기능같습니다.<br /> <br /> 박세웅: 다음주 주간목표가 난이도로 따지면 최고일 수도...아님말고.. <br /> 박세웅: 다음주도 열심히 달려봅시다.. <br /> <br />박세웅: 이모티콘 관련해서는 api가 따로 없네요... <br />박세웅: 아쉽지만 아쉬운대로 파일첨부로 대신해야할거 같습니다만?...
+
 				</div>
-				<div class="enterBox">아래에 찍혀라 제발</div>
+				<div class="enterBox row">
+					<div>
+						&nbsp;&nbsp;&nbsp; 채팅: &nbsp;<input type="text" />
+					</div>
+					<div class="filebox">
+						<label for="file">임티</label>
+						<input type="file" id="file" /> <input type="submit" value="전송" />
+					</div>
+				</div>
 			</div>
 			<div class="userBox col-sm-3">
-				<div id="userOne">1</div>
-				<div id="userTwo">2</div>
-				<div id="userThr">3</div>
-				<div id="userFour">4</div>
-				<div id="userFiv">5</div>
+				<div class="user">
+					<img src="${path}/img/lol/challenger.png" />
+					<div>사용자1</div>
+				</div>
+				<div class="user">
+					<img src="${path}/img/lol/challenger.png" />
+					<div>사용자2</div>
+				</div>
+				<div class="user">
+					<img src="${path}/img/lol/challenger.png" />
+					<div>사용자3</div>
+				</div>
+				<div class="user">
+					<img src="${path}/img/lol/challenger.png" />
+					<div>사용자4</div>
+				</div>
+				<div class="user">
+					<img src="${path}/img/lol/challenger.png" />
+					<div>사용자5</div>
+				</div>
 			</div>
 		</div>
 	</div>

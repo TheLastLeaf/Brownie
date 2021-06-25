@@ -93,7 +93,7 @@ button>img {
 	font-weight: bolder;
 	margin: 5px;
 	border-radius: 5px;
-	background: grey; 
+	background: grey;
 }
 
 .micUse {
@@ -111,7 +111,7 @@ button>img {
 <script type="text/javascript">
 	function fn_makeRoom() {
 		window.open("makeRoom", "makeTeam",
-				"width=800, height=570, left=250,top=200"); 
+				"width=800, height=570, left=250,top=200");
 	}
 </script>
 <!-- Main Content Post Section Begin -->
@@ -134,7 +134,7 @@ button>img {
 						<!-- 방만들기 begin -->
 						<div class="innerBox text-center justify-content-center align-items-center d-flex">
 							<label for="makeRoom" onclick="fn_makeRoom()">
-								<img id="makeRoom" style="width: 40px; margin: 5px" src="${path}/img/details/plusButton.png">
+								<img id="makeRoom" style="width: 50px; margin: 5px" src="${path}/img/details/button.png">
 								&nbsp; 방만들기
 							</label>
 						</div>
@@ -412,7 +412,7 @@ button>img {
 							z
 						</a>
 						<a href="#">
-							<i class="fa fa-youtube-play"></i> 
+							<i class="fa fa-youtube-play"></i>
 						</a>
 					</div>
 				</div>
