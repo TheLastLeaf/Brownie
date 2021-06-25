@@ -2,22 +2,31 @@ package kr.co.brownie.notice.web;
 
 import javax.annotation.Resource;
 
+import kr.co.brownie.gallery.service.GalleryService;
 import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.notice.service.NoticeService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/notice")
 public class NoticeController {
-	@Resource(name = "noticeService")
-	NoticeService noticeService;
+	@Resource(name = "galleryService")
+	GalleryService galleryService;
 
-	@RequestMapping(path = "noticeAdd")
-	public String noticeAdd() { return "notice/noticeAdd"; }
+	@GetMapping("/add")
+	public String noticeAdd() {
+		return "notice/add";
+	}
 
-	@RequestMapping(path = "noticelist")
-	public String noticelist() { return "notice/noticelist"; }
+	@GetMapping("/detail")
+	public String detail() {
+		return "notice/detail";
+	}
 
-	@RequestMapping(path = "noticedetail")
-	public String notice() { return "notice/noticedetail"; }
+	@GetMapping("/list")
+	public String list() {
+		return "notice/list";
+	}
 }
