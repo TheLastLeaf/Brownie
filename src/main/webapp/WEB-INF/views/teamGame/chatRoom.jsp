@@ -134,15 +134,19 @@ input[type="text"] {
 	clip: rect(0, 0, 0, 0);
 	border: 0;
 }
-.siteLv{
-	width: 10px;
-	height: 10px;
+
+.siteLv {
+	width: 30px;
+	height: 30px;
 }
 
 img {
 	width: 40px;
 	height: 40px;
 	margin: 4px;
+}
+button[type="button"]{
+	margin: 2px; 
 }
 </style>
 
@@ -158,7 +162,21 @@ img {
 			<div id="includeBox" class="col-sm-9">
 				<div class="caution">상처가 되는 말은 하지 말아주세요!</div>
 				<div class="chatBox" style="font-size: 14px;">
-					박세웅: 오호오호!<br /> 박세웅: 채팅은 조금 많이 어려울거 같습니다.<br /> 박세웅: 소켓에 대한 이해가 많이 필요한 기능같습니다.<br /> <br /> 박세웅: 다음주 주간목표가 난이도로 따지면 최고일 수도...아님말고.. <br /> 박세웅: 다음주도 열심히 달려봅시다.. <br /> <br />박세웅: 이모티콘 관련해서는 api가 따로 없네요... <br />박세웅: 아쉽지만 아쉬운대로 파일첨부로 대신해야할거 같습니다만?...
+					박세웅: 오호오호!
+					<br />
+					박세웅: 채팅은 조금 많이 어려울거 같습니다.
+					<br />
+					박세웅: 소켓에 대한 이해가 많이 필요한 기능같습니다.
+					<br />
+					<br />
+					박세웅: 다음주 주간목표가 난이도로 따지면 최고일 수도...아님말고..
+					<br />
+					박세웅: 다음주도 열심히 달려봅시다..
+					<br />
+					<br />
+					박세웅: 이모티콘 관련해서는 api가 따로 없네요...
+					<br />
+					박세웅: 아쉽지만 아쉬운대로 파일첨부로 대신해야할거 같습니다만?...
 
 				</div>
 				<div class="enterBox row">
@@ -167,8 +185,11 @@ img {
 					</div>
 					<div class="filebox">
 						<label for="file">임티</label>
-						<input type="file" id="file" /> <input type="submit" value="전송" />
+						<input type="file" id="file" /> 
 					</div>
+					<div>
+						<button type="button" class="btn btn-success">전송</button>
+					</div>  
 				</div>
 			</div>
 
@@ -180,18 +201,22 @@ img {
 				</div>
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
+					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
 					<div class="userInfo">사용자2</div>
 				</div>
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
+					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
 					<div class="userInfo">사용자3</div>
 				</div>
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
+					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
 					<div class="userInfo">사용자4</div>
 				</div>
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
+					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
 					<div class="userInfo">사용자5</div>
 				</div>
 			</div>

@@ -113,11 +113,21 @@ button>img {
 		window.open("teamGame/makeRoom", "makeTeam",
 				"width=800, height=590, left=250,top=200");
 	}
+	
+    function fn_chatRoom() {
+        makeRoom = window.open("teamGame/chatRoom", "chatingRoom",
+            "width=1015, height=670, scroll=no, left=500, top=250");
+    }
+   	
+    function fn_blockRoom(){
+		alert("방이 꽉찼습니다! !");
+		window.location.reload();    	
+    }
 </script>
 <!-- Main Content Post Section Begin -->
 <section class="details-post-section spad" style="padding: 0;">
 	<!-- class="container"는 글을 가운데 정렬해주는 역할 -->
-	<div class="container" style="width: 900px;">
+	<div class="container" style="width: 900px;"> 
 
 		<div class="p-0">
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
@@ -151,21 +161,21 @@ button>img {
 									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
 								</p>
 							</div>
-							<div class="roomTitle">칼바람 할 사람 구함~</div>
+							<div class="roomTitle">|칼바람| 할 사람 구함~</div>
 							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop">
+								<button type="button" class="positionTop" onclick="fn_blockRoom()"> 
 									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 								</button>
-								<button type="button" class="positionJun">
+								<button type="button" class="positionJun" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
 								</button>
-								<button type="button" class="positionMid">
+								<button type="button" class="positionMid" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
 								</button>
-								<button type="button" class="positionAd">
+								<button type="button" class="positionAd" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
 								</button>
-								<button type="button" class="positionSup">
+								<button type="button" class="positionSup" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
@@ -195,19 +205,19 @@ button>img {
 							</div>
 							<div class="roomTitle">즐겜러 구해욤~</div>
 							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop">
+								<button type="button" class="positionTop" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 								</button>
-								<button type="button" class="positionJun">
+								<button type="button" class="positionJun" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
 								</button>
-								<button type="button" class="positionMid">
+								<button type="button" class="positionMid" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
 								</button>
-								<button type="button" class="positionAd">
+								<button type="button" class="positionAd" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
 								</button>
-								<button type="button" class="positionSup">
+								<button type="button" class="positionSup" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
@@ -236,19 +246,19 @@ button>img {
 							</div>
 							<div class="roomTitle">칼바람 도마바람 국자바람</div>
 							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop">
+								<button type="button" class="positionTop" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 								</button>
-								<button type="button" class="positionJun">
+								<button type="button" class="positionJun" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
 								</button>
-								<button type="button" class="positionMid">
+								<button type="button" class="positionMid" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
 								</button>
-								<button type="button" class="positionAd">
+								<button type="button" class="positionAd" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
 								</button>
-								<button type="button" class="positionSup">
+								<button type="button" class="positionSup" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
@@ -277,19 +287,19 @@ button>img {
 							</div>
 							<div class="roomTitle">집에 가고 싶습니까?...</div>
 							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop">
+								<button type="button" class="positionTop" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 								</button>
-								<button type="button" class="positionJun">
+								<button type="button" class="positionJun" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
 								</button>
-								<button type="button" class="positionMid">
+								<button type="button" class="positionMid" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
 								</button>
-								<button type="button" class="positionAd">
+								<button type="button" class="positionAd" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
 								</button>
-								<button type="button" class="positionSup">
+								<button type="button" class="positionSup" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
@@ -318,19 +328,19 @@ button>img {
 							</div>
 							<div class="roomTitle">나 스프링 못해서 어떻함</div>
 							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop">
+								<button type="button" class="positionTop" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 								</button>
-								<button type="button" class="positionJun">
+								<button type="button" class="positionJun" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
 								</button>
-								<button type="button" class="positionMid">
+								<button type="button" class="positionMid" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
 								</button>
-								<button type="button" class="positionAd">
+								<button type="button" class="positionAd" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
 								</button>
-								<button type="button" class="positionSup">
+								<button type="button" class="positionSup" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
@@ -359,19 +369,19 @@ button>img {
 							</div>
 							<div class="roomTitle">시간을 쏟는게 맞을까?...</div>
 							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop">
+								<button type="button" class="positionTop" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
 								</button>
-								<button type="button" class="positionJun">
+								<button type="button" class="positionJun" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
 								</button>
-								<button type="button" class="positionMid">
+								<button type="button" class="positionMid" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
 								</button>
-								<button type="button" class="positionAd">
+								<button type="button" class="positionAd" onclick="fn_blockRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
 								</button>
-								<button type="button" class="positionSup">
+								<button type="button" class="positionSup" onclick="fn_chatRoom()">
 									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
