@@ -135,9 +135,17 @@
     function fn_chatRoom() {
         makeRoom = window.open("chatRoom", "chatingRoom",
             "width=1015, height=670, scroll=no, left=500, top=250");
+		
+        
+        
+        
         opener = makeRoom;
 		window.close();	
     }
+    
+	
+    
+    
 </script>
 <body>
 
