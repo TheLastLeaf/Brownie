@@ -75,6 +75,7 @@ body {
 	margin-top: 10px;
 	position: relative;
 	bottom: 0;
+	border: 1px solid white;
 }
 
 .userBox {
@@ -83,6 +84,10 @@ body {
 	border-radius: 10px;
 	word-break: break-all;
 	color: white;
+}
+
+.userInfo {
+	margin: 5px;
 }
 
 .caution {
@@ -129,10 +134,15 @@ input[type="text"] {
 	clip: rect(0, 0, 0, 0);
 	border: 0;
 }
+.siteLv{
+	width: 10px;
+	height: 10px;
+}
 
 img {
 	width: 40px;
 	height: 40px;
+	margin: 4px;
 }
 </style>
 
@@ -161,28 +171,31 @@ img {
 					</div>
 				</div>
 			</div>
+
 			<div class="userBox col-sm-3">
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
-					<div>사용자1</div>
+					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
+					<div class="userInfo">사용자1</div>
 				</div>
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
-					<div>사용자2</div>
+					<div class="userInfo">사용자2</div>
 				</div>
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
-					<div>사용자3</div>
+					<div class="userInfo">사용자3</div>
 				</div>
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
-					<div>사용자4</div>
+					<div class="userInfo">사용자4</div>
 				</div>
 				<div class="user">
 					<img src="${path}/img/lol/challenger.png" />
-					<div>사용자5</div>
+					<div class="userInfo">사용자5</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 

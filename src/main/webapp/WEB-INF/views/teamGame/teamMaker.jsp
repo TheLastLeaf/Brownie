@@ -110,8 +110,8 @@ button>img {
 
 <script type="text/javascript">
 	function fn_makeRoom() {
-		window.open("makeRoom", "makeTeam",
-				"width=800, height=570, left=250,top=200");
+		window.open("teamGame/makeRoom", "makeTeam",
+				"width=800, height=590, left=250,top=200");
 	}
 </script>
 <!-- Main Content Post Section Begin -->
@@ -125,7 +125,7 @@ button>img {
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
 						<a href="#">team</a>
 						<span>slave</span>
-					</div>
+					</div> 
 					<h4 class="text-white">Make your own TEAM</h4>
 				</div>
 				<div class="dt-desc" style="display: block;">
