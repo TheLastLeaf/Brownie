@@ -19,7 +19,7 @@
     .cl-text > .content-text{
         display: block;
         text-overflow: ellipsis;
-        width: 800px;
+        width: auto;
         height: 100px;
     }
 
@@ -49,7 +49,7 @@
             <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='add'">
         </div>
         <div style="margin-bottom: 2%">
-            <hr style="background-color: white; width: 77%; text-align: center;">
+            <hr class="innerBox text-center" style="background-color: white; width: 76%;">
         </div>
         <div class="container">
             <div class="row">
@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-12 p-0">
                     <form>
-                        <div class="innerBox text-center">
+                        <div class="innerBox text-center" style="padding-bottom: 3%;">
                                     <span>
                                         <select name="notice" style="height:30px; background: black; color: #666666;">
                                             <option value="" selected="selected">선택</option>

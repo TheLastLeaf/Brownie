@@ -90,11 +90,12 @@
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <div class="innerBox text-right">
-                                <ul>
-                                    <li><input type="button" class="btn btn-outline-dark btn-sm"
+                                    <input type="button" class="btn btn-outline-dark btn-sm"
+                                               onclick="location.href='add'" style="color:white; cursor: pointer;"
+                                               value="수정">
+                                    <input type="button" class="btn btn-outline-dark btn-sm"
                                                onclick="location.href='list'" style="color:#c20000; cursor: pointer;"
-                                               value="삭제"></li>
-                                </ul>
+                                               value="삭제">
                             </div>
                         </div>
                     </div>

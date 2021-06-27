@@ -34,7 +34,7 @@
                                 <div class="input-list">
                                     <input type="text" placeholder="Title" style="width: 98%;">
                                 </div>
-                                <textarea placeholder="Message" style="height: 500px;" id="notice_content"
+                                <textarea placeholder="Content" style="height: 500px;" id="notice_content"
                                           class="notice_content"></textarea>
                                 <div id="file">
                                     <input type="file" value="파일선택" style="width: 20%; color: #666666;">
