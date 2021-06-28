@@ -25,24 +25,14 @@ public class GalleryController {
         return "gallery/list";
     }
 
-    @GetMapping("/categories-list")
-    public String categories_list() {
-        return "gallery/categories-list";
+    @GetMapping("/categoriesGrid")
+    public String categoriesGrid() {
+        return "gallery/categories-grid";
     }
-
-    @GetMapping("/details-post-default")
-    public String details_post_default() {
-        return "gallery/details-post-default";
-    }
-
+    
     @GetMapping("/details-post-gallery")
     public String details_post_gallery() {
         return "gallery/details-post-gallery";
-    }
-
-    @GetMapping("/details-post-review")
-    public String details_post_review() {
-        return "gallery/details-post-review";
     }
 
     @GetMapping("/typography")
