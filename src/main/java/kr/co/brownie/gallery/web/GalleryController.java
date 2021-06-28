@@ -24,19 +24,9 @@ public class GalleryController {
     public String list() {
         return "gallery/list";
     }
-
-    @GetMapping("/categoriesGrid")
-    public String categoriesGrid() {
-        return "gallery/categories-grid";
-    }
     
-    @GetMapping("/details-post-gallery")
+    @GetMapping("/galleryDetail")
     public String details_post_gallery() {
-        return "gallery/details-post-gallery";
-    }
-
-    @GetMapping("/typography")
-    public String typography() {
-        return "gallery/typography";
+        return "gallery/detail";
     }
 }
