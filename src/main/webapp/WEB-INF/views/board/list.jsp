@@ -202,7 +202,7 @@
                 </div>
             </div>
        
-                   <div class="col-lg-12" style="justify-content: center; align-content: center; text-align: center;">
+           <div class="col-lg-12" style="justify-content: center; align-content: center; text-align: center;">
              <div class="board_search" style="margin-bottom: 30px;">
              	<select style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;">
              		<option value="title">제목</option>

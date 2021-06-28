@@ -4,7 +4,22 @@
 <c:import url="../layout/header.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
-
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h3>관리자 화면</h3>
+                <div>
+					<a href="#" style="color: #ffffff;"></a>               
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
 
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -28,12 +43,33 @@
                                     </div>
                                 </div>
                                 <div class="or-text">
-                                    <div class="" style="justify-content: center; align-content: center; text-align: center;">
-	                                    <h5>[ 관리자 메뉴 ]</h5>
-	                                    <p><a href="#">게시판 관리</a></p>
-	                                    <p><a href="#">유저 관리</a></p>
-	                                    <p><a href="#">신고 접수 목록</a></p>
-	                                    <p><a href="#">블랙리스트</a></p>
+                                    <div class="" >
+	                                    <div class="sidebar-option">
+                    <div class="social-media">
+                        <ul>
+                            <li>
+                                <div class="sm-icon"><i class="fa fa-pencil-square-o"></i></div>
+                                	<span>게시판 관리</span>
+                                <div class="follow">5개</div>
+                            </li>
+                            <li>
+                                <div class="sm-icon"><i class="fa fa-user-o"></i></div>
+                                	<span>멤버 관리</span>
+                                <div class="follow">432명</div>
+                            </li>
+                            <li>
+                                <div class="sm-icon"><i class="fa fa-address-card"></i></div>
+                                	<span>신고 내역</span>
+                                <div class="follow">4명</div>
+                            </li>
+                            <li>
+                                <div class="sm-icon"><i class="fa fa-user-circle-o"></i></div>
+                                	<span>블랙 리스트</span>
+                                <div class="follow">52명</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                                     </div>
                                 </div>
                             </div>
@@ -128,8 +164,7 @@
     </div>
 </section>
 <!-- Details Post Section End -->
-
-
+ 
 <c:import url="../layout/footer.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
