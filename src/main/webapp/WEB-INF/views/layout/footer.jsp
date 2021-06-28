@@ -22,7 +22,7 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="editor-choice">
 						<div class="section-title">
-							<h5>여기다 광고넣을까?</h5>
+							<h5>여기다 게임배너 넣을거임</h5>
 						</div>
 						<div class="ec-item">
 							<div class="ec-pic">
@@ -30,11 +30,10 @@
 							</div>
 							<div class="ec-text">
 								<h6>
-									<a href="#">여기 뭘로 채움?</a>
+									<a href="#">부루마블</a>
 								</h6>
 								<ul>
-									<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-									<li><i class="fa fa-comment-o"></i> 12</li>
+									<li><i class="fa fa-clock-o"></i>잔여시간</li>
 								</ul>
 							</div>
 						</div>
@@ -44,11 +43,10 @@
 							</div>
 							<div class="ec-text">
 								<h6>
-									<a href="#">그냥 지우나?</a>
+									<a href="#">빙고어쩌구</a>
 								</h6>
 								<ul>
-									<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-									<li><i class="fa fa-comment-o"></i> 12</li>
+									<li><i class="fa fa-clock-o"></i>잔여시간</li>
 								</ul>
 							</div>
 						</div>

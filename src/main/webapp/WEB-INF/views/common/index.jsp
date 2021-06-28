@@ -4,140 +4,12 @@
 <c:import url="../layout/header.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
+
+
 <!-- Hero Section Begin -->
 <section class="hero-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-md-6">
-                <div class="hs-text">
-                    <div class="label"><span>Playstation</span></div>
-                    <h3>Downwell and Space Hulk: Tactics are coming to Xbox Game Pass for PC</h3>
-                    <div class="ht-meta">
-                        <img src="${path}/img/hero/meta-pic.jpg" alt="">
-                        <ul>
-                            <li>by Marcin Jankowski</li>
-                            <li>Aug 01, 2019</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-5 col-md-6 offset-lg-1 offset-xl-2">
-                <div class="trending-post">
-                    <div class="section-title">
-                        <h5>Treding posts</h5>
-                    </div>
-                    <div class="trending-slider owl-carousel">
-                        <div class="single-trending-item">
-                            <div class="trending-item">
-                                <div class="ti-pic">
-                                    <img src="${path}/img/trending/trending-1.jpg" alt="">
-                                </div>
-                                <div class="ti-text">
-                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
-                                    </h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="trending-item">
-                                <div class="ti-pic">
-                                    <img src="${path}/img/trending/trending-2.jpg" alt="">
-                                </div>
-                                <div class="ti-text">
-                                    <h6><a href="#">Valve updates Steam's new Interactive Reco- mmender, teases
-                                        a...</a></h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="trending-item">
-                                <div class="ti-pic">
-                                    <img src="${path}/img/trending/trending-3.jpg" alt="">
-                                </div>
-                                <div class="ti-text">
-                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
-                                    </h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="trending-item">
-                                <div class="ti-pic">
-                                    <img src="${path}/img/trending/trending-4.jpg" alt="">
-                                </div>
-                                <div class="ti-text">
-                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
-                                    </h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-trending-item">
-                            <div class="trending-item">
-                                <div class="ti-pic">
-                                    <img src="${path}/img/trending/trending-5.jpg" alt="">
-                                </div>
-                                <div class="ti-text">
-                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
-                                    </h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="trending-item">
-                                <div class="ti-pic">
-                                    <img src="${path}/img/trending/trending-6.jpg" alt="">
-                                </div>
-                                <div class="ti-text">
-                                    <h6><a href="#">Valve updates Steam's new Interactive Reco- mmender, teases
-                                        a...</a></h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="trending-item">
-                                <div class="ti-pic">
-                                    <img src="${path}/img/trending/trending-7.jpg" alt="">
-                                </div>
-                                <div class="ti-text">
-                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
-                                    </h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="trending-item">
-                                <div class="ti-pic">
-                                    <img src="${path}/img/trending/trending-8.jpg" alt="">
-                                </div>
-                                <div class="ti-text">
-                                    <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a>
-                                    </h6>
-                                    <ul>
-                                        <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                        <li><i class="fa fa-comment-o"></i> 12</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="hero-slider owl-carousel">
@@ -148,1554 +20,562 @@
 </section>
 <!-- Hero Section End -->
 
-<!-- Latest Preview Section Begin -->
-<section class="latest-preview-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h5>Latest Preview</h5>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="lp-slider owl-carousel">
-                <div class="col-lg-3">
-                    <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-1.jpg">
-                            <div class="review-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress" data-cpid="id" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">7.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lp-text">
-                            <h6><a href="#">Teamfight Tactics is in chaos after patch...</a></h6>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-2.jpg">
-                            <div class="review-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress" data-cpid="id" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">7.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lp-text">
-                            <h6><a href="#">Lenovo’s y540 gaming laptop with an rtx 2060...</a></h6>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-3.jpg">
-                            <div class="review-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress" data-cpid="id" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">7.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lp-text">
-                            <h6><a href="#">A monter prom poster got hijacked for a...</a></h6>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-4.jpg">
-                            <div class="review-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress" data-cpid="id" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">7.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lp-text">
-                            <h6><a href="#">Facebook wants to read your thoughts with...</a></h6>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-4.jpg">
-                            <div class="review-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress" data-cpid="id" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">7.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lp-text">
-                            <h6><a href="#">Facebook wants to read your thoughts with...</a></h6>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-4.jpg">
-                            <div class="review-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress" data-cpid="id" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">7.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lp-text">
-                            <h6><a href="#">Facebook wants to read your thoughts with...</a></h6>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${path}/img/latest-preview/lp-4.jpg">
-                            <div class="review-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress" data-cpid="id" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">7.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="lp-text">
-                            <h6><a href="#">Facebook wants to read your thoughts with...</a></h6>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Latest Preview Section End -->
-
-<!-- Update News Section Begin -->
-<section class="update-news-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="section-title">
-                    <h5><span>News & update</span></h5>
-                </div>
-                <div class="tab-elem">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">All</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Platform</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Hardware</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Reviews</a>
-                        </li>
-                    </ul><!-- Tab panes -->
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
-                            <div class="row">
-                                <div class="un-slider owl-carousel">
-                                    <div class="col-lg-12">
-                                        <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
-                                            <div class="ub-text">
-                                                <div class="label"><span>Reviews</span></div>
-                                                <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
-                                                    970 evo, for $120 less than nomal</a></h5>
-                                                <ul>
-                                                    <li>by <span>Admin</span></li>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
-                                            <div class="ub-text">
-                                                <div class="label"><span>Reviews</span></div>
-                                                <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
-                                                    970 evo, for $120 less than nomal</a></h5>
-                                                <ul>
-                                                    <li>by <span>Admin</span></li>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tabs-2" role="tabpanel">
-                            <div class="row">
-                                <div class="un-slider owl-carousel">
-                                    <div class="col-lg-12">
-                                        <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
-                                            <div class="ub-text">
-                                                <div class="label"><span>Reviews</span></div>
-                                                <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
-                                                    970 evo, for $120 less than nomal</a></h5>
-                                                <ul>
-                                                    <li>by <span>Admin</span></li>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
-                                            <div class="ub-text">
-                                                <div class="label"><span>Reviews</span></div>
-                                                <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
-                                                    970 evo, for $120 less than nomal</a></h5>
-                                                <ul>
-                                                    <li>by <span>Admin</span></li>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tabs-3" role="tabpanel">
-                            <div class="row">
-                                <div class="un-slider owl-carousel">
-                                    <div class="col-lg-12">
-                                        <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
-                                            <div class="ub-text">
-                                                <div class="label"><span>Reviews</span></div>
-                                                <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
-                                                    970 evo, for $120 less than nomal</a></h5>
-                                                <ul>
-                                                    <li>by <span>Admin</span></li>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
-                                            <div class="ub-text">
-                                                <div class="label"><span>Reviews</span></div>
-                                                <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
-                                                    970 evo, for $120 less than nomal</a></h5>
-                                                <ul>
-                                                    <li>by <span>Admin</span></li>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="tabs-4" role="tabpanel">
-                            <div class="row">
-                                <div class="un-slider owl-carousel">
-                                    <div class="col-lg-12">
-                                        <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
-                                            <div class="ub-text">
-                                                <div class="label"><span>Reviews</span></div>
-                                                <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
-                                                    970 evo, for $120 less than nomal</a></h5>
-                                                <ul>
-                                                    <li>by <span>Admin</span></li>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="un-big-item set-bg" data-setbg="${path}/img/news/news-1.jpg">
-                                            <div class="ub-text">
-                                                <div class="label"><span>Reviews</span></div>
-                                                <h5><a href="#">Get one of our favorite nvme ssds, the 2tb samsung
-                                                    970 evo, for $120 less than nomal</a></h5>
-                                                <ul>
-                                                    <li>by <span>Admin</span></li>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-3.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-4.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="un-item">
-                                                    <div class="un_pic set-bg" data-setbg="${path}/img/news/news-2.jpg">
-                                                        <div class="label"><span>Reviews</span></div>
-                                                    </div>
-                                                    <div class="un_text">
-                                                        <h6><a href="#">Downwell and space hulk: tactics are coming
-                                                            to...</a></h6>
-                                                        <ul>
-                                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                            <li><i class="fa fa-comment-o"></i> 20</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="sidebar-option">
-                    <div class="social-media">
-                        <div class="section-title">
-                            <h5>Social media</h5>
-                        </div>
-                        <ul>
-                            <li>
-                                <div class="sm-icon"><i class="fa fa-facebook"></i></div>
-                                <span>Facebook</span>
-                                <div class="follow">1,2k Follow</div>
-                            </li>
-                            <li>
-                                <div class="sm-icon"><i class="fa fa-twitter"></i></div>
-                                <span>Twitter</span>
-                                <div class="follow">1,2k Follow</div>
-                            </li>
-                            <li>
-                                <div class="sm-icon"><i class="fa fa-youtube-play"></i></div>
-                                <span>Youtube</span>
-                                <div class="follow">2,3k Subs</div>
-                            </li>
-                            <li>
-                                <div class="sm-icon"><i class="fa fa-instagram"></i></div>
-                                <span>Instagram</span>
-                                <div class="follow">2,6k Follow</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="hardware-guides">
-                        <div class="section-title">
-                            <h5>Hardware guides</h5>
-                        </div>
-                        <div class="trending-item">
-                            <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-5.jpg" alt="">
-                            </div>
-                            <div class="ti-text">
-                                <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
-                                </h6>
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="trending-item">
-                            <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-6.jpg" alt="">
-                            </div>
-                            <div class="ti-text">
-                                <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a></h6>
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="trending-item">
-                            <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-7.jpg" alt="">
-                            </div>
-                            <div class="ti-text">
-                                <h6><a href="#">This gaming laptop with a GTX 1660 Ti and 32GB of RAM is down...</a>
-                                </h6>
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="trending-item">
-                            <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-8.jpg" alt="">
-                            </div>
-                            <div class="ti-text">
-                                <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a></h6>
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Update News Section End -->
-
 <!-- Videos Guide Section Begin -->
-<section class="video-guide-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h5>Videos guide</h5>
-                </div>
-            </div>
-        </div>
-        <div class="tab-elem">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#tabs-5" role="tab">All</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Platform</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Hardware</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#tabs-8" role="tab">Reviews</a>
-                </li>
-            </ul><!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="tabs-5" role="tabpanel">
-                    <div class="row">
-                        <div class="vg-slider owl-carousel">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-1.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-2.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-1.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-2.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="tabs-6" role="tabpanel">
-                    <div class="row">
-                        <div class="vg-slider owl-carousel">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-1.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-2.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-1.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-2.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="tabs-7" role="tabpanel">
-                    <div class="row">
-                        <div class="vg-slider owl-carousel">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-1.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-2.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-1.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-2.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="tabs-8" role="tabpanel">
-                    <div class="row">
-                        <div class="vg-slider owl-carousel">
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-1.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-2.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-1.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="vg-item large-vg set-bg"
-                                             data-setbg="${path}/img/videos/videos-2.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h5>THROUGH THE AGES' FIRST EXPANSION WILL BE RELEASING ON DIGITAL
-                                                    PLATFORMS...</h5>
-                                                <ul>
-                                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                                    <li><i class="fa fa-comment-o"></i> 12</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-3.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-4.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="vg-item set-bg" data-setbg="${path}/img/videos/videos-5.jpg">
-                                            <a href="https://www.youtube.com/watch?v=EzKkl64rRbM"
-                                               class="play-btn video-popup"><i class="fa fa-play"></i></a>
-                                            <div class="vg-text">
-                                                <h6>THis gam,ing laptop with Gtx 1660 ti and of ram is</h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+	<section class="video-guide-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h5>League of Legends</h5>
+					</div>
+				</div>
+			</div>
+			<div class="tab-elem">
+				<ul class="nav nav-tabs" role="tablist">
+					<li class="nav-item"><a class="nav-link active"
+						data-toggle="tab" href="#tabs-1" role="tab">News</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#tabs-2" role="tab">LCK</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#tabs-3" role="tab">League Member</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="tab"
+						href="#tabs-4" role="tab">Calendar</a></li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
+						<div class="row">
+								<div class="col-lg-12">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="vg-item large-vg set-bg"
+												data-setbg="${path}/img/videos/videos-1.jpg">
+												<a href="https://www.youtube.com/watch?v=hB_RXUFA_fU"
+													class="play-btn video-popup"><i class="fa fa-play"></i></a>
+												<div class="vg-text">
+													<h5>TFT Dev Drop: June 2021 I Dev Video - Teamfight Tactics</h5>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<table border="1" style="width: 100%; color: white; text-align: center;">
+												<tr>
+													<th>여기에 유튜브에서 긁어온 영상 링크들 달아두려고 함</th>
+												</tr>
+												<tr>
+													<th>TFT Dev Drop: June 2021 I Dev Video - Teamfight Tactics</th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+												<tr>
+													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</div>
+						</div>
+					</div>
+ 
+					<!-- --------------------------------------------------------------------------------------- -->
+					<div class="tab-pane fade" id="tabs-2" role="tabpanel">
+						<div class="row">
+								<div class="col-lg-12">
+									<div class="row">
+										<div style="width: 100%; color: white; text-align: center;">
+											<iframe width="754" height="424" src="https://www.youtube.com/embed/8jxGkfky7dQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="row">
+									
+									</div>
+									<div class="row">
+										
+									</div>
+								</div>
+						</div>
+					</div>
+				<!-- --------------------------------------------------------------------------------------- -->
+					<div class="tab-pane fade" id="tabs-3" role="tabpanel">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="row">
+										<table border="1" style="width: 100%; color: white; text-align: center;">
+											<tr>
+												<th colspan="6">여기에는 선수정보 긁어오면 되나? 이 페이지 뭔 역할 하는지 사실 잘 모르겠음</th>
+											</tr>
+											<tr>
+												<th>이름</th>
+												<th>소속</th>
+												<th>주챔피언</th>
+												<th>승률</th>
+												<th>킬데스</th>
+												<th>킬관여</th>
+											</tr>
+											<tr>
+												<th>이상혁</th>
+												<th>T1</th>
+												<th>Faker</th>
+												<th>66.1%</th>
+												<th>4.4</th>
+												<th>67%</th>
+											</tr>
+											<tr>
+												<th>이상혁</th>
+												<th>T1</th>
+												<th>Faker</th>
+												<th>66.1%</th>
+												<th>4.4</th>
+												<th>67%</th>
+											</tr>
+											<tr>
+												<th>이상혁</th>
+												<th>T1</th>
+												<th>Faker</th>
+												<th>66.1%</th>
+												<th>4.4</th>
+												<th>67%</th>
+											</tr>
+											<tr>
+												<th>이상혁</th>
+												<th>T1</th>
+												<th>Faker</th>
+												<th>66.1%</th>
+												<th>4.4</th>
+												<th>67%</th>
+											</tr>
+											<tr>
+												<th>이상혁</th>
+												<th>T1</th>
+												<th>Faker</th>
+												<th>66.1%</th>
+												<th>4.4</th>
+												<th>67%</th>
+											</tr>
+										</table>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="row">
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- --------------------------------------------------------------------------------------- -->
+					<div class="tab-pane fade" id="tabs-4" role="tabpanel">
+										<!-- https://esports.inven.co.kr/schedule/ 여기서 긁어오면 될 듯 -->
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="row">
+									<table border="1" style="width: 100%; color: white; text-align: center;">
+										<tr>
+											<th>날짜</th>
+											<th style="width: 25%;">대회명</th>
+											<th>시간</th>
+											<th>경기 일정 및 결과</th>
+										</tr>
+										<tr>
+											<td rowspan="4">2021.06.25.<br/>금</td>
+											<td rowspan="4">2021 LoL 챔피언스 코리아 챌린저스 리그 서머</td>
+											<td>17:00</td>
+											<td>Fredit BRION <b>VS</b> Afreeca Freecs</td>
+										</tr>
+										<tr>
+											<td>18:00</td>
+											<td>NS Red Force <b>VS</b> Liiv Sandbox</td>
+										</tr>
+										<tr>
+											<td>19:00</td>
+											<td>kt Rolster <b>VS</b> Gen.G Esports</td>
+										</tr>
+										<tr>
+											<td>20:00</td>
+											<td>T1 VS <b>VS</b> DWG KIA</td>
+										</tr>
+									
+									
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 <!-- Videos Guide Section End -->
 
-<!-- Instagram Post Section Begin -->
-<section class="instagram-post-section spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="section-title">
-                    <h5>Instagram</h5>
-                </div>
-                <div class="ip-item">
-                    <div class="ip-pic">
-                        <img src="${path}/img/instagram/insta-1.jpg" alt="">
-                    </div>
-                    <div class="ip-text">
-                        <div class="label"><span>Reviews</span></div>
-                        <h5><a href="#">Here's an hour of side-quests from The Outer Worlds...</a></h5>
-                        <ul>
-                            <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices...</p>
-                    </div>
-                </div>
-                <div class="ip-item">
-                    <div class="ip-pic">
-                        <img src="${path}/img/instagram/insta-2.jpg" alt="">
-                    </div>
-                    <div class="ip-text">
-                        <div class="label"><span>Windows</span></div>
-                        <h5><a href="#">Infinity Ward's focus isn't on battle royale, Call of...</a></h5>
-                        <ul>
-                            <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices...</p>
-                    </div>
-                </div>
-                <div class="ip-item">
-                    <div class="ip-pic">
-                        <img src="${path}/img/instagram/insta-3.jpg" alt="">
-                    </div>
-                    <div class="ip-text">
-                        <div class="label"><span>Hardware</span></div>
-                        <h5><a href="#">Capcom asks select fans to test new Resident Evil game</a></h5>
-                        <ul>
-                            <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices...</p>
-                    </div>
-                </div>
-                <div class="ip-item">
-                    <div class="ip-pic">
-                        <img src="${path}/img/instagram/insta-4.jpg" alt="">
-                    </div>
-                    <div class="ip-text">
-                        <div class="label"><span>Playstation</span></div>
-                        <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
-                        <ul>
-                            <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
-                        </ul>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices...</p>
-                    </div>
-                </div>
-                <div class="pagination-item">
-                    <a href="#"><span>1</span></a>
-                    <a href="#"><span>2</span></a>
-                    <a href="#"><span>3</span></a>
-                    <a href="#"><span>Next</span></a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-7">
-                <div class="sidebar-option">
-                    <div class="insta-media">
-                        <div class="section-title">
-                            <h5>Instagram</h5>
-                        </div>
-                        <div class="insta-pic">
-                            <img src="${path}/img/instagram/ip-1.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-2.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-3.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-4.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="best-of-post">
-                        <div class="section-title">
-                            <h5>Best of</h5>
-                        </div>
-                        <div class="bp-item">
-                            <div class="bp-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-1" data-cpvalue="95"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">9.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bp-text">
-                                <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bp-item">
-                            <div class="bp-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-2" data-cpvalue="85"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">8.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bp-text">
-                                <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bp-item">
-                            <div class="bp-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-3" data-cpvalue="80"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">8.0</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bp-text">
-                                <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bp-item">
-                            <div class="bp-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-4" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">7.5</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bp-text">
-                                <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
-                                <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="subscribe-option">
-                        <div class="section-title">
-                            <h5>Subscribe</h5>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, eiusmod tempor.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Name">
-                            <input type="text" placeholder="Email">
-                            <button type="submit"><span>Subscribe</span></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Instagram Post Section End -->
+
+<!-- Update News Section Begin -->
+	<section class="update-news-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h5>
+							<span>GALLERY</span>
+						</h5>
+					</div>
+					<div class="tab-elem">
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item"><a class="nav-link active"
+								data-toggle="tab" href="#tabs-9" role="tab">Fanart</a></li>
+							<li class="nav-item"><a class="nav-link" data-toggle="tab"
+								href="#tabs-10" role="tab">Gameplay</a></li>
+						</ul>
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div class="tab-pane fade show active" id="tabs-9"
+								role="tabpanel">
+								<div class="row">
+									<div class="un-slider owl-carousel">
+										<div class="col-lg-12">
+											<div class="row">
+												<div class="col-lg-6">
+													<div class="un-big-item set-bg"
+													data-setbg="${path}/img/news/news-1.jpg">
+														<div class="ub-text">
+															<div class="label">
+																<span>Best Art</span>
+															</div>
+															<h5>
+																<a href="#">쓰레쉬 한번 그려봤습니ㅏ</a>
+															</h5>
+															<ul>
+																<li>by <span>ㄹㄹㄹ</span></li>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>												
+												</div>
+												<div class="col-lg-6">
+													<div class="un-big-item set-bg"
+													data-setbg="${path}/img/news/news-1.jpg">
+														<div class="ub-text">
+															<div class="label">
+																<span>Best Art</span>
+															</div>
+															<h5>
+																<a href="#">징크스 귀여워</a>
+															</h5>
+															<ul>
+																<li>by <span>351</span></li>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>												
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-3.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">ㅂ배고프고 졸리다</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-4.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">눕고싶다 눈이 시려워</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-2.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">낡고 지친 노인</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="un-big-item set-bg"
+												data-setbg="${path}/img/news/news-1.jpg">
+												<div class="ub-text">
+													<div class="label">
+														<span>Best of Best</span>
+													</div>
+													<h5>
+														<a href="#">롤 팬아트 공모전 당선작</a>
+													</h5>
+													<ul>
+														<li>by <span>ㅎㄱㄷㄴ</span></li>
+														<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+														<li><i class="fa fa-comment-o"></i> 20</li>
+													</ul>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-3.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">꿔바로우</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-4.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">마라탕</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-2.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">굴국밥</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="tab-pane fade" id="tabs-10" role="tabpanel">
+								<div class="row">
+									<div class="un-slider owl-carousel">
+										<div class="col-lg-12">
+											<div class="un-big-item set-bg"
+												data-setbg="${path}/img/news/news-1.jpg">
+												<div class="ub-text">
+													<div class="label">
+														<span>A Play of the Game</span>
+													</div>
+													<h5>
+														<a href="#">최고의 플레이;</a>
+													</h5>
+													<ul>
+														<li>by <span>Faker</span></li>
+														<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+														<li><i class="fa fa-comment-o"></i> 20</li>
+													</ul>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-3.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">정글러 명짤</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-4.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">말뚝딜오지는짤</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-2.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">롤 웃긴짤 모음</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="un-big-item set-bg"
+												data-setbg="${path}/img/news/news-1.jpg">
+												<div class="ub-text">
+													<h5>
+														<a href="#">롤 웃긴짤 모음23123</a>
+													</h5>
+													<ul>
+														<li>by <span>Admin</span></li>
+														<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+														<li><i class="fa fa-comment-o"></i> 20</li>
+													</ul>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-3.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">ㅈㅁㄹㄴㅁㅈㅇ</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-4.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">롤과 히오스의 차이</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="un-item">
+														<div class="un_pic set-bg"
+															data-setbg="${path}/img/news/news-2.jpg">
+														</div>
+														<div class="un_text">
+															<h6>
+																<a href="#">레스토랑스가 짱아니냐</a>
+															</h6>
+															<ul>
+																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+																<li><i class="fa fa-comment-o"></i> 20</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							 
+							 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<!-- Update News Section End -->
+
+
+
 <c:import url="../layout/footer.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>

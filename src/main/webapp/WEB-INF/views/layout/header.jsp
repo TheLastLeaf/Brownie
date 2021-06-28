@@ -83,8 +83,6 @@
                     <div class="ht-widget">
                         <ul>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <!-- 								<li class="signup-switch signup-open"><i -->
-                            <!-- 									class="fa fa-sign-out"></i> Login / Sign up</li> -->
                             <li class="signup-switch signup-open"><i
                                     class="fa fa-sign-out"></i> <img src="${param.path}/img/kakao_login_small.png"
                                                                      alt=""></li>
@@ -200,12 +198,6 @@
                     <li class="mega-menu"><a href="${param.path}/teamGame"><span>GROUP
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
-                            <ul class="mw-nav">
-                                <li><a href="#"><span>normal</span></a></li>
-                                <li><a href="#"><span>Howling Abyss</span></a></li>
-                                <li><a href="#"><span>Solo Rank</span></a></li>
-                                <li><a href="#"><span>Team Rank</span></a></li>
-                            </ul>
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
@@ -213,7 +205,7 @@
                                     </div>
                                     <div class="mw-text">
                                         <h6>
-                                            <a href="#">게시글 제목</a>
+                                            <a href="#">ALL</a>
                                         </h6>
                                         <ul>
                                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -227,35 +219,7 @@
                                     </div>
                                     <div class="mw-text">
                                         <h6>
-                                            <a href="#">게시글 제목</a>
-                                        </h6>
-                                        <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="mw-post-item">
-                                    <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
-                                    </div>
-                                    <div class="mw-text">
-                                        <h6>
-                                            <a href="#">게시글 제목</a>
-                                        </h6>
-                                        <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="mw-post-item">
-                                    <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
-                                    </div>
-                                    <div class="mw-text">
-                                        <h6>
-                                            <a href="#">게시글 제목</a>
+                                            <a href="#">Howling Abyss</a>
                                         </h6>
                                         <ul>
                                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -269,7 +233,35 @@
                                     </div>
                                     <div class="mw-text">
                                         <h6>
-                                            <a href="#">게시글 제목</a>
+                                            <a href="#">Normal</a>
+                                        </h6>
+                                        <ul>
+                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mw-post-item">
+                                    <div class="mw-pic col-xl-">
+                                        <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
+                                    </div>
+                                    <div class="mw-text">
+                                        <h6>
+                                            <a href="#">Solo Rank</a>
+                                        </h6>
+                                        <ul>
+                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="mw-post-item">
+                                    <div class="mw-pic col-xl-">
+                                        <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
+                                    </div>
+                                    <div class="mw-text">
+                                        <h6>
+                                            <a href="#">Free rank</a>
                                         </h6>
                                         <ul>
                                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
@@ -282,7 +274,7 @@
                     </li>
                     <li class="mega-menu"><a href="${param.path}/tip"><span>GUIDE
 						<i class="fa fa-angle-down"></i></span></a>
-                        <div class="megamenu-wrapper">1
+                        <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">

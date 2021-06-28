@@ -39,9 +39,9 @@ public class BoardController {
         return "board/details-post-gallery";
     }
 
-    @GetMapping("/details-post-review")
+    @GetMapping("/details-post-add")
     public String details_post_review() {
-        return "board/details-post-review";
+        return "board/details-post-add";
     }
 
     @GetMapping("/typography")
