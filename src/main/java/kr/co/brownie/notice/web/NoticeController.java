@@ -2,7 +2,6 @@ package kr.co.brownie.notice.web;
 
 import javax.annotation.Resource;
 
-import kr.co.brownie.gallery.service.GalleryService;
 import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.notice.service.NoticeService;
@@ -12,26 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
-    @Resource(name = "galleryService")
-    GalleryService galleryService;
+    @Resource(name = "noticeService")
+    NoticeService noticeService;
 
     @GetMapping("/add")
     public String noticeAdd() {
-        return "notice/add";
+        return "notice/noticeAdd"; // 공지 글쓰기
     }
 
-    @GetMapping("/detail")
+    @GetMapping("/noticeDetail")
     public String detail() {
-        return "notice/detail";
+        return "notice/noticeDetail"; // 공지 디테일화면
     }
 
-    @GetMapping("/list")
-    public String list() {
-        return "notice/list";
+    @GetMapping("/noticeList")
+    public String noticeList() {
+        return "notice/noticeList"; //공지 리스트
     }
 
     @GetMapping
     public String main() {
-        return list();
+        return noticeList();
     }
 }

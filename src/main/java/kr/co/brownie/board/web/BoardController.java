@@ -14,38 +14,23 @@ public class BoardController {
     @Resource(name = "boardService")
     BoardService boardService;
 
-    @GetMapping("/categories-grid")
-    public String categories_grid() {
-        return "board/categories-grid";
+    @GetMapping("/freeBoardList")
+    public String freeBoardList() {
+        return "board/freeBoardList"; // 자유게시판 리스트 화면
     }
 
+    @GetMapping("/freeBoardDetail")
+    public String freeBoardDetail() {
+        return "board/freeBoardDetail"; // 자유게시판 리스트 디테일화면
+    }
+
+    @GetMapping("/freeBoardWrite")
+    public String freeBoardWrite() {
+        return "board/freeBoardWrite"; // 자유게시판 글쓰기 화면
+    }
+    
     @GetMapping
     public String main() {
-        return list();
-    }
-
-    @GetMapping("/list")
-    public String list() {
-        return "board/list";
-    }
-
-    @GetMapping("/details-post-default")
-    public String details_post_default() {
-        return "board/details-post-default";
-    }
-
-    @GetMapping("/details-post-gallery")
-    public String details_post_gallery() {
-        return "board/details-post-gallery";
-    }
-
-    @GetMapping("/details-post-add")
-    public String details_post_review() {
-        return "board/details-post-add";
-    }
-
-    @GetMapping("/typography")
-    public String typography() {
-        return "board/typography";
+    	return freeBoardList();
     }
 }
