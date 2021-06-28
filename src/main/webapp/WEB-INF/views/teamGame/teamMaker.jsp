@@ -28,7 +28,7 @@
 	border: 1px solid white;
 	border-radius: 5px;
 	color: white;
-	margin: 4px 10px 4px 0;
+	margin: 4px;
 	text-align: center;
 	position: relative;
 	background: #1C1C1C;
@@ -176,12 +176,17 @@ button>img {
 <section class="details-post-section spad" style="padding: 0;">
 	<!-- class="container"는 글을 가운데 정렬해주는 역할 -->
 	<div class="container" style="width: 900px;">
-
+		
 		<!-- 검색 랭크기준 | 제목 | 라인 | 닉네임 -->
 		<div class="p-0">
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
+			
+			
+			
+			
+			
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
-					<div class="dt-bread-option" style="margin-bottom: 10px;">
+					<div class="dt-bread-option" style="margin-bottom: 70px;">
 						<a href="#">team</a> 
 						<span>slave</span>
 					</div>
@@ -189,9 +194,40 @@ button>img {
 						<h4 class="text-white">Make your own TEAM</h4>
 					</div>
 				</div>
+
+		<!-- share box begin -->
+			<div style="border: 1px solid white; display: block; color: #d5d5d5; font-size: 13px;margin-bottom: 50px;" class="dt-share">
+				<table style="width: 100%;">
+					<tr>
+						<th>방 제목</th>
+						<td><input type="text" style="background: #333333; border: 1px solid black; width: 300px;" /> </td>
+						<th rowspan="3" style="width:100px; text-align:center; "><input type='submit' value="검색"></th>
+					</tr>
+					<tr>
+						<th style="width: 140px;">게임 모드</th>
+						<td style="width: auto;">
+							<input type='checkbox' name='gametype' value='solo' /> 솔로 랭크
+							<input type='checkbox' name='gametype' value='free' /> 자유 랭크
+							<input type='checkbox' name='gametype' value='normal' /> 일반 게임
+							<input type='checkbox' name='gametype' value='abyss' /> 칼바람
+						</td>
+					<tr>
+						<th>희망 포지션</th>
+						<td>
+							<input type='checkbox' name='position' value='t' /> 탑
+							<input type='checkbox' name='position' value='m' /> 미드
+							<input type='checkbox' name='position' value='j' /> 정글
+							<input type='checkbox' name='position' value='b' /> 바텀
+							<input type='checkbox' name='position' value='a' /> 뭐있더라
+						</td>
+					</tr>
+				</table>
+			</div>
+					
+		<!-- share box end -->
 				<div class="dt-desc" style="display: block;">
 					<!-- <p>가장 완성된 팀을 만들어 챌린저에 도전하세요!</p> -->
-					<div class="row outBox" style="margin-left: 5px;">
+					<div class="row outBox" style="margin: auto;">
 						<!-- 방만들기 begin -->
 						<div class="innerBox text-center justify-content-center align-items-center d-flex">
 							<label for="makeRoom" onclick="fn_makeRoom()">
@@ -592,22 +628,6 @@ button>img {
 					<a href="#">[4]</a>
 				</div>
 				<br />
-				<!-- share box begin -->
-				<div style="display: flex; justify-content: center;" class="">
-					<select class="">
-						<option>솔로랭크</option>
-						<option>자유랭크</option>
-						<option>일반</option>
-						<option>칼바람</option> 
-					</select> <select class="">
-						<option>탑</option>
-						<option>정글</option>
-						<option>미드</option>
-						<option>숟가락</option>
-						<option>젓가락</option>
-					</select> <input style="" type="text" placeholder="Search" /> <input type="submit" value="검색" />
-				</div>
-				<!-- share box end -->
 
 			</div>
 		</div>
