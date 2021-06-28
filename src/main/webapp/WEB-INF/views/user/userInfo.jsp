@@ -44,16 +44,39 @@
 	align-items: flex-end;
 	margin-left: 12px;
 }
-h3{
-	color: white; 
+
+h3 {
+	color: white;
 	font-family: mapleBold;
 }
-.userInfoBox{
-	border: 1px solid white; 
+
+.userInfoBox {
+	border: 1px solid white;
 	border-radius: 0px 15px 0px 0px;
 }
-button{
+
+button {
 	margin: 10px;
+}
+
+.sync {
+	display: flex;
+	justify-content: center;
+}
+
+.noticeCount {
+	margin: 10px;
+}
+
+.infoDetail {
+	display: flex;
+	justify-content: center;
+	margin: 3px;
+	margin-bottom: 8px;
+}
+hr{
+	background: white; 
+ 	margin: 8px; 
 }
 </style>
 
@@ -86,39 +109,70 @@ button{
 								<i>일반회원</i>
 							</div>
 							<div class="nameLv">
-								<h3>ririnto / Lv.48</h3>
+								<h3>ririnto | Lv.68 | ☆☆☆★★</h3> 
 							</div>
 						</div>
 					</div>
 				</div>
 
+<!-- 연동/게시글/같이플레이한놈 begin -->
 				<div class="row" style="color: white;">
 					<!-- 뭉태기1 -->
 					<div class="userInfoBox col-sm-4">
-						<div class="SyncBtn" style="display: flex; justify-content: center;">
+						<div class="sync">
 							<button>연동</button>
 						</div>
-						<div class="sync" style=" display: flex; justify-content: center;">
+						<div class="sync">
 							<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
 							ririnto | Lv:98 | Bronze !!!
 						</div>
+						<div class="sync">[메인포지션] : 기입(ex. 미드)</div>
 					</div>
 
 					<!-- 뭉태기2 -->
 					<div class="userInfoBox col-sm-4">
 						<div>
-							게시글 갯수: 댓글 갯수: 좋아요 / 싫어요 100 / 393
+							<div class="infoDetail">게시글 갯수: 20</div>
+							<div class="infoDetail">댓글 갯수: 400</div>
+							<div class="infoDetail">좋아요: 395</div>
+							<div class="infoDetail">싫어요: 312</div>
 						</div>
+						<hr/>
+						<div class="infoDetail">
+							최근 게시글 내역
+						</div>
+						<div>1. 무지성에 관한 고찰</div>
+						<div>2. 팀원의 성향에 대한 고찰</div>
+						<div>3. 진짜 프로젝트를 2주면 완성이 될까?</div>
 					</div>
 
 					<!-- 뭉태기3 -->
-					<div class="userInfoBox col-sm-4"></div>
+					<div class="userInfoBox col-sm-4">
+						<div>
+							최근 플레이한 커뮤니티 닉네임<br />[이동해서 별점주세요!!!]
+						</div>
+					</div>
 				</div>
-
+<!-- 연동/게시글/같이플레이한놈 end -->
 				<br />
+				
+				<div style="border:1px solid white; color:white;">
+					<div class="">
+					<div style="display: flex; justify-content: flex-start;">이사람은 어떤가요?</div>
+					<div style="display: flex; justify-content: flex-end;">후기작성</div>
+					</div>
+				
+					<!-- 다른사람이 쓴 후기 -->
+					<div>
+						<div></div>
+					</div>
+				
+				</div>
+				
+				
 				<!-- share box begin -->
 				<div style="border: 1px solid black; display: block;" class="dt-share">
-					<div class="ds-title">?</div>
+					<div class="ds-title">??</div>
 					<div class="ds-links">
 						<a href="#" class="wide">
 							<i class="fa fa-heart-o"></i>
