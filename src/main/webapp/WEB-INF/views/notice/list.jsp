@@ -25,7 +25,7 @@
 
 </style>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
+<section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/Ari.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -46,7 +46,7 @@
     <!-- Categories list Section Begin -->
     <section class="categories-list-section spad">
         <div style="margin-left: 83.5%;">
-            <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='add'">
+            <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='notice/add'">
         </div>
         <div style="margin-bottom: 2%">
             <hr class="innerBox text-center" style="background-color: white; width: 76%;">
