@@ -861,9 +861,9 @@ ol {
 	padding: 24px 30px 24px 30px;
 	opacity: 0;
 	visibility: hidden;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s;
-	transition: all 0.5s;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.2s;
 }
 
 .nav-options .nav-menu ul li .megamenu-wrapper .mw-nav {

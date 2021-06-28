@@ -22,6 +22,14 @@
         width: auto;
         height: 100px;
     }
+    .spad{
+        padding-top: 150px;
+        padding-bottom: 100px;
+    }
+    .cate-spad{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
 
 </style>
 <!-- Breadcrumb Section Begin -->
@@ -44,8 +52,8 @@
 <!-- Breadcrumb Section End -->
 
     <!-- Categories list Section Begin -->
-    <section class="categories-list-section spad">
-        <div style="margin-left: 83.5%;">
+    <section class="categories-list-section cate-spad">
+        <div style="margin-left: 83.5%;  ">
             <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='notice/add'">
         </div>
         <div style="margin-bottom: 2%">
