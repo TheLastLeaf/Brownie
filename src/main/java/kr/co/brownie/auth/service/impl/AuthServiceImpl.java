@@ -51,9 +51,7 @@ public class AuthServiceImpl implements AuthService {
         URL url = new URL(K_API_URL + "/v2/user/me");
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("POST");
-
         httpURLConnection.setRequestProperty("Authorization", "Bearer " + access_token);
-
 
         JsonElement jsonElement = httpURLConnectionToJsonElement(httpURLConnection);
         id = jsonElement.getAsJsonObject().get("id").getAsString();
@@ -70,7 +68,6 @@ public class AuthServiceImpl implements AuthService {
         while ((line = bufferedReader.readLine()) != null) {
             stringBuilder.append(line);
         }
-        System.out.println(stringBuilder);
 
         JsonParser parser = new JsonParser();
         JsonElement element = parser.parse(stringBuilder.toString());

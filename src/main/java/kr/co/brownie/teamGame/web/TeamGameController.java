@@ -28,6 +28,7 @@ public class TeamGameController {
 	public String teamMaker() {
 		return "teamGame/teamMaker";
 	}
+	
 
 	@GetMapping
 	public String main() {

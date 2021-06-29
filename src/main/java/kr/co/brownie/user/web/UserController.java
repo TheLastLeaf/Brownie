@@ -28,6 +28,10 @@ public class UserController {
 	public String userComment() {
 		return "user/userComment";
 	}
+	@GetMapping("/sample")
+	public String sample() {
+		return "user/sample";
+	}
 	
 	@GetMapping
 	public String main() {
