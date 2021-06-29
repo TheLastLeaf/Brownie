@@ -4,6 +4,7 @@
 <c:import url="../layout/header.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
+
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -138,6 +139,22 @@
                                     adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
                                     dolore magnam.</p>
                                 <a href="#" class="reply-btn"><span>Reply</span></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="contact-text">
+                                    <div class="contact-form">
+                                        <div class="dt-leave-comment">
+                                            <form action="/notice/noticeDetail">
+                                                <div class="input-list">
+                                                    <input type="text" placeholder="REPLY" style="width: 91%;">
+                                                    <input type="submit" value="등록" style="width: 5%; padding-left: 5px;"></input>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
