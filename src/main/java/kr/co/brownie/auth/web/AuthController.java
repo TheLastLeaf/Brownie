@@ -15,10 +15,15 @@ import java.io.IOException;
 
 
 @Controller
-@RequestMapping
+@RequestMapping("/")
 public class AuthController {
     @Resource(name = "authService")
     AuthService authService;
+
+    @GetMapping
+    public String main() {
+        return "home";
+    }
 
     @GetMapping("login")
     public String login() {
@@ -26,21 +31,30 @@ public class AuthController {
     }
 
     @GetMapping("oauth")
-    public String oauth(@RequestParam String code, HttpSession httpSession) {
+    public String oauth(@RequestParam String code, HttpServletRequest httpServletRequest) {
+        String access_token = null;
         try {
-            String access_token = authService.getToken(code);
-            String id = authService.getUserInfoByToken(access_token);
-            httpSession.setAttribute("id", id);
+            access_token = authService.getToken(code);
+            httpServletRequest.getSession().setAttribute("access_token", access_token);
+
+            if (access_token != null) {
+                String id = authService.getUserInfoByToken(access_token);
+                httpServletRequest.getSession().setAttribute("id", id);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         return "redirect:/";
     }
 
     @GetMapping("logout")
-    public String logout(HttpSession httpSession) {
-        httpSession.invalidate();
+    public String logout(HttpServletRequest httpServletRequest) {
+        HttpSession httpSession = httpServletRequest.getSession();
+        if (httpSession != null) {
+            httpSession.invalidate();
+        }
 
         return "redirect:/";
     }
