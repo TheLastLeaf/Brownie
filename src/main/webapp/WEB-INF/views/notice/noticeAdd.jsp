@@ -10,6 +10,10 @@
         padding-top: 150px;
         padding-bottom: 100px;
     }
+    .cont-spad{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
 </style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/lol/lolChamp/Ari.png">
@@ -30,7 +34,7 @@
 <!-- Breadcrumb Section End -->
 
 <!-- Contact Section Begin -->
-<section class="contact-section spad">
+<section class="contact-section cont-spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
