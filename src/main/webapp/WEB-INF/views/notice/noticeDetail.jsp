@@ -4,7 +4,14 @@
 <c:import url="../layout/header.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(function(){
+        $('.reply-btn').click(function(){
+            $('.reply').focus();
+        });
+    });
+</script>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -112,7 +119,7 @@
                                 <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
                                     adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
                                     dolore magnam.</p>
-                                <a href="#" class="reply-btn"><span>Reply</span></a>
+                                <span class="reply-btn" style="color: white; cursor: pointer">Reply</span>
                             </div>
                         </div>
                         <div class="dc-item reply-item">
@@ -125,7 +132,7 @@
                                 <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
                                     adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
                                     dolore magnam.</p>
-                                <a href="#" class="reply-btn"><span>Reply</span></a>
+                                <span class="reply-btn" style="color: white; cursor: pointer">Reply</span>
                             </div>
                         </div>
                         <div class="dc-item">
@@ -138,20 +145,22 @@
                                 <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
                                     adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
                                     dolore magnam.</p>
-                                <a href="#" class="reply-btn"><span>Reply</span></a>
+                                <span class="reply-btn" style="color: white; cursor: pointer">Reply</span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="contact-text">
-                                    <div class="contact-form">
-                                        <div class="dt-leave-comment">
-                                            <form action="/notice/noticeDetail">
-                                                <div class="input-list">
-                                                    <input type="text" placeholder="REPLY" style="width: 91%;">
-                                                    <input type="submit" value="등록" style="width: 5%; padding-left: 5px;"></input>
-                                                </div>
-                                            </form>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="contact-text">
+                                        <div class="contact-form">
+                                            <div class="dt-leave-comment">
+                                                <form action="/notice/noticeDetail">
+                                                    <div class="input-list">
+                                                        <input type="text" placeholder="REPLY" class="reply" style="width: 91%;">
+                                                        <input type="submit" value="등록" style="width: 5%; padding-left: 5px;"></input>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
