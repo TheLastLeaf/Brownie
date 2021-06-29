@@ -84,8 +84,23 @@
                         <ul>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
                             <li class="signup-switch signup-open"><i
-                                    class="fa fa-sign-out"></i> <img src="${param.path}/img/kakao_login_small.png"
-                                                                     alt=""></li>
+                                    class="fa fa-sign-out"></i> 
+                                    
+                                 <c:choose>
+								    <c:when test="${access_token != null}">
+								        <p>${access_token}님 환영합니다.</p>
+								        <a onclick="location.href='/logout'">
+								            <p>로그아웃</p>
+								        </a>
+								    </c:when>
+								    <c:otherwise>
+								        <a onclick="location.href = '/login'">
+								            <img src="<c:url value='${param.path}/img/common/kakao_login_small.png'/>" alt=""/>
+								        </a>
+								    </c:otherwise>
+								</c:choose>
+								
+							</li>
                         </ul>
                     </div>
                 </div>
