@@ -195,28 +195,28 @@ button[type="button"]{
 
 			<div class="userBox col-sm-3">
 				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
+					<img src="${path}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자1</div>
 				</div>
 				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
+					<img src="${path}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자2</div>
 				</div>
 				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
+					<img src="${path}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자3</div>
 				</div>
 				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
+					<img src="${path}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자4</div>
 				</div>
 				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
+					<img src="${path}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자5</div>
 				</div>
 			</div>
