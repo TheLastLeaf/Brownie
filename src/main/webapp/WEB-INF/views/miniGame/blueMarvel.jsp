@@ -11,28 +11,56 @@
 <link rel="stylesheet" href="${path}/css/marvel.css" type="text/css">
 
 <style>
-.table {
-	border: 3px solid white;
+table {
+	border-collapse:separate;
+	border-spacing:10px;
+	border: 3px solid black;
+}
+
+table td {
+	border-radius: 14px;
 }
 
 .td_tb {
-	border: 2px solid white;
+	border: 2px solid black;
+	text-align: center;
+	background: white;
+}
+
+.td_rl {
+	border: 2px solid black;
+	text-align: center;
+	background: white;
 }
 
 .corner {
 	background: white;
+	text-align: center;
 }
 
 .center {
 	background: white;
+	border-bottom: 2px solid black;
 }
 
-.verti { 
+.verti {
 	height: 120px;
 }
 
+@keyframes player {
+  0%   {left:0px; top:0px;}
+  100%  {left:1200px; top:0px;}
+}
 
-
+.player{
+	z-index : inherit;
+	position: relative;
+	animation-name: player;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-direction: alternate;
+}
 </style>
 
 <!-- Breadcrumb Section Begin -->
@@ -43,15 +71,16 @@
 			<div class="col-lg-12 text-center">
 				<div class="breadcrumb-text">
 					<h3>
-						<h1 data-heading="Brownie Marble"style="z-index: 5"><span data-heading="Brownie Marble" contenteditable>Brownie Marble</span>
+						<h1 data-heading="Brownie Marble" style="z-index: 5">
+							<span data-heading="Brownie Marble" contenteditable>Brownie
+								Marble</span>
 						</h1>
-						<span style="z-index: -100;">
-							<i class="fas fa-dice fa-8x fa-spin"></i>
-						</span> 
-						
+						<span style="z-index: -100;"> <i
+							class="fas fa-dice fa-8x fa-spin"></i>
+						</span>
+
 					</h3>
-					<div class="bt-option">
-					</div>
+					<div class="bt-option"></div>
 				</div>
 			</div>
 		</div>
@@ -64,28 +93,40 @@
 <!-- Categories Grid Section Begin -->
 <section class="categories-grid-section spad">
 	<div class="container">
-		<div style="padding-left: 14px; padding-right: 14px; padding-top: 14px;">
+		<div
+			style="padding-left: 14px; padding-right: 14px; padding-top: 14px;">
 
 			<table class="table">
 				<tbody>
 					<tr height="120px">
 						<td class="td_tb startLine corner">
-							<span>
-								<i class="fab fa-github fa-3x"></i> 
-								<i class="fas fa-chess-knight fa-3x"></i> 
-							</span>
+							<div class="player"><i style="color: red;" class="fas fa-chess-knight fa-5x"></i></div>
 						</td>
+
+						<td class="td_tb"><i class="fas fa-bomb fa-5x"></i> <br>연막폭탄
+						</td>
+
 						<td class="td_tb"></td>
+
+						<td class="td_tb"><i class="fas fa-box fa-5x"></i> <br>랜덤박스
+						</td>
+
+						<td class="td_tb"><i class="fas fa-coins fa-5x"></i> <br>500
+							코인</td>
+
 						<td class="td_tb"></td>
-						<td class="td_tb"></td>
-						<td class="td_tb"></td>
-						<td class="td_tb"></td>
+
 						<td class="td_tb rightUp corner"></td>
 					</tr>
-<!-- 세로축 -->
+					<!-- 세로축 -->
 					<tr class="verti">
 						<td class="td_rl"></td>
-						<td class="center" id="gameAlert" colspan="5" rowspan="5"></td><!-- 주사위랑 현황판 이미지 넣을곳 -->
+						<td class="center" id="gameAlert" colspan="3" rowspan="5"><img
+							style="width: 100%;" src="${path}/img/miniGame/rollDice.gif">
+						</td>
+						<!-- 주사위랑 현황판 이미지 넣을곳 -->
+						<td class="center" id="gameAlert" colspan="2" rowspan="5"></td>
+						<!-- 주사위랑 현황판 이미지 넣을곳 -->
 						<td class="td_rl"></td>
 					</tr>
 
@@ -112,7 +153,7 @@
 
 						<td class="td_rl"></td>
 					</tr>
-<!-- 세로축 -->
+					<!-- 세로축 -->
 					<tr height="120px" style="margin-bottom: 14px">
 						<td width="9%" class="td_tb leftDown corner"></td>
 						<td width="9%" class="td_tb"></td>
