@@ -14,7 +14,7 @@
 				<div class="col-lg-4">
 					<div class="footer-about">
 						<div class="fa-logo">
-							<a href="#"><img src="${param.path}/img/brownie-footer.png" alt=""></a>
+							<a href="#"><img src="${param.path}/img/layout/brownie-footer.png" alt=""></a>
 						</div>
 						<p>게임을 즐기는 시간만큼 브라우니에서 보내는 시간도 달고 맛있길 바랍니다.</p>
 					</div>

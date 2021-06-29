@@ -58,7 +58,7 @@
 <div class="humberger-menu-overlay"></div>
 <div class="humberger-menu-wrapper">
     <div class="hw-logo">
-        <a href="#"><img src="${param.path}/img/brownie-footer.png" alt=""></a>
+        <a href="#"><img src="${param.path}/img/layout/brownie-footer.png" alt=""></a>
     </div>
     <div class="hw-menu mobile-menu">
         <ul>
@@ -104,7 +104,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="${param.path}/index"><img src="${param.path}/img/brownie-header.png"
+                    <a href="${param.path}/index"><img src="${param.path}/img/layout/brownie-header.png"
                                                        alt=""></a>
                 </div>
             </div>

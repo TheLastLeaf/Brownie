@@ -4,6 +4,13 @@
 <c:import url="../layout/header.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
+
+<style>
+    .spad{
+        padding-top: 150px;
+        padding-bottom: 100px;
+    }
+</style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/lol/lolChamp/Ari.png">
     <div class="container">
