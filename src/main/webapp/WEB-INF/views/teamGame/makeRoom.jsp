@@ -164,22 +164,56 @@ input.apple-switch:checked:after {
 				</p>
 
 				<div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
-					<label class="btn btn-danger btn-gmode Gmode"> <input type="radio" name="jb-radio" class="jb-radio-1">일반게임 <!-- 						<img src="${path}/img/lol/Position_Challenger-Top.png" /> -->
-					</label> &nbsp; <label class="btn btn-danger btn-gmode Gmode"> <input type="radio" name="jb-radio" class="jb-radio-2">랭크게임 <!-- 						<img src="${path}/img/lol/Position_Challenger-Jungle.png" /> -->
-					</label> &nbsp; <label class="btn btn-danger btn-gmode Gmode"> <input type="radio" name="jb-radio" class="jb-radio-3">자유랭크 <!-- 						<img src="${path}/img/lol/Position_Challenger-Mid.png" /> -->
-					</label> &nbsp; <label class="btn btn-danger btn-gmode Gmode"> <input type="radio" name="jb-radio" class="jb-radio-4">칼바람 <!-- 						<img src="${path}/img/lol/Position_Challenger-Bot.png" /> -->
-					</label> &nbsp;
+					<label class="btn btn-danger btn-gmode Gmode">
+						<input type="radio" name="jb-radio" class="jb-radio-1">일반게임
+						<!-- 						<img src="${path}/img/lol/Position_Challenger-Top.png" /> -->
+					</label>
+					&nbsp;
+					<label class="btn btn-danger btn-gmode Gmode">
+						<input type="radio" name="jb-radio" class="jb-radio-2">랭크게임
+						<!-- 						<img src="${path}/img/lol/Position_Challenger-Jungle.png" /> -->
+					</label>
+					&nbsp;
+					<label class="btn btn-danger btn-gmode Gmode">
+						<input type="radio" name="jb-radio" class="jb-radio-3">자유랭크
+						<!-- 						<img src="${path}/img/lol/Position_Challenger-Mid.png" /> -->
+					</label>
+					&nbsp;
+					<label class="btn btn-danger btn-gmode Gmode">
+						<input type="radio" name="jb-radio" class="jb-radio-4">칼바람
+						<!-- 						<img src="${path}/img/lol/Position_Challenger-Bot.png" /> -->
+					</label>
+					&nbsp;
 				</div>
 
 				<br />
 
 				<div style="margin-bottom: 3px; margin-top: 10px;" class="btn-group btn-group-toggle" data-toggle="buttons">
-					<label class="btn btn-danger position"> <input type="radio" name="jb-radio" class="jb-radio-1" value="top"> <img src="${path}/img/lol/Position_Challenger-Top.png" alt="" />
-					</label> &nbsp; <label class="btn btn-danger position"> <input type="radio" name="jb-radio" class="jb-radio-2" value="jun"> <img src="${path}/img/lol/Position_Challenger-Jungle.png" alt="" />
-					</label> &nbsp; <label class="btn btn-danger position"> <input type="radio" name="jb-radio" class="jb-radio-3" value="mid"> <img src="${path}/img/lol/Position_Challenger-Mid.png" alt="" />
-					</label> &nbsp; <label class="btn btn-danger position"> <input type="radio" name="jb-radio" class="jb-radio-4" value="bot"> <img src="${path}/img/lol/Position_Challenger-Bot.png" alt="" />
-					</label> &nbsp; <label class="btn btn-danger position"> <input type="radio" name="jb-radio" class="jb-radio-5" value="sup"> <img src="${path}/img/lol/Position_Challenger-Support.png" alt="" />
-					</label> &nbsp;
+					<label class="btn btn-danger position">
+						<input type="radio" name="jb-radio" class="jb-radio-1" value="top">
+						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
+					</label>
+					&nbsp;
+					<label class="btn btn-danger position">
+						<input type="radio" name="jb-radio" class="jb-radio-2" value="jun">
+						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
+					</label>
+					&nbsp;
+					<label class="btn btn-danger position">
+						<input type="radio" name="jb-radio" class="jb-radio-3" value="mid">
+						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
+					</label>
+					&nbsp;
+					<label class="btn btn-danger position">
+						<input type="radio" name="jb-radio" class="jb-radio-4" value="bot">
+						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
+					</label>
+					&nbsp;
+					<label class="btn btn-danger position">
+						<input type="radio" name="jb-radio" class="jb-radio-5" value="sup">
+						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
+					</label>
+					&nbsp; 
 				</div>
 
 				<br />
@@ -187,9 +221,16 @@ input.apple-switch:checked:after {
 				<div class="container">
 					<p style="margin-bottom: 3px;">10분간 1페이지 노출!(-1000px)</p>
 					<div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
-						<label class="btn btn-danger btn-usepoint roomOn"> <input type="radio" name="jb-radio" class="jb-radio-1" value="top"> <img style="width: 20px; height: 20px;" src="${path}/img/details/check_o.png" alt="" />
-						</label> &nbsp; <label class="btn btn-danger btn-usepoint roomOn"> <input type="radio" name="jb-radio" class="jb-radio-2" value="jun"> <img style="width: 20px; height: 20px;" src="${path}/img/details/check_x.png" alt="" />
-						</label> &nbsp;
+						<label class="btn btn-danger btn-usepoint roomOn">
+							<input type="radio" name="jb-radio" class="jb-radio-1" value="top">
+							<img style="width: 20px; height: 20px;" src="${path}/img/teamGame/check_o.png" alt="" />
+						</label>
+						&nbsp;
+						<label class="btn btn-danger btn-usepoint roomOn">
+							<input type="radio" name="jb-radio" class="jb-radio-2" value="jun">
+							<img style="width: 20px; height: 20px;" src="${path}/img/teamGame/check_x.png" alt="" />
+						</label>
+						&nbsp;
 					</div>
 					<div style="margin-top: 10px; margin-bottom: 3px;">
 						<label class="form-check-label" for="flexSwitchCheckChecked">마이크 </label>

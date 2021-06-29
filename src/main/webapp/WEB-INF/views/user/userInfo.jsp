@@ -52,7 +52,7 @@ h3 {
 
 .userInfoBox {
 	border: 1px solid white;
-	border-radius: 0px 15px 0px 0px;
+	border-radius: 15px 15px 0px 0px;
 }
 
 button {
