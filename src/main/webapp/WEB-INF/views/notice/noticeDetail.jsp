@@ -141,19 +141,17 @@
                                 <a href="#" class="reply-btn"><span>Reply</span></a>
                             </div>
                         </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="contact-text">
-                                        <div class="contact-form">
-                                            <div class="dt-leave-comment">
-                                                <form action="/notice/noticeDetail">
-                                                    <div class="input-list">
-                                                        <input type="text" placeholder="REPLY" style="width: 91%;">
-                                                        <input type="submit" value="등록" style="width: 5%; padding-left: 5px;"></input>
-                                                    </div>
-                                                </form>
-                                            </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="contact-text">
+                                    <div class="contact-form">
+                                        <div class="dt-leave-comment">
+                                            <form action="/notice/noticeDetail">
+                                                <div class="input-list">
+                                                    <input type="text" placeholder="REPLY" style="width: 91%;">
+                                                    <input type="submit" value="등록" style="width: 5%; padding-left: 5px;"></input>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
