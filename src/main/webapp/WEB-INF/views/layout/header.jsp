@@ -90,6 +90,7 @@
 								    <c:when test="${access_token != null}">
 								        <p>${access_token}님 환영합니다.</p>
 								        <a onclick="location.href='/logout'">
+								            <p>마이페이지</p>
 								            <p>로그아웃</p>
 								        </a>
 								    </c:when>
