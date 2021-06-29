@@ -6,19 +6,51 @@
 </c:import>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="${path}/js/marvel.js"></script>
+
+<link rel="stylesheet" href="${path}/css/marvel.css" type="text/css">
+
+<style>
+.table {
+	border: 3px solid white;
+}
+
+.td_tb {
+	border: 2px solid white;
+}
+
+.corner {
+	background: white;
+}
+
+.center {
+	background: white;
+}
+
+.verti { 
+	height: 120px;
+}
+
+
+
+</style>
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
-	data-setbg="img/miniGame/banner4.jpg">
+	data-setbg="${path}/img/miniGame/banner3.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
 				<div class="breadcrumb-text">
 					<h3>
-						팬아트 게시판 <span><i class="fas fa-dice fa-sm fa-spin"></i></span>
+						<h1 data-heading="Brownie Marble"style="z-index: 5"><span data-heading="Brownie Marble" contenteditable>Brownie Marble</span>
+						</h1>
+						<span style="z-index: -100;">
+							<i class="fas fa-dice fa-8x fa-spin"></i>
+						</span> 
+						
 					</h3>
 					<div class="bt-option">
-						<a href="#">인기글</a> <a href="#">Latest posts</a> <span>Hardware</span>
 					</div>
 				</div>
 			</div>
@@ -27,28 +59,7 @@
 </section>
 <!-- Breadcrumb Section End -->
 
-<style>
-.table {
-	border: 3px solid white;
-}
 
-.td_tb {
-	border: 1px solid white;
-}
-
-.corner {
-	background: white;
-	width: 
-}
-
-.center {
-	background: white;
-}
-
-.verti { 
-	height: 110px;
-}
-</style>
 
 <!-- Categories Grid Section Begin -->
 <section class="categories-grid-section spad">
@@ -57,7 +68,7 @@
 
 			<table class="table">
 				<tbody>
-					<tr height="140px">
+					<tr height="120px">
 						<td class="td_tb startLine corner">
 							<span>
 								<i class="fab fa-github fa-3x"></i> 
@@ -102,14 +113,14 @@
 						<td class="td_rl"></td>
 					</tr>
 <!-- 세로축 -->
-					<tr height="140px" style="margin-bottom: 14px">
-						<td width="10%" class="td_tb leftDown corner"></td>
-						<td width="7.7%" class="td_tb"></td>
-						<td width="7.8%" class="td_tb"></td>
-						<td width="7.8%" class="td_tb"></td>
-						<td width="7.8%" class="td_tb"></td>
-						<td width="7.9%" class="td_tb"></td>
-						<td width="10%" class="td_tb rightDown corner"></td>
+					<tr height="120px" style="margin-bottom: 14px">
+						<td width="9%" class="td_tb leftDown corner"></td>
+						<td width="9%" class="td_tb"></td>
+						<td width="9%" class="td_tb"></td>
+						<td width="9%" class="td_tb"></td>
+						<td width="9%" class="td_tb"></td>
+						<td width="9%" class="td_tb"></td>
+						<td width="9%" class="td_tb rightDown corner"></td>
 					</tr>
 				</tbody>
 			</table>

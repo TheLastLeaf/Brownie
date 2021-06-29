@@ -1,0 +1,84 @@
+
+h1 {
+  font-family: "strato-roman";
+  text-transform: uppercase;
+  font-size: 50px;
+  text-align: center;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  color: #a2adff;
+  letter-spacing: 1rem;
+  width: 100%;
+  text-shadow: -1px -1px 0 #5a66c4, 1px -1px 0 #5a66c4, -1px 1px 0 #5a66c4, 1px 1px 0 #5a66c4;
+}
+h1:after, h1:before,
+h1 span:before,
+h1 span:after {
+  content: attr(data-heading);
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  text-shadow: none;
+  width: 100%;
+  font-weight: normal;
+}
+h1:after {
+  font-family: "strato-tonale", sans-serif;
+  color: #5a66c4;
+  z-index: -1;
+}
+h1:before {
+  color: #c9cfff;
+  font-family: "strato-cesello";
+  z-index: 3;
+  text-shadow: none;
+}
+h1 span:before {
+  color: #7c88e6;
+  font-family: "strato-eclisse";
+  text-shadow: none;
+  z-index: -1;
+}
+h1 span:after {
+  font-family: "strato-inline";
+  color: #7d89e7;
+  z-index: 6;
+  text-shadow: none;
+}
+
+@font-face {
+  font-family: "strato-tonale";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_tonale-webfont.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "strato-cesello";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_cesello-webfont.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "strato-roman";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_roman-webfont.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "strato-eclisse";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_eclisse-webfont.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "strato-inline";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_inline-webfont.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
