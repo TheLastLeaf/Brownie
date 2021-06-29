@@ -83,24 +83,19 @@
                     <div class="ht-widget">
                         <ul>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li class="signup-switch signup-open"><i
-                                    class="fa fa-sign-out"></i> 
-                                    
-                                 <c:choose>
-								    <c:when test="${access_token != null}">
-								        <p>${access_token}님 환영합니다.</p>
-								        <a onclick="location.href='/logout'">
-								            <p>마이페이지</p>
-								            <p>로그아웃</p>
-								        </a>
-								    </c:when>
-								    <c:otherwise>
-								        <a onclick="location.href = '/login'">
-								            <img src="<c:url value='${param.path}/img/common/kakao_login_small.png'/>" alt=""/>
-								        </a>
-								    </c:otherwise>
+                            <li class="signup-switch signup-open">
+								<c:choose>
+									<c:when test="${id != null}">
+										<span style="margin-left:4px;">${id}님 환영합니다</span>
+										<span style="margin-left:4px;"><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+										<span style="margin-left:2px;"><a onclick="location.href='/logout'"><i class="fa fa-sign-out"></i></a></span>
+									</c:when>
+									<c:otherwise>
+										<a onclick="location.href = '/login'">
+											<img src="<c:url value='${param.path}/img/common/kakao_login_small.png'/>" alt=""/>
+										</a>
+									</c:otherwise>
 								</c:choose>
-								
 							</li>
                         </ul>
                     </div>
