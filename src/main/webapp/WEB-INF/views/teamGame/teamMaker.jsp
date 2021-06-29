@@ -28,7 +28,7 @@
 	border: 1px solid white;
 	border-radius: 5px;
 	color: white;
-	margin: 4px;
+	margin: 3px 4px 7px;
 	text-align: center;
 	position: relative;
 	background: #1C1C1C;
@@ -181,12 +181,8 @@ button>img {
 		<div class="p-0">
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 			
-			
-			
-			
-			
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
-					<div class="dt-bread-option" style="margin-bottom: 70px;">
+					<div class="dt-bread-option" style="margin-bottom: 20px;"> 
 						<a href="#">team</a> 
 						<span>slave</span>
 					</div>
@@ -195,12 +191,12 @@ button>img {
 					</div>
 				</div>
 
-		<!-- share box begin -->
-			<div style="border: 1px solid white; display: block; color: #d5d5d5; font-size: 13px;margin-bottom: 50px;" class="dt-share">
+		<!-- 검색 box begin -->
+			<div style="border: 1px solid white; display: block; color: #d5d5d5; font-size: 13px; margin-bottom: 10px;" class="dt-share">
 				<table style="width: 100%;">
 					<tr>
 						<th>방 제목</th>
-						<td><input type="text" style="background: #333333; border: 1px solid black; width: 300px;" /> </td>
+						<td><input type="text" style="background: #ffffff; border: 1px solid black; width: 300px;" /> </td>
 						<th rowspan="3" style="width:100px; text-align:center; "><input type='submit' value="검색"></th>
 					</tr>
 					<tr>
@@ -218,15 +214,15 @@ button>img {
 							<input type='checkbox' name='position' value='m' /> 미드
 							<input type='checkbox' name='position' value='j' /> 정글
 							<input type='checkbox' name='position' value='b' /> 바텀
-							<input type='checkbox' name='position' value='a' /> 뭐있더라
+							<input type='checkbox' name='position' value='a' /> 젓가락
 						</td>
 					</tr>
 				</table>
 			</div>
-					
-		<!-- share box end -->
+		<!-- 검색 box end -->
+		
+		
 				<div class="dt-desc" style="display: block;">
-					<!-- <p>가장 완성된 팀을 만들어 챌린저에 도전하세요!</p> -->
 					<div class="row outBox" style="margin: auto;">
 						<!-- 방만들기 begin -->
 						<div class="innerBox text-center justify-content-center align-items-center d-flex">
