@@ -5,7 +5,7 @@
     <c:param name="path" value="${path}"/>
 </c:import>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/breadcrumb-bg.jpg">
+<section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/lol/lolChamp/Ari.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -30,7 +30,7 @@
                 <div class="contact-text">
                     <div class="contact-form">
                         <div class="dt-leave-comment">
-                            <form action="/notice/detail">
+                            <form action="/notice/noticeDetail">
                                 <div class="input-list">
                                     <input type="text" placeholder="Title" style="width: 98%;">
                                 </div>

@@ -20,7 +20,7 @@
                                 <ul>
                                     <li>by <span>Admin</span></li>
                                     <li class="fa fa-clock-o">Aug 01, 2019</li>
-                                    <li><span onclick="location.href='list'" style="color:#666666; cursor: pointer;">목록</span>
+                                    <li><span onclick="location.href='noticeList'" style="color:#666666; cursor: pointer;">목록</span>
                                     </li>
                                 </ul>
                             </div>
@@ -94,7 +94,7 @@
                                                onclick="location.href='add'" style="color:white; cursor: pointer;"
                                                value="수정">
                                     <input type="button" class="btn btn-outline-dark btn-sm"
-                                               onclick="location.href='list'" style="color:#c20000; cursor: pointer;"
+                                               onclick="location.href='noticeList'" style="color:#c20000; cursor: pointer;"
                                                value="삭제">
                             </div>
                         </div>
