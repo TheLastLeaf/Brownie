@@ -14,9 +14,9 @@ public class AdminController {
 	@Resource(name = "adminService")
 	AdminService adminService;
 
-	@GetMapping("/admin_view")
+	@GetMapping("/adminView")
 	public String admin_view() {
-		return "admin/admin_view";
+		return "admin/adminView";
 	}
 
 }

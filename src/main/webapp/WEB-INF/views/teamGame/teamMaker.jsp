@@ -28,7 +28,7 @@
 	border: 1px solid white;
 	border-radius: 5px;
 	color: white;
-	margin: 4px 10px 4px 0;
+	margin: 4px;
 	text-align: center;
 	position: relative;
 	background: #1C1C1C;
@@ -125,74 +125,114 @@ button>img {
 		window.location.reload();
 	}
 
-//	필요없는 부분
-// 	function fn_newRoom(){
-// 		var sampleData = "<div class='innerBox text-center'>"
-//         +"<div class='row text-white' style='margin: 0; background: black; font-size: 14px;'>"
-//         +"   <p class='col-sm' style='margin: 0; text-align: left;'>"
-//         +"      <b>솔로랭크 </b>"
-//         +"   </p>"
-//         +"   <p class='col-sm' style='margin: 0; text-align: right;'>"
-//         +"      <img style='width: 25px; height: 25px;' src='${path}/img/details/mic_o.jpg' />"
-//         +"   </p>"
-//         +"</div>"
-//         +"<div class='roomTitle'>|칼바람| 할 사람 구함~</div>"
-//         +"   <p style='margin: 10px 0px 3px;'>"
-//         +   "<button type='button' class='positionTop' onclick='fn_blockRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Top.png' />"
-//         +   "</button>"
-//         +   "<button type='button' class='positionJun' onclick='fn_chatRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Jungle.png' />"
-//         +   "</button>"
-//         +   "<button type='button' class='positionMid' onclick='fn_chatRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Mid.png' />"
-//         +   "</button>"
-//         +   "<button type='button' class='positionAd' onclick='fn_blockRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Bot.png' />"
-//         +   "</button>"
-//         +   "<button type='button' class='positionSup' onclick='fn_chatRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Support.png' />"
-//         +   "</button>"
-//         +"</p>"
-//         +   "<div style='width: 100%; display: flex; justify-content: center; margin-bottom: 30px;'>"
-//         +      "<p class='message'>너와 함께 게임을 하고 싶어!</p>"
-//         +   "</div>"
-//         +   "<div class='row text-white' style='margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;'>"
-//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-end;'>닉네임</div>"
-//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-start;'>"
-//         +         "<img class='tierImg' src='${path}/img/lol/grandMaster.png' />[G·M]"
-//         +         "</div>"
-//         +      "</div>"
-//         +   "</div>"
-		
-//         //아래 var room 은 <div>태그를 다 그대로 들고옴 이유는 모름...
-// 		//var room = document.getElementById('roomBox').before(sampleData); 
-//         $('#roomBox').before(sampleData);
-//         // 제이쿼리는 css 선택자를 이용해서 쉽게 요소를 가져올 수 있음. 
-// 	}
+	//	필요없는 부분
+	// 	function fn_newRoom(){
+	// 		var sampleData = "<div class='innerBox text-center'>"
+	//         +"<div class='row text-white' style='margin: 0; background: black; font-size: 14px;'>"
+	//         +"   <p class='col-sm' style='margin: 0; text-align: left;'>"
+	//         +"      <b>솔로랭크 </b>"
+	//         +"   </p>"
+	//         +"   <p class='col-sm' style='margin: 0; text-align: right;'>"
+	//         +"      <img style='width: 25px; height: 25px;' src='${path}/img/details/mic_o.jpg' />"
+	//         +"   </p>"
+	//         +"</div>"
+	//         +"<div class='roomTitle'>|칼바람| 할 사람 구함~</div>"
+	//         +"   <p style='margin: 10px 0px 3px;'>"
+	//         +   "<button type='button' class='positionTop' onclick='fn_blockRoom()'>"
+	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Top.png' />"
+	//         +   "</button>"
+	//         +   "<button type='button' class='positionJun' onclick='fn_chatRoom()'>"
+	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Jungle.png' />"
+	//         +   "</button>"
+	//         +   "<button type='button' class='positionMid' onclick='fn_chatRoom()'>"
+	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Mid.png' />"
+	//         +   "</button>"
+	//         +   "<button type='button' class='positionAd' onclick='fn_blockRoom()'>"
+	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Bot.png' />"
+	//         +   "</button>"
+	//         +   "<button type='button' class='positionSup' onclick='fn_chatRoom()'>"
+	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Support.png' />"
+	//         +   "</button>"
+	//         +"</p>"
+	//         +   "<div style='width: 100%; display: flex; justify-content: center; margin-bottom: 30px;'>"
+	//         +      "<p class='message'>너와 함께 게임을 하고 싶어!</p>"
+	//         +   "</div>"
+	//         +   "<div class='row text-white' style='margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;'>"
+	//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-end;'>닉네임</div>"
+	//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-start;'>"
+	//         +         "<img class='tierImg' src='${path}/img/lol/grandMaster.png' />[G·M]"
+	//         +         "</div>"
+	//         +      "</div>"
+	//         +   "</div>"
 
-	
+	//         //아래 var room 은 <div>태그를 다 그대로 들고옴 이유는 모름...
+	// 		//var room = document.getElementById('roomBox').before(sampleData); 
+	//         $('#roomBox').before(sampleData);
+	//         // 제이쿼리는 css 선택자를 이용해서 쉽게 요소를 가져올 수 있음. 
+	// 	}
 </script>
 <!-- Main Content Post Section Begin -->
 
 <section class="details-post-section spad" style="padding: 0;">
 	<!-- class="container"는 글을 가운데 정렬해주는 역할 -->
 	<div class="container" style="width: 900px;">
-
+		
+		<!-- 검색 랭크기준 | 제목 | 라인 | 닉네임 -->
 		<div class="p-0">
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
+			
+			
+			
+			
+			
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
-					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">team</a> <span>slave</span>
+					<div class="dt-bread-option" style="margin-bottom: 70px;">
+						<a href="#">team</a> 
+						<span>slave</span>
 					</div>
-					<h4 class="text-white">Make your own TEAM</h4>
+					<div>
+						<h4 class="text-white">Make your own TEAM</h4>
+					</div>
 				</div>
+
+		<!-- share box begin -->
+			<div style="border: 1px solid white; display: block; color: #d5d5d5; font-size: 13px;margin-bottom: 50px;" class="dt-share">
+				<table style="width: 100%;">
+					<tr>
+						<th>방 제목</th>
+						<td><input type="text" style="background: #333333; border: 1px solid black; width: 300px;" /> </td>
+						<th rowspan="3" style="width:100px; text-align:center; "><input type='submit' value="검색"></th>
+					</tr>
+					<tr>
+						<th style="width: 140px;">게임 모드</th>
+						<td style="width: auto;">
+							<input type='checkbox' name='gametype' value='solo' /> 솔로 랭크
+							<input type='checkbox' name='gametype' value='free' /> 자유 랭크
+							<input type='checkbox' name='gametype' value='normal' /> 일반 게임
+							<input type='checkbox' name='gametype' value='abyss' /> 칼바람
+						</td>
+					<tr>
+						<th>희망 포지션</th>
+						<td>
+							<input type='checkbox' name='position' value='t' /> 탑
+							<input type='checkbox' name='position' value='m' /> 미드
+							<input type='checkbox' name='position' value='j' /> 정글
+							<input type='checkbox' name='position' value='b' /> 바텀
+							<input type='checkbox' name='position' value='a' /> 뭐있더라
+						</td>
+					</tr>
+				</table>
+			</div>
+					
+		<!-- share box end -->
 				<div class="dt-desc" style="display: block;">
 					<!-- <p>가장 완성된 팀을 만들어 챌린저에 도전하세요!</p> -->
-					<div class="row outBox" style="margin-left: 5px;">
+					<div class="row outBox" style="margin: auto;">
 						<!-- 방만들기 begin -->
 						<div class="innerBox text-center justify-content-center align-items-center d-flex">
-							<label for="makeRoom" onclick="fn_makeRoom()"> <img id="makeRoom" style="width: 50px; margin: 5px" src="${path}/img/details/button.png"> &nbsp; 방만들기
+							<label for="makeRoom" onclick="fn_makeRoom()">
+								<img id="makeRoom" style="width: 50px; margin: 5px" src="${path}/img/details/button.png">
+								&nbsp; 방만들기
 							</label>
 						</div>
 						<!-- 방만들기 end -->
@@ -238,7 +278,8 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
@@ -278,7 +319,8 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
@@ -319,7 +361,8 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
@@ -360,7 +403,8 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
@@ -401,7 +445,8 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
@@ -442,7 +487,8 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
@@ -483,7 +529,8 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
@@ -523,7 +570,8 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
@@ -563,27 +611,23 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
+									<img class="tierImg" src="${path}/img/lol/grandMaster.png" />
+									[G·M]
 								</div>
 							</div>
 						</div>
 						<!-- 만들어진 방 end -->
 					</div>
 				</div>
-				<!-- share box begin -->
-				<div style="border: 1px solid white; display: block;" class="dt-share">
-					<div class="ds-title">share;;</div>
-					<div class="ds-links">
-						<a href="#" class="wide"> <i class="fa fa-heart-o"></i> <span>120</span>
-						</a> <a href="#"> <i class="fa fa-facebook"></i>
-						</a> <a href="#"> <i class="fa fa-twitter"></i>
-						</a> <a href="#"> <i class="fa fa-google-plus"></i>
-						</a> <a href="#"> <i class="fa fa-instagram"></i> z
-						</a> <a href="#"> <i class="fa fa-youtube-play"></i>
-						</a>
-					</div>
+				
+				<!-- 페이징 처리 -->
+				<div class="pagind" style="display: flex; justify-content: center;">
+					<a href="#">[1]</a>
+					<a href="#">[2]</a>
+					<a href="#">[3]</a>
+					<a href="#">[4]</a>
 				</div>
-				<!-- share box end -->
+				<br />
 
 			</div>
 		</div>

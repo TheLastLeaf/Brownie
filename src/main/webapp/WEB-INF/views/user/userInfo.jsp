@@ -5,26 +5,10 @@
 	<c:param name="path" value="${path}" />
 </c:import>
 <style>
-#floating-left {
-	position: fixed;
-	left: 6%;
-	top: 300px;
-	margin-left: 50px;
-	width: 150px;
-}
-
-#floating-right {
-	position: fixed;
-	right: 50%;
-	top: 300px;
-	margin-right: -750px;
-	width: 150px;
-}
-
-.innerBox {
+.profileBox {
 	display: inline-block;
-	width: 24%;
-	height: auto;
+	width: 80px;
+	height: 80px;
 	border: 1px solid white;
 	border-radius: 5px;
 	color: white;
@@ -38,143 +22,69 @@
 	border: none;
 }
 
-.positionTop {
-	background: red;
-	color: white;
-	border-radius: 5px;
+.profileBox {
+	border: 2px solid red;
 }
 
-.positionJun {
-	background: white;
-	color: black;
-	border-radius: 5px;
-}
-
-.positionMid {
-	background: white;
-	color: black;
-	border-radius: 5px;
-}
-
-.positionAd {
-	background: red;
-	color: white;
-	border-radius: 5px;
-}
-
-.positionSup {
-	background: white;
-	color: black;
-	border-radius: 5px;
-}
-
-button>img {
-	width: 17px;
-	height: 17px;
-}
-
-.message {
-	margin: 5px;
-	word-break: break-all;
-}
-
-.Gmode {
-	margin-bottom: 0;
-	margin-top: 7px;
-	background: grey;
-	color: white;
-	position: absolute;
-	bottom: 0;
+.profile {
 	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
-.roomTitle {
-	font-family: maplelight;
-	font-weight: bolder;
-	margin: 5px;
-	border-radius: 5px;
-	background: grey;
+.Hierarchy {
+	margin: 7px 10px 15px;
+	display: flex;
+	align-items: flex-start;
+	font-family: mapleBold;
 }
 
-.micUse {
-	width: 25px;
-	height: 25px;
+.nameLv {
+	display: flex;
+	align-items: flex-end;
+	margin-left: 12px;
+}
+
+h3 {
+	color: white;
+	font-family: mapleBold;
+}
+
+.userInfoBox {
+	border: 1px solid white;
+	border-radius: 0px 15px 0px 0px;
+}
+
+button {
+	margin: 10px;
+}
+
+.sync {
+	display: flex;
+	justify-content: center;
+}
+
+.noticeCount {
+	margin: 10px;
+}
+
+.infoDetail {
+	display: flex;
+	justify-content: center;
 	margin: 3px;
+	margin-bottom: 8px;
 }
-
-.tierImg {
-	width: 25px;
-	height: 25px;
+hr{
+	background: white; 
+ 	margin: 8px; 
 }
 </style>
 
 <script type="text/javascript">
-	function fn_makeRoom() {
-		window.open("teamGame/makeRoom", "makeTeam",
-				"width=800, height=680, left=250,top=200");
-		fn_newRoom();
-	}
-
-	function fn_chatRoom() {
-		makeRoom = window.open("teamGame/chatRoom", "chatingRoom",
-				"width=1300, height=820, scroll=no, left=500, top=250");
-	}
-
-	function fn_blockRoom() {
-		alert("방이 꽉찼습니다! !");
-		window.location.reload();
-	}
-
-//	필요없는 부분
-// 	function fn_newRoom(){
-// 		var sampleData = "<div class='innerBox text-center'>"
-//         +"<div class='row text-white' style='margin: 0; background: black; font-size: 14px;'>"
-//         +"   <p class='col-sm' style='margin: 0; text-align: left;'>"
-//         +"      <b>솔로랭크 </b>"
-//         +"   </p>"
-//         +"   <p class='col-sm' style='margin: 0; text-align: right;'>"
-//         +"      <img style='width: 25px; height: 25px;' src='${path}/img/details/mic_o.jpg' />"
-//         +"   </p>"
-//         +"</div>"
-//         +"<div class='roomTitle'>|칼바람| 할 사람 구함~</div>"
-//         +"   <p style='margin: 10px 0px 3px;'>"
-//         +   "<button type='button' class='positionTop' onclick='fn_blockRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Top.png' />"
-//         +   "</button>"
-//         +   "<button type='button' class='positionJun' onclick='fn_chatRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Jungle.png' />"
-//         +   "</button>"
-//         +   "<button type='button' class='positionMid' onclick='fn_chatRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Mid.png' />"
-//         +   "</button>"
-//         +   "<button type='button' class='positionAd' onclick='fn_blockRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Bot.png' />"
-//         +   "</button>"
-//         +   "<button type='button' class='positionSup' onclick='fn_chatRoom()'>"
-//         +      "<img src='${path}/img/lol/Position_Grandmaster-Support.png' />"
-//         +   "</button>"
-//         +"</p>"
-//         +   "<div style='width: 100%; display: flex; justify-content: center; margin-bottom: 30px;'>"
-//         +      "<p class='message'>너와 함께 게임을 하고 싶어!</p>"
-//         +   "</div>"
-//         +   "<div class='row text-white' style='margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;'>"
-//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-end;'>닉네임</div>"
-//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-start;'>"
-//         +         "<img class='tierImg' src='${path}/img/lol/grandMaster.png' />[G·M]"
-//         +         "</div>"
-//         +      "</div>"
-//         +   "</div>"
-		
-//         //아래 var room 은 <div>태그를 다 그대로 들고옴 이유는 모름...
-// 		//var room = document.getElementById('roomBox').before(sampleData); 
-//         $('#roomBox').before(sampleData);
-//         // 제이쿼리는 css 선택자를 이용해서 쉽게 요소를 가져올 수 있음. 
-// 	}
-
 	
 </script>
-<!-- Main Content Post Section Begin -->
 
+<!-- Main Content Post Section Begin -->
 <section class="details-post-section spad" style="padding: 0;">
 	<!-- class="container"는 글을 가운데 정렬해주는 역할 -->
 	<div class="container" style="width: 900px;">
@@ -183,403 +93,105 @@ button>img {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">team</a> <span>slave</span>
+						<a href="#">userInfo</a>
+						<span>userDetail</span>
 					</div>
-					<h4 class="text-white">Make your own TEAM</h4>
 				</div>
+				<br />
 				<div class="dt-desc" style="display: block;">
-					<!-- <p>가장 완성된 팀을 만들어 챌린저에 도전하세요!</p> -->
 					<div class="row outBox" style="margin-left: 5px;">
-						<!-- 방만들기 begin -->
-						<div class="innerBox text-center justify-content-center align-items-center d-flex">
-							<label for="makeRoom" onclick="fn_makeRoom()"> <img id="makeRoom" style="width: 50px; margin: 5px" src="${path}/img/details/button.png"> &nbsp; 방만들기
-							</label>
+						<!-- 프로필사진 -->
+						<div class="profileBox text-center justify-content-center align-items-center d-flex">
+							<img class="profile" id="profile" src="${path}/img/userInfo/sana1.gif">
 						</div>
-						<!-- 방만들기 end -->
-
-						<!-- 						<div> -->
-						<!-- 							<input type="button" onclick="fn_newRoom()" /> -->
-						<!-- 						</div> -->
-
-
-
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center" id="roomBox" name="roomBox">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
+						<div style="color: white;">
+							<div class="Hierarchy">
+								<i>일반회원</i>
 							</div>
-							<div class="roomTitle">너는 뭘 공부한거니?~</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">너와 함께 게임을 하고 싶어!</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
+							<div class="nameLv">
+								<h3>ririnto | Lv.68 | ☆☆☆★★</h3> 
 							</div>
 						</div>
-						<!-- 만들어진 방 end -->
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
-							</div>
-							<div class="roomTitle">랭크 할 사람 구함~</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">너와 함께 게임을 하고 싶어!</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
-							</div>
-						</div>
-						<!-- 만들어진 방 end -->
-
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
-							</div>
-							<div class="roomTitle">메이플 할 사람 구함~</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">너와 함께 게임을 하고 싶어!</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
-							</div>
-						</div>
-						<!-- 만들어진 방 end -->
-
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
-							</div>
-							<div class="roomTitle">스읍...스타 할 사람 구함~</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">너와 함께 게임을 하고 싶어!</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
-							</div>
-						</div>
-						<!-- 만들어진 방 end -->
-
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
-							</div>
-							<div class="roomTitle">즐겜러 구해욤~</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">그마이상구함!!!</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
-							</div>
-						</div>
-						<!-- 만들어진 방 end -->
-
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
-							</div>
-							<div class="roomTitle">칼바람 도마바람 국자바람</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">노랑통닭마려운 낭니</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
-							</div>
-						</div>
-						<!-- 만들어진 방 end -->
-
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
-							</div>
-							<div class="roomTitle">집에 가고 싶습니까?...</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">같이 좀만 더 하면 안될까?ㅠㅠ,,</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
-							</div>
-						</div>
-						<!-- 만들어진 방 end -->
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
-							</div>
-							<div class="roomTitle">나 스프링 못해서 어떻함</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">존나 울고싶네</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
-							</div>
-						</div>
-						<!-- 만들어진 방 end -->
-						<!-- 만들어진 방 begin -->
-						<!-- <div class="innerBox" style="text-align: center"> -->
-						<div class="innerBox text-center">
-							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
-									<b>솔로랭크 </b>
-								</p>
-								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/details/mic_o.jpg" />
-								</p>
-							</div>
-							<div class="roomTitle">시간을 쏟는게 맞을까?...</div>
-							<p style="margin: 10px 0px 3px;">
-								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Top.png" />
-								</button>
-								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Jungle.png" />
-								</button>
-								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Mid.png" />
-								</button>
-								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Bot.png" />
-								</button>
-								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/Position_Grandmaster-Support.png" />
-								</button>
-							</p>
-							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-								<p class="message">이쁘지 않으면 만지기도 싫은걸?..ㅠㅠ,,</p>
-							</div>
-							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
-								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/grandMaster.png" /> [G·M]
-								</div>
-							</div>
-						</div>
-						<!-- 만들어진 방 end -->
 					</div>
 				</div>
+
+<!-- 연동/게시글/같이플레이한놈 begin -->
+				<div class="row" style="color: white;">
+					<!-- 뭉태기1 -->
+					<div class="userInfoBox col-sm-4">
+						<div class="sync">
+							<button>연동</button>
+						</div>
+						<div class="sync">
+							<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
+							ririnto | Lv:98 | Bronze !!!
+						</div>
+						<div class="sync">[메인포지션] : 기입(ex. 미드)</div>
+					</div>
+
+					<!-- 뭉태기2 -->
+					<div class="userInfoBox col-sm-4">
+						<div>
+							<div class="infoDetail">게시글 갯수: 20</div>
+							<div class="infoDetail">댓글 갯수: 400</div>
+							<div class="infoDetail">좋아요: 395</div>
+							<div class="infoDetail">싫어요: 312</div>
+						</div>
+						<hr/>
+						<div class="infoDetail">
+							최근 게시글 내역
+						</div>
+						<div>1. 무지성에 관한 고찰</div>
+						<div>2. 팀원의 성향에 대한 고찰</div>
+						<div>3. 진짜 프로젝트를 2주면 완성이 될까?</div>
+					</div>
+
+					<!-- 뭉태기3 -->
+					<div class="userInfoBox col-sm-4">
+						<div>
+							최근 플레이한 커뮤니티 닉네임<br />[이동해서 별점주세요!!!]
+						</div>
+					</div>
+				</div>
+<!-- 연동/게시글/같이플레이한놈 end -->
+				<br />
+				
+				<div style="border:1px solid white; color:white;">
+					<div class="">
+					<div style="display: flex; justify-content: flex-start;">이사람은 어떤가요?</div>
+					<div style="display: flex; justify-content: flex-end;">후기작성</div>
+					</div>
+				
+					<!-- 다른사람이 쓴 후기 -->
+					<div>
+						<div></div>
+					</div>
+				
+				</div>
+				
+				
 				<!-- share box begin -->
-				<div style="border: 1px solid white; display: block;" class="dt-share">
-					<div class="ds-title">share;;</div>
+				<div style="border: 1px solid black; display: block;" class="dt-share">
+					<div class="ds-title">??</div>
 					<div class="ds-links">
-						<a href="#" class="wide"> <i class="fa fa-heart-o"></i> <span>120</span>
-						</a> <a href="#"> <i class="fa fa-facebook"></i>
-						</a> <a href="#"> <i class="fa fa-twitter"></i>
-						</a> <a href="#"> <i class="fa fa-google-plus"></i>
-						</a> <a href="#"> <i class="fa fa-instagram"></i> z
-						</a> <a href="#"> <i class="fa fa-youtube-play"></i>
+						<a href="#" class="wide">
+							<i class="fa fa-heart-o"></i>
+							<span>120</span>
+						</a>
+						<a href="#">
+							<i class="fa fa-facebook"></i>
+						</a>
+						<a href="#">
+							<i class="fa fa-twitter"></i>
+						</a>
+						<a href="#">
+							<i class="fa fa-google-plus"></i>
+						</a>
+						<a href="#">
+							<i class="fa fa-instagram"></i>
+						</a>
+						<a href="#">
+							<i class="fa fa-youtube-play"></i>
 						</a>
 					</div>
 				</div>
