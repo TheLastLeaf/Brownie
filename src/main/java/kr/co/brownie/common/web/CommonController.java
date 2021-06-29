@@ -14,12 +14,7 @@ public class CommonController {
     @Resource(name = "commonService")
     CommonService commonService;
 
-    @GetMapping
-    public String main() {
-        return index();
-    }
-
-    @GetMapping("/index")
+    @GetMapping(path = {"", "index"})
     public String index() {
         return "common/index";
     }
