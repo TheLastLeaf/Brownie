@@ -10,7 +10,6 @@ import java.util.Map;
 
 @Repository("noticeDAO")
 public class NoticeDAO {
-
     @Autowired
     SqlSessionTemplate sqlSessionTemplate;
 
@@ -19,7 +18,7 @@ public class NoticeDAO {
     }
 
     public List<NoticeVO> listAll(Map<String,Object> map){
-        return this.sqlSessionTemplate.selectList("notice.select_list",map);
+        return this.sqlSessionTemplate.selectList("notice.selectList",map);
     }
 
     public int update(Map<String,Object> map){

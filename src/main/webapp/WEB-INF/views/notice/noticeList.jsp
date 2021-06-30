@@ -62,18 +62,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 p-0">
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img class="notice-img" src="${path}/img/categories-list/cl-1.jpg" alt="">
+                    <c:forEach var="row" items="${noticeVo}">
+                        <div class="cl-item">
+                            <div class="cl-pic">
+                                <img class="notice-img" src="${path}/img/categories-list/cl-1.jpg" alt="">
+                            </div>
+                            <div class="cl-text">
+                                <h5><a href="/notice/noticeDetail">${row.title}</a></h5>
+                                <ul>
+                                    <li>by <span>${row.inUserId}</span></li>
+                                </ul>
+                                <p class="content-text">${row.content}</p>
+                            </div>
                         </div>
-                        <div class="cl-text">
-                            <h5><a href="/notice/noticeDetail">자유게시판</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p class="content-text">자유게시판 공지사항</p>
-                        </div>
-                    </div>
+                    </c:forEach>
                     <div class="cl-item">
                         <div class="cl-pic">
                             <img class="notice-img" src="${path}/img/categories-list/cl-2.jpg" alt="">
