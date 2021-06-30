@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 
 import kr.co.brownie.admin.service.AdminService;
 
+
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
-
 	@Resource(name = "adminDAO")
 	AdminDAO adminDAO;
 }
