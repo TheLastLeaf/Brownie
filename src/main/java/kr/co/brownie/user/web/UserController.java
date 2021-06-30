@@ -28,9 +28,9 @@ public class UserController {
 	public String userComment() {
 		return "user/userComment";
 	}
-	@GetMapping("/sample")
-	public String sample() {
-		return "user/sample";
+	@GetMapping("/userModify")
+	public String userModify() {
+		return "user/userModify";
 	}
 	
 	@GetMapping

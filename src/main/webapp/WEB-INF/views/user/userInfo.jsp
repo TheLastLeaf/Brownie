@@ -16,14 +16,11 @@
 	text-align: center;
 	position: relative;
 	background: #1C1C1C;
+	border: 2px solid red;
 }
 
 .outBox {
 	border: none;
-}
-
-.profileBox {
-	border: 2px solid red;
 }
 
 .profile {
@@ -52,7 +49,7 @@ h3 {
 
 .userInfoBox {
 	border: 1px solid white;
-	border-radius: 15px 15px 0px 0px;
+	border-radius: 15px 15px 3px 3px;
 }
 
 button {
@@ -83,7 +80,7 @@ hr {
 
 .reputation {
 	border: 1px solid white;
-	border-radius: 0px 0px 15px 15px;
+	border-radius: 3px 3px 15px 15px;
 	color: white;
 }
 
@@ -134,7 +131,7 @@ button {
 }
 
 .nickName {
-	margin: 4px;
+	margin: 4px 0px 6px;
 	text-align: center;
 }
 
@@ -150,15 +147,15 @@ a {
 <script type="text/javascript">
 	function fn_sync() {
 		window.open("user/userSync", "userSync",
-		"width=800, height=680, left=250,top=200");
+				"width=800, height=680, left=250,top=200");
 	}
 	function fn_infoMod() {
 		window.open("user/userModify", "userModify",
-		"width=800, height=680, left=250,top=200");
+				"width=800, height=680, left=250,top=200");
 	}
 	function fn_review() {
 		window.open("user/userComment", "userComment",
-		"width=800, height=680, left=250,top=200");
+				"width=800, height=680, left=250,top=200");
 	}
 </script>
 
@@ -187,7 +184,16 @@ a {
 								<i>일반회원</i>
 							</div>
 							<div class="nameLv">
-								<h3>리학재 | Lv.71 | ☆★★★★</h3>
+								<h3>
+									리학재 | Lv.71 | 
+									<span class="rating-star"> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star"></i> 
+										<i class="fa fa-star-half-o"></i> 
+										<i class="fa fa-star-o"></i>
+									</span>
+								</h3>
 							</div>
 						</div>
 						<div class="modInfo col-5" style="display: flex; justify-content: flex-end;">
@@ -207,7 +213,13 @@ a {
 							<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
 							ririnto | Lv:80 | Bronze !!
 						</div>
-						<div class="sync">[메인포지션] : 기입(ex. 미드)</div>
+						<div class="sync">[메인포지션] :
+							<label><input type="checkbox" name="position" value="TOP"/>탑</label>
+							<label><input type="checkbox" name="position" value="JUG"/>정글</label>
+							<label><input type="checkbox" name="position" value="MID"/>미드</label>
+							<label><input type="checkbox" name="position" value="ADC"/>원딜</label>
+							<label><input type="checkbox" name="position" value="SUP"/>서포터</label>
+						</div>
 					</div>
 
 					<!-- 뭉태기2 -->

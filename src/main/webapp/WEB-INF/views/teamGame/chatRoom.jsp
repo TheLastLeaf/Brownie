@@ -28,6 +28,8 @@
 <style>
 body {
 	background: black;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 #cr_title {
@@ -97,11 +99,6 @@ body {
 	font-style: italic;
 }
 
-body {
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-
 input[type="text"] {
 	margin-top: 2px;
 	width: 530px;
@@ -145,8 +142,9 @@ img {
 	height: 40px;
 	margin: 4px;
 }
-button[type="button"]{
-	margin: 2px; 
+
+button[type="button"] {
+	margin: 2px;
 }
 </style>
 
@@ -185,11 +183,11 @@ button[type="button"]{
 					</div>
 					<div class="filebox">
 						<label for="file">임티</label>
-						<input type="file" id="file" /> 
+						<input type="file" id="file" />
 					</div>
 					<div>
 						<button type="button" class="btn btn-success">전송</button>
-					</div>  
+					</div>
 				</div>
 			</div>
 

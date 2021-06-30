@@ -9,7 +9,7 @@
 <meta name="keywords" content="Amin, unica, creative, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Chat System</title>
+<title>MODIFY</title>
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -30,101 +30,26 @@ body {
 	background: black;
 }
 
-#cr_title {
-	display: flex;
-	justify-content: flex-start;
-	color: white;
-	background: maroon;
-	border-radius: 5px;
-}
-
-.container {
-	margin: 8px;
-	/* 	border: 1px solid white; */
-	width: 960px;
-	height: 650px;
-	overflow: auto;
-}
-
-#containBox {
-	height: 600px;
-	display: flex;
-	justify-content: center;
-}
-
-.enterBox {
-	position: absolute;
-	bottom: 0;
-	border-top: 1px solid white;
-	width: 100%;
-	border-radius: 10px;
-}
-
-#includeBox {
-	color: white;
-	border: 1px solid white;
-	border-radius: 10px;
-}
-
-.chatBox {
-	margin: 10px 25px 55px;
-	word-break: break-all;
-}
-
-.user {
-	margin-top: 10px;
-	position: relative;
-	bottom: 0;
-	border: 1px solid white;
-}
-
-.userBox {
-	border: 1px solid white;
-	color: white;
-	border-radius: 10px;
-	word-break: break-all;
-	color: white;
-}
-
-.userInfo {
-	margin: 5px;
-}
-
-.caution {
-	margin: 5px;
-	text-align: right;
-	text-decoration: underline;
-	font-style: italic;
-}
-
-body {
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-
-input[type="text"] {
-	margin-top: 2px;
-	width: 530px;
-	height: 40px;
-	width: 530px;
-}
-
-.filebox label {
+.profileBox {
 	display: inline-block;
-	padding: .4em .75em;
-	color: #999;
-	font-size: inherit;
-	line-height: normal;
-	vertical-align: middle;
-	background-color: #fdfdfd;
-	cursor: pointer;
-	border: 1px solid #ebebeb;
-	border-bottom-color: #e2e2e2;
-	border-radius: .25em;
-	margin: 3px 0px 0px 0px;
+	width: 160px;
+	height: 160px;
+	border: 1px solid white;
+	border-radius: 5px;
+	color: white;
+	margin: 0px 0px 10px 0px;
+	position: relative;
+	background: #1C1C1C;
 }
 
-.filebox input[type="file"] { /* 파일 필드 숨기기 */
+.profile {
+	object-fit: cover;
+	width: 158px;
+	height: 158px;
+	border-radius: 15px;
+}
+
+.profileBox input[type="file"] { /* 파일 필드 숨기기 */
 	position: absolute;
 	width: 1px;
 	height: 1px;
@@ -135,92 +60,122 @@ input[type="text"] {
 	border: 0;
 }
 
-.siteLv {
-	width: 30px;
-	height: 30px;
+input[name="position"] {
+	width: 20px;
+	height: 20px;
 }
 
-img {
-	width: 40px;
-	height: 40px;
-	margin: 4px;
+.advice {
+	color: #CEF6F5;
 }
-button[type="button"]{
-	margin: 2px; 
+
+.chooseLane {
+	color: white;
 }
+/* 선택되기전 기본색 */
+.btn-danger {
+	background: yellow;
+	border-color: white;
+}
+/* 선택이 되었을때 색깔 */
+.btn-danger:not(:disabled):not(.disabled).active {
+	background-color: #FF0040;
+	border-color: #FF0040;
+	color: purple;
+}
+/* 선택이 끝난 이후 (기존 .btn-danger과 background 맞추는것을 선호)*/
+.btn-danger.focus, .btn-danger:focus {
+	background: #D7DF01;
+}
+
+/* 마우스 올려놓았을때 효과 */
+.btn-danger:hover { 
+	background-color: coral;
+	border-color: red;
+	text-decoration: none;
+}
+
+.signup-text{
+	padding-top: 40px;
+}
+
+
 </style>
-
+<script>
+	function fn_close() {
+		window.close();
+	}
+</script>
 
 <body>
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
 
-	<div class="container">
-		<div id="cr_title" class="row">&nbsp;Faker | 그마이상구함!</div>
-		<div id="containBox" class="row">
-			<div id="includeBox" class="col-sm-9">
-				<div class="caution">상처가 되는 말은 하지 말아주세요!</div>
-				<div class="chatBox" style="font-size: 14px;">
-					박세웅: 오호오호!
-					<br />
-					박세웅: 채팅은 조금 많이 어려울거 같습니다.
-					<br />
-					박세웅: 소켓에 대한 이해가 많이 필요한 기능같습니다.
-					<br />
-					<br />
-					박세웅: 다음주 주간목표가 난이도로 따지면 최고일 수도...아님말고..
-					<br />
-					박세웅: 다음주도 열심히 달려봅시다..
-					<br />
-					<br />
-					박세웅: 이모티콘 관련해서는 api가 따로 없네요...
-					<br />
-					박세웅: 아쉽지만 아쉬운대로 파일첨부로 대신해야할거 같습니다만?...
-
+	<div class="signup-section" style="display: block;">
+<!-- 		<div class="signup-close"> -->
+<!-- 			<i class="fa fa-close" onclick="fn_close()"></i> -->
+<!-- 		</div> -->
+		<div class="signup-text">
+			<div class="container">
+				<div class="signup-title" style="margin-bottom: 20px;">
+					<h2 style="font-family: mapleBold; color: white;">정보수정</h2>
+					<p class="advice">사진을 눌러서 프로필을 바꿔보세요!</p>
 				</div>
-				<div class="enterBox row">
-					<div>
-						&nbsp;&nbsp;&nbsp; 채팅: &nbsp;<input type="text" />
+				<form action="#" class="signup-form">
+					<div class="sf-input-list ">
+						<!-- 					text-center justify-content-center align-items-center d-flex -->
+						<div class="profileBox" style="border: none;">
+							<label for="file">
+								<img class="profile" src="${path}/img/user/sana1.gif">
+								<input type="file" id="file" />
+							</label>
+						</div>
+						<input type="text" class="input-value" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*">
+
+						<!-- 포지션선택 -->
+						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="jb-radio" class="jb-radio-1" value="top">
+								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
+							</label>
+							&nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="jb-radio" class="jb-radio-2" value="jun">
+								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
+							</label>
+							&nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="jb-radio" class="jb-radio-3" value="mid">
+								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
+							</label>
+							&nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="jb-radio" class="jb-radio-4" value="bot">
+								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
+							</label>
+							&nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="jb-radio" class="jb-radio-5" value="sup">
+								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
+							</label>
+							&nbsp;
+						</div>
+
+						<!-- <input type="checkbox" class="col-1" name="position" id="s" value="SUP" /> -->
 					</div>
-					<div class="filebox">
-						<label for="file">임티</label>
-						<input type="file" id="file" /> 
+					<div class="radio-check" style="margin: 10px;">
+						<label for="rc-agree">
+							30일내에 변경불가합니다 동의하시면 체크해주세요.
+							<input type="checkbox" id="rc-agree">
+							<span class="checkbox"></span>
+						</label>
 					</div>
-					<div>
-						<button type="button" class="btn btn-success">전송</button>
-					</div>  
-				</div>
+					<button type="submit" style="margin: 15px;">
+						<span>update</span>
+					</button>
+				</form>
 			</div>
-
-			<div class="userBox col-sm-3">
-				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
-					<div class="userInfo">사용자1</div>
-				</div>
-				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
-					<div class="userInfo">사용자2</div>
-				</div>
-				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
-					<div class="userInfo">사용자3</div>
-				</div>
-				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
-					<div class="userInfo">사용자4</div>
-				</div>
-				<div class="user">
-					<img src="${path}/img/lol/challenger.png" />
-					<img class="siteLv" src="${path}/img/details/adminIcon.png" />
-					<div class="userInfo">사용자5</div>
-				</div>
-			</div>
-
 		</div>
 	</div>
 
