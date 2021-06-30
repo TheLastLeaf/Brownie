@@ -62,24 +62,26 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 p-0">
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img class="notice-img" src="${path}/img/categories-list/cl-1.jpg" alt="">
+                    <c:forEach var="row" items="${noticeVo}">
+                        <div class="cl-item">
+                            <div class="cl-pic">
+                                <img class="notice-img" src="${path}/img/categories-list/cl-1.jpg" alt="">
+                            </div>
+                            <div class="cl-text">
+                                <h5><a href="/notice/detail">${row.title}</a></h5>
+                                <ul>
+                                    <li>by <span>${row.inUserId}</span></li>
+                                </ul>
+                                <p class="content-text">${row.content}</p>
+                            </div>
                         </div>
-                        <div class="cl-text">
-                            <h5><a href="/notice/noticeDetail">자유게시판</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p class="content-text">자유게시판 공지사항</p>
-                        </div>
-                    </div>
+                    </c:forEach>
                     <div class="cl-item">
                         <div class="cl-pic">
                             <img class="notice-img" src="${path}/img/categories-list/cl-2.jpg" alt="">
                         </div>
                         <div class="cl-text">
-                            <h5><a href="/notice/noticeDetail">팬아트갤러리</a></h5>
+                            <h5><a href="/notice/detail">팬아트갤러리</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -91,7 +93,7 @@
                             <img class="notice-img" src="${path}/img/categories-list/cl-3.jpg" alt="">
                         </div>
                         <div class="cl-text">
-                            <h5><a href="/notice/noticeDetail">팬아트 갤러리</a></h5>
+                            <h5><a href="/notice/detail">팬아트 갤러리</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -103,7 +105,7 @@
                             <img class="notice-img" src="${path}/img/categories-list/cl-4.jpg" alt="">
                         </div>
                         <div class="cl-text">
-                            <h5><a href="/notice/noticeDetail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
+                            <h5><a href="/notice/detail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>

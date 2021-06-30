@@ -2,11 +2,17 @@ package kr.co.brownie.notice.web;
 
 import javax.annotation.Resource;
 
+import kr.co.brownie.notice.service.NoticeVO;
 import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.notice.service.NoticeService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/notice")
@@ -19,18 +25,16 @@ public class NoticeController {
         return "notice/noticeAdd"; // 공지 글쓰기
     }
 
-    @GetMapping("/noticeDetail")
+    @GetMapping("/detail")
     public String detail() {
         return "notice/noticeDetail"; // 공지 디테일화면
     }
 
-    @GetMapping("/noticeList")
-    public String noticeList() {
-        return "notice/noticeList"; //공지 리스트
-    }
-
-    @GetMapping
-    public String main() {
-        return noticeList();
+    @GetMapping(path={"", "/list"})
+    public ModelAndView noticeList(@RequestParam Map<String,Object> map, ModelAndView mav) {
+        List<NoticeVO> noticeVo = this.noticeService.getNoticelist(map);
+        mav.addObject("noticeVo",noticeVo);
+        mav.setViewName("notice/noticeList");
+        return mav; //공지 리스트
     }
 }
