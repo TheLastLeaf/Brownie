@@ -28,7 +28,7 @@
                                 <ul>
                                     <li>by <span>Admin</span></li>
                                     <li class="fa fa-clock-o">Aug 01, 2019</li>
-                                    <li><span onclick="location.href='noticeList'" style="color:#666666; cursor: pointer;">목록</span>
+                                    <li><span onclick="location.href='/notice/list'" style="color:#666666; cursor: pointer;">목록</span>
                                     </li>
                                 </ul>
                             </div>
@@ -99,10 +99,10 @@
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <div class="innerBox text-right">
                                     <input type="button" class="btn btn-outline-dark btn-sm"
-                                               onclick="location.href='add'" style="color:white; cursor: pointer;"
+                                               onclick="location.href='/notice/add'" style="color:white; cursor: pointer;"
                                                value="수정">
                                     <input type="button" class="btn btn-outline-dark btn-sm"
-                                               onclick="location.href='noticeList'" style="color:#c20000; cursor: pointer;"
+                                               onclick="location.href='/notice/list'" style="color:#c20000; cursor: pointer;"
                                                value="삭제">
                             </div>
                         </div>
@@ -147,6 +147,13 @@
                                     dolore magnam.</p>
                                 <span class="reply-btn" style="color: white; cursor: pointer">Reply</span>
                             </div>
+                            <div class="innerBox text-center pagination-item" style="padding-bottom: 2%;">
+                                <a href="#"><span>Prev</span></a>
+                                <a href="#"><span>1</span></a>
+                                <a href="#"><span>2</span></a>
+                                <a href="#"><span>3</span></a>
+                                <a href="#"><span>Next</span></a>
+                            </div>
                         </div>
                         <div class="container">
                             <div class="row">
@@ -154,7 +161,7 @@
                                     <div class="contact-text">
                                         <div class="contact-form">
                                             <div class="dt-leave-comment">
-                                                <form action="/notice/noticeDetail">
+                                                <form action="/notice/detail">
                                                     <div class="input-list">
                                                         <input type="text" placeholder="REPLY" class="reply" style="width: 91%;">
                                                         <input type="submit" value="등록" style="width: 5%; padding-left: 5px;"></input>

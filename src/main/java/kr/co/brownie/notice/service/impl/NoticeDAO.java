@@ -18,7 +18,7 @@ public class NoticeDAO {
     }
 
     public List<NoticeVO> listAll(Map<String,Object> map){
-        return this.sqlSessionTemplate.selectList("notice.select_list",map);
+        return this.sqlSessionTemplate.selectList("notice.selectList",map);
     }
 
     public int update(Map<String,Object> map){
@@ -31,5 +31,9 @@ public class NoticeDAO {
 
     public NoticeVO read(int boardSeq){
         return this.sqlSessionTemplate.selectOne("notice.select_detail",boardSeq);
+    }
+
+    public int count(){
+        return this.sqlSessionTemplate.selectOne("notice.select_count");
     }
 }

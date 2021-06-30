@@ -4,7 +4,13 @@
 <c:import url="../layout/header.jsp">
     <c:param name="path" value="${path}"/>
 </c:import>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(function(){
+        $('.notice_content').html(
+            $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
+    });
+</script>
 <style>
     .spad{
         padding-top: 150px;
@@ -41,7 +47,7 @@
                 <div class="contact-text">
                     <div class="contact-form">
                         <div class="dt-leave-comment">
-                            <form action="/notice/noticeDetail">
+                            <form action="/notice/detail">
                                 <div class="input-list">
                                     <input type="text" placeholder="Title" style="width: 98%;">
                                 </div>
