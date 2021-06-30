@@ -5,6 +5,7 @@
 	<c:param name="path" value="${path}" />
 </c:import>
 
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="${path}/js/marvel.js"></script>
 
@@ -78,8 +79,20 @@
 }
 
 .wrapper{
+	border-radius: 14px;
 	display: block;
-	height: 250px;
+	height: 100%;
+	width: 100%;
+	background-image: none;
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-size: 100% 100%;
+}
+
+.tamin{
+	height:200px;
+	position: relative;
+	top:160px;
 }
 
 </style>
@@ -112,8 +125,25 @@
 
 <script type="text/javascript">
  	/* 주사위 */
+	window.onload = function () {
+		$('#btnRoll').mousedown(function() {
+			$('.wrapper').css('background-image', "url('${path}/img/miniGame/rolling.gif')")
+			$('.tamin').css('visibility', 'hidden')
+		});
+		$('#btnRoll').mouseup(function() {
+			$('.wrapper').css('background-image', "url('${path}/img/miniGame/diceDrop.gif')")
+			setTimeout("reset()", 2000); 
+		});
+ 	}
+ 	
+	function reset() {
+		$('.wrapper').css('background-image', "none")
+		$('.tamin').css('visibility', 'visible')
+	}
 
 	function dis() {
+		
+		
 		const buttonRoolDice = document.querySelector('.learn-more');
 
 		const diceSide1 = document.getElementById('dice-side-1');
@@ -122,48 +152,46 @@
 
 		const side1 = Math.floor(Math.random() * 6) + 1;
 		const side2 = Math.floor(Math.random() * 6) + 1;
-		
-		var num = [side1, side2];
-		
+
+		var num = [ side1, side2 ];
+
 		const diceTotal = side1 + side2;
-		
+
 		for (var i = 0; i < num.length; i++) {
-			if (num[i]==1){
+			if (num[i] == 1) {
 				num[i] = "<i class='fas fa-dice-one fa-9x'></i>";
 			}
-			if (num[i]==2){
+			if (num[i] == 2) {
 				num[i] = "<i class='fas fa-dice-two fa-9x'></i>";
 			}
-			if (num[i]==3){
+			if (num[i] == 3) {
 				num[i] = "<i class='fas fa-dice-three fa-9x'></i>";
 			}
-			if (num[i]==4){
+			if (num[i] == 4) {
 				num[i] = "<i class='fas fa-dice-four fa-9x'></i>";
 			}
-			if (num[i]==5){
+			if (num[i] == 5) {
 				num[i] = "<i class='fas fa-dice-five fa-9x'></i>";
 			}
-			if (num[i]==6){
+			if (num[i] == 6) {
 				num[i] = "<i class='fas fa-dice-six fa-9x'></i>";
 			}
 		}
-		
+
 		diceSide1.innerHTML = num[0];
 		diceSide2.innerHTML = num[1];
 
-		status1.innerHTML =  diceTotal+'<br>';
+		status1.innerHTML = diceTotal+"!";
 
 		if (side1 === side2) {
-			status1.innerHTML += '더블! 한접시 더!<br>';
+			status1.innerHTML += ' 더블! 한접시 더!<br>';
 		}
-		
-		buttonRoolDice.addEventListener('click', rollDice, false);
 
-		if ($('#dis').css('visibility') == 'hidden') {
+		/* if ($('#dis').css('visibility') == 'hidden') {
 			$('#dis').css('visibility', 'visible')
 		} else {
 			$('#dis').css('visibility', 'hidden')
-		}
+		} */
 	}
 </script>
 
@@ -204,15 +232,15 @@
 						
 						<td class="center" id="gameAlert1" colspan="3" rowspan="3">
 						
-							<div class="wrapper">
-								<div id="dice-side-1" class="dicePic"></div>
-								<div id="dice-side-2" class="dicePic"></div>
-								<h2 id="status"></h2>
-							</div> 
+								<div class="wrapper">
+									<div class="tamin">
+										<div id="dice-side-1" class="dicePic"></div>
+										<div id="dice-side-2" class="dicePic"></div>
+										<h2 id="status"></h2>
+									</div>
+									<button id="btnRoll" onclick="dis()" class="learn-more">LET'S<br>ROLL</button>
+								</div> 
 							
-							<%-- <img id="dis" style="width: 100%; visibility: hidden;" src="${path}/img/miniGame/rollDice.gif"> --%>
-							
-							<button onclick="dis()" class="learn-more">LET'S<br> ROLL</button>
 						</td>
 						
 						<td class="td_rl">
