@@ -62,6 +62,7 @@ button {
 .sync {
 	display: flex;
 	justify-content: center;
+	margin: 20px 0px 10px;
 }
 
 .noticeCount {
@@ -104,7 +105,6 @@ button {
 	display: flex;
 	justify-content: center;
 	font-size: 19px;
-	
 	position: relative;
 	display: inline-block;
 }
@@ -113,7 +113,6 @@ button {
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	
 	background-color: #000;
 	position: absolute; /*내부 요소의 고정 위치 설정(2)*/
 	top: 0;
@@ -127,12 +126,40 @@ button {
 }
 
 .rev:hover .caption {
-	opacity: 0.9; 
+	opacity: 0.9;
+}
+
+.playWith {
+	margin: 8px 0px 3px;
+}
+
+.nickName {
+	margin: 4px;
+	text-align: center;
+}
+
+.nickBox {
+	margin-bottom: 14px;
+}
+
+a {
+	color: lightblue;
 }
 </style>
 
 <script type="text/javascript">
-	
+	function fn_sync() {
+		window.open("user/userSync", "userSync",
+		"width=800, height=680, left=250,top=200");
+	}
+	function fn_infoMod() {
+		window.open("user/userModify", "userModify",
+		"width=800, height=680, left=250,top=200");
+	}
+	function fn_review() {
+		window.open("user/userComment", "userComment",
+		"width=800, height=680, left=250,top=200");
+	}
 </script>
 
 <!-- Main Content Post Section Begin -->
@@ -144,7 +171,8 @@ button {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a> <span>userDetail</span>
+						<a href="#">userInfo</a>
+						<span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -163,7 +191,7 @@ button {
 							</div>
 						</div>
 						<div class="modInfo col-5" style="display: flex; justify-content: flex-end;">
-							<button type="button" class="btn btn-dark">정보수정</button>
+							<button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
 						</div>
 					</div>
 				</div>
@@ -173,11 +201,11 @@ button {
 					<!-- 뭉태기1 -->
 					<div class="userInfoBox col-sm-4">
 						<div class="sync">
-							<button type="button" class="btn btn-danger">Danger</button>
+							<button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
 						</div>
 						<div class="sync">
 							<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
-							ririnto | Lv:98 | Bronze !!
+							ririnto | Lv:80 | Bronze !!
 						</div>
 						<div class="sync">[메인포지션] : 기입(ex. 미드)</div>
 					</div>
@@ -199,8 +227,26 @@ button {
 
 					<!-- 뭉태기3 -->
 					<div class="userInfoBox col-sm-4">
-						<div>
-							최근 플레이한 커뮤니티 닉네임<br />[이동해서 별점주세요!!!]
+						<div class="col playWith">최근 채팅한 플레이어</div>
+						<div class="col">
+							<div class="nickBox">
+								<b>[이동해서 댓글·별점주세요!]</b>
+							</div>
+							<div class="nickName">
+								<a class="col" href="#">[궁각예술]</a>
+							</div>
+							<div class="nickName">
+								<a class="col" href="#">[안뇽하세욤]</a>
+							</div>
+							<div class="nickName">
+								<a class="col" href="#">[regolas]</a>
+							</div>
+							<div class="nickName">
+								<a class="col" href="#">[스프링밥]</a>
+							</div>
+							<div class="nickName">
+								<a class="col" href="#">[Faked]</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -210,7 +256,7 @@ button {
 				<div class="reputation row">
 					<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">이사람은 어떤가요?</div>
 					<div class="col-sm-2" style="display: flex; justify-content: flex-end;">
-						<button type="button" class="btn btn-info">후기작성</button>
+						<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
 					</div>
 					<!-- 다른사람이 쓴 후기 -->
 					<div class="review col-4">
@@ -221,36 +267,40 @@ button {
 						</div>
 					</div>
 					<div class="review col-4">
-						<div class="rev">기가막히게 코딩을 잘한답니다..!
-						<!-- 상세내용담는공간 -->
+						<div class="rev">
+							기가막히게 코딩을 잘한답니다..!
+							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆★★★</div>
 						</div>
 					</div>
 					<div class="review col-4">
-						<div class="rev">오늘 골드를 찍었대요 백준 골드요!
-						<!-- 상세내용담는공간 -->
+						<div class="rev">
+							오늘 골드를 찍었대요 백준 골드요!
+							<!-- 상세내용담는공간 -->
 							<div class="caption">★★★★★</div>
 						</div>
 					</div>
 					<div class="review col-4">
-						<div class="rev">아리 왜하는지 모르겠어요 
-						<!-- 상세내용담는공간 -->
+						<div class="rev">
+							아리 왜하는지 모르겠어요
+							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆☆☆★</div>
 						</div>
 					</div>
 					<div class="review col-4">
-						<div class="rev" style="width: 100%;">[비속어처리X]
-						<!-- 상세내용담는공간 -->
+						<div class="rev" style="width: 100%;">
+							[비속어처리X]
+							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆☆☆☆</div>
 						</div>
 					</div>
 					<div class="review col-4">
-						<div class="rev">너...내 여자해라..
-						<!-- 상세내용담는공간 -->
+						<div class="rev">
+							너...내 여자해라..
+							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆☆☆★</div>
 						</div>
 					</div>
-
 				</div>
 
 
@@ -261,7 +311,7 @@ button {
 			</div>
 		</div>
 	</div>
-</section> 
+</section>
 <!-- Details Post Section End -->
 
 <c:import url="../layout/footer.jsp">

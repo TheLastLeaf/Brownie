@@ -112,7 +112,7 @@ button>img {
 	function fn_makeRoom() {
 		window.open("teamGame/makeRoom", "makeTeam",
 				"width=800, height=680, left=250,top=200");
-		fn_newRoom();
+// 		fn_newRoom();
 	}
 
 	function fn_chatRoom() {
