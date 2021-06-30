@@ -5,7 +5,6 @@
 	<c:param name="path" value="${path}" />
 </c:import>
 <style>
-/* 커밋테스트 */
 .profileBox {
 	display: inline-block;
 	width: 80px;
