@@ -68,7 +68,7 @@
                                 <img class="notice-img" src="${path}/img/categories-list/cl-1.jpg" alt="">
                             </div>
                             <div class="cl-text">
-                                <h5><a href="/notice/noticeDetail">${row.title}</a></h5>
+                                <h5><a href="/notice/detail">${row.title}</a></h5>
                                 <ul>
                                     <li>by <span>${row.inUserId}</span></li>
                                 </ul>
@@ -81,7 +81,7 @@
                             <img class="notice-img" src="${path}/img/categories-list/cl-2.jpg" alt="">
                         </div>
                         <div class="cl-text">
-                            <h5><a href="/notice/noticeDetail">팬아트갤러리</a></h5>
+                            <h5><a href="/notice/detail">팬아트갤러리</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -93,7 +93,7 @@
                             <img class="notice-img" src="${path}/img/categories-list/cl-3.jpg" alt="">
                         </div>
                         <div class="cl-text">
-                            <h5><a href="/notice/noticeDetail">팬아트 갤러리</a></h5>
+                            <h5><a href="/notice/detail">팬아트 갤러리</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>
@@ -105,7 +105,7 @@
                             <img class="notice-img" src="${path}/img/categories-list/cl-4.jpg" alt="">
                         </div>
                         <div class="cl-text">
-                            <h5><a href="/notice/noticeDetail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
+                            <h5><a href="/notice/detail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
                             <ul>
                                 <li>by <span>Admin</span></li>
                             </ul>

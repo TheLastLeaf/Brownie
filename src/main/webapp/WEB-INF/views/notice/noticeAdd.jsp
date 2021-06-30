@@ -47,7 +47,7 @@
                 <div class="contact-text">
                     <div class="contact-form">
                         <div class="dt-leave-comment">
-                            <form action="/notice/noticeDetail">
+                            <form action="/notice/detail">
                                 <div class="input-list">
                                     <input type="text" placeholder="Title" style="width: 98%;">
                                 </div>

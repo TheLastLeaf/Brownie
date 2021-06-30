@@ -15,32 +15,26 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping("/notice")
 public class NoticeController {
     @Resource(name = "noticeService")
     NoticeService noticeService;
-
-    @RequestMapping("/notice")
-    public String main(){
-        return "notice/noticeList";
-    }
 
     @GetMapping("/add")
     public String noticeAdd() {
         return "notice/noticeAdd"; // 공지 글쓰기
     }
 
-    @GetMapping("/noticeDetail")
+    @GetMapping("/detail")
     public String detail() {
         return "notice/noticeDetail"; // 공지 디테일화면
     }
 
-    @GetMapping("/noticeList")
+    @GetMapping(path={"", "/list"})
     public ModelAndView noticeList(@RequestParam Map<String,Object> map, ModelAndView mav) {
         List<NoticeVO> noticeVo = this.noticeService.getNoticelist(map);
         mav.addObject("noticeVo",noticeVo);
         mav.setViewName("notice/noticeList");
         return mav; //공지 리스트
     }
-
-
 }
