@@ -130,4 +130,22 @@ public class NoticeVO {
     public void setSubSeq(int subSeq) {
         this.subSeq = subSeq;
     }
+
+    @Override
+    public String toString() {
+        return "NoticeVO{" +
+                "boardSeq=" + boardSeq +
+                ", boardKind='" + boardKind + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", noticeYn='" + noticeYn + '\'' +
+                ", status='" + status + '\'' +
+                ", inDate=" + inDate +
+                ", inUserId='" + inUserId + '\'' +
+                ", upDate=" + upDate +
+                ", upUserId='" + upUserId + '\'' +
+                ", fileSeq=" + fileSeq +
+                ", subSeq=" + subSeq +
+                '}';
+    }
 }
