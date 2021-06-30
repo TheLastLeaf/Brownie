@@ -10,6 +10,7 @@ import java.util.Map;
 
 @Repository("noticeDAO")
 public class NoticeDAO {
+
     @Autowired
     SqlSessionTemplate sqlSessionTemplate;
 
@@ -31,5 +32,9 @@ public class NoticeDAO {
 
     public NoticeVO read(int boardSeq){
         return this.sqlSessionTemplate.selectOne("notice.select_detail",boardSeq);
+    }
+
+    public int count(){
+        return this.sqlSessionTemplate.selectOne("notice.select_count");
     }
 }
