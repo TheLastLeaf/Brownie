@@ -12,8 +12,8 @@ import java.util.Map;
 
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
-	@Resource(name = "noticeDAO")
-	NoticeDAO noticeDAO;
+	@Resource(name="noticeMapper")
+	NoticeMapper noticeMapper;
 
 	@Override
 	public int insertNotice(Map<String, Object> map) {
@@ -22,6 +22,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public List<NoticeVO> getNoticelist(Map<String, Object> map) {
+		System.out.println(noticeMapper.selectList());
 		return null;
 	}
 

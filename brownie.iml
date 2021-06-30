@@ -18,8 +18,8 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/spring/root-context.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -37,10 +37,10 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.8" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.8" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.9.6" level="project" />
