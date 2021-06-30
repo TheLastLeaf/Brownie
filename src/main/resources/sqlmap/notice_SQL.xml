@@ -5,6 +5,6 @@
 <mapper namespace="org.mybatis.example.BlogMapper">
     <select id="selectList" resultType="kr.co.brownie.notice.service.NoticeVO">
         select *
-        from notice;
+        from notice
     </select>
 </mapper>
