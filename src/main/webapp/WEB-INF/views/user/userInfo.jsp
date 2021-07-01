@@ -76,6 +76,10 @@ hr {
 	margin: 8px;
 }
 
+.upload {
+	margin: 1px 0px 4px;
+}
+
 .reputation {
 	border: 1px solid white;
 	border-radius: 3px 3px 15px 15px;
@@ -96,12 +100,23 @@ button {
 .rev {
 	width: 100%;
 	border-radius: 5px;
-	border: 1px dotted white;
+	border: 1px solid gray;
 	display: flex;
 	justify-content: center;
-	font-size: 19px;
+	font-size: 16px;
 	position: relative;
 	display: inline-block;
+	font-family: mapleBold;
+	font-weight: bolder;
+	color: #BDBDBD;
+}
+
+.reviewDay {
+	font-size: 13px;
+	color: white;
+	display: flex;
+	justify-content: flex-end;
+	color: #A4A4A4;
 }
 
 .caption {
@@ -141,6 +156,11 @@ a {
 	color: lightblue;
 }
 
+h6 {
+	color: white;
+	font-size: 13px;
+}
+
 /* 마우스우클릭 깔끔버전 */
 h1 {
 	position: absolute;
@@ -162,7 +182,8 @@ h1 {
 .contextmenu {
 	display: none;
 	position: absolute;
-	width: 110px; margin : 0;
+	width: 110px;
+	margin: 0;
 	padding: 0;
 	background: #BDBDBD;
 	border-radius: 5px;
@@ -184,6 +205,7 @@ h1 {
 	color: #DF013A;
 	text-decoration: none;
 	transition: ease .2s;
+	cursor: pointer;
 }
 
 .contextmenu li:hover {
@@ -207,13 +229,13 @@ h1 {
 	};
 	function fn_review() {
 		window.open("user/userComment", "userComment",
-				"width=800, height=680, left=250,top=200");
+				"width=1080, height=520, left=250,top=200");
 	};
-	function fn_declaration(){
+	function fn_declaration() {
 		window.open("user/userDeclar", "userDeclar",
-		"width=800, height=680, left=250,top=200");
+				"width=980, height=500, left=400,top=200");
 	}
-	// 마우스 우클릭 깔끔한버전 TEXTCONTENT 
+	// 마우스 우클릭 TEXTCONTENT 
 	$(document)
 			.ready(
 					function() {
@@ -342,9 +364,9 @@ h1 {
 						</div>
 						<hr />
 						<div class="infoDetail">최근 게시글 내역</div>
-						<div>1. 무지성에 관한 고찰</div>
-						<div>2. 팀원의 성향에 대한 고찰</div>
-						<div>3. 진짜 프로젝트를 2주면 완성이 될까?</div>
+						<div class="upload">1. 무지성에 관한 고찰</div>
+						<div class="upload">2. 팀원의 성향에 대한 고찰</div>
+						<div class="upload">3. 진짜 프로젝트를 2주면 완성이 될까?</div>
 					</div>
 
 					<!-- 뭉태기3 -->
@@ -376,12 +398,16 @@ h1 {
 				<br />
 
 				<div class="reputation row">
-					<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">후기를 써서 테러하세요!</div>
+					<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">
+						후기를 써서 테러하세요!
+						<h6>&nbsp;[우클릭하여 신고]</h6>
+					</div>
 					<div class="col-sm-2" style="display: flex; justify-content: flex-end;">
 						<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
 					</div>
 					<!-- 다른사람이 쓴 후기 -->
 					<div class="review col-4">
+						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
 							이 사람 아리만 해요,,미쳐진짜!
 							<!-- 상세내용담는공간 -->
@@ -390,6 +416,7 @@ h1 {
 					</div>
 
 					<div class="review col-4">
+						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
 							기가막히게 코딩을 잘한답니다..!
 							<!-- 상세내용담는공간 -->
@@ -398,6 +425,7 @@ h1 {
 					</div>
 
 					<div class="review col-4">
+						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
 							오늘 골드를 찍었대요 백준 골드요!
 							<!-- 상세내용담는공간 -->
@@ -406,6 +434,7 @@ h1 {
 					</div>
 
 					<div class="review col-4">
+						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
 							아리 왜하는지 모르겠어요
 							<!-- 상세내용담는공간 -->
@@ -414,6 +443,7 @@ h1 {
 					</div>
 
 					<div class="review col-4">
+						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
 							[비속어처리X]
 							<!-- 상세내용담는공간 -->
@@ -422,6 +452,7 @@ h1 {
 					</div>
 
 					<div class="review col-4">
+						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
 							너...내 여자해라..
 							<!-- 상세내용담는공간 -->

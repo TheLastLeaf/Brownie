@@ -28,7 +28,9 @@
 body {
 	background: black;
 }
-
+.signup-section{
+	overflow: hidden;
+}
 .profileBox {
 	display: inline-block;
 	width: 160px;
@@ -70,6 +72,10 @@ input[name="position"] {
 
 .chooseLane {
 	color: white;
+}
+.input-value{
+	width: 80%;
+	text-align: center;
 }
 /* 선택되기전 기본색 */
 .btn-danger {
@@ -171,7 +177,7 @@ input[name="position"] {
 						</label>
 					</div>
 					<button type="submit" style="margin: 15px;">
-						<span>update</span>
+						<span onclick="fn_close()">update</span>
 					</button>
 				</form>
 			</div>
