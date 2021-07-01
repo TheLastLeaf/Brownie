@@ -17,32 +17,33 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int insertNotice(Map<String, Object> map) {
-		return 0;
+		return noticeMapper.insert(map);
 	}
 
 	@Override
 	public List<NoticeVO> getNoticelist(Map<String, Object> map) {
-		System.out.println(noticeMapper.selectList());
-		return null;
+		List<NoticeVO> noticeVo = noticeMapper.selectList();
+		return noticeVo;
 	}
 
 	@Override
 	public int deleteNotice(int boardSeq) {
-		return 0;
+		return noticeMapper.delete(boardSeq);
 	}
 
 	@Override
 	public NoticeVO getNotice(int boardSeq) {
-		return null;
+		NoticeVO noticeVo = noticeMapper.read(boardSeq);
+		return noticeVo;
 	}
 
 	@Override
 	public int updateNotice(Map<String, Object> map) {
-		return 0;
+		return noticeMapper.update(map);
 	}
 
 	@Override
 	public int selectCount() {
-		return 0;
+		return noticeMapper.count();
 	}
 }
