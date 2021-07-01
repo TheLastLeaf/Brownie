@@ -14,7 +14,7 @@
 				<div class="col-lg-4">
 					<div class="footer-about">
 						<div class="fa-logo">
-							<a href="#"><img src="${param.path}/img/layout/brownie-footer.png" alt=""></a>
+							<a href="#"><img src="${pageContext.request.contextPath}/img/layout/brownie-footer.png" alt=""></a>
 						</div>
 						<p>게임을 즐기는 시간만큼 브라우니에서 보내는 시간도 달고 맛있길 바랍니다.</p>
 					</div>
@@ -26,7 +26,7 @@
 						</div>
 						<div class="ec-item">
 							<div class="ec-pic">
-								<img src="${param.path}/img/trending/editor-1.jpg" alt="">
+								<img src="${pageContext.request.contextPath}/img/trending/editor-1.jpg" alt="">
 							</div>
 							<div class="ec-text">
 								<h6>
@@ -99,14 +99,14 @@
 <!-- Search model end -->
 
 <!-- Js Plugins -->
-<script src="${param.path}/js/jquery-3.3.1.min.js"></script>
-<script src="${param.path}/js/bootstrap.min.js"></script>
-<script src="${param.path}/js/jquery.magnific-popup.min.js"></script>
-<script src="${param.path}/js/circle-progress.min.js"></script>
-<script src="${param.path}/js/jquery.barfiller.js"></script>
-<script src="${param.path}/js/jquery.slicknav.js"></script>
-<script src="${param.path}/js/owl.carousel.min.js"></script>
-<script src="${param.path}/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/circle-progress.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
 
 </html>

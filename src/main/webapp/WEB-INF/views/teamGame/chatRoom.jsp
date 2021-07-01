@@ -16,14 +16,14 @@
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="${path}/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/barfiller.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <style>
 body {
@@ -193,28 +193,28 @@ button[type="button"] {
 
 			<div class="userBox col-sm-3">
 				<div class="user">
-					<img src="${path}/img/lol/lolTier/challenger.png" />
-					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
+					<img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자1</div>
 				</div>
 				<div class="user">
-					<img src="${path}/img/lol/lolTier/challenger.png" />
-					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
+					<img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자2</div>
 				</div>
 				<div class="user">
-					<img src="${path}/img/lol/lolTier/challenger.png" />
-					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
+					<img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자3</div>
 				</div>
 				<div class="user">
-					<img src="${path}/img/lol/lolTier/challenger.png" />
-					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
+					<img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자4</div>
 				</div>
 				<div class="user">
-					<img src="${path}/img/lol/lolTier/challenger.png" />
-					<img class="siteLv" src="${path}/img/teamGame/adminIcon.png" />
+					<img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png" />
+					<img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png" />
 					<div class="userInfo">사용자5</div>
 				</div>
 			</div>
@@ -224,14 +224,14 @@ button[type="button"] {
 
 
 	<!-- Js Plugins -->
-	<script src="${path}/js/jquery-3.3.1.min.js"></script>
-	<script src="${path}/js/bootstrap.min.js"></script>
-	<script src="${path}/js/jquery.magnific-popup.min.js"></script>
-	<script src="${path}/js/circle-progress.min.js"></script>
-	<script src="${path}/js/jquery.barfiller.js"></script>
-	<script src="${path}/js/jquery.slicknav.js"></script>
-	<script src="${path}/js/owl.carousel.min.js"></script>
-	<script src="${path}/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/circle-progress.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </body>
 </html>

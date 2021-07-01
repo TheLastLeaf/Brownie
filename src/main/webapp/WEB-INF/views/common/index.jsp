@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>
 
 
@@ -13,9 +13,9 @@
         </div>
     </div>
     <div class="hero-slider owl-carousel">
-        <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-1.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-2.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="${path}/img/hero/hero-3.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/hero-1.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/hero-2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/hero-3.jpg"></div>
     </div>
 </section>
 <!-- Hero Section End -->
@@ -49,7 +49,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="vg-item large-vg set-bg"
-												data-setbg="${path}/img/videos/videos-1.jpg">
+												data-setbg="${pageContext.request.contextPath}/img/videos/videos-1.jpg">
 												<a href="https://www.youtube.com/watch?v=hB_RXUFA_fU"
 													class="play-btn video-popup"><i class="fa fa-play"></i></a>
 												<div class="vg-text">
@@ -267,7 +267,7 @@
 											<div class="row">
 												<div class="col-lg-6">
 													<div class="un-big-item set-bg"
-													data-setbg="${path}/img/news/news-1.jpg">
+													data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
 														<div class="ub-text">
 															<div class="label">
 																<span>Best Art</span>
@@ -285,7 +285,7 @@
 												</div>
 												<div class="col-lg-6">
 													<div class="un-big-item set-bg"
-													data-setbg="${path}/img/news/news-1.jpg">
+													data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
 														<div class="ub-text">
 															<div class="label">
 																<span>Best Art</span>
@@ -306,7 +306,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-3.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-3.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -322,7 +322,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-4.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-4.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -338,7 +338,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-2.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-2.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -355,7 +355,7 @@
 										</div>
 										<div class="col-lg-12">
 											<div class="un-big-item set-bg"
-												data-setbg="${path}/img/news/news-1.jpg">
+												data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
 												<div class="ub-text">
 													<div class="label">
 														<span>Best of Best</span>
@@ -374,7 +374,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-3.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-3.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -390,7 +390,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-4.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-4.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -406,7 +406,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-2.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-2.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -430,7 +430,7 @@
 									<div class="un-slider owl-carousel">
 										<div class="col-lg-12">
 											<div class="un-big-item set-bg"
-												data-setbg="${path}/img/news/news-1.jpg">
+												data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
 												<div class="ub-text">
 													<div class="label">
 														<span>A Play of the Game</span>
@@ -449,7 +449,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-3.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-3.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -465,7 +465,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-4.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-4.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -481,7 +481,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-2.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-2.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -498,7 +498,7 @@
 										</div>
 										<div class="col-lg-12">
 											<div class="un-big-item set-bg"
-												data-setbg="${path}/img/news/news-1.jpg">
+												data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
 												<div class="ub-text">
 													<h5>
 														<a href="#">롤 웃긴짤 모음23123</a>
@@ -514,7 +514,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-3.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-3.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -530,7 +530,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-4.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-4.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -546,7 +546,7 @@
 												<div class="col-md-4">
 													<div class="un-item">
 														<div class="un_pic set-bg"
-															data-setbg="${path}/img/news/news-2.jpg">
+															data-setbg="${pageContext.request.contextPath}/img/news/news-2.jpg">
 														</div>
 														<div class="un_text">
 															<h6>
@@ -577,5 +577,5 @@
 
 
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

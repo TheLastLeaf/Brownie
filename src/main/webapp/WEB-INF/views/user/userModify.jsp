@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +15,14 @@
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="${path}/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/barfiller.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <style>
 body {
@@ -127,7 +126,7 @@ input[name="position"] {
 						<!-- 					text-center justify-content-center align-items-center d-flex -->
 						<div class="profileBox" style="border: none;">
 							<label for="file">
-								<img class="profile" src="${path}/img/user/sana1.gif">
+								<img class="profile" src="${pageContext.request.contextPath}/img/user/sana1.gif">
 								<input type="file" id="file" />
 							</label>
 						</div>
@@ -137,27 +136,27 @@ input[name="position"] {
 						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 							<label class="btn btn-danger position">
 								<input type="checkbox" name="jb-radio" class="jb-radio-1" value="top">
-								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
 							</label>
 							&nbsp;
 							<label class="btn btn-danger position">
 								<input type="checkbox" name="jb-radio" class="jb-radio-2" value="jun">
-								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
 							</label>
 							&nbsp;
 							<label class="btn btn-danger position">
 								<input type="checkbox" name="jb-radio" class="jb-radio-3" value="mid">
-								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
 							</label>
 							&nbsp;
 							<label class="btn btn-danger position">
 								<input type="checkbox" name="jb-radio" class="jb-radio-4" value="bot">
-								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
 							</label>
 							&nbsp;
 							<label class="btn btn-danger position">
 								<input type="checkbox" name="jb-radio" class="jb-radio-5" value="sup">
-								<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
 							</label>
 							&nbsp;
 						</div>
@@ -181,14 +180,14 @@ input[name="position"] {
 
 
 	<!-- Js Plugins -->
-	<script src="${path}/js/jquery-3.3.1.min.js"></script>
-	<script src="${path}/js/bootstrap.min.js"></script>
-	<script src="${path}/js/jquery.magnific-popup.min.js"></script>
-	<script src="${path}/js/circle-progress.min.js"></script>
-	<script src="${path}/js/jquery.barfiller.js"></script>
-	<script src="${path}/js/jquery.slicknav.js"></script>
-	<script src="${path}/js/owl.carousel.min.js"></script>
-	<script src="${path}/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/circle-progress.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </body>
 </html>

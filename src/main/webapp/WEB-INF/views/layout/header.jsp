@@ -18,14 +18,14 @@
     <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="${param.path}/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/barfiller.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${param.path}/css/style.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
     <style>
         ::-webkit-scrollbar {
             width: 10px;
@@ -58,16 +58,16 @@
 <div class="humberger-menu-overlay"></div>
 <div class="humberger-menu-wrapper">
     <div class="hw-logo">
-        <a href="#"><img src="${param.path}/img/layout/brownie-footer.png" alt=""></a>
+        <a href="#"><img src="${pageContext.request.contextPath}/img/layout/brownie-footer.png" alt=""></a>
     </div>
     <div class="hw-menu mobile-menu">
         <ul>
-            <li><a href="${param.path}/index">MAIN</a></li>
-            <li><a href="${param.path}/notice">NOTICE</a></li>
-            <li><a href="${param.path}/teamGame">GROUP</a></li>
-            <li><a href="${param.path}/tip">GUIDE</a></li>
-            <li><a href="${param.path}/gallery">FANART</a></li>
-            <li><a href="${param.path}/board">LOUNGE</a></li>
+            <li><a href="${pageContext.request.contextPath}/index">MAIN</a></li>
+            <li><a href="${pageContext.request.contextPath}/notice">NOTICE</a></li>
+            <li><a href="${pageContext.request.contextPath}/teamGame">GROUP</a></li>
+            <li><a href="${pageContext.request.contextPath}/tip">GUIDE</a></li>
+            <li><a href="${pageContext.request.contextPath}/gallery">FANART</a></li>
+            <li><a href="${pageContext.request.contextPath}/board">LOUNGE</a></li>
         </ul>
     </div>
     <div id="mobile-menu-wrap"></div>
@@ -93,7 +93,7 @@
 									</c:when>
 									<c:otherwise>
 										<a onclick="location.href = '/login'">
-											<img src="<c:url value='${param.path}/img/common/kakao_login_small.png'/>" alt=""/>
+											<img src="<c:url value='${pageContext.request.contextPath}/img/common/kakao_login_small.png'/>" alt=""/>
 										</a>
 									</c:otherwise>
 								</c:choose>
@@ -116,7 +116,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="${param.path}/index"><img src="${param.path}/img/layout/brownie-header.png"
+                    <a href="${pageContext.request.contextPath}/index"><img src="${pageContext.request.contextPath}/img/layout/brownie-header.png"
                                                        alt=""></a>
                 </div>
             </div>
@@ -130,13 +130,13 @@
             <div class="nav-menu">
                 <ul>
                     <!-- 						<li class="active"><a href="notice"><span>공지사항</span></a></li> -->
-                    <li class="mega-menu"><a href="${param.path}/notice"><span>NOTICE
+                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/notice"><span>NOTICE
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -164,7 +164,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -192,7 +192,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -207,13 +207,13 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="${param.path}/teamGame"><span>GROUP
+                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/teamGame"><span>GROUP
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -227,7 +227,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -241,7 +241,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -255,7 +255,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -269,7 +269,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -284,13 +284,13 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="${param.path}/tip"><span>GUIDE
+                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/tip"><span>GUIDE
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -304,7 +304,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -318,7 +318,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -332,7 +332,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -346,7 +346,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -361,13 +361,13 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="${param.path}/gallery"><span>FANART
+                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/gallery"><span>FANART
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -381,7 +381,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -395,7 +395,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -409,7 +409,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -423,7 +423,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -438,13 +438,13 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="${param.path}/board"><span>LOUNGE
+                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/board"><span>LOUNGE
 						<i class="fa fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -458,7 +458,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -472,7 +472,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -486,7 +486,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -500,7 +500,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${param.path}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>

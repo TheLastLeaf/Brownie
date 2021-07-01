@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:import url="../layout/header.jsp">
-	<c:param name="path" value="${path}" />
+	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>
 <style>
 #floating-left {
@@ -133,25 +133,25 @@ button>img {
 	//         +"      <b>솔로랭크 </b>"
 	//         +"   </p>"
 	//         +"   <p class='col-sm' style='margin: 0; text-align: right;'>"
-	//         +"      <img style='width: 25px; height: 25px;' src='${path}/img/details/mic_o.jpg' />"
+	//         +"      <img style='width: 25px; height: 25px;' src='${pageContext.request.contextPath}/img/details/mic_o.jpg' />"
 	//         +"   </p>"
 	//         +"</div>"
 	//         +"<div class='roomTitle'>|칼바람| 할 사람 구함~</div>"
 	//         +"   <p style='margin: 10px 0px 3px;'>"
 	//         +   "<button type='button' class='positionTop' onclick='fn_blockRoom()'>"
-	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Top.png' />"
+	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Top.png' />"
 	//         +   "</button>"
 	//         +   "<button type='button' class='positionJun' onclick='fn_chatRoom()'>"
-	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Jungle.png' />"
+	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Jungle.png' />"
 	//         +   "</button>"
 	//         +   "<button type='button' class='positionMid' onclick='fn_chatRoom()'>"
-	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Mid.png' />"
+	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Mid.png' />"
 	//         +   "</button>"
 	//         +   "<button type='button' class='positionAd' onclick='fn_blockRoom()'>"
-	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Bot.png' />"
+	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Bot.png' />"
 	//         +   "</button>"
 	//         +   "<button type='button' class='positionSup' onclick='fn_chatRoom()'>"
-	//         +      "<img src='${path}/img/lol/Position_Grandmaster-Support.png' />"
+	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Support.png' />"
 	//         +   "</button>"
 	//         +"</p>"
 	//         +   "<div style='width: 100%; display: flex; justify-content: center; margin-bottom: 30px;'>"
@@ -160,7 +160,7 @@ button>img {
 	//         +   "<div class='row text-white' style='margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;'>"
 	//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-end;'>닉네임</div>"
 	//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-start;'>"
-	//         +         "<img class='tierImg' src='${path}/img/lol/grandMaster.png' />[G·M]"
+	//         +         "<img class='tierImg' src='${pageContext.request.contextPath}/img/lol/grandMaster.png' />[G·M]"
 	//         +         "</div>"
 	//         +      "</div>"
 	//         +   "</div>"
@@ -222,7 +222,7 @@ button>img {
 						<!-- 방만들기 begin -->
 						<div class="innerBox text-center justify-content-center align-items-center d-flex">
 							<label for="makeRoom" onclick="fn_makeRoom()">
-								<img id="makeRoom" style="width: 50px; margin: 5px" src="${path}/img/teamGame/button.png">
+								<img id="makeRoom" style="width: 50px; margin: 5px" src="${pageContext.request.contextPath}/img/teamGame/button.png">
 								&nbsp; 방만들기
 							</label>
 						</div>
@@ -241,25 +241,25 @@ button>img {
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/teamGame/mic_o.jpg" />
+									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
 							<p style="margin: 10px 0px 3px;">
 								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
 								</button>
 								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
 								</button>
 								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
 								</button>
 								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
 							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
@@ -268,7 +268,7 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/lolTier/grandMaster.png" />
+									<img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png" />
 									[G·M]
 								</div>
 							</div>
@@ -283,25 +283,25 @@ button>img {
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/teamGame/mic_o.jpg" />
+									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
 							<p style="margin: 10px 0px 3px;">
 								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
 								</button>
 								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
 								</button>
 								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
 								</button>
 								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
 							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
@@ -310,7 +310,7 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/lolTier/grandMaster.png" />
+									<img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png" />
 									[G·M]
 								</div>
 							</div>
@@ -325,25 +325,25 @@ button>img {
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/teamGame/mic_o.jpg" />
+									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
 							<p style="margin: 10px 0px 3px;">
 								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
 								</button>
 								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
 								</button>
 								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
 								</button>
 								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
 							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
@@ -352,7 +352,7 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/lolTier/grandMaster.png" />
+									<img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png" />
 									[G·M]
 								</div>
 							</div>
@@ -367,25 +367,25 @@ button>img {
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/teamGame/mic_o.jpg" />
+									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
 							<p style="margin: 10px 0px 3px;">
 								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
 								</button>
 								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
 								</button>
 								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
 								</button>
 								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
 							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
@@ -394,7 +394,7 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/lolTier/grandMaster.png" />
+									<img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png" />
 									[G·M]
 								</div>
 							</div>
@@ -409,25 +409,25 @@ button>img {
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${path}/img/teamGame/mic_o.jpg" />
+									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
 							<p style="margin: 10px 0px 3px;">
 								<button type="button" class="positionTop" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
 								</button>
 								<button type="button" class="positionJun" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
 								</button>
 								<button type="button" class="positionMid" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
 								</button>
 								<button type="button" class="positionAd" onclick="fn_blockRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
 								</button>
 								<button type="button" class="positionSup" onclick="fn_chatRoom()">
-									<img src="${path}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
 								</button>
 							</p>
 							<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
@@ -436,7 +436,7 @@ button>img {
 							<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
 								<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
-									<img class="tierImg" src="${path}/img/lol/lolTier/grandMaster.png" />
+									<img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png" />
 									[G·M]
 								</div>
 							</div>
@@ -463,5 +463,5 @@ button>img {
 <!-- Details Post Section End -->
 
 <c:import url="../layout/footer.jsp">
-	<c:param name="path" value="${path}" />
+	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>

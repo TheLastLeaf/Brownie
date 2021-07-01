@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>
 <style>
     .notice-img{
@@ -33,7 +33,7 @@
 
 </style>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/lol/lolChamp/Ari.png">
+<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -65,7 +65,7 @@
                     <c:forEach var="row" items="${noticeVo}">
                         <div class="cl-item">
                             <div class="cl-pic">
-                                <img class="notice-img" src="${path}/img/categories-list/cl-1.jpg" alt="">
+                                <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-1.jpg" alt="">
                             </div>
                             <div class="cl-text">
                                 <h5><a href="/notice/detail">${row.title}</a></h5>
@@ -78,7 +78,7 @@
                     </c:forEach>
                     <div class="cl-item">
                         <div class="cl-pic">
-                            <img class="notice-img" src="${path}/img/categories-list/cl-2.jpg" alt="">
+                            <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-2.jpg" alt="">
                         </div>
                         <div class="cl-text">
                             <h5><a href="/notice/detail">팬아트갤러리</a></h5>
@@ -90,7 +90,7 @@
                     </div>
                     <div class="cl-item">
                         <div class="cl-pic">
-                            <img class="notice-img" src="${path}/img/categories-list/cl-3.jpg" alt="">
+                            <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-3.jpg" alt="">
                         </div>
                         <div class="cl-text">
                             <h5><a href="/notice/detail">팬아트 갤러리</a></h5>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="cl-item">
                         <div class="cl-pic">
-                            <img class="notice-img" src="${path}/img/categories-list/cl-4.jpg" alt="">
+                            <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-4.jpg" alt="">
                         </div>
                         <div class="cl-text">
                             <h5><a href="/notice/detail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
@@ -149,5 +149,5 @@
     </section>
 <!-- Categories List Section End -->
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

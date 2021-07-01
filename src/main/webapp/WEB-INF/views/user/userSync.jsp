@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,14 +15,14 @@
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="${path}/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/barfiller.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 
 <style>
@@ -53,14 +52,14 @@ body {
 
 
 	<!-- Js Plugins -->
-	<script src="${path}/js/jquery-3.3.1.min.js"></script>
-	<script src="${path}/js/bootstrap.min.js"></script>
-	<script src="${path}/js/jquery.magnific-popup.min.js"></script>
-	<script src="${path}/js/circle-progress.min.js"></script>
-	<script src="${path}/js/jquery.barfiller.js"></script>
-	<script src="${path}/js/jquery.slicknav.js"></script>
-	<script src="${path}/js/owl.carousel.min.js"></script>
-	<script src="${path}/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/circle-progress.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </body>
 </html>

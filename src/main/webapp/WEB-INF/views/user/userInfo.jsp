@@ -1,9 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
-<c:import url="../layout/header.jsp">
-	<c:param name="path" value="${path}" />
-</c:import>
+<c:import url="../layout/header.jsp"/>
 <style>
 .profileBox {
 	display: inline-block;
@@ -177,7 +174,7 @@ a {
 					<div class="row outBox" style="margin-left: 5px;">
 						<!-- 프로필사진 -->
 						<div class="profileBox text-center justify-content-center align-items-center d-flex">
-							<img class="profile" id="profile" src="${path}/img/user/sana1.gif">
+							<img class="profile" id="profile" src="${pageContext.request.contextPath}/img/user/sana1.gif">
 						</div>
 						<div class="col-5" style="color: white;">
 							<div class="Hierarchy">
@@ -327,5 +324,5 @@ a {
 <!-- Details Post Section End -->
 
 <c:import url="../layout/footer.jsp">
-	<c:param name="path" value="${path}" />
+	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>

@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:import url="../layout/header.jsp">
-	<c:param name="path" value="${path}" />
+	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -177,7 +177,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/1.jpeg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/1.jpeg">
 							<div class="label">
 								<span>웃긴짤</span>
 							</div>
@@ -198,7 +198,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/2.jpg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/2.jpg">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -219,7 +219,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/3.jpg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/3.jpg">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -240,7 +240,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/4.jpg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/4.jpg">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -287,7 +287,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/1.jpeg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/1.jpeg">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -307,7 +307,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/2.jpg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/2.jpg">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -327,28 +327,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/3.jpg">
-							<div class="label">
-								<span>귀여운짤</span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">강아진 물리고있다.</a>
-							</h5>
-							<ul>
-								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/4.jpg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/3.jpg">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -369,7 +348,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/5.gif">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/4.jpg">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -390,7 +369,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/6.jpg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/5.gif">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -411,7 +390,28 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${path}/img/gallery/7.gif">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/6.jpg">
+							<div class="label">
+								<span>귀여운짤</span>
+							</div>
+						</div>
+						<div class="cg-text">
+							<h5>
+								<a href="#">강아진 물리고있다.</a>
+							</h5>
+							<ul>
+								<li>by <span>Admin</span></li>
+								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+								<li><i class="fa fa-comment-o"></i> 20</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3">
+					<div class="cg-item">
+						<div class="cg-pic set-bg thumbnail"
+							data-setbg="${pageContext.request.contextPath}/img/gallery/7.gif">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -458,5 +458,5 @@
 </section>
 <!-- Categories Grid Section End -->
 <c:import url="../layout/footer.jsp">
-	<c:param name="path" value="${path}" />
+	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>

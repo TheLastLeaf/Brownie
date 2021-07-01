@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -22,7 +22,7 @@
     }
 </style>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${path}/img/lol/lolChamp/Ari.png">
+<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -68,5 +68,5 @@
 </section>
 <!-- Contact Section End -->
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>
 
 <!-- Details Post Section Begin -->
@@ -31,5 +31,5 @@
 </section>
 <!-- Details Post Section End -->
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

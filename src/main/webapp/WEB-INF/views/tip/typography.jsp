@@ -1,9 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
-</c:import>
+<c:import url="../layout/header.jsp"/>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -25,7 +22,7 @@
                     </div>
                     <div class="dt-pic-item">
                         <div class="dp-pic">
-                            <img src="${path}/img/details/dp-p1.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">
                         </div>
                         <div class="dp-text">
                             <p>Vestibulum commodo nulla eu augue tincidunt rutrum. Suspendisse interdum lacus in
@@ -154,7 +151,7 @@
                         </div>
                         <div class="trending-item">
                             <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-5.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/trending/trending-5.jpg" alt="">
                             </div>
                             <div class="ti-text">
                                 <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
@@ -167,7 +164,7 @@
                         </div>
                         <div class="trending-item">
                             <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-6.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/trending/trending-6.jpg" alt="">
                             </div>
                             <div class="ti-text">
                                 <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a></h6>
@@ -179,7 +176,7 @@
                         </div>
                         <div class="trending-item">
                             <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-7.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/trending/trending-7.jpg" alt="">
                             </div>
                             <div class="ti-text">
                                 <h6><a href="#">This gaming laptop with a GTX 1660 Ti and 32GB of RAM is down...</a>
@@ -192,7 +189,7 @@
                         </div>
                         <div class="trending-item">
                             <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-8.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/trending/trending-8.jpg" alt="">
                             </div>
                             <div class="ti-text">
                                 <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a></h6>
@@ -208,10 +205,10 @@
                             <h5>Instagram</h5>
                         </div>
                         <div class="insta-pic">
-                            <img src="${path}/img/instagram/ip-1.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-2.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-3.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-4.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/instagram/ip-1.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/instagram/ip-2.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/instagram/ip-3.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/instagram/ip-4.jpg" alt="">
                         </div>
                     </div>
                     <div class="best-of-post">
@@ -309,5 +306,5 @@
 </section>
 <!-- Details Post Section End -->
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

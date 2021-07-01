@@ -1,9 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
-</c:import>
+<c:import url="../layout/header.jsp"/>
 
 <style>
     .tip-board-img-thumbnail {
@@ -43,274 +40,274 @@
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg search-section"
-         data-setbg="${path}/img/tip/Annieversary_Nexus_Image_Optimized-1_d4lcnldtijc00k5n8gko.jpg">
+         data-setbg="${pageContext.request.contextPath}/img/tip/Annieversary_Nexus_Image_Optimized-1_d4lcnldtijc00k5n8gko.jpg">
     <div class="container-fluid search-box">
         <div class="container margin-left-auto margin-right-auto text-center">
             <div class="breadcrumb-text padding-top-50px padding-bottom-50px">
                 <h3>챔피언 선택</h3>
                 <div class="row champion-select overflow-auto rounded">
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Aatrox.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Aatrox.png" alt=""/>
                         <p>아트록스</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Ahri.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Ahri.png" alt=""/>
                         <p>아리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Akali.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Akali.png" alt=""/>
                         <p>아칼리</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Alistar.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Alistar.png" alt=""/>
                         <p>알리스타</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Amumu.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Amumu.png" alt=""/>
                         <p>아무무</p>
                     </div>
                     <div class="col-sm-2 col-lg-1">
-                        <img src="${path}/img/champion/Anivia.png" alt=""/>
+                        <img src="${pageContext.request.contextPath}/img/champion/Anivia.png" alt=""/>
                         <p>애니비아</p>
                     </div>
                 </div>
@@ -327,7 +324,7 @@
             <div class="col-lg-12 p-0">
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img class="img-rounded tip-board-img-thumbnail" src="${path}/img/categories-list/cl-1.jpg"
+                        <img class="img-rounded tip-board-img-thumbnail" src="${pageContext.request.contextPath}/img/categories-list/cl-1.jpg"
                              alt="">
                     </div>
                     <div class="cl-text">
@@ -342,7 +339,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img class="img-rounded tip-board-img-thumbnail" src="${path}/img/categories-list/cl-2.jpg"
+                        <img class="img-rounded tip-board-img-thumbnail" src="${pageContext.request.contextPath}/img/categories-list/cl-2.jpg"
                              alt="">
                     </div>
                     <div class="cl-text">
@@ -357,7 +354,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img class="img-rounded tip-board-img-thumbnail" src="${path}/img/categories-list/cl-3.jpg"
+                        <img class="img-rounded tip-board-img-thumbnail" src="${pageContext.request.contextPath}/img/categories-list/cl-3.jpg"
                              alt="">
                     </div>
                     <div class="cl-text">
@@ -372,7 +369,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img class="img-rounded tip-board-img-thumbnail" src="${path}/img/categories-list/cl-4.jpg"
+                        <img class="img-rounded tip-board-img-thumbnail" src="${pageContext.request.contextPath}/img/categories-list/cl-4.jpg"
                              alt="">
                     </div>
                     <div class="cl-text">
@@ -387,7 +384,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img class="img-rounded tip-board-img-thumbnail" src="${path}/img/categories-list/cl-5.jpg"
+                        <img class="img-rounded tip-board-img-thumbnail" src="${pageContext.request.contextPath}/img/categories-list/cl-5.jpg"
                              alt="">
                     </div>
                     <div class="cl-text">
@@ -402,7 +399,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img class="img-rounded tip-board-img-thumbnail" src="${path}/img/categories-list/cl-6.jpg"
+                        <img class="img-rounded tip-board-img-thumbnail" src="${pageContext.request.contextPath}/img/categories-list/cl-6.jpg"
                              alt="">
                     </div>
                     <div class="cl-text">
@@ -417,7 +414,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img class="img-rounded tip-board-img-thumbnail" src="${path}/img/categories-list/cl-7.jpg"
+                        <img class="img-rounded tip-board-img-thumbnail" src="${pageContext.request.contextPath}/img/categories-list/cl-7.jpg"
                              alt="">
                     </div>
                     <div class="cl-text">
@@ -432,7 +429,7 @@
                 </div>
                 <div class="cl-item">
                     <div class="cl-pic">
-                        <img class="img-rounded tip-board-img-thumbnail" src="${path}/img/categories-list/cl-8.jpg"
+                        <img class="img-rounded tip-board-img-thumbnail" src="${pageContext.request.contextPath}/img/categories-list/cl-8.jpg"
                              alt="">
                     </div>
                     <div class="cl-text">
@@ -460,5 +457,5 @@
 </section>
 <!-- Categories List Section End -->
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

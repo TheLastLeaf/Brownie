@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -20,7 +20,7 @@
                 <div class="details-text typography-page">
                     <div class="dt-breadcrumb">
                         <div class="dt-bread-option">
-                            <a href="${path}/index">Home</a>
+                            <a href="${pageContext.request.contextPath}/index">Home</a>
                             <span>Typography</span>
                         </div>
                         <div class="innerBox text-right">
@@ -36,7 +36,7 @@
                         <hr style="width: auto; background-color: white;">
                         <h3>제목</h3>
                         <div class="dp-pic">
-                            <img src="${path}/img/details/dp-p1.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">
                         </div>
                     </div>
                     <div class="dt-desc">
@@ -86,7 +86,7 @@
                     </div>
                     <div class="dt-author" style="border: 1px solid #666666;">
                         <div class="da-pic">
-                            <img src="${path}/img/details/author-pic.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
                             <a href="/mypage">
@@ -111,7 +111,7 @@
                         <h4>REPLY</h4>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-1.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Brandon Kelley</h5>
@@ -124,7 +124,7 @@
                         </div>
                         <div class="dc-item reply-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-2.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Brandon Kelley</h5>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-3.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-3.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Matthew Nelson</h5>
@@ -181,5 +181,5 @@
 </section>
 <!-- Details Post Section End -->
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

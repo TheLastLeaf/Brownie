@@ -1,11 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
-<c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
-</c:import>
+<c:import url="../layout/header.jsp"/>
 <!-- Details Hero Section Begin -->
-<section class="details-hero-section set-bg" data-setbg="${path}/img/details/details-post-review.jpg">
+<section class="details-hero-section set-bg" data-setbg="${pageContext.request.contextPath}/img/details/details-post-review.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
@@ -211,7 +208,7 @@
                                 <a href="#" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
-                                        <img src="${path}/img/details/prev.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/details/prev.jpg" alt="">
                                     </div>
                                     <div class="rp-text">
                                         <h6>The Real-Estate Developers Are the Enemy</h6>
@@ -226,7 +223,7 @@
                                 <a href="#" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
-                                        <img src="${path}/img/details/next.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/details/next.jpg" alt="">
                                     </div>
                                     <div class="rp-text">
                                         <h6>Montreal real estate: Bargains in cottage countrya</h6>
@@ -241,7 +238,7 @@
                     </div>
                     <div class="dt-author">
                         <div class="da-pic">
-                            <img src="${path}/img/details/author-pic.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
                             <h5>Almil Hmaper</h5>
@@ -261,7 +258,7 @@
                         <h4>3 comment</h4>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-1.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Brandon Kelley</h5>
@@ -274,7 +271,7 @@
                         </div>
                         <div class="dc-item reply-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-2.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Brandon Kelley</h5>
@@ -287,7 +284,7 @@
                         </div>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-3.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-3.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Matthew Nelson</h5>
@@ -348,7 +345,7 @@
                         </div>
                         <div class="trending-item">
                             <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-5.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/trending/trending-5.jpg" alt="">
                             </div>
                             <div class="ti-text">
                                 <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
@@ -361,7 +358,7 @@
                         </div>
                         <div class="trending-item">
                             <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-6.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/trending/trending-6.jpg" alt="">
                             </div>
                             <div class="ti-text">
                                 <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a></h6>
@@ -373,7 +370,7 @@
                         </div>
                         <div class="trending-item">
                             <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-7.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/trending/trending-7.jpg" alt="">
                             </div>
                             <div class="ti-text">
                                 <h6><a href="#">This gaming laptop with a GTX 1660 Ti and 32GB of RAM is down...</a>
@@ -386,7 +383,7 @@
                         </div>
                         <div class="trending-item">
                             <div class="ti-pic">
-                                <img src="${path}/img/trending/trending-8.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/trending/trending-8.jpg" alt="">
                             </div>
                             <div class="ti-text">
                                 <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a></h6>
@@ -402,10 +399,10 @@
                             <h5>Instagram</h5>
                         </div>
                         <div class="insta-pic">
-                            <img src="${path}/img/instagram/ip-1.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-2.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-3.jpg" alt="">
-                            <img src="${path}/img/instagram/ip-4.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/instagram/ip-1.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/instagram/ip-2.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/instagram/ip-3.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/instagram/ip-4.jpg" alt="">
                         </div>
                     </div>
                     <div class="best-of-post">
@@ -503,5 +500,5 @@
 </section>
 <!-- Details Post Section End -->
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

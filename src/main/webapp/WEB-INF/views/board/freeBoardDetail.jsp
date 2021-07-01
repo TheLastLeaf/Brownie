@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <c:import url="../layout/header.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>
 
 <!-- Details Post Section Begin -->
@@ -65,7 +65,7 @@
                                 <a href="#" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
-                                        <img src="${path}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                                     </div>
                                     <div class="rp-text">
                                         <h6>이전글어쩌구</h6>
@@ -80,7 +80,7 @@
                                 <a href="#" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
-                                        <img src="${path}/img/mini_brownie_thumb.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
                                     </div>
                                     <div class="rp-text">
                                         <h6>다음글어쩌구 게시글 순번으로 쿼리문 조회해</h6>
@@ -95,7 +95,7 @@
                     </div>
                     <div class="dt-author">
                         <div class="da-pic">
-                            <img src="${path}/img/details/author-pic.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
                             <h5>better</h5>
@@ -106,7 +106,7 @@
                         <h4>3 comment</h4>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-1.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Smart HAK</h5>
@@ -117,7 +117,7 @@
                         </div>
                         <div class="dc-item reply-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-2.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>adorable Hyun-on</h5>
@@ -128,7 +128,7 @@
                         </div>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="${path}/img/details/comment/comment-3.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-3.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>세웅지훈포에버</h5>
@@ -233,5 +233,5 @@
 </section>
 <!-- Details Post Section End -->
 <c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${path}"/>
+    <c:param name="path" value="${pageContext.request.contextPath}"/>
 </c:import>

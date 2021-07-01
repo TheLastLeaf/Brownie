@@ -2,14 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:import url="../layout/header.jsp">
-	<c:param name="path" value="${path}" />
+	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script src="${path}/js/marvel.js"></script>
+<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
 
-<link rel="stylesheet" href="${path}/css/marvel.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
 <style>
 .pan {
@@ -99,7 +99,7 @@
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
-	data-setbg="${path}/img/miniGame/banner3.jpg">
+	data-setbg="${pageContext.request.contextPath}/img/miniGame/banner3.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -127,11 +127,11 @@
  	/* 주사위 */
 	window.onload = function () {
 		$('#btnRoll').mousedown(function() {
-			$('.wrapper').css('background-image', "url('${path}/img/miniGame/rolling.gif')")
+			$('.wrapper').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/rolling.gif')")
 			$('.tamin').css('visibility', 'hidden')
 		});
 		$('#btnRoll').mouseup(function() {
-			$('.wrapper').css('background-image', "url('${path}/img/miniGame/diceDrop.gif')")
+			$('.wrapper').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/diceDrop.gif')")
 			setTimeout("reset()", 2000); 
 		});
  	}
@@ -227,7 +227,7 @@
 					<!-- 세로축 -->
 					<tr class="verti">
 						<td class="td_rl">
-							<img class="land" src="${path}/img/miniGame/lucky_shamrock.png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/lucky_shamrock.png">
 						</td>
 						
 						<td class="center" id="gameAlert1" colspan="3" rowspan="3">
@@ -244,46 +244,46 @@
 						</td>
 						
 						<td class="td_rl">
-							<img class="land" src="${path}/img/miniGame/lucky_drive.png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/lucky_drive.png">
 						</td>
 					</tr>
 
 
 					<tr class="verti">
 						<td class="td_rl">
-							<img class="land" src="${path}/img/miniGame/token_yinyang.png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/token_yinyang.png">
 						</td>
 
 						<td class="td_rl">
-							<img class="land" src="${path}/img/miniGame/wallet.png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/wallet.png">
 						</td>
 					</tr>
 
 					<tr class="verti">
 						<td class="td_rl">
-							<img class="land" src="${path}/img/miniGame/the_one_ring.png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/the_one_ring.png">
 						</td>
 
 						<td class="td_rl">
-							<img class="land" src="${path}/img/miniGame/coins.png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/coins.png">
 						</td>
 					</tr>
 					<!-- 세로축 -->
 					<tr style="margin-bottom: 30px">
 						<td class="td_tb leftDown corner">
-							<img class="land" src="${path}/img/miniGame/black_cat (2).png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/black_cat (2).png">
 						</td>
 						<td class="td_tb">
-							<img class="land" src="${path}/img/miniGame/black_cat (1).png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/black_cat (1).png">
 						</td>
 						<td class="td_tb">
 							<i class="fas fa-book fa-8x"></i>
 						</td>
 						<td class="td_tb">
-							<img class="land" src="${path}/img/miniGame/black_cat.png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/black_cat.png">
 						</td>
 						<td class="td_tb rightDown corner">
-							<img class="land" src="${path}/img/miniGame/asd.png">
+							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/asd.png">
 						</td>
 					</tr>
 				</tbody>
@@ -296,5 +296,5 @@
 </section>
 <!-- Categories Grid Section End -->
 <c:import url="../layout/footer.jsp">
-	<c:param name="path" value="${path}" />
+	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>

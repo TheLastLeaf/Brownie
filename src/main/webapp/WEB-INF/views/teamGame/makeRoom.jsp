@@ -16,14 +16,14 @@
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
 <!-- Css Styles -->
-<link rel="stylesheet" href="${path}/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/elegant-icons.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/owl.carousel.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/barfiller.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/magnific-popup.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="${path}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 
 <style>
@@ -166,22 +166,22 @@ input.apple-switch:checked:after {
 				<div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 					<label class="btn btn-danger btn-gmode Gmode">
 						<input type="radio" name="jb-radio" class="jb-radio-1">일반게임
-						<!-- 						<img src="${path}/img/lol/Position_Challenger-Top.png" /> -->
+						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Top.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
 						<input type="radio" name="jb-radio" class="jb-radio-2">랭크게임
-						<!-- 						<img src="${path}/img/lol/Position_Challenger-Jungle.png" /> -->
+						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Jungle.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
 						<input type="radio" name="jb-radio" class="jb-radio-3">자유랭크
-						<!-- 						<img src="${path}/img/lol/Position_Challenger-Mid.png" /> -->
+						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Mid.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
 						<input type="radio" name="jb-radio" class="jb-radio-4">칼바람
-						<!-- 						<img src="${path}/img/lol/Position_Challenger-Bot.png" /> -->
+						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Bot.png" /> -->
 					</label>
 					&nbsp;
 				</div>
@@ -191,27 +191,27 @@ input.apple-switch:checked:after {
 				<div style="margin-bottom: 3px; margin-top: 10px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 					<label class="btn btn-danger position">
 						<input type="radio" name="jb-radio" class="jb-radio-1" value="top">
-						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
+						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
 					</label>
 					&nbsp;
 					<label class="btn btn-danger position">
 						<input type="radio" name="jb-radio" class="jb-radio-2" value="jun">
-						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
+						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
 					</label>
 					&nbsp;
 					<label class="btn btn-danger position">
 						<input type="radio" name="jb-radio" class="jb-radio-3" value="mid">
-						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
+						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
 					</label>
 					&nbsp;
 					<label class="btn btn-danger position">
 						<input type="radio" name="jb-radio" class="jb-radio-4" value="bot">
-						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
+						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
 					</label>
 					&nbsp;
 					<label class="btn btn-danger position">
 						<input type="radio" name="jb-radio" class="jb-radio-5" value="sup">
-						<img src="${path}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
+						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
 					</label>
 					&nbsp; 
 				</div>
@@ -223,12 +223,12 @@ input.apple-switch:checked:after {
 					<div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 						<label class="btn btn-danger btn-usepoint roomOn">
 							<input type="radio" name="jb-radio" class="jb-radio-1" value="top">
-							<img style="width: 20px; height: 20px;" src="${path}/img/teamGame/check_o.png" alt="" />
+							<img style="width: 20px; height: 20px;" src="${pageContext.request.contextPath}/img/teamGame/check_o.png" alt="" />
 						</label>
 						&nbsp;
 						<label class="btn btn-danger btn-usepoint roomOn">
 							<input type="radio" name="jb-radio" class="jb-radio-2" value="jun">
-							<img style="width: 20px; height: 20px;" src="${path}/img/teamGame/check_x.png" alt="" />
+							<img style="width: 20px; height: 20px;" src="${pageContext.request.contextPath}/img/teamGame/check_x.png" alt="" />
 						</label>
 						&nbsp;
 					</div>
@@ -246,14 +246,14 @@ input.apple-switch:checked:after {
 	</div>
 
 	<!-- Js Plugins -->
-	<script src="${path}/js/jquery-3.3.1.min.js"></script>
-	<script src="${path}/js/bootstrap.min.js"></script>
-	<script src="${path}/js/jquery.magnific-popup.min.js"></script>
-	<script src="${path}/js/circle-progress.min.js"></script>
-	<script src="${path}/js/jquery.barfiller.js"></script>
-	<script src="${path}/js/jquery.slicknav.js"></script>
-	<script src="${path}/js/owl.carousel.min.js"></script>
-	<script src="${path}/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/circle-progress.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.slicknav.js"></script>
+	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </body>
 </html>
