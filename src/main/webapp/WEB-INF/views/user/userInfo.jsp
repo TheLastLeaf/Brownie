@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:import url="../layout/header.jsp"/>
+<c:import url="../layout/header.jsp" />
+
 <style>
 .profileBox {
 	display: inline-block;
@@ -139,9 +140,10 @@ button {
 a {
 	color: lightblue;
 }
+
 </style>
 
-<script type="text/javascript">
+<script>
 	function fn_sync() {
 		window.open("user/userSync", "userSync",
 				"width=800, height=680, left=250,top=200");
@@ -182,13 +184,7 @@ a {
 							</div>
 							<div class="nameLv">
 								<h3>
-									리학재 | Lv.71 | 
-									<span class="rating-star"> 
-										<i class="fa fa-star"></i> 
-										<i class="fa fa-star"></i> 
-										<i class="fa fa-star"></i> 
-										<i class="fa fa-star-half-o"></i> 
-										<i class="fa fa-star-o"></i>
+									리학재 | Lv.71 | <span class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i>
 									</span>
 								</h3>
 							</div>
@@ -210,13 +206,7 @@ a {
 							<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
 							ririnto | Lv:80 | Bronze !!
 						</div>
-						<div class="sync">[메인포지션] :
-							<label><input type="checkbox" name="position" value="TOP"/>탑</label>
-							<label><input type="checkbox" name="position" value="JUG"/>정글</label>
-							<label><input type="checkbox" name="position" value="MID"/>미드</label>
-							<label><input type="checkbox" name="position" value="ADC"/>원딜</label>
-							<label><input type="checkbox" name="position" value="SUP"/>서포터</label>
-						</div>
+						<div class="sync">[메인포지션] : 탑!</div>
 					</div>
 
 					<!-- 뭉태기2 -->
@@ -263,55 +253,54 @@ a {
 				<br />
 
 				<div class="reputation row">
-					<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">이사람은 어떤가요?</div>
+					<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">후기를 써서 테러하세요!</div>
 					<div class="col-sm-2" style="display: flex; justify-content: flex-end;">
 						<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
 					</div>
 					<!-- 다른사람이 쓴 후기 -->
-					<div class="review col-4">
+					<div class="review col-4" id="reviewBox">
 						<div class="rev">
 							이 사람 아리만 해요,,미쳐진짜!
 							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆★★★</div>
 						</div>
 					</div>
-					<div class="review col-4">
+					<div class="review col-4" id="reviewBox">
 						<div class="rev">
 							기가막히게 코딩을 잘한답니다..!
 							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆★★★</div>
 						</div>
 					</div>
-					<div class="review col-4">
+					<div class="review col-4" id="reviewBox">
 						<div class="rev">
 							오늘 골드를 찍었대요 백준 골드요!
 							<!-- 상세내용담는공간 -->
 							<div class="caption">★★★★★</div>
 						</div>
 					</div>
-					<div class="review col-4">
+					<div class="review col-4" id="reviewBox">
 						<div class="rev">
 							아리 왜하는지 모르겠어요
 							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆☆☆★</div>
 						</div>
 					</div>
-					<div class="review col-4">
+					<div class="review col-4" id="reviewBox">
 						<div class="rev" style="width: 100%;">
 							[비속어처리X]
 							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆☆☆☆</div>
 						</div>
 					</div>
-					<div class="review col-4">
-						<div class="rev">
+					<div class="review col-4" id="reviewBox">
+						<div class="rev" id="reviewBox" id="reviewBox">
 							너...내 여자해라..
 							<!-- 상세내용담는공간 -->
-							<div class="caption">☆☆☆☆★</div>
+							<div class="caption" id="reviewBox">☆☆☆☆★</div>
 						</div>
 					</div>
 				</div>
-
 
 				<!-- share box begin -->
 				<div style="border: 1px solid black; display: block;" class="dt-share"></div>
