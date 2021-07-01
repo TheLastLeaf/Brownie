@@ -17,6 +17,9 @@
 </section>
 <!-- Hero Section End -->
 
+<div id=”banner” style="position: absolute; left: 100px;top: 300px; z-index: 99999; width:500px; height:300px; background: #000000; color: white;"> 님 정지됨ㅅㄱ </div>
+
+
 <!-- Videos Guide Section Begin -->
 	<section class="video-guide-section">
 		<div class="container">
@@ -56,55 +59,22 @@
 										</div>
 										<div class="col-md-6">
 											<table border="1" style="width: 100%; color: white; text-align: center;">
-												<tr>
-													<th>여기에 유튜브에서 긁어온 영상 링크들 달아두려고 함</th>
-												</tr>
-												<tr>
-													<th>TFT Dev Drop: June 2021 I Dev Video - Teamfight Tactics</th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
-												<tr>
-													<th>리그 오브 레전드 2021.06.25. 패치노트 </th>
-												</tr>
+												<c:forEach var="youTubeVo" items="${youTubeVoList}">
+													<tr>
+														<th>
+															<a href="'https://www.youtube.com/watch?v='+${youTubeVo.itemsIdVideoId}">
+																${youTubeVo.itemsSnippetTitle }
+															</a>
+														</th>
+													</tr>
+												</c:forEach>
 											</table>
 										</div>
 									</div>
 								</div>
 						</div>
 					</div>
- 
+
 					<!-- --------------------------------------------------------------------------------------- -->
 					<div class="tab-pane fade" id="tabs-2" role="tabpanel">
 						<div class="row">
@@ -117,10 +87,10 @@
 								</div>
 								<div class="col-lg-12">
 									<div class="row">
-									
+
 									</div>
 									<div class="row">
-										
+
 									</div>
 								</div>
 						</div>
@@ -223,8 +193,8 @@
 											<td>20:00</td>
 											<td>T1 VS <b>VS</b> DWG KIA</td>
 										</tr>
-									
-									
+
+
 									</table>
 								</div>
 							</div>
@@ -278,7 +248,7 @@
 																<li><i class="fa fa-comment-o"></i> 20</li>
 															</ul>
 														</div>
-													</div>												
+													</div>
 												</div>
 												<div class="col-lg-6">
 													<div class="un-big-item set-bg"
@@ -296,7 +266,7 @@
 																<li><i class="fa fa-comment-o"></i> 20</li>
 															</ul>
 														</div>
-													</div>												
+													</div>
 												</div>
 											</div>
 											<div class="row">
@@ -421,7 +391,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="tab-pane fade" id="tabs-10" role="tabpanel">
 								<div class="row">
 									<div class="un-slider owl-carousel">
@@ -561,8 +531,8 @@
 									</div>
 								</div>
 							</div>
-							 
-							 
+
+
 						</div>
 					</div>
 				</div>
