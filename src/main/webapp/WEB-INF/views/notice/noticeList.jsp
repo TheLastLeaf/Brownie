@@ -66,7 +66,7 @@
                                 <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-1.jpg" alt="">
                             </div>
                             <div class="cl-text">
-                                <h5><a href="${pageContext.request.contextPath}/notice/detail">${noticeVO.title}</a></h5>
+                                <h5><a href="${pageContext.request.contextPath}/notice/detail?boardSeq=${noticeVO.boardSeq}">${noticeVO.title}</a></h5>
                                 <ul>
                                     <li>by <span>${noticeVO.inUserId}</span></li>
                                 </ul>
