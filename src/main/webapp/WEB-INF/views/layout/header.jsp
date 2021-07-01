@@ -46,6 +46,8 @@
             background: #555;
         }
     </style>
+    
+    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
 
 <body>

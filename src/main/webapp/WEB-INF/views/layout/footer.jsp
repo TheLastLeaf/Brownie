@@ -99,7 +99,7 @@
 <!-- Search model end -->
 
 <!-- Js Plugins -->
-<script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/circle-progress.min.js"></script>

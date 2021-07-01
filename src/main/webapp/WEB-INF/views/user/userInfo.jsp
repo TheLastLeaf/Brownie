@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="../layout/header.jsp" />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
+
+
 <style>
 .profileBox {
 	display: inline-block;
@@ -140,22 +145,63 @@ button {
 a {
 	color: lightblue;
 }
-
 </style>
 
 <script>
 	function fn_sync() {
 		window.open("user/userSync", "userSync",
 				"width=800, height=680, left=250,top=200");
-	}
+	};
 	function fn_infoMod() {
 		window.open("user/userModify", "userModify",
 				"width=800, height=680, left=250,top=200");
-	}
+	};
 	function fn_review() {
 		window.open("user/userComment", "userComment",
 				"width=800, height=680, left=250,top=200");
-	}
+	};
+	$(function() {
+		$.contextMenu({
+			selector : '.context-menu-one',
+			callback : function(key, options) {
+				var m = "clicked: " + key;
+				window.console && console.log(m) || alert(m);
+			},
+			items : {
+				"edit" : {
+					name : "Edit",
+					icon : "edit"
+				},
+				"cut" : {
+					name : "Cut",
+					icon : "cut"
+				},
+				copy : {
+					name : "Copy",
+					icon : "copy"
+				},
+				"paste" : {
+					name : "Paste",
+					icon : "paste"
+				},
+				"delete" : {
+					name : "Delete",
+					icon : "delete"
+				},
+				"sep1" : "---------",
+				"quit" : {
+					name : "Quit",
+					icon : function() {
+						return 'context-menu-icon context-menu-icon-quit';
+					}
+				}
+			}
+		});
+
+		$('.context-menu-one').on('click', function(e) {
+			console.log('clicked', this);
+		})
+	});
 </script>
 
 <!-- Main Content Post Section Begin -->
@@ -301,6 +347,7 @@ a {
 						</div>
 					</div>
 				</div>
+				<span class="context-menu-one btn btn-neutral" style="color:white;">right click me</span>
 
 				<!-- share box begin -->
 				<div style="border: 1px solid black; display: block;" class="dt-share"></div>
