@@ -26,7 +26,7 @@ public class NoticeController {
     }
 
     @GetMapping("/detail")
-    public String detail() {
+    public String detail(@RequestParam Map<String, Object> map, ModelAndView mav) {
         return "notice/noticeDetail"; // 공지 디테일화면
     }
 
