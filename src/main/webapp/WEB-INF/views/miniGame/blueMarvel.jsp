@@ -119,6 +119,7 @@
 <!-- Breadcrumb Section End -->
 
 <script type="text/javascript">
+	var oneInOne = true;
 	var playerPos = 0;
 	var pos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
  	/* 주사위 */
@@ -139,6 +140,11 @@
 	}
 
 	function dis() {
+		if(!oneInOne){
+			return;
+		} else {
+			oneInOne = false;
+		}
 		const buttonRoolDice = document.querySelector('.learn-more');
 
 		const diceSide1 = document.getElementById('dice-side-1');
@@ -182,9 +188,8 @@
 			status1.innerHTML += ' 더블! 한접시 더!<br>';
 		}
 		
-		setTimeout('move('+diceTotal+')',1500);
-		
-		
+		setTimeout('move('+diceTotal+')',2000);
+		oneInOne=true;
 		
 		/* if ($('#dis').css('visibility') == 'hidden') {
 			$('#dis').css('visibility', 'visible')
