@@ -62,7 +62,7 @@
 												<c:forEach var="youTubeVo" items="${youTubeVoList}">
 													<tr>
 														<th>
-															<a href="'https://www.youtube.com/watch?v='+${youTubeVo.itemsIdVideoId}">
+															<a href="https://www.youtube.com/watch?v=${youTubeVo.itemsIdVideoId}">
 																${youTubeVo.itemsSnippetTitle }
 															</a>
 														</th>
