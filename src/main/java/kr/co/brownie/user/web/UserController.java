@@ -18,12 +18,10 @@ public class UserController {
 	public String userInfo() {
 		return "user/userInfo";
 	}
-	
 	@GetMapping("/userSync")
 	public String userSync() {
 		return "user/userSync";
 	}
-	
 	@GetMapping("/userComment")
 	public String userComment() {
 		return "user/userComment";
@@ -31,6 +29,10 @@ public class UserController {
 	@GetMapping("/userModify")
 	public String userModify() {
 		return "user/userModify";
+	}
+	@GetMapping("/userDeclar")
+	public String userDeclar() {
+		return "user/userDeclar";
 	}
 	
 	@GetMapping

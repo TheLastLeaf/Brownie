@@ -2,11 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="../layout/header.jsp" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
-
-
 <style>
 .profileBox {
 	display: inline-block;
@@ -145,6 +140,60 @@ button {
 a {
 	color: lightblue;
 }
+
+/* 마우스우클릭 깔끔버전 */
+h1 {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	padding: 1em;
+	font-size: 2em;
+	letter-spacing: .3em;
+	color: #FFFFFF;
+	text-align: center;
+	border-top: 2px solid #E6EE9C;
+	border-bottom: 2px solid #E6EE9C;
+}
+
+.contextmenu {
+	display: none;
+	position: absolute;
+	width: 110px; margin : 0;
+	padding: 0;
+	background: #BDBDBD;
+	border-radius: 5px;
+	list-style: none;
+	box-shadow: 0 15px 35px rgba(50, 50, 90, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+	overflow: hidden;
+	z-index: 999999;
+	margin: 0;
+}
+
+.contextmenu li {
+	border-left: 3px solid transparent;
+	transition: ease .2s;
+}
+
+.contextmenu li a {
+	display: block;
+	padding: 10px;
+	color: #DF013A;
+	text-decoration: none;
+	transition: ease .2s;
+}
+
+.contextmenu li:hover {
+	background: #E6E6E6;
+	border-left: 3px solid #9C27B0;
+}
+
+.contextmenu li:hover a {
+	color: #0000FF;
+}
 </style>
 
 <script>
@@ -160,48 +209,76 @@ a {
 		window.open("user/userComment", "userComment",
 				"width=800, height=680, left=250,top=200");
 	};
-	$(function() {
-		$.contextMenu({
-			selector : '.context-menu-one',
-			callback : function(key, options) {
-				var m = "clicked: " + key;
-				window.console && console.log(m) || alert(m);
-			},
-			items : {
-				"edit" : {
-					name : "Edit",
-					icon : "edit"
-				},
-				"cut" : {
-					name : "Cut",
-					icon : "cut"
-				},
-				copy : {
-					name : "Copy",
-					icon : "copy"
-				},
-				"paste" : {
-					name : "Paste",
-					icon : "paste"
-				},
-				"delete" : {
-					name : "Delete",
-					icon : "delete"
-				},
-				"sep1" : "---------",
-				"quit" : {
-					name : "Quit",
-					icon : function() {
-						return 'context-menu-icon context-menu-icon-quit';
-					}
-				}
-			}
-		});
-
-		$('.context-menu-one').on('click', function(e) {
-			console.log('clicked', this);
-		})
-	});
+	function fn_declaration(){
+		window.open("user/userDeclar", "userDeclar",
+		"width=800, height=680, left=250,top=200");
+	}
+	// 마우스 우클릭 깔끔한버전 TEXTCONTENT 
+	$(document)
+			.ready(
+					function() {
+						//Show contextmenu:
+						$(".review")
+								.contextmenu(
+										function(e) {
+											//Get window size:
+											var winWidth = $(document).width();
+											var winHeight = $(document)
+													.height();
+											//Get pointer position:
+											var posX = e.pageX;
+											var posY = e.pageY;
+											//Get contextmenu size:
+											var menuWidth = $(".contextmenu")
+													.width();
+											var menuHeight = $(".contextmenu")
+													.height();
+											//Security margin:
+											var secMargin = 10;
+											//Prevent page overflow:
+											if (posX + menuWidth + secMargin >= winWidth
+													&& posY + menuHeight
+															+ secMargin >= winHeight) {
+												//Case 1: right-bottom overflow:
+												posLeft = posX - menuWidth
+														- secMargin + "px";
+												posTop = posY - menuHeight
+														- secMargin + "px";
+											} else if (posX + menuWidth
+													+ secMargin >= winWidth) {
+												//Case 2: right overflow:
+												posLeft = posX - menuWidth
+														- secMargin + "px";
+												posTop = posY + secMargin
+														+ "px";
+											} else if (posY + menuHeight
+													+ secMargin >= winHeight) {
+												//Case 3: bottom overflow:
+												posLeft = posX + secMargin
+														+ "px";
+												posTop = posY - menuHeight
+														- secMargin + "px";
+											} else {
+												//Case 4: default values:
+												posLeft = posX + secMargin
+														+ "px";
+												posTop = posY + secMargin
+														+ "px";
+											}
+											;
+											//Display contextmenu:
+											$(".contextmenu").css({
+												"left" : posLeft,
+												"top" : posTop
+											}).show();
+											//Prevent browser default contextmenu.
+											return false;
+										});
+						//Hide contextmenu:
+						$(document).click(function() {
+							$(".contextmenu").hide();
+						});
+					});
 </script>
 
 <!-- Main Content Post Section Begin -->
@@ -304,52 +381,64 @@ a {
 						<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
 					</div>
 					<!-- 다른사람이 쓴 후기 -->
-					<div class="review col-4" id="reviewBox">
+					<div class="review col-4">
 						<div class="rev">
 							이 사람 아리만 해요,,미쳐진짜!
 							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆★★★</div>
 						</div>
 					</div>
-					<div class="review col-4" id="reviewBox">
+
+					<div class="review col-4">
 						<div class="rev">
 							기가막히게 코딩을 잘한답니다..!
 							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆★★★</div>
 						</div>
 					</div>
-					<div class="review col-4" id="reviewBox">
+
+					<div class="review col-4">
 						<div class="rev">
 							오늘 골드를 찍었대요 백준 골드요!
 							<!-- 상세내용담는공간 -->
 							<div class="caption">★★★★★</div>
 						</div>
 					</div>
-					<div class="review col-4" id="reviewBox">
+
+					<div class="review col-4">
 						<div class="rev">
 							아리 왜하는지 모르겠어요
 							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆☆☆★</div>
 						</div>
 					</div>
-					<div class="review col-4" id="reviewBox">
-						<div class="rev" style="width: 100%;">
+
+					<div class="review col-4">
+						<div class="rev">
 							[비속어처리X]
 							<!-- 상세내용담는공간 -->
 							<div class="caption">☆☆☆☆☆</div>
 						</div>
 					</div>
-					<div class="review col-4" id="reviewBox">
-						<div class="rev" id="reviewBox" id="reviewBox">
+
+					<div class="review col-4">
+						<div class="rev">
 							너...내 여자해라..
 							<!-- 상세내용담는공간 -->
-							<div class="caption" id="reviewBox">☆☆☆☆★</div>
+							<div class="caption">☆☆☆☆★</div>
 						</div>
 					</div>
 				</div>
-				<span class="context-menu-one btn btn-neutral" style="color:white;">right click me</span>
 
-				<!-- share box begin -->
+				<!-- <div id="reviewBox" style="color: white;"></div> -->
+				<!-- 마우스 우클릭 (숨김처리됨li태그들) -->
+				<ul class="contextmenu">
+					<li><a onclick="fn_declaration()">신고하기</a></li>
+					<!-- 다른유저페이지로 이동->> -->
+					<li><a href="#">둘러보기</a></li>
+				</ul>
+
+				<!-- share box begin  -->
 				<div style="border: 1px solid black; display: block;" class="dt-share"></div>
 				<!-- share box end -->
 
@@ -358,6 +447,10 @@ a {
 	</div>
 </section>
 <!-- Details Post Section End -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
 
 <c:import url="../layout/footer.jsp">
 	<c:param name="path" value="${pageContext.request.contextPath}" />

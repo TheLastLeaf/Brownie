@@ -11,7 +11,7 @@ public class TipVO {
     private String status;
     private Date inDate;
     private String inUserId;
-    private Date upDate;
+    private Date modDate;
     private String upUserId;
     private int fileSeq;
     private int subSeq;
@@ -20,7 +20,7 @@ public class TipVO {
 
     }
 
-    public TipVO(int boardSeq, String boardKind, String title, String content, String noticeYn, String status, Date inDate, String inUserId, Date upDate, String upUserId, int fileSeq, int subSeq) {
+    public TipVO(int boardSeq, String boardKind, String title, String content, String noticeYn, String status, Date inDate, String inUserId, Date modDate, String upUserId, int fileSeq, int subSeq) {
         this.boardSeq = boardSeq;
         this.boardKind = boardKind;
         this.title = title;
@@ -29,7 +29,7 @@ public class TipVO {
         this.status = status;
         this.inDate = inDate;
         this.inUserId = inUserId;
-        this.upDate = upDate;
+        this.modDate = modDate;
         this.upUserId = upUserId;
         this.fileSeq = fileSeq;
         this.subSeq = subSeq;
@@ -99,12 +99,12 @@ public class TipVO {
         this.inUserId = inUserId;
     }
 
-    public Date getUpDate() {
-        return upDate;
+    public Date getModDate() {
+        return modDate;
     }
 
-    public void setUpDate(Date upDate) {
-        this.upDate = upDate;
+    public void setModDate(Date modDate) {
+        this.modDate = modDate;
     }
 
     public String getUpUserId() {
@@ -142,7 +142,7 @@ public class TipVO {
                 ", status='" + status + '\'' +
                 ", inDate=" + inDate +
                 ", inUserId='" + inUserId + '\'' +
-                ", upDate=" + upDate +
+                ", modDate=" + modDate +
                 ", upUserId='" + upUserId + '\'' +
                 ", fileSeq=" + fileSeq +
                 ", subSeq=" + subSeq +
