@@ -59,7 +59,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 p-0">
-                    <p>${noticeVOList}</p>
                     <c:forEach var="noticeVO" items="${noticeVOList}">
                         <div class="cl-item">
                             <div class="cl-pic">
