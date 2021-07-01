@@ -305,6 +305,4 @@
     </div>
 </section>
 <!-- Details Post Section End -->
-<c:import url="../layout/footer.jsp">
-    <c:param name="path" value="${pageContext.request.contextPath}"/>
-</c:import>
+<c:import url="../layout/footer.jsp"/>
