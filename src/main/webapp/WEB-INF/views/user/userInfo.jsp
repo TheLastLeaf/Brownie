@@ -470,7 +470,7 @@ h1 {
 				</ul>
 
 				<!-- share box begin  -->
-				<div style="border: 1px solid black; display: block;" class="dt-share"></div>
+				<div style="border: none; display: block;" class="dt-share"></div>
 				<!-- share box end -->
 
 			</div>

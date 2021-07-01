@@ -78,16 +78,6 @@ button>img {
 	word-break: break-all;
 }
 
-.Gmode {
-	margin-bottom: 0;
-	margin-top: 7px;
-	background: grey;
-	color: white;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
-}
-
 .roomTitle {
 	font-family: maplelight;
 	font-weight: bolder;
@@ -106,70 +96,35 @@ button>img {
 	width: 25px;
 	height: 25px;
 }
+
+.micPic {
+	width: 25px;
+	height: 25px;
+	margin: 3px;
+}
+.gmode{
+	margin: 0px;
+	display: flex;
+	align-items: center;
+}
 </style>
 
 <script type="text/javascript">
 	function fn_makeRoom() {
 		window.open("teamGame/makeRoom", "makeTeam",
-				"width=800, height=680, left=250,top=200");
-// 		fn_newRoom();
+				"width=660, height=570, left=250,top=200");
+		// 		fn_newRoom();
 	}
 
 	function fn_chatRoom() {
 		makeRoom = window.open("teamGame/chatRoom", "chatingRoom",
-				"width=1300, height=820, scroll=no, left=500, top=250");
+				"width=1100, height=720, scroll=no, left=450, top=150");
 	}
 
 	function fn_blockRoom() {
 		alert("방이 꽉찼습니다! !");
 		window.location.reload();
 	}
-
-	//	필요없는 부분
-	// 	function fn_newRoom(){
-	// 		var sampleData = "<div class='innerBox text-center'>"
-	//         +"<div class='row text-white' style='margin: 0; background: black; font-size: 14px;'>"
-	//         +"   <p class='col-sm' style='margin: 0; text-align: left;'>"
-	//         +"      <b>솔로랭크 </b>"
-	//         +"   </p>"
-	//         +"   <p class='col-sm' style='margin: 0; text-align: right;'>"
-	//         +"      <img style='width: 25px; height: 25px;' src='${pageContext.request.contextPath}/img/details/mic_o.jpg' />"
-	//         +"   </p>"
-	//         +"</div>"
-	//         +"<div class='roomTitle'>|칼바람| 할 사람 구함~</div>"
-	//         +"   <p style='margin: 10px 0px 3px;'>"
-	//         +   "<button type='button' class='positionTop' onclick='fn_blockRoom()'>"
-	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Top.png' />"
-	//         +   "</button>"
-	//         +   "<button type='button' class='positionJun' onclick='fn_chatRoom()'>"
-	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Jungle.png' />"
-	//         +   "</button>"
-	//         +   "<button type='button' class='positionMid' onclick='fn_chatRoom()'>"
-	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Mid.png' />"
-	//         +   "</button>"
-	//         +   "<button type='button' class='positionAd' onclick='fn_blockRoom()'>"
-	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Bot.png' />"
-	//         +   "</button>"
-	//         +   "<button type='button' class='positionSup' onclick='fn_chatRoom()'>"
-	//         +      "<img src='${pageContext.request.contextPath}/img/lol/Position_Grandmaster-Support.png' />"
-	//         +   "</button>"
-	//         +"</p>"
-	//         +   "<div style='width: 100%; display: flex; justify-content: center; margin-bottom: 30px;'>"
-	//         +      "<p class='message'>너와 함께 게임을 하고 싶어!</p>"
-	//         +   "</div>"
-	//         +   "<div class='row text-white' style='margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;'>"
-	//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-end;'>닉네임</div>"
-	//         +      "<div class='col-sm-6' style='margin: 0; display: flex; justify-content: flex-start;'>"
-	//         +         "<img class='tierImg' src='${pageContext.request.contextPath}/img/lol/grandMaster.png' />[G·M]"
-	//         +         "</div>"
-	//         +      "</div>"
-	//         +   "</div>"
-
-	//         //아래 var room 은 <div>태그를 다 그대로 들고옴 이유는 모름...
-	// 		//var room = document.getElementById('roomBox').before(sampleData); 
-	//         $('#roomBox').before(sampleData);
-	//         // 제이쿼리는 css 선택자를 이용해서 쉽게 요소를 가져올 수 있음. 
-	// 	}
 </script>
 <!-- Main Content Post Section Begin -->
 
@@ -197,19 +152,35 @@ button>img {
 						<tr>
 							<th>방 제목</th>
 							<td>
-								<input type="text" style="background: #ffffff; border: 1px solid black; width: 300px;" />
+								<input type="text" style="margin-bottm:7px; background: #ffffff; border: 1px solid black; width: 300px;" />
 							</td>
 							<th rowspan="3" style="width: 100px; text-align: center;"><input type='submit' value="검색"></th>
 						</tr>
 						<tr>
 							<th style="width: 140px;">게임 모드</th>
 							<td style="width: auto;">
-								<input type='checkbox' name='gametype' value='solo' /> 솔로 랭크 <input type='checkbox' name='gametype' value='free' /> 자유 랭크 <input type='checkbox' name='gametype' value='normal' /> 일반 게임 <input type='checkbox' name='gametype' value='abyss' /> 칼바람
+								<input type='checkbox' name='gametype' value='solo' />
+								솔로 랭크
+								<input type='checkbox' name='gametype' value='free' />
+								자유 랭크
+								<input type='checkbox' name='gametype' value='normal' />
+								일반 게임
+								<input type='checkbox' name='gametype' value='abyss' />
+								칼바람
 							</td>
 						<tr>
 							<th>희망 포지션</th>
 							<td>
-								<input type='checkbox' name='position' value='t' /> 탑 <input type='checkbox' name='position' value='m' /> 미드 <input type='checkbox' name='position' value='j' /> 정글 <input type='checkbox' name='position' value='b' /> 바텀 <input type='checkbox' name='position' value='a' /> 젓가락
+								<input type='checkbox' name='position' value='t' />
+								탑
+								<input type='checkbox' name='position' value='m' />
+								미드
+								<input type='checkbox' name='position' value='j' />
+								정글
+								<input type='checkbox' name='position' value='b' />
+								바텀
+								<input type='checkbox' name='position' value='a' />
+								젓가락
 							</td>
 						</tr>
 					</table>
@@ -237,11 +208,11 @@ button>img {
 						<!-- <div class="innerBox" style="text-align: center"> -->
 						<div class="innerBox text-center" id="roomBox">
 							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
+								<p class="col-sm gmode" style="text-align: left;">
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
+									<img class="micPic" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
@@ -274,16 +245,16 @@ button>img {
 							</div>
 						</div>
 						<!-- 만들어진 방 end -->
-						
+
 						<!-- 만들어진 방 begin -->
 						<!-- <div class="innerBox" style="text-align: center"> -->
 						<div class="innerBox text-center" id="roomBox">
 							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
+								<p class="col-sm gmode" style="margin: 0; text-align: left;">
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
+									<img class="micPic" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
@@ -316,16 +287,16 @@ button>img {
 							</div>
 						</div>
 						<!-- 만들어진 방 end -->
-						
+
 						<!-- 만들어진 방 begin -->
 						<!-- <div class="innerBox" style="text-align: center"> -->
 						<div class="innerBox text-center" id="roomBox">
 							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
+								<p class="col-sm gmode" style="margin: 0; text-align: left;">
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
+									<img class="micPic" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
@@ -358,16 +329,16 @@ button>img {
 							</div>
 						</div>
 						<!-- 만들어진 방 end -->
-						
+
 						<!-- 만들어진 방 begin -->
 						<!-- <div class="innerBox" style="text-align: center"> -->
 						<div class="innerBox text-center" id="roomBox">
 							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
+								<p class="col-sm gmode" style="margin: 0; text-align: left;">
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
+									<img class="micPic" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>
@@ -400,16 +371,16 @@ button>img {
 							</div>
 						</div>
 						<!-- 만들어진 방 end -->
-						
+
 						<!-- 만들어진 방 begin -->
 						<!-- <div class="innerBox" style="text-align: center"> -->
 						<div class="innerBox text-center" id="roomBox">
 							<div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
-								<p class="col-sm" style="margin: 0; text-align: left;">
+								<p class="col-sm gmode" style="margin: 0; text-align: left;">
 									<b>솔로랭크 </b>
 								</p>
 								<p class="col-sm" style="margin: 0; text-align: right;">
-									<img style="width: 25px; height: 25px;" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
+									<img class="micPic" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 								</p>
 							</div>
 							<div class="roomTitle">너는 뭘 공부한거니?~</div>

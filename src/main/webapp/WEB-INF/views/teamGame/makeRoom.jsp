@@ -134,7 +134,7 @@ input.apple-switch:checked:after {
 <script type="text/javascript">
 	function fn_chatRoom() {
 		makeRoom = window.open("chatRoom", "chatingRoom",
-				"width=1300, height=820, scroll=no, left=500, top=250");
+				"width=1100, height=720, scroll=no, left=500, top=250");
 		opener = makeRoom;
 		window.close();
 	}
