@@ -12,14 +12,14 @@ public class TeamGameVO {
     private String status;
     private Date inDate;
     private String inUserId;
-    private Date upDate;
+    private Date modDate;
     private String upUserId;
 
     public TeamGameVO(){
 
     }
 
-    public TeamGameVO(int teamgameSep, String userId, String title, String matchMode, String message, String position, String status, Date inDate, String inUserId, Date upDate, String upUserId) {
+    public TeamGameVO(int teamgameSep, String userId, String title, String matchMode, String message, String position, String status, Date inDate, String inUserId, Date modDate, String upUserId) {
         this.teamgameSep = teamgameSep;
         this.userId = userId;
         this.title = title;
@@ -29,7 +29,7 @@ public class TeamGameVO {
         this.status = status;
         this.inDate = inDate;
         this.inUserId = inUserId;
-        this.upDate = upDate;
+        this.modDate = modDate;
         this.upUserId = upUserId;
     }
 
@@ -105,12 +105,12 @@ public class TeamGameVO {
         this.inUserId = inUserId;
     }
 
-    public Date getUpDate() {
-        return upDate;
+    public Date getModDate() {
+        return modDate;
     }
 
-    public void setUpDate(Date upDate) {
-        this.upDate = upDate;
+    public void setModDate(Date modDate) {
+        this.modDate = modDate;
     }
 
     public String getUpUserId() {
@@ -133,7 +133,7 @@ public class TeamGameVO {
                 ", status='" + status + '\'' +
                 ", inDate=" + inDate +
                 ", inUserId='" + inUserId + '\'' +
-                ", upDate=" + upDate +
+                ", modDate=" + modDate +
                 ", upUserId='" + upUserId + '\'' +
                 '}';
     }

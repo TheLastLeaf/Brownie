@@ -5,17 +5,17 @@
 <mapper namespace="kr.co.brownie.notice.service.impl.NoticeMapper">
     <select id="selectList" resultType="kr.co.brownie.notice.service.NoticeVO">
         SELECT BOARD_SEQ,
-               BOARD_KIND,
+               BOARD_KIND boardKind,
                TITLE,
                CONTENT,
-               NOTICE_YN,
-               STATUS,
-               IN_DATE,
-               IN_USER_ID,
-               UP_DATE,
-               UP_USER_ID,
-               FILE_SEQ,
-               SUB_SEQ
+               NOTICE_YN noticeYn,
+               STATUS status,
+               IN_DATE inDate,
+               IN_USER_ID inUserId,
+               UP_DATE modDate,
+               UP_USER_ID upUserId,
+               FILE_SEQ fileSeq,
+               SUB_SEQ subSeq
         FROM BROWNIE_BOARD
     </select>
 </mapper>

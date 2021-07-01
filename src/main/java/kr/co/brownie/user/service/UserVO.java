@@ -9,7 +9,7 @@ public class UserVO {
     private int blackStack;
     private String status;
     private Date inDate;
-    private Date upDate;
+    private Date modDate;
     private String inUserId;
     private String upUserId;
 
@@ -17,14 +17,14 @@ public class UserVO {
 
     }
 
-    public UserVO(String userId, String lolId, String nickName, int blackStack, String status, Date inDate, Date upDate, String inUserId, String upUserId) {
+    public UserVO(String userId, String lolId, String nickName, int blackStack, String status, Date inDate, Date modDate, String inUserId, String upUserId) {
         this.userId = userId;
         this.lolId = lolId;
         this.nickName = nickName;
         this.blackStack = blackStack;
         this.status = status;
         this.inDate = inDate;
-        this.upDate = upDate;
+        this.modDate = modDate;
         this.inUserId = inUserId;
         this.upUserId = upUserId;
     }
@@ -77,12 +77,12 @@ public class UserVO {
         this.inDate = inDate;
     }
 
-    public Date getUpDate() {
-        return upDate;
+    public Date getModDate() {
+        return modDate;
     }
 
-    public void setUpDate(Date upDate) {
-        this.upDate = upDate;
+    public void setModDate(Date modDate) {
+        this.modDate = modDate;
     }
 
     public String getInUserId() {
@@ -110,7 +110,7 @@ public class UserVO {
                 ", blackStack=" + blackStack +
                 ", status='" + status + '\'' +
                 ", inDate=" + inDate +
-                ", upDate=" + upDate +
+                ", modDate=" + modDate +
                 ", inUserId='" + inUserId + '\'' +
                 ", upUserId='" + upUserId + '\'' +
                 '}';
