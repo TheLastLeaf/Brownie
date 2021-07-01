@@ -22,9 +22,9 @@ public class UserController {
 	public String userSync() {
 		return "user/userSync";
 	}
-	@GetMapping("/userComment")
-	public String userComment() {
-		return "user/userComment";
+	@GetMapping("/userReview")
+	public String userReview() {
+		return "user/userReview";
 	}
 	@GetMapping("/userModify")
 	public String userModify() {

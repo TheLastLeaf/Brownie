@@ -50,6 +50,7 @@ body {
 	color: white;
 	margin-bottom: 10px;
 	font-size: 15px;
+	border-radius: 8px;
 }
 input[type="text"] {
 	margin: 10px;

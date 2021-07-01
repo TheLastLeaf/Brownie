@@ -216,6 +216,12 @@ h1 {
 .contextmenu li:hover a {
 	color: #0000FF;
 }
+
+.paging {
+	display: flex;
+	justify-content: center;
+	margin: 0px 0px 8px;
+}
 </style>
 
 <script>
@@ -228,7 +234,7 @@ h1 {
 				"width=800, height=680, left=250,top=200");
 	};
 	function fn_review() {
-		window.open("user/userComment", "userComment",
+		window.open("user/userReview", "userReview",
 				"width=1080, height=520, left=250,top=200");
 	};
 	function fn_declaration() {
@@ -312,8 +318,7 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a>
-						<span>userDetail</span>
+						<a href="#">userInfo</a> <span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -459,9 +464,25 @@ h1 {
 							<div class="caption">☆☆☆☆★</div>
 						</div>
 					</div>
+					<div class="review col-4">
+						<div class="reviewDay">작성자&nbsp;21/07/01</div>
+						<div class="rev">
+							내일은 어떤 기능을 할까요!?!?
+							<!-- 상세내용담는공간 -->
+							<div class="caption">☆☆★★★</div>
+						</div>
+					</div>
+
+					<!-- 페이징처리 -->
+					<div class="paging col-12">
+						<a href="#">[prev]</a>
+						<a href="#">[1]</a>
+						<a href="#">[2]</a>
+						<a href="#">[3]</a>
+						<a href="#">[next]</a>
+					</div>
 				</div>
 
-				<!-- <div id="reviewBox" style="color: white;"></div> -->
 				<!-- 마우스 우클릭 (숨김처리됨li태그들) -->
 				<ul class="contextmenu">
 					<li><a onclick="fn_declaration()">신고하기</a></li>
@@ -469,7 +490,7 @@ h1 {
 					<li><a href="#">둘러보기</a></li>
 				</ul>
 
-				<!-- share box begin  -->
+				<!-- 그냥 밑에서 한칸 띄워 놓고 싶어서 만듬 share box begin  -->
 				<div style="border: none; display: block;" class="dt-share"></div>
 				<!-- share box end -->
 
