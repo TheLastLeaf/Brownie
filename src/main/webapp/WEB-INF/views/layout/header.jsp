@@ -12,6 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Browniee</title>
 
+	<!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/common/icon.ico"/>
+    
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap"
           rel="stylesheet">
