@@ -17,9 +17,7 @@ public class YouTubeServiceImpl implements YouTubeService {
 	YouTubeMapper youTubeMapper;
 
 	@Override
-	public List<YouTubeVO> selectList(Map<String, Object> map) {
+	public List<YouTubeVO> selectList() {
 		return youTubeMapper.selectList();
 	}
-
-
 }

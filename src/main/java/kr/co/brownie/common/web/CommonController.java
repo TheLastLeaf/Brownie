@@ -28,13 +28,13 @@ public class CommonController {
 
 
     @GetMapping(path = {"", "index"})
-    public ModelAndView index(@RequestParam Map<String, Object> map, ModelAndView mav) {
+    public String index(Model model) {
     	//main youtube list
-    	List<YouTubeVO> youTubeVoList = this.youTubeService.selectList(map);
-    	mav.addObject("youTubeVoList", youTubeVoList);
-    	mav.setViewName("common/index");
+    	List<YouTubeVO> youTubeVoList = this.youTubeService.selectList();
+        System.out.println(youTubeVoList);
+        model.addAttribute("youTubeVoList", youTubeVoList);
 
-    	return mav;
+    	return "common/index";
     }
 
     @GetMapping("/contact")

@@ -4,36 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.common.service.impl.YouTubeMapper">
     <select id="selectList" resultType="kr.co.brownie.common.service.YouTubeVO">
-		SELECT
-			YOUTUBE_SEQ youtubeSeq,
-            KIND,
-            ETAG,
-            NEXT_PAGE_TOKEN nextPageToken,
-            REGION_CODE regionCode,
-            TOTAL_RESULTS totalResults,
-            RESULTS_PER_PAGE resultsPerPage,
-            ITEMS_KIND itemsKind,
-            ITEMS_ETAG itemsEtag,
-            ITEMS_ID_KIND itemsIdKind,
-            ITEMS_ID_VIDEO_ID itemsIdVideoId,
-            ITEMS_SNIPPET_PUBLISHED_AT itemsSnippetPublishedAt,
-            ITEMS_SNIPPET_CHANNEL_ID itemsSnippetChannelId,
-            ITEMS_SNIPPET_TITLE itemsSnippetTitle,
-            ITEMS_SNIPPET_DESCRIPTION itemsSnippetDescription,
-            THUMNAILS_DEFAULT_URL thumnailsDefaultUrl,
-            THUMNAILS_DEFAULT_WIDTH thumnailsDefaultWidth,
-            THUMNAILS_DEFAULT_HEIGHT thumnailsDefaultHeight,
-            THUMNAILS_MEDIUM_URL thumnailsMediumUrl,
-            THUMNAILS_MEDIUM_WIDTH thumnailsMediumWidth,
-            THUMNAILS_MEDIUM_HEIGHT thumnailsMediumHeight,
-            THUMNAILS_HIGH_URL thumnailsHighUrl,
-            THUMNAILS_HIGH_WIDTH thumnailsHighWidth,
-            THUMNAILS_HIGH_HEIGHT thumnailsHighHeight,
-            ITEMS_SNIPPET_CHANNEL_TITLE itemsSnippetChannelTitle,
-            ITEMS_SNIPPET_LIVE_BROADCAST_CONTENT itemsSnippetLiveBroadcastContent,
-            ITEMS_SNIPPET_PUBLISH_TIME itemsSnippetPublishTime,
-            IN_DATE inDate
-		FROM
-			YOUTUBE_API
+        SELECT KIND                              AS KIND,
+               ETAG                              AS ETAG,
+               ID_KIND                           AS IDKIND,
+               ID_VIDEOID                        AS IDVIDEOID,
+               SNIPPET_PUBLISHEDAT               AS SNIPPETPUBLISHEDAT,
+               SNIPPET_CHANNELID                 AS SNIPPETCHANNELID,
+               SNIPPET_TITLE                     AS SNIPPETTITLE,
+               SNIPPET_DESCRIPTION               AS SNIPPET_DESCRIPTION,
+               SNIPPET_THUMBNAILS_DEFAULT_URL    AS SNIPPETTHUMBNAILSDEFAULTURL,
+               SNIPPET_THUMBNAILS_DEFAULT_WIDTH  AS SNIPPETTHUMBNAILSDEFAULTWIDTH,
+               SNIPPET_THUMBNAILS_DEFAULT_HEIGHT AS SNIPPETTHUMBNAILSDEFAULTHEIGHT,
+               SNIPPET_THUMBNAILS_MEDIUM_URL     AS SNIPPETTHUMBNAILSMEDIUMURL,
+               SNIPPET_THUMBNAILS_MEDIUM_WIDTH   AS SNIPPETTHUMBNAILSMEDIUMWIDTH,
+               SNIPPET_THUMBNAILS_MEDIUM_HEIGHT  AS SNIPPETTHUMBNAILSMEDIUMHEIGHT,
+               SNIPPET_THUMBNAILS_HIGH_URL       AS SNIPPETTHUMBNAILSHIGHURL,
+               SNIPPET_THUMBNAILS_HIGH_WIDTH     AS SNIPPETTHUMBNAILSHIGHWIDTH,
+               SNIPPET_THUMBNAILS_HIGH_HEIGHT    AS SNIPPETTHUMBNAILSHIGHHEIGHT,
+               SNIPPET_CHANNELTITLE              AS SNIPPETCHANNELTITLE,
+               SNIPPET_LIVEBROADCASTCONTENT      AS SNIPPETLIVEBROADCASTCONTENT,
+               SNIPPET_PUBLISHTIME               AS SNIPPETPUBLISHTIME
+        FROM YOUTUBE_API
     </select>
 </mapper>
