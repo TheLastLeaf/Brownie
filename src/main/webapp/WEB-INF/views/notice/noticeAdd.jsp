@@ -2,11 +2,72 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- 서머노트를 위해 추가해야할 부분 -->
+<script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
+<script src="${pageContext.request.contextPath}/resources/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css">
+<!--  -->
 <script>
-    $(function(){
-        $('.notice_content').html(
-            $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
+    /*   $(function(){
+           $('.notice_content').html(
+               $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
+       });*/
+    $(document).ready(function () {
+        const toolbar = [
+            // 글꼴 설정
+            ['fontname', ['fontname']],
+            // 글자 크기 설정
+            ['fontsize', ['fontsize']],
+            // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+            // 글자색
+            ['color', ['forecolor', 'color']],
+            // 표만들기
+            ['table', ['table']],
+            // 글머리 기호, 번호매기기, 문단정렬
+            ['para', ['ul', 'ol', 'paragraph']],
+            // 줄간격
+            ['height', ['height']],
+            // 그림첨부, 링크만들기, 동영상첨부
+            ['insert', ['picture', 'link', 'video']],
+            // 코드보기, 확대해서보기, 도움말
+            ['view', ['codeview', 'fullscreen', 'help']]
+        ];
+
+        const setting = {
+            height: 300,
+            minHeight: null,
+            maxHeight: null,
+            focus: true,
+            lang: 'ko-KR',
+            toolbar: toolbar,
+            callbacks: { //여기 부분이 이미지를 첨부하는 부분
+                onImageUpload: function (files, editor, welEditable) {
+                    for (let i = files.length - 1; i >= 0; i--) {
+                        uploadSummernoteImageFile(files[i], this);
+                    }
+                }
+            }
+        };
+
+        $('.summernote').summernote(setting);
     });
+
+    function uploadSummernoteImageFile(file, el) {
+        const data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "uploadSummernoteImageFile",
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function (data) {
+                $(el).summernote('editor.insertImage', data.url);
+            }
+        });
+    }
 </script>
 <style>
     .spad{
@@ -44,18 +105,15 @@
                 <div class="contact-text">
                     <div class="contact-form">
                         <div class="dt-leave-comment">
-                            <form action="/notice/detail">
-                                <div class="input-list">
-                                    <input type="text" placeholder="Title" style="width: 98%;">
+                                <div class="input-list" style="padding-bottom: 10px;">
+                                    <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;">
                                 </div>
-                                <textarea placeholder="Content" style="height: 500px;" id="notice_content"
-                                          class="notice_content"></textarea>
-                                <div id="file">
-                                    <input type="file" value="파일선택" style="width: 20%; color: #666666;">
+                                <div style="border:1px solid #666666">
+                                    <textarea class="summernote" ></textarea>
                                 </div>
-                                <br/>
-                                <button type="submit">등록</button>
-                            </form>
+                                <div style="padding-top: 10px;">
+                                    <input type="submit" value="등록" style="width: 100%;">
+                                </div>
                         </div>
                     </div>
                 </div>
