@@ -6,6 +6,7 @@ import kr.co.brownie.notice.service.NoticeVO;
 import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.notice.service.NoticeService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,10 +32,9 @@ public class NoticeController {
     }
 
     @GetMapping(path={"", "/list"})
-    public ModelAndView noticeList(@RequestParam Map<String,Object> map, ModelAndView mav) {
-        List<NoticeVO> noticeVo = this.noticeService.getNoticelist(map);
-        mav.addObject("noticeVo",noticeVo);
-        mav.setViewName("notice/noticeList");
-        return mav; //공지 리스트
+    public String noticeList(@RequestParam Map<String,Object> map, Model model) {
+        List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
+        model.addAttribute("noticeVOList",noticeVOList);
+        return "notice/noticeList"; //공지 리스트
     }
 }

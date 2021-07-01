@@ -59,17 +59,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 p-0">
-                    <c:forEach var="row" items="${noticeVo}">
+                    <p>${noticeVOList}</p>
+                    <c:forEach var="noticeVO" items="${noticeVOList}">
                         <div class="cl-item">
                             <div class="cl-pic">
                                 <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-1.jpg" alt="">
                             </div>
                             <div class="cl-text">
-                                <h5><a href="/notice/detail">${row.title}</a></h5>
+                                <h5><a href="${pageContext.request.contextPath}/notice/detail">${noticeVO.title}</a></h5>
                                 <ul>
-                                    <li>by <span>${row.inUserId}</span></li>
+                                    <li>by <span>${noticeVO.inUserId}</span></li>
                                 </ul>
-                                <p class="content-text">${row.content}</p>
+                                <p class="content-text">${noticeVO.content}</p>
                             </div>
                         </div>
                     </c:forEach>

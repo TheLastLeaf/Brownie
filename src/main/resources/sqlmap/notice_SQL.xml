@@ -4,20 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.notice.service.impl.NoticeMapper">
     <select id="selectList" resultType="kr.co.brownie.notice.service.NoticeVO">
-        SELECT A.BOARD_SEQ,
-               A.BOARD_KIND,
-               A.TITLE,
-               A.CONTENT,
-               A.NOTICE_YN,
-               A.STATUS,
-               A.IN_DATE,
-               A.IN_USER_ID,
-               A.UP_DATE,
-               A.UP_USER_ID,
-               A.FILE_SEQ,
-               A.SUB_SEQ,
-               B.FILE_PATH
-        FROM BROWNIE_BOARD A, BROWNIE_FILE B
-        WHERE A.FILE_SEQ=B.FILE_SEQ
+        SELECT BOARD_SEQ,
+               BOARD_KIND,
+               TITLE,
+               CONTENT,
+               NOTICE_YN,
+               STATUS,
+               IN_DATE,
+               IN_USER_ID,
+               UP_DATE,
+               UP_USER_ID,
+               FILE_SEQ,
+               SUB_SEQ
+        FROM BROWNIE_BOARD
     </select>
 </mapper>
