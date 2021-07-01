@@ -46,20 +46,15 @@
 	border-bottom: 2px solid black;
 }
 
-@keyframes player {
+/* @keyframes player {
   0%   {left:0px; top:0px;}
-  100%  {left:200px; top:0px;}
-}
+  100%  {left:182px; top:0px;}
+}*/
 
 .player {
 	z-index: inherit;
 	position: relative;
-	animation-name: player;
-	animation-duration: 5s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-	animation-direction: alternate;
-}
+} 
 
 .land {
 	width: 128px;
@@ -124,6 +119,8 @@
 <!-- Breadcrumb Section End -->
 
 <script type="text/javascript">
+	var playerPos = 0;
+	var pos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
  	/* 주사위 */
 	window.onload = function () {
 		$('#btnRoll').mousedown(function() {
@@ -142,8 +139,6 @@
 	}
 
 	function dis() {
-		
-		
 		const buttonRoolDice = document.querySelector('.learn-more');
 
 		const diceSide1 = document.getElementById('dice-side-1');
@@ -156,7 +151,7 @@
 		var num = [ side1, side2 ];
 
 		const diceTotal = side1 + side2;
-
+		
 		for (var i = 0; i < num.length; i++) {
 			if (num[i] == 1) {
 				num[i] = "<i class='fas fa-dice-one fa-9x'></i>";
@@ -186,12 +181,56 @@
 		if (side1 === side2) {
 			status1.innerHTML += ' 더블! 한접시 더!<br>';
 		}
-
+		
+		setTimeout('move('+diceTotal+')',1500);
+		
+		
+		
 		/* if ($('#dis').css('visibility') == 'hidden') {
 			$('#dis').css('visibility', 'visible')
 		} else {
 			$('#dis').css('visibility', 'hidden')
 		} */
+	}
+	
+	function move(diceTotal) { 
+		for (var i = 0; i < diceTotal; i++) {
+			if(playerPos==16){
+				playerPos=0;
+			}else
+			if (0<=playerPos&&playerPos<=3) {
+				leftMove();
+				playerPos++;
+			}else
+			if (4<=playerPos&&playerPos<=7) {
+				downMove();
+				playerPos++;
+			}else
+			if (8<=playerPos&&playerPos<=11) {
+				rightMove();
+				playerPos++;
+			}else
+			if (12<=playerPos&&playerPos<=15) {
+				upMove();
+				playerPos++;
+			}
+		}
+	}
+	
+	function leftMove() { 
+		$(".player").animate({left:"+=186"}, 750);
+	}
+	
+	function rightMove() { 
+		$(".player").animate({left:"-=186"}, 750);
+	}
+	
+	function downMove() { 
+		$(".player").animate({top:"+=186"}, 750);
+	}
+	
+	function upMove() { 
+		$(".player").animate({top:"-=186"}, 750);
 	}
 </script>
 
