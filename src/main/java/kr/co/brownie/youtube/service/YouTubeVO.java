@@ -1,4 +1,4 @@
-package kr.co.brownie.common.service;
+package kr.co.brownie.youtube.service;
 
 import lombok.Data;
 

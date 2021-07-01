@@ -1,14 +1,13 @@
-package kr.co.brownie.common.service.impl;
+package kr.co.brownie.youtube.service.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import kr.co.brownie.common.service.YouTubeService;
-import kr.co.brownie.common.service.YouTubeVO;
+import kr.co.brownie.youtube.service.YouTubeService;
+import kr.co.brownie.youtube.service.YouTubeVO;
 
 @Service("youTubeService")
 public class YouTubeServiceImpl implements YouTubeService {

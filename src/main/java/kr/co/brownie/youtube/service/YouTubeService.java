@@ -1,7 +1,6 @@
-package kr.co.brownie.common.service;
+package kr.co.brownie.youtube.service;
 
 import java.util.List;
-import java.util.Map;
 
 public interface YouTubeService {
 	List<YouTubeVO> selectList();
