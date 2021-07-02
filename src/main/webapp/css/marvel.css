@@ -102,102 +102,75 @@ h1 span:after {
 
 /* 주사위버튼  */
 @import
-   url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
+	url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
 
-.learn-more {
-   top:190px;
-   position: relative;
-   display: inline-block;
-   cursor: pointer;
-   outline: none;
-   border: 0;
-   vertical-align: bottom;
-   text-decoration: none;	
-  font-family: inherit;
-  display: inline-block;
-  font-size: 1.2em;
-  font-weight: 600;
-  margin-top:10px;
-  padding: 2em 2em;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #ff0081;
-  color: #fff;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
-}
-.learn-more:focus {
-  outline: 0;
+* {
+	box-sizing: border-box;
 }
 
-.learn-more:hover {
-   background: #ffe9e9;
-   transform: translate(0, 0.25em);
+*::before, *::after {
+	box-sizing: border-box;
 }
 
-
-.learn-more:before, .learn-more:after {
-  position: absolute;
-  content: "";
-  display: block;
-  width: 140%;
-  height: 100%;
-  left: -20%;
-  z-index: -1000;
-  transition: all ease-in-out 0.5s;
-  background-repeat: no-repeat;
-}
-.learn-more:before {
-  display: none;
-  top: -75%;
-  background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 20%, #ff0081 20%, transparent 30%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
-  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
-}
-.learn-more:after {
-  display: none;
-  bottom: -75%;
-  background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
-  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
-}
-.learn-more:active {
-  transform: scale(0.8);
-  background-color: #e60074;
-  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
-}
-.learn-more.animate:before {
-  display: block;
-  animation: topBubbles ease-in-out 0.75s forwards;
-}
-.learn-more.animate:after {
-  display: block;
-  animation: bottomBubbles ease-in-out 0.75s forwards;
+button {
+	top:190px;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	border: 0;
+	vertical-align: bottom;
+	text-decoration: none;
+	font-size: 15px;
+	font-family: inherit;
 }
 
-@keyframes topBubbles {
-  0% {
-    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
-  }
-  50% {
-    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
-  }
-  100% {
-    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
+button.learn-more {
+	font-weight: 900;
+	color: #382b22;
+	text-transform: uppercase;
+	padding: 2em 2em;
+	background: #fff0f0;
+	border: 4px solid #b18597;
+	border-radius: 0.5em;
+	transform-style: preserve-3d;
+	transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background
+		150ms cubic-bezier(0, 0, 0.58, 1);
 }
-@keyframes bottomBubbles {
-  0% {
-    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
-  }
-  50% {
-    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
-  }
-  100% {
-    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
+
+button.learn-more::before {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #f9c4d2;
+	border-radius: inherit;
+	box-shadow: 0 0 0 4px #b18597, 0 0.625em 0 0 #ffe3e2;
+	transform: translate3d(0, 0.75em, -1em);
+	transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow
+		150ms cubic-bezier(0, 0, 0.58, 1);
+}
+
+button.learn-more:hover {
+	background: #ffe9e9;
+	transform: translate(0, 0.25em);
+}
+
+button.learn-more:hover::before {
+	box-shadow: 0 0 0 4px #b18597, 0 0.5em 0 0 #ffe3e2;
+	transform: translate3d(0, 0.5em, -1em);
+}	
+
+button.learn-more:active {
+	background: #ffe9e9;
+	transform: translate(0em, 0.75em);
+}
+
+button.learn-more:active::before {
+	box-shadow: 0 0 0 4px #b18597, 0 0 #ffe3e2;
+	transform: translate3d(0, 0, -1em);
 }

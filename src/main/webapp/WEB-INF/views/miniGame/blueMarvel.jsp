@@ -1,6 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:import url="../layout/header.jsp"/>
+<c:set var="path" value="${pageContext.request.contextPath}" />
+<c:import url="../layout/header.jsp">
+	<c:param name="path" value="${pageContext.request.contextPath}" />
+</c:import>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -119,60 +122,25 @@
 	var oneInOne = true;
 	var playerPos = 0;
 	var pos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-	
-	/*  */
-	
-	
-	var animateButton = function(e) {
-		console.log(1);
-		e.preventDefault;
-		//reset animation
-		e.target.classList.remove('animate');
-
-		e.target.classList.add('animate');
-		setTimeout(function() {
-			console.log(2);
-			e.target.classList.remove('animate');
-		}, 700);
-	};
-
-	var bubblyButtons = document.getElementsByClassName("learn-more");
-
-	/*  */
-
-	/* 주사위 */
-	window.onload = function() {
-		
-		for (var i = 0; i < bubblyButtons.length; i++) {
-			console.log(3);
-			bubblyButtons[i].addEventListener('click', animateButton, false);
-		}
-		
-		$('#btnRoll')
-				.mousedown(
-						function() {
-							$('.wrapper')
-									.css('background-image',
-											"url('${pageContext.request.contextPath}/img/miniGame/rolling.gif')")
-							$('.tamin').css('visibility', 'hidden')
-						});
-		$('#btnRoll')
-				.mouseup(
-						function() {
-							$('.wrapper')
-									.css('background-image',
-											"url('${pageContext.request.contextPath}/img/miniGame/diceDrop.gif')")
-							setTimeout("reset()", 2000);
-						});
-	}
-
+ 	/* 주사위 */
+	window.onload = function () {
+		$('#btnRoll').mousedown(function() {
+			$('.wrapper').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/rolling.gif')")
+			$('.tamin').css('visibility', 'hidden')
+		});
+		$('#btnRoll').mouseup(function() {
+			$('.wrapper').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/diceDrop.gif')")
+			setTimeout("reset()", 2000); 
+		});
+ 	}
+ 	
 	function reset() {
 		$('.wrapper').css('background-image', "none")
 		$('.tamin').css('visibility', 'visible')
 	}
 
 	function dis() {
-		if (!oneInOne) {
+		if(!oneInOne){
 			return;
 		} else {
 			oneInOne = false;
@@ -189,7 +157,7 @@
 		var num = [ side1, side2 ];
 
 		const diceTotal = side1 + side2;
-
+		
 		for (var i = 0; i < num.length; i++) {
 			if (num[i] == 1) {
 				num[i] = "<i class='fas fa-dice-one fa-9x'></i>";
@@ -214,73 +182,67 @@
 		diceSide1.innerHTML = num[0];
 		diceSide2.innerHTML = num[1];
 
-		status1.innerHTML = diceTotal + "!";
+		status1.innerHTML = diceTotal+"!";
 
 		if (side1 === side2) {
 			status1.innerHTML += ' 더블! 한접시 더!<br>';
 		}
-
-		setTimeout('move(' + diceTotal + ')', 2000);
-		oneInOne = true;
-
+		
+		setTimeout('move('+diceTotal+')',2000);
+		oneInOne=true;
+		
 		/* if ($('#dis').css('visibility') == 'hidden') {
 			$('#dis').css('visibility', 'visible')
 		} else {
 			$('#dis').css('visibility', 'hidden')
 		} */
 	}
-
-	function move(diceTotal) {
+	
+	function move(diceTotal) { 
 		for (var i = 0; i < diceTotal; i++) {
-			if (playerPos == 16) {
-				playerPos = 0;
-			} else if (0 <= playerPos && playerPos <= 3) {
+			if(playerPos==16){
+				playerPos=0;
+			}else
+			if (0<=playerPos&&playerPos<=3) {
 				leftMove();
 				playerPos++;
-			} else if (4 <= playerPos && playerPos <= 7) {
+			}else
+			if (4<=playerPos&&playerPos<=7) {
 				downMove();
 				playerPos++;
-			} else if (8 <= playerPos && playerPos <= 11) {
+			}else
+			if (8<=playerPos&&playerPos<=11) {
 				rightMove();
 				playerPos++;
-			} else if (12 <= playerPos && playerPos <= 15) {
+			}else
+			if (12<=playerPos&&playerPos<=15) {
 				upMove();
 				playerPos++;
 			}
 		}
 	}
-
-	function leftMove() {
-		$(".player").animate({
-			left : "+=186"
-		}, 750);
+	
+	function leftMove() { 
+		$(".player").animate({left:"+=186"}, 750);
 	}
-
-	function rightMove() {
-		$(".player").animate({
-			left : "-=186"
-		}, 750);
+	
+	function rightMove() { 
+		$(".player").animate({left:"-=186"}, 750);
 	}
-
-	function downMove() {
-		$(".player").animate({
-			top : "+=186"
-		}, 750);
+	
+	function downMove() { 
+		$(".player").animate({top:"+=186"}, 750);
 	}
-
-	function upMove() {
-		$(".player").animate({
-			top : "-=186"
-		}, 750);
+	
+	function upMove() { 
+		$(".player").animate({top:"-=186"}, 750);
 	}
 </script>
 
 <!-- Categories Grid Section Begin -->
 <section class="categories-grid-section spad">
 	<div class="container">
-	<div class="row">
-
-		<div style="margin-left: auto; margin-right: auto;">
+		<div style="padding-left: 30px; padding-right: 30px; padding-top: 30px;">
 			<table class="pan">
 				<tbody>
 					<tr>
@@ -374,8 +336,9 @@
 
 		</div>
 		<!-- 갤러리끝 -->
-			</div>
 	</div>
 </section>
 <!-- Categories Grid Section End -->
-<c:import url="../layout/footer.jsp"/>
+<c:import url="../layout/footer.jsp">
+	<c:param name="path" value="${pageContext.request.contextPath}" />
+</c:import>
