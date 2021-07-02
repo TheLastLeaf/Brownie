@@ -87,7 +87,7 @@
                 <div class="breadcrumb-text">
                     <h3>공지사항 등록</h3>
                     <div class="bt-option">
-                        <a href="/index">Home</a>
+                        <a href="/index" style="color: black;">Home</a>
                         <span>notice Add</span>
                     </div>
                 </div>
@@ -106,9 +106,9 @@
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
-                                <div class="form-check innerBox text-right">
-                                    <label class="form-check-label" for="reply" style="color:white;">
-                                    <input type="checkbox" class="form-check-input" id="reply">댓글창 숨기기</label>
+                                <div class="form-check innerBox text-right custom-control custom-checkbox mb-3">
+                                    <input type="checkbox" class="custom-control-input" id="reply" name="reply">
+                                    <label class="custom-control-label" for="reply" style="color:white;">댓글창 숨기기</label>
                                 </div>
                                     <div class="input-list" style="padding-bottom: 10px;">
                                         <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;">
