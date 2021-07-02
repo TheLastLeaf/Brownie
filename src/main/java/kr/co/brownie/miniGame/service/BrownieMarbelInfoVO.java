@@ -6,8 +6,8 @@ import java.util.Date;
 
 @Data
 public class BrownieMarbelInfoVO {
-	private String seq;
-	private String degree;
+	private int seq;
+	private int degree;
 	private String kind;
 	private String name;
 	private String briefExpl;

@@ -320,10 +320,10 @@
 										<div id="dice-side-2" class="dicePic"></div>
 										<h2 id="status"></h2>
 									</div>
-									${infoList.seq}
+									${infoList[0].seq}
 									<button id="btnRoll" onclick="dis()" class="learn-more">LET'S<br>ROLL</button>
 								</div> 
-							
+								
 						</td>
 						
 						<td class="td_rl">

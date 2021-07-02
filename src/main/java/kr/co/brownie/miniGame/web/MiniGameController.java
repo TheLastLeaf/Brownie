@@ -22,6 +22,7 @@ public class MiniGameController {
 	@GetMapping(path={"", "/blueMarvel"})
 	public String brownieMain(Model model) {
 		List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList();
+		System.out.println("info" + brownieMarbelInfo);
         model.addAttribute("infoList",brownieMarbelInfo);
 		return "miniGame/blueMarvel";
 	}
