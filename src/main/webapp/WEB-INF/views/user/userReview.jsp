@@ -120,7 +120,7 @@ hr {
 	</div>
 
 	<div class="signup-text">
-		<div class="container">
+		<div class="container"> 
 			<form action="" class="signup-form">
 				<div class="signup-title" style="margin: 10px;">
 					<div class="row">
