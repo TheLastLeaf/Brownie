@@ -19,7 +19,7 @@ public class TipController {
         return "tip/categories-grid"; // 기본화면
     }
 
-    @GetMapping("/tipList")
+    @GetMapping({"", "/tipList"})
     public String tipList() {
         return "tip/tipList";
     }
@@ -43,10 +43,4 @@ public class TipController {
     public String typography() {
         return "tip/typography"; // 기본화면 
     }
-    
-    @GetMapping
-    public String main() {
-        return tipList();
-    }
-
 }

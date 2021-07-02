@@ -14,7 +14,7 @@ public class GalleryController {
     @Resource(name = "galleryService")
     GalleryService galleryService;
 
-    @GetMapping("/galleryList")
+    @GetMapping({"","/galleryList"})
     public String galleryList() {
         return "gallery/galleryList";
     }
@@ -22,10 +22,5 @@ public class GalleryController {
     @GetMapping("/galleryDetail")
     public String details_post_gallery() {
         return "gallery/galleryDetail";
-    }
-    
-    @GetMapping
-    public String main() {
-        return galleryList();
     }
 }

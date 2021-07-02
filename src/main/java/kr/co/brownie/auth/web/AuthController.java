@@ -42,6 +42,6 @@ public class AuthController {
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();
 
-        return "redirect:/";
+        return "redirect:/index";
     }
 }

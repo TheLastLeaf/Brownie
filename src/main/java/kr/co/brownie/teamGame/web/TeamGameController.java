@@ -11,27 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/teamGame")
 public class TeamGameController {
-	@Resource(name = "teamGameService")
-	TeamGameService teamGameService;
+    @Resource(name = "teamGameService")
+    TeamGameService teamGameService;
 
-	@GetMapping("/chatRoom")
-	public String chatRoom() {
-		return "teamGame/chatRoom";
-	}
+    @GetMapping("/chatRoom")
+    public String chatRoom() {
+        return "teamGame/chatRoom";
+    }
 
-	@GetMapping("/makeRoom")
-	public String makeRoom() {
-		return "teamGame/makeRoom";
-	}
+    @GetMapping("/makeRoom")
+    public String makeRoom() {
+        return "teamGame/makeRoom";
+    }
 
-	@GetMapping("/teamMaker")
-	public String teamMaker() {
-		return "teamGame/teamMaker";
-	}
-	
-
-	@GetMapping
-	public String main() {
-		return teamMaker();
-	}
+    @GetMapping({"", "/teamMaker"})
+    public String teamMaker() {
+        return "teamGame/teamMaker";
+    }
 }
