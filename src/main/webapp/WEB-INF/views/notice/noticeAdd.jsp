@@ -102,21 +102,27 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="contact-text">
-                    <div class="contact-form">
-                        <div class="dt-leave-comment">
-                                <div class="input-list" style="padding-bottom: 10px;">
-                                    <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;">
+                <form method="post" action="/notice/update">
+                    <div class="contact-text">
+                        <div class="contact-form">
+                            <div class="dt-leave-comment">
+                                <div class="form-check innerBox text-right">
+                                    <label class="form-check-label" for="reply" style="color:white;">
+                                    <input type="checkbox" class="form-check-input" id="reply">댓글창 숨기기</label>
                                 </div>
-                                <div style="border:1px solid #666666">
-                                    <textarea class="summernote" ></textarea>
-                                </div>
-                                <div style="padding-top: 10px;">
-                                    <input type="submit" value="등록" style="width: 100%;">
-                                </div>
+                                    <div class="input-list" style="padding-bottom: 10px;">
+                                        <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;">
+                                    </div>
+                                    <div style="border:1px solid #666666">
+                                        <textarea class="summernote" ></textarea>
+                                    </div>
+                                    <div style="padding-top: 10px;">
+                                        <input type="submit" value="등록" style="width: 100%;">
+                                    </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
