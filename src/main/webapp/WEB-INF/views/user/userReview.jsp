@@ -125,7 +125,7 @@ hr {
 				<div class="signup-title" style="margin: 10px;">
 					<div class="row">
 						<h3 class="title" style="color: white;">후기작성</h3>
-					</div>
+					</div> 
 				</div>
 
 				<!-- 					<hr /> -->
