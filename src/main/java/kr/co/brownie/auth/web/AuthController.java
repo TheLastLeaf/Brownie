@@ -13,35 +13,34 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-
 @Controller
 @RequestMapping
 public class AuthController {
-    @Resource(name = "authService")
-    AuthService authService;
+	@Resource(name = "authService")
+	AuthService authService;
 
-    @GetMapping("login")
-    public String login() {
-        return authService.getAuthorize();
-    }
+	@GetMapping("login")
+	public String login() {
+		return authService.getAuthorize();
+	}
 
-    @GetMapping("oauth")
-    public String oauth(@RequestParam String code, HttpSession httpSession) {
-        try {
-            String access_token = authService.getToken(code);
-            String id = authService.getUserInfoByToken(access_token);
-            httpSession.setAttribute("id", id);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+	@GetMapping("oauth")
+	public String oauth(@RequestParam String code, HttpSession httpSession) {
+		try {
+			String access_token = authService.getToken(code);
+			String id = authService.getUserInfoByToken(access_token);
+			httpSession.setAttribute("id", id);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        return "redirect:/";
-    }
+		return "redirect:/";
+	}
 
-    @GetMapping("logout")
-    public String logout(HttpSession httpSession) {
-        httpSession.invalidate();
+	@GetMapping("logout")
+	public String logout(HttpSession httpSession) {
+		httpSession.invalidate();
 
-        return "redirect:/index";
-    }
+		return "redirect:/index";
+	}
 }

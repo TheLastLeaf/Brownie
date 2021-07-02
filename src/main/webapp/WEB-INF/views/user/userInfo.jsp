@@ -10,7 +10,7 @@
 	border: 1px solid white;
 	border-radius: 5px;
 	color: white;
-	margin: 4px 10px 4px 0;
+	margin: 4px 10px 4px 10px;
 	text-align: center;
 	position: relative;
 	background: #1C1C1C;
@@ -226,20 +226,23 @@ h1 {
 
 <script>
 	function fn_sync() {
-		window.open("user/userSync", "userSync",
+		window.open("/user/userSync", "userSync",
 				"width=800, height=680, left=250,top=200");
 	};
 	function fn_infoMod() {
-		window.open("user/userModify", "userModify",
+		window.open("/user/userModify", "userModify",
 				"width=800, height=680, left=250,top=200");
 	};
 	function fn_review() {
-		window.open("user/userReview", "userReview",
+		window.open("/user/userReview", "userReview",
 				"width=870, height=500, left=400,top=200");
 	};
 	function fn_declaration() {
-		window.open("user/userDeclar", "userDeclar",
+		window.open("/user/userDeclar", "userDeclar",
 				"width=980, height=500, left=400,top=200");
+	}
+	function fn_infoDel(){
+		confirm("탈퇴하시겠습니까?")		
 	}
 	// 마우스 우클릭 TEXTCONTENT 
 	$(document)
@@ -334,13 +337,14 @@ h1 {
 							</div>
 							<div class="nameLv">
 								<h3>
-									리학재 | Lv.71 | <span class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i>
+									??? | Lv.71 | <span class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i>
 									</span>
 								</h3>
 							</div>
 						</div>
-						<div class="modInfo col-5" style="display: flex; justify-content: flex-end;">
+						<div class="modInfo col-5" style="display: flex; justify-content: flex-end; margin-left: 70px;">
 							<button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
+							<button type="button" class="btn btn-dark" onclick="fn_infoDel()">탈퇴</button>
 						</div>
 					</div>
 				</div>

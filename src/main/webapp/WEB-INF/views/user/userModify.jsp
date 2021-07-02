@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,9 +112,41 @@ input[name="position"] {
 }
 </style>
 <script>
-	function fn_close() {
-		window.close();
+	function fn_submit() {
+		var param = "";
+		param += "dummy=" + Math.random()
+		param += "&nickNameBox=" + nickNameBox,
+					"&top="+top,
+					"&jun="+jun,
+					"&mid="+mid,
+					"&bot="+bot,
+					"&sup="+sup;
+		$.ajax({
+            url: "/user/userInfo",
+            type: "POST",
+            data: param,
+            success: function(data){
+				alert("성공");
+            	window.close();
+            	window.reload();
+            },
+            error: function(){
+                alert("실패ㅜㅜ err");
+            }
+        });
 	}
+	
+	var nickNameBox = $("input[name=nickNameBox]").val(); 
+	var top = $("input[name=top]").val(); 
+	var jun = $("input[name=jun]").val(); 
+	var mid = $("input[name=mid]").val(); 
+	var bot = $("input[name=bot]").val(); 
+	var sup = $("input[name=sup]").val(); 
+	
+
+
+
+
 </script>
 
 <body>
@@ -131,7 +164,9 @@ input[name="position"] {
 					<h2 style="font-family: mapleBold; color: white;">정보수정</h2>
 					<p class="advice">사진을 눌러서 프로필을 바꿔보세요!</p>
 				</div>
-				<form action="#" class="signup-form">
+				
+			<!-- form태그 begin -->
+				<form action="/user/userInfo" name="frm" class="signup-form" method="POST">
 					<div class="sf-input-list ">
 						<!-- 					text-center justify-content-center align-items-center d-flex -->
 						<div class="profileBox" style="border: none;">
@@ -140,32 +175,32 @@ input[name="position"] {
 								<input type="file" id="file" />
 							</label>
 						</div>
-						<input type="text" class="input-value" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*">
+						<input type="text" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*">
 
 						<!-- 포지션선택 -->
 						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 							<label class="btn btn-danger position">
-								<input type="checkbox" name="jb-radio" class="jb-radio-1" value="top">
+								<input type="checkbox" name="top" value="top">
 								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
 							</label>
 							&nbsp;
 							<label class="btn btn-danger position">
-								<input type="checkbox" name="jb-radio" class="jb-radio-2" value="jun">
+								<input type="checkbox" name="jun" value="jun">
 								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
 							</label>
 							&nbsp;
 							<label class="btn btn-danger position">
-								<input type="checkbox" name="jb-radio" class="jb-radio-3" value="mid">
+								<input type="checkbox" name="mid" value="mid">
 								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
 							</label>
 							&nbsp;
 							<label class="btn btn-danger position">
-								<input type="checkbox" name="jb-radio" class="jb-radio-4" value="bot">
+								<input type="checkbox" name="bot" value="bot">
 								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
 							</label>
 							&nbsp;
 							<label class="btn btn-danger position">
-								<input type="checkbox" name="jb-radio" class="jb-radio-5" value="sup">
+								<input type="checkbox" name="sup" value="sup">
 								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
 							</label>
 							&nbsp;
@@ -180,10 +215,11 @@ input[name="position"] {
 							<span class="checkbox"></span>
 						</label>
 					</div>
-					<button type="submit" style="margin: 15px;">
-						<span onclick="fn_close()">update</span>
+					<button type="submit" style="margin: 15px;" onclick="fn_submit()">
+						<span>update</span>
 					</button>
 				</form>
+				<!-- form태그 end -->
 			</div>
 		</div>
 	</div>
