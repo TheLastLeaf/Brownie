@@ -235,7 +235,7 @@ h1 {
 	};
 	function fn_review() {
 		window.open("user/userReview", "userReview",
-				"width=1080, height=520, left=250,top=200");
+				"width=870, height=500, left=400,top=200");
 	};
 	function fn_declaration() {
 		window.open("user/userDeclar", "userDeclar",

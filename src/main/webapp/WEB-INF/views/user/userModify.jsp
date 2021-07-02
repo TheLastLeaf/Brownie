@@ -10,6 +10,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>MODIFY</title>
 
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/common/icon.ico" />
+
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
@@ -28,9 +31,11 @@
 body {
 	background: black;
 }
-.signup-section{
+
+.signup-section {
 	overflow: hidden;
 }
+
 .profileBox {
 	display: inline-block;
 	width: 160px;
@@ -73,7 +78,8 @@ input[name="position"] {
 .chooseLane {
 	color: white;
 }
-.input-value{
+
+.input-value {
 	width: 80%;
 	text-align: center;
 }
@@ -94,17 +100,15 @@ input[name="position"] {
 }
 
 /* 마우스 올려놓았을때 효과 */
-.btn-danger:hover { 
+.btn-danger:hover {
 	background-color: coral;
 	border-color: red;
 	text-decoration: none;
 }
 
-.signup-text{
+.signup-text {
 	padding-top: 40px;
 }
-
-
 </style>
 <script>
 	function fn_close() {
@@ -118,9 +122,9 @@ input[name="position"] {
 	</div>
 
 	<div class="signup-section" style="display: block;">
-<!-- 		<div class="signup-close"> -->
-<!-- 			<i class="fa fa-close" onclick="fn_close()"></i> -->
-<!-- 		</div> -->
+		<!-- 		<div class="signup-close"> -->
+		<!-- 			<i class="fa fa-close" onclick="fn_close()"></i> -->
+		<!-- 		</div> -->
 		<div class="signup-text">
 			<div class="container">
 				<div class="signup-title" style="margin-bottom: 20px;">

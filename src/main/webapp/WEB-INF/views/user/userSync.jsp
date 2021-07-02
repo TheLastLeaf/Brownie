@@ -10,6 +10,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Team Maker</title>
 
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/common/icon.ico" />
+
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
@@ -30,11 +33,10 @@
 body {
 	background: black;
 }
-
 </style>
 
 <script type="text/javascript">
-
+	
 </script>
 <body>
 
@@ -46,9 +48,7 @@ body {
 	<!-- <span style="text-align: right;"> -->
 	<!-- 	포인트 -->
 	<!-- </span> -->
-	<div class="container">
-		
-		</div>
+	<div class="container"></div>
 
 
 	<!-- Js Plugins -->

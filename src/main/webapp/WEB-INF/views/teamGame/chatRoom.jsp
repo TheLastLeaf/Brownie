@@ -11,6 +11,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Chat System</title>
 
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/common/icon.ico" />
+
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
@@ -179,7 +182,8 @@ button[type="button"] {
 				</div>
 				<div class="enterBox row">
 					<div>
-						&nbsp;&nbsp;&nbsp; 채팅: &nbsp;<input type="text" />
+						&nbsp;&nbsp;&nbsp; 채팅: &nbsp;
+						<input type="text" />
 					</div>
 					<div class="filebox">
 						<label for="file">임티</label>
