@@ -27,7 +27,6 @@ public class CommonController {
     public String index(Model model) {
     	//main youtube list
     	List<YouTubeVO> youTubeVoList = youTubeService.selectList();
-        System.out.println(youTubeVoList);
         model.addAttribute("youTubeVoList", youTubeVoList);
 
     	return "common/index";
