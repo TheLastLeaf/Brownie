@@ -91,7 +91,7 @@
                             <li class="signup-switch signup-open">
 								<c:choose>
 									<c:when test="${id != null}">
-										<span style="margin-left:4px;"><a onclick="location.href='/user'">${id} </a>님 환영합니다</span>
+										<span style="margin-left:4px;"><a onclick="location.href='/user'" style="text-decoration: underline;">${id}</a><span style="cursor:text">님 환영합니다</span></span>
 										<span style="margin-left:4px;">Lv. 3</span>
 										<span style="margin-left:4px;"><a onclick="location.href='/user'"><i class="fa fa-address-book-o" aria-hidden="true"></a></i></span>
 										<span><a onclick="location.href='/logout'"><i class="fa fa-sign-out"></i></a></span>
