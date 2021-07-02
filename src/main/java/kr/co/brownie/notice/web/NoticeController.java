@@ -27,9 +27,22 @@ public class NoticeController {
         return "notice/noticeAdd"; // 공지 글쓰기
     }
 
+    @PostMapping("/add")
+    public String noticeAddPost(@RequestParam Map<String, Object> map, ModelAndView mav){
+        noticeService.insertNotice(map);
+        if(map.get("boardSeq")==null){
+            return "redirect:/notice";
+        }else{
+            return "redirect:/notice/detail?boardSeq="+map.get("boardSeq");
+        }
+    }
+
     @GetMapping("/detail")
     public String detail(@RequestParam Map<String, Object> map, Model model) {
-
+        String a = map.get("boardSeq").toString();
+        int boardSeq = Integer.parseInt(a);
+        /*NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+        model.addAttribute("noticeVO",noticeVO);*/
         return "notice/noticeDetail"; // 공지 디테일화면
     }
 
@@ -38,6 +51,23 @@ public class NoticeController {
         List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
         model.addAttribute("noticeVOList",noticeVOList);
         return "notice/noticeList"; //공지 리스트
+    }
+    @GetMapping("/update")
+    public String update(@RequestParam Map<String,Object> map, ModelAndView mav){
+
+        return "notice/noticeUpdate";
+    }
+
+    @PostMapping("/update")
+    public String updatePost(@RequestParam Map<String,Object> map, ModelAndView mav){
+        String a = map.get("boardSeq").toString();
+        int boardSeq = Integer.parseInt(a);
+        int update = this.noticeService.updateNotice(map);
+        if(update>0){
+            return "redirect:/notice/detail?boardSeq="+boardSeq;
+        }else{
+            return "notice/noticeUpdate";
+        }
     }
 
     @PostMapping("/delete")

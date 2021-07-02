@@ -18,4 +18,27 @@
                SUB_SEQ    AS SUBSEQ
         FROM BROWNIE_BOARD
     </select>
+
+    <delete id="delete" parameterType="int">
+        DELETE
+        FROM BROWNIE_BOARD
+        WHERE BOARD_SEQ = #{boardSeq}
+    </delete>
+    
+    <select id="read" parameterType="int" resultType="kr.co.brownie.notice.service.NoticeVO">
+        SELECT BOARD_SEQ  AS BOARDSEQ,
+               BOARD_KIND AS BOARDKIND,
+               TITLE      AS TITLE,
+               CONTENT    AS CONTENT,
+               NOTICE_YN  AS NOTICEYN,
+               STATUS     AS STATUS,
+               IN_DATE    AS INDATE,
+               IN_USER_ID AS INUSER_ID,
+               UP_DATE    AS "UPDATE",
+               UP_USER_ID AS UPUSERID,
+               FILE_SEQ   AS FILESEQ,
+               SUB_SEQ    AS SUBSEQ
+        FROM BROWNIE_BOARD
+        WHERE BOARD_SEQ = #{boardSeq};
+    </select>
 </mapper>

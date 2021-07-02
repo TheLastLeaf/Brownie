@@ -96,11 +96,11 @@
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <div class="innerBox text-right">
                                     <input type="button" class="btn btn-outline-dark btn-sm"
-                                               onclick="location.href='/notice/add'" style="color:white; cursor: pointer;"
-                                               value="수정">
-                                    <input type="button" class="btn btn-outline-dark btn-sm"
-                                               onclick="location.href='/notice/list'" style="color:#c20000; cursor: pointer;"
-                                               value="삭제">
+                                                   onclick="location.href='/notice/update'" style="color:white; cursor: pointer;"
+                                                   value="수정">
+                                <form action="/notice/delete" method="post">
+                                    <input type="submit" class="btn btn-outline-dark btn-sm" style="color:#c20000; cursor: pointer;" value="삭제">
+                                </form>
                             </div>
                         </div>
                     </div>

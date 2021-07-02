@@ -107,8 +107,8 @@
                         <div class="contact-form">
                             <div class="dt-leave-comment">
                                 <div class="form-check innerBox text-right custom-control custom-checkbox mb-3">
-                                    <label class="custom-control-label" for="reply" style="color:white;">
-                                    <input type="checkbox" class="custom-control-input" id="reply" name="reply">댓글창 숨기기</label>
+                                    <input type="checkbox" class="custom-control-input" id="reply" name="reply">
+                                    <label class="custom-control-label" for="reply" style="color:white;">댓글창 숨기기</label>
                                 </div>
                                     <div class="input-list" style="padding-bottom: 10px;">
                                         <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;">
