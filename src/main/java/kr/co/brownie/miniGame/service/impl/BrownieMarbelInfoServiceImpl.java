@@ -8,37 +8,37 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import kr.co.brownie.miniGame.service.BrownieMarbelInfoService;
-import kr.co.brownie.notice.service.NoticeVO;
+import kr.co.brownie.miniGame.service.BrownieMarbelInfoVO;
 
-@Service("miniGameService")
+@Service("brownieMarbelInfoService")
 public class BrownieMarbelInfoServiceImpl implements BrownieMarbelInfoService {
-	@Resource(name = "miniGameMapper")
-	BrownieMarbelInfoMapper miniGameMapper;
+	@Resource(name = "brownieMarbelInfoMapper")
+	BrownieMarbelInfoMapper brownieMarbelMapper;
 
 	@Override
-	public int insertMiniGame(Map<String, Object> map) {
-		return miniGameMapper.insert(map);
+	public int insertBrownieMarbel(Map<String, Object> map) {
+		return brownieMarbelMapper.insert(map);
 	}
 
 	@Override
-	public List<NoticeVO> getMiniGameList(Map<String, Object> map) {
-		List<NoticeVO> noticeVo = miniGameMapper.selectList();
+	public List<BrownieMarbelInfoVO> getBrownieMarbelList() {
+		List<BrownieMarbelInfoVO> noticeVo = brownieMarbelMapper.selectList();
 		return noticeVo;
 	}
 
 	@Override
-	public NoticeVO getMiniGame(int boardSeq) {
-		NoticeVO noticeVo = miniGameMapper.read(boardSeq);
-		return noticeVo;
+	public BrownieMarbelInfoVO getBrownieMarbel(int boardSeq) {
+		BrownieMarbelInfoVO brownieMarbelInfoVo = brownieMarbelMapper.read(boardSeq);
+		return brownieMarbelInfoVo;
 	}
 
 	@Override
-	public int updateMiniGame(Map<String, Object> map) {
-		return miniGameMapper.update(map);
+	public int updateBrownieMarbel(Map<String, Object> map) {
+		return brownieMarbelMapper.update(map);
 	}
 
 	@Override
-	public int deleteMiniGame(int boardSeq) {
-		return miniGameMapper.delete(boardSeq);
+	public int deleteBrownieMarbel(int boardSeq) {
+		return brownieMarbelMapper.delete(boardSeq);
 	}
 }

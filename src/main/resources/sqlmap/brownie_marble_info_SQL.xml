@@ -2,20 +2,16 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.brownie.notice.service.impl.NoticeMapper">
-    <select id="selectList" resultType="kr.co.brownie.notice.service.NoticeVO">
-        SELECT BOARD_SEQ  AS BOARDSEQ,
-               BOARD_KIND AS BOARDKIND,
-               TITLE      AS TITLE,
-               CONTENT    AS CONTENT,
-               NOTICE_YN  AS NOTICEYN,
-               STATUS     AS STATUS,
-               IN_DATE    AS INDATE,
-               IN_USER_ID AS INUSER_ID,
-               UP_DATE    AS "UPDATE",
-               UP_USER_ID AS UPUSERID,
-               FILE_SEQ   AS FILESEQ,
-               SUB_SEQ    AS SUBSEQ
-        FROM BROWNIE_BOARD
+<mapper namespace="kr.co.brownie.miniGame.service.impl.BrownieMarbelInfoMapper">
+    <select id="selectList" resultType="kr.co.brownie.miniGame.service.BrownieMarbelInfoVO">
+        SELECT SEQ      	 AS SEQ,
+               DEGREE      	 AS DEGREE,
+               KIND      	 AS KIND,
+               NAME      	 AS NAME,
+               BRIEF_EXPL    AS BRIEFEXPL,
+               DETAILED_EXPL AS DETAILEDEXPL,
+               FUNCTION      AS FUNCTION,
+               IMG_NAME      AS IMGNAME
+        FROM BROWNIE_MARBLE_INFO
     </select>
 </mapper>
