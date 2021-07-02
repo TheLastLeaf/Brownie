@@ -86,7 +86,7 @@
                             <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
-                            <a href="/mypage">
+                            <a href="/user">
                                 <h5>
                                     작성자
                                 </h5>
