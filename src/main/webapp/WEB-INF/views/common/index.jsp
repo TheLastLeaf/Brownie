@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 
-
 <!-- Hero Section Begin -->
 <section class="hero-section">
     <div class="container">
@@ -19,6 +18,25 @@
 
 <div id=”banner” style="position: absolute; left: 100px;top: 300px; z-index: 99999; width:500px; height:300px; background: #000000; color: white;"> 님 정지됨ㅅㄱ </div>
 
+<!-- 유튜브 영상 스크립트 시작 -->
+<script>
+	window.onload = function () {
+		var youTubeList = document.getElementsByClassName('youTubeList')
+		for (i = 1 ; i < youTubeList.length ; i++) {
+			youTubeList[i].style.display="none";
+		}
+	}
+
+	function show_video(id){
+		var id = id - 1
+		var youTubeList = document.getElementsByClassName('youTubeList')
+		for (i = 0 ; i < youTubeList.length ; i++) {
+			youTubeList[i].style.display="none";
+		}
+		youTubeList[id].style.display="";
+	}
+</script>
+<!-- 유튜브 영상 스크립트 끝 -->
 
 <!-- Videos Guide Section Begin -->
 	<section class="video-guide-section">
@@ -41,47 +59,15 @@
 					<li class="nav-item"><a class="nav-link" data-toggle="tab"
 						href="#tabs-4" role="tab">Calendar</a></li>
 				</ul>
+
 				<!-- Tab panes -->
 				<div class="tab-content">
-					<div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
-						<div class="row">
-								<div class="col-lg-12">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="vg-item large-vg set-bg"
-												data-setbg="${pageContext.request.contextPath}/img/videos/videos-1.jpg">
-												<a href="https://www.youtube.com/watch?v=hB_RXUFA_fU"
-													class="play-btn video-popup"><i class="fa fa-play"></i></a>
-												<div class="vg-text">
-													<h5>TFT Dev Drop: June 2021 I Dev Video - Teamfight Tactics</h5>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<table border="1" style="width: 100%; color: white; text-align: center;">
-												<c:forEach var="youTubeVo" items="${youTubeVoList}">
-													<tr>
-														<th>
-															<a href="https://www.youtube.com/watch?v=${youTubeVo.idVideoid}">
-																${youTubeVo.snippetTitle }
-															</a>
-														</th>
-													</tr>
-												</c:forEach>
-											</table>
-										</div>
-									</div>
-								</div>
-						</div>
-					</div>
-
-					<!-- --------------------------------------------------------------------------------------- -->
+				<!-- News 시작 -->
 					<div class="tab-pane fade" id="tabs-2" role="tabpanel">
 						<div class="row">
 								<div class="col-lg-12">
 									<div class="row">
 										<div style="width: 100%; color: white; text-align: center;">
-											<iframe width="754" height="424" src="https://www.youtube.com/embed/8jxGkfky7dQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 										</div>
 									</div>
 								</div>
@@ -95,7 +81,42 @@
 								</div>
 						</div>
 					</div>
-				<!-- --------------------------------------------------------------------------------------- -->
+				<!-- News 끝 -->
+
+				<!-- LCK 시작 -->
+					<div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="row">
+									<div class="col-md-6">
+										<c:forEach var="youTubeVo" items="${youTubeVoList}">
+											<div class="vg-item large-vg youTubeList"
+												data-setbg="${youTubeVo.snippetThumbnailsMediumUrl }">
+												<iframe width="619" height="348" src="https://www.youtube.com/embed/${youTubeVo.idVideoid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											</div>
+										</c:forEach>
+									</div>
+									<div class="col-md-6">
+										<table border="1" style="width: 100%; color: white; text-align: center; margin-top: 20px;">
+											<c:forEach var="youTubeVo" items="${youTubeVoList}">
+											<c:set var="i" value="${i+1 }" />
+												<tr>
+													<th>
+														<span id="${i }" onclick="show_video(this.id)" style="cursor: pointer;">
+															${youTubeVo.snippetTitle }
+														</span>
+													</th>
+												</tr>
+											</c:forEach>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<!-- LCK 끝 -->
+
+				<!-- League Member 시작 -->
 					<div class="tab-pane fade" id="tabs-3" role="tabpanel">
 						<div class="row">
 							<div class="col-lg-12">
@@ -162,7 +183,9 @@
 							</div>
 						</div>
 					</div>
-					<!-- --------------------------------------------------------------------------------------- -->
+				<!-- League Member 끝 -->
+
+				<!-- Calendar 시작-->
 					<div class="tab-pane fade" id="tabs-4" role="tabpanel">
 										<!-- https://esports.inven.co.kr/schedule/ 여기서 긁어오면 될 듯 -->
 						<div class="row">
@@ -200,7 +223,9 @@
 							</div>
 						</div>
 					</div>
+				<!-- Calendar 끝-->
 				</div>
+			<!-- Tab panes 끝-->
 			</div>
 		</div>
 	</section>
