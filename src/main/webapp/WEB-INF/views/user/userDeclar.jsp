@@ -10,6 +10,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Declare</title>
 
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/common/icon.ico" />
+
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
@@ -38,20 +41,24 @@ body {
 	display: flex;
 	justify-content: center;
 }
+
 .signup-text {
 	padding-top: 45px;
 }
-.nameInfo{
+
+.nameInfo {
 	display: flex;
-	justify-content: center; 
+	justify-content: center;
 }
-.suspect{
+
+.suspect {
 	border: 0.5px solid white;
 	color: white;
 	margin-bottom: 10px;
 	font-size: 15px;
 	border-radius: 8px;
 }
+
 input[type="text"] {
 	margin: 10px;
 	border: 1px solid white;
@@ -83,9 +90,9 @@ button {
 					<h3 class="title" style="color: white;">You Die</h3>
 					<!-- 					<p class="title">신고창</p> -->
 				</div>
-				<div class="nameInfo row" >
+				<div class="nameInfo row">
 					<div class="suspect col-3">용의자:&nbsp; 쓋빨롬</div>
-<!-- 					<div class="suspect col-6">피해자:&nbsp; 유미</div> -->
+					<!-- 					<div class="suspect col-6">피해자:&nbsp; 유미</div> -->
 				</div>
 				<form action="#" class="signup-form">
 					<div class="sf-input-list ">

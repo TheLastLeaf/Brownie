@@ -11,6 +11,9 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Team Maker</title>
 
+<!-- favicon -->
+<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/common/icon.ico" />
+
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
@@ -165,22 +168,26 @@ input.apple-switch:checked:after {
 
 				<div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 					<label class="btn btn-danger btn-gmode Gmode">
-						<input type="radio" name="jb-radio" class="jb-radio-1">일반게임
+						<input type="radio" name="jb-radio" class="jb-radio-1">
+						일반게임
 						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Top.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
-						<input type="radio" name="jb-radio" class="jb-radio-2">랭크게임
+						<input type="radio" name="jb-radio" class="jb-radio-2">
+						랭크게임
 						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Jungle.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
-						<input type="radio" name="jb-radio" class="jb-radio-3">자유랭크
+						<input type="radio" name="jb-radio" class="jb-radio-3">
+						자유랭크
 						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Mid.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
-						<input type="radio" name="jb-radio" class="jb-radio-4">칼바람
+						<input type="radio" name="jb-radio" class="jb-radio-4">
+						칼바람
 						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Bot.png" /> -->
 					</label>
 					&nbsp;
@@ -213,7 +220,7 @@ input.apple-switch:checked:after {
 						<input type="radio" name="jb-radio" class="jb-radio-5" value="sup">
 						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
 					</label>
-					&nbsp; 
+					&nbsp;
 				</div>
 
 				<br />

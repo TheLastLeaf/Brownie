@@ -85,7 +85,7 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
-                    <h3>공지사항 등록</h3>
+                    <h3>공지사항 수정</h3>
                     <div class="bt-option">
                         <a href="/index" style="color: black;">Home</a>
                         <span>notice Add</span>
@@ -102,7 +102,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post" action="/notice/create">
+                <form method="post" action="/notice/update">
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
@@ -114,10 +114,10 @@
                                         <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;">
                                     </div>
                                     <div style="border:1px solid #666666">
-                                        <textarea class="summernote" style="color: #666666 "></textarea>
+                                        <textarea class="summernote" ></textarea>
                                     </div>
                                     <div style="padding-top: 10px;">
-                                        <input type="submit" value="등록" style="width: 100%;">
+                                        <input type="submit" value="수정" style="width: 100%;">
                                     </div>
                             </div>
                         </div>
