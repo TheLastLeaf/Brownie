@@ -11,7 +11,7 @@
                NOTICE_YN  AS NOTICEYN,
                STATUS     AS STATUS,
                IN_DATE    AS INDATE,
-               IN_USER_ID AS INUSER_ID,
+               IN_USER_ID AS INUSERID,
                UP_DATE    AS "UPDATE",
                UP_USER_ID AS UPUSERID,
                FILE_SEQ   AS FILESEQ,
@@ -22,7 +22,7 @@
     <delete id="delete" parameterType="int">
         DELETE
         FROM BROWNIE_BOARD
-        WHERE BOARD_SEQ = #{boardSeq}
+        WHERE BOARD_SEQ = #{Seq}
     </delete>
     
     <select id="read" parameterType="int" resultType="kr.co.brownie.notice.service.NoticeVO">
@@ -33,7 +33,7 @@
                NOTICE_YN  AS NOTICEYN,
                STATUS     AS STATUS,
                IN_DATE    AS INDATE,
-               IN_USER_ID AS INUSER_ID,
+               IN_USER_ID AS INUSERID,
                UP_DATE    AS "UPDATE",
                UP_USER_ID AS UPUSERID,
                FILE_SEQ   AS FILESEQ,

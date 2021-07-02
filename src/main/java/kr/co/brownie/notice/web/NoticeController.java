@@ -41,8 +41,8 @@ public class NoticeController {
     public String detail(@RequestParam Map<String, Object> map, Model model) {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
-        /*NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-        model.addAttribute("noticeVO",noticeVO);*/
+//        NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+//        model.addAttribute("noticeVO",noticeVO);
         return "notice/noticeDetail"; // 공지 디테일화면
     }
 
@@ -51,11 +51,6 @@ public class NoticeController {
         List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
         model.addAttribute("noticeVOList",noticeVOList);
         return "notice/noticeList"; //공지 리스트
-    }
-    @GetMapping("/update")
-    public String update(@RequestParam Map<String,Object> map, ModelAndView mav){
-
-        return "notice/noticeUpdate";
     }
 
     @PostMapping("/update")
@@ -74,7 +69,7 @@ public class NoticeController {
     public String delete(@RequestParam Map<String,Object> map, Model model){
         String a = map.get("boardSeq").toString();
         int b = Integer.parseInt(a);
-        int boardSeq =  noticeService.deleteNotice(b);
+        noticeService.deleteNotice(b);
         return "notice/noticeList";
     }
 }
