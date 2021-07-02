@@ -14,7 +14,7 @@
 
 	<!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/img/common/icon.ico"/>
-    
+
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap"
           rel="stylesheet">
@@ -49,7 +49,7 @@
             background: #555;
         }
     </style>
-    
+
     <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
 </head>
 
@@ -91,9 +91,9 @@
                             <li class="signup-switch signup-open">
 								<c:choose>
 									<c:when test="${id != null}">
-										<span style="margin-left:4px;">${id} 님 환영합니다</span>
+										<span style="margin-left:4px;"><a onclick="location.href='/user'">${id} </a>님 환영합니다</span>
 										<span style="margin-left:4px;">Lv. 3</span>
-										<span style="margin-left:4px;"><i class="fa fa-address-book-o" aria-hidden="true"></i></span>
+										<span style="margin-left:4px;"><a onclick="location.href='/user'"><i class="fa fa-address-book-o" aria-hidden="true"></a></i></span>
 										<span><a onclick="location.href='/logout'"><i class="fa fa-sign-out"></i></a></span>
 									</c:when>
 									<c:otherwise>
