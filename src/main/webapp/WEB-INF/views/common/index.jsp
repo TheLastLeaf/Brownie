@@ -51,9 +51,9 @@
 			<div class="tab-elem">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item"><a class="nav-link active"
-						data-toggle="tab" href="#tabs-1" role="tab">News</a></li>
+						data-toggle="tab" href="#tabs-1" role="tab">LCK</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab"
-						href="#tabs-2" role="tab">LCK</a></li>
+						href="#tabs-2" role="tab">News</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab"
 						href="#tabs-3" role="tab">League Member</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab"
@@ -62,26 +62,6 @@
 
 				<!-- Tab panes -->
 				<div class="tab-content">
-				<!-- News 시작 -->
-					<div class="tab-pane fade" id="tabs-2" role="tabpanel">
-						<div class="row">
-								<div class="col-lg-12">
-									<div class="row">
-										<div style="width: 100%; color: white; text-align: center;">
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-12">
-									<div class="row">
-
-									</div>
-									<div class="row">
-
-									</div>
-								</div>
-						</div>
-					</div>
-				<!-- News 끝 -->
 
 				<!-- LCK 시작 -->
 					<div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
@@ -115,6 +95,29 @@
 						</div>
 					</div>
 				<!-- LCK 끝 -->
+
+				<!-- News 시작 -->
+					<div class="tab-pane fade" id="tabs-2" role="tabpanel">
+						<div class="row">
+								<div class="col-lg-12">
+									<div class="row">
+										<div style="width: 100%; color: white; text-align: center;">
+										여기다 공지사항 ㄷ
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-12">
+									<div class="row">
+
+									</div>
+									<div class="row">
+
+									</div>
+								</div>
+						</div>
+					</div>
+				<!-- News 끝 -->
+
 
 				<!-- League Member 시작 -->
 					<div class="tab-pane fade" id="tabs-3" role="tabpanel">
