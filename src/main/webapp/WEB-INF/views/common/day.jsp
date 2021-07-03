@@ -50,24 +50,65 @@
 	    for (i = 1; i <= lastDate; i++) // 1일부터 마지막 일까지
 	    {
 	        cell = row.insertCell();
-	        cell.innerHTML = i;
+	        cell.innerHTML = "<span id='"+i+"' style='font-size:70px; cursor: pointer;' onclick='javascript:dateCheck(this.id)'>"+i+"</span>";
 	        cnt = cnt + 1;
 	        if (cnt % 7 == 1) {//일요일
-	            cell.innerHTML = "<font color=#FF9090>" + i//일요일에 색
+	            cell.innerHTML = "<span id='"+i+"' style='font-size:70px; color:#FF9090; cursor: pointer;' onclick='javascript:dateCheck(this.id)'>"+i+"</span>";
 	        }
 	        if (cnt % 7 == 0) { //토요일
-	            cell.innerHTML = "<font color=#7ED5E4>" + i//토요일에 색
+	            cell.innerHTML = "<span id='"+i+"' style='font-size:70px; color:#7ED5E4; cursor: pointer;' onclick='javascript:dateCheck(this.id)'>"+i+"</span>";
 	            row = calendar.insertRow();// 줄 추가
 	        }
 	    }
+
+	    //앞서 체크했던 날짜 디비에서 불러와서 체크 표시로 바꿔주기
+    	var UserCheckeddates = [ 1, 2 ]; //임시 표시용 날짜. 나중에 디비에서 불러올 데이터를 여기에 채우면 됨
+    	UserCheckeddates.forEach(function(date){
+			document.getElementById(date).innerHTML = "<i class='fa fa-cloud'></i>";
+		});
+
 	}
+
+
+	//사용자가 출석체크 할 때 작동하는 함수
+	function dateCheck(thisDate){
+		const today = ${dateForCheck.get('day')};//오늘날짜
+		if(thisDate != today){
+			alert("해당 요일이 아닙니다.");
+		} else {
+			alert("출석 체크가 완료되었습니다.");
+			var checkedDate = document.getElementById(today);
+			console.log(checkedDate)
+			checkedDate.innerHTML = "<i class='fa fa-cloud'></i>";
+			//디비에 today 날짜 저장
+		}
+
+	}
+
 </script>
 <!-- 달력 스크립트 끝 -->
 
 <!-- 달력 스타일 시작 -->
 <style>
+td{
+	width:300px;
+	height: 170px;
+	text-align: center;
+}
+th{
+	color: #FFDAB9;
+	text-align: center;
+	background-color: #800000;
+	border-radius: 40px 40px;
+}
 
+.cal{
+	margin: auto;
+}
 
+#calendar{
+	margin: auto;
+}
 </style>
 <!-- 달력 스타일 끝 -->
 
@@ -76,11 +117,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-
 				<!-- 달력 시작 -->
 				<div class="cal">
 				        <div class="header">
-				            <div class=""></div>
+				            <div style="text-align: center; margin: 10px; color: #999999;">오늘 날짜를 클릭하면 출석체크가 완료됩니다!</div>
+<!-- 				            <div class="" style="text-align: center; font-size: calc(16px + 6vw); color: #FFDAB9; background-color:	#800000; border-radius: 40px 40px;">브라우니 출석체크</div> -->
 				        </div>
 				        <table id="calendar">
 							<tr>
@@ -93,7 +134,6 @@
 								<th>토</th>
 							</tr>
 				        </table>
-
 				    </div>
 				<!-- 달력 끝 -->
 
