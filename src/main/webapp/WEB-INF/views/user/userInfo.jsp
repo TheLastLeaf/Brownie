@@ -241,8 +241,8 @@ h1 {
 		window.open("/user/userDeclar", "userDeclar",
 				"width=980, height=500, left=400,top=200");
 	}
-	function fn_infoDel(){
-		confirm("탈퇴하시겠습니까?")		
+	function fn_infoDel() {
+		confirm("탈퇴하시겠습니까?")
 	}
 	// 마우스 우클릭 TEXTCONTENT 
 	$(document)
@@ -321,7 +321,8 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a> <span>userDetail</span>
+						<a href="#">userInfo</a>
+						<span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -337,8 +338,32 @@ h1 {
 							</div>
 							<div class="nameLv">
 								<h3>
-									??? | Lv.71 | <span class="rating-star"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i> <i class="fa fa-star-o"></i>
-									</span>
+									<!-- 이름 | Lv. | 별점★★☆☆☆ -->
+									<!-- 세션에 아이디가 들어있는경우와 들어있지 않은경우의 호출 -->
+									<c:set var="id" value="${sessionScope.id}" />
+									<c:set var="nick" value="${userOneSelect.nickName}"/>
+									<c:choose>
+										<c:when test="${id ne null}">
+											<c:out value="${id}"/> | ${nick}
+											<c:out value=""/> | 
+											<span class="rating-star"> 
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i> 
+												<i class="fa fa-star-o"></i> 
+												<i class="fa fa-star-o"></i> 
+												<i class="fa fa-star-o"></i>
+											</span>
+										</c:when>
+										<c:otherwise>
+											??? | ??? | <span class="rating-star"> 
+												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-o"></i> 
+												<i class="fa fa-star-o"></i> 
+												<i class="fa fa-star-o"></i> 
+												<i class="fa fa-star-o"></i>
+											</span>
+										</c:otherwise>
+									</c:choose>
 								</h3>
 							</div>
 						</div>

@@ -15,5 +15,5 @@ public class UserVO {
     private Date modDate;
     private String inUserId;
     private String upUserId;
-
+    private String userPosition;
 }

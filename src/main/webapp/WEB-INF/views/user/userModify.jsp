@@ -113,6 +113,13 @@ input[name="position"] {
 </style>
 <script>
 	function fn_submit() {
+		var nickNameBox = $("input[name=nickNameBox]").val(); 
+		var top = $("input[name=top]").val(); 
+		var jun = $("input[name=jun]").val(); 
+		var mid = $("input[name=mid]").val(); 
+		var bot = $("input[name=bot]").val(); 
+		var sup = $("input[name=sup]").val(); 
+		
 		var param = "";
 		param += "dummy=" + Math.random()
 		param += "&nickNameBox=" + nickNameBox,
@@ -136,15 +143,7 @@ input[name="position"] {
         });
 	}
 	
-	var nickNameBox = $("input[name=nickNameBox]").val(); 
-	var top = $("input[name=top]").val(); 
-	var jun = $("input[name=jun]").val(); 
-	var mid = $("input[name=mid]").val(); 
-	var bot = $("input[name=bot]").val(); 
-	var sup = $("input[name=sup]").val(); 
 	
-
-
 
 
 </script>
@@ -215,7 +214,7 @@ input[name="position"] {
 							<span class="checkbox"></span>
 						</label>
 					</div>
-					<button type="submit" style="margin: 15px;" onclick="fn_submit()">
+					<button type="button" style="margin: 15px;" onclick="fn_submit()">
 						<span>update</span>
 					</button>
 				</form>
