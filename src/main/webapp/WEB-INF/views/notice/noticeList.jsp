@@ -73,46 +73,6 @@
                             </div>
                         </div>
                     </c:forEach>
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-2.jpg" alt="">
-                        </div>
-                        <div class="cl-text">
-                            <h5><a href="/notice/detail">팬아트갤러리</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p class="content-text">팬아트 공지사항</p>
-                        </div>
-                    </div>
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-3.jpg" alt="">
-                        </div>
-                        <div class="cl-text">
-                            <h5><a href="/notice/detail">팬아트 갤러리</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p class="content-text">팬아트 갤러리 공지사항	</p>
-                        </div>
-                    </div>
-                    <div class="cl-item">
-                        <div class="cl-pic">
-                            <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-4.jpg" alt="">
-                        </div>
-                        <div class="cl-text">
-                            <h5><a href="/notice/detail">궁금증과 답변을 한 번에! 무엇이든 물어보세요 오픈!</a></h5>
-                            <ul>
-                                <li>by <span>Admin</span></li>
-                            </ul>
-                            <p class="content-text">평소의 궁금증을 풀기도 하고 다양한 고민도 해결할 수 있는 곳.
-									무엇이든 물어보세요 게시판이 새롭게 열렸습니다.   
-									질문 및 답변을 남겨주실 때는 본인뿐만 아니라 타인의 입장에서
-									상처가 되진 않을지 혹은 좋지 않은 표현이 담겨 있지 않은지
-									한 번씩만 생각해서 글을 남겨주시면 많은 이야기를 나눌 수 있는 게시판이 될 것 같습니다.</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -121,16 +81,19 @@
                 <div class="col-lg-12 p-0">
                     <form>
                         <div class="innerBox text-center" style="padding-bottom: 3%;">
+                            <form method="get">
                                     <span>
-                                        <select name="notice" style="height:30px; background: black; color: #666666;">
+                                        <select name="notice" id="notice" style="height:30px; background: black; color: #666666;">
                                             <option value="" selected="selected">선택</option>
-                                            <option value="title">제목</option>
-                                            <option value="content">내용</option>
-                                            <option value="writer">작성자</option>
+                                            <option value="title" <c:if test="${notice=='title'}">selected</c:if>>제목</option>
+                                            <option value="content" <c:if test="${notice=='content'}">selected</c:if>>내용</option>
+                                            <option value="inUserId" <c:if test="${notice=='inUserId'}">selected</c:if>>작성자</option>
                                         </select>
-                                        <input type="text" value="" style="background: black; color: #666666">
+                                        <input type="text" placeholder="검색" id="keyword" name="keyword" value="" style="background: black; color: #666666" onclick="document.getElementById('spanKeyword').value='';"/>
+                                        <span id="spanKeyword"></span>
                                     </span>
-                            <input type="submit" class="btn btn-outline-dark" value="조회" style="color: #666666">
+                                     <input type="submit" class="btn btn-outline-dark" value="조회" style="color: #666666">
+                            </form>
                         </div>
                     </form>
                     <div class="pagination-item">

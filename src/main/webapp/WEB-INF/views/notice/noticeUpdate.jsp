@@ -102,7 +102,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post" action="/notice/update">
+                <form method="post">
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
@@ -111,10 +111,10 @@
                                     <label class="custom-control-label" for="reply" style="color:white;">댓글창 숨기기</label>
                                 </div>
                                     <div class="input-list" style="padding-bottom: 10px;">
-                                        <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;">
+                                        <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;" value="${noticeVO.title}">
                                     </div>
                                     <div style="border:1px solid #666666">
-                                        <textarea class="summernote" ></textarea>
+                                        <textarea class="summernote" style="color: #666666" placeholder="${noticeVO.content}">${noticeVO.content}</textarea>
                                     </div>
                                     <div style="padding-top: 10px;">
                                         <input type="submit" value="수정" style="width: 100%;">

@@ -7,10 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.notice.service.NoticeService;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -31,8 +28,10 @@ public class NoticeController {
     public String noticeAddPost(@RequestParam Map<String, Object> map, ModelAndView mav){
         noticeService.insertNotice(map);
         if(map.get("boardSeq")==null){
-            return "redirect:/notice";
+            System.out.println(map.get("boardSeq"));
+            return "redirect:/notice/list";
         }else{
+            System.out.println(map.get("boardSeq"));
             return "redirect:/notice/detail?boardSeq="+map.get("boardSeq");
         }
     }
@@ -41,8 +40,8 @@ public class NoticeController {
     public String detail(@RequestParam Map<String, Object> map, Model model) {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
-//        NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-//        model.addAttribute("noticeVO",noticeVO);
+        NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+        model.addAttribute("noticeVO",noticeVO);
         return "notice/noticeDetail"; // 공지 디테일화면
     }
 
@@ -50,18 +49,30 @@ public class NoticeController {
     public String noticeList(@RequestParam Map<String,Object> map, Model model) {
         List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
         model.addAttribute("noticeVOList",noticeVOList);
+        model.addAttribute("notice",map.get("notice"));
+        model.addAttribute("keyword",map.get("keyword"));
         return "notice/noticeList"; //공지 리스트
     }
 
-    @PostMapping("/update")
-    public String updatePost(@RequestParam Map<String,Object> map, ModelAndView mav){
+    @GetMapping("/update")
+    public String update(@RequestParam Map<String,Object> map, Model model){
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
+        NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+        model.addAttribute("noticeVO",noticeVO);
+        return "notice/noticeUpdate";
+    }
+    @PostMapping("/update")
+    public String updatePost(@RequestParam Map<String,Object> map, Model model){
+        String a = map.get("boardSeq").toString();
+        int boardSeq = Integer.parseInt(a);
+        NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+        model.addAttribute("noticeVO",noticeVO);
         int update = this.noticeService.updateNotice(map);
         if(update>0){
             return "redirect:/notice/detail?boardSeq="+boardSeq;
         }else{
-            return "notice/noticeUpdate";
+            return "redirect:/notice/update?boardSeq="+boardSeq;
         }
     }
 

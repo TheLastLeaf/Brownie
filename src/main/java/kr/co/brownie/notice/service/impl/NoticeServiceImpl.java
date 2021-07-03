@@ -17,7 +17,8 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int insertNotice(Map<String, Object> map) {
-		return noticeMapper.insert(map);
+		int boardSeq = noticeMapper.insert(map);
+		return boardSeq;
 	}
 
 	@Override

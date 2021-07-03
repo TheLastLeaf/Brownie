@@ -110,15 +110,15 @@
                                     <input type="checkbox" class="custom-control-input" id="reply" name="reply">
                                     <label class="custom-control-label" for="reply" style="color:white;">댓글창 숨기기</label>
                                 </div>
-                                    <div class="input-list" style="padding-bottom: 10px;">
-                                        <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;">
-                                    </div>
-                                    <div style="border:1px solid #666666">
-                                        <textarea class="summernote" style="color: #666666 "></textarea>
-                                    </div>
-                                    <div style="padding-top: 10px;">
-                                        <input type="submit" value="등록" style="width: 100%;">
-                                    </div>
+                                <div class="input-list" style="padding-bottom: 10px;">
+                                    <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;" id="title" name="title">
+                                </div>
+                                <div style="border:1px solid #666666">
+                                    <textarea class="summernote" style="color: #666666 " name="content" id="content"></textarea>
+                                </div>
+                                <div style="padding-top: 10px;">
+                                    <input type="submit" value="등록" style="width: 100%;">
+                                </div>
                             </div>
                         </div>
                     </div>
