@@ -12,9 +12,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- 서머노트를 위해 추가해야할 부분 -->
-    <script src="${pageContext.request.contextPath}/resources/summernote/summernote-lite.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/summernote/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-lite.css">
+    <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script>
+    <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/summernote/summernote-lite.css">
     <!--  -->
 
 </head>
