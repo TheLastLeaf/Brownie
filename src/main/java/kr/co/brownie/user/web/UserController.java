@@ -35,33 +35,35 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@GetMapping("/userInfo")
-	public String userInfo(Model model, HttpSession httpSession) throws Exception{
-		String id = (String)httpSession.getAttribute("id");
-		UserVO userOneSelect = userService.userOneSelect(id); 
+	public String userInfo(Model model, HttpSession httpSession) throws Exception {
+		String id = (String) httpSession.getAttribute("id");
+		UserVO userOneSelect = userService.userOneSelect(id);
+		String position = userOneSelect.getUserPosition();
+
 		int exp = userService.LvSelect(id);
 		float starCnt = userService.starCntSelect();
-		int fullStar = (int)starCnt / 1;
+		int fullStar = (int) starCnt / 1;
 		float halfStar = starCnt - fullStar;
-		
-		
+
 		model.addAttribute("userOneSelect", userOneSelect);
+		model.addAttribute("position", position);
 		model.addAttribute("exp", exp);
 		model.addAttribute("fullStar", fullStar);
-		if(halfStar >= 0.5) {
+		if (halfStar >= 0.5) {
 			model.addAttribute("halfStar", halfStar);
 		}
-		
-		System.out.println("sessionId: "+id);
-		System.out.println("userOneSelect: "+userOneSelect);
+
+		System.out.println("sessionId: " + id);
+		System.out.println("userOneSelect: " + userOneSelect);
 		System.out.println("exp: " + exp);
 		System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
-		System.out.println();
-		
+		System.out.println("position: " + position);
+
 		return "user/userInfo";
 	}
 
 	@PostMapping("/userInfo")
-	@ResponseBody //AJAX 사용시 써야함
+	@ResponseBody // AJAX 사용시 써야함
 	public String userName(@RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) {
 
 		// 세션 아이디 -> map에 삽입

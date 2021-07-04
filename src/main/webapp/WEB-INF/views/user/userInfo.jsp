@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="../layout/header.jsp" />
-
 <style>
 .profileBox {
 	display: inline-block;
@@ -223,7 +222,6 @@ h1 {
 	margin: 0px 0px 8px;
 }
 </style>
-
 <script>
 	function fn_sync() {
 		window.open("/user/userSync", "userSync",
@@ -248,75 +246,60 @@ h1 {
 	$(document)
 			.ready(
 					function() {
-						//Show contextmenu:
 						$(".review")
 								.contextmenu(
 										function(e) {
-											//Get window size:
 											var winWidth = $(document).width();
 											var winHeight = $(document)
 													.height();
-											//Get pointer position:
 											var posX = e.pageX;
 											var posY = e.pageY;
-											//Get contextmenu size:
 											var menuWidth = $(".contextmenu")
 													.width();
 											var menuHeight = $(".contextmenu")
 													.height();
-											//Security margin:
 											var secMargin = 10;
-											//Prevent page overflow:
 											if (posX + menuWidth + secMargin >= winWidth
 													&& posY + menuHeight
 															+ secMargin >= winHeight) {
-												//Case 1: right-bottom overflow:
 												posLeft = posX - menuWidth
 														- secMargin + "px";
 												posTop = posY - menuHeight
 														- secMargin + "px";
 											} else if (posX + menuWidth
 													+ secMargin >= winWidth) {
-												//Case 2: right overflow:
 												posLeft = posX - menuWidth
 														- secMargin + "px";
 												posTop = posY + secMargin
 														+ "px";
 											} else if (posY + menuHeight
 													+ secMargin >= winHeight) {
-												//Case 3: bottom overflow:
 												posLeft = posX + secMargin
 														+ "px";
 												posTop = posY - menuHeight
 														- secMargin + "px";
 											} else {
-												//Case 4: default values:
 												posLeft = posX + secMargin
 														+ "px";
 												posTop = posY + secMargin
 														+ "px";
 											}
 											;
-											//Display contextmenu:
 											$(".contextmenu").css({
 												"left" : posLeft,
 												"top" : posTop
 											}).show();
-											//Prevent browser default contextmenu.
 											return false;
 										});
-						//Hide contextmenu:
 						$(document).click(function() {
 							$(".contextmenu").hide();
 						});
 					});
 </script>
-
 <!-- Main Content Post Section Begin -->
 <section class="details-post-section spad" style="padding: 0;">
 	<!-- class="container"는 글을 가운데 정렬해주는 역할 -->
 	<div class="container" style="width: 900px;">
-
 		<div class="p-0">
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
@@ -340,7 +323,6 @@ h1 {
 									<!-- 이름 | Lv. | 별점★★☆☆☆ -->
 									<!-- 세션에 아이디가 들어있는경우와 들어있지 않은경우의 호출 -->
 									<c:set var="id" value="${sessionScope.id}" />
-
 									<c:set var="nick" value="${userOneSelect.nickName}" />
 									<c:choose>
 										<c:when test="${id ne null}">
@@ -371,10 +353,7 @@ h1 {
 											</span>
 										</c:when>
 										<c:otherwise>
-											??? | ??? | <span class="rating-star">
-												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-half-o"></i>
+											??? | ??? | <span class="rating-star"> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-half-o"></i>
 											</span>
 										</c:otherwise>
 									</c:choose>
@@ -387,7 +366,6 @@ h1 {
 						</div>
 					</div>
 				</div>
-
 				<!-- 연동/게시글/같이플레이한놈 begin -->
 				<div class="row" style="color: white;">
 					<!-- 뭉태기1 -->
@@ -400,14 +378,10 @@ h1 {
 							${userOneSelect.lolId} | ??? | ???
 						</div>
 						<div class="sync">
-							<!-- userPosition=null/null/null/null/null -->
-							[메인포지션] : ${userOneSelect.userPosition} 
-							<% 
-							%>
-
+							<%-- 							<c:set var="position" value="${userOneSelect.userPosition}"/> --%>
+							[메인포지션] : ???
 						</div>
 					</div>
-
 					<!-- 뭉태기2 -->
 					<div class="userInfoBox col-sm-4">
 						<div>
@@ -422,7 +396,6 @@ h1 {
 						<div class="upload">2. 팀원의 성향에 대한 고찰</div>
 						<div class="upload">3. 진짜 프로젝트를 2주면 완성이 될까?</div>
 					</div>
-
 					<!-- 뭉태기3 -->
 					<div class="userInfoBox col-sm-4">
 						<div class="col playWith">최근 채팅한 플레이어</div>
@@ -450,7 +423,6 @@ h1 {
 				</div>
 				<!-- 연동/게시글/같이플레이한놈 end -->
 				<br />
-
 				<div class="reputation row">
 					<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">
 						후기를 써서 테러하세요!
@@ -468,7 +440,6 @@ h1 {
 							<div class="caption">★★★☆☆</div>
 						</div>
 					</div>
-
 					<div class="review col-4">
 						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
@@ -477,7 +448,6 @@ h1 {
 							<div class="caption">★★★☆☆</div>
 						</div>
 					</div>
-
 					<div class="review col-4">
 						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
@@ -486,7 +456,6 @@ h1 {
 							<div class="caption">★★★★★</div>
 						</div>
 					</div>
-
 					<div class="review col-4">
 						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
@@ -495,7 +464,6 @@ h1 {
 							<div class="caption">★☆☆☆☆</div>
 						</div>
 					</div>
-
 					<div class="review col-4">
 						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
@@ -504,7 +472,6 @@ h1 {
 							<div class="caption">☆☆☆☆☆</div>
 						</div>
 					</div>
-
 					<div class="review col-4">
 						<div class="reviewDay">작성자&nbsp;21/07/01</div>
 						<div class="rev">
@@ -521,34 +488,28 @@ h1 {
 							<div class="caption">★★★☆☆</div>
 						</div>
 					</div>
-
 					<!-- 페이징처리 -->
 					<div class="paging col-12">
 						<a href="#">[prev]</a> <a href="#">[1]</a> <a href="#">[2]</a> <a href="#">[3]</a> <a href="#">[next]</a>
 					</div>
 				</div>
-
 				<!-- 마우스 우클릭 (숨김처리됨li태그들) -->
 				<ul class="contextmenu">
 					<li><a onclick="fn_declaration()">신고하기</a></li>
 					<!-- 다른유저페이지로 이동->> -->
 					<li><a href="#">둘러보기</a></li>
 				</ul>
-
 				<!-- 그냥 밑에서 한칸 띄워 놓고 싶어서 만듬 share box begin  -->
 				<div style="border: none; display: block;" class="dt-share"></div>
 				<!-- share box end -->
-
 			</div>
 		</div>
 	</div>
 </section>
 <!-- Details Post Section End -->
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
-
 <c:import url="../layout/footer.jsp">
 	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>
