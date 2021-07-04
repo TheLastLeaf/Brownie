@@ -1,12 +1,15 @@
 package kr.co.brownie.user.web;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,25 +62,22 @@ public class UserController {
 
 	@PostMapping("/userInfo")
 	@ResponseBody //AJAX 사용시 써야함
-	public String userName(@RequestParam Map<String, Object> map, HttpSession httpSession) {
+	public String userName(@RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) {
 
 		// 세션 아이디 -> map에 삽입
 		String id = (String) httpSession.getAttribute("id");
 		map.put("id", id);
 
 		String nick = (String) map.get("nickNameBox");
-		String top = (String) map.get("top");
-		String jun = (String) map.get("jun");
-		String mid = (String) map.get("mid");
-		String bot = (String) map.get("bot");
-		String sup = (String) map.get("sup");
+		String[] positions = request.getParameterValues("positions");
+		System.out.println(Arrays.toString(positions));
 
 		// 넣을때는 모든 정보를 넣고 가져올때 split() 사켜서 null이 아닌것만 jsp에 띄워주기
-		String userPosition = top + "/" + jun + "/" + mid + "/" + bot + "/" + sup;
-		map.put("userPosition", userPosition);
+//		String userPosition = top + "/" + jun + "/" + mid + "/" + bot + "/" + sup;
+//		map.put("userPosition", userPosition);
 
-		System.out.println("id, nick, top, jun, mid, bot, sup : " + id + "/" + nick + "/" + top + "/" + jun + "/" + mid + "/" + bot + "/" + sup);
-		userService.insertNick(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
+//		System.out.println("id, nick, top, jun, mid, bot, sup : " + id + "/" + nick + "/" + top + "/" + jun + "/" + mid + "/" + bot + "/" + sup);
+//		userService.insertNick(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
 
 		return "msg";
 	}
