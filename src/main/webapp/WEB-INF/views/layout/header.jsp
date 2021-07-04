@@ -47,7 +47,8 @@
         }
     </style>
 
-    <script src="${pageContext.request.contextPath}/js/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -86,20 +87,25 @@
                         <ul>
                             <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
                             <li class="signup-switch signup-open">
-								<c:choose>
-									<c:when test="${id != null}">
-										<span style="margin-left:4px;"><a onclick="location.href='/user/userInfo'" style="text-decoration: underline;">${id}</a><span style="cursor:text">님 환영합니다</span></span>
-										<span style="margin-left:4px; cursor:text;">Lv. 3</span>
-										<span style="margin-left:4px;"><a onclick="location.href='/user/userInfo'"><i class="fa fa-address-book-o" aria-hidden="true"></a></i></span>
-										<span><a onclick="location.href='/logout'"><i class="fa fa-sign-out"></i></a></span>
-									</c:when>
-									<c:otherwise>
-										<a onclick="location.href = '/login'">
-											<img src="<c:url value='${pageContext.request.contextPath}/img/common/kakao_login_small.png'/>" alt=""/>
-										</a>
-									</c:otherwise>
-								</c:choose>
-							</li>
+                                <c:choose>
+                                    <c:when test="${id != null}">
+                                        <span style="margin-left:4px;"><a onclick="location.href='/user/userInfo'"
+                                                                          style="text-decoration: underline;">${id}</a><span
+                                                style="cursor:text">님 환영합니다</span></span>
+                                        <span style="margin-left:4px; cursor:text;">Lv. 3</span>
+                                        <span style="margin-left:4px;"><a onclick="location.href='/user/userInfo'"><i
+                                                class="fa fa-address-book-o" aria-hidden="true"></a></i></span>
+                                        <span><a onclick="location.href='/logout'"><i
+                                                class="fa fa-sign-out"></i></a></span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a onclick="location.href = '/login'">
+                                            <img src="<c:url value='${pageContext.request.contextPath}/img/common/kakao_login_small.png'/>"
+                                                 alt=""/>
+                                        </a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -118,8 +124,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="${pageContext.request.contextPath}/index"><img src="${pageContext.request.contextPath}/img/layout/brownie-header.png"
-                                                       alt=""></a>
+                    <a href="${pageContext.request.contextPath}/index"><img
+                            src="${pageContext.request.contextPath}/img/layout/brownie-header.png"
+                            alt=""></a>
                 </div>
             </div>
         </div>
