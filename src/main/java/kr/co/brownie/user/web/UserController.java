@@ -1,5 +1,7 @@
 package kr.co.brownie.user.web;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -22,20 +24,41 @@ public class UserController {
 	@Resource(name = "userService")
 	UserService userService;
 
+	/**
+	 * @author 박세웅
+	 * @param model
+	 * @param httpSession
+	 * @return
+	 * @throws Exception
+	 */
 	@GetMapping("/userInfo")
 	public String userInfo(Model model, HttpSession httpSession) throws Exception{
 		String id = (String)httpSession.getAttribute("id");
-		System.out.println(id);
 		UserVO userOneSelect = userService.userOneSelect(id); 
-		model.addAttribute("userOneSelect", userOneSelect);
+		int exp = userService.LvSelect(id);
+		float starCnt = userService.starCntSelect();
+		int fullStar = (int)starCnt / 1;
+		float halfStar = starCnt - fullStar;
 		
-		System.out.println(userOneSelect);
+		
+		model.addAttribute("userOneSelect", userOneSelect);
+		model.addAttribute("exp", exp);
+		model.addAttribute("fullStar", fullStar);
+		if(halfStar >= 0.5) {
+			model.addAttribute("halfStar", halfStar);
+		}
+		
+		System.out.println("sessionId: "+id);
+		System.out.println("userOneSelect: "+userOneSelect);
+		System.out.println("exp: " + exp);
+		System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
+		System.out.println();
 		
 		return "user/userInfo";
 	}
 
 	@PostMapping("/userInfo")
-	@ResponseBody
+	@ResponseBody //AJAX 사용시 써야함
 	public String userName(@RequestParam Map<String, Object> map, HttpSession httpSession) {
 
 		// 세션 아이디 -> map에 삽입
@@ -79,8 +102,4 @@ public class UserController {
 		return "user/userDeclar";
 	}
 
-	//	@GetMapping
-	//	public String main() {
-	//		return userInfo();
-	//	}
 }

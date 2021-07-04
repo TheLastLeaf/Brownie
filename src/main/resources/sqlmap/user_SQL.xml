@@ -33,21 +33,38 @@
 		)
 	</insert>
 
-	<select id="userOneSelect" resultType="kr.co.brownie.user.service.UserVO">
+	<select id="userOneSelect"
+		resultType="kr.co.brownie.user.service.UserVO">
 		SELECT
-			USER_ID 	AS userId,
-			LOL_ID 		AS lolId,
-			NICK_NAME 	AS nickName,
-			BLACK_STACK AS blackStack,
-			STATUS 		AS status,
-			IN_DATE 	AS inDate,
-			UP_DATE 	AS modDate,
-			IN_USER_ID 	AS inUserId,
-			UP_USER_ID 	AS upUserId,
-			USER_POSITION AS userPosition
+		USER_ID AS userId,
+		LOL_ID AS lolId,
+		NICK_NAME AS nickName,
+		BLACK_STACK AS blackStack,
+		STATUS AS status,
+		IN_DATE AS inDate,
+		UP_DATE AS modDate,
+		IN_USER_ID AS inUserId,
+		UP_USER_ID AS upUserId,
+		USER_POSITION AS userPosition
 		FROM
-			BROWNIE_USER
+		BROWNIE_USER
 		WHERE
-			USER_ID = #{id}
+		USER_ID = #{id}
+	</select>
+
+	<select id="LvSelect" resultType="int">
+		SELECT
+		EXP
+		FROM
+		BROWNIE_EXP
+		WHERE
+		USER_ID= #{id}
+	</select>
+
+	<select id="starCntSelect" resultType="float">
+		SELECT
+		SUM(STAR_CNT) / COUNT(STAR_CNT)
+		FROM
+		REVIEW
 	</select>
 </mapper>

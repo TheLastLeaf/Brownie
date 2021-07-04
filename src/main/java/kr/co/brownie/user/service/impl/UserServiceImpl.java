@@ -23,4 +23,15 @@ public class UserServiceImpl implements UserService{
 	public UserVO userOneSelect(String id) {
 		return userMapper.userOneSelect(id);
 	}
+
+	@Override
+	public int LvSelect(String id) {
+		return userMapper.LvSelect(id);
+	}
+
+	@Override
+	public float starCntSelect() {
+		return userMapper.starCntSelect();
+	}
+
 }

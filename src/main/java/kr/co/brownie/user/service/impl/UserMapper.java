@@ -14,4 +14,9 @@ public interface UserMapper {
 
 	UserVO userOneSelect(String id);
 
+	int LvSelect(String id);
+
+	float starCntSelect();
+
+
 }

@@ -8,5 +8,10 @@ public interface UserService {
 
 	UserVO userOneSelect(String id);
 
+	int LvSelect(String id);
+
+	float starCntSelect();
+
+
 
 }

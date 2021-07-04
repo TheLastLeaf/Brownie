@@ -321,8 +321,7 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a>
-						<span>userDetail</span>
+						<a href="#">userInfo</a> <span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -332,7 +331,7 @@ h1 {
 						<div class="profileBox text-center justify-content-center align-items-center d-flex">
 							<img class="profile" id="profile" src="${pageContext.request.contextPath}/img/user/sana1.gif">
 						</div>
-						<div class="col-5" style="color: white;">
+						<div class="col-7" style="color: white;">
 							<div class="Hierarchy">
 								<i>일반회원</i>
 							</div>
@@ -341,33 +340,48 @@ h1 {
 									<!-- 이름 | Lv. | 별점★★☆☆☆ -->
 									<!-- 세션에 아이디가 들어있는경우와 들어있지 않은경우의 호출 -->
 									<c:set var="id" value="${sessionScope.id}" />
-									<c:set var="nick" value="${userOneSelect.nickName}"/>
+
+									<c:set var="nick" value="${userOneSelect.nickName}" />
 									<c:choose>
 										<c:when test="${id ne null}">
-											<c:out value="${id}"/> | ${nick}
-											<c:out value=""/> | 
-											<span class="rating-star"> 
-												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-o"></i> 
-												<i class="fa fa-star-o"></i> 
-												<i class="fa fa-star-o"></i> 
-												<i class="fa fa-star-o"></i>
+											<c:out value="${nick}" /> | 
+											Lv. <c:set var="exp" value="${exp}" />
+											<c:choose>
+												<c:when test="${exp > 30}">
+														4
+													</c:when>
+												<c:when test="${exp > 20 }">
+														3
+													</c:when>
+												<c:when test="${exp > 10 }">
+														2
+													</c:when>
+												<c:otherwise>
+														1
+													</c:otherwise>
+											</c:choose>
+											<c:out value="" /> | 
+											<span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
+													<i class="fa fa-star"></i>
+												</c:forEach> <c:forEach begin="0" end="${halfStar}">
+													<i class="fa fa-star-half-o"></i>
+												</c:forEach> <c:forEach begin="1" end="${5-fullStar-halfStar}">
+													<i class="fa fa-star-o"></i>
+												</c:forEach>
 											</span>
 										</c:when>
 										<c:otherwise>
-											??? | ??? | <span class="rating-star"> 
+											??? | ??? | <span class="rating-star">
 												<i class="fa fa-star-o"></i>
-												<i class="fa fa-star-o"></i> 
-												<i class="fa fa-star-o"></i> 
-												<i class="fa fa-star-o"></i> 
 												<i class="fa fa-star-o"></i>
+												<i class="fa fa-star-half-o"></i>
 											</span>
 										</c:otherwise>
 									</c:choose>
 								</h3>
 							</div>
 						</div>
-						<div class="modInfo col-5" style="display: flex; justify-content: flex-end; margin-left: 70px;">
+						<div class="modInfo col-3" style="display: flex; justify-content: flex-end; margin-left: 70px;">
 							<button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
 							<button type="button" class="btn btn-dark" onclick="fn_infoDel()">탈퇴</button>
 						</div>
@@ -383,9 +397,15 @@ h1 {
 						</div>
 						<div class="sync">
 							<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
-							ririnto | Lv:80 | Bronze !!
+							${userOneSelect.lolId} | ??? | ???
 						</div>
-						<div class="sync">[메인포지션] : 탑!</div>
+						<div class="sync">
+							<!-- userPosition=null/null/null/null/null -->
+							[메인포지션] : ${userOneSelect.userPosition} 
+							<% 
+							%>
+
+						</div>
 					</div>
 
 					<!-- 뭉태기2 -->
@@ -445,7 +465,7 @@ h1 {
 						<div class="rev">
 							이 사람 아리만 해요,,미쳐진짜!
 							<!-- 상세내용담는공간 -->
-							<div class="caption">☆☆★★★</div>
+							<div class="caption">★★★☆☆</div>
 						</div>
 					</div>
 
@@ -454,7 +474,7 @@ h1 {
 						<div class="rev">
 							기가막히게 코딩을 잘한답니다..!
 							<!-- 상세내용담는공간 -->
-							<div class="caption">☆☆★★★</div>
+							<div class="caption">★★★☆☆</div>
 						</div>
 					</div>
 
@@ -472,7 +492,7 @@ h1 {
 						<div class="rev">
 							아리 왜하는지 모르겠어요
 							<!-- 상세내용담는공간 -->
-							<div class="caption">☆☆☆☆★</div>
+							<div class="caption">★☆☆☆☆</div>
 						</div>
 					</div>
 
@@ -490,7 +510,7 @@ h1 {
 						<div class="rev">
 							너...내 여자해라..
 							<!-- 상세내용담는공간 -->
-							<div class="caption">☆☆☆☆★</div>
+							<div class="caption">★☆☆☆☆</div>
 						</div>
 					</div>
 					<div class="review col-4">
@@ -498,17 +518,13 @@ h1 {
 						<div class="rev">
 							내일은 어떤 기능을 할까요!?!?
 							<!-- 상세내용담는공간 -->
-							<div class="caption">☆☆★★★</div>
+							<div class="caption">★★★☆☆</div>
 						</div>
 					</div>
 
 					<!-- 페이징처리 -->
 					<div class="paging col-12">
-						<a href="#">[prev]</a>
-						<a href="#">[1]</a>
-						<a href="#">[2]</a>
-						<a href="#">[3]</a>
-						<a href="#">[next]</a>
+						<a href="#">[prev]</a> <a href="#">[1]</a> <a href="#">[2]</a> <a href="#">[3]</a> <a href="#">[next]</a>
 					</div>
 				</div>
 
