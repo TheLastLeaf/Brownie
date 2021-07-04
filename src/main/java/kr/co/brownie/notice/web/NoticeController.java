@@ -1,6 +1,7 @@
 package kr.co.brownie.notice.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import kr.co.brownie.notice.service.NoticeVO;
 import org.springframework.stereotype.Controller;
@@ -28,16 +29,14 @@ public class NoticeController {
     public String noticeAddPost(@RequestParam Map<String, Object> map, ModelAndView mav){
         noticeService.insertNotice(map);
         if(map.get("boardSeq")==null){
-            System.out.println(map.get("boardSeq"));
             return "redirect:/notice/list";
         }else{
-            System.out.println(map.get("boardSeq"));
             return "redirect:/notice/detail?boardSeq="+map.get("boardSeq");
         }
     }
 
     @GetMapping("/detail")
-    public String detail(@RequestParam Map<String, Object> map, Model model) {
+    public String detail(@RequestParam Map<String, Object> map, Model model,HttpSession session) {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
@@ -81,6 +80,6 @@ public class NoticeController {
         String a = map.get("boardSeq").toString();
         int b = Integer.parseInt(a);
         noticeService.deleteNotice(b);
-        return "notice/noticeList";
+        return "redirect:/notice/list";
     }
 }
