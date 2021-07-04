@@ -55,10 +55,10 @@
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <div class="innerBox text-right">
+                                <form action="/notice/delete" method="post">
                                 <input type="button" class="btn btn-outline-dark btn-sm"
                                                onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'" style="color:white; cursor: pointer;"
                                                value="수정">
-                                <form action="/notice/delete" method="post">
                                     <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
                                     <input type="submit" class="btn btn-outline-dark btn-sm" style="color:#c20000; cursor: pointer;" value="삭제">
                                 </form>
