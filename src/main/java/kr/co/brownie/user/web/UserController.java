@@ -1,15 +1,12 @@
 package kr.co.brownie.user.web;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +36,9 @@ public class UserController {
 		String id = (String) httpSession.getAttribute("id");
 		if (id != null) {
 			UserVO userOneSelect = userService.userOneSelect(id);
+			System.out.println("생성자까지 성공");
 			String position = userOneSelect.getUserPosition();
+			System.out.println("position: " + position);
 			int exp = userService.LvSelect(id);
 			float starCnt = userService.starCntSelect();
 			int fullStar = (int) starCnt / 1;
@@ -57,8 +56,7 @@ public class UserController {
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("exp: " + exp);
 			System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
-			System.out.println("position: " + position);
-			
+
 			return "user/userInfo";
 		}
 		return "user/userInfo";

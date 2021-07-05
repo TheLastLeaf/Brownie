@@ -15,13 +15,13 @@ public class UserServiceImpl implements UserService{
 	UserMapper userMapper;
 
 	@Override
-	public void insertNick(Map<String, Object> map) {
-		userMapper.insertNick(map);
-	}
-
-	@Override
 	public UserVO userOneSelect(String id) {
 		return userMapper.userOneSelect(id);
+	}
+	
+	@Override
+	public void insertNick(Map<String, Object> map) {
+		userMapper.insertNick(map);
 	}
 
 	@Override

@@ -21,15 +21,15 @@
 		values
 		(
 		#{id},
-		nvl('','불완전한 소환사명'),
-		#{nickNameBox},
+		nvl('','롤아이디미연동'),
+		nvl(#{nickName},'닉네임미기입'),
 		0,
 		'y',
+		to_char(sysdate, 'yyyy-MM-dd'),
 		'',
 		'',
 		'',
-		'',
-		#{userPosition}
+		nvl(#{userPosition},'top/jun/mid/bot/sup')
 		)
 	</insert>
 

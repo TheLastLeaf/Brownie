@@ -4,9 +4,9 @@ import java.util.Map;
 
 public interface UserService {
 
-	void insertNick(Map<String, Object> map);
-
 	UserVO userOneSelect(String id);
+
+	void insertNick(Map<String, Object> map);
 
 	int LvSelect(String id);
 

@@ -21,12 +21,11 @@
 
 .profilePic {
 	position: relative;
-	
-    margin-left: 5px;
-    margin-top: 3px;
+	margin-left: 5px;
+	margin-top: 3px;
 }
 
-.profilePic img{
+.profilePic img {
 	border-radius: 80%;
 	width: 85px;
 	height: 85px;
@@ -399,7 +398,7 @@ h1 {
 									${userOneSelect.lolId} | ??? | ???
 								</div>
 								<div class="sync">
-									<%-- 							<c:set var="position" value="${userOneSelect.userPosition}"/> --%>
+									<%-- <c:set var="position" value="${userOneSelect.userPosition}"/> --%>
 									[메인포지션] : ???
 								</div>
 							</div>
@@ -521,7 +520,7 @@ h1 {
 					</c:when>
 
 					<c:otherwise>
-						<!-- 비로그인 상태에서 user화면 -->
+						<!-- 비로그인or 로그인처음 상태에서 user화면 --> 
 						<div class="dt-desc" style="display: block;">
 							<div class="row outBox" style="margin-left: 5px;">
 								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
@@ -621,9 +620,6 @@ h1 {
 
 					</c:otherwise>
 				</c:choose>
-
-
-
 
 				<!-- 마우스 우클릭 (숨김처리됨li태그들) -->
 				<ul class="contextmenu">

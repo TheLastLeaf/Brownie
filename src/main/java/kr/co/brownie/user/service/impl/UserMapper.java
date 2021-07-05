@@ -10,9 +10,9 @@ import kr.co.brownie.user.service.UserVO;
 @Repository("userMapper")
 public interface UserMapper {
 
-	void insertNick(Map<String, Object> map);
-
 	UserVO userOneSelect(String id);
+
+	void insertNick(Map<String, Object> map);
 
 	int LvSelect(String id);
 
