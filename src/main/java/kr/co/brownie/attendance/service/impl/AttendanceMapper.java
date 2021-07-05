@@ -13,6 +13,6 @@ public interface AttendanceMapper {
 
 	List<AttendanceVO> selectOne(String userId);
 
-	int insertOne();
+	int insertOne(String userId);
 
 }

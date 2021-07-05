@@ -20,7 +20,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 	}
 
 	@Override
-	public int insertOne() {
-		return 0;
+	public int insertOne(String userId) {
+		return attendanceMapper.insertOne(userId);
 	}
 }

@@ -12,8 +12,22 @@
 		WHERE  IN_USER		= #{userId}
 	</select>
 
-	<insert id="insertOne">
-
+	<insert id="insertOne" parameterType="String">
+		INSERT INTO
+		ATTENDANCE
+				(
+				ATTEND_SEQ,
+				CHECKED_DATE,
+				IN_USER,
+				IN_DATE
+				)
+		VALUES
+				(
+				ATTEND_SEQ.NEXTVAL,
+				'check',
+				#{userId},
+				SYSDATE
+				)
 	</insert>
 
 </mapper>
