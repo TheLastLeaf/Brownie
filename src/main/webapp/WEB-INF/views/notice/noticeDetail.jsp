@@ -1,7 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<fmt:formatDate value="${noticeVO.upDate}" type="date" var="update" pattern="yyyy-mm-dd hh:mm:ss" />
 <script>
     $(function(){
         $('.reply-btn').click(function(){
@@ -24,7 +26,7 @@
                             <div class="details-hero-text">
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li class="fa fa-clock-o">Aug 01, 2019</li>
+                                    <li class="fa fa-clock-o">${update}</li>
                                     <li><span onclick="location.href='/notice/list'" style="color:#666666; cursor: pointer;">목록</span>
                                     </li>
                                 </ul>

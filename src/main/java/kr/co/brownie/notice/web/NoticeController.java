@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import kr.co.brownie.notice.service.NoticePage;
 import kr.co.brownie.notice.service.NoticeVO;
 import org.springframework.stereotype.Controller;
 
@@ -20,6 +21,8 @@ import java.util.Map;
 public class NoticeController {
     @Resource(name = "noticeService")
     NoticeService noticeService;
+
+    private int size = 10;
 
     @GetMapping("/add")
     public String noticeAdd() {
@@ -51,8 +54,12 @@ public class NoticeController {
 
     @GetMapping(path={"", "/list"})
     public String noticeList(@RequestParam Map<String,Object> map, Model model) {
+        int total = this.noticeService.selectCount();
+        String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
+        int pageNum = Integer.parseInt(strPageNum);
+        map.put("pageNum", pageNum);
         List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
-        model.addAttribute("noticeVOList",noticeVOList);
+        model.addAttribute("noticeVOList",new NoticePage(total, pageNum ,size, noticeVOList));
         model.addAttribute("notice",map.get("notice"));
         model.addAttribute("keyword",map.get("keyword"));
         return "notice/noticeList"; //공지 리스트

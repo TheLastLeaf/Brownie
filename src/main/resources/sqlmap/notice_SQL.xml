@@ -3,35 +3,43 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.notice.service.impl.NoticeMapper">
-    <select id="selectList" resultType="kr.co.brownie.notice.service.NoticeVO">
-        SELECT BOARD_SEQ  AS BOARDSEQ,
-               BOARD_KIND AS BOARDKIND,
-               TITLE      AS TITLE,
-               CONTENT    AS CONTENT,
-               NOTICE_YN  AS NOTICEYN,
-               STATUS     AS STATUS,
-               IN_DATE    AS INDATE,
-               IN_USER_ID AS INUSERID,
-               UP_DATE    AS "UPDATE",
-               UP_USER_ID AS UPUSERID,
-               FILE_SEQ   AS FILESEQ,
-               SUB_SEQ    AS SUBSEQ
-        FROM BROWNIE_BOARD
-        WHERE 1 = 1
-        ORDER BY BOARD_SEQ DESC
-        <if test="notice!=null and notice !=''">
-            <choose>
-                <when test='notice.equals("title")'>
-                    AND TITLE LIKE '%' || #{keyword} || '%'
-                </when>
-                <when test='notice.equals("content")'>
-                    and CONTENT like '%' || #{keyword} || '%'
-                </when>
-                <otherwise>
-                    AND IN_USER_ID LIKE '%' || #{keyword} || '%'
-                </otherwise>
-            </choose>
-        </if>
+    <select id="selectList" resultType="kr.co.brownie.notice.service.NoticeVO" parameterType="hashMap">
+        select S.RNUM,
+               S.BOARDSEQ AS BOARDSEQ,
+               S.BOARDKIND AS BOARDKIND,
+               S.TITLE AS TITLE,
+               S.CONTENT AS CONTENT,
+               S.NOTICEYN AS NOTICEYN,
+               S.STATUS AS STATUS,
+               S.INDATE AS INDATE,
+               S.INUSERID AS INUSERID,
+               S.MODDATE AS "UPDATE",
+               S.UPUSERID AS UPUSERID,
+               S.FILESEQ AS FILESEQ,
+               S.SUBSEQ AS SUBSEQ
+        FROM
+            (SELECT ROWNUM RNUM , T.*
+                FROM(
+                    SELECT
+                        BOARD_SEQ AS BOARDSEQ,
+                        BOARD_KIND AS BOARDKIND,
+                        TITLE AS TITLE,
+                        CONTENT AS CONTENT,
+                        NOTICE_YN AS NOTICEYN,
+                        STATUS AS STATUS,
+                        IN_DATE AS INDATE,
+                        IN_USER_ID AS INUSERID,
+                        UP_DATE AS MODDATE,
+                        UP_USER_ID AS UPUSERID,
+                        FILE_SEQ AS FILESEQ,
+                        SUB_SEQ AS SUBSEQ
+                    FROM BROWNIE_BOARD
+                    WHERE 1 = 1
+                    ORDER BY BOARD_SEQ DESC
+            )T
+        )S
+        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
+
     </select>
 
 
@@ -57,8 +65,9 @@
         <selectKey order="BEFORE" keyProperty="boardSeq" resultType="int">
             SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM BROWNIE_BOARD
         </selectKey>
-            INSERT INTO BROWNIE_BOARD(BOARD_SEQ,BOARD_KIND,TITLE,CONTENT,NOTICE_YN,STATUS,IN_DATE,IN_USER_ID,UP_DATE,UP_USER_ID,FILE_SEQ,SUB_SEQ)
-            VALUES (#{boardSeq},NULL,#{title},#{content},NULL,NULL,SYSDATE,#{boardSeq},SYSDATE,#{boardSeq},NULL,NULL)
+        INSERT INTO
+        BROWNIE_BOARD(BOARD_SEQ,BOARD_KIND,TITLE,CONTENT,NOTICE_YN,STATUS,IN_DATE,IN_USER_ID,UP_DATE,UP_USER_ID,FILE_SEQ,SUB_SEQ)
+        VALUES (#{boardSeq},NULL,#{title},#{content},NULL,NULL,SYSDATE,#{boardSeq},SYSDATE,#{boardSeq},NULL,NULL)
     </insert>
 
     <update id="update" parameterType="hashMap">
@@ -71,8 +80,7 @@
             UP_DATE    = SYSDATE,
             FILE_SEQ   = NULL,
             SUB_SEQ    = NULL
-        WHERE
-            BOARD_SEQ = #{boardSeq}
+        WHERE BOARD_SEQ = #{boardSeq}
     </update>
 
     <delete id="delete" parameterType="int">
@@ -80,4 +88,8 @@
         FROM BROWNIE_BOARD
         WHERE BOARD_SEQ = #{Seq}
     </delete>
+    
+    <select id="count" resultType="int">
+        SELECT COUNT(*) CNT FROM BROWNIE_BOARD
+    </select>
 </mapper>

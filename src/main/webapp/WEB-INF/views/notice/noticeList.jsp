@@ -59,7 +59,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 p-0">
-                    <c:forEach var="noticeVO" items="${noticeVOList}">
+                    <c:forEach var="noticeVO" items="${noticeVOList.content}">
                         <div class="cl-item">
                             <div class="cl-pic">
                                 <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-1.jpg" alt="">
@@ -96,13 +96,19 @@
                             </form>
                         </div>
                     </form>
-                    <div class="pagination-item">
-                        <a href="#"><span>Prev</span></a>
-                        <a href="#"><span>1</span></a>
-                        <a href="#"><span>2</span></a>
-                        <a href="#"><span>3</span></a>
-                        <a href="#"><span>Next</span></a>
-                    </div>
+                    <c:if test="#{noticeVOList.hasArticles()}">
+                        <div class="pagination-item">
+                            <c:if test="${noticeVOList.startPage>5}">
+                                <a href="/notice/list?pageNum=${noticeVOList.startPage-5}"><span>Prev</span></a>
+                            </c:if>
+                            <c:forEach var="pageno" begin="${noticeVOList.startPage}" end="${noticeVOList.endPage}">
+                                <a href="/notice/list?pageNum=${pageno}"><span>${pageno}</span></a>
+                            </c:forEach>
+                            <c:if test="${noticeVOList.startPage>5}">
+                                <a href="/notice/list?pageNum=${noticeVOList.startPage+5}"><span>Next</span></a>
+                            </c:if>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>
