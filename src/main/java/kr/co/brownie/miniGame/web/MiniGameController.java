@@ -1,5 +1,6 @@
 package kr.co.brownie.miniGame.web;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -24,6 +25,12 @@ public class MiniGameController {
 		List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList();
 		System.out.println("info" + brownieMarbelInfo);
         model.addAttribute("infoList",brownieMarbelInfo);
+        BrownieMarbelInfoVO info = new BrownieMarbelInfoVO();
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("name", info.getName());
+        map.put("degree", info.getDegree());
+        model.addAttribute("map", map);
+        
 		return "miniGame/blueMarvel";
 	}
 }

@@ -147,7 +147,7 @@
 			console.log(3);
 			bubblyButtons[i].addEventListener('click', animateButton, false);
 		}
-		
+		//클릭중
 		$('#btnRoll')
 				.mousedown(
 						function() {
@@ -157,12 +157,29 @@
 							$('.tamin').css('visibility', 'hidden')
 						});
 		$('#btnRoll')
-				.mouseup(
+				.mouseup(//클릭끝
 						function() {
 							$('.wrapper')
 									.css('background-image',
 											"url('${pageContext.request.contextPath}/img/miniGame/diceDrop.gif')")
 							setTimeout("reset()", 2000);
+							//데이터 전송 추가해야함/.
+							var form = {
+					                name: "aaaddd",
+					                seq: 23
+					        }
+					        $.ajax({
+					            url: "requestObject",
+					            type: "POST",
+					            data: form,
+					            success: function(data){
+					                $('#result').text(data);
+					            },
+					            error: function(){
+					                alert("simpleWithObject err");
+					            }
+					        });
+							
 						});
 	}
 
