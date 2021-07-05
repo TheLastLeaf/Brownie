@@ -1,9 +1,13 @@
  package kr.co.brownie.admin.web;
 
+import java.util.Calendar;
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 
 import kr.co.brownie.admin.service.AdminService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +21,15 @@ public class AdminController {
 	AdminService adminService;
 
 	@GetMapping("/adminView")
-	public String adminView() {
+	public String adminView(Model model) {
+
+		Calendar cal = Calendar.getInstance();
+        int month = cal.get(Calendar.MONTH)+1;	//이번달
+        HashMap<String, Integer> dayMap = new HashMap<String, Integer>();
+        dayMap.put("month", month);
+
+    	model.addAttribute("dayMap", dayMap);
+
 		return "admin/adminView"; //관리자 화면 기본
 	}
 

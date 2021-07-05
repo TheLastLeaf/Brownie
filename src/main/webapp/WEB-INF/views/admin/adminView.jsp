@@ -9,7 +9,7 @@
                 <div class="breadcrumb-text">
                     <h3>관리자 화면</h3>
                 <div>
-					<a href="#" style="color: #ffffff;"></a>               
+					<a href="#" style="color: #ffffff;"></a>
                 </div>
                 </div>
             </div>
@@ -17,6 +17,15 @@
     </div>
 </section>
 <!-- Breadcrumb Section End -->
+
+<style>
+
+.adminMenu{
+	cursor: pointer;
+}
+
+
+</style>
 
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -30,12 +39,20 @@
                                 <div class="or-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
-                                                <span class="circle-progress-2" data-cpid="id-5" data-cpvalue="60"
+											<span class="circle-progress-2" data-cpid="id-5" data-cpvalue="60"
                                                       data-cpcolor="#c20000"></span>
-                                            <div class="review-point" style="justify-content: center; align-content: center; text-align: center;">
-                                                <div>6월</div>
-                                                <span>이 달의 통계</span>
-                                            </div>
+                                            <c:choose>
+                                            	<c:when test="${dayMap.get('month') lt 10}">
+		                                            <div class="review-point" style="top:55px;">
+		                                                <div style="top: 60px;">${dayMap.get("month")}월</div>
+		                                            </div>
+	                                           </c:when>
+                                            	<c:otherwise>
+	                                            	<div class="review-point" style="top:55px; left: 25px;">
+	                                                	<div style="top: 60px;">${dayMap.get("month")}월</div>
+	                                            	</div>
+	                                            </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </div>
                                 </div>
@@ -46,22 +63,22 @@
                         <ul>
                             <li>
                                 <div class="sm-icon"><i class="fa fa-pencil-square-o"></i></div>
-                                	<span>게시판 관리</span>
+                                	<span class="adminMenu">게시판 관리</span>
                                 <div class="follow">5개</div>
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="fa fa-user-o"></i></div>
-                                	<span>멤버 관리</span>
+                                	<span class="adminMenu">멤버 관리</span>
                                 <div class="follow">432명</div>
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="fa fa-address-card"></i></div>
-                                	<span>신고 내역</span>
+                                	<span class="adminMenu">신고 내역</span>
                                 <div class="follow">4명</div>
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="fa fa-user-circle-o"></i></div>
-                                	<span>블랙 리스트</span>
+                                	<span class="adminMenu">블랙 리스트</span>
                                 <div class="follow">52명</div>
                             </li>
                         </ul>
@@ -161,5 +178,5 @@
     </div>
 </section>
 <!-- Details Post Section End -->
- 
+
 <c:import url="../layout/footer.jsp"/>
