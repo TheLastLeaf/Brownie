@@ -1,5 +1,6 @@
 package kr.co.brownie.attendance.web;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -25,14 +26,23 @@ public class AttendanceController {
 	public String dayView(Model model) {
 		//서버 오늘 날짜
     	HashMap<String, Integer> dateForCheck = dateForDayMethod();
-
     	model.addAttribute("dateForCheck", dateForCheck);
 
-    	//유저가 출석 체크한 날짜 : test 유저라서 test 써 놨음
-//    	List<AttendanceVO> checkedList = this.attendanceService.getCheckedDate("test");
-//    	model.addAttribute("checkedList", checkedList);
-//    	System.out.println(checkedList.toString());
+    	String year = dateForCheck.get("year")+ "";
+    	Integer month = dateForCheck.get("month");
 
+    	//유저가 출석 체크한 날짜 : test 유저라서 test 써 놨음. 나중에 유저 아이디로 바꾸면 됨
+    	List<AttendanceVO> checkedList = this.attendanceService.getCheckedDate("test");
+    	List<Integer> dateList = new ArrayList<>();
+    	for ( AttendanceVO attendance : checkedList ) {
+    		String tempDate = attendance.getInDate();
+    		String[] tempDateArr = tempDate.split("/");
+    		//오늘 날짜랑 디비에 저장된 날짜 비교해서 일자 삽입
+    		if(year.substring(year.length()-2, year.length()).equals(tempDateArr[0]) && month == Integer.parseInt(tempDateArr[1])) {
+    			dateList.add(Integer.parseInt(tempDateArr[2]));
+    		}
+    	}
+    	model.addAttribute("dateList", dateList);
     	return "attendance/day";	//이게 jsp 경로인가봐
 	}
 

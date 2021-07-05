@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 import kr.co.brownie.attendance.service.AttendanceService;
 import kr.co.brownie.attendance.service.AttendanceVO;
 
-@Service("attendanceServiceImpl")
+@Service("attendanceService")
 public class AttendanceServiceImpl implements AttendanceService{
-
 	@Resource(name = "attendanceMapper")
 	AttendanceMapper attendanceMapper;
 

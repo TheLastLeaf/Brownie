@@ -7,10 +7,10 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
-                    <h3>Contact us</h3>
+                    <h3>출석체크</h3>
                     <div class="bt-option">
                         <a href="./home">Home</a>
-                        <span>출석체크</span>
+                        <span>calendar</span>
                     </div>
                 </div>
             </div>
@@ -19,12 +19,11 @@
 </section>
 <!-- Breadcrumb Section End -->
 
-
 <!-- 달력 스크립트 시작 -->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	window.onload = function () {
-		const year = ${dateForCheck.get('day')};			//올해
+		const year = ${dateForCheck.get('year')};			//올해
 		const month = ${dateForCheck.get('month')};			//이번달
 		const day = ${dateForCheck.get('day')};				//오늘날짜
 		const lastDate = ${dateForCheck.get('lastDate')};	//마지막날짜
@@ -62,7 +61,7 @@
 	    }
 
 	    //앞서 체크했던 날짜 디비에서 불러와서 체크 표시로 바꿔주기
-    	var UserCheckeddates = [ 1, 2 ]; //임시 표시용 날짜. 나중에 디비에서 불러올 데이터를 여기에 채우면 됨
+    	var UserCheckeddates = ${dateList};
     	UserCheckeddates.forEach(function(date){
 			document.getElementById(date).innerHTML = "<i class='fa fa-cloud'></i>";
 		});

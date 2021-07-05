@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.attendance.service.impl.AttendanceMapper">
-	<select id="selectOne" resultType="kr.co.brownie.attendance.service.AttendanceVO">
+	<select id="selectOne" parameterType="String" resultType="kr.co.brownie.attendance.service.AttendanceVO">
 		SELECT ATTEND_SEQ 	AS ATTENDSEQ,
 			   CHECKED_DATE	AS CHECKEDDATE,
 			   IN_USER		AS INUSER,
 			   IN_DATE		AS INDATE
 		FROM   ATTENDANCE
-		WHERE  IN_USER		= "test"
+		WHERE  IN_USER		= #{userId}
 	</select>
 
 	<insert id="insertOne">
