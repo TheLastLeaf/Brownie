@@ -22,13 +22,14 @@
 <!-- 달력 스크립트 시작 -->
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	window.onload = function () {
-		const year = ${dateForCheck.get('year')};			//올해
-		const month = ${dateForCheck.get('month')};			//이번달
-		const day = ${dateForCheck.get('day')};				//오늘날짜
-		const lastDate = ${dateForCheck.get('lastDate')};	//마지막날짜
-		const weekNum = ${dateForCheck.get('firstDay')};    //1일 2월 3화 4수 5목 6금 7토
+	const year = ${dateForCheck.get('year')};			//올해
+	const month = ${dateForCheck.get('month')};			//이번달
+	const day = ${dateForCheck.get('day')};				//오늘날짜
+	const lastDate = ${dateForCheck.get('lastDate')};	//마지막날짜
+	const weekNum = ${dateForCheck.get('firstDay')};    //1일 2월 3화 4수 5목 6금 7토
+   	const UserCheckeddates = ${dateList};				//유저가 출석 체크한 날짜
 
+   	window.onload = function () {
 		var tbcal = document.getElementById("calendar"); // 달력 테이블
 		while (tbcal.rows.length > 2)
 	    {
@@ -58,30 +59,40 @@
 	            cell.innerHTML = "<span id='"+i+"' style='font-size:70px; color:#7ED5E4; cursor: pointer;' onclick='javascript:dateCheck(this.id)'>"+i+"</span>";
 	            row = calendar.insertRow();// 줄 추가
 	        }
+
+	    	//이미 체크된 날짜 마우스 커서 바꿔주기
+	    	if(UserCheckeddates.indexOf(i) > -1){
+				document.getElementById(i).innerHTML = "<i class='fa fa-cloud'></i>";
+				document.getElementById(i).style.cursor='';
+			}
 	    }
-
-	    //앞서 체크했던 날짜 디비에서 불러와서 체크 표시로 바꿔주기
-    	var UserCheckeddates = ${dateList};
-    	UserCheckeddates.forEach(function(date){
-			document.getElementById(date).innerHTML = "<i class='fa fa-cloud'></i>";
-		});
-
 	}
 
+	let checkedFlag = false;
 
 	//사용자가 출석체크 할 때 작동하는 함수
 	function dateCheck(thisDate){
-		const today = ${dateForCheck.get('day')};//오늘날짜
-		if(thisDate != today){
-			alert("해당 요일이 아닙니다.");
-		} else {
-			alert("출석 체크가 완료되었습니다.");
-			var checkedDate = document.getElementById(today);
-			console.log(checkedDate)
-			checkedDate.innerHTML = "<i class='fa fa-cloud'></i>";
-			//디비에 today 날짜 저장
+		//이미 체크된 날짜일 경우 함수 종료
+		if(UserCheckeddates.indexOf(thisDate) > -1){
+			return;
+		}
+		if(checkedFlag){
+			return;
 		}
 
+		const today = ${dateForCheck.get('day')};//오늘날짜
+    	if(thisDate != today){
+			alert("해당 요일이 아닙니다.");
+		} else {
+			if(!checkedFlag){
+				alert("출석 체크가 완료되었습니다.");
+				document.getElementById(today).innerHTML = "<i class='fa fa-cloud'></i>";
+				document.getElementById(today).style.cursor='';
+				checkedFlag = true;
+
+				//디비에 day 날짜 저장
+			}
+		}
 	}
 
 </script>
