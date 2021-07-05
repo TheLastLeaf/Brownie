@@ -37,28 +37,30 @@ public class UserController {
 	@GetMapping("/userInfo")
 	public String userInfo(Model model, HttpSession httpSession) throws Exception {
 		String id = (String) httpSession.getAttribute("id");
-		UserVO userOneSelect = userService.userOneSelect(id);
-		String position = userOneSelect.getUserPosition();
+		if (id != null) {
+			UserVO userOneSelect = userService.userOneSelect(id);
+			String position = userOneSelect.getUserPosition();
+			int exp = userService.LvSelect(id);
+			float starCnt = userService.starCntSelect();
+			int fullStar = (int) starCnt / 1;
+			float halfStar = starCnt - fullStar;
 
-		int exp = userService.LvSelect(id);
-		float starCnt = userService.starCntSelect();
-		int fullStar = (int) starCnt / 1;
-		float halfStar = starCnt - fullStar;
+			model.addAttribute("userOneSelect", userOneSelect);
+			model.addAttribute("position", position);
+			model.addAttribute("exp", exp);
+			model.addAttribute("fullStar", fullStar);
+			if (halfStar >= 0.5) {
+				model.addAttribute("halfStar", halfStar);
+			}
 
-		model.addAttribute("userOneSelect", userOneSelect);
-		model.addAttribute("position", position);
-		model.addAttribute("exp", exp);
-		model.addAttribute("fullStar", fullStar);
-		if (halfStar >= 0.5) {
-			model.addAttribute("halfStar", halfStar);
+			System.out.println("sessionId: " + id);
+			System.out.println("userOneSelect: " + userOneSelect);
+			System.out.println("exp: " + exp);
+			System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
+			System.out.println("position: " + position);
+			
+			return "user/userInfo";
 		}
-
-		System.out.println("sessionId: " + id);
-		System.out.println("userOneSelect: " + userOneSelect);
-		System.out.println("exp: " + exp);
-		System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
-		System.out.println("position: " + position);
-
 		return "user/userInfo";
 	}
 
@@ -75,11 +77,11 @@ public class UserController {
 		System.out.println(Arrays.toString(positions));
 
 		// 넣을때는 모든 정보를 넣고 가져올때 split() 사켜서 null이 아닌것만 jsp에 띄워주기
-//		String userPosition = top + "/" + jun + "/" + mid + "/" + bot + "/" + sup;
-//		map.put("userPosition", userPosition);
+		//		String userPosition = top + "/" + jun + "/" + mid + "/" + bot + "/" + sup;
+		//		map.put("userPosition", userPosition);
 
-//		System.out.println("id, nick, top, jun, mid, bot, sup : " + id + "/" + nick + "/" + top + "/" + jun + "/" + mid + "/" + bot + "/" + sup);
-//		userService.insertNick(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
+		//		System.out.println("id, nick, top, jun, mid, bot, sup : " + id + "/" + nick + "/" + top + "/" + jun + "/" + mid + "/" + bot + "/" + sup);
+		//		userService.insertNick(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
 
 		return "msg";
 	}

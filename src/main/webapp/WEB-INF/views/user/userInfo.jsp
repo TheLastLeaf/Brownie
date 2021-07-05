@@ -4,26 +4,41 @@
 <style>
 .profileBox {
 	display: inline-block;
-	width: 80px;
-	height: 80px;
-	border: 1px solid white;
+	width: 120px;
+	height: 120px;
 	border-radius: 5px;
 	color: white;
 	margin: 4px 10px 4px 10px;
 	text-align: center;
 	position: relative;
-	background: #1C1C1C;
-	border: 2px solid red;
+	background: #0d0d0d;
+	background-size: cover;
 }
 
 .outBox {
 	border: none;
 }
 
-.profile {
+.profilePic {
+	position: relative;
+	
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+.profilePic img{
+	border-radius: 80%;
+	width: 85px;
+	height: 85px;
+}
+
+.profileFrame {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: 120px;
+	position: absolute;
+	width: 150px;
+	height: 150px;
 }
 
 .Hierarchy {
@@ -36,7 +51,7 @@
 .nameLv {
 	display: flex;
 	align-items: flex-end;
-	margin-left: 12px;
+	margin: 25px 0px 0px 14px;;
 }
 
 h3 {
@@ -47,6 +62,7 @@ h3 {
 .userInfoBox {
 	border: 1px solid white;
 	border-radius: 15px 15px 3px 3px;
+	text-align: center;
 }
 
 button {
@@ -221,6 +237,12 @@ h1 {
 	justify-content: center;
 	margin: 0px 0px 8px;
 }
+
+.modInfo {
+	display: flex;
+	justify-content: flex-end;
+	margin-left: 20px;
+}
 </style>
 <script>
 	function fn_sync() {
@@ -304,30 +326,36 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a> <span>userDetail</span>
+						<a href="#">userInfo</a>
+						<span>userDetail</span>
 					</div>
 				</div>
 				<br />
-				<div class="dt-desc" style="display: block;">
-					<div class="row outBox" style="margin-left: 5px;">
-						<!-- 프로필사진 -->
-						<div class="profileBox text-center justify-content-center align-items-center d-flex">
-							<img class="profile" id="profile" src="${pageContext.request.contextPath}/img/user/sana1.gif">
-						</div>
-						<div class="col-7" style="color: white;">
-							<div class="Hierarchy">
-								<i>일반회원</i>
-							</div>
-							<div class="nameLv">
-								<h3>
-									<!-- 이름 | Lv. | 별점★★☆☆☆ -->
-									<!-- 세션에 아이디가 들어있는경우와 들어있지 않은경우의 호출 -->
-									<c:set var="id" value="${sessionScope.id}" />
-									<c:set var="nick" value="${userOneSelect.nickName}" />
-									<c:choose>
-										<c:when test="${id ne null}">
-											<c:out value="${nick}" /> | 
-											Lv. <c:set var="exp" value="${exp}" />
+				<c:choose>
+					<c:when test="${sessionScope.id ne null}">
+						<!-- 로그인상태에서 정보화면 -->
+						<c:set var="nick" value="${userOneSelect.nickName}" />
+						<c:set var="exp" value="${exp}" />
+						<div class="dt-desc" style="display: block;">
+							<div class="row outBox" style="margin-left: 5px;">
+								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
+									<!-- 프로필 프레임 -->
+									<div class="profileFrame">
+										<img src="${pageContext.request.contextPath}/img/frame/red.png">
+									</div>
+									<!-- 프로필사진 -->
+									<div class="profilePic">
+										<img src="${pageContext.request.contextPath}/img/user/V_for_vendetor.jpg">
+									</div>
+								</div>
+								<div class="col-7" style="color: white;">
+									<div class="Hierarchy">
+										<i>일반회원</i>
+									</div>
+									<div class="nameLv">
+										<h3>
+											<c:out value="${nick}" />
+											| Lv.
 											<c:choose>
 												<c:when test="${exp > 30}">
 														4
@@ -340,10 +368,9 @@ h1 {
 													</c:when>
 												<c:otherwise>
 														1
-													</c:otherwise>
+												</c:otherwise>
 											</c:choose>
-											<c:out value="" /> | 
-											<span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
+											| <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
 													<i class="fa fa-star"></i>
 												</c:forEach> <c:forEach begin="0" end="${halfStar}">
 													<i class="fa fa-star-half-o"></i>
@@ -351,148 +378,253 @@ h1 {
 													<i class="fa fa-star-o"></i>
 												</c:forEach>
 											</span>
-										</c:when>
-										<c:otherwise>
-											??? | ??? | <span class="rating-star"> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-half-o"></i>
+										</h3>
+									</div>
+								</div>
+								<div class="modInfo col-3">
+									<button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
+									<button type="button" class="btn btn-dark" onclick="fn_infoDel()">탈퇴</button>
+								</div>
+							</div>
+						</div>
+						<!-- 연동/게시글/같이플레이한놈 begin -->
+						<div class="row" style="color: white;">
+							<!-- 뭉태기1 -->
+							<div class="userInfoBox col-sm-4">
+								<div class="sync">
+									<button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
+								</div>
+								<div class="sync">
+									<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
+									${userOneSelect.lolId} | ??? | ???
+								</div>
+								<div class="sync">
+									<%-- 							<c:set var="position" value="${userOneSelect.userPosition}"/> --%>
+									[메인포지션] : ???
+								</div>
+							</div>
+							<!-- 뭉태기2 -->
+							<div class="userInfoBox col-sm-4">
+								<div>
+									<div class="infoDetail">게시글 갯수: 20</div>
+									<div class="infoDetail">댓글 갯수: 400</div>
+									<div class="infoDetail">좋아요: 395</div>
+									<div class="infoDetail">싫어요: 312</div>
+								</div>
+								<hr />
+								<div class="infoDetail">최근 게시글 내역</div>
+								<div class="upload">1. 무지성에 관한 고찰</div>
+								<div class="upload">2. 팀원의 성향에 대한 고찰</div>
+								<div class="upload">3. 진짜 프로젝트를 2주면 완성이 될까?</div>
+							</div>
+							<!-- 뭉태기3 -->
+							<div class="userInfoBox col-sm-4">
+								<div class="col playWith">최근 채팅한 플레이어</div>
+								<div class="col">
+									<div class="nickBox">
+										<b>[이동해서 댓글·별점주세요!]</b>
+									</div>
+									<div class="nickName">
+										<a class="col" href="#">[궁각예술]</a>
+									</div>
+									<div class="nickName">
+										<a class="col" href="#">[안뇽하세욤]</a>
+									</div>
+									<div class="nickName">
+										<a class="col" href="#">[regolas]</a>
+									</div>
+									<div class="nickName">
+										<a class="col" href="#">[스프링밥]</a>
+									</div>
+									<div class="nickName">
+										<a class="col" href="#">[Faked]</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 연동/게시글/같이플레이한놈 end -->
+						<br />
+						<div class="reputation row">
+							<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">
+								후기를 써서 테러하세요!
+								<h6>&nbsp;[우클릭하여 신고]</h6>
+							</div>
+							<div class="col-sm-2" style="display: flex; justify-content: flex-end;">
+								<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
+							</div>
+							<!-- 다른사람이 쓴 후기 -->
+							<div class="review col-4">
+								<div class="reviewDay">작성자&nbsp;21/07/01</div>
+								<div class="rev">
+									이 사람 아리만 해요,,미쳐진짜!
+									<!-- 상세내용담는공간 -->
+									<div class="caption">★★★☆☆</div>
+								</div>
+							</div>
+							<div class="review col-4">
+								<div class="reviewDay">작성자&nbsp;21/07/01</div>
+								<div class="rev">
+									기가막히게 코딩을 잘한답니다..!
+									<!-- 상세내용담는공간 -->
+									<div class="caption">★★★☆☆</div>
+								</div>
+							</div>
+							<div class="review col-4">
+								<div class="reviewDay">작성자&nbsp;21/07/01</div>
+								<div class="rev">
+									오늘 골드를 찍었대요 백준 골드요!
+									<!-- 상세내용담는공간 -->
+									<div class="caption">★★★★★</div>
+								</div>
+							</div>
+							<div class="review col-4">
+								<div class="reviewDay">작성자&nbsp;21/07/01</div>
+								<div class="rev">
+									아리 왜하는지 모르겠어요
+									<!-- 상세내용담는공간 -->
+									<div class="caption">★☆☆☆☆</div>
+								</div>
+							</div>
+							<div class="review col-4">
+								<div class="reviewDay">작성자&nbsp;21/07/01</div>
+								<div class="rev">
+									[비속어처리X]
+									<!-- 상세내용담는공간 -->
+									<div class="caption">☆☆☆☆☆</div>
+								</div>
+							</div>
+							<div class="review col-4">
+								<div class="reviewDay">작성자&nbsp;21/07/01</div>
+								<div class="rev">
+									너...내 여자해라..
+									<!-- 상세내용담는공간 -->
+									<div class="caption">★☆☆☆☆</div>
+								</div>
+							</div>
+							<div class="review col-4">
+								<div class="reviewDay">작성자&nbsp;21/07/01</div>
+								<div class="rev">
+									내일은 어떤 기능을 할까요!?!?
+									<!-- 상세내용담는공간 -->
+									<div class="caption">★★★☆☆</div>
+								</div>
+							</div>
+							<!-- 페이징처리 -->
+							<div class="paging col-12">
+								<a href="#">[prev]</a>
+								<a href="#">[1]</a>
+								<a href="#">[2]</a>
+								<a href="#">[3]</a>
+								<a href="#">[next]</a>
+							</div>
+						</div>
+					</c:when>
+
+					<c:otherwise>
+						<!-- 비로그인 상태에서 user화면 -->
+						<div class="dt-desc" style="display: block;">
+							<div class="row outBox" style="margin-left: 5px;">
+								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
+									<!-- 프로필 프레임 -->
+									<div class="profileFrame">
+										<img src="${pageContext.request.contextPath}/img/frame/blue.png">
+									</div>
+									<!-- 프로필사진 -->
+									<div class="profilePic">
+										<img src="${pageContext.request.contextPath}/img/user/V_for_vendetor.jpg">
+									</div>
+								</div>
+								<div class="col-7" style="color: white;">
+									<div class="Hierarchy">
+										<i>회원등급</i>
+									</div>
+									<div class="nameLv">
+										<h3>
+											??? | Lv. ??? | <span class="rating-star"> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
 											</span>
-										</c:otherwise>
-									</c:choose>
-								</h3>
+										</h3>
+									</div>
+								</div>
+								<div class="modInfo col-3">
+									<button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
+									<button type="button" class="btn btn-dark" onclick="fn_infoDel()">탈퇴</button>
+								</div>
 							</div>
 						</div>
-						<div class="modInfo col-3" style="display: flex; justify-content: flex-end; margin-left: 70px;">
-							<button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
-							<button type="button" class="btn btn-dark" onclick="fn_infoDel()">탈퇴</button>
-						</div>
-					</div>
-				</div>
-				<!-- 연동/게시글/같이플레이한놈 begin -->
-				<div class="row" style="color: white;">
-					<!-- 뭉태기1 -->
-					<div class="userInfoBox col-sm-4">
-						<div class="sync">
-							<button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
-						</div>
-						<div class="sync">
-							<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
-							${userOneSelect.lolId} | ??? | ???
-						</div>
-						<div class="sync">
-							<%-- 							<c:set var="position" value="${userOneSelect.userPosition}"/> --%>
-							[메인포지션] : ???
-						</div>
-					</div>
-					<!-- 뭉태기2 -->
-					<div class="userInfoBox col-sm-4">
-						<div>
-							<div class="infoDetail">게시글 갯수: 20</div>
-							<div class="infoDetail">댓글 갯수: 400</div>
-							<div class="infoDetail">좋아요: 395</div>
-							<div class="infoDetail">싫어요: 312</div>
-						</div>
-						<hr />
-						<div class="infoDetail">최근 게시글 내역</div>
-						<div class="upload">1. 무지성에 관한 고찰</div>
-						<div class="upload">2. 팀원의 성향에 대한 고찰</div>
-						<div class="upload">3. 진짜 프로젝트를 2주면 완성이 될까?</div>
-					</div>
-					<!-- 뭉태기3 -->
-					<div class="userInfoBox col-sm-4">
-						<div class="col playWith">최근 채팅한 플레이어</div>
-						<div class="col">
-							<div class="nickBox">
-								<b>[이동해서 댓글·별점주세요!]</b>
+						<!-- 연동/게시글/같이플레이한놈 begin -->
+						<div class="row" style="color: white;">
+							<!-- 뭉태기1 -->
+							<div class="userInfoBox col-sm-4">
+								<div class="sync">
+									<button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
+								</div>
+								<div class="sync">
+									<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
+									??? | ??? | ???
+								</div>
+								<div class="sync">[메인포지션] : ???</div>
 							</div>
-							<div class="nickName">
-								<a class="col" href="#">[궁각예술]</a>
+							<!-- 뭉태기2 -->
+							<div class="userInfoBox col-sm-4">
+								<div>
+									<div class="infoDetail">게시글 갯수: ???</div>
+									<div class="infoDetail">댓글 갯수: ???</div>
+									<div class="infoDetail">좋아요: ???</div>
+									<div class="infoDetail">싫어요: ???</div>
+								</div>
+								<hr />
+								<div class="infoDetail">최근 게시글 내역</div>
+								<div class="upload">???</div>
+								<div class="upload">???</div>
+								<div class="upload">???</div>
 							</div>
-							<div class="nickName">
-								<a class="col" href="#">[안뇽하세욤]</a>
-							</div>
-							<div class="nickName">
-								<a class="col" href="#">[regolas]</a>
-							</div>
-							<div class="nickName">
-								<a class="col" href="#">[스프링밥]</a>
-							</div>
-							<div class="nickName">
-								<a class="col" href="#">[Faked]</a>
+							<!-- 뭉태기3 -->
+							<div class="userInfoBox col-sm-4">
+								<div class="col playWith">최근 채팅한 플레이어</div>
+								<div class="col">
+									<div class="nickBox">
+										<b>[이동해서 댓글·별점주세요!]</b>
+									</div>
+									<c:forEach begin="0" end="4">
+										<div class="nickName">
+											<a class="col" href="#">[???]</a>
+										</div>
+									</c:forEach>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<!-- 연동/게시글/같이플레이한놈 end -->
-				<br />
-				<div class="reputation row">
-					<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">
-						후기를 써서 테러하세요!
-						<h6>&nbsp;[우클릭하여 신고]</h6>
-					</div>
-					<div class="col-sm-2" style="display: flex; justify-content: flex-end;">
-						<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
-					</div>
-					<!-- 다른사람이 쓴 후기 -->
-					<div class="review col-4">
-						<div class="reviewDay">작성자&nbsp;21/07/01</div>
-						<div class="rev">
-							이 사람 아리만 해요,,미쳐진짜!
-							<!-- 상세내용담는공간 -->
-							<div class="caption">★★★☆☆</div>
+						<!-- 연동/게시글/같이플레이한놈 end -->
+						<br />
+						<div class="reputation row">
+							<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">
+								후기를 써서 테러하세요!
+								<h6>&nbsp;[우클릭하여 신고]</h6>
+							</div>
+							<div class="col-sm-2" style="display: flex; justify-content: flex-end;">
+								<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
+							</div>
+							<!-- 다른사람이 쓴 후기 -->
+							<div class="review col-4">
+								<div class="reviewDay">작성자&nbsp;??/??/??</div>
+								<div class="rev">
+									비로그인 상태
+									<!-- 상세내용담는공간 -->
+									<div class="caption">☆☆☆☆☆</div>
+								</div>
+							</div>
+
+							<!-- 페이징처리 -->
+							<div class="paging col-12">
+								<a href="#">[1]</a>
+							</div>
 						</div>
-					</div>
-					<div class="review col-4">
-						<div class="reviewDay">작성자&nbsp;21/07/01</div>
-						<div class="rev">
-							기가막히게 코딩을 잘한답니다..!
-							<!-- 상세내용담는공간 -->
-							<div class="caption">★★★☆☆</div>
-						</div>
-					</div>
-					<div class="review col-4">
-						<div class="reviewDay">작성자&nbsp;21/07/01</div>
-						<div class="rev">
-							오늘 골드를 찍었대요 백준 골드요!
-							<!-- 상세내용담는공간 -->
-							<div class="caption">★★★★★</div>
-						</div>
-					</div>
-					<div class="review col-4">
-						<div class="reviewDay">작성자&nbsp;21/07/01</div>
-						<div class="rev">
-							아리 왜하는지 모르겠어요
-							<!-- 상세내용담는공간 -->
-							<div class="caption">★☆☆☆☆</div>
-						</div>
-					</div>
-					<div class="review col-4">
-						<div class="reviewDay">작성자&nbsp;21/07/01</div>
-						<div class="rev">
-							[비속어처리X]
-							<!-- 상세내용담는공간 -->
-							<div class="caption">☆☆☆☆☆</div>
-						</div>
-					</div>
-					<div class="review col-4">
-						<div class="reviewDay">작성자&nbsp;21/07/01</div>
-						<div class="rev">
-							너...내 여자해라..
-							<!-- 상세내용담는공간 -->
-							<div class="caption">★☆☆☆☆</div>
-						</div>
-					</div>
-					<div class="review col-4">
-						<div class="reviewDay">작성자&nbsp;21/07/01</div>
-						<div class="rev">
-							내일은 어떤 기능을 할까요!?!?
-							<!-- 상세내용담는공간 -->
-							<div class="caption">★★★☆☆</div>
-						</div>
-					</div>
-					<!-- 페이징처리 -->
-					<div class="paging col-12">
-						<a href="#">[prev]</a> <a href="#">[1]</a> <a href="#">[2]</a> <a href="#">[3]</a> <a href="#">[next]</a>
-					</div>
-				</div>
+
+					</c:otherwise>
+				</c:choose>
+
+
+
+
 				<!-- 마우스 우클릭 (숨김처리됨li태그들) -->
 				<ul class="contextmenu">
 					<li><a onclick="fn_declaration()">신고하기</a></li>
