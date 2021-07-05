@@ -50,48 +50,50 @@
 	    for (i = 1; i <= lastDate; i++) // 1일부터 마지막 일까지
 	    {
 	        cell = row.insertCell();
-	        cell.innerHTML = "<span id='"+i+"' style='font-size:70px; cursor: pointer;' onclick='javascript:dateCheck(this.id)'>"+i+"</span>";
+	        cell.innerHTML = "<span id='"+i+"' style='font-size:70px; cursor:default;'>"+i+"</span>";
 	        cnt = cnt + 1;
 	        if (cnt % 7 == 1) {//일요일
-	            cell.innerHTML = "<span id='"+i+"' style='font-size:70px; color:#FF9090; cursor: pointer;' onclick='javascript:dateCheck(this.id)'>"+i+"</span>";
+	            cell.innerHTML = "<span id='"+i+"' style='font-size:70px; color:#FF9090; cursor:default;'>"+i+"</span>";
 	        }
 	        if (cnt % 7 == 0) { //토요일
-	            cell.innerHTML = "<span id='"+i+"' style='font-size:70px; color:#7ED5E4; cursor: pointer;' onclick='javascript:dateCheck(this.id)'>"+i+"</span>";
+	            cell.innerHTML = "<span id='"+i+"' style='font-size:70px; color:#7ED5E4; cursor:default;'>"+i+"</span>";
 	            row = calendar.insertRow();// 줄 추가
 	        }
 
 	    	//이미 체크된 날짜 마우스 커서 바꿔주기
 	    	if(UserCheckeddates.indexOf(i) > -1){
 				document.getElementById(i).innerHTML = "<i class='fa fa-cloud'></i>";
-				document.getElementById(i).style.cursor='';
+			}
+	    	//오늘 날짜일 경우 출석체크 함수 이벤트 추가
+			if(i == day){
+		    	document.getElementById(i).addEventListener("click", dateCheck);
+				document.getElementById(i).style.cursor='pointer';
 			}
 	    }
 	}
 
-	let checkedFlag = false;
+	let checkedFlag = false;	//디비 연결되면 지울 것
 
 	//사용자가 출석체크 할 때 작동하는 함수
-	function dateCheck(thisDate){
+	function dateCheck(){
 		//이미 체크된 날짜일 경우 함수 종료
-		if(UserCheckeddates.indexOf(thisDate) > -1){
+		if(UserCheckeddates.indexOf(day) > -1){
 			return;
 		}
+		//이미 체크된 날짜일 경우 함수 종료 : 이건 디비 연결 제대로 되면 그냥 지워도 됨
 		if(checkedFlag){
 			return;
 		}
+  		if(!checkedFlag){
+			//디비에 day 날짜 저장하면 됨. ajax 쓸 것 같은데 인서트 모르겠네요 천천히 보고 바꿔보겠음.
 
-		const today = ${dateForCheck.get('day')};//오늘날짜
-    	if(thisDate != today){
-			alert("해당 요일이 아닙니다.");
-		} else {
-			if(!checkedFlag){
-				alert("출석 체크가 완료되었습니다.");
-				document.getElementById(today).innerHTML = "<i class='fa fa-cloud'></i>";
-				document.getElementById(today).style.cursor='';
-				checkedFlag = true;
+			alert("출석 체크가 완료되었습니다.");
 
-				//디비에 day 날짜 저장
-			}
+			//달력 상단에 있는 오늘 날짜 클릭하면 출석 체크가 완료됨니다 어쩌구 멘트도 바꿔주기.
+
+			document.getElementById(day).innerHTML = "<i class='fa fa-cloud'></i>";
+			document.getElementById(day).style.cursor='';
+			checkedFlag = true;	//디비 연결되면 지울 것
 		}
 	}
 
