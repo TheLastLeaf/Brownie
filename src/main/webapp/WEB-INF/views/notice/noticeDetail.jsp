@@ -60,12 +60,13 @@
                                                onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'" style="color:white; cursor: pointer;"
                                                value="수정">
                                     <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
-                                    <input type="submit" class="btn btn-outline-dark btn-sm" style="color:#c20000; cursor: pointer;" value="삭제">
+                                    <input type="submit" class="btn btn-outline-dark btn-sm" style="color:#c20000; cursor: pointer;" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="dt-comment" style="margin-top: 5%;">
+                    <c:if test="${reply eq 'reply'}">
                         <div>
                             <h4>REPLY</h4>
                             <div class="dc-item">
@@ -93,20 +94,22 @@
                                         dolore magnam.</p>
                                     <span class="reply-btn" style="color: white; cursor: pointer">Reply</span>
                                 </div>
-                        </div>
-                        <div class="dc-item">
-                            <div class="dc-pic">
-                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-3.jpg" alt="">
                             </div>
-                            <div class="dc-text">
-                                <h5>Matthew Nelson</h5>
-                                <span class="c-date">15 Aug 2017</span>
-                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                    adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
-                                    dolore magnam.</p>
-                                <span class="reply-btn" style="color: white; cursor: pointer">Reply</span>
+                            <div class="dc-item">
+                                <div class="dc-pic">
+                                    <img src="${pageContext.request.contextPath}/img/details/comment/comment-3.jpg" alt="">
+                                </div>
+                                <div class="dc-text">
+                                    <h5>Matthew Nelson</h5>
+                                    <span class="c-date">15 Aug 2017</span>
+                                    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+                                        adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+                                        dolore magnam.</p>
+                                    <span class="reply-btn" style="color: white; cursor: pointer">Reply</span>
+                                </div>
                             </div>
                         </div>
+                        </c:if>
                             <div class="innerBox text-center pagination-item" style="padding-bottom: 2%;">
                                 <a href="#"><span>Prev</span></a>
                                 <a href="#"><span>1</span></a>
@@ -114,7 +117,6 @@
                                 <a href="#"><span>3</span></a>
                                 <a href="#"><span>Next</span></a>
                             </div>
-                        </div>
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">

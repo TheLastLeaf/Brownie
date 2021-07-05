@@ -18,6 +18,7 @@
                SUB_SEQ    AS SUBSEQ
         FROM BROWNIE_BOARD
         WHERE 1 = 1
+        ORDER BY BOARD_SEQ DESC
         <if test="notice!=null and notice !=''">
             <choose>
                 <when test='notice.equals("title")'>

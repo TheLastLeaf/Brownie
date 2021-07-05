@@ -1,6 +1,7 @@
 package kr.co.brownie.notice.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.co.brownie.notice.service.NoticeVO;
@@ -26,8 +27,10 @@ public class NoticeController {
     }
 
     @PostMapping("/add")
-    public String noticeAddPost(@RequestParam Map<String, Object> map, ModelAndView mav){
+    public String noticeAddPost(@RequestParam Map<String, Object> map,Model model,HttpSession session){
         noticeService.insertNotice(map);
+        String reply = (String) session.getAttribute("reply");
+        model.addAttribute("reply",reply);
         if(map.get("boardSeq")==null){
             return "redirect:/notice/list";
         }else{
@@ -36,10 +39,12 @@ public class NoticeController {
     }
 
     @GetMapping("/detail")
-    public String detail(@RequestParam Map<String, Object> map, Model model,HttpSession session) {
+    public String detail(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+        String reply = (String) model.getAttribute("reply");
+        map.put("reply",reply);
         model.addAttribute("noticeVO",noticeVO);
         return "notice/noticeDetail"; // 공지 디테일화면
     }
