@@ -11,6 +11,11 @@
         });
     });
 </script>
+<style>
+    form{
+        display: inline;
+    }
+</style>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -55,15 +60,15 @@
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <div class="innerBox text-right">
-                                <form action="/notice/delete" method="post">
                                     <c:if test="${id eq noticeVO.inUserId}">
-                                        <input type="button" class="btn btn-outline-dark btn-sm"
-                                                       onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'" style="color:white; cursor: pointer;"
-                                                       value="수정">
-                                    <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
-                                    <input type="submit" class="btn btn-outline-dark btn-sm" style="color:#c20000; cursor: pointer;" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
+                                    <input type="button" class="btn btn-outline-dark btn-sm"
+                                                   onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'" style="color:white; cursor: pointer;"
+                                                   value="수정" >
+                                    <form action="/notice/delete" method="post">
+                                        <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
+                                        <input type="submit" class="btn btn-outline-dark btn-sm" style="color:#c20000; cursor: pointer;" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
+                                    </form>
                                     </c:if>
-                                </form>
                             </div>
                         </div>
                     </div>

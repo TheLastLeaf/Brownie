@@ -78,7 +78,6 @@ public class NoticeController {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-
         model.addAttribute("noticeVO",noticeVO);
         return "notice/noticeUpdate";
     }
