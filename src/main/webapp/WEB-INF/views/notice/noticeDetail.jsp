@@ -60,7 +60,7 @@
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <div class="innerBox text-right">
-                                    <c:if test="${id eq noticeVO.inUserId}">
+                                    <c:if test="${id eq noticeVO.inUserId or level== 9}">
                                     <input type="button" class="btn btn-outline-dark btn-sm"
                                                    onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'" style="color:white; cursor: pointer;"
                                                    value="수정" >

@@ -18,4 +18,5 @@ public class NoticeVO {
     private String upUserId;
     private int fileSeq;
     private int subSeq;
+    private int permitLevel;
 }

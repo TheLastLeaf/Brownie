@@ -48,6 +48,8 @@ public class NoticeController {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+        int level = noticeService.selectlevel();
+        model.addAttribute("level",level);
         String id = (String)session.getAttribute("id");
         model.addAttribute("id",id);
         model.addAttribute("noticeVO",noticeVO);

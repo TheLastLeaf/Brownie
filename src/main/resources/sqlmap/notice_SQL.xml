@@ -73,6 +73,11 @@
         WHERE BOARD_SEQ = #{boardSeq}
     </select>
 
+    <select id="level" resultType="int">
+        SELECT DISTINCT PERMIT_LEVEL AS PERMITLEVEL
+        FROM PERMIT A , BROWNIE_BOARD B
+        WHERE A.USER_ID = B.IN_USER_ID
+    </select>
 
     <insert id="insert" parameterType="hashMap">
         <selectKey order="BEFORE" keyProperty="boardSeq" resultType="int">

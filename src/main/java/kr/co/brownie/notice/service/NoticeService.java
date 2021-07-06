@@ -15,4 +15,6 @@ public interface NoticeService {
     public int updateNotice(Map<String,Object> map);
 
     public int selectCount();
+
+    public int selectlevel();
 }
