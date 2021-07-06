@@ -16,7 +16,7 @@
 </section>
 <!-- Hero Section End -->
 
-<div id=”banner” style="position: absolute; left: 100px;top: 300px; z-index: 99999; width:500px; height:300px; background: #000000; color: white;"> 님 정지됨ㅅㄱ </div>
+<%--<div id=”banner” style="position: absolute; left: 100px;top: 300px; z-index: 99999; width:500px; height:300px; background: #000000; color: white;"> 님 정지됨ㅅㄱ </div>--%>
 
 <!-- 유튜브 영상 스크립트 시작 -->
 <style>
