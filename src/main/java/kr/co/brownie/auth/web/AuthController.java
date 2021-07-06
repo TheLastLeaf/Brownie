@@ -28,13 +28,12 @@ public class AuthController {
 			String access_token = authService.getToken(code);
 			String id = authService.getUserInfoByToken(access_token);
 			httpSession.setAttribute("id", id);
-			
+
 			String tempLolNick = "익명의소환사_" + (int) (Math.random() * 100 + 1);
 			String tempBrownieNick = "익명_" + (int) (Math.random() * 100 + 1);
 			String position = "[empty]";
-			
 			authService.insertUser(id, tempLolNick, tempBrownieNick, position);
-			System.out.println("하이");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
