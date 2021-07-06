@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
@@ -21,40 +22,49 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/gallery")
 public class GalleryController {
-    @Resource(name = "galleryService")
-    GalleryService galleryService;
-    
-    private int size = 10;
+	@Resource(name = "galleryService")
+	GalleryService galleryService;
 
-    @GetMapping(path={"","/list"})
-    public String galleryList(@RequestParam Map<String,Object> map, Model model,HttpSession session) {
-    	String id = (String)session.getAttribute("id");
-    	map.put("id",id);
-    	System.out.println(123123123);
-    	int total = this.galleryService.selectCount();
-    	String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
-        int pageNum = Integer.parseInt(strPageNum);
-        map.put("pageNum", pageNum);
-        List<GalleryVO> galleryVOList = this.galleryService.getGallerylist(map);
-        System.out.println("galleryVOList :"+galleryVOList);
-        model.addAttribute("galleryVOList",new GalleryPage(total, pageNum ,size, galleryVOList));
-        System.out.println("page : "+new GalleryPage(total, pageNum ,size, galleryVOList).getContent());
-        model.addAttribute("gallery",map.get("gallery"));
-        model.addAttribute("keyword",map.get("keyword"));
-        return "gallery/galleryList";
-    }
-    
-	/*
-	 * @GetMapping("/detail") public String details_post_gallery() { return
-	 * "gallery/galleryDetail"; }
-	 * 
-	 * @GetMapping("/add") public String details_add_gallery() { return
-	 * "gallery/galleryDetail"; }
-	 * 
-	 * @GetMapping("/update") public String details_modify_gallery() { return
-	 * "gallery/galleryDetail"; }
-	 * 
-	 * @GetMapping("/delete") public String details_delete_gallery() { return
-	 * "gallery/galleryDetail"; }
-	 */
+	private int size = 10;
+
+	@GetMapping(path = { "", "/list" })
+	public String galleryList(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		map.put("id", id);
+		System.out.println(123123123);
+		int total = this.galleryService.selectCount();
+		String strPageNum = (String) map.get("pageNum") == null ? "1" : (String) map.get("pageNum");
+		int pageNum = Integer.parseInt(strPageNum);
+		map.put("pageNum", pageNum);
+		List<GalleryVO> galleryVOList = this.galleryService.getGallerylist(map);
+		
+		List<FileVO> fileVOList = this.galleryService.getFileList(pageNum);
+		model.addAttribute("galleryVOList", new GalleryPage(total, pageNum, size, galleryVOList));
+		System.out.println("page : " + new GalleryPage(total, pageNum, size, galleryVOList).getContent());
+		model.addAttribute("gallery", map.get("gallery"));
+		model.addAttribute("keyword", map.get("keyword"));
+		return "gallery/galleryList";
+	}
+
+	
+	@GetMapping("/detail")
+	public String details_post_gallery() {
+		return "gallery/galleryDetail";
+	}
+
+	@GetMapping("/add")
+	public String details_add_gallery() {
+		return "gallery/galleryDetail";
+	}
+
+	@GetMapping("/update")
+	public String details_modify_gallery() {
+		return "gallery/galleryDetail";
+	}
+
+	@GetMapping("/delete")
+	public String details_delete_gallery() {
+		return "gallery/galleryDetail";
+	}
+	
 }

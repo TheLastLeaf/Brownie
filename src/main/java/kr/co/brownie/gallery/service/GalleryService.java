@@ -15,4 +15,6 @@ public interface GalleryService {
     public int updateGallery(Map<String,Object> map);
 
     public int selectCount();
+    
+    public List<FileVO> getFileList(int fileSeq);
 }

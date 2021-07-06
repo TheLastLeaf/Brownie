@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
 
@@ -46,5 +47,10 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public int selectCount() {
 		return galleryMapper.count();
+	}
+
+	@Override
+	public List<FileVO> getFileList(int fileSeq) {
+		return galleryMapper.selectFiles(fileSeq);
 	}
 }

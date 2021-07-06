@@ -9,7 +9,7 @@
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
-	data-setbg="img/gallery/main.jpg">
+	data-setbg="${pageContext.request.contextPath}/img/gallery/main.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
@@ -290,9 +290,9 @@
 				<div class="col-lg-2">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/1.jpeg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/${ galleryVO.fileSeq }">
 							<div class="label">
-								<span>귀여운짤</span>
+								<span>${ galleryVO.boardCategory }</span>
 							</div>
 						</div>
 						<div class="cg-text">
@@ -300,9 +300,10 @@
 								<a href="#">${ galleryVO.title }</a>
 							</h5>
 							<ul>
-								<li>by <span>${ galleryVO.inUserId }</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
+								<li>by  <span>${ galleryVO.inUserId }</span></li>
+								<li><i class="fa fa-clock-o"></i> ${ galleryVO.inDate } </li>
+								<li><i class="fa fa-comment-o">조회수</i> 20</li>
+								<li><i class="fa fa-comment-o">추천수</i> 20</li>
 							</ul>
 						</div>
 					</div>
@@ -329,11 +330,22 @@
 
 				<br/><br/><br/>
 
-				<div class="pagination-item col-lg-12">
-					<a href="#"><span>1</span></a> <a href="#"><span>2</span></a> <a
-						href="#"><span>3</span></a> <a href="#"><span>Next</span></a>
+					<c:if test="${galleryVOList.hasArticles()}">
+						<div class="innerBox text-center pagination-item col-lg-12">
+							<c:if test="${galleryVOList.startPage>5}">
+								<a href="/gallery/list?pageNum=${galleryVOList.startPage-5}"><span>Prev</span></a>
+							</c:if>
+							<c:forEach var="pageno" begin="${galleryVOList.startPage}"
+								end="${galleryVOList.endPage}">
+								<a href="/gallery/list?pageNum=${pageno}"><span>${pageno}</span></a>
+							</c:forEach>
+							<c:if test="${galleryVOList.startPage>5}">
+								<a href="/gallery/list?pageNum=${galleryVOList.startPage+5}"><span>Next</span></a>
+							</c:if>
+						</div>
+					</c:if>
+
 				</div>
-			</div>
 		</div>
 		<!-- 갤러리끝 -->
 	</div>

@@ -6,6 +6,7 @@ public class GalleryPage {
     private int total;
     private int currentPage;
     private List<GalleryVO> content;
+    private String file;
     private int totalPages;
     private int startPage;
     private int endPage;
