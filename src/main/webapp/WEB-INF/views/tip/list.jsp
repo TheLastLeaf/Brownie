@@ -36,6 +36,10 @@
     .margin-right-auto {
         margin-right: auto;
     }
+
+    .overflow-x-hidden {
+        overflow-x: hidden;
+    }
 </style>
 
 <!-- Breadcrumb Section Begin -->
@@ -45,13 +49,13 @@
         <div class="container margin-left-auto margin-right-auto text-center">
             <div class="breadcrumb-text padding-top-50px padding-bottom-50px">
                 <h3>챔피언 선택</h3>
-                <div class="row champion-select overflow-auto rounded">
+                <div class="row champion-select overflow-auto overflow-x-hidden rounded">
                     <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
                         <div class="col-sm-2 col-lg-1">
                             <a href="?champion=${champion.id}">
                                 <img src="http://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${champion.imageFull}"
                                      alt=""/>
-                                <p>${champion.name}</p>
+                                <p class="text-nowrap">${champion.name}</p>
                             </a>
                         </div>
                     </c:forEach>
