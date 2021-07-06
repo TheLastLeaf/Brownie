@@ -23,7 +23,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public List<NoticeVO> getNoticelist(Map<String, Object> map) {
-		List<NoticeVO> noticeVo = noticeMapper.selectList();
+		List<NoticeVO> noticeVo = noticeMapper.selectList(map);
 		return noticeVo;
 	}
 

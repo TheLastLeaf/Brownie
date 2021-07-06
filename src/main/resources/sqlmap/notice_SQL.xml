@@ -18,7 +18,7 @@
                S.FILESEQ AS FILESEQ,
                S.SUBSEQ AS SUBSEQ
         FROM
-            (SELECT ROWNUM RNUM , T.*
+            (SELECT ROWNUM AS RNUM , T.*
                 FROM(
                     SELECT
                         BOARD_SEQ AS BOARDSEQ,
@@ -38,7 +38,7 @@
                     ORDER BY BOARD_SEQ DESC
             )T
         )S
-        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
+          WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
 
     </select>
 

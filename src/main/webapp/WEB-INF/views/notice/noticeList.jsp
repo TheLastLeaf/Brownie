@@ -96,8 +96,8 @@
                             </form>
                         </div>
                     </form>
-                    <c:if test="#{noticeVOList.hasArticles()}">
-                        <div class="pagination-item">
+                    <c:if test="${noticeVOList.hasArticles()}">
+                        <div class="innerBox text-center pagination-item">
                             <c:if test="${noticeVOList.startPage>5}">
                                 <a href="/notice/list?pageNum=${noticeVOList.startPage-5}"><span>Prev</span></a>
                             </c:if>

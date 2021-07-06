@@ -13,7 +13,7 @@ public interface NoticeMapper {
 
     int insert(Map<String,Object> map);
 
-    List<NoticeVO> selectList();
+    List<NoticeVO> selectList(Map<String, Object> map);
 
     NoticeVO read(int boardSeq);
 
