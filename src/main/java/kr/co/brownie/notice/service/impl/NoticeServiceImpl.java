@@ -50,7 +50,11 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int selectlevel() {
-		System.out.println("a");
 		return noticeMapper.level();
+	}
+
+	@Override
+	public String selectnickname(){
+		return noticeMapper.nickname();
 	}
 }

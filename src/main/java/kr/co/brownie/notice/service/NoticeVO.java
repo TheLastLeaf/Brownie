@@ -19,4 +19,5 @@ public class NoticeVO {
     private int fileSeq;
     private int subSeq;
     private int permitLevel;
+    private String nickName;
 }

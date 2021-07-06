@@ -79,6 +79,11 @@
         WHERE A.USER_ID = B.IN_USER_ID
     </select>
 
+    <select id="nickname" resultType="String">
+        SELECT DISTINCT A.NICK_NAME AS NICKNAME
+        FROM BROWNIE_USER A , BROWNIE_BOARD B
+        WHERE A.USER_ID = B.IN_USER_ID
+    </select>
     <insert id="insert" parameterType="hashMap">
         <selectKey order="BEFORE" keyProperty="boardSeq" resultType="int">
             SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM BROWNIE_BOARD
