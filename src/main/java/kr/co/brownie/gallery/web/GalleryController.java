@@ -38,7 +38,6 @@ public class GalleryController {
 		map.put("pageNum", pageNum);
 		List<GalleryVO> galleryVOList = this.galleryService.getGallerylist(map);
 		
-		List<FileVO> fileVOList = this.galleryService.getFileList(pageNum);
 		model.addAttribute("galleryVOList", new GalleryPage(total, pageNum, size, galleryVOList));
 		System.out.println("page : " + new GalleryPage(total, pageNum, size, galleryVOList).getContent());
 		model.addAttribute("gallery", map.get("gallery"));
@@ -49,6 +48,7 @@ public class GalleryController {
 	
 	@GetMapping("/detail")
 	public String details_post_gallery() {
+		//List<FileVO> fileVOList = this.galleryService.getFileList();
 		return "gallery/galleryDetail";
 	}
 
