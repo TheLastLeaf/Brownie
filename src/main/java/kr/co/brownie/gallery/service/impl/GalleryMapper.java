@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryVO;
 
 @Mapper
@@ -22,4 +23,6 @@ public interface GalleryMapper {
     int count();
     
     int update(Map<String, Object> map);
+    
+    List<FileVO> selectFiles(int fileSeq);
 }

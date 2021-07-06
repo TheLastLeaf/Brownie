@@ -30,7 +30,7 @@
                         <div class="innerBox text-right">
                             <div class="details-hero-text">
                                 <ul>
-                                    <li>by <span>${noticeVO.inUserId}</span></li>
+                                    <li>by <span>${nickName}</span></li>
                                     <li class="fa fa-clock-o">${update}</li>
                                     <li><span onclick="location.href='/notice/list'" style="color:#666666; cursor: pointer;">목록</span>
                                     </li>
@@ -51,9 +51,9 @@
                             <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
-                            <a href="/user">
+                            <a href="/user/userInfo?id=${id}">
                                 <h5>
-                                    ${noticeVO.inUserId}
+                                    ${nickName}
                                 </h5>
                             </a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor

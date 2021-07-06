@@ -15,7 +15,7 @@
                S.INUSERID AS INUSERID,
                S.MODDATE AS "UPDATE",
                S.UPUSERID AS UPUSERID,
-               S.FILESEQ AS FILESEQ,
+               (SELECT SAVE_NAME FROM BROWNIE_FILE WHERE FILE_SEQ = S.FILESEQ AND SUB_SEQ =1) AS FILESEQ,
                S.SUBSEQ AS SUBSEQ
         FROM
             (SELECT ROWNUM RNUM , T.*
@@ -41,6 +41,20 @@
         )S
         WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
 
+    </select>
+	
+	<select id="selectFiles" parameterType="int" resultType="kr.co.brownie.gallery.service.FileVO">
+        SELECT FILE_SEQ AS FILESEQ,
+               SUB_SEQ AS SUBSEQ,
+               FILE_PATH AS FILEPATH,
+               ORIGINAL_NAME AS ORIGINALNAME,
+               SAVE_NAME AS SAVENAME,
+               IN_DATE AS INDATE,
+               IN_USER_ID AS INUSERID,
+               UP_DATE AS MODDATE,
+               UP_USER_ID AS UPUSERID
+        FROM BROWNIE_FILE
+        WHERE FILE_SEQ = #{fileSeq}
     </select>
 	
 
