@@ -100,7 +100,7 @@
 
 <!-- Js Plugins -->
 
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.magnific-popup.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/circle-progress.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.barfiller.js"></script>
