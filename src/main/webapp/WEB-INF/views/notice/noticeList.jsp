@@ -50,9 +50,11 @@
 
     <!-- Categories list Section Begin -->
     <section class="categories-list-section cate-spad">
-        <div style="margin-left: 83.5%;  ">
-            <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='/notice/add'">
-        </div>
+        <c:if test="${id ne null}">
+            <div style="margin-left: 83.5%;  ">
+                <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='/notice/add'">
+            </div>
+        </c:if>
         <div style="margin-bottom: 2%">
             <hr class="innerBox text-center" style="background-color: white; width: 76%;">
         </div>

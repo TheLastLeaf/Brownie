@@ -25,7 +25,7 @@
                         <div class="innerBox text-right">
                             <div class="details-hero-text">
                                 <ul>
-                                    <li>by <span>Admin</span></li>
+                                    <li>by <span>${noticeVO.inUserId}</span></li>
                                     <li class="fa fa-clock-o">${update}</li>
                                     <li><span onclick="location.href='/notice/list'" style="color:#666666; cursor: pointer;">목록</span>
                                     </li>
@@ -56,11 +56,13 @@
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <div class="innerBox text-right">
                                 <form action="/notice/delete" method="post">
-                                <input type="button" class="btn btn-outline-dark btn-sm"
-                                               onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'" style="color:white; cursor: pointer;"
-                                               value="수정">
+                                    <c:if test="${id eq noticeVO.inUserId}">
+                                        <input type="button" class="btn btn-outline-dark btn-sm"
+                                                       onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'" style="color:white; cursor: pointer;"
+                                                       value="수정">
                                     <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
                                     <input type="submit" class="btn btn-outline-dark btn-sm" style="color:#c20000; cursor: pointer;" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
+                                    </c:if>
                                 </form>
                             </div>
                         </div>

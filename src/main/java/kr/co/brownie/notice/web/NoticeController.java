@@ -25,7 +25,9 @@ public class NoticeController {
     private int size = 10;
 
     @GetMapping("/add")
-    public String noticeAdd() {
+    public String noticeAdd(HttpSession session,Model model) {
+        String id = (String)session.getAttribute("id");
+        model.addAttribute("id",id);
         return "notice/noticeAdd"; // 공지 글쓰기
     }
 
@@ -34,6 +36,8 @@ public class NoticeController {
         noticeService.insertNotice(map);
         String reply = (String) session.getAttribute("reply");
         model.addAttribute("reply",reply);
+        String id = (String)session.getAttribute("id");
+        model.addAttribute("id",id);
         if(map.get("boardSeq")==null){
             return "redirect:/notice/list";
         }else{
@@ -48,12 +52,16 @@ public class NoticeController {
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
         String reply = (String) model.getAttribute("reply");
         map.put("reply",reply);
+        String id = (String)session.getAttribute("id");
+        model.addAttribute("id",id);
         model.addAttribute("noticeVO",noticeVO);
         return "notice/noticeDetail"; // 공지 디테일화면
     }
 
     @GetMapping(path={"", "/list"})
-    public String noticeList(@RequestParam Map<String,Object> map, Model model) {
+    public String noticeList(@RequestParam Map<String,Object> map, Model model,HttpSession session) {
+        String id = (String)session.getAttribute("id");
+        map.put("id",id);
         int total = this.noticeService.selectCount();
         String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
         int pageNum = Integer.parseInt(strPageNum);
