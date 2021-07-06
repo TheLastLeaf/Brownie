@@ -21,19 +21,12 @@
 <!-- 유튜브 영상 스크립트 시작 -->
 <script>
 	window.onload = function () {
-		var youTubeList = document.getElementsByClassName('youTubeList')
-		for (i = 1 ; i < youTubeList.length ; i++) {
-			youTubeList[i].style.display="none";
-		}
+		show_video(0);
 	}
 
 	function show_video(id){
-		var id = id - 1
-		var youTubeList = document.getElementsByClassName('youTubeList')
-		for (i = 0 ; i < youTubeList.length ; i++) {
-			youTubeList[i].style.display="none";
-		}
-		youTubeList[id].style.display="";
+		$(".youTubeList").hide();
+		$(".youTubeList").eq(id).show();
 	}
 </script>
 <!-- 유튜브 영상 스크립트 끝 -->
@@ -66,21 +59,20 @@
 				<!-- LCK 시작 -->
 					<div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
 						<div class="row">
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-xl-6 col-md-12">
                                 <c:forEach var="youTubeVo" items="${youTubeVoList}">
                                     <div class="vg-item large-vg youTubeList"
                                         data-setbg="${youTubeVo.snippetThumbnailsMediumUrl }">
-                                        <iframe width="619" height="348" src="https://www.youtube.com/embed/${youTubeVo.idVideoid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe class="w-100 h-100" src="https://www.youtube.com/embed/${youTubeVo.idVideoid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                 </c:forEach>
                             </div>
-                            <div class="col-lg-6 col-md-12">
-                                <table border="1" style="width: 100%; color: white; text-align: center; margin-top: 20px;">
-                                    <c:forEach var="youTubeVo" items="${youTubeVoList}">
-                                    <c:set var="i" value="${i +1 }" />
+                            <div class="col-xl-6 col-md-12">
+                                <table class="w-100 text-white text-center border-white" border="1" style="margin-top: 20px;">
+                                    <c:forEach var="youTubeVo" items="${youTubeVoList}" varStatus="status">
                                         <tr>
                                             <th>
-                                                <span id="${i}" class="overflow-hidden" onclick="show_video(this.id)" style="cursor: pointer;">
+                                                <span id="${status.index}" class="overflow-hidden" onclick="show_video(this.id)" style="cursor: pointer;">
                                                     ${youTubeVo.snippetTitle }
                                                 </span>
                                             </th>
