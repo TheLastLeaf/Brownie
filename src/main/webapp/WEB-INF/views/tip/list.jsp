@@ -17,16 +17,16 @@
     }
 
     .search-section > .search-box .champion-select {
-        height: 300px;
+        height: 400px;
         background-color: rgba(0, 0, 0, 0.5);
     }
 
-    .padding-top-50px {
-        padding-top: 50px;
+    .padding-top-30px {
+        padding-top: 30px;
     }
 
-    .padding-bottom-50px {
-        padding-bottom: 50px;
+    .padding-bottom-30px {
+        padding-bottom: 30px;
     }
 
     .margin-left-auto {
@@ -47,7 +47,7 @@
          data-setbg="${pageContext.request.contextPath}/img/tip/Annieversary_Nexus_Image_Optimized-1_d4lcnldtijc00k5n8gko.jpg">
     <div class="container-fluid search-box">
         <div class="container margin-left-auto margin-right-auto text-center">
-            <div class="breadcrumb-text padding-top-50px padding-bottom-50px">
+            <div class="breadcrumb-text padding-top-30px padding-bottom-30px">
                 <h3>챔피언 선택</h3>
                 <div class="row champion-select overflow-auto overflow-x-hidden rounded">
                     <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
@@ -55,7 +55,7 @@
                             <a href="?champion=${champion.id}">
                                 <img src="http://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${champion.imageFull}"
                                      alt=""/>
-                                <p class="text-nowrap">${champion.name}</p>
+                                <p class="text-nowrap" style="overflow: hidden; text-overflow: ellipsis;">${champion.name}</p>
                             </a>
                         </div>
                     </c:forEach>

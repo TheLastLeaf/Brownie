@@ -18,7 +18,7 @@ public class TipServiceImpl implements TipService {
         Map<String, Object> map = new HashMap<>();
         map.put("champion", champion);
         map.put("contentPerPage", CONTENT_PER_PAGE);
-        map.put("currentPage", currentPageNumber);
+        map.put("currentPageNumber", currentPageNumber);
 
         System.out.println(map);
 
