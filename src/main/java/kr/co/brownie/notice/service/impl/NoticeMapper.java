@@ -22,4 +22,6 @@ public interface NoticeMapper {
     int update(Map<String, Object> map);
 
     int count();
+
+    int level();
 }

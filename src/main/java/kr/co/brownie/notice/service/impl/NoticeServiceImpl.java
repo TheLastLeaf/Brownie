@@ -47,4 +47,10 @@ public class NoticeServiceImpl implements NoticeService {
 	public int selectCount() {
 		return noticeMapper.count();
 	}
+
+	@Override
+	public int selectlevel() {
+		System.out.println("a");
+		return noticeMapper.level();
+	}
 }
