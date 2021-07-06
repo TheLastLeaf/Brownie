@@ -2,11 +2,18 @@ package kr.co.brownie.tip.web;
 
 import javax.annotation.Resource;
 
+import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
+import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsVO;
+import kr.co.brownie.leagueoflegends.versions.service.LeagueOfLegendsVersionsService;
+import kr.co.brownie.leagueoflegends.versions.service.LeagueOfLegendsVersionsVO;
 import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.tip.service.TipService;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/tip")
@@ -14,14 +21,21 @@ public class TipController {
     @Resource(name = "tipService")
     TipService tipService;
 
-    @GetMapping("/categories-grid")
-    public String categories_grid() {
-        return "tip/categories-grid"; // 기본화면
-    }
+    @Resource(name = "leagueOfLegendsVersionsService")
+    LeagueOfLegendsVersionsService leagueOfLegendsVersionsService;
 
-    @GetMapping({"", "/tipList"})
-    public String tipList() {
-        return "tip/tipList";
+    @Resource(name = "leagueOfLegendsChampionsService")
+    LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
+
+    @GetMapping({"", "/list"})
+    public String tipList(Model model) {
+        LeagueOfLegendsVersionsVO leagueOfLegendsVersionsVO = leagueOfLegendsVersionsService.selectRecentlyVersion();
+        List<LeagueOfLegendsChampionsVO> leagueOfLegendsChampionsVOList
+                = leagueOfLegendsChampionsService.selectRecentlyChampionsList(leagueOfLegendsVersionsVO.getVERSION());
+
+        model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsVOList);
+
+        return "tip/list";
     }
 
     @GetMapping("/details-post-default")

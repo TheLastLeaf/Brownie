@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.leagueoflegends.champions.service.impl.LeagueOfLegendsChampionsMapper">
+    <select id="selectRecentlyChampionsList" parameterType="String"
+            resultType="kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsVO">
+        SELECT VERSION                    AS VERSION,
+               LANGUAGE                   AS LANGUAGE,
+               ID                         AS ID,
+               KEY                        AS KEY,
+               NAME                       AS NAME,
+               TITLE                      AS TITLE,
+               BLURB                      AS BLURB,
+               INFO_ATTACK                AS INFOATTACK,
+               INFO_DEFENSE               AS INFODEFENSE,
+               INFO_MAGIC                 AS INFOMAGIC,
+               INFO_DIFFICULTY            AS INFODIFFICULTY,
+               IMAGE_FULL                 AS IMAGEFULL,
+               IMAGE_SPRITE               AS IMAGESPRITE,
+               IMAGE_GROUP                AS IMAGEGROUP,
+               IMAGE_X                    AS IMAGEX,
+               IMAGE_Y                    AS IMAGEY,
+               IMAGE_W                    AS IMAGEW,
+               IMAGE_H                    AS IMAGEH,
+               TAGS                       AS TAGS,
+               PARTYPE                    AS PARTYPE,
+               STATS_HP                   AS STATSHP,
+               STATS_HPPERLEVEL           AS STATSHPPERLEVEL,
+               STATS_MP                   AS STATSMP,
+               STATS_MPPERLEVEL           AS STATSMPPERLEVEL,
+               STATS_MOVESPEED            AS STATSMOVESPEED,
+               STATS_ARMOR                AS STATSARMOR,
+               STATS_ARMORPERLEVEL        AS STATSARMORPERLEVEL,
+               STATS_SPELLBLOCK           AS STATSSPELLBLOCK,
+               STATS_SPELLBLOCKPERLEVEL   AS STATSSPELLBLOCKPERLEVEL,
+               STATS_ATTACKRANGE          AS STATSATTACKRANGE,
+               STATS_HPREGEN              AS STATSHPREGEN,
+               STATS_HPREGENPERLEVEL      AS STATSHPREGENPERLEVEL,
+               STATS_MPREGEN              AS STATSMPREGEN,
+               STATS_MPREGENPERLEVEL      AS STATSMPREGENPERLEVEL,
+               STATS_CRIT                 AS STATSCRIT,
+               STATS_CRITPERLEVEL         AS STATSCRITPERLEVEL,
+               STATS_ATTACKDAMAGE         AS STATSATTACKDAMAGE,
+               STATS_ATTACKDAMAGEPERLEVEL AS STATSATTACKDAMAGEPERLEVEL,
+               STATS_ATTACKSPEEDPERLEVEL  AS STATSATTACKSPEEDPERLEVEL,
+               STATS_ATTACKSPEED          AS STATSATTACKSPEED
+        FROM LEAGUE_OF_LEGENDS_CHAMPIONS
+        WHERE VERSION = #{version}
+          AND LANGUAGE = 'ko_KR'
+        ORDER BY NAME
+    </select>
+</mapper>
