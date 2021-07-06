@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.gallery.service.impl.GalleryMapper">
-    <select id="selList" resultType="kr.co.brownie.gallery.service.GalleryVO">
+    <select id="selectList" resultType="kr.co.brownie.gallery.service.GalleryVO">
         select S.RNUM,
                S.BOARDSEQ AS BOARDSEQ,
                S.BOARDKIND AS BOARDKIND,
@@ -35,11 +35,63 @@
                         SUB_SEQ AS SUBSEQ
                     FROM BROWNIE_BOARD
                     WHERE 1 = 1
+                    AND BOARD_KIND='gallery'
                     ORDER BY BOARD_SEQ DESC
             )T
         )S
+        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
 
     </select>
 	
+
+    <select id="read" parameterType="int" resultType="kr.co.brownie.gallery.service.GalleryVO">
+        SELECT BOARD_SEQ  AS BOARDSEQ,
+               BOARD_KIND AS BOARDKIND,
+               TITLE      AS TITLE,
+               CONTENT    AS CONTENT,
+               NOTICE_YN  AS NOTICEYN,
+               STATUS     AS STATUS,
+               IN_DATE    AS INDATE,
+               IN_USER_ID AS INUSERID,
+               UP_DATE    AS "UPDATE",
+               UP_USER_ID AS UPUSERID,
+               FILE_SEQ   AS FILESEQ,
+               SUB_SEQ    AS SUBSEQ
+        FROM BROWNIE_BOARD
+        WHERE BOARD_SEQ = #{boardSeq}
+    </select>
+
+
+    <insert id="insert" parameterType="hashMap">
+        <selectKey order="BEFORE" keyProperty="boardSeq" resultType="int">
+            SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM BROWNIE_BOARD
+        </selectKey>
+        INSERT INTO
+        BROWNIE_BOARD(BOARD_SEQ,BOARD_KIND,TITLE,CONTENT,NOTICE_YN,STATUS,IN_DATE,IN_USER_ID,UP_DATE,UP_USER_ID,FILE_SEQ,SUB_SEQ)
+        VALUES (#{boardSeq},'notice',#{title},#{content},NULL,NULL,SYSDATE,#{inUserId},SYSDATE,#{inUserId},NULL,NULL)
+    </insert>
+
+    <update id="update" parameterType="hashMap">
+        UPDATE BROWNIE_BOARD
+        SET BOARD_KIND = 'notice',
+            TITLE      = #{title},
+            CONTENT    = #{content},
+            NOTICE_YN  = 1,
+            STATUS     = 1,
+            UP_DATE    = SYSDATE,
+            FILE_SEQ   = NULL,
+            SUB_SEQ    = NULL
+        WHERE BOARD_SEQ = #{boardSeq}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE
+        FROM BROWNIE_BOARD
+        WHERE BOARD_SEQ = #{Seq}
+    </delete>
     
+    <select id="count" resultType="int">
+        SELECT COUNT(*) CNT FROM BROWNIE_BOARD
+    </select>
 </mapper>
+

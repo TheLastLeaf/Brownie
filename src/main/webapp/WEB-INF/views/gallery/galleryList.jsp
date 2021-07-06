@@ -187,7 +187,7 @@
 								<a href="#">치타는 웃고있다.</a>
 							</h5>
 							<ul>
-								<li>by <span>Admin</span></li>
+								<li>by <span>${galleryVO.inUserId}</span></li>
 								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
 								<li><i class="fa fa-comment-o"></i> 20</li>
 							</ul>
@@ -262,8 +262,9 @@
 				<div class="col-lg-12">
 					<hr class="gallery_hr">
 				</div>
-
+				
 				<div class="col-lg-12">
+				
 					<select
 						onchange="location.href = INVEN.QueryMaker.getLink('https://www.inven.co.kr/board/lol/2775', 'come_idx->2775,category->' + this.value, 'remove->p,category2');"
 						style="color: black; display: inline; float: left;">
@@ -279,12 +280,14 @@
 					<a href="" class="" style="margin-left: 3px;">내가쓴글</a>
 					<input style="float: right; color: black;" type="button" value="글쓰기" onclick="location.href='noticeAdd'">
 				</div>
-
+				
 				<div class="col-lg-12">
 					<hr class="gallery_hr">
 				</div>
-
-				<div class="col-lg-3">
+				
+				<c:forEach var="galleryVO" items="${galleryVOList.content}">
+				
+				<div class="col-lg-2">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
 							data-setbg="${pageContext.request.contextPath}/img/gallery/1.jpeg">
@@ -294,145 +297,25 @@
 						</div>
 						<div class="cg-text">
 							<h5>
-								<a href="#">강아진 물리고있다.</a>
+								<a href="#">${ galleryVO.title }</a>
 							</h5>
 							<ul>
-								<li>by <span>Admin</span></li>
+								<li>by <span>${ galleryVO.inUserId }</span></li>
 								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
 								<li><i class="fa fa-comment-o"></i> 20</li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/2.jpg">
-							<div class="label">
-								<span>귀여운짤</span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">강아진 물리고있다.</a>
-							</h5>
-							<ul>
-								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/3.jpg">
-							<div class="label">
-								<span>귀여운짤</span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">강아진 물리고있다.</a>
-							</h5>
-							<ul>
-								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/4.jpg">
-							<div class="label">
-								<span>귀여운짤</span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">강아진 물리고있다.</a>
-							</h5>
-							<ul>
-								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/5.gif">
-							<div class="label">
-								<span>귀여운짤</span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">강아진 물리고있다.</a>
-							</h5>
-							<ul>
-								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/6.jpg">
-							<div class="label">
-								<span>귀여운짤</span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">강아진 물리고있다.</a>
-							</h5>
-							<ul>
-								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/7.gif">
-							<div class="label">
-								<span>귀여운짤</span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">강아진 물리고있다.</a>
-							</h5>
-							<ul>
-								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
+				
+				</c:forEach>
+				
 
 				<hr class="gallery_hr">
 
 				<div class="col-lg-12" style="text-align: center;">
-					<span> <select name="notice"
+					<span> <select name="gallery"
 						style="height: 30px; background: white; color: black;">
 							<option value="" selected="selected">전체</option>
 							<option value="title">제목</option>
@@ -440,7 +323,7 @@
 							<option value="writer">작성자</option>
 					</select> <input type="text" value=""
 						style="background: black; color: #666666">
-					</span> <input type="button" class="btn btn-outline-dark" value="조회"
+					</span> <input id="keyword" type="button" class="btn btn-outline-dark" value="조회"
 						style="color: #666666">
 				</div>
 

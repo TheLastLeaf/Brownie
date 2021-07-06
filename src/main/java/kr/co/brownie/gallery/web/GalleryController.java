@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
+import kr.co.brownie.notice.service.NoticePage;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +31,14 @@ public class GalleryController {
     	String id = (String)session.getAttribute("id");
     	map.put("id",id);
     	System.out.println(123123123);
-
+    	int total = this.galleryService.selectCount();
     	String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
         int pageNum = Integer.parseInt(strPageNum);
         map.put("pageNum", pageNum);
         List<GalleryVO> galleryVOList = this.galleryService.getGallerylist(map);
-        model.addAttribute("galleryVOList", galleryVOList);
+        System.out.println("galleryVOList :"+galleryVOList);
+        model.addAttribute("galleryVOList",new GalleryPage(total, pageNum ,size, galleryVOList));
+        System.out.println("page : "+new GalleryPage(total, pageNum ,size, galleryVOList).getContent());
         model.addAttribute("gallery",map.get("gallery"));
         model.addAttribute("keyword",map.get("keyword"));
         return "gallery/galleryList";

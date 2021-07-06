@@ -13,7 +13,7 @@ import kr.co.brownie.gallery.service.GalleryVO;
 public interface GalleryMapper {
 	int insert(Map<String,Object> map);
 
-    List<GalleryVO> selList();
+    List<GalleryVO> selectList(Map<String,Object> map);
 
     GalleryVO read(int boardSeq);
 
