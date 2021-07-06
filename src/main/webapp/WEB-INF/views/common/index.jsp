@@ -68,17 +68,13 @@
                                 </c:forEach>
                             </div>
                             <div class="col-xl-6 col-md-12">
-                                <table class="w-100 text-white text-center border-white" border="1" style="margin-top: 20px;">
-                                    <c:forEach var="youTubeVo" items="${youTubeVoList}" varStatus="status">
-                                        <tr>
-                                            <th>
-                                                <span id="${status.index}" class="overflow-hidden" onclick="show_video(this.id)" style="cursor: pointer;">
-                                                    ${youTubeVo.snippetTitle }
-                                                </span>
-                                            </th>
-                                        </tr>
-                                    </c:forEach>
-                                </table>
+                                <c:forEach var="youTubeVo" items="${youTubeVoList}" varStatus="status">
+                                    <div class="p-1" style="border-width: 1px 0 1px 0; border-color: white; border-style: solid">
+                                        <p id="${status.index}" class="m-0 font-weight-bold" onclick="show_video(this.id)" style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap">
+                                            ${youTubeVo.snippetTitle}
+                                        </p>
+                                    </div>
+                                </c:forEach>
                             </div>
 						</div>
 					</div>
