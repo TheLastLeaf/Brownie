@@ -530,7 +530,7 @@ h1 {
 									</div>
 									<!-- 프로필사진 -->
 									<div class="profilePic">
-										<img src="${pageContext.request.contextPath}/img/user/V_for_vendetor.jpg">
+										<img src="${pageContext.request.contextPath}/img/user/whiteSpace.png">
 									</div>
 								</div>
 								<div class="col-7" style="color: white;">

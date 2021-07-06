@@ -34,8 +34,6 @@ public class NoticeController {
     @PostMapping("/add")
     public String noticeAddPost(@RequestParam Map<String, Object> map,Model model,HttpSession session){
         noticeService.insertNotice(map);
-        String reply = (String) session.getAttribute("reply");
-        model.addAttribute("reply",reply);
         String id = (String)session.getAttribute("id");
         model.addAttribute("id",id);
         if(map.get("boardSeq")==null){
@@ -50,8 +48,6 @@ public class NoticeController {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-        String reply = (String) model.getAttribute("reply");
-        map.put("reply",reply);
         String id = (String)session.getAttribute("id");
         model.addAttribute("id",id);
         model.addAttribute("noticeVO",noticeVO);
@@ -78,7 +74,6 @@ public class NoticeController {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-
         model.addAttribute("noticeVO",noticeVO);
         return "notice/noticeUpdate";
     }

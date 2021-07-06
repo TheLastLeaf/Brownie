@@ -39,6 +39,7 @@ public class UserController {
 			System.out.println("생성자까지 성공");
 			String position = userOneSelect.getUserPosition();
 			System.out.println("position: " + position);
+			
 			int exp = userService.LvSelect(id);
 			float starCnt = userService.starCntSelect();
 			int fullStar = (int) starCnt / 1;
@@ -52,6 +53,10 @@ public class UserController {
 				model.addAttribute("halfStar", halfStar);
 			}
 
+			
+			
+			
+			
 			System.out.println("sessionId: " + id);
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("exp: " + exp);
@@ -62,6 +67,14 @@ public class UserController {
 		return "user/userInfo";
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	@PostMapping("/userInfo")
 	@ResponseBody // AJAX 사용시 써야함
 	public String userName(@RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) {

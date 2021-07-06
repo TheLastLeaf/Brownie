@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.brownie.notice.service.impl.NoticeMapper">
-    <select id="selectList" resultType="kr.co.brownie.notice.service.NoticeVO" parameterType="hashMap">
+<mapper namespace="kr.co.brownie.gallery.service.impl.GalleryMapper">
+    <select id="selectList" resultType="kr.co.brownie.gallery.service.GalleryVO">
         select S.RNUM,
                S.BOARDSEQ AS BOARDSEQ,
                S.BOARDKIND AS BOARDKIND,
-               UPPER(S.TITLE) AS TITLE,
+               S.TITLE AS TITLE,
                S.CONTENT AS CONTENT,
                S.NOTICEYN AS NOTICEYN,
                S.STATUS AS STATUS,
@@ -18,7 +18,7 @@
                S.FILESEQ AS FILESEQ,
                S.SUBSEQ AS SUBSEQ
         FROM
-            (SELECT ROWNUM AS RNUM , T.*
+            (SELECT ROWNUM RNUM , T.*
                 FROM(
                     SELECT
                         BOARD_SEQ AS BOARDSEQ,
@@ -35,28 +35,16 @@
                         SUB_SEQ AS SUBSEQ
                     FROM BROWNIE_BOARD
                     WHERE 1 = 1
+                    AND BOARD_KIND='gallery'
                     ORDER BY BOARD_SEQ DESC
             )T
         )S
         WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
-        <if test="notice!= null and notice !=''">
-            <choose>
-                <when test="notice.equals('title')">
-                    AND TITLE LIKE '%' || #{keyword} || '%'
-                </when>
-                <when test="notice.equals('content')">
-                    AND CONTENT LIKE '%' || #{keyword} || '%'
-                </when>
-                <otherwise>
-                    AND INUSERID = #{keyword}
-                </otherwise>
-            </choose>
-        </if>
 
     </select>
+	
 
-
-    <select id="read" parameterType="int" resultType="kr.co.brownie.notice.service.NoticeVO">
+    <select id="read" parameterType="int" resultType="kr.co.brownie.gallery.service.GalleryVO">
         SELECT BOARD_SEQ  AS BOARDSEQ,
                BOARD_KIND AS BOARDKIND,
                TITLE      AS TITLE,
@@ -106,3 +94,4 @@
         SELECT COUNT(*) CNT FROM BROWNIE_BOARD
     </select>
 </mapper>
+

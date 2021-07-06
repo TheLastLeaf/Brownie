@@ -106,11 +106,7 @@
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
-                                <div class="form-check innerBox text-right custom-control custom-checkbox mb-3">
-                                    <input type="hidden" name="inUserId" value="${id}" id="inUserId">
-                                    <input type="checkbox" class="custom-control-input" id="reply" name="reply">
-                                    <label class="custom-control-label" for="reply" style="color:white;">댓글창 숨기기</label>
-                                </div>
+                                <input type="hidden" name="inUserId" value="${id}" id="inUserId">
                                 <div class="input-list" style="padding-bottom: 10px;">
                                     <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;" id="title" name="title">
                                 </div>
