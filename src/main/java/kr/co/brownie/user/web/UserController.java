@@ -1,6 +1,7 @@
 package kr.co.brownie.user.web;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.brownie.exp.service.ExpService;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 
@@ -23,7 +25,7 @@ import kr.co.brownie.user.service.UserVO;
 public class UserController {
 	@Resource(name = "userService")
 	UserService userService;
-
+	
 	/**
 	 * @author 박세웅
 	 * @param model
@@ -34,46 +36,36 @@ public class UserController {
 	@GetMapping("/userInfo")
 	public String userInfo(Model model, HttpSession httpSession) throws Exception {
 		String id = (String) httpSession.getAttribute("id");
+		
 		if (id != null) {
 			UserVO userOneSelect = userService.userOneSelect(id);
-			System.out.println("생성자까지 성공");
+
 			String position = userOneSelect.getUserPosition();
 			System.out.println("position: " + position);
 			
-			int exp = userService.LvSelect(id);
-			float starCnt = userService.starCntSelect();
-			int fullStar = (int) starCnt / 1;
-			float halfStar = starCnt - fullStar;
+//			int exp = userService.selectExp(id);
+//			float starCnt = userService.starCntSelect();
+//			int fullStar = (int) starCnt / 1;
+//			float halfStar = starCnt - fullStar;
+//
+//			model.addAttribute("userOneSelect", userOneSelect);
+//			model.addAttribute("position", position);
+//			model.addAttribute("exp", exp);
+//			model.addAttribute("fullStar", fullStar);
+//			if (halfStar >= 0.5) {
+//				model.addAttribute("halfStar", halfStar);
+//			}
 
-			model.addAttribute("userOneSelect", userOneSelect);
-			model.addAttribute("position", position);
-			model.addAttribute("exp", exp);
-			model.addAttribute("fullStar", fullStar);
-			if (halfStar >= 0.5) {
-				model.addAttribute("halfStar", halfStar);
-			}
-
-			
-			
-			
-			
-			System.out.println("sessionId: " + id);
 			System.out.println("userOneSelect: " + userOneSelect);
-			System.out.println("exp: " + exp);
-			System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
+			System.out.println("sessionId: " + id);
+//			System.out.println("exp: " + exp);
+//			System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
 
 			return "user/userInfo";
 		}
 		return "user/userInfo";
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	
 	@PostMapping("/userInfo")
 	@ResponseBody // AJAX 사용시 써야함

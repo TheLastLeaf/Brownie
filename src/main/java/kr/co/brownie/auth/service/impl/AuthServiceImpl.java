@@ -92,8 +92,17 @@ public class AuthServiceImpl implements AuthService {
 		map.put("tempLolNick", tempLolNick);
 		map.put("tempBrownieNick", tempBrownieNick);
 		map.put("position", position);
-		System.out.println(map);
 		authMapper.insertUser(map);
-		System.out.println("ㄱㄱ2");
 	}
+
+	@Override
+	public void insertExp(String id, int exp) {
+		Map<String, Object>map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("exp", exp);
+		System.out.println("map:" + map);
+		authMapper.insertExp(map);
+	}
+
+	
 }

@@ -12,16 +12,17 @@
 			    update
 			    SET UP_DATE = SYSDATE
 			when not matched then
-			    insert (BROWNIE_USER.USER_ID,
-			            BROWNIE_USER.LOL_ID,
-			            BROWNIE_USER.NICK_NAME,
-			            BROWNIE_USER.BLACK_STACK,
-			            BROWNIE_USER.STATUS,
-			            BROWNIE_USER.IN_DATE,
-			            BROWNIE_USER.UP_DATE,
-			            BROWNIE_USER.IN_USER_ID,
-			            BROWNIE_USER.UP_USER_ID,
-			            BROWNIE_USER.USER_POSITION)
+			    insert (
+			    	BROWNIE_USER.USER_ID,
+		            BROWNIE_USER.LOL_ID,
+		            BROWNIE_USER.NICK_NAME,
+		            BROWNIE_USER.BLACK_STACK,
+		            BROWNIE_USER.STATUS,
+		            BROWNIE_USER.IN_DATE,
+		            BROWNIE_USER.UP_DATE,
+		            BROWNIE_USER.IN_USER_ID,
+		            BROWNIE_USER.UP_USER_ID,
+		            BROWNIE_USER.USER_POSITION)
 			    values ('${id}',
 			            '${tempLolNick}',
 			            '${tempBrownieNick}',
@@ -33,6 +34,35 @@
 			            '${id}',
 			            '${position}'
 			            )
-
 	</update>
+	
+	<update id="insertExp" parameterType="HashMap">
+		merge into BROWNIE_EXP
+		using dual
+		on (user_id = '${id}')
+		when matched then 
+		    update set
+		        USER_EXP = ${exp}
+		when not matched then
+		    insert(
+		        USER_ID, 
+		        USER_EXP, 
+		        USER_LEVEL, 
+		        IN_DATE, 
+		        IN_USER_ID, 
+		        UP_DATE,  
+		        UP_USER_ID
+		    )
+		    values(
+		       '${id}',
+		       0,
+		       0,
+		       sysdate,
+		       '${id}',
+		       sysdate,
+		       '${id}'
+		       )
+	</update>
+	
+	
 </mapper>

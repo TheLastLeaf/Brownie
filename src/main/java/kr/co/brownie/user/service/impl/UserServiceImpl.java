@@ -24,14 +24,14 @@ public class UserServiceImpl implements UserService{
 		userMapper.insertNick(map);
 	}
 
-	@Override
-	public int LvSelect(String id) {
-		return userMapper.LvSelect(id);
-	}
+//	@Override
+//	public int LvSelect(String id) {
+//		return userMapper.LvSelect(id);
+//	}
 
-	@Override
-	public float starCntSelect() {
-		return userMapper.starCntSelect();
-	}
+//	@Override
+//	public float starCntSelect() {
+//		return userMapper.starCntSelect();
+//	}
 
 }

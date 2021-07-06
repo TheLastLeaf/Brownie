@@ -16,20 +16,4 @@ public class UserVO {
     private String inUserId;
     private String upUserId;
     private String userPosition;
-    
-	public UserVO(String userId, String lolId, String nickName, int blackStack, String status, Date inDate, Date modDate, String inUserId,
-			String upUserId, String userPosition) {
-		this.userId = userId;
-		this.lolId = "???";
-		this.nickName = "???";
-		this.blackStack = 0;
-		this.status = "y";
-		this.inDate = inDate;
-		this.modDate = modDate;
-		this.inUserId = inUserId;
-		this.upUserId = upUserId;
-		this.userPosition = "???";
-	}
-    
-    
 }

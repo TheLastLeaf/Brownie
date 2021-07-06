@@ -334,7 +334,6 @@ h1 {
 					<c:when test="${sessionScope.id ne null}">
 						<!-- 로그인상태에서 정보화면 -->
 						<c:set var="nick" value="${userOneSelect.nickName}" />
-						<c:set var="exp" value="${exp}" />
 						<div class="dt-desc" style="display: block;">
 							<div class="row outBox" style="margin-left: 5px;">
 								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
@@ -355,28 +354,6 @@ h1 {
 										<h3>
 											<c:out value="${nick}" />
 											| Lv.
-											<c:choose>
-												<c:when test="${exp > 30}">
-														4
-													</c:when>
-												<c:when test="${exp > 20 }">
-														3
-													</c:when>
-												<c:when test="${exp > 10 }">
-														2
-													</c:when>
-												<c:otherwise>
-														1
-												</c:otherwise>
-											</c:choose>
-											| <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
-													<i class="fa fa-star"></i>
-												</c:forEach> <c:forEach begin="0" end="${halfStar}">
-													<i class="fa fa-star-half-o"></i>
-												</c:forEach> <c:forEach begin="1" end="${5-fullStar-halfStar}">
-													<i class="fa fa-star-o"></i>
-												</c:forEach>
-											</span>
 										</h3>
 									</div>
 								</div>

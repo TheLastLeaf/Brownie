@@ -8,10 +8,6 @@ public interface UserService {
 
 	void insertNick(Map<String, Object> map);
 
-	int LvSelect(String id);
-
-	float starCntSelect();
-
-
+//	float starCntSelect();
 
 }

@@ -32,7 +32,10 @@ public class AuthController {
 			String tempLolNick = "익명의소환사_" + (int) (Math.random() * 100 + 1);
 			String tempBrownieNick = "익명_" + (int) (Math.random() * 100 + 1);
 			String position = "[empty]";
+			int exp = 0;
+			
 			authService.insertUser(id, tempLolNick, tempBrownieNick, position);
+			authService.insertExp(id, exp); 
 
 		} catch (IOException e) {
 			e.printStackTrace();

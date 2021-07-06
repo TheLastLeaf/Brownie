@@ -9,5 +9,7 @@ public interface AuthMapper {
 
 	void insertUser(Map<String, Object> map);
 
+	void insertExp(Map<String, Object> map);
+
 	
 }
