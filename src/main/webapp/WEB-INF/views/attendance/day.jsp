@@ -20,7 +20,6 @@
 <!-- Breadcrumb Section End -->
 
 <!-- 달력 스크립트 시작 -->
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	const year = ${dateForCheck.get('year')};			//올해
 	const month = ${dateForCheck.get('month')};			//이번달

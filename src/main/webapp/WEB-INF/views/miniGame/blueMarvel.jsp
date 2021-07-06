@@ -2,8 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:import url="../layout/header.jsp"/>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="${pageContext.request.contextPath}/js/marvel.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
