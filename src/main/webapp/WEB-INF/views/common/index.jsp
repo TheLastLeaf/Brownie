@@ -19,14 +19,14 @@
 <div id=”banner” style="position: absolute; left: 100px;top: 300px; z-index: 99999; width:500px; height:300px; background: #000000; color: white;"> 님 정지됨ㅅㄱ </div>
 
 <!-- 유튜브 영상 스크립트 시작 -->
-<script>
-	window.onload = function () {
-		show_video(0);
+<style>
+	#youtube_video {
+		height: 350px;
 	}
-
-	function show_video(id){
-		$(".youTubeList").hide();
-		$(".youTubeList").eq(id).show();
+</style>
+<script>
+	function show_video(video_id){
+		$("#youtube_video").attr("src", "https://www.youtube.com/embed/" + video_id);
 	}
 </script>
 <!-- 유튜브 영상 스크립트 끝 -->
@@ -60,17 +60,12 @@
 					<div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
 						<div class="row">
                             <div class="col-xl-6 col-md-12">
-                                <c:forEach var="youTubeVo" items="${youTubeVoList}">
-                                    <div class="vg-item large-vg youTubeList"
-                                        data-setbg="${youTubeVo.snippetThumbnailsMediumUrl }">
-                                        <iframe class="w-100 h-100" src="https://www.youtube.com/embed/${youTubeVo.idVideoid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                    </div>
-                                </c:forEach>
+								<iframe id="youtube_video" class="w-100" src="https://www.youtube.com/embed/${youTubeVoList[0].idVideoid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                             <div class="col-xl-6 col-md-12">
-                                <c:forEach var="youTubeVo" items="${youTubeVoList}" varStatus="status">
+                                <c:forEach var="youTubeVo" items="${youTubeVoList}">
                                     <div class="p-1" style="border-width: 1px 0 1px 0; border-color: white; border-style: solid">
-                                        <p id="${status.index}" class="m-0 font-weight-bold" onclick="show_video(this.id)" style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap">
+                                        <p class="m-0 font-weight-bold" onclick="show_video('${youTubeVo.idVideoid}')" style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap">
                                             ${youTubeVo.snippetTitle}
                                         </p>
                                     </div>
