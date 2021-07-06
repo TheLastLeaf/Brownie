@@ -3,14 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<fmt:formatDate value="${noticeVO.upDate}" type="date" var="update" pattern="yyyy-mm-dd hh:mm:ss" />
-<script>
-    $(function(){
-        $('.reply-btn').click(function(){
-            $('.reply').focus();
-        });
-    });
-</script>
+<fmt:formatDate value="${noticeVO.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss" />
 <style>
     form{
         display: inline;
@@ -31,14 +24,13 @@
                             <div class="details-hero-text">
                                 <ul>
                                     <li>by <span>${nickName}</span></li>
-                                    <li class="fa fa-clock-o">${update}</li>
-                                    <li><span onclick="location.href='/notice/list'" style="color:#666666; cursor: pointer;">목록</span>
-                                    </li>
+                                    <li>${update}</li>
+                                    <li onclick="location.href='/notice/list'" style="color:#666666; cursor: pointer;">목록</li>
                                 </ul>
                             </div>
                         </div>
                         <hr style="width: auto; background-color: white;">
-                        <h3>${noticeVO.title.toUpperCase()}</h3>
+                        <h3>${noticeVO.title}</h3>
                         <div class="dp-pic">
                             <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">
                         </div>
