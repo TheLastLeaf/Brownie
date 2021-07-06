@@ -300,7 +300,7 @@
 				
 				<c:forEach var="galleryVO" items="${galleryVOList.content}">
 				
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
 							data-setbg="${pageContext.request.contextPath}/img/gallery/${galleryVO.fileSeq}">
@@ -325,7 +325,7 @@
 				
 				</c:forEach>
 				
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
 							data-setbg="${pageContext.request.contextPath}/img/gallery/funny45.jpg">
