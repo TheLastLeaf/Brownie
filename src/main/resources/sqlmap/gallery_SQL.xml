@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.gallery.service.impl.GalleryMapper">
+    <select id="selList" resultType="kr.co.brownie.gallery.service.GalleryVO">
+        select S.RNUM,
+               S.BOARDSEQ AS BOARDSEQ,
+               S.BOARDKIND AS BOARDKIND,
+               S.TITLE AS TITLE,
+               S.CONTENT AS CONTENT,
+               S.NOTICEYN AS NOTICEYN,
+               S.STATUS AS STATUS,
+               S.INDATE AS INDATE,
+               S.INUSERID AS INUSERID,
+               S.MODDATE AS "UPDATE",
+               S.UPUSERID AS UPUSERID,
+               S.FILESEQ AS FILESEQ,
+               S.SUBSEQ AS SUBSEQ
+        FROM
+            (SELECT ROWNUM RNUM , T.*
+                FROM(
+                    SELECT
+                        BOARD_SEQ AS BOARDSEQ,
+                        BOARD_KIND AS BOARDKIND,
+                        TITLE AS TITLE,
+                        CONTENT AS CONTENT,
+                        NOTICE_YN AS NOTICEYN,
+                        STATUS AS STATUS,
+                        IN_DATE AS INDATE,
+                        IN_USER_ID AS INUSERID,
+                        UP_DATE AS MODDATE,
+                        UP_USER_ID AS UPUSERID,
+                        FILE_SEQ AS FILESEQ,
+                        SUB_SEQ AS SUBSEQ
+                    FROM BROWNIE_BOARD
+                    WHERE 1 = 1
+                    ORDER BY BOARD_SEQ DESC
+            )T
+        )S
+        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
+
+    </select>
+	
+    
+</mapper>
