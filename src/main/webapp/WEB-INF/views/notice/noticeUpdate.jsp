@@ -106,19 +106,15 @@
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
-                                <div class="form-check innerBox text-right custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="reply" name="reply">
-                                    <label class="custom-control-label" for="reply" style="color:white;">댓글창 숨기기</label>
+                                <div class="input-list" style="padding-bottom: 10px;">
+                                    <input type="text" id="title" name="title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;" value="${noticeVO.title}">
                                 </div>
-                                    <div class="input-list" style="padding-bottom: 10px;">
-                                        <input type="text" id="title" name="title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;" value="${noticeVO.title}">
-                                    </div>
-                                    <div style="border:1px solid #666666">
-                                        <textarea class="summernote" id="content" name="content" style="color: #666666" placeholder="${noticeVO.content}">${noticeVO.content}</textarea>
-                                    </div>
-                                    <div style="padding-top: 10px;">
-                                        <input type="submit" value="수정" style="width: 100%;">
-                                    </div>
+                                <div style="border:1px solid #666666">
+                                    <textarea class="summernote" id="content" name="content" style="color: #666666" placeholder="${noticeVO.content}">${noticeVO.content}</textarea>
+                                </div>
+                                <div style="padding-top: 10px;">
+                                    <input type="submit" value="수정" style="width: 100%;">
+                                </div>
                             </div>
                         </div>
                     </div>

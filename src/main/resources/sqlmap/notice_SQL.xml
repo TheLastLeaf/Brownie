@@ -7,7 +7,7 @@
         select S.RNUM,
                S.BOARDSEQ AS BOARDSEQ,
                S.BOARDKIND AS BOARDKIND,
-               S.TITLE AS TITLE,
+               UPPER(S.TITLE) AS TITLE,
                S.CONTENT AS CONTENT,
                S.NOTICEYN AS NOTICEYN,
                S.STATUS AS STATUS,
