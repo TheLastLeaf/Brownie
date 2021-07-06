@@ -11,9 +11,6 @@ public class FileVO {
     private String filePath;
     private String originalName;
     private String saveName;
-    private String saveName1;
-    private String saveName2;
-    private String saveName3;
     private Date inDate;
     private String inUserId;
     private Date upDate;

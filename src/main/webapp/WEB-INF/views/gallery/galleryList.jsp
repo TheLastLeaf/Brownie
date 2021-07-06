@@ -211,7 +211,7 @@
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/3.jpg">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/funny39.JPG">
 							<div class="label">
 								<span>귀여운짤</span>
 							</div>
@@ -229,7 +229,7 @@
 					</div>
 				</div>
 
-				<div class="col-lg-3">
+				<div class="col-lg-2">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
 							data-setbg="${pageContext.request.contextPath}/img/gallery/4.jpg">
@@ -249,7 +249,28 @@
 						</div>
 					</div>
 				</div>
-
+				
+				<div class="col-lg-3">
+					<div class="cg-item">
+						<div class="cg-pic set-bg thumbnail"
+							data-setbg="${pageContext.request.contextPath}/img/gallery/sanak-20.jpg">
+							<div class="label">
+								<span></span>
+							</div>
+						</div>
+						<div class="cg-text">
+							<h5>
+								<a href="#">왜안떠</a>
+							</h5>
+							<ul>
+								<li>by  <span></span></li>
+								<li><i class="fa fa-clock-o"></i> </li>
+								<li><i class="fa fa-comment-o">조회수</i> 20</li>
+								<li><i class="fa fa-comment-o">추천수</i> 20</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 
 				<div class="col-lg-12">
 					<hr class="gallery_hr">
@@ -279,10 +300,10 @@
 				
 				<c:forEach var="galleryVO" items="${galleryVOList.content}">
 				
-				<div class="col-lg-2">
+				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/${ galleryVO.fileSeq }">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/${galleryVO.fileSeq}">
 							<div class="label">
 								<span>${ galleryVO.boardCategory }</span>
 							</div>
@@ -303,6 +324,28 @@
 				
 				
 				</c:forEach>
+				
+				<div class="col-lg-3">
+					<div class="cg-item">
+						<div class="cg-pic set-bg thumbnail"
+							data-setbg="${pageContext.request.contextPath}/img/gallery/funny45.jpg">
+							<div class="label">
+								<span></span>
+							</div>
+						</div>
+						<div class="cg-text">
+							<h5>
+								<a href="#">왜안떠</a>
+							</h5>
+							<ul>
+								<li>by  <span></span></li>
+								<li><i class="fa fa-clock-o"></i> </li>
+								<li><i class="fa fa-comment-o">조회수</i> 20</li>
+								<li><i class="fa fa-comment-o">추천수</i> 20</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 				
 
 				<hr class="gallery_hr">
