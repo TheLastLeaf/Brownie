@@ -38,7 +38,6 @@
                     ORDER BY BOARD_SEQ DESC
             )T
         )S
-        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
 
     </select>
 	
