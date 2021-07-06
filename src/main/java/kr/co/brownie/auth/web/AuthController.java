@@ -3,8 +3,6 @@ package kr.co.brownie.auth.web;
 import kr.co.brownie.auth.service.AuthService;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,17 +28,23 @@ public class AuthController {
 			String access_token = authService.getToken(code);
 			String id = authService.getUserInfoByToken(access_token);
 			httpSession.setAttribute("id", id);
+			
+			String tempLolNick = "익명의소환사_" + (int) (Math.random() * 100 + 1);
+			String tempBrownieNick = "익명_" + (int) (Math.random() * 100 + 1);
+			String position = "[empty]";
+			
+			authService.insertUser(id, tempLolNick, tempBrownieNick, position);
+			System.out.println("하이");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		return "redirect:/";
 	}
 
 	@GetMapping("logout")
 	public String logout(HttpSession httpSession) {
 		httpSession.invalidate();
-
 		return "redirect:/index";
 	}
+
 }

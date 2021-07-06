@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.auth.service.impl.AuthMapper">
+	<update id="insertUser" parameterType="java.util.HashMap">
+		merge
+			into BROWNIE_USER
+			using DUAL
+			on (BROWNIE_USER.user_id = '${id}')
+			when matched then
+			    update
+			    SET UP_DATE = SYSDATE
+			when not matched then
+			    insert (BROWNIE_USER.USER_ID,
+			            BROWNIE_USER.LOL_ID,
+			            BROWNIE_USER.NICK_NAME,
+			            BROWNIE_USER.BLACK_STACK,
+			            BROWNIE_USER.STATUS,
+			            BROWNIE_USER.IN_DATE,
+			            BROWNIE_USER.UP_DATE,
+			            BROWNIE_USER.IN_USER_ID,
+			            BROWNIE_USER.UP_USER_ID,
+			            BROWNIE_USER.USER_POSITION)
+			    values ('${id}',
+			            '${tempLolNick}',
+			            '${tempBrownieNick}',
+			            0,
+			            'Y',
+			            SYSDATE,
+			            SYSDATE,
+			            '${id}',
+			            '${id}',
+			            '${position}'
+			            )
+
+	</update>
+</mapper>

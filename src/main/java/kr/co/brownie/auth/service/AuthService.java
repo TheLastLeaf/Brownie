@@ -13,4 +13,8 @@ public interface AuthService {
     String getToken(String code) throws IOException;
 
     String getUserInfoByToken(String access_token) throws IOException;
+
+	void insertUser(String id, String tempLolNick, String tempBrownieNick, String position);
+
+    
 }

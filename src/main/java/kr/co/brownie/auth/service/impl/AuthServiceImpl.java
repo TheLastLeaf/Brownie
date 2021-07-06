@@ -3,14 +3,22 @@ package kr.co.brownie.auth.service.impl;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import kr.co.brownie.auth.service.AuthService;
+
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Resource;
 
 @Service("authService")
 public class AuthServiceImpl implements AuthService {
+	@Resource(name = "authMapper")
+	AuthMapper authMapper;
+	
     @Override
     public String getAuthorize() {
         return "redirect:" + K_AUTH_URL + "/oauth/authorize" +
@@ -76,4 +84,16 @@ public class AuthServiceImpl implements AuthService {
 
         return element;
     }
+
+	@Override
+	public void insertUser(String id, String tempLolNick, String tempBrownieNick, String position) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("tempLolNick", tempLolNick);
+		map.put("tempBrownieNick", tempBrownieNick);
+		map.put("position", position);
+		System.out.println(map);
+		authMapper.insertUser(map);
+		System.out.println("ㄱㄱ2");
+	}
 }
