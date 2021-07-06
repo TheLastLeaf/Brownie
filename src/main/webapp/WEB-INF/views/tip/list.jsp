@@ -200,13 +200,13 @@
                     </div>
                 </div>
                 <div class="pagination-item">
-                    <a href="#"><span>Prev</span></a>
-                    <a href="#"><span>1</span></a>
-                    <a href="#"><span>2</span></a>
-                    <a href="#"><span>3</span></a>
-                    <a href="#"><span>4</span></a>
-                    <a href="#"><span>5</span></a>
-                    <a href="#"><span>Next</span></a>
+                    <a href="?currentPageNumber=1"><span>Prev</span></a>
+                    <a href="?currentPageNumber=1"><span>1</span></a>
+                    <a href="?currentPageNumber=2"><span>2</span></a>
+                    <a href="?currentPageNumber=3"><span>3</span></a>
+                    <a href="?currentPageNumber=4"><span>4</span></a>
+                    <a href="?currentPageNumber=5"><span>5</span></a>
+                    <a href="?currentPageNumber=6"><span>Next</span></a>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@
 <mapper namespace="kr.co.brownie.leagueoflegends.champions.service.impl.LeagueOfLegendsChampionsMapper">
     <select id="selectRecentlyChampionsList" parameterType="String"
             resultType="kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsVO">
+           <![CDATA[
         SELECT VERSION                    AS VERSION,
                LANGUAGE                   AS LANGUAGE,
                ID                         AS ID,
@@ -46,8 +47,20 @@
                STATS_ATTACKSPEEDPERLEVEL  AS STATSATTACKSPEEDPERLEVEL,
                STATS_ATTACKSPEED          AS STATSATTACKSPEED
         FROM LEAGUE_OF_LEGENDS_CHAMPIONS
-        WHERE VERSION = #{version}
-          AND LANGUAGE = 'ko_KR'
+                 INNER JOIN (SELECT SEQ,
+                                    VERSION
+                             FROM (SELECT SEQ,
+                                          VERSION,
+                                          ROWNUM AS RN
+                                   FROM (SELECT SEQ,
+                                                VERSION
+                                         FROM LEAGUE_OF_LEGENDS_VERSIONS
+                                         ORDER BY SEQ DESC
+                                        )
+                                  )
+                             WHERE RN <= 1) USING (VERSION)
+        WHERE LANGUAGE = 'ko_KR'
         ORDER BY NAME
+        ]]>
     </select>
 </mapper>

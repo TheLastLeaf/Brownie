@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 @Repository("leagueOfLegendsChampionsMapper")
 public interface LeagueOfLegendsChampionsMapper {
-    List<LeagueOfLegendsChampionsVO> selectRecentlyChampionsList(String version);
+    List<LeagueOfLegendsChampionsVO> selectRecentlyChampionsList();
 }

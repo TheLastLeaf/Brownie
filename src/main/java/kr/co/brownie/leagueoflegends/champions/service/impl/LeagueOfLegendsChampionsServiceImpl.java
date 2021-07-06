@@ -13,7 +13,7 @@ public class LeagueOfLegendsChampionsServiceImpl implements LeagueOfLegendsChamp
     LeagueOfLegendsChampionsMapper leagueOfLegendsChampionsMapper;
 
     @Override
-    public List<LeagueOfLegendsChampionsVO> selectRecentlyChampionsList(String version) {
-        return leagueOfLegendsChampionsMapper.selectRecentlyChampionsList(version);
+    public List<LeagueOfLegendsChampionsVO> selectRecentlyChampionsList() {
+        return leagueOfLegendsChampionsMapper.selectRecentlyChampionsList();
     }
 }

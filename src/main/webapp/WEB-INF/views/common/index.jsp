@@ -66,32 +66,28 @@
 				<!-- LCK 시작 -->
 					<div class="tab-pane fade show active" id="tabs-1" role="tabpanel">
 						<div class="row">
-							<div class="col-lg-12">
-								<div class="row">
-									<div class="col-md-6">
-										<c:forEach var="youTubeVo" items="${youTubeVoList}">
-											<div class="vg-item large-vg youTubeList"
-												data-setbg="${youTubeVo.snippetThumbnailsMediumUrl }">
-												<iframe width="619" height="348" src="https://www.youtube.com/embed/${youTubeVo.idVideoid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-											</div>
-										</c:forEach>
-									</div>
-									<div class="col-md-6">
-										<table border="1" style="width: 100%; color: white; text-align: center; margin-top: 20px;">
-											<c:forEach var="youTubeVo" items="${youTubeVoList}">
-											<c:set var="i" value="${i+1 }" />
-												<tr>
-													<th>
-														<span id="${i }" onclick="show_video(this.id)" style="cursor: pointer;">
-															${youTubeVo.snippetTitle }
-														</span>
-													</th>
-												</tr>
-											</c:forEach>
-										</table>
-									</div>
-								</div>
-							</div>
+                            <div class="col-lg-6 col-md-12">
+                                <c:forEach var="youTubeVo" items="${youTubeVoList}">
+                                    <div class="vg-item large-vg youTubeList"
+                                        data-setbg="${youTubeVo.snippetThumbnailsMediumUrl }">
+                                        <iframe width="619" height="348" src="https://www.youtube.com/embed/${youTubeVo.idVideoid}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <table border="1" style="width: 100%; color: white; text-align: center; margin-top: 20px;">
+                                    <c:forEach var="youTubeVo" items="${youTubeVoList}">
+                                    <c:set var="i" value="${i +1 }" />
+                                        <tr>
+                                            <th>
+                                                <span id="${i}" class="overflow-hidden" onclick="show_video(this.id)" style="cursor: pointer;">
+                                                    ${youTubeVo.snippetTitle }
+                                                </span>
+                                            </th>
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                            </div>
 						</div>
 					</div>
 				<!-- LCK 끝 -->
