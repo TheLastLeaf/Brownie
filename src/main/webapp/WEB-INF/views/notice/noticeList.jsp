@@ -69,7 +69,9 @@
                                 <ul>
                                     <li>by <span>${noticeVO.inUserId}</span></li>
                                 </ul>
-                                <p class="content-text">${noticeVO.content}</p>
+                                <ul>
+                                    <p class="content-text">${noticeVO.content}</p>
+                                </ul>
                             </div>
                         </div>
                     </c:forEach>

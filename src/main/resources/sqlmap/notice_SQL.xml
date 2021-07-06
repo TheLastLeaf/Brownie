@@ -38,7 +38,20 @@
                     ORDER BY BOARD_SEQ DESC
             )T
         )S
-          WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
+        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
+        <if test="notice!= null and notice !=''">
+            <choose>
+                <when test="notice.equals('title')">
+                    AND TITLE LIKE '%' || #{keyword} || '%'
+                </when>
+                <when test="notice.equals('content')">
+                    AND CONTENT LIKE '%' || #{keyword} || '%'
+                </when>
+                <otherwise>
+                    AND INUSERID = #{keyword}
+                </otherwise>
+            </choose>
+        </if>
 
     </select>
 

@@ -39,9 +39,7 @@
                         </div>
                     </div>
                     <div class="dt-desc">
-                        <p>
                             ${noticeVO.content}
-                        </p>
                     </div>
                     <div class="dt-author" style="border: 1px solid #666666;">
                         <div class="da-pic">
@@ -111,6 +109,12 @@
                                 </div>
                             </div>
                         </div>
+                        <form action="/notice/detail">
+                            <div class="input-list">
+                                <input type="text" placeholder="REPLY" class="reply" style="width: 91%;">
+                                <input type="submit" value="등록" style="width: 5%; padding-left: 5px;">
+                            </div>
+                        </form>
                         </c:if>
                             <div class="innerBox text-center pagination-item" style="padding-bottom: 2%;">
                                 <a href="#"><span>Prev</span></a>
@@ -125,12 +129,6 @@
                                     <div class="contact-text">
                                         <div class="contact-form">
                                             <div class="dt-leave-comment">
-                                                <form action="/notice/detail">
-                                                    <div class="input-list">
-                                                        <input type="text" placeholder="REPLY" class="reply" style="width: 91%;">
-                                                        <input type="submit" value="등록" style="width: 5%; padding-left: 5px;"></input>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>

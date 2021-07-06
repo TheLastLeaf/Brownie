@@ -70,9 +70,11 @@ public class NoticeController {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+
         model.addAttribute("noticeVO",noticeVO);
         return "notice/noticeUpdate";
     }
+
     @PostMapping("/update")
     public String updatePost(@RequestParam Map<String,Object> map, Model model){
         String a = map.get("boardSeq").toString();
