@@ -21,7 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/5da60e2714.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@icon/elegant-icons@0.0.1-alpha.4/elegant-icons.css">
@@ -99,7 +99,7 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="ht-widget">
                         <ul>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
                             <li class="signup-switch signup-open">
                                 <c:choose>
                                     <c:when test="${id != null}">
@@ -111,12 +111,12 @@
                                         <span style="margin-left:4px; cursor:text;">Lv. 3</span>
                                         <span style="margin-left:4px;">
                                             <a onclick="location.href='/user/userInfo'">
-                                                <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                                                <i class="far fa-address-book" aria-hidden="true"></i>
                                             </a>
                                         </span>
                                         <span>
                                             <a onclick="location.href='/logout'">
-                                                <i class="fa fa-sign-out"></i>
+                                                <i class="fas fa-sign-out"></i>
                                             </a>
                                         </span>
                                     </c:when>
@@ -134,7 +134,7 @@
                 <div class="col-lg-6 col-md-4">
                     <div class="ht-social nav-search ">
                         <input type="text" style="width: 150px; border:1px solid black; font-size: 11px; color: #ffffff; background-color: #222222;" placeholder="search"/>&nbsp;
-                        &nbsp;<i class="fa fa-search"></i>
+                        &nbsp;<i class="fas fa-search"></i>
                     </div>
                 </div>
             </div>
@@ -154,13 +154,13 @@
     <div class="nav-options">
         <div class="container">
             <div class="humberger-menu humberger-open">
-                <i class="fa fa-bars"></i>
+                <i class="fas fa-bars"></i>
             </div>
             <div class="nav-menu">
                 <ul>
                     <!-- 						<li class="active"><a href="notice"><span>공지사항</span></a></li> -->
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/notice"><span>NOTICE
-						<i class="fa fa-angle-down"></i></span></a>
+						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
@@ -172,8 +172,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -186,8 +186,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -200,8 +200,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -214,8 +214,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -228,8 +228,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@
                         </div>
                     </li>
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/teamGame"><span>GROUP
-						<i class="fa fa-angle-down"></i></span></a>
+						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
@@ -249,8 +249,8 @@
                                             <a href="#">ALL</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -263,8 +263,8 @@
                                             <a href="#">Howling Abyss</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -277,8 +277,8 @@
                                             <a href="#">Normal</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -291,8 +291,8 @@
                                             <a href="#">Solo Rank</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -305,8 +305,8 @@
                                             <a href="#">Free rank</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -314,7 +314,7 @@
                         </div>
                     </li>
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/tip"><span>GUIDE
-						<i class="fa fa-angle-down"></i></span></a>
+						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
@@ -326,8 +326,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -340,8 +340,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -354,8 +354,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -368,8 +368,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -382,8 +382,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -391,7 +391,7 @@
                         </div>
                     </li>
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/gallery"><span>FANART
-						<i class="fa fa-angle-down"></i></span></a>
+						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
@@ -403,8 +403,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -417,8 +417,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -431,8 +431,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -445,8 +445,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -459,8 +459,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -468,7 +468,7 @@
                         </div>
                     </li>
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/board"><span>LOUNGE
-						<i class="fa fa-angle-down"></i></span></a>
+						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <div class="mw-post-item">
@@ -480,8 +480,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -494,8 +494,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -508,8 +508,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -522,8 +522,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -536,8 +536,8 @@
                                             <a href="#">게시글 제목</a>
                                         </h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 12</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 12</li>
                                         </ul>
                                     </div>
                                 </div>

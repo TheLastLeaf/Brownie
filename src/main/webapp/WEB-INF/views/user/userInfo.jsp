@@ -516,7 +516,7 @@ h1 {
 									</div>
 									<div class="nameLv">
 										<h3>
-											??? | Lv. ??? | <span class="rating-star"> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i>
+											??? | Lv. ??? | <span class="rating-star"> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
 											</span>
 										</h3>
 									</div>

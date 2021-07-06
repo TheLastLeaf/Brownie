@@ -33,7 +33,7 @@
 									<a href="#">부루마블</a>
 								</h6>
 								<ul>
-									<li><i class="fa fa-clock-o"></i>잔여시간</li>
+									<li><i class="far fa-clock"></i>잔여시간</li>
 								</ul>
 							</div>
 						</div>
@@ -46,7 +46,7 @@
 									<a href="#">빙고어쩌구</a>
 								</h6>
 								<ul>
-									<li><i class="fa fa-clock-o"></i>잔여시간</li>
+									<li><i class="far fa-clock"></i>잔여시간</li>
 								</ul>
 							</div>
 						</div>

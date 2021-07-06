@@ -180,8 +180,8 @@
 							</h5>
 							<ul>
 								<li>by <span>${galleryVO.inUserId}</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
+								<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+								<li><i class="far fa-comment"></i> 20</li>
 							</ul>
 						</div>
 					</div>
@@ -201,8 +201,8 @@
 							</h5>
 							<ul>
 								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
+								<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+								<li><i class="far fa-comment"></i> 20</li>
 							</ul>
 						</div>
 					</div>
@@ -222,8 +222,8 @@
 							</h5>
 							<ul>
 								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
+								<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+								<li><i class="far fa-comment"></i> 20</li>
 							</ul>
 						</div>
 					</div>
@@ -243,8 +243,8 @@
 							</h5>
 							<ul>
 								<li>by <span>Admin</span></li>
-								<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-								<li><i class="fa fa-comment-o"></i> 20</li>
+								<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+								<li><i class="far fa-comment"></i> 20</li>
 							</ul>
 						</div>
 					</div>
@@ -293,9 +293,9 @@
 							</h5>
 							<ul>
 								<li>by  <span>${ galleryVO.inUserId }</span></li>
-								<li><i class="fa fa-clock-o"></i> ${ galleryVO.inDate } </li>
-								<li><i class="fa fa-comment-o">조회수</i> 20</li>
-								<li><i class="fa fa-comment-o">추천수</i> 20</li>
+								<li><i class="far fa-clock"></i> ${ galleryVO.inDate } </li>
+								<li><i class="far fa-comment">조회수</i> 20</li>
+								<li><i class="far fa-comment">추천수</i> 20</li>
 							</ul>
 						</div>
 					</div>

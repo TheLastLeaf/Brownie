@@ -69,8 +69,8 @@
                                     <div class="rp-text">
                                         <h6>The Real-Estate Developers Are the Enemy</h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 20</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 20</li>
                                         </ul>
                                     </div>
                                 </a>
@@ -84,8 +84,8 @@
                                     <div class="rp-text">
                                         <h6>Montreal real estate: Bargains in cottage countrya</h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 20</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 20</li>
                                         </ul>
                                     </div>
                                 </a>

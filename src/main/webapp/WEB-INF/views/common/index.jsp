@@ -256,8 +256,8 @@
 															</h5>
 															<ul>
 																<li>by <span>ㄹㄹㄹ</span></li>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -274,8 +274,8 @@
 															</h5>
 															<ul>
 																<li>by <span>351</span></li>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -292,8 +292,8 @@
 																<a href="#">ㅂ배고프고 졸리다</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -308,8 +308,8 @@
 																<a href="#">눕고싶다 눈이 시려워</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -324,8 +324,8 @@
 																<a href="#">낡고 지친 노인</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -344,8 +344,8 @@
 													</h5>
 													<ul>
 														<li>by <span>ㅎㄱㄷㄴ</span></li>
-														<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-														<li><i class="fa fa-comment-o"></i> 20</li>
+														<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+														<li><i class="far fa-comment"></i> 20</li>
 													</ul>
 												</div>
 											</div>
@@ -360,8 +360,8 @@
 																<a href="#">꿔바로우</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -376,8 +376,8 @@
 																<a href="#">마라탕</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -392,8 +392,8 @@
 																<a href="#">굴국밥</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -419,8 +419,8 @@
 													</h5>
 													<ul>
 														<li>by <span>Faker</span></li>
-														<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-														<li><i class="fa fa-comment-o"></i> 20</li>
+														<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+														<li><i class="far fa-comment"></i> 20</li>
 													</ul>
 												</div>
 											</div>
@@ -435,8 +435,8 @@
 																<a href="#">정글러 명짤</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -451,8 +451,8 @@
 																<a href="#">말뚝딜오지는짤</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -467,8 +467,8 @@
 																<a href="#">롤 웃긴짤 모음</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -484,8 +484,8 @@
 													</h5>
 													<ul>
 														<li>by <span>Admin</span></li>
-														<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-														<li><i class="fa fa-comment-o"></i> 20</li>
+														<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+														<li><i class="far fa-comment"></i> 20</li>
 													</ul>
 												</div>
 											</div>
@@ -500,8 +500,8 @@
 																<a href="#">ㅈㅁㄹㄴㅁㅈㅇ</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -516,8 +516,8 @@
 																<a href="#">롤과 히오스의 차이</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>
@@ -532,8 +532,8 @@
 																<a href="#">레스토랑스가 짱아니냐</a>
 															</h6>
 															<ul>
-																<li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-																<li><i class="fa fa-comment-o"></i> 20</li>
+																<li><i class="far fa-clock"></i> Aug 01, 2019</li>
+																<li><i class="far fa-comment"></i> 20</li>
 															</ul>
 														</div>
 													</div>

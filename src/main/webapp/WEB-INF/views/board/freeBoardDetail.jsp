@@ -48,11 +48,11 @@
                     </div>
                     <div class="dt-share" style="justify-content: center; align-content: center; text-align: center;">
                         <div class="ds-links">
-                            <a href="#" class="wide"><i class="fa fa-heart-o"></i><span>99+</span></a>
+                            <a href="#" class="wide"><i class="far fa-heart"></i><span>99+</span></a>
                         </div>
                         <div class="ds-title">싫어요</div>
                         <div class="ds-links">
-                            <a href="#" class="wide"><i class="fa fa-heart"></i><span>99+</span></a>
+                            <a href="#" class="wide"><i class="fas fa-heart"></i><span>99+</span></a>
                         </div>
                         <div class="ds-title">좋아요</div>
                     </div>
@@ -67,8 +67,8 @@
                                     <div class="rp-text">
                                         <h6>이전글어쩌구</h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 20</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 20</li>
                                         </ul>
                                     </div>
                                 </a>
@@ -82,8 +82,8 @@
                                     <div class="rp-text">
                                         <h6>다음글어쩌구 게시글 순번으로 쿼리문 조회해</h6>
                                         <ul>
-                                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                            <li><i class="fa fa-comment-o"></i> 20</li>
+                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                            <li><i class="far fa-comment"></i> 20</li>
                                         </ul>
                                     </div>
                                 </a>
@@ -163,8 +163,8 @@
                             <div class="bp-text">
                                 <h6><a href="#">여기는 추천수 두 자릿 수 이상 게시글</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                             </div>
                         </div>
@@ -181,8 +181,8 @@
                             <div class="bp-text">
                                 <h6><a href="#">어제자 롤드컵 개쩌는장면</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                             </div>
                         </div>
@@ -199,8 +199,8 @@
                             <div class="bp-text">
                                 <h6><a href="#">롤 개갓겜아니냐?</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                             </div>
                         </div>
@@ -217,8 +217,8 @@
                             <div class="bp-text">
                                 <h6><a href="#">마라샹궈 먹고싶네</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                             </div>
                         </div>

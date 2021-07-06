@@ -13,7 +13,7 @@
                     <form action="#" class="search-404">
                         <input type="text" placeholder="Enter your keyword">
                         <button type="submit">
-                            <i class="fa fa-search"></i>
+                            <i class="fas fa-search"></i>
                         </button>
                     </form>
                 </div>
@@ -53,8 +53,8 @@
                                 <a href="#">Teamfight Tactics is in chaos after patch...</a>
                             </h6>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
+                                <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                <li><i class="far fa-comment"></i> 12</li>
                             </ul>
                         </div>
                     </div>
@@ -77,8 +77,8 @@
                                 <a href="#">Lenovo’s y540 gaming laptop with an rtx 2060...</a>
                             </h6>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
+                                <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                <li><i class="far fa-comment"></i> 12</li>
                             </ul>
                         </div>
                     </div>
@@ -101,8 +101,8 @@
                                 <a href="#">A monter prom poster got hijacked for a...</a>
                             </h6>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
+                                <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                <li><i class="far fa-comment"></i> 12</li>
                             </ul>
                         </div>
                     </div>
@@ -125,8 +125,8 @@
                                 <a href="#">Facebook wants to read your thoughts with...</a>
                             </h6>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
+                                <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                <li><i class="far fa-comment"></i> 12</li>
                             </ul>
                         </div>
                     </div>
@@ -149,8 +149,8 @@
                                 <a href="#">Facebook wants to read your thoughts with...</a>
                             </h6>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
+                                <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                <li><i class="far fa-comment"></i> 12</li>
                             </ul>
                         </div>
                     </div>
@@ -173,8 +173,8 @@
                                 <a href="#">Facebook wants to read your thoughts with...</a>
                             </h6>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
+                                <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                <li><i class="far fa-comment"></i> 12</li>
                             </ul>
                         </div>
                     </div>
@@ -197,8 +197,8 @@
                                 <a href="#">Facebook wants to read your thoughts with...</a>
                             </h6>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                <li><i class="fa fa-comment-o"></i> 12</li>
+                                <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                <li><i class="far fa-comment"></i> 12</li>
                             </ul>
                         </div>
                     </div>

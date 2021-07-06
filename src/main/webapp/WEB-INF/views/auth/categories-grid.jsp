@@ -35,8 +35,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -52,8 +52,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -69,8 +69,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -86,8 +86,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -103,8 +103,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -120,8 +120,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -137,8 +137,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -154,8 +154,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -171,8 +171,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -188,8 +188,8 @@
                                 <h5><a href="#">Teamfight Tactics is in chaos after today's patch...</a></h5>
                                 <ul>
                                     <li>by <span>Admin</span></li>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua suspendisse ultrices...</p>
@@ -212,22 +212,22 @@
                         </div>
                         <ul>
                             <li>
-                                <div class="sm-icon"><i class="fa fa-facebook"></i></div>
+                                <div class="sm-icon"><i class="fab fa-facebook"></i></div>
                                 <span>Facebook</span>
                                 <div class="follow">1,2k Follow</div>
                             </li>
                             <li>
-                                <div class="sm-icon"><i class="fa fa-twitter"></i></div>
+                                <div class="sm-icon"><i class="fab fa-twitter"></i></div>
                                 <span>Twitter</span>
                                 <div class="follow">1,2k Follow</div>
                             </li>
                             <li>
-                                <div class="sm-icon"><i class="fa fa-youtube-play"></i></div>
+                                <div class="sm-icon"><i class="fab fa-youtube"></i></div>
                                 <span>Youtube</span>
                                 <div class="follow">2,3k Subs</div>
                             </li>
                             <li>
-                                <div class="sm-icon"><i class="fa fa-instagram"></i></div>
+                                <div class="sm-icon"><i class="fab fa-instagram"></i></div>
                                 <span>Instagram</span>
                                 <div class="follow">2,6k Follow</div>
                             </li>
@@ -245,8 +245,8 @@
                                 <h6><a href="#">A Monster Prom poster got hijacked for a Papa Roach concert...</a>
                                 </h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 12</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 12</li>
                                 </ul>
                             </div>
                         </div>
@@ -257,8 +257,8 @@
                             <div class="ti-text">
                                 <h6><a href="#">Facebook wants to read your thoughts with its augmented...</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 12</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 12</li>
                                 </ul>
                             </div>
                         </div>
@@ -270,8 +270,8 @@
                                 <h6><a href="#">This gaming laptop with a GTX 1660 Ti and 32GB of RAM is down...</a>
                                 </h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 12</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 12</li>
                                 </ul>
                             </div>
                         </div>
@@ -282,8 +282,8 @@
                             <div class="ti-text">
                                 <h6><a href="#">Jalopy developer is making a game where you 'build stuff...</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 12</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 12</li>
                                 </ul>
                             </div>
                         </div>
@@ -316,8 +316,8 @@
                             <div class="bp-text">
                                 <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                             </div>
                         </div>
@@ -334,8 +334,8 @@
                             <div class="bp-text">
                                 <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                             </div>
                         </div>
@@ -352,8 +352,8 @@
                             <div class="bp-text">
                                 <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                             </div>
                         </div>
@@ -370,8 +370,8 @@
                             <div class="bp-text">
                                 <h6><a href="#">This gaming laptop with a GTX 1660...</a></h6>
                                 <ul>
-                                    <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                                    <li><i class="fa fa-comment-o"></i> 20</li>
+                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                                    <li><i class="far fa-comment"></i> 20</li>
                                 </ul>
                             </div>
                         </div>

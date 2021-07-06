@@ -54,7 +54,7 @@
 	                		<th>gg</th>
 	                		<th>2021.06.26.</th>
 	                		<th><input name='date' type='date' /> <input type='submit' value='완료' /></th>
-	                		<th><i class="fa fa-close"></i></th>
+	                		<th><i class=fas fa-times"></i></th>
 	                	</tr>
 	                	<tr>
 	                		<th>2</th>
@@ -64,7 +64,7 @@
 	                		<th>qq</th>
 	                		<th>2021.06.26.</th>
 	                		<th><input name='date' type='date' /> <input type='submit' value='완료' /></th>
-	                		<th><i class="fa fa-check"></i></th>
+	                		<th><i class="fas fa-check"></i></th>
 	                	</tr>
 	                </table>
 	                <div>

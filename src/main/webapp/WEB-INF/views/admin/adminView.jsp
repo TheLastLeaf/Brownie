@@ -62,22 +62,22 @@
                     <div class="social-media">
                         <ul>
                             <li>
-                                <div class="sm-icon"><i class="fa fa-pencil-square-o"></i></div>
+                                <div class="sm-icon"><i class="fas fa-pen-square"></i></div>
                                 	<span class="adminMenu">게시판 관리</span>
                                 <div class="follow">5개</div>
                             </li>
                             <li>
-                                <div class="sm-icon"><i class="fa fa-user-o"></i></div>
+                                <div class="sm-icon"><i class="far fa-user"></i></div>
                                 	<span class="adminMenu">멤버 관리</span>
                                 <div class="follow">432명</div>
                             </li>
                             <li>
-                                <div class="sm-icon"><i class="fa fa-address-card"></i></div>
+                                <div class="sm-icon"><i class="fas fa-address-card"></i></div>
                                 	<span class="adminMenu">신고 내역</span>
                                 <div class="follow">4명</div>
                             </li>
                             <li>
-                                <div class="sm-icon"><i class="fa fa-user-circle-o"></i></div>
+                                <div class="sm-icon"><i class="far fa-circle"></i></div>
                                 	<span class="adminMenu">블랙 리스트</span>
                                 <div class="follow">52명</div>
                             </li>
@@ -154,16 +154,16 @@
                             <div class="qualities-item">
                                 <p>뭔가 쓰고싶음</p>
                                 <ul>
-                                    <li><i class="fa fa-check"></i> 근데 쓸 게 없네</li>
-                                    <li><i class="fa fa-check"></i> 무지성편집으로 남겨두겠음
+                                    <li><i class="fas fa-check"></i> 근데 쓸 게 없네</li>
+                                    <li><i class="fas fa-check"></i> 무지성편집으로 남겨두겠음
                                     </li>
                                 </ul>
                             </div>
                             <div class="qualities-item bad-item">
                                 <p>진짜 쓰고싶단말이지?ㄴ</p>
                                 <ul>
-                                    <li><i class="fa fa-close"></i> 이것도 나중에 쓸거면 쓰셈</li>
-                                    <li><i class="fa fa-close"></i> 근데 무슨 데이터가 들어갈지 나도 모르겠네]
+                                    <li><i class=fas fa-times"></i> 이것도 나중에 쓸거면 쓰셈</li>
+                                    <li><i class=fas fa-times"></i> 근데 무슨 데이터가 들어갈지 나도 모르겠네]
                                     </li>
                                 </ul>
                             </div>

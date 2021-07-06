@@ -82,8 +82,8 @@
                         <h5><a href="#">브론즈 4 0LP가 알려주는 "아리"란?</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-comment"></i> 20</li>
                         </ul>
                     </div>
                 </div>
@@ -98,8 +98,8 @@
                         <h5><a href="#">챔피언 폭을 늘려보자. 서폿 아트로 다이아가기</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-comment"></i> 20</li>
                         </ul>
                     </div>
                 </div>
@@ -114,8 +114,8 @@
                         <h5><a href="#">야, 너도 "아칼리"하면 이길 수 있어.</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-comment"></i> 20</li>
                         </ul>
                     </div>
                 </div>
@@ -130,8 +130,8 @@
                         <h5><a href="#">롤은 팀게임! 이상혁이 전하는 "오더형 미드라이너"의 현실</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-comment"></i> 20</li>
                         </ul>
                     </div>
                 </div>
@@ -146,8 +146,8 @@
                         <h5><a href="#">똥템보다 똥덜싸는 탑무무 공략</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-comment"></i> 20</li>
                         </ul>
                     </div>
                 </div>
@@ -162,8 +162,8 @@
                         <h5><a href="#">시즌 11 비주류 애니비아 (몰라서 대처하기 힘든) 팁</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-comment"></i> 20</li>
                         </ul>
                     </div>
                 </div>
@@ -178,8 +178,8 @@
                         <h5><a href="#">요즘 누가 애니하나요? 네 제가 합니다.</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-comment"></i> 20</li>
                         </ul>
                     </div>
                 </div>
@@ -194,8 +194,8 @@
                         <h5><a href="#">개사기캐 씹0티어 숨겨져있지도 않은 아펠리오스 공략과 대처법</a></h5>
                         <ul>
                             <li>by <span>Admin</span></li>
-                            <li><i class="fa fa-clock-o"></i> Aug 01, 2019</li>
-                            <li><i class="fa fa-comment-o"></i> 20</li>
+                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-comment"></i> 20</li>
                         </ul>
                     </div>
                 </div>
