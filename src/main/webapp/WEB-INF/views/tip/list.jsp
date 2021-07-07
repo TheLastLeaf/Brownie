@@ -46,9 +46,56 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    #search_champions {
+        width: 100%;
+        height: 46px;
+        font-size: 14px;
+        color: #eaeaea;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid #464646;
+        padding-left: 15px;
+        margin-bottom: 20px;
+        -webkit-transform: skewX(-15deg);
+        -ms-transform: skewX(-15deg);
+        transform: skewX(-15deg);
+    }
+
+    #search_champions::-webkit-input-placeholder {
+        color: #eaeaea;
+        -webkit-transform: skewX(15deg);
+        transform: skewX(15deg);
+    }
+
+    #search_champions::-moz-placeholder {
+        color: #eaeaea;
+        -webkit-transform: skewX(15deg);
+        transform: skewX(15deg);
+    }
+
+    #search_champions:-ms-input-placeholder {
+        color: #eaeaea;
+        -webkit-transform: skewX(15deg);
+        -ms-transform: skewX(15deg);
+        transform: skewX(15deg);
+    }
+
+    #search_champions::-ms-input-placeholder {
+        color: #eaeaea;
+        -webkit-transform: skewX(15deg);
+        -ms-transform: skewX(15deg);
+        transform: skewX(15deg);
+    }
+
+    #search_champions::placeholder {
+        color: #eaeaea;
+        -webkit-transform: skewX(15deg);
+        -ms-transform: skewX(15deg);
+        transform: skewX(15deg);
+    }
 </style>
 <script>
-    $(function() {
+    $(function () {
         $("#search_champions").on("keyup", function () {
             $(".league-of-legends-champion").hide();
             $(".league-of-legends-champion").each(function () {
@@ -68,9 +115,10 @@
             <div class="breadcrumb-text padding-top-30px padding-bottom-30px">
                 <h3>챔피언 선택</h3>
                 <div class="row">
-                    <form class="col-12 search-model-form">
-                        <input id="search_champions" class="float-right" type="text" placeholder="Search here....."/>
-                    </form>
+                    <div class="col-8"></div>
+                    <div class="col-4">
+                        <input id="search_champions" class="text-center" type="text" placeholder="챔피언 이름을 입력하세요."/>
+                    </div>
                 </div>
                 <div class="row champion-select overflow-auto overflow-x-hidden rounded">
                     <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
