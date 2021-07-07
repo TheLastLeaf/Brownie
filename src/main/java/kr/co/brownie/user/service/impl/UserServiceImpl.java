@@ -37,10 +37,12 @@ public class UserServiceImpl implements UserService {
 		return userMapper.starCntSelect(id);
 	}
 
-
-//	@Override
-//	public int LvSelect(String id) {
-//		return userMapper.LvSelect(id);
-//	}
-
+	@Override
+	public int boardTotalCnt(String id) {
+		int boardTotalCnt = userMapper.boardTotalCnt(id);
+		if(boardTotalCnt == 0) {
+			return boardTotalCnt = 0;
+		}
+		return boardTotalCnt;
+	}
 }

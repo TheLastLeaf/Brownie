@@ -17,6 +17,6 @@ public interface UserMapper {
 
 	float starCntSelect(String id);
 
-	// int LvSelect(String id);
+	int boardTotalCnt(String id);
 
 }

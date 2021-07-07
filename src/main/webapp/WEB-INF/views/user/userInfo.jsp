@@ -402,13 +402,13 @@ h1 {
 								</div>
 								<div class="sync">
 									<%-- <c:set var="position" value="${userOneSelect.userPosition}"/> --%>
-									[메인포지션] : 탑이면 탑 사진
+									[메인포지션] : ${position}
 								</div>
 							</div>
 							<!-- 뭉태기2 -->
 							<div class="userInfoBox col-sm-4">
 								<div>
-									<div class="infoDetail">게시글 갯수: ??</div>
+									<div class="infoDetail">게시글 갯수: ${boardTotalCnt}</div>
 									<div class="infoDetail">댓글 갯수: ??</div>
 									<div class="infoDetail">좋아요: ??</div>
 									<div class="infoDetail">싫어요: ??</div>

@@ -48,7 +48,10 @@ public class UserController {
 			float starCnt = userService.starCntSelect(id);
 			int fullStar = (int) starCnt / 1;
 			float halfStar = starCnt - fullStar;
-
+			
+			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
+			int boardTotalCnt = userService.boardTotalCnt(id);
+			
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
 			model.addAttribute("position", position);
@@ -56,13 +59,17 @@ public class UserController {
 			if (halfStar >= 0.5) {
 				model.addAttribute("halfStar", halfStar);
 			}
+			model.addAttribute("boardTotalCnt", boardTotalCnt);
+			
 
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("sessionId: " + id);
 			System.out.println("exp: " + exp);
 			System.out.println("position: " + position);
 			System.out.println("exp: " + exp);
-			System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
+			System.out.println("fullStar: " + fullStar + " / " + "halfStar: " + halfStar);
+			System.out.println("boardTotalCnt: "+ boardTotalCnt);
+			System.out.println("마지막줄처리");
 
 			return "user/userInfo";
 		}

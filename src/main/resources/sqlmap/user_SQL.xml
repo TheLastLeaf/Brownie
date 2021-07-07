@@ -84,5 +84,12 @@
 			FROM REVIEW
 		WHERE USER_ID = '${id}'
 	</select>
+	
+	<select id="boardTotalCnt" resultType="int">
+		SELECT COUNT(*)
+			FROM BOARD
+		WHERE 
+			IN_USER_ID = '${id}'
+	</select>
 
 </mapper>

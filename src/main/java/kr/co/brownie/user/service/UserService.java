@@ -13,5 +13,7 @@ public interface UserService {
 
 	float starCntSelect(String id);
 
+	int boardTotalCnt(String id);
+
 
 }
