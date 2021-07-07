@@ -143,7 +143,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <a onclick="location.href = '/login'">
-                                            <img src="<c:url value='${pageContext.request.contextPath}/img/common/kakao_login_small.png'/>"
+                                            <img src="${pageContext.request.contextPath}/img/common/kakao_login_small.png"
                                                  alt=""/>
                                         </a>
                                     </c:otherwise>
