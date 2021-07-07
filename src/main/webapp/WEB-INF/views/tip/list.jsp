@@ -97,8 +97,9 @@
 <script>
     $(function () {
         $("#search_champions").on("keyup", function () {
-            $(".league-of-legends-champion").hide();
-            $(".league-of-legends-champion").each(function () {
+            const league_of_legends_champion = $(".league-of-legends-champion");
+            league_of_legends_champion.hide();
+            league_of_legends_champion.each(function () {
                 if ($(this).find("p").html().includes($("#search_champions").val())) {
                     $(this).show();
                 }
