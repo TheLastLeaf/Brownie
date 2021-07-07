@@ -32,7 +32,6 @@ public class AuthController {
 			httpSession.setAttribute("permit_level", 9);
 			//권한레벨 나중에 유저정보 조회해와서 가져가기 지금은 임시 9
 
-
 			/* 첫 로그인 */
 			// 소환사명 및 세팅
 			String tempLolNick = "익명의소환사_" + (int) (Math.random() * 100 + 1);
@@ -46,7 +45,9 @@ public class AuthController {
 			String reply = "empty";
 			String writeUserId = "anonymous";
 
-			// service 호출해서 집어넣기
+			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
+
+			/* service 호출해서 집어넣기 */
 			authService.insertUser(id, tempLolNick, tempBrownieNick, position);
 			authService.insertExp(id, exp);
 			authService.insertReview(reviewSeq, id, starCnt, reply, writeUserId);

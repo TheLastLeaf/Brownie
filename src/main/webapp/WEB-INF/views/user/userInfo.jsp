@@ -369,12 +369,15 @@ h1 {
 														0
 												</c:otherwise>
 											</c:choose>
-											| <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
-													<i class="fa fa-star"></i>
-												</c:forEach> <c:forEach begin="0" end="${halfStar}">
-													<i class="fa fa-star-half-o"></i>
-												</c:forEach> <c:forEach begin="1" end="${5-fullStar-halfStar}">
-													<i class="fa fa-star-o"></i>
+											| <span class="rating-star">
+												<c:forEach begin="1" end="${fullStar}">
+													<i class="fas fa-star"></i>
+												</c:forEach>
+												<c:forEach begin="0" end="${halfStar}">
+													<i class="fas fa-star-half-alt"></i>
+												</c:forEach>
+												<c:forEach begin="1" end="${5-fullStar-halfStar}">
+													<i class="far fa-star"></i>
 												</c:forEach>
 											</span>
 										</h3>
@@ -412,9 +415,9 @@ h1 {
 								</div>
 								<hr />
 								<div class="infoDetail">【 최근 게시글 내역 】</div>
-								<div class="upload">1. 무지성에 관한 고찰</div>
-								<div class="upload">2. 팀원의 성향에 대한 고찰</div>
-								<div class="upload">3. 진짜 프로젝트를 2주면 완성이 될까?</div>
+								<div class="upload">1. ??</div>
+								<div class="upload">2. ??</div>
+								<div class="upload">3. ??</div>
 							</div>
 							<!-- 뭉태기3 -->
 							<div class="userInfoBox col-sm-4">
@@ -424,19 +427,19 @@ h1 {
 										<b>[이동해서 댓글·별점주세요!]</b>
 									</div>
 									<div class="nickName">
-										<a class="col" href="#">[궁각예술]</a>
+										<a class="col" href="#">[???]</a>
 									</div>
 									<div class="nickName">
-										<a class="col" href="#">[안뇽하세욤]</a>
+										<a class="col" href="#">[???]</a>
 									</div>
 									<div class="nickName">
-										<a class="col" href="#">[regolas]</a>
+										<a class="col" href="#">[???]</a>
 									</div>
 									<div class="nickName">
-										<a class="col" href="#">[스프링밥]</a>
+										<a class="col" href="#">[???]</a>
 									</div>
 									<div class="nickName">
-										<a class="col" href="#">[Faked]</a>
+										<a class="col" href="#">[???]</a>
 									</div>
 								</div>
 							</div>
@@ -453,11 +456,11 @@ h1 {
 							</div>
 							<!-- 다른사람이 쓴 후기 -->
 							<div class="review col-4">
-								<div class="reviewDay">작성자&nbsp;21/07/01</div>
+								<div class="reviewDay">작성자&nbsp;??/??/??</div>
 								<div class="rev">
-									이 사람 아리만 해요,,미쳐진짜!
+									???
 									<!-- 상세내용담는공간 -->
-									<div class="caption">★★★☆☆</div>
+									<div class="caption">☆☆☆☆☆</div>
 								</div>
 							</div>
 							<div class="review col-4">
