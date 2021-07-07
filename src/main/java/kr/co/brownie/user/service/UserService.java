@@ -1,14 +1,17 @@
 package kr.co.brownie.user.service;
 
-import java.util.List;
+import java.io.IOException;
 import java.util.Map;
 
 public interface UserService {
-	List<UserVO> selectList();
 
-	UserVO userOneSelect(String id);
+	UserVO userOneSelect(String id) throws IOException;
 
-	void insertNick(Map<String, Object> map);
+	void insertNick(Map<String, Object> map) throws IOException;
 
-//	float starCntSelect();
+	int selectExp(String id) throws IOException;
+
+	float starCntSelect(String id);
+
+
 }

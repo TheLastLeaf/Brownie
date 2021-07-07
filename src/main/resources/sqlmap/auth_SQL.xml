@@ -8,21 +8,18 @@
 			into BROWNIE_USER
 			using DUAL
 			on (BROWNIE_USER.user_id = '${id}')
-			when matched then
-			    update
-			    SET UP_DATE = SYSDATE
 			when not matched then
 			    insert (
-			    	BROWNIE_USER.USER_ID,
-		            BROWNIE_USER.LOL_ID,
-		            BROWNIE_USER.NICK_NAME,
-		            BROWNIE_USER.BLACK_STACK,
-		            BROWNIE_USER.STATUS,
-		            BROWNIE_USER.IN_DATE,
-		            BROWNIE_USER.UP_DATE,
-		            BROWNIE_USER.IN_USER_ID,
-		            BROWNIE_USER.UP_USER_ID,
-		            BROWNIE_USER.USER_POSITION)
+			    	USER_ID,
+		            LOL_ID,
+		            NICK_NAME,
+		            BLACK_STACK,
+		            STATUS,
+		            IN_DATE,
+		            UP_DATE,
+		            IN_USER_ID,
+		            UP_USER_ID,
+		            USER_POSITION)
 			    values ('${id}',
 			            '${tempLolNick}',
 			            '${tempBrownieNick}',
@@ -40,9 +37,6 @@
 		merge into BROWNIE_EXP
 		using dual
 		on (user_id = '${id}')
-		when matched then 
-		    update set
-		        USER_EXP = ${exp}
 		when not matched then
 		    insert(
 		        USER_ID, 
@@ -64,5 +58,31 @@
 		       )
 	</update>
 	
+	<update id="insertReview" parameterType="HashMap">
+	MERGE INTO REVIEW
+		using dual
+		on(USER_ID = '${id}')
+		when not matched then
+		    insert(
+		        REVIEW_SEQ, 
+		        USER_ID, 
+		        STAR_CNT, 
+		        REPLY, 
+		        IN_DATE, 
+		        UP_DATE, 
+		        IN_USER_ID, 
+		        UP_USER_ID
+		    )
+		    values(
+		       ${reviewSeq},
+		       '${id}',
+		       ${starCnt},
+		       '${reply}',
+		       SYSDATE,
+		       SYSDATE,
+		       '${writeUserId}',
+		       '${writeUserId}'
+		       )
 	
+	</update>
 </mapper>

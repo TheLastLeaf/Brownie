@@ -1,7 +1,6 @@
 package kr.co.brownie.user.web;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.brownie.exp.service.ExpService;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 
@@ -25,7 +23,7 @@ import kr.co.brownie.user.service.UserVO;
 public class UserController {
 	@Resource(name = "userService")
 	UserService userService;
-	
+
 	/**
 	 * @author 박세웅
 	 * @param model
@@ -36,37 +34,41 @@ public class UserController {
 	@GetMapping("/userInfo")
 	public String userInfo(Model model, HttpSession httpSession) throws Exception {
 		String id = (String) httpSession.getAttribute("id");
-		
+
+		/* 로그인후 session in 되었을때 */
 		if (id != null) {
 			UserVO userOneSelect = userService.userOneSelect(id);
 
+			// 포지션 select
 			String position = userOneSelect.getUserPosition();
-			System.out.println("position: " + position);
-			
-//			int exp = userService.selectExp(id);
-//			float starCnt = userService.starCntSelect();
-//			int fullStar = (int) starCnt / 1;
-//			float halfStar = starCnt - fullStar;
-//
-//			model.addAttribute("userOneSelect", userOneSelect);
-//			model.addAttribute("position", position);
-//			model.addAttribute("exp", exp);
-//			model.addAttribute("fullStar", fullStar);
-//			if (halfStar >= 0.5) {
-//				model.addAttribute("halfStar", halfStar);
-//			}
+
+			// 경험치 select
+			int exp = userService.selectExp(id);
+			// 별카운트
+			float starCnt = userService.starCntSelect(id);
+			int fullStar = (int) starCnt / 1;
+			float halfStar = starCnt - fullStar;
+
+			model.addAttribute("userOneSelect", userOneSelect);
+			model.addAttribute("exp", exp);
+			model.addAttribute("position", position);
+			model.addAttribute("fullStar", fullStar);
+			if (halfStar >= 0.5) {
+				model.addAttribute("halfStar", halfStar);
+			}
 
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("sessionId: " + id);
-//			System.out.println("exp: " + exp);
-//			System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
+			System.out.println("exp: " + exp);
+			System.out.println("position: " + position);
+			System.out.println("exp: " + exp);
+			System.out.println("share: " + fullStar + " / " + "reamin: " + halfStar);
 
 			return "user/userInfo";
 		}
 		return "user/userInfo";
 	}
 
-	
 	@PostMapping("/userInfo")
 	@ResponseBody // AJAX 사용시 써야함
 	public String userName(@RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) {
@@ -80,11 +82,11 @@ public class UserController {
 		System.out.println(Arrays.toString(positions));
 
 		// 넣을때는 모든 정보를 넣고 가져올때 split() 사켜서 null이 아닌것만 jsp에 띄워주기
-		//		String userPosition = top + "/" + jun + "/" + mid + "/" + bot + "/" + sup;
-		//		map.put("userPosition", userPosition);
+		// String userPosition = top + "/" + jun + "/" + mid + "/" + bot + "/" + sup;
+		// map.put("userPosition", userPosition);
 
-		//		System.out.println("id, nick, top, jun, mid, bot, sup : " + id + "/" + nick + "/" + top + "/" + jun + "/" + mid + "/" + bot + "/" + sup);
-		//		userService.insertNick(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
+		// System.out.println("id, nick, top, jun, mid, bot, sup : " + id + "/" + nick + "/" + top + "/" + jun + "/" + mid + "/" + bot + "/" + sup);
+		// userService.insertNick(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
 
 		return "msg";
 	}

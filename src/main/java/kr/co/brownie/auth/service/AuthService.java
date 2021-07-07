@@ -18,6 +18,6 @@ public interface AuthService {
 
 	void insertExp(String id, int exp) throws IOException;
 
-	void insertReview(int reviewSeq, String id, int starCnt, String reply, String writeUserId);
+	void insertReview(int reviewSeq, String id, int starCnt, String reply, String writeUserId)throws IOException;
 
 }

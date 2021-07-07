@@ -70,22 +70,19 @@
 		USER_ID = #{id}
 	</select>
 
+	<select id="selectExp" resultType="int">
+		SELECT 
+			USER_EXP
+    	FROM 
+    		BROWNIE_EXP
+    	WHERE 
+    		USER_ID = '${id}'
+	</select>
 
-<!-- 	<select id="LvSelect" resultType="int"> -->
-<!-- 		SELECT -->
-<!-- 		EXP -->
-<!-- 		FROM -->
-<!-- 		BROWNIE_EXP -->
-<!-- 		WHERE -->
-<!-- 		USER_ID= #{id} -->
-<!-- 	</select> -->
-
-<!-- 	<select id="starCntSelect" resultType="float"> -->
-<!-- 		SELECT -->
-<!-- 		SUM(STAR_CNT) / COUNT(STAR_CNT) -->
-<!-- 		FROM -->
-<!-- 		REVIEW -->
-<!-- 	</select> -->
-
+	<select id="starCntSelect" resultType="float">
+		SELECT SUM(STAR_CNT) / COUNT(STAR_CNT)
+			FROM REVIEW
+		WHERE USER_ID = '${id}'
+	</select>
 
 </mapper>

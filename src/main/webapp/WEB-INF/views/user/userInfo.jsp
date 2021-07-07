@@ -339,7 +339,7 @@ h1 {
 								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
 									<!-- 프로필사진 -->
 									<div class="profilePic">
-										<img src="${pageContext.request.contextPath}/img/user/sana1.gif">
+										<img src="${pageContext.request.contextPath}/img/user/JombieMushimroom.jpg">
 									</div>
 									<!-- 프로필 프레임 -->
 									<div class="profileFrame">
