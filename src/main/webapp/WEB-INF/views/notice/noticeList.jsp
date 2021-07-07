@@ -69,6 +69,9 @@
     .margin-bot{
         margin-bottom: 2%;
     }
+    .margin-p{
+        margin-left: 77%;
+    }
 </style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
@@ -91,9 +94,14 @@
 
     <!-- Categories list Section Begin -->
     <section class="categories-list-section cate-spad">
-        <c:if test="${id ne null}">
+        <c:if test="${id ne null and level==9}">
             <div class="margin-le">
                 <input type="button" class="btn btn-outline-dark btn-sm notiadd" value="글쓰기" onclick="location.href='/notice/add'">
+            </div>
+        </c:if>
+        <c:if test="${id eq null or level<9}">
+            <div class="margin-p">
+                <p class="notiadd">관리자만 등록할 수 있습니다.</p>
             </div>
         </c:if>
         <div class="margin-bot">
@@ -108,9 +116,9 @@
                                 <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-1.jpg" alt="">
                             </div>
                             <div class="cl-text">
-                                <h5 class="title">${noticeVO.title}</h5>
+                                <h5 class="title"><a href="${pageContext.request.contextPath}/notice/detail?boardSeq=${noticeVO.boardSeq}">${noticeVO.title}</a></h5>
                                 <ul>
-                                    <li>by <a href="${pageContext.request.contextPath}/notice/detail?boardSeq=${noticeVO.boardSeq}"><span>${nickName}</span></a></li>
+                                    <li>by <span>${nickName}</span></li>
                                 </ul>
                                 <ul>
                                     <p class="content-text">${noticeVO.content}</p>
