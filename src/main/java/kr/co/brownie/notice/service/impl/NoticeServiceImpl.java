@@ -48,13 +48,14 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.count();
 	}
 
-	@Override
-	public int selectlevel() {
-		return noticeMapper.level();
-	}
 
 	@Override
 	public String selectnickname(){
 		return noticeMapper.nickname();
+	}
+
+	@Override
+	public int selectlevel() {
+		return noticeMapper.level();
 	}
 }

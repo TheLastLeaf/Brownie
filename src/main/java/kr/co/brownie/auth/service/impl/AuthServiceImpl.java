@@ -114,4 +114,9 @@ public class AuthServiceImpl implements AuthService {
 		System.out.println("Review map: " + map);
 		authMapper.insertReview(map);
 	}
+
+	@Override
+	public int permitLevel(String userId) {
+		return authMapper.permitlevel(userId);
+	}
 }

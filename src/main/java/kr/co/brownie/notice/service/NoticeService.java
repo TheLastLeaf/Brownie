@@ -16,7 +16,7 @@ public interface NoticeService {
 
     public int selectCount();
 
-    public int selectlevel();
-
     public String selectnickname();
+
+    public int selectlevel();
 }
