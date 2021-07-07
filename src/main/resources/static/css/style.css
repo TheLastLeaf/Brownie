@@ -4261,11 +4261,11 @@ ol {
 @font-face {
     font-family: MapleBold;
     src: local(Maplestory Bold),
-    url('../fonts/Maplestory-Bold.ttf');
+    url('../fonts/Maplestory Bold.ttf');
 }
 
 @font-face {
     font-family: MapleLight;
     src: local(Maplestory Light),
-    url('../fonts/Maplestory-Light.ttf');
+    url('../fonts/Maplestory Light.ttf');
 }
