@@ -56,8 +56,6 @@ public class NoticeController {
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
         String nickName = this.noticeService.selectnickname();
         model.addAttribute("nickName",nickName);
-        int level = noticeService.selectlevel();
-        model.addAttribute("level",level);
         String id = (String)session.getAttribute("id");
         model.addAttribute("id",id);
         model.addAttribute("noticeVO",noticeVO);
@@ -67,15 +65,15 @@ public class NoticeController {
     @GetMapping(path={"", "/list"})
     public String noticeList(@RequestParam Map<String,Object> map, Model model,HttpSession session) {
         String id = (String)session.getAttribute("id");
-        String nickName = this.noticeService.selectnickname();
+        map.put("id",id);
+        int total = this.noticeService.selectCount();
         String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
         int pageNum = Integer.parseInt(strPageNum);
-        int total = this.noticeService.selectCount();
-        int level = noticeService.selectlevel();
         map.put("pageNum", pageNum);
-        map.put("id",id);
-        List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
+        int level = noticeService.selectlevel();
         model.addAttribute("level",level);
+        String nickName = this.noticeService.selectnickname();
+        List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
         model.addAttribute("noticeVOList",new NoticePage(total, pageNum ,size, noticeVOList));
         model.addAttribute("nickName",nickName);
         model.addAttribute("notice",map.get("notice"));

@@ -57,7 +57,14 @@
 		       '${id}'
 		       )
 	</update>
-	
+
+	<select id="permitlevel" resultType="int" parameterType="String">
+		SELECT A.PERMIT_LEVEL AS PERMITLEVEL
+		FROM PERMIT A, BROWNIE_USER B
+		WHERE A.USER_ID = B.USER_ID
+		AND A.USER_ID = #{userId}
+		AND A.PERMIT_LEVEL = 9
+	</select>
 	<update id="insertReview" parameterType="HashMap">
 	MERGE INTO REVIEW
 		using dual

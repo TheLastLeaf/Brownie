@@ -16,7 +16,7 @@
         background-color: white;
     }
     .border{
-        border: 1px solid #666666;
+        border: 1px solid white;
     }
     .modify{
         color:white;
@@ -25,6 +25,10 @@
     .delete{
         color:#c20000;
         /*cursor: pointer;*/
+    }
+    .title{
+        font-family: MapleBold;
+        color: #666666;
     }
 </style>
 <!-- Details Post Section Begin -->
@@ -48,10 +52,10 @@
                             </div>
                         </div>
                         <hr>
-                        <h3>${noticeVO.title}</h3>
-                        <div class="dp-pic">
-                            <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">
-                        </div>
+                        <h4 class="title">${noticeVO.title}</h4>
+<%--                        <div class="dp-pic">--%>
+<%--                            <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">--%>
+<%--                        </div>--%>
                     </div>
                     <div class="dt-desc">
                             ${noticeVO.content}
@@ -69,17 +73,17 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <div class="innerBox text-right">
-                                    <c:if test="${id eq noticeVO.inUserId or level== 9}">
-                                    <input type="button" class="btn btn-outline-dark btn-sm modify"
-                                                   onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'"
-                                                   value="수정" >
-                                    <form action="/notice/delete" method="post">
-                                        <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
-                                        <input type="submit" class="btn btn-outline-dark btn-sm delete" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
-                                    </form>
-                                    </c:if>
-                            </div>
+                            <c:if test="${sessionScope.permit_level== 9}">
+                                <div class="innerBox text-right">
+                                        <input type="button" class="btn btn-outline-dark btn-sm modify"
+                                                       onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'"
+                                                       value="수정" >
+                                        <form action="/notice/delete" method="post">
+                                            <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
+                                            <input type="submit" class="btn btn-outline-dark btn-sm delete" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
+                                        </form>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                         <div class="container">

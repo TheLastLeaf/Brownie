@@ -28,9 +28,9 @@ public class AuthController {
 		try {
 			String access_token = authService.getToken(code);
 			String id = authService.getUserInfoByToken(access_token);
+			int permitlevel = authService.permitLevel(id);
 			httpSession.setAttribute("id", id);
-			httpSession.setAttribute("permit_level", 9);
-			//권한레벨 나중에 유저정보 조회해와서 가져가기 지금은 임시 9
+			httpSession.setAttribute("permit_level", permitlevel);
 
 			/* 첫 로그인 */
 			// 소환사명 및 세팅
