@@ -7,6 +7,25 @@
     form{
         display: inline;
     }
+    .list{
+        color:#666666;
+        cursor: pointer;
+    }
+    hr{
+        width: auto;
+        background-color: white;
+    }
+    .border{
+        border: 1px solid #666666;
+    }
+    .modify{
+        color:white;
+           /*cursor: pointer;*/
+    }
+    .delete{
+        color:#c20000;
+        /*cursor: pointer;*/
+    }
 </style>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -24,11 +43,11 @@
                                 <ul>
                                     <li>by <span>${nickName}</span></li>
                                     <li>${update}</li>
-                                    <li onclick="location.href='/notice/list'" style="color:#666666; cursor: pointer;">목록</li>
+                                    <li class="list" onclick="location.href='/notice/list'">목록</li>
                                 </ul>
                             </div>
                         </div>
-                        <hr style="width: auto; background-color: white;">
+                        <hr>
                         <h3>${noticeVO.title}</h3>
                         <div class="dp-pic">
                             <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">
@@ -37,7 +56,7 @@
                     <div class="dt-desc">
                             ${noticeVO.content}
                     </div>
-                    <div class="dt-author" style="border: 1px solid #666666;">
+                    <div class="dt-author border">
                         <div class="da-pic">
                             <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
@@ -52,12 +71,12 @@
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <div class="innerBox text-right">
                                     <c:if test="${id eq noticeVO.inUserId or level== 9}">
-                                    <input type="button" class="btn btn-outline-dark btn-sm"
-                                                   onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'" style="color:white; cursor: pointer;"
+                                    <input type="button" class="btn btn-outline-dark btn-sm modify"
+                                                   onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'"
                                                    value="수정" >
                                     <form action="/notice/delete" method="post">
                                         <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
-                                        <input type="submit" class="btn btn-outline-dark btn-sm" style="color:#c20000; cursor: pointer;" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
+                                        <input type="submit" class="btn btn-outline-dark btn-sm delete" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
                                     </form>
                                     </c:if>
                             </div>

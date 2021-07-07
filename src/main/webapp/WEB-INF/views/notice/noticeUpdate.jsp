@@ -72,6 +72,40 @@
         padding-top: 50px;
         padding-bottom: 50px;
     }
+    #content{
+        color: #666666;
+    }
+
+    #title{
+        width: 100%;
+        background-color: black;
+        border: 1px solid #666666;
+        color:white;
+    }
+    .card{
+        background-color: black;
+    }
+    .card-header{
+        border: 1px solid #666666;
+    }
+    .content{
+        border:1px solid #666666;
+    }
+    .sub{
+        padding-top: 10px;
+    }
+    .submit{
+        width: 100%;
+        background-color: black;
+        color: white;
+        border: 1px solid #666666;
+    }
+    .input-list{
+        padding-bottom: 10px;
+    }
+    .home{
+        color: black;
+    }
 </style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
@@ -81,7 +115,7 @@
                 <div class="breadcrumb-text">
                     <h3>공지사항 수정</h3>
                     <div class="bt-option">
-                        <a href="/index" style="color: black;">Home</a>
+                        <a href="/index" class="home">Home</a>
                         <span>notice Add</span>
                     </div>
                 </div>
@@ -100,14 +134,14 @@
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
-                                <div class="input-list" style="padding-bottom: 10px;">
-                                    <input type="text" id="title" name="title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;" value="${noticeVO.title}">
+                                <div class="input-list">
+                                    <input type="text" id="title" name="title" value="${noticeVO.title}" required="required">
                                 </div>
-                                <div style="border:1px solid #666666">
-                                    <textarea class="summernote" id="content" name="content" style="color: #666666" placeholder="${noticeVO.content}">${noticeVO.content}</textarea>
+                                <div class="content">
+                                    <textarea class="summernote" id="content" name="content" placeholder="${noticeVO.content}" required="required">${noticeVO.content}</textarea>
                                 </div>
-                                <div style="padding-top: 10px;">
-                                    <input type="submit" value="수정" style="width: 100%;">
+                                <div class="sub">
+                                    <input type="submit" value="수정" class="submit" >
                                 </div>
                             </div>
                         </div>
