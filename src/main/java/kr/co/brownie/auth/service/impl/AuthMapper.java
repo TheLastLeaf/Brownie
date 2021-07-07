@@ -11,5 +11,6 @@ public interface AuthMapper {
 
 	void insertExp(Map<String, Object> map);
 
-	
+	void insertReview(Map<String, Object> map);
+
 }
