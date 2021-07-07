@@ -103,7 +103,7 @@
             <li><a href="${pageContext.request.contextPath}/index">MAIN</a></li>
             <li><a href="${pageContext.request.contextPath}/notice">NOTICE</a></li>
             <li><a href="${pageContext.request.contextPath}/teamGame">GROUP</a></li>
-            <li><a href="${pageContext.request.contextPath}/tip">GUIDE</a></li>
+            <li><a href="${pageContext.request.contextPath}/tip">TIP</a></li>
             <li><a href="${pageContext.request.contextPath}/gallery">FANART</a></li>
             <li><a href="${pageContext.request.contextPath}/board">LOUNGE</a></li>
         </ul>
@@ -336,7 +336,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/tip"><span>GUIDE
+                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/tip"><span>TIP
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
