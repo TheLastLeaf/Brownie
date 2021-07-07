@@ -3,14 +3,14 @@
 <c:import url="../layout/header.jsp"/>
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/nunu.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
                     <h3>멤버 목록</h3>
                 <div>
-					<a href="#" style="color: #ffffff;">[돌아가기]</a>               
+					<a href="/admin" style="color: #ffffff;">[돌아가기]</a>
                 </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg-12"  style="justify-content: center; align-content: center; text-align: center; color:white;">
 	            <div class="">
-	                <table border="1px solid grey" style="margin: auto;">
+	                <table border="1px solid #d2d2d2" style="margin: auto; width: 100%; cursor: default;">
 	                	<tr>
 	                		<th>순번</th>
 	                		<th>아이디</th>
@@ -36,29 +36,33 @@
 	                		<th>권한 레벨</th>
 	                		<th>상태</th>
 	                	</tr>
-	                	<tr>
-	                		<th>1</th>
-	                		<th>better</th>
-	                		<th>없음</th>
-	                		<th>브라우니말고까눌레</th>
-	                		<th>3</th>
-	                		<th>2016.05.02</th>
-	                		<th>2</th>
-	                		<th>활성</th>
-	                	</tr>
-	                	<tr>
-	                		<th>2</th>
-	                		<th>nine</th>
-	                		<th>초갈</th>
-	                		<th>니얼굴쓰레쉬</th>
-	                		<th>4</th>
-	                		<th>2010.04.12</th>
-	                		<th>3</th>
-	                		<th>탈퇴</th>
-	                	</tr>
+	                	<c:forEach var="userList" items="${userList }"  varStatus="status">
+		                	<tr>
+		                		<th>${status.index }</th>
+		                		<th>${userList.userId }</th>
+		                		<th>${userList.lolId }</th>
+		                		<th>${userList.nickName }</th>
+		                		<th>Lv. ${userList.userLevel }</th>
+		                		<th>${userList.inDate }</th>
+		                		<th>${userList.permitLevel }</th>
+								<c:set var="userStatus" value="${userList.status }"/>
+		                		<c:choose>
+									<c:when test="${userStatus eq 'Y'}">
+			                		<th>활동</th>
+									</c:when>
+									<c:when test="${userStatus eq 'N'}">
+			                		<th>탈퇴</th>
+									</c:when>
+									<c:when test="${userStatus eq 'B'}">
+			                		<th>정지</th>
+									</c:when>
+								</c:choose>
+		                	</tr>
+	                	</c:forEach>
+
 	                </table>
 	                <div>
-	                
+
 	                 <div class="pagination-item" style="padding-top: 50px;">
 		                 <a href="#"><span>Prev</span></a>
 		                 <a href="#"><span>1</span></a>
@@ -66,9 +70,9 @@
 		                 <a href="#"><span>3</span></a>
 		                 <a href="#"><span>Next</span></a>
 		             </div>
-		             
+
 	                </div>
-	                
+
 	            </div>
             </div>
         </div>

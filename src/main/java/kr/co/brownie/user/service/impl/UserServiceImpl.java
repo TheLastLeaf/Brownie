@@ -1,5 +1,6 @@
 package kr.co.brownie.user.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -18,10 +19,15 @@ public class UserServiceImpl implements UserService{
 	public UserVO userOneSelect(String id) {
 		return userMapper.userOneSelect(id);
 	}
-	
+
 	@Override
 	public void insertNick(Map<String, Object> map) {
 		userMapper.insertNick(map);
+	}
+
+	@Override
+	public List<UserVO> selectList() {
+		return userMapper.selectList();
 	}
 
 //	@Override

@@ -3,6 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.user.service.impl.UserMapper">
+	<select id="selectList" resultType="kr.co.brownie.user.service.UserVO">
+    	SELECT 	BU.USER_ID AS USERID,
+				BU.LOL_ID AS LOLID,
+				BU.NICK_NAME AS NICKNAME,
+				BU.BLACK_STACK AS BLACKSTACK,
+				BU.STATUS,
+				BU.IN_DATE AS INDATE,
+				BU.UP_DATE AS MODDATE,
+				BU.IN_USER_ID AS INUSERID,
+				BU.UP_USER_ID AS UPUSERID,
+				BU.USER_POSITION AS USERPOSITION,
+                PM.PERMIT_LEVEL AS PERMITLEVEL,
+                BE.USER_LEVEL AS USERLEVEL
+		   FROM BROWNIE_USER BU, PERMIT PM, BROWNIE_EXP BE
+          WHERE BU.USER_ID = PM.USER_ID
+            AND BU.USER_ID = BE.USER_ID
+	</select>
+
 	<insert id="insertNick" parameterType="HashMap">
 		insert into
 		BROWNIE_USER
@@ -51,8 +69,8 @@
 		WHERE
 		USER_ID = #{id}
 	</select>
-	
-	
+
+
 <!-- 	<select id="LvSelect" resultType="int"> -->
 <!-- 		SELECT -->
 <!-- 		EXP -->
@@ -68,6 +86,6 @@
 <!-- 		FROM -->
 <!-- 		REVIEW -->
 <!-- 	</select> -->
-	
+
 
 </mapper>
