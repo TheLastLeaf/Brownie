@@ -15,8 +15,8 @@
                 <div class="footer-about">
                     <div class="fa-logo">
                         <a href="${pageContext.request.contextPath}/">
-							<img src="${pageContext.request.contextPath}/img/layout/brownie-footer.png" alt="">
-						</a>
+                            <img src="${pageContext.request.contextPath}/img/layout/brownie-footer.png" alt="">
+                        </a>
                     </div>
                     <p>게임을 즐기는 시간만큼 브라우니에서 보내는 시간도 달고 맛있길 바랍니다.</p>
                 </div>
@@ -101,7 +101,6 @@
     </div>
 </div>
 <!-- Search model end -->
-
 
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </body>
