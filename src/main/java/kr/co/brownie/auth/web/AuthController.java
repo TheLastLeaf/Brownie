@@ -46,7 +46,9 @@ public class AuthController {
 			String writeUserId = "anonymous";
 
 			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
-
+			
+			
+			
 			/* service 호출해서 집어넣기 */
 			authService.insertUser(id, tempLolNick, tempBrownieNick, position);
 			authService.insertExp(id, exp);
