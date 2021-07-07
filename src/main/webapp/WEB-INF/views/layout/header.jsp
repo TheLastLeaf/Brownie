@@ -137,7 +137,7 @@
                                         </span>
                                         <span>
                                             <a onclick="location.href='/logout'">
-                                                <i class="fas fa-sign-out"></i>
+                                                <i class="fas fa-sign-out-alt"></i>
                                             </a>
                                         </span>
                                     </c:when>
