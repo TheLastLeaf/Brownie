@@ -40,7 +40,7 @@
     <!-- 서머노트를 위해 추가해야할 부분 -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
-    <script src="https://raw.githubusercontent.com/summernote/summernote/develop/lang/summernote-ko-KR.js"></script>
+    <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.min.js"></script>
 
     <style>
         ::-webkit-scrollbar {
