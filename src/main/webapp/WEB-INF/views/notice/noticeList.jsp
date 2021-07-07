@@ -46,16 +46,20 @@
         padding-bottom: 3%;
     }
     .notice{
+        margin-top: 1px;
         height:30px;
         background: black;
         color: #666666;
     }
     .keyword{
         background: black;
+        height: 31px;
         color: #666666;
     }
     .submit{
         color: #666666;
+        height: 33px;
+        font-size: 15px;
     }
     .slash{
         color: #666666;

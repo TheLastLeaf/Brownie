@@ -67,15 +67,15 @@ public class NoticeController {
     @GetMapping(path={"", "/list"})
     public String noticeList(@RequestParam Map<String,Object> map, Model model,HttpSession session) {
         String id = (String)session.getAttribute("id");
-        map.put("id",id);
-        int total = this.noticeService.selectCount();
+        String nickName = this.noticeService.selectnickname();
         String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
         int pageNum = Integer.parseInt(strPageNum);
-        map.put("pageNum", pageNum);
+        int total = this.noticeService.selectCount();
         int level = noticeService.selectlevel();
-        model.addAttribute("level",level);
-        String nickName = this.noticeService.selectnickname();
+        map.put("pageNum", pageNum);
+        map.put("id",id);
         List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
+        model.addAttribute("level",level);
         model.addAttribute("noticeVOList",new NoticePage(total, pageNum ,size, noticeVOList));
         model.addAttribute("nickName",nickName);
         model.addAttribute("notice",map.get("notice"));
