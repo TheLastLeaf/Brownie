@@ -27,7 +27,48 @@
         padding-top: 50px;
         padding-bottom: 50px;
     }
-
+    .main{
+        color: white;
+        cursor: pointer;
+    }
+    .last-post{
+        color: red;
+        cursor: pointer;
+    }
+    .notiadd{
+        color: white;
+    }
+    .hr{
+        background-color: white;
+        width: 76%;
+    }
+    .selectBox{
+        padding-bottom: 3%;
+    }
+    .notice{
+        height:30px;
+        background: black;
+        color: #666666;
+    }
+    .keyword{
+        background: black;
+        color: #666666;
+    }
+    .submit{
+        color: #666666;
+    }
+    .slash{
+        color: #666666;
+    }
+    .title{
+        color: white;
+    }
+    .margin-le{
+        margin-left: 83.5%;
+    }
+    .margin-bot{
+        margin-bottom: 2%;
+    }
 </style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
@@ -36,10 +77,10 @@
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
                     <h3>공지사항</h3>
-                    <div class="">
-                        <span onclick="location.href='/index'" style="color: white; cursor: pointer;">Home</span>
-                        <span style="color: #666666"> / </span>
-                        <span onclick="location.href='/index'" style="color: red; cursor: pointer;">Latest posts</span>
+                    <div>
+                        <span class="main" onclick="location.href='/index'" >Home</span>
+                        <span class="slash"> / </span>
+                        <span class="last-post" onclick="location.href='/notice/list?pageNum=${noticeVOList.startPage}'">Latest posts</span>
                     </div>
                 </div>
             </div>
@@ -51,12 +92,12 @@
     <!-- Categories list Section Begin -->
     <section class="categories-list-section cate-spad">
         <c:if test="${id ne null}">
-            <div style="margin-left: 83.5%;  ">
-                <input type="button" class="btn btn-outline-dark btn-sm" value="글쓰기" style="color: white;" onclick="location.href='/notice/add'">
+            <div class="margin-le">
+                <input type="button" class="btn btn-outline-dark btn-sm notiadd" value="글쓰기" onclick="location.href='/notice/add'">
             </div>
         </c:if>
-        <div style="margin-bottom: 2%">
-            <hr class="innerBox text-center" style="background-color: white; width: 76%;">
+        <div class="margin-bot">
+            <hr class="innerBox text-center hr">
         </div>
         <div class="container">
             <div class="row">
@@ -67,9 +108,9 @@
                                 <img class="notice-img" src="${pageContext.request.contextPath}/img/categories-list/cl-1.jpg" alt="">
                             </div>
                             <div class="cl-text">
-                                <h5><a href="${pageContext.request.contextPath}/notice/detail?boardSeq=${noticeVO.boardSeq}">${noticeVO.title}</a></h5>
+                                <h5 class="title">${noticeVO.title}</h5>
                                 <ul>
-                                    <li>by <span>${nickName}</span></li>
+                                    <li>by <a href="${pageContext.request.contextPath}/notice/detail?boardSeq=${noticeVO.boardSeq}"><span>${nickName}</span></a></li>
                                 </ul>
                                 <ul>
                                     <p class="content-text">${noticeVO.content}</p>
@@ -84,19 +125,19 @@
             <div class="row">
                 <div class="col-lg-12 p-0">
                     <form>
-                        <div class="innerBox text-center" style="padding-bottom: 3%;">
+                        <div class="innerBox text-center selectBox">
                             <form method="get">
                                     <span>
-                                        <select name="notice" id="notice" style="height:30px; background: black; color: #666666;">
+                                        <select name="notice" id="notice" class="notice">
                                             <option value="" selected="selected">선택</option>
                                             <option value="title" <c:if test="${notice=='title'}">selected</c:if>>제목</option>
                                             <option value="content" <c:if test="${notice=='content'}">selected</c:if>>내용</option>
                                             <option value="inUserId" <c:if test="${notice=='inUserId'}">selected</c:if>>작성자</option>
                                         </select>
-                                        <input type="text" placeholder="검색" id="keyword" name="keyword" value="" style="background: black; color: #666666" onclick="document.getElementById('spanKeyword').value='';"/>
+                                        <input type="text" placeholder="검색" id="keyword" name="keyword" value="" class="keyword" onclick="document.getElementById('spanKeyword').value='';"/>
                                         <span id="spanKeyword"></span>
                                     </span>
-                                     <input type="submit" class="btn btn-outline-dark" value="조회" style="color: #666666">
+                                     <input type="submit" class="btn btn-outline-dark submit" value="조회">
                             </form>
                         </div>
                     </form>

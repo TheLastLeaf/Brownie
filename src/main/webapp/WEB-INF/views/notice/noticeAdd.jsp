@@ -74,6 +74,34 @@
         padding-top: 50px;
         padding-bottom: 50px;
     }
+    .title{
+        width: 100%;
+        background-color: black;
+        border: 1px solid #666666;
+        color:white;
+    }
+    .summernote{
+        color: #666666;
+    }
+    .card{
+        background-color: black;
+    }
+    .card-header{
+        border: 1px solid #666666;
+    }
+    .submit{
+        width: 100%;
+        background-color: black;
+        border: 1px solid #666666;
+        color:white;
+    }
+    .content{
+        border:1px solid #666666;
+    }
+    .pad{
+        padding-top: 10px;
+    }
+
 </style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
@@ -104,13 +132,13 @@
                             <div class="dt-leave-comment">
                                 <input type="hidden" name="inUserId" value="${id}" id="inUserId">
                                 <div class="input-list" style="padding-bottom: 10px;">
-                                    <input type="text" placeholder="Title" style="width: 100%; background-color: black; border: 1px solid #666666; color:white;" id="title" name="title">
+                                    <input type="text" placeholder="Title" class="title"  id="title" name="title" required="required">
                                 </div>
-                                <div style="border:1px solid #666666">
-                                    <textarea class="summernote" style="color: #666666 " name="content" id="content"></textarea>
+                                <div class="content">
+                                    <textarea class="summernote" name="content" id="content" required="required"></textarea>
                                 </div>
-                                <div style="padding-top: 10px;">
-                                    <input type="submit" value="등록" style="width: 100%;">
+                                <div class="pad">
+                                    <input type="submit" value="등록"  class="submit">
                                 </div>
                             </div>
                         </div>
