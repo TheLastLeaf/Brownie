@@ -2,7 +2,9 @@ package kr.co.brownie.admin.service.impl;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("adminMapper")
-public class AdminMapper {
+import kr.co.brownie.admin.service.AdminVO;
 
+@Repository("adminMapper")
+public interface AdminMapper {
+	AdminVO UserCnt();
 }

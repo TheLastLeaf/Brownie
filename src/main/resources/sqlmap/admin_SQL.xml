@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.admin.service.impl.AdminMapper">
+
+	<select id="UserCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+		SELECT
+			AU.ALLUSER as ALLUSERCNT,
+			RU.RECENTUSER as RECENTUSERCNT
+		FROM
+			(SELECT
+				COUNT(AB.USER_ID) AS ALLUSER
+			FROM
+				BROWNIE_USER AB ) AU,
+			(SELECT
+				COUNT(RB.USER_ID) AS RECENTUSER
+			FROM
+				BROWNIE_USER RB
+			WHERE IN_DATE
+			BETWEEN SYSDATE-7 AND SYSDATE) RU
+	</select>
+
+</mapper>

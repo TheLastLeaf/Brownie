@@ -2,12 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/nunu2.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
-                    <h3>관리자 화면</h3>
+                    <h3> </h3>
                 <div>
 					<a href="#" style="color: #ffffff;"></a>
                 </div>
@@ -68,8 +68,8 @@
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="far fa-user"></i></div>
-                                	<span class="adminMenu">멤버 관리</span>
-                                <div class="follow">432명</div>
+                                	<a href="admin/adminMemberList"><span class="adminMenu">멤버 관리</span></a>
+                                <div class="follow">${UserCnt.allUserCnt }명</div>
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="fas fa-address-card"></i></div>
@@ -109,22 +109,18 @@
                                     </div>
                                 </div>
                                 <div class="skill-item">
-                                    <p>신규 가입자 수</p>
+                                    <p>신규 가입자 수 : ${UserCnt.recentUserCnt }</p>
                                     <div id="bar-5" class="barfiller">
                                         <span class="fill" data-percentage="20"></span>
-                                        <div class="tipWrap" style="display: inline;">
-                                            <span class="tip"></span>
-                                            <span class="bar-point">5</span>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
-                                    <p>누적 가입자 수</p>
+                                    <p>누적 가입자 수 : ${UserCnt.allUserCnt }</p>
                                     <div id="bar-6" class="barfiller">
-                                        <span class="fill" data-percentage="80"></span>
+                                        <span class="fill" data-percentage="${UserCnt.allUserCnt }"></span>
                                         <div class="tipWrap" style="display: inline;">
                                             <span class="tip"></span>
-                                            <span class="bar-point">4253</span>
+                                            <span class="bar-point">${UserCnt.allUserCnt }</span>
                                         </div>
                                     </div>
                                 </div>
@@ -149,27 +145,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="or-qualities">
-                            <div class="qualities-item">
-                                <p>뭔가 쓰고싶음</p>
-                                <ul>
-                                    <li><i class="fas fa-check"></i> 근데 쓸 게 없네</li>
-                                    <li><i class="fas fa-check"></i> 무지성편집으로 남겨두겠음
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="qualities-item bad-item">
-                                <p>진짜 쓰고싶단말이지?ㄴ</p>
-                                <ul>
-                                    <li><i class=fas fa-times"></i> 이것도 나중에 쓸거면 쓰셈</li>
-                                    <li><i class=fas fa-times"></i> 근데 무슨 데이터가 들어갈지 나도 모르겠네]
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="or-rating">
-                            <p><span>여기다가도 뭘 쓸지 ? </span> </p>
                         </div>
                     </div>
                 </div>
