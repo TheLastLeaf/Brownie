@@ -55,7 +55,7 @@
                     ORDER BY BOARD_SEQ DESC
                    )
              )
-        WHERE (${contentPerPage} - 1) * ${currentPageNumber} + 1 <= RN
+        WHERE ${contentPerPage} * (${currentPageNumber} - 1) + 1 <= RN
           AND RN <= ${contentPerPage} * ${currentPageNumber}
         ]]>
     </select>
