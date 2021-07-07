@@ -112,4 +112,16 @@
 		WHERE 
 			IN_USER_ID = '${id}' AND KIND = '1'
 	</select>
+	
+	<select id="recentBoard" resultType="String">
+	<![CDATA[
+		SELECT 
+		    TITLE
+		FROM 
+		    BOARD
+		WHERE 
+		    IN_USER_ID IN '${id}' AND ROWNUM <= 3
+		ORDER BY UP_DATE DESC
+	]]>
+	</select>
 </mapper>

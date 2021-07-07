@@ -1,5 +1,6 @@
 package kr.co.brownie.user.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -24,5 +25,7 @@ public interface UserMapper {
 	int likeReplyCnt(String id);
 
 	int hateReplyCnt(String id);
+
+	List<String> recentBoard(String id);
 
 }

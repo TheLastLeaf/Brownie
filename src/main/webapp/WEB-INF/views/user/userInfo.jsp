@@ -369,14 +369,11 @@ h1 {
 														0
 												</c:otherwise>
 											</c:choose>
-											| <span class="rating-star">
-												<c:forEach begin="1" end="${fullStar}">
+											| <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
 													<i class="fas fa-star"></i>
-												</c:forEach>
-												<c:forEach begin="0" end="${halfStar}">
+												</c:forEach> <c:forEach begin="0" end="${halfStar}">
 													<i class="fas fa-star-half-alt"></i>
-												</c:forEach>
-												<c:forEach begin="1" end="${5-fullStar-halfStar}">
+												</c:forEach> <c:forEach begin="1" end="${5-fullStar-halfStar}">
 													<i class="far fa-star"></i>
 												</c:forEach>
 											</span>
@@ -415,9 +412,11 @@ h1 {
 								</div>
 								<hr />
 								<div class="infoDetail">【 최근 게시글 내역 】</div>
-								<div class="upload">1. ??</div>
-								<div class="upload">2. ??</div>
-								<div class="upload">3. ??</div>
+								<c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
+									<div class="upload">
+										${vs.index+1}. <a href="">${recentBoard}</a>
+									</div>
+								</c:forEach>
 							</div>
 							<!-- 뭉태기3 -->
 							<div class="userInfoBox col-sm-4">
@@ -544,12 +543,7 @@ h1 {
 									</div>
 									<div class="nameLv">
 										<h3>
-											??? | Lv. ??? | <span class="rating-star"> 
-												<i class="far fa-star"></i>
-												<i class="far fa-star"></i>
-												<i class="far fa-star"></i>
-												<i class="far fa-star"></i>
-												<i class="far fa-star"></i>
+											??? | Lv. ??? | <span class="rating-star"> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
 											</span>
 										</h3>
 									</div>

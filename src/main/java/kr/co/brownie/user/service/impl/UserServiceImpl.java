@@ -1,6 +1,8 @@
 package kr.co.brownie.user.service.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -40,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int boardTotalCnt(String id) {
 		int boardTotalCnt = userMapper.boardTotalCnt(id);
-		if(boardTotalCnt == 0) {
+		if (boardTotalCnt == 0) {
 			return boardTotalCnt = 0;
 		}
 		return boardTotalCnt;
@@ -49,7 +51,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int replyTotalCnt(String id) {
 		int replyTotalCnt = userMapper.replyTotalCnt(id);
-		if(replyTotalCnt == 0) {
+		if (replyTotalCnt == 0) {
 			return replyTotalCnt = 0;
 		}
 		return replyTotalCnt;
@@ -58,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int likeReplyCnt(String id) {
 		int likeReplyCnt = userMapper.likeReplyCnt(id);
-		if(likeReplyCnt == 0) {
+		if (likeReplyCnt == 0) {
 			return likeReplyCnt = 0;
 		}
 		return likeReplyCnt;
@@ -67,9 +69,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int hateReplyCnt(String id) {
 		int hateReplyCnt = userMapper.hateReplyCnt(id);
-		if(hateReplyCnt == 0) {
+		if (hateReplyCnt == 0) {
 			return hateReplyCnt = 0;
 		}
 		return hateReplyCnt;
+	}
+
+	@Override
+	public List<String> recentBoard(String id) {
+		List<String> list = userMapper.recentBoard(id);
+		if (list.size() == 0) {
+			for (int i = 0; i < 3; i++) {
+				list.add("???");
+			}
+			return list;
+		}
+		return list;
 	}
 }

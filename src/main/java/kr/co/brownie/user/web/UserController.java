@@ -1,6 +1,8 @@
 package kr.co.brownie.user.web;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -55,6 +57,10 @@ public class UserController {
 			int likeReplyCnt = userService.likeReplyCnt(id);
 			int hateReplyCnt = userService.hateReplyCnt(id);
 			
+			// 로그인한 사람의 최근 게시글 3개가져오기 
+			List<String> recentBoard = userService.recentBoard(id);
+
+			
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
 			model.addAttribute("position", position);
@@ -66,7 +72,7 @@ public class UserController {
 			model.addAttribute("replyTotalCnt", replyTotalCnt);
 			model.addAttribute("likeReplyCnt", likeReplyCnt);
 			model.addAttribute("hateReplyCnt", hateReplyCnt);
-			
+			model.addAttribute("recentBoard", recentBoard);
 			
 			
 			
@@ -80,6 +86,7 @@ public class UserController {
 			System.out.println("replyTotalCnt: "+ replyTotalCnt);
 			System.out.println("likeReplyCnt: "+ likeReplyCnt);
 			System.out.println("hateReplyCnt: "+ hateReplyCnt);
+			
 			System.out.println("마지막줄처리");
 
 			return "user/userInfo";

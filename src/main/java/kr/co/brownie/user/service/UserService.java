@@ -1,6 +1,7 @@
 package kr.co.brownie.user.service;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public interface UserService {
@@ -21,5 +22,6 @@ public interface UserService {
 
 	int hateReplyCnt(String id);
 
+	List<String> recentBoard(String id);
 
 }
