@@ -40,7 +40,25 @@
     .overflow-x-hidden {
         overflow-x: hidden;
     }
+
+    .text-nowrap-overflow-ellipsis-hidden {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
+<script>
+    $(function() {
+        $("#search_champions").on("keyup", function () {
+            $(".league-of-legends-champion").hide();
+            $(".league-of-legends-champion").each(function () {
+                if ($(this).find("p").html().includes($("#search_champions").val())) {
+                    $(this).show();
+                }
+            });
+        })
+    })
+</script>
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg search-section"
@@ -49,13 +67,18 @@
         <div class="container margin-left-auto margin-right-auto text-center">
             <div class="breadcrumb-text padding-top-30px padding-bottom-30px">
                 <h3>챔피언 선택</h3>
+                <div class="row">
+                    <form class="col-12 search-model-form">
+                        <input id="search_champions" class="float-right" type="text" placeholder="Search here....."/>
+                    </form>
+                </div>
                 <div class="row champion-select overflow-auto overflow-x-hidden rounded">
                     <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
-                        <div class="col-sm-2 col-lg-1">
+                        <div class="col-sm-2 col-lg-1 league-of-legends-champion">
                             <a href="?champion=${champion.id}">
-                                <img src="http://ddragon.leagueoflegends.com/cdn/11.13.1/img/champion/${champion.imageFull}"
+                                <img src="http://ddragon.leagueoflegends.com/cdn/${champion.version}/img/champion/${champion.imageFull}"
                                      alt=""/>
-                                <p class="text-nowrap" style="overflow: hidden; text-overflow: ellipsis;">${champion.name}</p>
+                                <p class="text-nowrap-overflow-ellipsis-hidden">${champion.name}</p>
                             </a>
                         </div>
                     </c:forEach>
