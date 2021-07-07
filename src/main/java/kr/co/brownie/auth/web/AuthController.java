@@ -28,11 +28,11 @@ public class AuthController {
 		try {
 			String access_token = authService.getToken(code);
 			String id = authService.getUserInfoByToken(access_token);
-			int permitlevel = authService.permitLevel(id);
+//			int permitlevel = authService.permitLevel(id);
 			httpSession.setAttribute("id", id);
-			httpSession.setAttribute("permit_level", permitlevel);
+//			httpSession.setAttribute("permit_level", permitlevel);
 
-			/* 첫 로그인 */
+			/* 첫 로그인 세웅 */
 			// 소환사명 및 세팅
 			String tempLolNick = "익명의소환사_" + (int) (Math.random() * 100 + 1);
 			String tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 100 + 1);
