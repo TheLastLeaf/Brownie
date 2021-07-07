@@ -53,7 +53,7 @@
 	margin: 7px 10px 15px;
 	display: flex;
 	align-items: flex-start;
-	font-family: mapleBold;
+	font-family: MapleBold;
 }
 
 .nameLv {
@@ -64,7 +64,7 @@
 
 h3 {
 	color: white;
-	font-family: mapleBold;
+	font-family: MapleBold;
 }
 
 .userInfoBox {
@@ -129,7 +129,7 @@ button {
 	font-size: 16px;
 	position: relative;
 	display: inline-block;
-	font-family: mapleBold;
+	font-family: MapleBold;
 	font-weight: bolder;
 	color: #BDBDBD;
 }
