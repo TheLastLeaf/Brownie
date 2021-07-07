@@ -18,5 +18,4 @@ public interface NoticeService {
 
     public String selectnickname();
 
-    public int selectlevel();
 }

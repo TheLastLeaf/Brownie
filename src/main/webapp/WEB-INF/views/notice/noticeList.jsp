@@ -66,6 +66,10 @@
     }
     .title{
         color: white;
+        font-family: MapleLight;
+    }
+    .con{
+        font-family: MapleLight;
     }
     .margin-le{
         margin-left: 83.5%;
@@ -98,7 +102,7 @@
 
     <!-- Categories list Section Begin -->
     <section class="categories-list-section cate-spad">
-        <c:if test="${id ne null and level==9}">
+        <c:if test="${id ne null and sessionScope.permit_level == 9}">
             <div class="margin-le">
                 <input type="button" class="btn btn-outline-dark btn-sm notiadd" value="글쓰기" onclick="location.href='/notice/add'">
             </div>
@@ -125,7 +129,7 @@
                                     <li>by <span>${nickName}</span></li>
                                 </ul>
                                 <ul>
-                                    <p class="content-text">${noticeVO.content}</p>
+                                    <p class="content-text con">${noticeVO.content}</p>
                                 </ul>
                             </div>
                         </div>

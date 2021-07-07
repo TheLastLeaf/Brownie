@@ -70,8 +70,6 @@ public class NoticeController {
         String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
         int pageNum = Integer.parseInt(strPageNum);
         map.put("pageNum", pageNum);
-        int level = noticeService.selectlevel();
-        model.addAttribute("level",level);
         String nickName = this.noticeService.selectnickname();
         List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
         model.addAttribute("noticeVOList",new NoticePage(total, pageNum ,size, noticeVOList));

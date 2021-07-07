@@ -20,11 +20,9 @@
     }
     .modify{
         color:white;
-           /*cursor: pointer;*/
     }
     .delete{
         color:#c20000;
-        /*cursor: pointer;*/
     }
     .title{
         font-family: MapleBold;

@@ -23,7 +23,5 @@ public interface NoticeMapper {
 
     int count();
 
-    int level();
-
     String nickname();
 }
