@@ -4260,14 +4260,12 @@ ol {
 
 @font-face {
     font-family: MapleBold;
-    src: url(../fonts/Maplestory-Bold.ttf);
     src: local(Maplestory Bold),
-    url(../fonts/Maplestory-Bold.ttf) format('ttf');
+    url('../fonts/Maplestory-Bold.ttf');
 }
 
 @font-face {
     font-family: MapleLight;
-    src: url(../fonts/Maplestory-Light.ttf);
     src: local(Maplestory Light),
-    url(../fonts/Maplestory-Light.ttf) format('ttf');
+    url('../fonts/Maplestory-Light.ttf');
 }
