@@ -10,7 +10,7 @@
                 <div class="breadcrumb-text">
                     <h3>멤버 목록</h3>
                 <div>
-					<a href="#" style="color: #ffffff;">[돌아가기]</a>               
+					<a href="#" style="color: #ffffff;">[돌아가기]</a>
                 </div>
                 </div>
             </div>
@@ -36,29 +36,22 @@
 	                		<th>권한 레벨</th>
 	                		<th>상태</th>
 	                	</tr>
-	                	<tr>
-	                		<th>1</th>
-	                		<th>better</th>
-	                		<th>없음</th>
-	                		<th>브라우니말고까눌레</th>
-	                		<th>3</th>
-	                		<th>2016.05.02</th>
-	                		<th>2</th>
-	                		<th>활성</th>
-	                	</tr>
-	                	<tr>
-	                		<th>2</th>
-	                		<th>nine</th>
-	                		<th>초갈</th>
-	                		<th>니얼굴쓰레쉬</th>
-	                		<th>4</th>
-	                		<th>2010.04.12</th>
-	                		<th>3</th>
-	                		<th>탈퇴</th>
-	                	</tr>
+	                	<c:forEach var="userList" items="${userList }"  varStatus="status">
+		                	<tr>
+		                		<th>${status.index }</th>
+		                		<th>${userList.userId }</th>
+		                		<th>${userList.lolId }</th>
+		                		<th>${userList.nickName }</th>
+		                		<th>${userList.userLevel }</th>
+		                		<th>${userList.inDate }</th>
+		                		<th>${userList.permitLevel }</th>
+		                		<th>${userList.status }</th>
+		                	</tr>
+	                	</c:forEach>
+
 	                </table>
 	                <div>
-	                
+
 	                 <div class="pagination-item" style="padding-top: 50px;">
 		                 <a href="#"><span>Prev</span></a>
 		                 <a href="#"><span>1</span></a>
@@ -66,9 +59,9 @@
 		                 <a href="#"><span>3</span></a>
 		                 <a href="#"><span>Next</span></a>
 		             </div>
-		             
+
 	                </div>
-	                
+
 	            </div>
             </div>
         </div>

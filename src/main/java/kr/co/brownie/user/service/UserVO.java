@@ -11,9 +11,12 @@ public class UserVO {
     private String nickName;
     private int blackStack;
     private String status;
-    private Date inDate;
-    private Date modDate;
+    private String inDate;
+    private String modDate;
     private String inUserId;
     private String upUserId;
     private String userPosition;
+
+    private String userLevel;
+    private String permitLevel;
 }

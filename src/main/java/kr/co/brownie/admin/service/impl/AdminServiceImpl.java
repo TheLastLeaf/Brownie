@@ -9,6 +9,6 @@ import kr.co.brownie.admin.service.AdminService;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
-	@Resource(name = "adminDAO")
-	AdminDAO adminDAO;
+	@Resource(name = "adminMapper")
+	AdminMapper adminMapper;
 }
