@@ -51,6 +51,9 @@ public class UserController {
 			
 			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
 			int boardTotalCnt = userService.boardTotalCnt(id);
+			int replyTotalCnt = userService.replyTotalCnt(id);
+			int likeReplyCnt = userService.likeReplyCnt(id);
+			int hateReplyCnt = userService.hateReplyCnt(id);
 			
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
@@ -60,8 +63,13 @@ public class UserController {
 				model.addAttribute("halfStar", halfStar);
 			}
 			model.addAttribute("boardTotalCnt", boardTotalCnt);
+			model.addAttribute("replyTotalCnt", replyTotalCnt);
+			model.addAttribute("likeReplyCnt", likeReplyCnt);
+			model.addAttribute("hateReplyCnt", hateReplyCnt);
 			
-
+			
+			
+			
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("sessionId: " + id);
 			System.out.println("exp: " + exp);
@@ -69,6 +77,9 @@ public class UserController {
 			System.out.println("exp: " + exp);
 			System.out.println("fullStar: " + fullStar + " / " + "halfStar: " + halfStar);
 			System.out.println("boardTotalCnt: "+ boardTotalCnt);
+			System.out.println("replyTotalCnt: "+ replyTotalCnt);
+			System.out.println("likeReplyCnt: "+ likeReplyCnt);
+			System.out.println("hateReplyCnt: "+ hateReplyCnt);
 			System.out.println("마지막줄처리");
 
 			return "user/userInfo";

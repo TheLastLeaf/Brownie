@@ -409,9 +409,9 @@ h1 {
 							<div class="userInfoBox col-sm-4">
 								<div>
 									<div class="infoDetail">게시글 갯수: ${boardTotalCnt}</div>
-									<div class="infoDetail">댓글 갯수: ??</div>
-									<div class="infoDetail">좋아요: ??</div>
-									<div class="infoDetail">싫어요: ??</div>
+									<div class="infoDetail">댓글 갯수: ${replyTotalCnt}</div>
+									<div class="infoDetail">좋아요: ${likeReplyCnt}</div>
+									<div class="infoDetail">싫어요: ${hateReplyCnt}</div>
 								</div>
 								<hr />
 								<div class="infoDetail">【 최근 게시글 내역 】</div>

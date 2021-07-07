@@ -45,4 +45,31 @@ public class UserServiceImpl implements UserService {
 		}
 		return boardTotalCnt;
 	}
+
+	@Override
+	public int replyTotalCnt(String id) {
+		int replyTotalCnt = userMapper.replyTotalCnt(id);
+		if(replyTotalCnt == 0) {
+			return replyTotalCnt = 0;
+		}
+		return replyTotalCnt;
+	}
+
+	@Override
+	public int likeReplyCnt(String id) {
+		int likeReplyCnt = userMapper.likeReplyCnt(id);
+		if(likeReplyCnt == 0) {
+			return likeReplyCnt = 0;
+		}
+		return likeReplyCnt;
+	}
+
+	@Override
+	public int hateReplyCnt(String id) {
+		int hateReplyCnt = userMapper.hateReplyCnt(id);
+		if(hateReplyCnt == 0) {
+			return hateReplyCnt = 0;
+		}
+		return hateReplyCnt;
+	}
 }

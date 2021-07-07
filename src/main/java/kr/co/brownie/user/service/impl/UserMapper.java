@@ -19,4 +19,10 @@ public interface UserMapper {
 
 	int boardTotalCnt(String id);
 
+	int replyTotalCnt(String id);
+
+	int likeReplyCnt(String id);
+
+	int hateReplyCnt(String id);
+
 }
