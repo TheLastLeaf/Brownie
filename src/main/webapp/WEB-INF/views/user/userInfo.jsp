@@ -325,8 +325,7 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a>
-						<span>userDetail</span>
+						<a href="#">userInfo</a> <span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -354,7 +353,7 @@ h1 {
 									<div class="nameLv">
 										<h3>
 											<c:out value="${nick}" />
-											| Lv.
+											&nbsp;|&nbsp; Lv.
 											<c:choose>
 												<c:when test="${exp > 30}">
 														3
@@ -369,7 +368,7 @@ h1 {
 														0
 												</c:otherwise>
 											</c:choose>
-											| <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
+											&nbsp;|&nbsp; <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
 													<i class="fas fa-star"></i>
 												</c:forEach> <c:forEach begin="0" end="${halfStar}">
 													<i class="fas fa-star-half-alt"></i>
@@ -458,7 +457,7 @@ h1 {
 								<div class="reviewDay">작성자&nbsp;??/??/??</div>
 								<div class="rev">
 									???
-									<!-- 상세내용담는공간 -->
+									<!-- hover 별 -->
 									<div class="caption">☆☆☆☆☆</div>
 								</div>
 							</div>
@@ -466,7 +465,7 @@ h1 {
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
 								<div class="rev">
 									기가막히게 코딩을 잘한답니다..!
-									<!-- 상세내용담는공간 -->
+									<!-- hover 별 -->
 									<div class="caption">★★★☆☆</div>
 								</div>
 							</div>
@@ -474,7 +473,7 @@ h1 {
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
 								<div class="rev">
 									오늘 골드를 찍었대요 백준 골드요!
-									<!-- 상세내용담는공간 -->
+									<!-- hover 별 -->
 									<div class="caption">★★★★★</div>
 								</div>
 							</div>
@@ -482,7 +481,7 @@ h1 {
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
 								<div class="rev">
 									아리 왜하는지 모르겠어요
-									<!-- 상세내용담는공간 -->
+									<!-- hover 별 -->
 									<div class="caption">★☆☆☆☆</div>
 								</div>
 							</div>
@@ -490,7 +489,7 @@ h1 {
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
 								<div class="rev">
 									[비속어처리X]
-									<!-- 상세내용담는공간 -->
+									<!-- hover 별 -->
 									<div class="caption">☆☆☆☆☆</div>
 								</div>
 							</div>
@@ -498,7 +497,7 @@ h1 {
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
 								<div class="rev">
 									너...내 여자해라..
-									<!-- 상세내용담는공간 -->
+									<!-- hover 별 -->
 									<div class="caption">★☆☆☆☆</div>
 								</div>
 							</div>
@@ -506,18 +505,14 @@ h1 {
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
 								<div class="rev">
 									내일은 어떤 기능을 할까요!?!?
-									<!-- 상세내용담는공간 -->
+									<!-- hover 별 -->
 									<div class="caption">★★★☆☆</div>
 								</div>
 							</div>
 							<!-- 페이징처리 -->
 							<!-- 페이징처리 -->
 							<div class="paging col-12">
-								<a href="#">[prev]</a>
-								<a href="#">[1]</a>
-								<a href="#">[2]</a>
-								<a href="#">[3]</a>
-								<a href="#">[next]</a>
+								<a href="#">[prev]</a> <a href="#">[1]</a> <a href="#">[2]</a> <a href="#">[3]</a> <a href="#">[next]</a>
 							</div>
 						</div>
 					</c:when>

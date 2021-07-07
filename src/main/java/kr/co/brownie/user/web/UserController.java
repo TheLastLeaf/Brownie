@@ -1,6 +1,5 @@
 package kr.co.brownie.user.web;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -50,17 +49,19 @@ public class UserController {
 			float starCnt = userService.starCntSelect(id);
 			int fullStar = (int) starCnt / 1;
 			float halfStar = starCnt - fullStar;
-			
+
 			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
 			int boardTotalCnt = userService.boardTotalCnt(id);
 			int replyTotalCnt = userService.replyTotalCnt(id);
 			int likeReplyCnt = userService.likeReplyCnt(id);
 			int hateReplyCnt = userService.hateReplyCnt(id);
-			
-			// 로그인한 사람의 최근 게시글 3개가져오기 
+
+			// 로그인한 사람의 최근 게시글 3개가져오기
 			List<String> recentBoard = userService.recentBoard(id);
 
-			
+			// 남이 나에게 쓴 후기 보여주기
+//			String protagonist = userService.protagonist(id);
+
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
 			model.addAttribute("position", position);
@@ -73,20 +74,18 @@ public class UserController {
 			model.addAttribute("likeReplyCnt", likeReplyCnt);
 			model.addAttribute("hateReplyCnt", hateReplyCnt);
 			model.addAttribute("recentBoard", recentBoard);
-			
-			
-			
+
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("sessionId: " + id);
 			System.out.println("exp: " + exp);
 			System.out.println("position: " + position);
 			System.out.println("exp: " + exp);
 			System.out.println("fullStar: " + fullStar + " / " + "halfStar: " + halfStar);
-			System.out.println("boardTotalCnt: "+ boardTotalCnt);
-			System.out.println("replyTotalCnt: "+ replyTotalCnt);
-			System.out.println("likeReplyCnt: "+ likeReplyCnt);
-			System.out.println("hateReplyCnt: "+ hateReplyCnt);
-			
+			System.out.println("boardTotalCnt: " + boardTotalCnt);
+			System.out.println("replyTotalCnt: " + replyTotalCnt);
+			System.out.println("likeReplyCnt: " + likeReplyCnt);
+			System.out.println("hateReplyCnt: " + hateReplyCnt);
+
 			System.out.println("마지막줄처리");
 
 			return "user/userInfo";
