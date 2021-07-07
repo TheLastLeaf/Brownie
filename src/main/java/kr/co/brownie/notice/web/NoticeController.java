@@ -2,6 +2,7 @@ package kr.co.brownie.notice.web;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.brownie.notice.service.NoticePage;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
 
@@ -25,9 +28,12 @@ public class NoticeController {
     private int size = 10;
 
     @GetMapping("/add")
-    public String noticeAdd(HttpSession session,Model model) {
+    public String noticeAdd(HttpSession session, Model model){
         String id = (String)session.getAttribute("id");
         model.addAttribute("id",id);
+        if(id == null){
+            return "redirect:/notice/list";
+        }
         return "notice/noticeAdd"; // 공지 글쓰기
     }
 
@@ -66,6 +72,8 @@ public class NoticeController {
         String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
         int pageNum = Integer.parseInt(strPageNum);
         map.put("pageNum", pageNum);
+        int level = noticeService.selectlevel();
+        model.addAttribute("level",level);
         String nickName = this.noticeService.selectnickname();
         List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
         model.addAttribute("noticeVOList",new NoticePage(total, pageNum ,size, noticeVOList));
@@ -76,11 +84,14 @@ public class NoticeController {
     }
 
     @GetMapping("/update")
-    public String update(@RequestParam Map<String,Object> map, Model model){
+    public String update(@RequestParam Map<String,Object> map, Model model,HttpSession session){
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
         model.addAttribute("noticeVO",noticeVO);
+        if(session.getAttribute("id") == null){
+            return "redirect:/notice/detail?boardSeq="+boardSeq;
+        }
         return "notice/noticeUpdate";
     }
 
