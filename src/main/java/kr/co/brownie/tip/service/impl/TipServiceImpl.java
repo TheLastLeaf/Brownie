@@ -20,15 +20,13 @@ public class TipServiceImpl implements TipService {
         map.put("contentPerPage", CONTENT_PER_PAGE);
         map.put("currentPageNumber", currentPageNumber);
 
-        System.out.println(map);
-
         int total = tipMapper.countTipList(champion);
         return TipPagingVO.builder()
                 .tipVOList(tipMapper.selectTipList(map))
                 .contentPerPage(CONTENT_PER_PAGE)
                 .startPageNumber((currentPageNumber - 1) / CONTENT_PER_PAGE + 1)
                 .currentPageNumber(currentPageNumber)
-                .endPageNumber(Math.min((currentPageNumber - 1) / CONTENT_PER_PAGE + CONTENT_PER_PAGE, (total - 1) / CONTENT_PER_PAGE + 1))
+                .endPageNumber(Math.min((currentPageNumber - 1) / CONTENT_PER_PAGE + 10, (total - 1) / CONTENT_PER_PAGE + 1))
                 .totalPageNumber((total - 1) / CONTENT_PER_PAGE + 1)
                 .build();
     }

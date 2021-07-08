@@ -9,11 +9,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
-import kr.co.brownie.notice.service.NoticePage;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

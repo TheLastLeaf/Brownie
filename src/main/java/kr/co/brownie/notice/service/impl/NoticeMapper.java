@@ -11,9 +11,11 @@ import java.util.Map;
 @Repository("noticeMapper")
 public interface NoticeMapper {
 
-    int insert(Map<String,Object> map);
-
     List<NoticeVO> selectList(Map<String, Object> map);
+
+    int count(String keyword);
+
+    int insert(Map<String, Object> map);
 
     NoticeVO read(int boardSeq);
 

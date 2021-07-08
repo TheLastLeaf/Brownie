@@ -4,18 +4,23 @@ import java.util.List;
 import java.util.Map;
 
 public interface NoticeService {
-    public int insertNotice(Map<String, Object> map);
+    int CONTENT_PER_PAGE = 10;
 
-    public List<NoticeVO> getNoticelist(Map<String, Object> map);
+    PagingVO selectList(String keyword, int currentPageNumber);
 
-    public int deleteNotice(int boardSeq);
+    int count(String keyword);
 
-    public NoticeVO getNotice(int boardSeq);
+    int insertNotice(Map<String, Object> map);
 
-    public int updateNotice(Map<String,Object> map);
+    List<NoticeVO> getNoticelist(Map<String, Object> map);
 
-    public int selectCount();
+    int deleteNotice(int boardSeq);
 
-    public String selectnickname();
+    NoticeVO getNotice(int boardSeq);
 
+    int updateNotice(Map<String, Object> map);
+
+    int selectCount();
+
+    String selectnickname();
 }

@@ -1,6 +1,8 @@
 package kr.co.brownie.notice.service;
 
 import lombok.Data;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.util.Date;
 
@@ -20,4 +22,18 @@ public class NoticeVO {
     private int subSeq;
     private int permitLevel;
     private String nickName;
+
+    public String getImgSrc() {
+        Document document = Jsoup.parse(content);
+        String src = document.select("img").attr("src");
+        if ("".equals(src)){
+            src = "/img/categories-list/cl-1.jpg";
+        }
+        return src;
+    }
+
+    public String getPreview() {
+        Document document = Jsoup.parse(content);
+        return document.text();
+    }
 }
