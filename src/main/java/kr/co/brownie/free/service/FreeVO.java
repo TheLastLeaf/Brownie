@@ -13,8 +13,12 @@ public class FreeVO {
 	private String status;
 	private String inDate;
 	private String inUserId;
+	private String nickName;
 	private String modDate;
 	private String upUserId;
 	private String fileSeq;
 	private String subSeq;
+
+	//좋아요 수
+	private String likeCnt;
 }

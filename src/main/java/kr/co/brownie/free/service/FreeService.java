@@ -1,5 +1,9 @@
 package kr.co.brownie.free.service;
 
-public interface FreeService {
+import java.util.List;
 
+public interface FreeService {
+	List<FreeVO> selectList();
+
+	List<FreeVO> selectFamous();
 }
