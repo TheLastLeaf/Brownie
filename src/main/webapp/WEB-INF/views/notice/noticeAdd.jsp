@@ -4,11 +4,7 @@
 
 <!--  -->
 <script>
-    /*   $(function(){
-           $('.notice_content').html(
-               $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
-       });*/
-    $(document).ready(function () {
+    $(function () {
         const toolbar = [
             // 글꼴 설정
             ['fontname', ['fontname']],
@@ -69,6 +65,7 @@
             }
         });
     }
+
 </script>
 <style>
     .spad{

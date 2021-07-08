@@ -2,11 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 <script>
-    /*   $(function(){
-           $('.notice_content').html(
-               $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
-       });*/
-    $(document).ready(function () {
+    $(function () {
         const toolbar = [
             // 글꼴 설정
             ['fontname', ['fontname']],
@@ -48,17 +44,22 @@
     });
 
     function uploadSummernoteImageFile(file, el) {
+        const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
+        if (!file.type.match(reg)) {
+            alert("확장자는 이미지 확장자만 가능합니다.");
+            return;
+        }
         const data = new FormData();
         data.append("file", file);
         $.ajax({
             data: data,
             type: "POST",
-            url: "uploadSummernoteImageFile",
+            url: "${pageContext.request.contextPath}/uploadSummernoteImageFile",
             contentType: false,
             enctype: 'multipart/form-data',
             processData: false,
             success: function (data) {
-                $(el).summernote('editor.insertImage', data.url);
+                $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
             }
         });
     }
@@ -138,7 +139,7 @@
                                     <input type="text" id="title" name="title" value="${noticeVO.title}" required="required">
                                 </div>
                                 <div class="content">
-                                    <textarea class="summernote" id="content" name="content" placeholder="${noticeVO.content}" required="required">${noticeVO.content}</textarea>
+                                    <textarea class="summernote" id="content" name="content" placeholder="${noticeVO.content}">${noticeVO.content}</textarea>
                                 </div>
                                 <div class="sub">
                                     <input type="submit" value="수정" class="submit" >
