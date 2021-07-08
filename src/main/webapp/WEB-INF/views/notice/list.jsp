@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
 <style>
     .notice-img {
@@ -146,7 +145,6 @@
         <div class="row">
             <div class="col-lg-12 p-0">
                 <c:forEach var="noticeVO" items="${PagingVO.noticeVOList}">
-                    <fmt:formatDate value="${noticeVO.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh.mm.ss" />
                     <div class="cl-item">
                         <div class="cl-pic">
                             <img class="notice-img img-fluid"

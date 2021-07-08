@@ -54,24 +54,25 @@ public class AdminController {
     	AdminVO UserCnt = adminService.UserCnt();
     	model.addAttribute("UserCnt", UserCnt);
 
+    	//신고 수 집계
+    	AdminVO reportCnt = adminService.ReportCnt();
+    	model.addAttribute("reportCnt", reportCnt);
+
+
 		return "admin/adminView"; //관리자 화면 기본
 	}
 
 	@GetMapping("/adminMemberList")
 	public String adminMemberList(Model model) {
-
 		//유저 리스트 셀렉트
 //		List<UserVO> userList = userService.selectList();
 //		model.addAttribute("userList", userList);
-
 		return "admin/adminMemberList"; //회원 리스트 화면
 	}
 
 	@GetMapping("/adminReportList")
 	public String adminReportList(Model model) {
 		List<ReportVO> reportList = reportService.selectReportList();
-		System.out.println("왜안나오지");
-		System.out.println(reportList);
 		model.addAttribute("reportList", reportList);
 		return "admin/adminReportList"; //신고 리스트 화면
 	}

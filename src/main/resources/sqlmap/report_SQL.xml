@@ -7,6 +7,7 @@
 	<select id="selectReportList" resultType="kr.co.brownie.report.service.ReportVO">
 		SELECT 	REPORT_SEQ as reportSeq,
 				CONTENT as content,
+				STATUS as status,
 				REPORT_NAME as reportName,
 				USER_ID as userId,
 				IN_DATE as inDate,
@@ -14,6 +15,7 @@
 				IN_USER_ID as inUserId,
 				UP_USER_ID as upUserId
 		   FROM REPORT
+		   order by STATUS, IN_DATE
 	</select>
 
 </mapper>

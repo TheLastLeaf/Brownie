@@ -50,17 +50,22 @@
     });
 
     function uploadSummernoteImageFile(file, el) {
+        const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
+        if (!file.type.match(reg)) {
+            alert("확장자는 이미지 확장자만 가능합니다.");
+            return;
+        }
         const data = new FormData();
         data.append("file", file);
         $.ajax({
             data: data,
             type: "POST",
-            url: "uploadSummernoteImageFile",
+            url: "${pageContext.request.contextPath}/uploadSummernoteImageFile",
             contentType: false,
             enctype: 'multipart/form-data',
             processData: false,
             success: function (data) {
-                $(el).summernote('editor.insertImage', data.url);
+                $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
             }
         });
     }

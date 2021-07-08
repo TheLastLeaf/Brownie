@@ -21,4 +21,13 @@
 			BETWEEN SYSDATE-7 AND SYSDATE) RU
 	</select>
 
+	<select id="ReportCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+		SELECT
+			count(status) as reportUserCnt
+		FROM
+			report
+		WHERE
+			status='N'
+	</select>
+
 </mapper>

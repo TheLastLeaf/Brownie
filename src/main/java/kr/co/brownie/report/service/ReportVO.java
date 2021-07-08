@@ -12,4 +12,5 @@ public class ReportVO {
 	private String modDate;
 	private String inUserId;
 	private String upUserId;
+	private String status;
 }

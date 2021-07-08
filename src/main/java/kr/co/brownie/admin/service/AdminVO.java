@@ -8,7 +8,8 @@ public class AdminVO {
 	private int allUserCnt;
 	private int recentUserCnt;
 
-
+	//신고 수 집계
+	private int reportUserCnt;
 
 
 }
