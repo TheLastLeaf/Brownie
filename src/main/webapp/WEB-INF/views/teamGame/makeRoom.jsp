@@ -158,13 +158,13 @@ input.apple-switch:checked:after {
 		<div class="row">
 			<div class="col text-center" style="border: 1px solid white;">
 				<p>
-				<h5 style="font-family: mapleBold">닉네임 : FFF</h5>
+				<h5 class="font-maple-bold">닉네임 : FFF</h5>
 				</p>
 				<p id="title" class="botton" style="margin-bottom: 10px;">
-					<b style="font-family: mapleBold;">제목 :&nbsp; <input type="text" maxlength='12' /></b>
+					<b class="font-maple-bold">제목 :&nbsp; <input type="text" maxlength='12' /></b>
 				</p>
 				<p id="message" style="margin-top: 10px; margin-bottom: 15px;">
-					<b style="font-family: mapleBold;">메시지 :&nbsp; <input type="text" maxlength='30' /></b>
+					<b class="font-maple-bold">메시지 :&nbsp; <input type="text" maxlength='30' /></b>
 				</p>
 
 				<div style="margin-bottom: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">

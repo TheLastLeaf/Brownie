@@ -25,7 +25,6 @@
         color:#c20000;
     }
     .title{
-        font-family: MapleBold;
         color: #666666;
     }
 </style>
@@ -50,7 +49,7 @@
                             </div>
                         </div>
                         <hr>
-                        <h4 class="title">${noticeVO.title}</h4>
+                        <h4 class="title font-maple-bold">${noticeVO.title}</h4>
 <%--                        <div class="dp-pic">--%>
 <%--                            <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">--%>
 <%--                        </div>--%>
