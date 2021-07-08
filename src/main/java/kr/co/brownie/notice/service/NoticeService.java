@@ -22,5 +22,6 @@ public interface NoticeService {
 
     int selectCount();
 
-    String selectnickname();
+    String selectnickname(String inUserId);
+
 }

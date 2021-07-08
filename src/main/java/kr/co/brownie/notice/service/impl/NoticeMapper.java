@@ -25,5 +25,5 @@ public interface NoticeMapper {
 
     int count();
 
-    String nickname();
+    String nickname(String inUserId);
 }
