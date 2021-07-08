@@ -75,10 +75,9 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
 
-    @Override
-    public String selectnickname() {
-        return noticeMapper.nickname();
-    }
-
+	@Override
+	public String selectnickname(String inUserId){
+		return noticeMapper.nickname(inUserId);
+	}
 
 }

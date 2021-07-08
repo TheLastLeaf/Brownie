@@ -10,6 +10,7 @@ import java.util.Date;
 public class NoticeVO {
     private int boardSeq;
     private String boardKind;
+    private String boardCategory;
     private String title;
     private String content;
     private String noticeYn;
