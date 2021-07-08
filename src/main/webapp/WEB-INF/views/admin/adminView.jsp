@@ -73,8 +73,8 @@
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="fas fa-address-card"></i></div>
-                                	<span class="adminMenu">신고 내역</span>
-                                <div class="follow">4명</div>
+                                	<a href="admin/adminReportList"><span class="adminMenu">신고 내역</span></a>
+                                <div class="follow">${reportCnt.reportUserCnt }건</div>
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="far fa-circle"></i></div>

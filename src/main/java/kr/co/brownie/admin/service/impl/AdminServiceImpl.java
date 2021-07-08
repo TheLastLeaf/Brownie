@@ -18,5 +18,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.UserCnt();
 	}
 
+	@Override
+	public AdminVO ReportCnt() {
+		return adminMapper.ReportCnt();
+	}
+
 
 }

@@ -54,6 +54,11 @@ public class AdminController {
     	AdminVO UserCnt = adminService.UserCnt();
     	model.addAttribute("UserCnt", UserCnt);
 
+    	//신고 수 집계
+    	AdminVO reportCnt = adminService.ReportCnt();
+    	model.addAttribute("reportCnt", reportCnt);
+
+
 		return "admin/adminView"; //관리자 화면 기본
 	}
 

@@ -3,14 +3,14 @@
 <c:import url="../layout/header.jsp"/>
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/thresh.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
                     <h3>신고목록</h3>
                 <div>
-					<a href="#" style="color: #ffffff;">[돌아가기]</a>
+					<a href="/admin" style="color: #ffffff;">[돌아가기]</a>
                 </div>
                 </div>
             </div>
