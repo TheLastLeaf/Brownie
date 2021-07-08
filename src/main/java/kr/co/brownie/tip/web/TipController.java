@@ -3,6 +3,7 @@ package kr.co.brownie.tip.web;
 import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
 import kr.co.brownie.leagueoflegends.versions.service.LeagueOfLegendsVersionsService;
 import kr.co.brownie.tip.service.TipService;
+import kr.co.brownie.tip.service.TipVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,11 @@ public class TipController {
     @Resource(name = "leagueOfLegendsChampionsService")
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
 
+    @GetMapping("/add")
+    public String add() {
+        return "tip/add";
+    }
+
     @GetMapping({"", "/list"})
     public String tipList(HttpServletRequest httpServletRequest, Model model) {
         String champion = httpServletRequest.getParameter("champion") == null ? "" : httpServletRequest.getParameter("champion");
@@ -36,14 +42,25 @@ public class TipController {
 
         model.addAttribute("leagueOfLegendsChampionsVOList",
                 leagueOfLegendsChampionsService.selectRecentlyChampionsList());
-        model.addAttribute("tipPagingVO", tipService.selectTipList(champion, currentPageNumber));
+        model.addAttribute("tipPagingVO", tipService.selectList(champion, currentPageNumber));
 
         return "tip/list";
     }
 
     @GetMapping("/details/{board_seq}")
-    public String details_post_default(@PathVariable String board_seq) {
-        int seq = Integer.parseInt(board_seq);
+    public String details_post_default(@PathVariable String board_seq, Model model) {
+        int seq;
+        try {
+            seq = Integer.parseInt(board_seq);
+
+            TipVO tipVO = tipService.select(seq);
+            if (tipVO == null) {
+                throw new NullPointerException();
+            }
+            model.addAttribute("tipVO", tipVO);
+        } catch (NullPointerException | NumberFormatException e) {
+            return "error/404";
+        }
         return "tip/details"; // 기본화면
     }
 }

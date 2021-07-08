@@ -2,6 +2,7 @@ package kr.co.brownie.tip.service.impl;
 
 import kr.co.brownie.tip.service.TipPagingVO;
 import kr.co.brownie.tip.service.TipService;
+import kr.co.brownie.tip.service.TipVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ public class TipServiceImpl implements TipService {
     TipMapper tipMapper;
 
     @Override
-    public TipPagingVO selectTipList(String champion, int currentPageNumber) {
+    public TipPagingVO selectList(String champion, int currentPageNumber) {
         Map<String, Object> map = new HashMap<>();
         map.put("champion", champion);
         map.put("contentPerPage", CONTENT_PER_PAGE);
@@ -29,5 +30,10 @@ public class TipServiceImpl implements TipService {
                 .endPageNumber(Math.min((currentPageNumber - 1) / CONTENT_PER_PAGE + 10, (total - 1) / CONTENT_PER_PAGE + 1))
                 .totalPageNumber((total - 1) / CONTENT_PER_PAGE + 1)
                 .build();
+    }
+
+    @Override
+    public TipVO select(int board_seq) {
+        return tipMapper.select(board_seq);
     }
 }

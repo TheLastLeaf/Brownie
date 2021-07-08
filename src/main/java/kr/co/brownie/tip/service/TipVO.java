@@ -1,6 +1,8 @@
 package kr.co.brownie.tip.service;
 
 import lombok.Data;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.util.Date;
 
@@ -19,4 +21,18 @@ public class TipVO {
     private String upUserId;
     private int fileSeq;
     private int subSeq;
+
+    public String getImgSrc() {
+        Document document = Jsoup.parse(content);
+        String src = document.select("img").attr("src");
+        if ("".equals(src)){
+            src = "/img/categories-list/cl-1.jpg";
+        }
+        return src;
+    }
+
+    public String getPreview() {
+        Document document = Jsoup.parse(content);
+        return document.text();
+    }
 }

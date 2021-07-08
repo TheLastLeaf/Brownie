@@ -14,71 +14,71 @@ import java.util.Map;
 
 @Service("noticeService")
 public class NoticeServiceImpl implements NoticeService {
-	@Resource(name="noticeMapper")
-	NoticeMapper noticeMapper;
+    @Resource(name = "noticeMapper")
+    NoticeMapper noticeMapper;
 
-	@Override
-	public PagingVO selectList(String keyword, int currentPageNumber) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("keyword", keyword);
-		map.put("contentPerPage", CONTENT_PER_PAGE);
-		map.put("currentPageNumber", currentPageNumber);
+    @Override
+    public PagingVO selectList(String keyword, int currentPageNumber) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("keyword", keyword);
+        map.put("contentPerPage", CONTENT_PER_PAGE);
+        map.put("currentPageNumber", currentPageNumber);
 
-		int total = noticeMapper.count(keyword);
+        int total = noticeMapper.count(keyword);
 
-		return PagingVO.builder()
-				.noticeVOList(noticeMapper.selectList(map))
-				.contentPerPage(CONTENT_PER_PAGE)
-				.startPageNumber((currentPageNumber - 1) / CONTENT_PER_PAGE + 1)
-				.currentPageNumber(currentPageNumber)
-				.endPageNumber(Math.min((currentPageNumber - 1) / CONTENT_PER_PAGE + CONTENT_PER_PAGE, (total - 1) / CONTENT_PER_PAGE + 1))
-				.totalPageNumber((total - 1) / CONTENT_PER_PAGE + 1)
-				.build();
-	}
+        return PagingVO.builder()
+                .noticeVOList(noticeMapper.selectList(map))
+                .contentPerPage(CONTENT_PER_PAGE)
+                .startPageNumber((currentPageNumber - 1) / CONTENT_PER_PAGE + 1)
+                .currentPageNumber(currentPageNumber)
+                .endPageNumber(Math.min((currentPageNumber - 1) / CONTENT_PER_PAGE + CONTENT_PER_PAGE, (total - 1) / CONTENT_PER_PAGE + 1))
+                .totalPageNumber((total - 1) / CONTENT_PER_PAGE + 1)
+                .build();
+    }
 
-	@Override
-	public int count(String keyword) {
-		return noticeMapper.count();
-	}
+    @Override
+    public int count(String keyword) {
+        return noticeMapper.count();
+    }
 
-	@Override
-	public int insertNotice(Map<String, Object> map) {
-		int boardSeq = noticeMapper.insert(map);
-		return boardSeq;
-	}
+    @Override
+    public int insertNotice(Map<String, Object> map) {
+        int boardSeq = noticeMapper.insert(map);
+        return boardSeq;
+    }
 
-	@Override
-	public List<NoticeVO> getNoticelist(Map<String, Object> map) {
-		List<NoticeVO> noticeVo = noticeMapper.selectList(map);
-		return noticeVo;
-	}
+    @Override
+    public List<NoticeVO> getNoticelist(Map<String, Object> map) {
+        List<NoticeVO> noticeVo = noticeMapper.selectList(map);
+        return noticeVo;
+    }
 
-	@Override
-	public int deleteNotice(int boardSeq) {
-		return noticeMapper.delete(boardSeq);
-	}
+    @Override
+    public int deleteNotice(int boardSeq) {
+        return noticeMapper.delete(boardSeq);
+    }
 
-	@Override
-	public NoticeVO getNotice(int boardSeq) {
-		NoticeVO noticeVo = noticeMapper.read(boardSeq);
-		return noticeVo;
-	}
+    @Override
+    public NoticeVO getNotice(int boardSeq) {
+        NoticeVO noticeVo = noticeMapper.read(boardSeq);
+        return noticeVo;
+    }
 
-	@Override
-	public int updateNotice(Map<String, Object> map) {
-		return noticeMapper.update(map);
-	}
+    @Override
+    public int updateNotice(Map<String, Object> map) {
+        return noticeMapper.update(map);
+    }
 
-	@Override
-	public int selectCount() {
-		return noticeMapper.count();
-	}
+    @Override
+    public int selectCount() {
+        return noticeMapper.count();
+    }
 
 
-	@Override
-	public String selectnickname(){
-		return noticeMapper.nickname();
-	}
+    @Override
+    public String selectnickname() {
+        return noticeMapper.nickname();
+    }
 
 
 }

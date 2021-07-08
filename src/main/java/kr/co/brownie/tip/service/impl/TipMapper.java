@@ -11,5 +11,8 @@ import java.util.Map;
 @Repository("tipMapper")
 public interface TipMapper {
     List<TipVO> selectTipList(Map<String, Object> map);
+
     int countTipList(String champion);
+
+    TipVO select(int board_seq);
 }

@@ -47,7 +47,25 @@
         FROM BROWNIE_BOARD
         WHERE BOARD_KIND = 'tip'
         <if test='!champion.equals("")'>
-            AND BOARD_CATEGORY = #{champion}
+          AND BOARD_CATEGORY = #{champion}
         </if>
+    </select>
+    <select id="select" parameterType="int" resultType="kr.co.brownie.tip.service.TipVO">
+        SELECT BOARD_SEQ      AS BOARDSEQ,
+               BOARD_KIND     AS BOARDKIND,
+               BOARD_CATEGORY AS BOARDCATEGORY,
+               TITLE          AS TITLE,
+               CONTENT        AS CONTENT,
+               NOTICE_YN      AS NOTICEYN,
+               STATUS         AS STATUS,
+               IN_DATE        AS INDATE,
+               IN_USER_ID     AS INUSERID,
+               UP_DATE        AS "UPDATE",
+               UP_USER_ID     AS UPUSERID,
+               FILE_SEQ       AS FILESEQ,
+               SUB_SEQ        AS SUBSEQ
+        FROM BROWNIE_BOARD
+        WHERE BOARD_KIND = 'tip'
+          AND BOARD_SEQ = ${board_seq}
     </select>
 </mapper>
