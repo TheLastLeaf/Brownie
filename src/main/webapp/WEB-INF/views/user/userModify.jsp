@@ -156,7 +156,7 @@ input[name="position"] {
 		<div class="signup-text">
 			<div class="container">
 				<div class="signup-title" style="margin-bottom: 20px;">
-					<h2 class="font-maple-bold text-white">정보수정</h2>
+					<h2 class="font-family-maple-bold text-white">정보수정</h2>
 					<p class="advice">사진을 눌러서 프로필을 바꿔보세요!</p>
 				</div>
 

@@ -340,11 +340,11 @@ h1 {
 									</div>
 								</div>
 								<div class="col-7" style="color: white;">
-									<div class="Hierarchy font-maple-bold">
+									<div class="Hierarchy font-family-maple-bold">
 										<i>일반회원</i>
 									</div>
 									<div class="nameLv">
-										<h3 class="font-maple-bold text-white">
+										<h3 class="font-family-maple-bold text-white">
 											<c:out value="${nick}" />
 											&nbsp;|&nbsp; Lv.
 											<c:choose>
@@ -448,7 +448,7 @@ h1 {
 							<!-- 다른사람이 쓴 후기 -->
 							<div class="review col-4">
 								<div class="reviewDay">작성자&nbsp;??/??/??</div>
-								<div class="rev font-maple-bold">
+								<div class="rev font-family-maple-bold">
 									???
 									<!-- hover 별 -->
 									<div class="caption">☆☆☆☆☆</div>
@@ -456,7 +456,7 @@ h1 {
 							</div>
 							<div class="review col-4">
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-maple-bold">
+								<div class="rev font-family-maple-bold">
 									기가막히게 코딩을 잘한답니다..!
 									<!-- hover 별 -->
 									<div class="caption">★★★☆☆</div>
@@ -464,7 +464,7 @@ h1 {
 							</div>
 							<div class="review col-4">
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-maple-bold">
+								<div class="rev font-family-maple-bold">
 									오늘 골드를 찍었대요 백준 골드요!
 									<!-- hover 별 -->
 									<div class="caption">★★★★★</div>
@@ -472,7 +472,7 @@ h1 {
 							</div>
 							<div class="review col-4">
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-maple-bold">
+								<div class="rev font-family-maple-bold">
 									아리 왜하는지 모르겠어요
 									<!-- hover 별 -->
 									<div class="caption">★☆☆☆☆</div>
@@ -480,7 +480,7 @@ h1 {
 							</div>
 							<div class="review col-4">
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-maple-bold">
+								<div class="rev font-family-maple-bold">
 									[비속어처리X]
 									<!-- hover 별 -->
 									<div class="caption">☆☆☆☆☆</div>
@@ -488,7 +488,7 @@ h1 {
 							</div>
 							<div class="review col-4">
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-maple-bold">
+								<div class="rev font-family-maple-bold">
 									너...내 여자해라..
 									<!-- hover 별 -->
 									<div class="caption">★☆☆☆☆</div>
@@ -496,7 +496,7 @@ h1 {
 							</div>
 							<div class="review col-4">
 								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-maple-bold">
+								<div class="rev font-family-maple-bold">
 									내일은 어떤 기능을 할까요!?!?
 									<!-- hover 별 -->
 									<div class="caption">★★★☆☆</div>
@@ -526,11 +526,11 @@ h1 {
 									</div>
 								</div>
 								<div class="col-7" style="color: white;">
-									<div class="Hierarchy font-maple-bold">
+									<div class="Hierarchy font-family-maple-bold">
 										<i>회원등급</i>
 									</div>
 									<div class="nameLv">
-										<h3 class="font-maple-bold text-white">
+										<h3 class="font-family-maple-bold text-white">
 											??? | Lv. ??? | <span class="rating-star"> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i>
 											</span>
 										</h3>
@@ -597,7 +597,7 @@ h1 {
 							<!-- 다른사람이 쓴 후기 -->
 							<div class="review col-4">
 								<div class="reviewDay">작성자&nbsp;??/??/??</div>
-								<div class="rev font-maple-bold">
+								<div class="rev font-family-maple-bold">
 									비로그인 상태
 									<!-- 상세내용담는공간 -->
 									<div class="caption">☆☆☆☆☆</div>

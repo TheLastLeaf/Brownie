@@ -4,9 +4,6 @@
 <c:import url="../layout/header.jsp"/>
 <fmt:formatDate value="${noticeVO.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss" />
 <style>
-    form{
-        display: inline;
-    }
     .list{
         color:#666666;
         cursor: pointer;
@@ -49,7 +46,7 @@
                             </div>
                         </div>
                         <hr>
-                        <h4 class="title font-maple-bold">${noticeVO.title}</h4>
+                        <h4 class="title font-family-maple-bold">${noticeVO.title}</h4>
 <%--                        <div class="dp-pic">--%>
 <%--                            <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">--%>
 <%--                        </div>--%>
@@ -75,7 +72,7 @@
                                         <input type="button" class="btn btn-outline-dark btn-sm modify"
                                                        onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'"
                                                        value="수정" >
-                                        <form action="/notice/delete" method="post">
+                                        <form class="d-inline" action="/notice/delete" method="post">
                                             <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
                                             <input type="submit" class="btn btn-outline-dark btn-sm delete" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
                                         </form>

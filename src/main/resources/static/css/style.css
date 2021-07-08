@@ -4270,14 +4270,16 @@ ol {
     url('../fonts/Maplestory Light.ttf');
 }
 
-.font-maple-bold {
+.font-family-maple-bold {
     font-family: MapleBold;
 }
 
-.font-maple-light {
+.font-family-maple-light {
     font-family: MapleLight;
 }
 
 .margin-10px {
     margin: 10px;
 }
+
+c
