@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.blackList.service.impl.BlackListMapper">
+
+	<select id="selectBlackList" resultType="kr.co.brownie.blackList.service.BlackListVO">
+			select
+				B_LIST_SEQ as bListSeq,
+				USER_ID as userId,
+				RESULT as result,
+				IN_DATE as inDate,
+				IN_USER_ID as inUserId,
+				UP_DATE as modDate,
+				UP_USER_ID as upUserId,
+				REASON_SEQ as reasonSeq
+			from black_list
+	</select>
+
+</mapper>
