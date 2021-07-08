@@ -1,5 +1,8 @@
 package kr.co.brownie.report.service;
 
+import lombok.Data;
+
+@Data
 public class ReportVO {
 	private String reportSeq;
 	private String content;

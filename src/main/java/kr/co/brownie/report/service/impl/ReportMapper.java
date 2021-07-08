@@ -8,6 +8,5 @@ import kr.co.brownie.report.service.ReportVO;
 
 @Repository("reportMapper")
 public interface ReportMapper {
-
 	List<ReportVO> selectReportList();
 }

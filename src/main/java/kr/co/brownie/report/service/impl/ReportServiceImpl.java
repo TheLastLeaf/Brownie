@@ -11,7 +11,6 @@ import kr.co.brownie.report.service.ReportVO;
 
 @Service("reportService")
 public class ReportServiceImpl implements ReportService {
-
 	@Resource(name = "reportMapper")
 	ReportMapper reportMapper;
 

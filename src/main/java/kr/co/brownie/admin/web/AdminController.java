@@ -16,8 +16,8 @@ import kr.co.brownie.admin.service.AdminService;
 import kr.co.brownie.admin.service.AdminVO;
 import kr.co.brownie.blackList.service.BlackListService;
 import kr.co.brownie.blackList.service.BlackListVO;
+import kr.co.brownie.report.service.ReportService;
 import kr.co.brownie.report.service.ReportVO;
-import kr.co.brownie.report.service.impl.ReportMapper;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 
@@ -37,8 +37,8 @@ public class AdminController {
 	@Resource(name = "userService")
 	UserService userService;
 
-	@Resource(name = "reportMapper")
-	ReportMapper reportMapper;
+	@Resource(name = "reportService")
+	ReportService reportService;
 
 
 	@GetMapping(path={"", "/adminView"})
@@ -69,14 +69,14 @@ public class AdminController {
 
 	@GetMapping("/adminReportList")
 	public String adminReportList(Model model) {
-		List<ReportVO> reportList = reportMapper.selectReportList();
+		List<ReportVO> reportList = reportService.selectReportList();
+		System.out.println("왜안나오지");
+		System.out.println(reportList);
 		model.addAttribute("reportList", reportList);
-
-
 		return "admin/adminReportList"; //신고 리스트 화면
 	}
 
-	@GetMapping("/adminBlackUserList")
+	@GetMapping("/adminBlackList")
 	public String adminBlackList(Model model) {
 		List<BlackListVO> blackList = blackListService.selectBlackList();
 		model.addAttribute("blackList", blackList);
