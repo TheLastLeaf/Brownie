@@ -61,7 +61,7 @@
             enctype: 'multipart/form-data',
             processData: false,
             success: function (data) {
-                $(el).summernote('editor.insertImage', ${pageContext.request.contextPath} + data.url);
+                $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
             }
         });
     }
