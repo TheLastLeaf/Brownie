@@ -58,12 +58,12 @@ public class GalleryController {
 		System.out.println("터진거야");
 		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
 		System.out.println("시발");
-		List<FileVO> fileVOList;
+//		List<FileVO> fileVOList;
 		if (galleryVO.getFileSeq()!=null) {
 			System.out.println("놈아");
-			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
+//			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
 			System.out.println("씨");
-			model.addAttribute("fileVOList", fileVOList);
+//			model.addAttribute("fileVOList", fileVOList);
 		}
 		
 		model.addAttribute("galleryVO", galleryVO);
