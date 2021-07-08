@@ -23,7 +23,7 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public List<GalleryVO> getGallerylist(Map<String, Object> map) {
+	public List<GalleryVO> getGalleryList(Map<String, Object> map) {
 		List<GalleryVO> galleryVo = galleryMapper.selectList(map);
 		return galleryVo;
 	}
@@ -52,5 +52,10 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public List<FileVO> getFileList(int fileSeq) {
 		return galleryMapper.selectFiles(fileSeq);
+	}
+
+	@Override
+	public List<GalleryVO> getNoticeList(Map<String, Object> map) {
+		return galleryMapper.noticeList(map);
 	}
 }

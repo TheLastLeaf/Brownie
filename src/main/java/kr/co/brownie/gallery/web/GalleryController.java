@@ -25,19 +25,26 @@ public class GalleryController {
 
 	private int size = 10;
 
-	@GetMapping(path = { "", "/list" })
+	@GetMapping({ "", "/list" })
 	public String galleryList(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");
 		map.put("id", id);
-		System.out.println(123123123);
+		
+		//공지데이터
+		List<GalleryVO> noticeVOList = this.galleryService.getNoticeList(map);
+		
+		System.out.println(noticeVOList);
+		System.out.println(noticeVOList.get(1).getUpDate());
+		
 		int total = this.galleryService.selectCount();
 		String strPageNum = (String) map.get("pageNum") == null ? "1" : (String) map.get("pageNum");
 		int pageNum = Integer.parseInt(strPageNum);
 		map.put("pageNum", pageNum);
-		List<GalleryVO> galleryVOList = this.galleryService.getGallerylist(map);
+		
+		List<GalleryVO> galleryVOList = this.galleryService.getGalleryList(map);
 		
 		model.addAttribute("galleryVOList", new GalleryPage(total, pageNum, size, galleryVOList));
-		System.out.println("page : " + new GalleryPage(total, pageNum, size, galleryVOList).getContent());
+		model.addAttribute("noticeVOList", noticeVOList);
 		model.addAttribute("gallery", map.get("gallery"));
 		model.addAttribute("keyword", map.get("keyword"));
 		return "gallery/galleryList";
@@ -45,9 +52,23 @@ public class GalleryController {
 
 	
 	@GetMapping("/detail")
-	public String details_post_gallery() {
-		//List<FileVO> fileVOList = this.galleryService.getFileList();
-		return "gallery/galleryDetail";
+	public String details_post_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
+		System.out.println("어디서");
+		int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
+		System.out.println("터진거야");
+		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
+		System.out.println("시발");
+		List<FileVO> fileVOList;
+		if (galleryVO.getFileSeq()!=null) {
+			System.out.println("놈아");
+			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
+			System.out.println("씨");
+			model.addAttribute("fileVOList", fileVOList);
+		}
+		
+		model.addAttribute("galleryVO", galleryVO);
+		
+		return "gallery/detail";
 	}
 
 	@GetMapping("/add")

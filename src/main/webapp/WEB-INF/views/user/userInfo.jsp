@@ -318,7 +318,8 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a> <span>userDetail</span>
+						<a href="#">userInfo</a>
+						<span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -406,7 +407,8 @@ h1 {
 								<div class="infoDetail">【 최근 게시글 내역 】</div>
 								<c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
 									<div class="upload">
-										${vs.index+1}. <a href="">${recentBoard}</a>
+										${vs.index+1}.
+										<a href="">${recentBoard}</a>
 									</div>
 								</c:forEach>
 							</div>
@@ -446,66 +448,31 @@ h1 {
 								<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
 							</div>
 							<!-- 다른사람이 쓴 후기 -->
-							<div class="review col-4">
-								<div class="reviewDay">작성자&nbsp;??/??/??</div>
-								<div class="rev font-family-maple-bold">
-									???
-									<!-- hover 별 -->
-									<div class="caption">☆☆☆☆☆</div>
+							<c:forEach var="reviewVO" items="${reviewVO}">
+								<div class="review col-4">
+									<div class="reviewDay">${reviewVO.userId}&nbsp;${reviewVO.inDate}</div>
+									<div class="rev font-family-maple-bold">
+										${reviewVO.reply}
+										<!-- hover 별 -->
+										<div class="caption">
+											<c:forEach begin="1" end="${reviewVO.starCnt}">
+												<i class="fas fa-star"></i>
+											</c:forEach>
+											<c:forEach begin="1" end="${5-reviewVO.starCnt}">
+												<i class="far fa-star"></i>
+											</c:forEach>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="review col-4">
-								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-family-maple-bold">
-									기가막히게 코딩을 잘한답니다..!
-									<!-- hover 별 -->
-									<div class="caption">★★★☆☆</div>
-								</div>
-							</div>
-							<div class="review col-4">
-								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-family-maple-bold">
-									오늘 골드를 찍었대요 백준 골드요!
-									<!-- hover 별 -->
-									<div class="caption">★★★★★</div>
-								</div>
-							</div>
-							<div class="review col-4">
-								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-family-maple-bold">
-									아리 왜하는지 모르겠어요
-									<!-- hover 별 -->
-									<div class="caption">★☆☆☆☆</div>
-								</div>
-							</div>
-							<div class="review col-4">
-								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-family-maple-bold">
-									[비속어처리X]
-									<!-- hover 별 -->
-									<div class="caption">☆☆☆☆☆</div>
-								</div>
-							</div>
-							<div class="review col-4">
-								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-family-maple-bold">
-									너...내 여자해라..
-									<!-- hover 별 -->
-									<div class="caption">★☆☆☆☆</div>
-								</div>
-							</div>
-							<div class="review col-4">
-								<div class="reviewDay">작성자&nbsp;21/07/01</div>
-								<div class="rev font-family-maple-bold">
-									내일은 어떤 기능을 할까요!?!?
-									<!-- hover 별 -->
-									<div class="caption">★★★☆☆</div>
-								</div>
-							</div>
-							<!-- 페이징처리 -->
+							</c:forEach>
+							
 							<!-- 페이징처리 -->
 							<div class="paging col-12">
-								<a href="#">[prev]</a> <a href="#">[1]</a> <a href="#">[2]</a> <a href="#">[3]</a> <a href="#">[next]</a>
+								<a href="#">[prev]</a>
+								<a href="#">[1]</a>
+								<a href="#">[2]</a>
+								<a href="#">[3]</a>
+								<a href="#">[next]</a>
 							</div>
 						</div>
 					</c:when>

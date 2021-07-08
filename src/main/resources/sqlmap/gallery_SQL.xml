@@ -39,7 +39,7 @@
                     ORDER BY BOARD_SEQ DESC
             )T
         )S
-        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*10-9 AND TO_NUMBER(#{pageNum})*10
+        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*30-29 AND TO_NUMBER(#{pageNum})*30
 
     </select>
 	
@@ -57,6 +57,23 @@
         WHERE FILE_SEQ = #{fileSeq}
     </select>
 	
+	<select id="noticeList" resultType="kr.co.brownie.gallery.service.GalleryVO">
+        SELECT BOARD_SEQ  AS BOARDSEQ,
+               BOARD_KIND AS BOARDKIND,
+               TITLE      AS TITLE,
+               CONTENT    AS CONTENT,
+               NOTICE_YN  AS NOTICEYN,
+               STATUS     AS STATUS,
+               IN_DATE    AS INDATE,
+               IN_USER_ID AS INUSERID,
+               UP_DATE    AS "UPDATE",
+               UP_USER_ID AS UPUSERID,
+               FILE_SEQ   AS FILESEQ,
+               SUB_SEQ    AS SUBSEQ
+        FROM BROWNIE_BOARD
+        WHERE BOARD_CATEGORY = 'gallery'
+        ORDER BY BOARD_SEQ ASC
+    </select>
 
     <select id="read" parameterType="int" resultType="kr.co.brownie.gallery.service.GalleryVO">
         SELECT BOARD_SEQ  AS BOARDSEQ,
@@ -105,7 +122,7 @@
     </delete>
     
     <select id="count" resultType="int">
-        SELECT COUNT(*) CNT FROM BROWNIE_BOARD
+        SELECT COUNT(*) CNT FROM BROWNIE_BOARD WHERE BOARD_KIND='gallery'
     </select>
 </mapper>
 

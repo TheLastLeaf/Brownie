@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class GalleryVO {
+
 	private int boardSeq;
     private String boardKind;
     private String boardCategory;
