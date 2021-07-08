@@ -28,9 +28,7 @@ public class AuthController {
 		try {
 			String access_token = authService.getToken(code);
 			String id = authService.getUserInfoByToken(access_token);
-//			int permitlevel = authService.permitLevel(id);
 			httpSession.setAttribute("id", id);
-//			httpSession.setAttribute("permit_level", permitlevel);
 
 			/* 첫 로그인 세웅 */
 			// 소환사명 및 세팅
@@ -45,14 +43,23 @@ public class AuthController {
 			String reply = "empty";
 			String writeUserId = "anonymous";
 
+
+
 			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
-			
-			
-			
+
+
+
 			/* service 호출해서 집어넣기 */
 			authService.insertUser(id, tempLolNick, tempBrownieNick, position);
 			authService.insertExp(id, exp);
 			authService.insertReview(reviewSeq, id, starCnt, reply, writeUserId);
+
+			/* 첫 로그인일 경우 권한 레벨 및 사이트 레벨 지정, 유저가 존재해야 삽입가능*/
+			authService.insertPermitLevel(id);
+
+			/* 로그인할때 권한레벨 세션에 넣어줘야 게시글 조회 시 사용 */
+//			int permitlevel = authService.permitLevel(id);
+//			httpSession.setAttribute("permit_level", permitlevel);
 
 		} catch (IOException e) {
 			e.printStackTrace();

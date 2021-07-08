@@ -16,6 +16,8 @@ public interface AuthService {
 
 	void insertUser(String id, String tempLolNick, String tempBrownieNick, String position) throws IOException;
 
+	void insertPermitLevel(String id) throws IOException;
+
 	void insertExp(String id, int exp) throws IOException;
 
 	void insertReview(int reviewSeq, String id, int starCnt, String reply, String writeUserId)throws IOException;

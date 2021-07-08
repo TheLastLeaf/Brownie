@@ -32,6 +32,29 @@
                                 '${position}')
     </update>
 
+    <update id="insertPermitLevel">
+        MERGE
+            INTO PERMIT
+                USING DUAL
+                ON (PERMIT.USER_ID = '${ID}')
+                WHEN NOT MATCHED THEN
+                INSERT
+                (
+                    USER_ID,
+					PERMIT_LEVEL,
+					IN_DATE,
+					IN_USER_ID,
+					UP_DATE,
+					UP_USER_ID)
+                VALUES
+                (	'${ID}',
+                     1,
+                     SYSDATE,
+                     '${ID}',
+                     SYSDATE,
+                     '${ID}')
+    </update>
+
     <update id="insertExp" parameterType="HashMap">
         merge into BROWNIE_EXP
             using dual
@@ -61,8 +84,8 @@
 		FROM PERMIT
 		WHERE USER_ID = #{userId}
     </select>
-    
-    
+
+
     <update id="insertReview" parameterType="HashMap">
         MERGE INTO REVIEW
             using dual

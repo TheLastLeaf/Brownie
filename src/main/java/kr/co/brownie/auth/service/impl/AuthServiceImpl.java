@@ -119,4 +119,9 @@ public class AuthServiceImpl implements AuthService {
 	public int permitLevel(String userId) {
 		return authMapper.permitlevel(userId);
 	}
+
+	@Override
+	public void insertPermitLevel(String userId) throws IOException {
+		authMapper.insertPermitLevel(userId);
+	}
 }
