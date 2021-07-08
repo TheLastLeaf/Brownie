@@ -1,15 +1,17 @@
 package kr.co.brownie.review.service;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
 public class ReviewVO {
-	private String reviewSeq;
+	private int reviewSeq;
 	private String userId;
-	private String starCnt;
+	private int starCnt;
 	private String reply;
-	private String inDate;
-	private String modDate;
+	private Date inDate;
+	private Date modDate;
 	private String inUserId;
 	private String upUserId;
 }

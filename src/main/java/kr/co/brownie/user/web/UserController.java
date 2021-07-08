@@ -55,6 +55,9 @@ public class UserController {
 			float starCnt = userService.starCntSelect(id);
 			int fullStar = (int) starCnt / 1;
 			float halfStar = starCnt - fullStar;
+			if(halfStar >= 0.5) {
+				halfStar = 1;
+			}
 
 			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
 			int boardTotalCnt = userService.boardTotalCnt(id);
@@ -68,11 +71,12 @@ public class UserController {
 			// 남이 나에게 쓴 후기 보여주기
 			List<ReviewVO> reviewVO = reviewService.selectReviewList(id);
 			
+			// model.addattribute
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
 			model.addAttribute("position", position);
 			model.addAttribute("fullStar", fullStar);
-			if (halfStar >= 0.5) {
+			if (halfStar == 1) {
 				model.addAttribute("halfStar", halfStar);
 			}
 			model.addAttribute("boardTotalCnt", boardTotalCnt);
@@ -84,7 +88,6 @@ public class UserController {
 			
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("sessionId: " + id);
-			System.out.println("reviewVO값: " + reviewVO);
 
 			return "user/userInfo";
 		}

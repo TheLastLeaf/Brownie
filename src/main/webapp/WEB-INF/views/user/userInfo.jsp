@@ -364,7 +364,7 @@ h1 {
 											</c:choose>
 											&nbsp;|&nbsp; <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
 													<i class="fas fa-star"></i>
-												</c:forEach> <c:forEach begin="0" end="${halfStar}">
+												</c:forEach> <c:forEach begin="1" end="${halfStar}">
 													<i class="fas fa-star-half-alt"></i>
 												</c:forEach> <c:forEach begin="1" end="${5-fullStar-halfStar}">
 													<i class="far fa-star"></i>

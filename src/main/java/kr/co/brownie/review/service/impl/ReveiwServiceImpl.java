@@ -16,6 +16,18 @@ public class ReveiwServiceImpl implements ReviewService{
 
 	@Override
 	public List<ReviewVO> selectReviewList(String id){
+		if(reviewMapper.selectReviewList(id).size() == 0) {
+			ReviewVO reviewvo = new ReviewVO();
+			reviewvo.setReviewSeq(1);
+			reviewvo.setUserId(id);
+			reviewvo.setStarCnt(0);
+			reviewvo.setReply("empty");
+			reviewvo.setInDate(null);
+			reviewvo.setModDate(null);
+			reviewvo.setInUserId("anonymous");
+			reviewvo.setUpUserId("anonymous");
+		}
+		
 		return reviewMapper.selectReviewList(id); 
 	}
 }
