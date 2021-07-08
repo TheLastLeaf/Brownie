@@ -21,4 +21,34 @@
 			BETWEEN SYSDATE-7 AND SYSDATE) RU
 	</select>
 
+	<select id="ReportCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+		SELECT
+			COUNT(STATUS) AS REPORTUSERCNT
+		FROM
+			REPORT
+		WHERE
+			UPPER(STATUS)='N'
+	</select>
+
+	<select id="BoardCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+	SELECT
+		AB.ALLCNT AS ALLBOARDCNT,
+		RB.RECENTCNT AS RECENTBOARDCNT
+	FROM
+		(SELECT
+			COUNT(NOTICE_YN) AS ALLCNT
+		FROM
+			BROWNIE_BOARD) AB,
+		(SELECT
+			COUNT(NOTICE_YN) AS RECENTCNT
+		FROM
+			BROWNIE_BOARD
+		WHERE
+			UPPER(NOTICE_YN)='N'
+		AND
+			IN_DATE
+		BETWEEN
+			SYSDATE-7 AND SYSDATE) RB
+	</select>
+
 </mapper>

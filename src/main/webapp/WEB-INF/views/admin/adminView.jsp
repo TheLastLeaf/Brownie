@@ -73,8 +73,8 @@
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="fas fa-address-card"></i></div>
-                                	<span class="adminMenu">신고 내역</span>
-                                <div class="follow">4명</div>
+                                	<a href="admin/adminReportList"><span class="adminMenu">신고 내역</span></a>
+                                <div class="follow">${reportCnt.reportUserCnt }건</div>
                             </li>
                             <li>
                                 <div class="sm-icon"><i class="far fa-circle"></i></div>
@@ -109,13 +109,17 @@
                                     </div>
                                 </div>
                                 <div class="skill-item">
-                                    <p>신규 가입자 수 : ${UserCnt.recentUserCnt }</p>
+                                    <p>신규 가입자 수</p>
                                     <div id="bar-5" class="barfiller">
-                                        <span class="fill" data-percentage="20"></span>
+                                        <span class="fill" data-percentage="${UserCnt.recentUserCnt }"></span>
+                                        <div class="tipWrap" style="display: inline;">
+                                            <span class="tip"></span>
+                                            <span class="bar-point"> ${UserCnt.recentUserCnt }</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
-                                    <p>누적 가입자 수 : ${UserCnt.allUserCnt }</p>
+                                    <p>누적 가입자 수</p>
                                     <div id="bar-6" class="barfiller">
                                         <span class="fill" data-percentage="${UserCnt.allUserCnt }"></span>
                                         <div class="tipWrap" style="display: inline;">
@@ -127,20 +131,20 @@
                                 <div class="skill-item">
                                     <p>신규 게시글 수</p>
                                     <div id="bar-3" class="barfiller">
-                                        <span class="fill" data-percentage="78"></span>
+                                        <span class="fill" data-percentage="${boardCnt.recentBoardCnt }"></span>
                                         <div class="tipWrap" style="display: inline;">
                                             <span class="tip"></span>
-                                            <span class="bar-point">78</span>
+                                            <span class="bar-point">${boardCnt.recentBoardCnt }</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
                                     <p>누적 게시글 수</p>
                                     <div id="bar-4" class="barfiller">
-                                        <span class="fill" data-percentage="85"></span>
+                                        <span class="fill" data-percentage="${boardCnt.allBoardCnt }"></span>
                                         <div class="tipWrap" style="display: inline;">
                                             <span class="tip"></span>
-                                            <span class="bar-point">1251</span>
+                                            <span class="bar-point">${boardCnt.allBoardCnt }</span>
                                         </div>
                                     </div>
                                 </div>

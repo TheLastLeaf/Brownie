@@ -332,7 +332,7 @@ h1 {
 								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
 									<!-- 프로필사진 -->
 									<div class="profilePic">
-										<img src="${pageContext.request.contextPath}/img/user/JombieMushimroom.jpg">
+										<img src="${pageContext.request.contextPath}/img/user/lux.gif">
 									</div>
 									<!-- 프로필 프레임 -->
 									<div class="profileFrame">
@@ -447,6 +447,7 @@ h1 {
 							<div class="col-sm-2" style="display: flex; justify-content: flex-end;">
 								<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
 							</div>
+							
 							<!-- 다른사람이 쓴 후기 -->
 							<c:forEach var="reviewVO" items="${reviewVO}">
 								<div class="review col-4">

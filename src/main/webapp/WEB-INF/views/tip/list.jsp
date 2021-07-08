@@ -8,8 +8,8 @@
     }
 
     .search-section {
-        padding-top: 100px;
-        padding-bottom: 100px;
+        padding-top: 75px;
+        padding-bottom: 75px;
     }
 
     .search-section > .search-box {
@@ -17,7 +17,7 @@
     }
 
     .search-section > .search-box .champion-select {
-        height: 400px;
+        height: 300px;
         background-color: rgba(0, 0, 0, 0.5);
     }
 
