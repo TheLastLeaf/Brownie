@@ -4,6 +4,7 @@ import kr.co.brownie.miniGame.service.BrownieMarbelInfoVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,7 @@ import java.util.Map;
 public interface BrownieMarbelInfoMapper {
     int insert(Map<String,Object> map);
 
-    List<BrownieMarbelInfoVO> selectList();
+    List<BrownieMarbelInfoVO> selectList(HashMap<String, Object> passmap);
 
     BrownieMarbelInfoVO read(int boardSeq);
 

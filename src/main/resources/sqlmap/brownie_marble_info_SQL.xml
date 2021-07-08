@@ -13,5 +13,9 @@
                FUNCTION      AS FUNCTION,
                IMG_NAME      AS IMGNAME
         FROM BROWNIE_MARBLE_INFO
+        WHERE SEQ IN
+        <foreach collection="randomNum" item="item" open="(" close=")" separator=",">
+        	#{item}
+        </foreach>
     </select>
 </mapper>

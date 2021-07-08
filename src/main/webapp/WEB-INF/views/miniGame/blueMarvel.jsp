@@ -41,11 +41,6 @@
 	border-bottom: 2px solid black;
 }
 
-/* @keyframes player {
-  0%   {left:0px; top:0px;}
-  100%  {left:182px; top:0px;}
-}*/
-
 .player {
 	z-index: inherit;
 	position: relative;
@@ -84,6 +79,12 @@
 	position: relative;
 	top:160px;
 }
+	
+.startLand{
+	position: absolute;
+	left: 26.5%;
+}
+	
 
 </style>
 
@@ -174,7 +175,7 @@
 					                $('#result').text(data);
 					            },
 					            error: function(){
-					                alert("simpleWithObject err");
+					                console.log("error");
 					            }
 					        });
 							
@@ -300,31 +301,34 @@
 				<tbody>
 					<tr>
 						<td class="td_tb startLine corner">
+							<img class="startLand" src="${pageContext.request.contextPath}/img/miniGame/etc/starting-point.jpeg">
 							<div class="player">
 								<i style="color: red;" class="fas fa-chess-knight fa-8x"></i>
 							</div>
 						</td>
 
 						<td class="td_tb">
-							<i class="fas fa-bomb fa-8x"></i>
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[0].kind}/${infoList[0].imgName}">
 						</td>
 
 
 						<td class="td_tb">
-							<i class="fas fa-box fa-8x"></i>
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[1].kind}/${infoList[1].imgName}">
 						</td>
 
 						<td class="td_tb">
-							<i class="fas fa-coins fa-8x"></i>
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[2].kind}/${infoList[2].imgName}">
 						</td>
 
 
-						<td class="td_tb rightUp corner"></td>
+						<td class="td_tb rightUp corner">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[3].kind}/${infoList[3].imgName}">
+						</td>
 					</tr>
 					<!-- 세로축 -->
 					<tr class="verti">
 						<td class="td_rl">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/lucky_shamrock.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[4].kind}/${infoList[4].imgName}">
 						</td>
 						
 						<td class="center" id="gameAlert1" colspan="3" rowspan="3">
@@ -335,53 +339,52 @@
 										<div id="dice-side-2" class="dicePic"></div>
 										<h2 id="status"></h2>
 									</div>
-									${infoList[0].seq}
 									<button id="btnRoll" onclick="dis()" class="learn-more">LET'S<br>ROLL</button>
 								</div> 
 								
 						</td>
 						
 						<td class="td_rl">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/lucky_drive.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[5].kind}/${infoList[5].imgName}">
 						</td>
 					</tr>
 
 
 					<tr class="verti">
 						<td class="td_rl">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/token_yinyang.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[6].kind}/${infoList[6].imgName}">
 						</td>
 
 						<td class="td_rl">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/wallet.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[7].kind}/${infoList[7].imgName}">
 						</td>
 					</tr>
 
 					<tr class="verti">
 						<td class="td_rl">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/the_one_ring.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[8].kind}/${infoList[8].imgName}">
 						</td>
 
 						<td class="td_rl">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/coins.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[9].kind}/${infoList[9].imgName}">
 						</td>
 					</tr>
 					<!-- 세로축 -->
 					<tr style="margin-bottom: 30px">
 						<td class="td_tb leftDown corner">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/black_cat (2).png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[10].kind}/${infoList[10].imgName}">
 						</td>
 						<td class="td_tb">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/black_cat (1).png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[11].kind}/${infoList[11].imgName}">
 						</td>
 						<td class="td_tb">
-							<i class="fas fa-book fa-8x"></i>
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[12].kind}/${infoList[12].imgName}">
 						</td>
 						<td class="td_tb">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/black_cat.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[13].kind}/${infoList[13].imgName}">
 						</td>
 						<td class="td_tb rightDown corner">
-							<img class="land" src="${pageContext.request.contextPath}/img/miniGame/asd.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[14].kind}/${infoList[14].imgName}">
 						</td>
 					</tr>
 				</tbody>

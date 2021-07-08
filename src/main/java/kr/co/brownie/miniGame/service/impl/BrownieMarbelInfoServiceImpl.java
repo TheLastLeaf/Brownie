@@ -1,5 +1,6 @@
 package kr.co.brownie.miniGame.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +22,8 @@ public class BrownieMarbelInfoServiceImpl implements BrownieMarbelInfoService {
 	}
 
 	@Override
-	public List<BrownieMarbelInfoVO> getBrownieMarbelList() {
-		List<BrownieMarbelInfoVO> noticeVo = brownieMarbelMapper.selectList();
+	public List<BrownieMarbelInfoVO> getBrownieMarbelList(HashMap<String, Object> passmap) {
+		List<BrownieMarbelInfoVO> noticeVo = brownieMarbelMapper.selectList(passmap);
 		return noticeVo;
 	}
 
