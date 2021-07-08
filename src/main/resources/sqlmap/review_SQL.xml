@@ -22,4 +22,13 @@
 		WHERE userId = '${id}' and rNum BETWEEN ${startPost} and ${endPost}
 		ORDER BY inDate DESC
 	</select>
+	
+	<select id="countAllReview" resultType="int">
+		SELECT 
+			COUNT(*) 
+    	FROM 
+    		REVIEW
+    	WHERE 
+    		user_id = '${id}'
+	</select>
 </mapper>

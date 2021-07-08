@@ -39,7 +39,7 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@GetMapping("/userInfo")
-	public String userInfo(Model model, HttpSession httpSession, ReviewPagingVO page ) throws Exception {
+	public String userInfo(Model model, HttpSession httpSession, ReviewPagingVO page) throws Exception {
 		String id = (String) httpSession.getAttribute("id");
 
 		/* 로그인후 session in 되었을때 */
@@ -68,14 +68,11 @@ public class UserController {
 			// 로그인한 사람의 최근 게시글 3개가져오기
 			List<String> recentBoard = userService.recentBoard(id);
 
-			// 남이 나에게 쓴 후기 보여주기
-			//List<ReviewVO> reviewVO = reviewService.selectReviewList(id);
-
 			// 후기 페이징
-			page.setTotalCount(10);
+			page.setTotalCount(reviewService.countAllReview(id));
 			page.setId(id);
-			List<ReviewVO> reviewList = reviewService.selectReviewList(page); 
-			
+			List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
+
 			// model.addattribute
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
@@ -89,12 +86,15 @@ public class UserController {
 			model.addAttribute("likeReplyCnt", likeReplyCnt);
 			model.addAttribute("hateReplyCnt", hateReplyCnt);
 			model.addAttribute("recentBoard", recentBoard);
-//			model.addAttribute("reviewVO", reviewVO);
+			
+			model.addAttribute("reviewVOs", reviewVOs);
+			model.addAttribute("page", page);
+			
 			
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("sessionId: " + id);
-			System.out.println("reviewList: " + reviewList);
-			
+			System.out.println("reviewVOs: " + reviewVOs);
+
 			System.out.println("keyword : " + page.getTotalCount());
 			System.out.println("num : " + page.getNum());
 			System.out.println("totalCount : " + page.getTotalCount());
@@ -106,7 +106,8 @@ public class UserController {
 			System.out.println("getPageNum : " + page.getPageNum());
 			System.out.println("searchType : " + page.getSearchType());
 			System.out.println("keyword : " + page.getKeyword());
-
+			System.out.println("page: " + page);
+			
 			return "user/userInfo";
 		}
 		return "user/userInfo";

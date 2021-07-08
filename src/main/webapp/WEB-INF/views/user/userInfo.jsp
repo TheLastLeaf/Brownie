@@ -449,7 +449,7 @@ h1 {
 							</div>
 							
 							<!-- 다른사람이 쓴 후기 -->
-							<c:forEach var="reviewVO" items="${reviewVO}">
+							<c:forEach var="reviewVO" items="${reviewVOs}">
 								<div class="review col-4">
 									<div class="reviewDay">${reviewVO.userId}&nbsp;${reviewVO.inDate}</div>
 									<div class="rev font-family-maple-bold">
@@ -468,12 +468,24 @@ h1 {
 							</c:forEach>
 							
 							<!-- 페이징처리 -->
-							<div class="paging col-12">
-								<a href="#">[prev]</a>
-								<a href="#">[1]</a>
-								<a href="#">[2]</a>
-								<a href="#">[3]</a>
-								<a href="#">[next]</a>
+							
+							<div class="paging col-12 pagination-item">
+								<c:if test="${page.prev}">
+									<a href="/user/userInfo?num=${page.startPageNum-1}">prev</a>
+								</c:if>
+								<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+									<c:choose>
+									<c:when test="${page.num != num}">
+											<a href="/user/userInfo?num=${num}">${num}</a>
+									</c:when>
+										<c:otherwise>
+											<a href="#">${num}</a>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${page.next}">
+									<a href="/user/userInfo?num=${page.endPageNum+1}">next</a>
+								</c:if>
 							</div>
 						</div>
 					</c:when>

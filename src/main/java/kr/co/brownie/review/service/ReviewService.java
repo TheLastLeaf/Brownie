@@ -6,8 +6,8 @@ import kr.co.brownie.review.service.impl.ReviewPagingVO;
 
 public interface ReviewService {
 
-//	List<ReviewVO> selectReviewList(String id);
-
 	List<ReviewVO> selectReviewList(ReviewPagingVO page);
+
+	int countAllReview(String id);
 
 }
