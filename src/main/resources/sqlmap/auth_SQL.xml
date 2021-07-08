@@ -3,112 +3,115 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.auth.service.impl.AuthMapper">
-    <update id="insertUser" parameterType="java.util.HashMap">
-        merge
-            into BROWNIE_USER
-                using DUAL
-                on (BROWNIE_USER.user_id = '${id}')
-                when not matched then
-                    insert (
-                            USER_ID,
-                            LOL_ID,
-                            NICK_NAME,
-                            BLACK_STACK,
-                            STATUS,
-                            IN_DATE,
-                            UP_DATE,
-                            IN_USER_ID,
-                            UP_USER_ID,
-                            USER_POSITION)
-                        values ('${id}',
-                                '${tempLolNick}',
-                                '${tempBrownieNick}',
-                                0,
-                                'Y',
-                                SYSDATE,
-                                SYSDATE,
-                                '${id}',
-                                '${id}',
-                                '${position}')
-    </update>
+	<update id="insertUser" parameterType="java.util.HashMap">
+		merge
+		into BROWNIE_USER
+		using DUAL
+		on (BROWNIE_USER.user_id = '${id}')
+		when not matched then
+		insert (
+		USER_ID,
+		LOL_ID,
+		NICK_NAME,
+		BLACK_STACK,
+		STATUS,
+		IN_DATE,
+		UP_DATE,
+		IN_USER_ID,
+		UP_USER_ID,
+		USER_POSITION)
+		values ('${id}',
+		'${tempLolNick}',
+		'${tempBrownieNick}',
+		0,
+		'Y',
+		SYSDATE,
+		SYSDATE,
+		'${id}',
+		'${id}',
+		'${position}')
+	</update>
 
-    <update id="insertPermitLevel">
-        MERGE
-            INTO PERMIT
-                USING DUAL
-                ON (PERMIT.USER_ID = '${ID}')
-                WHEN NOT MATCHED THEN
-                INSERT
-                (
-                    USER_ID,
-					PERMIT_LEVEL,
-					IN_DATE,
-					IN_USER_ID,
-					UP_DATE,
-					UP_USER_ID)
-                VALUES
-                (	'${ID}',
-                     1,
-                     SYSDATE,
-                     '${ID}',
-                     SYSDATE,
-                     '${ID}')
-    </update>
+	<update id="insertPermitLevel">
+		MERGE
+		INTO PERMIT
+		USING DUAL
+		ON (PERMIT.USER_ID = '${ID}')
+		WHEN NOT MATCHED THEN
+		INSERT
+		(
+		USER_ID,
+		PERMIT_LEVEL,
+		IN_DATE,
+		IN_USER_ID,
+		UP_DATE,
+		UP_USER_ID)
+		VALUES
+		( '${ID}',
+		1,
+		SYSDATE,
+		'${ID}',
+		SYSDATE,
+		'${ID}')
+	</update>
 
-    <update id="insertExp" parameterType="HashMap">
-        merge into BROWNIE_EXP
-            using dual
-            on (user_id = '${id}')
-            when not matched then
-                insert (
-                        USER_ID,
-                        USER_EXP,
-                        USER_LEVEL,
-                        IN_DATE,
-                        IN_USER_ID,
-                        UP_DATE,
-                        UP_USER_ID
-                    )
-                    values ('${id}',
-                            0,
-                            0,
-                            sysdate,
-                            '${id}',
-                            sysdate,
-                            '${id}')
-    </update>
+	<update id="insertExp" parameterType="HashMap">
+		merge into BROWNIE_EXP
+		using dual
+		on (user_id = '${id}')
+		when not matched then
+		insert (
+		USER_ID,
+		USER_EXP,
+		USER_LEVEL,
+		IN_DATE,
+		IN_USER_ID,
+		UP_DATE,
+		UP_USER_ID
+		)
+		values ('${id}',
+		0,
+		0,
+		sysdate,
+		'${id}',
+		sysdate,
+		'${id}')
+	</update>
 
 
-    <select id="permitlevel" resultType="int" parameterType="String">
-		SELECT PERMIT_LEVEL AS PERMITLEVEL
+	<select id="permitlevel" resultType="int" parameterType="String">
+		SELECT
+		PERMIT_LEVEL AS PERMITLEVEL
 		FROM PERMIT
 		WHERE USER_ID = #{userId}
-    </select>
+	</select>
 
 
-    <update id="insertReview" parameterType="HashMap">
-        MERGE INTO REVIEW
-            using dual
-            on (USER_ID = '${id}')
-            when not matched then
-                insert (
-                        REVIEW_SEQ,
-                        USER_ID,
-                        STAR_CNT,
-                        REPLY,
-                        IN_DATE,
-                        UP_DATE,
-                        IN_USER_ID,
-                        UP_USER_ID
-                    )
-                    values (REVIEW_SEQ.NEXTVAL,
-                            '${id}',
-                            ${starCnt},
-                            '${reply}',
-                            SYSDATE,
-                            SYSDATE,
-                            '${writeUserId}',
-                            '${writeUserId}')
+	<update id="insertReview" parameterType="HashMap">
+		MERGE INTO REVIEW
+			using dual
+		on (USER_ID = '${id}')
+		when not matched then
+			insert 
+			(
+			REVIEW_SEQ,
+			USER_ID,
+			STAR_CNT,
+			REPLY,
+			IN_DATE,
+			UP_DATE,
+			IN_USER_ID,
+			UP_USER_ID
+		)
+		values (REVIEW_SEQ.NEXTVAL,
+			'${id}',
+			${starCnt},
+			'${reply}',
+			SYSDATE,
+			SYSDATE,
+			'${writeUserId}',
+			'${writeUserId}'
+		)
 
-    </update>
+	</update>
 </mapper>
