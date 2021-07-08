@@ -23,20 +23,19 @@ public class TipVO {
     private int subSeq;
 
     public String getImgSrc() {
-        String src;
-        if (content != null) {
-            Document document = Jsoup.parse(content);
-            src = document.select("img").attr("src");
-            if ("".equals(src)) {
-                src = "/img/categories-list/cl-1.jpg";
-            }
-        } else {
+        if (content == null) return "/img/categories-list/cl-1.jpg";
+
+        Document document = Jsoup.parse(content);
+        String src = document.select("img").attr("src");
+        if ("".equals(src)) {
             src = "/img/categories-list/cl-1.jpg";
         }
         return src;
     }
 
     public String getPreview() {
+        if (content == null) return "";
+
         Document document = Jsoup.parse(content);
         return document.text();
     }
