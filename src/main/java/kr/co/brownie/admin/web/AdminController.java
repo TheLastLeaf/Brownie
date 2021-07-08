@@ -50,14 +50,18 @@ public class AdminController {
         dayMap.put("month", month);
     	model.addAttribute("dayMap", dayMap);
 
-    	//전체 회원 수 / 최근 가입 회원 수
+    	//전체 회원 수 / 최근 일주일 간 신규 회원 수
     	AdminVO UserCnt = adminService.UserCnt();
     	model.addAttribute("UserCnt", UserCnt);
 
-    	//신고 수 집계
+    	//미처리 신고 수 집계
     	AdminVO reportCnt = adminService.ReportCnt();
     	model.addAttribute("reportCnt", reportCnt);
 
+
+    	// 공지사항 포함 총 게시글 수 / (공지사항 제외한) 최근 일주일 간 신규 게시글 수 집계
+    	AdminVO boardCnt = adminService.BoardCnt();
+    	model.addAttribute("boardCnt", boardCnt);
 
 		return "admin/adminView"; //관리자 화면 기본
 	}
