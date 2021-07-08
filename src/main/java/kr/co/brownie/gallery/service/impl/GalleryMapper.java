@@ -15,6 +15,8 @@ public interface GalleryMapper {
 	int insert(Map<String,Object> map);
 
     List<GalleryVO> selectList(Map<String,Object> map);
+    
+    List<GalleryVO> noticeList(Map<String,Object> map);
 
     GalleryVO read(int boardSeq);
 

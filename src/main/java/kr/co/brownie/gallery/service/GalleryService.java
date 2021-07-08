@@ -6,7 +6,9 @@ import java.util.Map;
 public interface GalleryService {
 	public int insertGallery(Map<String, Object> map);
 
-    public List<GalleryVO> getGallerylist(Map<String, Object> map);
+    public List<GalleryVO> getGalleryList(Map<String, Object> map);
+    
+    public List<GalleryVO> getNoticeList(Map<String, Object> map);
 
     public int deleteGallery(int boardSeq);
 

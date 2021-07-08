@@ -5,6 +5,8 @@
 	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>
 
+
+
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
 	data-setbg="${pageContext.request.contextPath}/img/gallery/main.jpg">
@@ -106,7 +108,6 @@
 		<div class="row">
 			<div class="col-lg-12 p-0">
 
-
 				<div class="row">
 
 					<div class="col-lg-12">
@@ -121,43 +122,21 @@
 								<th>조회</th>
 								<th>추천</th>
 							</tr>
-							<tr>
-								<td>[공지]</td>
-								<td class="text-left"><a class="lef" href="#"><strong>치타는 웃고있다. </strong></a></td>
-								<td>곽지훈</td>
-								<td>2014-01-28</td>
-								<td>12</td>
-								<td>3</td>
-							</tr>
-							<tr>
-								<td>[공지]</td>
-								<td class="text-left"><a href="#" class="lef"><strong>고양인 울고있다.</strong></a></td>
-								<td>곽지훈</td>
-								<td>2014-01-28</td>
-								<td>12</td>
-								<td>3</td>
-							</tr>
-							<tr>
-								<td>[공지]</td>
-								<td class="text-left"><a class="lef" href="#"><strong>강아진 짖고있다.</strong></a></td>
-								<td>곽지훈</td>
-								<td>2014-01-28</td>
-								<td>12</td>
-								<td>3</td>
-							</tr>
-							<tr>
-								<td>[공지]</td>
-								<td class="text-left"><a class="lef" href="#"><strong>강아진 물리고있다.</strong></a></td>
-								<td>곽지훈</td>
-								<td>2014-01-28</td>
-								<td>12</td>
-								<td>3</td>
-							</tr>
+							<c:forEach var="noticeVO" items="${noticeVOList}">
+								<tr>
+									<td>[공지]</td>
+									<td class="text-left"><a class="lef" href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${noticeVO.boardSeq}"><strong>${noticeVO.title}</strong></a></td>
+									<td>${noticeVO.inUserId}</td>
+									<td>${noticeVO.inDate}</td>
+									<td>12</td>
+									<td>3</td>
+								</tr>
+							</c:forEach>
 
 						</table>
 					</div>
 
-
+					
 
 				<div class="col-lg-12">
 					<hr class="gallery_hr">
@@ -229,27 +208,6 @@
 					</div>
 				</div>
 
-				<div class="col-lg-2">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/4.jpg">
-							<div class="label">
-								<span>귀여운짤</span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">강아진 물리고있다.</a>
-							</h5>
-							<ul>
-								<li>by <span>Admin</span></li>
-								<li><i class="far fa-clock"></i> Aug 01, 2019</li>
-								<li><i class="far fa-comment"></i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				
 				<div class="col-lg-3">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
@@ -303,20 +261,21 @@
 				<div class="col-lg-2">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/${galleryVO.fileSeq}">
+							data-setbg="${pageContext.request.contextPath}/img/gallery/${galleryVO.fileSeq}"
+							onclick="location.href='${pageContext.request.contextPath}/gallery/detail?boardSeq=${galleryVO.boardSeq}'">
 							<div class="label">
 								<span>${ galleryVO.boardCategory }</span>
 							</div>
 						</div>
 						<div class="cg-text">
 							<h5>
-								<a href="#">${ galleryVO.title }</a>
+								<a href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${galleryVO.boardSeq}">${ galleryVO.title }</a>
 							</h5>
 							<ul>
-								<li>by  <span>${ galleryVO.inUserId }</span></li>
+								<li><span>${ galleryVO.inUserId }</span></li>
 								<li><i class="far fa-clock"></i> ${ galleryVO.inDate } </li>
-								<li><i class="far fa-comment">조회수</i> 20</li>
-								<li><i class="far fa-comment">추천수</i> 20</li>
+								<li><i class="far fa-comment">조회</i> 20</li>
+								<li><i class="far fa-comment">추천</i> 20</li>
 							</ul>
 						</div>
 					</div>
@@ -324,28 +283,6 @@
 				
 				
 				</c:forEach>
-				
-				<div class="col-lg-2">
-					<div class="cg-item">
-						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/funny45.jpg">
-							<div class="label">
-								<span></span>
-							</div>
-						</div>
-						<div class="cg-text">
-							<h5>
-								<a href="#">왜안떠</a>
-							</h5>
-							<ul>
-								<li>by  <span></span></li>
-								<li><i class="fa fa-clock-o"></i> </li>
-								<li><i class="fa fa-comment-o">조회수</i> 20</li>
-								<li><i class="fa fa-comment-o">추천수</i> 20</li>
-							</ul>
-						</div>
-					</div>
-				</div>
 				
 
 				<hr class="gallery_hr">
@@ -374,7 +311,7 @@
 								end="${galleryVOList.endPage}">
 								<a href="/gallery/list?pageNum=${pageno}"><span>${pageno}</span></a>
 							</c:forEach>
-							<c:if test="${galleryVOList.startPage>5}">
+							<c:if test="${galleryVOList.endPage<galleryVOList.totalPages}">
 								<a href="/gallery/list?pageNum=${galleryVOList.startPage+5}"><span>Next</span></a>
 							</c:if>
 						</div>
