@@ -23,11 +23,32 @@
 
 	<select id="ReportCnt" resultType="kr.co.brownie.admin.service.AdminVO">
 		SELECT
-			count(status) as reportUserCnt
+			COUNT(STATUS) AS REPORTUSERCNT
 		FROM
-			report
+			REPORT
 		WHERE
-			status='N'
+			UPPER(STATUS)='N'
+	</select>
+
+	<select id="BoardCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+	SELECT
+		AB.ALLCNT AS ALLBOARDCNT,
+		RB.RECENTCNT AS RECENTBOARDCNT
+	FROM
+		(SELECT
+			COUNT(NOTICE_YN) AS ALLCNT
+		FROM
+			BROWNIE_BOARD) AB,
+		(SELECT
+			COUNT(NOTICE_YN) AS RECENTCNT
+		FROM
+			BROWNIE_BOARD
+		WHERE
+			UPPER(NOTICE_YN)='N'
+		AND
+			IN_DATE
+		BETWEEN
+			SYSDATE-7 AND SYSDATE) RB
 	</select>
 
 </mapper>

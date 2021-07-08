@@ -9,62 +9,67 @@
            $('.notice_content').html(
                $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
        });*/
-    $(document).ready(function () {
-        const toolbar = [
-            // 글꼴 설정
-            ['fontname', ['fontname']],
-            // 글자 크기 설정
-            ['fontsize', ['fontsize']],
-            // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-            // 글자색
-            ['color', ['forecolor', 'color']],
-            // 표만들기
-            ['table', ['table']],
-            // 글머리 기호, 번호매기기, 문단정렬
-            ['para', ['ul', 'ol', 'paragraph']],
-            // 줄간격
-            ['height', ['height']],
-            // 그림첨부, 링크만들기, 동영상첨부
-            ['insert', ['picture', 'link', 'video']],
-            // 코드보기, 확대해서보기, 도움말
-            ['view', ['codeview', 'fullscreen', 'help']]
-        ];
+       $(function () {
+           const toolbar = [
+               // 글꼴 설정
+               ['fontname', ['fontname']],
+               // 글자 크기 설정
+               ['fontsize', ['fontsize']],
+               // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+               ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+               // 글자색
+               ['color', ['forecolor', 'color']],
+               // 표만들기
+               ['table', ['table']],
+               // 글머리 기호, 번호매기기, 문단정렬
+               ['para', ['ul', 'ol', 'paragraph']],
+               // 줄간격
+               ['height', ['height']],
+               // 그림첨부, 링크만들기, 동영상첨부
+               ['insert', ['picture', 'link', 'video']],
+               // 코드보기, 확대해서보기, 도움말
+               ['view', ['codeview', 'fullscreen', 'help']]
+           ];
 
-        const setting = {
-            height: 300,
-            minHeight: null,
-            maxHeight: null,
-            focus: true,
-            lang: 'ko-KR',
-            toolbar: toolbar,
-            callbacks: { //여기 부분이 이미지를 첨부하는 부분
-                onImageUpload: function (files, editor, welEditable) {
-                    for (let i = files.length - 1; i >= 0; i--) {
-                        uploadSummernoteImageFile(files[i], this);
-                    }
-                }
-            }
-        };
+           const setting = {
+               height: 300,
+               minHeight: null,
+               maxHeight: null,
+               focus: true,
+               lang: 'ko-KR',
+               toolbar: toolbar,
+               callbacks: { //여기 부분이 이미지를 첨부하는 부분
+                   onImageUpload: function (files, editor, welEditable) {
+                       for (let i = files.length - 1; i >= 0; i--) {
+                           uploadSummernoteImageFile(files[i], this);
+                       }
+                   }
+               }
+           };
 
-        $('.summernote').summernote(setting);
-    });
+           $('.summernote').summernote(setting);
+       });
 
-    function uploadSummernoteImageFile(file, el) {
-        const data = new FormData();
-        data.append("file", file);
-        $.ajax({
-            data: data,
-            type: "POST",
-            url: "uploadSummernoteImageFile",
-            contentType: false,
-            enctype: 'multipart/form-data',
-            processData: false,
-            success: function (data) {
-                $(el).summernote('editor.insertImage', data.url);
-            }
-        });
-    }
+       function uploadSummernoteImageFile(file, el) {
+           const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
+           if (!file.type.match(reg)) {
+               alert("확장자는 이미지 확장자만 가능합니다.");
+               return;
+           }
+           const data = new FormData();
+           data.append("file", file);
+           $.ajax({
+               data: data,
+               type: "POST",
+               url: "${pageContext.request.contextPath}/uploadSummernoteImageFile",
+               contentType: false,
+               enctype: 'multipart/form-data',
+               processData: false,
+               success: function (data) {
+                   $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
+               }
+           });
+       }
 </script>
 <style>
     .spad{
@@ -74,6 +79,7 @@
     .cont-spad{
         padding-top: 50px;
         padding-bottom: 50px;
+        height: 100%;
     }
     .title{
         width: 100%;
@@ -83,6 +89,7 @@
     }
     .summernote{
         color: #666666;
+        
     }
     .card{
         background-color: black;
@@ -96,9 +103,14 @@
         border: 1px solid #666666;
         color:white;
     }
-    .content{
+    .galleryCon{
         border:1px solid #666666;
+        height: 600px;
     }
+    .note-editable{
+    	height: 100%;
+    }
+    
     .pad{
         padding-top: 10px;
     }
@@ -135,9 +147,9 @@
                                 <div class="input-list" style="padding-bottom: 10px;">
                                     <input type="text" placeholder="Title" class="title"  id="title" name="title" required="required">
                                 </div>
-                                <div class="content">
-                                    <textarea class="summernote" name="content" id="content" required="required"></textarea>
-                                </div>
+                                <div class="galleryCon">
+								    <textarea style="height: height: 100%;" class="summernote"></textarea>
+								</div>
                                 <div class="pad">
                                     <input type="submit" value="등록"  class="submit">
                                 </div>

@@ -92,7 +92,6 @@
         WHERE BOARD_SEQ = #{boardSeq}
     </select>
 
-
     <insert id="insert" parameterType="hashMap">
         <selectKey order="BEFORE" keyProperty="boardSeq" resultType="int">
             SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM BROWNIE_BOARD
@@ -124,5 +123,6 @@
     <select id="count" resultType="int">
         SELECT COUNT(*) CNT FROM BROWNIE_BOARD WHERE BOARD_KIND='gallery'
     </select>
+    
 </mapper>
 

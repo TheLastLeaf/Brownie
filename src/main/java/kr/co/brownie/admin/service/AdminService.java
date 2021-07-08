@@ -4,4 +4,7 @@ public interface AdminService {
 	AdminVO UserCnt();
 
 	AdminVO ReportCnt();
+
+	AdminVO BoardCnt();
+
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
@@ -36,7 +37,7 @@ public class GalleryController {
 	@Resource(name = "galleryService")
 	GalleryService galleryService;
 
-	private int size = 10;
+	private int size = 30;
 
 	@GetMapping({ "", "/list" })
 	public String galleryList(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
@@ -66,17 +67,13 @@ public class GalleryController {
 	
 	@GetMapping("/detail")
 	public String details_post_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
-		System.out.println("어디서");
 		int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
-		System.out.println("터진거야");
 		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
-		System.out.println("시발");
-//		List<FileVO> fileVOList;
+		List<FileVO> fileVOList;
+		
 		if (galleryVO.getFileSeq()!=null) {
-			System.out.println("놈아");
-//			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
-			System.out.println("씨");
-//			model.addAttribute("fileVOList", fileVOList);
+			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
+			model.addAttribute("fileVOList", fileVOList);
 		}
 		
 		model.addAttribute("galleryVO", galleryVO);
@@ -89,41 +86,6 @@ public class GalleryController {
 		return "gallery/galleryAdd";
 	}
 	
-	@RequestMapping(value = "/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
-    @ResponseBody
-    public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
-		System.out.println(1);
-        JsonObject jsonObject = new JsonObject();
-        System.out.println(2);
-
-        
-        String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-        
-
-        // 내부경로로 저장
-        System.out.println(3);
-        String originalFileName = multipartFile.getOriginalFilename();    //오리지날 파일명
-        assert originalFileName != null;
-        String extension = originalFileName.substring(originalFileName.lastIndexOf("."));    //파일 확장자
-        String savedFileName = UUID.randomUUID() + extension;    //저장될 파일 명
-        System.out.println(4);
-        File targetFile = new File(fileRoot + savedFileName);
-        try {
-            InputStream fileStream = multipartFile.getInputStream();
-            FileUtils.copyInputStreamToFile(fileStream, targetFile);    //파일 저장
-            jsonObject.addProperty("url", "/summernoteImage/" + savedFileName); // contextroot + resources + 저장할 내부 폴더명
-            jsonObject.addProperty("responseCode", "success");
-            System.out.println(5);
-        } catch (IOException e) {
-            FileUtils.deleteQuietly(targetFile);    //저장된 파일 삭제
-            jsonObject.addProperty("responseCode", "error");
-            e.printStackTrace();
-            System.out.println(6);
-        }
-        System.out.println(5);
-        return jsonObject.toString();
-    }
-
 	@GetMapping("/update")
 	public String details_modify_gallery() {
 		return "gallery/galleryDetail";

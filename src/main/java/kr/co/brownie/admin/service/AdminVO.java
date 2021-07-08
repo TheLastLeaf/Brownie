@@ -11,5 +11,8 @@ public class AdminVO {
 	//신고 수 집계
 	private int reportUserCnt;
 
+	//게시글 수 집계
+	private int allBoardCnt;
+	private int recentBoardCnt;
 
 }
