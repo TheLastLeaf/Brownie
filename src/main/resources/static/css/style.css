@@ -4269,3 +4269,11 @@ ol {
     src: local(Maplestory Light),
     url('../fonts/Maplestory Light.ttf');
 }
+
+.font-maple-bold {
+    font-family: MapleBold;
+}
+
+.font-maple-light {
+    font-family: MapleLight;
+}
