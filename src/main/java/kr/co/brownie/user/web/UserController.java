@@ -86,28 +86,10 @@ public class UserController {
 			model.addAttribute("likeReplyCnt", likeReplyCnt);
 			model.addAttribute("hateReplyCnt", hateReplyCnt);
 			model.addAttribute("recentBoard", recentBoard);
-			
+
 			model.addAttribute("reviewVOs", reviewVOs);
 			model.addAttribute("page", page);
-			
-			
-			System.out.println("userOneSelect: " + userOneSelect);
-			System.out.println("sessionId: " + id);
-			System.out.println("reviewVOs: " + reviewVOs);
 
-			System.out.println("keyword : " + page.getTotalCount());
-			System.out.println("num : " + page.getNum());
-			System.out.println("totalCount : " + page.getTotalCount());
-			System.out.println("getStartPost : " + page.getStartPost());
-			System.out.println("getEndPost : " + page.getEndPost());
-			System.out.println("getPostNum : " + page.getPostNum());
-			System.out.println("getStartPageNum : " + page.getStartPageNum());
-			System.out.println("getEndPageNum : " + page.getEndPageNum());
-			System.out.println("getPageNum : " + page.getPageNum());
-			System.out.println("searchType : " + page.getSearchType());
-			System.out.println("keyword : " + page.getKeyword());
-			System.out.println("page: " + page);
-			
 			return "user/userInfo";
 		}
 		return "user/userInfo";

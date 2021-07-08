@@ -468,7 +468,6 @@ h1 {
 							</c:forEach>
 							
 							<!-- 페이징처리 -->
-							
 							<div class="paging col-12 pagination-item">
 								<c:if test="${page.prev}">
 									<a href="/user/userInfo?num=${page.startPageNum-1}">prev</a>
