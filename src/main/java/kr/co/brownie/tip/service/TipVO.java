@@ -23,9 +23,14 @@ public class TipVO {
     private int subSeq;
 
     public String getImgSrc() {
-        Document document = Jsoup.parse(content);
-        String src = document.select("img").attr("src");
-        if ("".equals(src)){
+        String src;
+        if (content != null) {
+            Document document = Jsoup.parse(content);
+            src = document.select("img").attr("src");
+            if ("".equals(src)) {
+                src = "/img/categories-list/cl-1.jpg";
+            }
+        } else {
             src = "/img/categories-list/cl-1.jpg";
         }
         return src;
