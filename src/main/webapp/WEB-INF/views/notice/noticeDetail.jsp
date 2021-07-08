@@ -3,28 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
 <fmt:formatDate value="${noticeVO.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss" />
-<style>
-    .list{
-        color:#666666;
-        cursor: pointer;
-    }
-    hr{
-        width: auto;
-        background-color: white;
-    }
-    .border{
-        border: 1px solid white;
-    }
-    .modify{
-        color:white;
-    }
-    .delete{
-        color:#c20000;
-    }
-    .title{
-        color: #666666;
-    }
-</style>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -41,12 +19,12 @@
                                 <ul>
                                     <li>by <span>${nickName}</span></li>
                                     <li>${update}</li>
-                                    <li class="list" onclick="location.href='/notice/list'">목록</li>
+                                    <li class="text-secondary cursor-pointer" onclick="location.href='/notice/list'">목록</li>
                                 </ul>
                             </div>
                         </div>
-                        <hr>
-                        <h4 class="title font-family-maple-bold">${noticeVO.title}</h4>
+                        <hr class="w-auto bg-white">
+                        <h4 class="text-secondary font-family-maple-bold">${noticeVO.title}</h4>
 <%--                        <div class="dp-pic">--%>
 <%--                            <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">--%>
 <%--                        </div>--%>
@@ -69,12 +47,12 @@
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <c:if test="${sessionScope.permit_level== 9}">
                                 <div class="innerBox text-right">
-                                        <input type="button" class="btn btn-outline-dark btn-sm modify"
+                                        <input type="button" class="btn btn-outline-dark btn-sm text-white"
                                                        onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'"
                                                        value="수정" >
                                         <form class="d-inline" action="/notice/delete" method="post">
                                             <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
-                                            <input type="submit" class="btn btn-outline-dark btn-sm delete" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
+                                            <input type="submit" class="btn btn-outline-dark btn-sm text-danger" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
                                         </form>
                                 </div>
                             </c:if>

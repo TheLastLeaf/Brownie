@@ -4282,4 +4282,6 @@ ol {
     margin: 10px;
 }
 
-c
+.cursor-pointer {
+    cursor: pointer;
+}
