@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -26,8 +27,22 @@ public class TipController {
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
 
     @GetMapping("/add")
-    public String add() {
+    public String add(Model model) {
+        model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsService.selectRecentlyChampionsList());
+
         return "tip/add";
+    }
+
+    @PostMapping("/add")
+    public String add_form(HttpServletRequest httpServletRequest) {
+        String author = httpServletRequest.getSession().getAttribute("id").toString();
+        String champion = httpServletRequest.getParameter("champion");
+        String title = httpServletRequest.getParameter("title");
+        String content = httpServletRequest.getParameter("content");
+
+        tipService.insert(author, champion, title, content);
+
+        return "redirect:/" + httpServletRequest.getContextPath() + "tip/list";
     }
 
     @GetMapping({"", "/list"})

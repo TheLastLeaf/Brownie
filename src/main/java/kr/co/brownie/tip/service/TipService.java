@@ -6,4 +6,6 @@ public interface TipService {
     TipPagingVO selectList(String champion, int currentPageNumber);
 
     TipVO select(int board_seq);
+
+    int insert(String author, String champion, String title, String content);
 }

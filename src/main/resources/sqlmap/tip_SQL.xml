@@ -5,38 +5,38 @@
 <mapper namespace="kr.co.brownie.tip.service.impl.TipMapper">
     <select id="selectTipList" parameterType="hashMap" resultType="kr.co.brownie.tip.service.TipVO">
         SELECT BOARDSEQ,
-               BOARDKIND,
-               BOARDCATEGORY,
-               TITLE,
-               CONTENT,
-               NOTICEYN,
-               STATUS,
-               INDATE,
-               INUSERID,
-               "UPDATE",
-               UPUSERID,
-               FILESEQ,
-               SUBSEQ
-        FROM (SELECT BOARD_SEQ      AS BOARDSEQ,
-                     BOARD_KIND     AS BOARDKIND,
-                     BOARD_CATEGORY AS BOARDCATEGORY,
-                     TITLE          AS TITLE,
-                     CONTENT        AS CONTENT,
-                     NOTICE_YN      AS NOTICEYN,
-                     STATUS         AS STATUS,
-                     IN_DATE        AS INDATE,
-                     IN_USER_ID     AS INUSERID,
-                     UP_DATE        AS "UPDATE",
-                     UP_USER_ID     AS UPUSERID,
-                     FILE_SEQ       AS FILESEQ,
-                     SUB_SEQ        AS SUBSEQ
-              FROM BROWNIE_BOARD
-              WHERE BOARD_KIND = 'tip'
+        BOARDKIND,
+        BOARDCATEGORY,
+        TITLE,
+        CONTENT,
+        NOTICEYN,
+        STATUS,
+        INDATE,
+        INUSERID,
+        "UPDATE",
+        UPUSERID,
+        FILESEQ,
+        SUBSEQ
+        FROM (SELECT BOARD_SEQ AS BOARDSEQ,
+        BOARD_KIND AS BOARDKIND,
+        BOARD_CATEGORY AS BOARDCATEGORY,
+        TITLE AS TITLE,
+        CONTENT AS CONTENT,
+        NOTICE_YN AS NOTICEYN,
+        STATUS AS STATUS,
+        IN_DATE AS INDATE,
+        IN_USER_ID AS INUSERID,
+        UP_DATE AS "UPDATE",
+        UP_USER_ID AS UPUSERID,
+        FILE_SEQ AS FILESEQ,
+        SUB_SEQ AS SUBSEQ
+        FROM BROWNIE_BOARD
+        WHERE BOARD_KIND = 'tip'
         <if test='!champion.equals("")'>
-                AND BOARD_CATEGORY = #{champion}
+            AND BOARD_CATEGORY = #{champion}
         </if>
-              ORDER BY BOARD_SEQ DESC
-             )
+        ORDER BY BOARD_SEQ DESC
+        )
         <![CDATA[
         WHERE ${contentPerPage} * (${currentPageNumber} - 1) < ROWNUM
           AND ROWNUM <= ${contentPerPage} * ${currentPageNumber}
@@ -47,7 +47,7 @@
         FROM BROWNIE_BOARD
         WHERE BOARD_KIND = 'tip'
         <if test='!champion.equals("")'>
-          AND BOARD_CATEGORY = #{champion}
+            AND BOARD_CATEGORY = #{champion}
         </if>
     </select>
     <select id="select" parameterType="int" resultType="kr.co.brownie.tip.service.TipVO">
@@ -68,4 +68,34 @@
         WHERE BOARD_KIND = 'tip'
           AND BOARD_SEQ = ${board_seq}
     </select>
+
+    <insert id="insert" parameterType="hashMap">
+        INSERT INTO BROWNIE_BOARD(BOARD_SEQ,
+                                  BOARD_KIND,
+                                  BOARD_CATEGORY,
+                                  TITLE,
+                                  CONTENT,
+                                  NOTICE_YN,
+                                  STATUS,
+                                  IN_DATE,
+                                  IN_USER_ID,
+                                  UP_DATE,
+                                  UP_USER_ID,
+                                  FILE_SEQ,
+                                  SUB_SEQ)
+        VALUES ((SELECT NVL(MAX(BOARD_SEQ), 0) + 1
+                 FROM BROWNIE_BOARD),
+                'tip',
+                #{champion},
+                #{title},
+                #{content},
+                'n',
+                '1',
+                SYSDATE,
+                '${author}',
+                SYSDATE,
+                '${author}',
+                null,
+                null)
+    </insert>
 </mapper>

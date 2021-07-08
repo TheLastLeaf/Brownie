@@ -110,11 +110,21 @@
     .pad {
         padding-top: 10px;
     }
-
 </style>
+<script>
+    $(function () {
+        $("select[name=champion]").on("change", function () {
+            const champion = $("select>option:selected").val();
+            $("#tip_add_banner_image")
+                .attr("data-setbg", "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + champion + "_0.jpg")
+                .css({backgroundImage: 'url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion + '_0.jpg'})
+        });
+    });
+</script>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad"
-         data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
+<section id="tip_add_banner_image"
+         class="breadcrumb-section set-bg spad"
+         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -122,7 +132,7 @@
                     <h3>팁과 노하우 등록</h3>
                     <div class="bt-option">
                         <a href="/index" style="color: black;">Home</a>
-                        <span>notice Add</span>
+                        <span>tip Add</span>
                     </div>
                 </div>
             </div>
@@ -140,10 +150,18 @@
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
-                                <input type="hidden" name="inUserId" value="${id}" id="inUserId">
-                                <div class="input-list" style="padding-bottom: 10px;">
-                                    <input type="text" placeholder="Title" class="title" id="title" name="title"
-                                           required="required">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <select name="champion">
+                                            <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
+                                                <option value="${champion.id}">${champion.name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="input-list col-9" style="padding-bottom: 10px;">
+                                        <input type="text" placeholder="Title" class="title" id="title" name="title"
+                                               required="required">
+                                    </div>
                                 </div>
                                 <div class="content">
                                     <textarea class="summernote" name="content" id="content"
