@@ -69,8 +69,8 @@ public class AdminController {
 	@GetMapping("/adminMemberList")
 	public String adminMemberList(Model model) {
 		//유저 리스트 셀렉트
-//		List<UserVO> userList = userService.selectList();
-//		model.addAttribute("userList", userList);
+		List<UserVO> userList = userService.selectList();
+		model.addAttribute("userList", userList);
 		return "admin/adminMemberList"; //회원 리스트 화면
 	}
 

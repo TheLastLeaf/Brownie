@@ -24,4 +24,6 @@ public interface UserService {
 
 	List<String> recentBoard(String id);
 
+	List<UserVO> selectList();
+
 }

@@ -9,6 +9,6 @@ import kr.co.brownie.board.service.BoardService;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
-	@Resource(name = "boardDAO")
-	BoardMapper boardDAO;
+	@Resource(name = "boardMapper")
+	BoardMapper boardMapper;
 }

@@ -28,4 +28,6 @@ public interface UserMapper {
 
 	List<String> recentBoard(String id);
 
+	List<UserVO> selectList();
+
 }

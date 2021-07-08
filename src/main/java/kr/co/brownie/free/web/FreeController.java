@@ -19,7 +19,7 @@ public class FreeController {
 	@GetMapping(path= {"", "/freeList"})
 	public String freeList(Model model) {
 
-
+		
 
 		return "";
 	}
