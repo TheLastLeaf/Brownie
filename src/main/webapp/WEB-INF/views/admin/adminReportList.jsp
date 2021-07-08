@@ -10,7 +10,7 @@
                 <div class="breadcrumb-text">
                     <h3>신고목록</h3>
                 <div>
-					<a href="#" style="color: #ffffff;">[돌아가기]</a>               
+					<a href="#" style="color: #ffffff;">[돌아가기]</a>
                 </div>
                 </div>
             </div>
@@ -20,11 +20,11 @@
 <!-- Breadcrumb Section End -->
 
 <script>
-	
+
 	var clickFlag = false;
-	
+
 	function makeStop(id){
-		
+
 	}
 
 </script>
@@ -43,29 +43,19 @@
 	                		<th>신고내용</th>
 	                		<th>신고자 아이디</th>
 	                		<th>신고일자</th>
-	                		<th>정지기한</th>
 	                		<th>처리상태</th>
 	                	</tr>
-	                	<tr>
-	                		<th>1</th>
-	                		<th>better</th>
-	                		<th>욕설</th>
-	                		<th>계속 뻐큐함</th>
-	                		<th>gg</th>
-	                		<th>2021.06.26.</th>
-	                		<th><input name='date' type='date' /> <input type='submit' value='완료' /></th>
-	                		<th><i class=fas fa-times"></i></th>
-	                	</tr>
-	                	<tr>
-	                		<th>2</th>
-	                		<th>nine</th>
-	                		<th>스팸</th>
-	                		<th>광고성 게시글 도배</th>
-	                		<th>qq</th>
-	                		<th>2021.06.26.</th>
-	                		<th><input name='date' type='date' /> <input type='submit' value='완료' /></th>
-	                		<th><i class="fas fa-check"></i></th>
-	                	</tr>
+	                	<c:forEach var="reportList" items="${reportList }"  varStatus="status">
+		                	<tr>
+		                		<th>${status.index }</th>
+		                		<th>${reportList.userId }</th>
+		                		<th>${reportList.reportName }</th>
+		                		<th>${reportList.content }</th>
+		                		<th>${reportList.inUserId }</th>
+		                		<th>${reportList.inDate }</th>
+		                		<th><i class="fas fa-times"></i></th>
+		                	</tr>
+	                	</c:forEach>
 	                </table>
 	                <div>
 	                 <div class="pagination-item" style="padding-top: 50px;">
@@ -75,9 +65,9 @@
 		                 <a href="#"><span>3</span></a>
 		                 <a href="#"><span>Next</span></a>
 		             </div>
-		             
+
 	                </div>
-	                
+
 	            </div>
             </div>
         </div>

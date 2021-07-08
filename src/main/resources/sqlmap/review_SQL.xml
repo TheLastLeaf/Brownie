@@ -17,5 +17,6 @@
 			REVIEW 
 		WHERE 
 			USER_ID = '${id}'
+		ORDER BY inDate DESC
 	</select>
 </mapper>
