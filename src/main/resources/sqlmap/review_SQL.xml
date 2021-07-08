@@ -19,6 +19,7 @@
 		        row_number()over(order by USER_ID desc) AS rNum
 		    FROM REVIEW 
 		    ) rv
-		WHERE userId = '${id}' and rNum BETWEEN 1 and 10
+		WHERE userId = '${id}' and rNum BETWEEN ${startPost} and ${endPost}
+		ORDER BY inDate DESC
 	</select>
 </mapper>

@@ -14,12 +14,30 @@ public class ReveiwServiceImpl implements ReviewService{
 	@Resource(name = "reviewMapper")
 	ReviewMapper reviewMapper;
 
+//	@Override
+//	public List<ReviewVO> selectReviewList(String id){
+//		if(reviewMapper.selectReviewList(id).size() == 0) {
+//			ReviewVO reviewvo = new ReviewVO();
+//			reviewvo.setReviewSeq(1);
+//			reviewvo.setUserId(id);
+//			reviewvo.setStarCnt(0);
+//			reviewvo.setReply("empty");
+//			reviewvo.setInDate(null);
+//			reviewvo.setModDate(null);
+//			reviewvo.setInUserId("anonymous");
+//			reviewvo.setUpUserId("anonymous");
+//		}
+//		
+//		return reviewMapper.selectReviewList(id); 
+//	}
+
 	@Override
-	public List<ReviewVO> selectReviewList(String id){
-		if(reviewMapper.selectReviewList(id).size() == 0) {
+	public List<ReviewVO> selectReviewList(ReviewPagingVO page) {
+		List<ReviewVO> reviewList = reviewMapper.selectReviewList(page);
+		if(reviewList.size() == 0) {
 			ReviewVO reviewvo = new ReviewVO();
 			reviewvo.setReviewSeq(1);
-			reviewvo.setUserId(id);
+			reviewvo.setUserId(page.getId());
 			reviewvo.setStarCnt(0);
 			reviewvo.setReply("empty");
 			reviewvo.setInDate(null);
@@ -27,7 +45,6 @@ public class ReveiwServiceImpl implements ReviewService{
 			reviewvo.setInUserId("anonymous");
 			reviewvo.setUpUserId("anonymous");
 		}
-		
-		return reviewMapper.selectReviewList(id); 
+		return reviewList;
 	}
 }

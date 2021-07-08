@@ -9,6 +9,8 @@ import kr.co.brownie.review.service.ReviewVO;
 @Repository("reviewMapper")
 public interface ReviewMapper {
 
-	List<ReviewVO> selectReviewList(String id);
+//	List<ReviewVO> selectReviewList(String id);
+
+	List<ReviewVO> selectReviewList(ReviewPagingVO page);
 
 }

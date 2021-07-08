@@ -1,7 +1,6 @@
 package kr.co.brownie.user.web;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.brownie.review.service.ReviewService;
 import kr.co.brownie.review.service.ReviewVO;
+import kr.co.brownie.review.service.impl.ReviewPagingVO;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 
@@ -27,10 +27,10 @@ import kr.co.brownie.user.service.UserVO;
 public class UserController {
 	@Resource(name = "userService")
 	UserService userService;
-	
-	@Resource(name="reviewService")
+
+	@Resource(name = "reviewService")
 	ReviewService reviewService;
-	
+
 	/**
 	 * @author 박세웅
 	 * @param model
@@ -39,7 +39,7 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@GetMapping("/userInfo")
-	public String userInfo(Model model, HttpSession httpSession) throws Exception {
+	public String userInfo(Model model, HttpSession httpSession, ReviewPagingVO page ) throws Exception {
 		String id = (String) httpSession.getAttribute("id");
 
 		/* 로그인후 session in 되었을때 */
@@ -55,7 +55,7 @@ public class UserController {
 			float starCnt = userService.starCntSelect(id);
 			int fullStar = (int) starCnt / 1;
 			float halfStar = starCnt - fullStar;
-			if(halfStar >= 0.5) {
+			if (halfStar >= 0.5) {
 				halfStar = 1;
 			}
 
@@ -69,7 +69,12 @@ public class UserController {
 			List<String> recentBoard = userService.recentBoard(id);
 
 			// 남이 나에게 쓴 후기 보여주기
-			List<ReviewVO> reviewVO = reviewService.selectReviewList(id);
+			//List<ReviewVO> reviewVO = reviewService.selectReviewList(id);
+
+			// 후기 페이징
+			page.setTotalCount(10);
+			page.setId(id);
+			List<ReviewVO> reviewList = reviewService.selectReviewList(page); 
 			
 			// model.addattribute
 			model.addAttribute("userOneSelect", userOneSelect);
@@ -84,10 +89,23 @@ public class UserController {
 			model.addAttribute("likeReplyCnt", likeReplyCnt);
 			model.addAttribute("hateReplyCnt", hateReplyCnt);
 			model.addAttribute("recentBoard", recentBoard);
-			model.addAttribute("reviewVO", reviewVO);
+//			model.addAttribute("reviewVO", reviewVO);
 			
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("sessionId: " + id);
+			System.out.println("reviewList: " + reviewList);
+			
+			System.out.println("keyword : " + page.getTotalCount());
+			System.out.println("num : " + page.getNum());
+			System.out.println("totalCount : " + page.getTotalCount());
+			System.out.println("getStartPost : " + page.getStartPost());
+			System.out.println("getEndPost : " + page.getEndPost());
+			System.out.println("getPostNum : " + page.getPostNum());
+			System.out.println("getStartPageNum : " + page.getStartPageNum());
+			System.out.println("getEndPageNum : " + page.getEndPageNum());
+			System.out.println("getPageNum : " + page.getPageNum());
+			System.out.println("searchType : " + page.getSearchType());
+			System.out.println("keyword : " + page.getKeyword());
 
 			return "user/userInfo";
 		}

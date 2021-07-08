@@ -25,6 +25,8 @@ public class ReviewPagingVO {
 	// 다음/이전 표시여부
 	private boolean prev;
 	private boolean next;
+	// 내가 쓸 아이디
+	private String id;
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
