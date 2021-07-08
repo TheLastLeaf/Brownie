@@ -54,20 +54,20 @@
 	<select id="userOneSelect"
 		resultType="kr.co.brownie.user.service.UserVO">
 		SELECT
-		USER_ID AS userId,
-		LOL_ID AS lolId,
-		NICK_NAME AS nickName,
-		BLACK_STACK AS blackStack,
-		STATUS AS status,
-		IN_DATE AS inDate,
-		UP_DATE AS modDate,
-		IN_USER_ID AS inUserId,
-		UP_USER_ID AS upUserId,
-		USER_POSITION AS userPosition
+			USER_ID AS userId,
+			LOL_ID AS lolId,
+			NICK_NAME AS nickName,
+			BLACK_STACK AS blackStack,
+			STATUS AS status,
+			IN_DATE AS inDate,
+			UP_DATE AS modDate,
+			IN_USER_ID AS inUserId,
+			UP_USER_ID AS upUserId,
+			USER_POSITION AS userPosition
 		FROM
-		BROWNIE_USER
+			BROWNIE_USER
 		WHERE
-		USER_ID = #{id}
+			USER_ID = #{id}
 	</select>
 
 	<select id="selectExp" resultType="int">
@@ -86,8 +86,10 @@
 	</select>
 	
 	<select id="boardTotalCnt" resultType="int">
-		SELECT COUNT(*)
-			FROM BOARD
+		SELECT 
+			COUNT(*)
+		FROM 
+			BROWNIE_BOARD
 		WHERE 
 			IN_USER_ID = '${id}'
 	</select>
@@ -118,7 +120,7 @@
 		SELECT 
 		    TITLE
 		FROM 
-		    BOARD
+		    BROWNIE_BOARD
 		WHERE 
 		    IN_USER_ID IN '${id}' AND ROWNUM <= 3
 		ORDER BY UP_DATE DESC
