@@ -34,6 +34,7 @@ public class AuthServiceImpl implements AuthService {
 		String access_token;
 
 		URL url = new URL(K_AUTH_URL + "/oauth/token");
+
 		HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 		httpURLConnection.setRequestMethod("POST");
 		httpURLConnection.setDoOutput(true);

@@ -14,6 +14,10 @@ import org.springframework.ui.Model;
 
 import kr.co.brownie.admin.service.AdminService;
 import kr.co.brownie.admin.service.AdminVO;
+import kr.co.brownie.blackList.service.BlackListService;
+import kr.co.brownie.blackList.service.BlackListVO;
+import kr.co.brownie.report.service.ReportVO;
+import kr.co.brownie.report.service.impl.ReportMapper;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 
@@ -27,8 +31,14 @@ public class AdminController {
 	@Resource(name = "adminService")
 	AdminService adminService;
 
+	@Resource(name = "blackListService")
+	BlackListService blackListService;
+
 	@Resource(name = "userService")
 	UserService userService;
+
+	@Resource(name = "reportMapper")
+	ReportMapper reportMapper;
 
 
 	@GetMapping(path={"", "/adminView"})
@@ -44,11 +54,6 @@ public class AdminController {
     	AdminVO UserCnt = adminService.UserCnt();
     	model.addAttribute("UserCnt", UserCnt);
 
-
-
-
-
-
 		return "admin/adminView"; //관리자 화면 기본
 	}
 
@@ -63,12 +68,18 @@ public class AdminController {
 	}
 
 	@GetMapping("/adminReportList")
-	public String adminReportList() {
+	public String adminReportList(Model model) {
+		List<ReportVO> reportList = reportMapper.selectReportList();
+		model.addAttribute("reportList", reportList);
+
+
 		return "admin/adminReportList"; //신고 리스트 화면
 	}
 
-	@GetMapping("/adminBlackList")
-	public String adminBlackList() {
+	@GetMapping("/adminBlackUserList")
+	public String adminBlackList(Model model) {
+		List<BlackListVO> blackList = blackListService.selectBlackList();
+		model.addAttribute("blackList", blackList);
 		return "admin/adminBlackList"; //블랙리스트 화면
 	}
 }
