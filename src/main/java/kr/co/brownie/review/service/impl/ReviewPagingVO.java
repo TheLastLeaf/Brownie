@@ -44,7 +44,7 @@ public class ReviewPagingVO {
 	}
 
 	private void dataCalc() {
-		// 마지막 번호 1/5=0.2 -> 올림 1 * 5 = 5
+		// 마지막 번호 1/3=0.2 -> 올림 1 * 3 = 3
 		endPageNum = (int) (Math.ceil((double) num / (double) pageNumCnt) * pageNumCnt);
 		// 시작 번호
 		startPageNum = endPageNum - (pageNumCnt - 1);

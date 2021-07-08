@@ -467,7 +467,7 @@ h1 {
 								</div>
 							</c:forEach>
 							
-							<!-- 페이징처리 -->
+							<!-- 페이징처리 begin -->
 							<div class="paging col-12 pagination-item">
 								<c:if test="${page.prev}">
 									<a href="/user/userInfo?num=${page.startPageNum-1}">prev</a>
@@ -483,9 +483,10 @@ h1 {
 									</c:choose>
 								</c:forEach>
 								<c:if test="${page.next}">
-									<a href="/user/userInfo?num=${page.endPageNum+1}">next</a>
+									<a href	="/user/userInfo?num=${page.endPageNum+1}">next</a>
 								</c:if>
 							</div>
+							<!-- 페이징처리 end -->
 						</div>
 					</c:when>
 

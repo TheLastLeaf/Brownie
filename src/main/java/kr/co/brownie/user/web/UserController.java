@@ -90,6 +90,10 @@ public class UserController {
 			model.addAttribute("reviewVOs", reviewVOs);
 			model.addAttribute("page", page);
 
+			System.out.println("getEndPageNum : " + page.getEndPageNum());
+			System.out.println("getStartPageNum : " + page.getStartPageNum());
+			System.out.println("getPageNum : " + page.getPageNum());
+
 			return "user/userInfo";
 		}
 		return "user/userInfo";
