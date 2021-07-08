@@ -32,9 +32,9 @@
                      SUB_SEQ        AS SUBSEQ
               FROM BROWNIE_BOARD
               WHERE BOARD_KIND = 'tip'
-                  <if test='!champion.equals("")'>
+        <if test='!champion.equals("")'>
                 AND BOARD_CATEGORY = #{champion}
-                  </if>
+        </if>
               ORDER BY BOARD_SEQ DESC
              )
         <![CDATA[

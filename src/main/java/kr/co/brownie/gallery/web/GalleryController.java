@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
@@ -72,12 +71,12 @@ public class GalleryController {
 		System.out.println("터진거야");
 		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
 		System.out.println("시발");
-		List<FileVO> fileVOList;
+//		List<FileVO> fileVOList;
 		if (galleryVO.getFileSeq()!=null) {
 			System.out.println("놈아");
-			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
+//			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
 			System.out.println("씨");
-			model.addAttribute("fileVOList", fileVOList);
+//			model.addAttribute("fileVOList", fileVOList);
 		}
 		
 		model.addAttribute("galleryVO", galleryVO);

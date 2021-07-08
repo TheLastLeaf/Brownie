@@ -2,21 +2,15 @@ package kr.co.brownie.notice.web;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.co.brownie.notice.service.NoticePage;
 import kr.co.brownie.notice.service.NoticeVO;
 import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.notice.service.NoticeService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,8 +18,6 @@ import java.util.Map;
 public class NoticeController {
     @Resource(name = "noticeService")
     NoticeService noticeService;
-
-    private int size = 10;
 
     @GetMapping("/add")
     public String noticeAdd(HttpSession session, Model model){
@@ -63,20 +55,19 @@ public class NoticeController {
     }
 
     @GetMapping(path={"", "/list"})
-    public String noticeList(@RequestParam Map<String,Object> map, Model model,HttpSession session) {
-        String id = (String)session.getAttribute("id");
-        map.put("id",id);
-        int total = this.noticeService.selectCount();
-        String strPageNum = (String)map.get("pageNum")==null?"1":(String) map.get("pageNum");
-        int pageNum = Integer.parseInt(strPageNum);
-        map.put("pageNum", pageNum);
-        String nickName = this.noticeService.selectnickname();
-        List<NoticeVO> noticeVOList = this.noticeService.getNoticelist(map);
-        model.addAttribute("noticeVOList",new NoticePage(total, pageNum ,size, noticeVOList));
-        model.addAttribute("nickName",nickName);
-        model.addAttribute("notice",map.get("notice"));
-        model.addAttribute("keyword",map.get("keyword"));
-        return "notice/noticeList"; //공지 리스트
+    public String noticeList(HttpServletRequest httpServletRequest, Model model) {
+        String keyword = httpServletRequest.getParameter("keyword") == null ? "" : httpServletRequest.getParameter("keyword");
+        int currentPageNumber;
+        try {
+            currentPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("pageNum")), 1);
+        } catch (NullPointerException | NumberFormatException e) {
+            currentPageNumber = 1;
+        }
+
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("PagingVO", noticeService.selectList(keyword, currentPageNumber));
+
+        return "notice/list"; //공지 리스트
     }
 
     @GetMapping("/update")

@@ -1,6 +1,7 @@
 package kr.co.brownie.user.web;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.brownie.review.service.ReviewService;
+import kr.co.brownie.review.service.ReviewVO;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 
@@ -24,7 +27,10 @@ import kr.co.brownie.user.service.UserVO;
 public class UserController {
 	@Resource(name = "userService")
 	UserService userService;
-
+	
+	@Resource(name="reviewService")
+	ReviewService reviewService;
+	
 	/**
 	 * @author 박세웅
 	 * @param model
@@ -60,8 +66,8 @@ public class UserController {
 			List<String> recentBoard = userService.recentBoard(id);
 
 			// 남이 나에게 쓴 후기 보여주기
-//			String protagonist = userService.protagonist(id);
-
+			List<ReviewVO> reviewVO = reviewService.selectReviewList(id);
+			
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
 			model.addAttribute("position", position);
@@ -74,19 +80,11 @@ public class UserController {
 			model.addAttribute("likeReplyCnt", likeReplyCnt);
 			model.addAttribute("hateReplyCnt", hateReplyCnt);
 			model.addAttribute("recentBoard", recentBoard);
-
+			model.addAttribute("reviewVO", reviewVO);
+			
 			System.out.println("userOneSelect: " + userOneSelect);
 			System.out.println("sessionId: " + id);
-			System.out.println("exp: " + exp);
-			System.out.println("position: " + position);
-			System.out.println("exp: " + exp);
-			System.out.println("fullStar: " + fullStar + " / " + "halfStar: " + halfStar);
-			System.out.println("boardTotalCnt: " + boardTotalCnt);
-			System.out.println("replyTotalCnt: " + replyTotalCnt);
-			System.out.println("likeReplyCnt: " + likeReplyCnt);
-			System.out.println("hateReplyCnt: " + hateReplyCnt);
-
-			System.out.println("마지막줄처리");
+			System.out.println("reviewVO값: " + reviewVO);
 
 			return "user/userInfo";
 		}
