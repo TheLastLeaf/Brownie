@@ -17,7 +17,7 @@ public class ReveiwServiceImpl implements ReviewService{
 	@Override
 	public List<ReviewVO> selectReviewList(ReviewPagingVO page) {
 		List<ReviewVO> reviewList = reviewMapper.selectReviewList(page);
-		if(reviewList.size() == 0) {
+		if(reviewList == null) {
 			ReviewVO reviewvo = new ReviewVO();
 			reviewvo.setReviewSeq(1);
 			reviewvo.setUserId(page.getId());
