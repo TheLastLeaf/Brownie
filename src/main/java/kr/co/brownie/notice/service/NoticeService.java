@@ -6,7 +6,7 @@ import java.util.Map;
 public interface NoticeService {
     int CONTENT_PER_PAGE = 10;
 
-    PagingVO selectList(String keyword, int currentPageNumber);
+    PagingVO selectList(String notice,String keyword, int currentPageNumber);
 
     int count(String keyword);
 

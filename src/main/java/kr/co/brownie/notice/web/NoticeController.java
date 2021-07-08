@@ -30,7 +30,9 @@ public class NoticeController {
     }
 
     @PostMapping("/add")
-    public String noticeAddPost(@RequestParam Map<String, Object> map,Model model,HttpSession session){
+    public String noticeAddPost(@RequestParam Map<String, Object> map,Model model,HttpSession session, HttpServletRequest servletRequest){
+        String content = servletRequest.getParameter("content");
+        map.put("content",content);
         noticeService.insertNotice(map);
         String id = (String)session.getAttribute("id");
         model.addAttribute("id",id);
@@ -57,6 +59,11 @@ public class NoticeController {
 
     @GetMapping(path={"", "/list"})
     public String noticeList(HttpServletRequest httpServletRequest, Model model) {
+        String notice_ = httpServletRequest.getParameter("notice");
+        String notice = "";
+        if(notice_ != null && notice_.equals("")) {
+            notice = notice_;
+        }
         String keyword = httpServletRequest.getParameter("keyword") == null ? "" : httpServletRequest.getParameter("keyword");
         int currentPageNumber;
         try {
@@ -66,7 +73,7 @@ public class NoticeController {
         }
 
         model.addAttribute("keyword", keyword);
-        model.addAttribute("PagingVO", noticeService.selectList(keyword, currentPageNumber));
+        model.addAttribute("PagingVO", noticeService.selectList(notice,keyword, currentPageNumber));
 
         return "notice/list"; //공지 리스트
     }

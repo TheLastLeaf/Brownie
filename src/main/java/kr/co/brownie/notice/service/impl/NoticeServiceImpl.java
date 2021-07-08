@@ -18,8 +18,9 @@ public class NoticeServiceImpl implements NoticeService {
     NoticeMapper noticeMapper;
 
     @Override
-    public PagingVO selectList(String keyword, int currentPageNumber) {
+    public PagingVO selectList(String notice,String keyword, int currentPageNumber) {
         Map<String, Object> map = new HashMap<>();
+        map.put("notice", notice);
         map.put("keyword", keyword);
         map.put("contentPerPage", CONTENT_PER_PAGE);
         map.put("currentPageNumber", currentPageNumber);
