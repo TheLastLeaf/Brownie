@@ -1,5 +1,7 @@
 package kr.co.brownie.board.service.impl;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void updateLikeHate(int boardSeq, int kind, String userId) {
-		boardMapper.updateLikeHate(boardSeq, kind, userId);
+	public void updateLikeHate(Map<String, Object> map) {
+    	int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
+    	String kind = map.get("kind").toString();
+    	String inUserId = map.get("inUserId").toString();
+    	System.out.println("????? "+boardSeq +" "+ kind +" "+ inUserId);
+		boardMapper.updateLikeHate(map);
 	}
 }

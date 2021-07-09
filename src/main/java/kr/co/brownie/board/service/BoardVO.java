@@ -22,4 +22,5 @@ public class BoardVO {
     //좋아요 싫어요
 	private String likeCnt;
 	private String hateCnt;
+	private int likeHateKind;
 }

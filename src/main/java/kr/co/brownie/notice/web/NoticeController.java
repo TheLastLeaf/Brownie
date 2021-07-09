@@ -30,7 +30,7 @@ public class NoticeController {
     }
 
     @PostMapping("/add")
-    public String noticeAddPost(@RequestParam Map<String, Object> map,Model model,HttpSession session, HttpServletRequest servletRequest){
+    public String noticeAddPost(@RequestParam Map<String, Object> map, Model model,HttpSession session, HttpServletRequest servletRequest){
         String id = servletRequest.getParameter("inUserId");
         String title = servletRequest.getParameter("title");
         String content = servletRequest.getParameter("content");

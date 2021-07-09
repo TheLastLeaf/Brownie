@@ -2,6 +2,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 
+
+<!-- 스크립트 // 하단 아이디 부분 세션스코프로 바꿔줘야함 -->
+<script type="text/javascript">
+	function likeHateCheck(kind) {
+		$.ajax({
+			url : "./ajax.likeHate",
+			type : "get",
+			data : {
+					"boardSeq" : ${freeDetail.boardSeq },
+					"inUserId":'1786827527',
+					"kind": kind
+			},
+			success : function(data) {
+				alert(data);
+			},
+			error : function() {
+				alert("에러나요");
+			}
+		})
+	}
+
+</script>
+<!-- 스크립트 -->
+
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -37,7 +61,7 @@
                         </div>
                         <div class="ds-title">싫어요</div>
                         <div class="ds-links">
-                            <a href="#" class="wide"><i class="fas fa-heart"></i><span>${likeHateCnt.likeCnt }</span></a>
+                            <a href="javascript:likeHateCheck('0')" class="wide"><i class="fas fa-heart"></i><span>${likeHateCnt.likeCnt }</span></a>
                         </div>
                         <div class="ds-title">좋아요</div>
                     </div>

@@ -1,5 +1,8 @@
 package kr.co.brownie.board.service.impl;
 
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import kr.co.brownie.board.service.BoardVO;
@@ -8,6 +11,6 @@ import kr.co.brownie.board.service.BoardVO;
 public interface BoardMapper {
 	BoardVO likeHateCnt(int boardSeq);
 
-	void updateLikeHate(int boardSeq, int kind, String userId);
+	void updateLikeHate(Map<String, Object> map);
 
 }

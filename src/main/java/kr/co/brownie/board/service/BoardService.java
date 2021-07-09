@@ -1,7 +1,9 @@
 package kr.co.brownie.board.service;
 
+import java.util.Map;
+
 public interface BoardService {
 	BoardVO likeHateCnt(int boardSeq);
 
-	void updateLikeHate(int boardSeq, int kind, String userId);
+	void updateLikeHate(Map<String, Object> map);
 }
