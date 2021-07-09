@@ -18,4 +18,8 @@ public class BoardVO {
     private String upUserId;
     private int fileSeq;
     private int subSeq;
+
+    //좋아요 싫어요
+	private String likeCnt;
+	private String hateCnt;
 }

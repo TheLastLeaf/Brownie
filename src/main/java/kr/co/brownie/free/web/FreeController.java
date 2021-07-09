@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.brownie.board.service.BoardService;
+import kr.co.brownie.board.service.BoardVO;
+import kr.co.brownie.board.service.impl.BoardMapper;
 import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.free.service.impl.FreeMapper;
@@ -19,9 +22,11 @@ import kr.co.brownie.free.service.impl.FreeMapper;
 @Controller
 @RequestMapping("/free")
 public class FreeController {
-
 	@Resource(name = "freeService")
 	FreeService freeService;
+
+	@Resource(name = "boardService")
+	BoardService boardService;
 
 	@GetMapping(path= {"", "/freeList"})
 	public String freeList(Model model) {
@@ -42,9 +47,13 @@ public class FreeController {
 
     	int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
     	FreeVO freeDetail = freeService.selectDetail(boardSeq);
-
-    	System.out.println(freeDetail);
     	model.addAttribute("freeDetail", freeDetail);
+
+    	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+    	model.addAttribute("likeHateCnt", likeHateCnt);
+
+    	System.out.println(likeHateCnt);
+    	System.out.println(freeDetail);
 
     	//최근 일주일 간 좋아요 수가 많은 상위 5개
     	List<FreeVO> freeFamousList = freeService.selectFamous();

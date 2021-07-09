@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.board.service.impl.BoardMapper">
+
+	<select id="likeHateCnt" resultType="kr.co.brownie.board.service.BoardVO">
+		SELECT BOARD_SEQ, "0" as likecnt, "1" as HATECNT
+		FROM (SELECT BOARD_SEQ, KIND
+		FROM LIKE_BOARD)
+		PIVOT (
+		    COUNT(*)
+		    FOR KIND
+		    IN (0, 1)
+		)
+		WHERE BOARD_SEQ = #{boardSeq}
+	</select>
+
+</mapper>

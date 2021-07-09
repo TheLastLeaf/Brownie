@@ -33,11 +33,11 @@
                     </div>
                     <div class="dt-share" style="justify-content: center; align-content: center; text-align: center;">
                         <div class="ds-links">
-                            <a href="#" class="wide"><i class="far fa-heart"></i><span>99+</span></a>
+                            <a href="#" class="wide"><i class="far fa-heart"></i><span>${likeHateCnt.hateCnt }</span></a>
                         </div>
                         <div class="ds-title">싫어요</div>
                         <div class="ds-links">
-                            <a href="#" class="wide"><i class="fas fa-heart"></i><span>99+</span></a>
+                            <a href="#" class="wide"><i class="fas fa-heart"></i><span>${likeHateCnt.likeCnt }</span></a>
                         </div>
                         <div class="ds-title">좋아요</div>
                     </div>

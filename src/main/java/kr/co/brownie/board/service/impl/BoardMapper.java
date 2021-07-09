@@ -2,7 +2,9 @@ package kr.co.brownie.board.service.impl;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("boardMapper")
-public class BoardMapper {
+import kr.co.brownie.board.service.BoardVO;
 
+@Repository("boardMapper")
+public interface BoardMapper {
+	BoardVO likeHateCnt(int boardSeq);
 }
