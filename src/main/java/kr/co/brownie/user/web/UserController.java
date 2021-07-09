@@ -93,6 +93,8 @@ public class UserController {
 			System.out.println("getEndPageNum : " + page.getEndPageNum());
 			System.out.println("getStartPageNum : " + page.getStartPageNum());
 			System.out.println("getPageNum : " + page.getPageNum());
+			System.out.println("page: "+ page);
+			System.out.println("reviewVOs: " + reviewVOs);
 
 			return "user/userInfo";
 		}

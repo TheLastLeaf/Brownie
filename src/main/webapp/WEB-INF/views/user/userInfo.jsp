@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:import url="../layout/header.jsp" />
 <style>
 .profileBox {
@@ -244,6 +245,37 @@ h1 {
 	justify-content: flex-end;
 	margin-left: 20px;
 }
+
+.searchBox {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.input-value {
+	width: 30%;
+	height: 26px;
+	font-size: 14px;
+	color: #c4c4c4;
+	padding-left: 10px;
+	-webkit-transform: skewX(-15deg);
+	-ms-transform: skewX(-15deg);
+	transform: skewX(-15deg);
+	background: transparent;
+	border: 1px solid #363636;
+	/* 	margin-bottom: 20px; */
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.writeReview {
+	display: flex;
+	justify-content: flex-end;
+	position: absolute;
+	right: 20px;
+	top: 5px;
+}
 </style>
 <script>
 	function fn_sync() {
@@ -337,7 +369,7 @@ h1 {
 									<!-- 프로필 프레임 -->
 									<div class="profileFrame">
 										<img src="${pageContext.request.contextPath}/img/frame/red.png">
-										<div class="profileFrameLv">gd</div>
+										<div class="profileFrameLv">1</div>
 									</div>
 								</div>
 								<div class="col-7" style="color: white;">
@@ -375,7 +407,7 @@ h1 {
 								</div>
 								<div class="modInfo col-3">
 									<button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
-									<button type="button" class="btn btn-dark" onclick="fn_infoDel()">탈퇴</button>
+									<button type="button" class="btn btn-danger" onclick="fn_infoDel()">탈퇴</button>
 								</div>
 							</div>
 						</div>
@@ -439,19 +471,30 @@ h1 {
 						</div>
 						<!-- 연동/게시글/같이플레이한놈 end -->
 						<br />
+
+						<!-- 후기글 begin -->
+
 						<div class="reputation row">
-							<div class="col-sm-10" style="display: flex; justify-content: flex-start; align-items: center;">
+							<div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: center;">
 								후기를 써서 테러하세요!
 								<h6>&nbsp;[우클릭하여 신고]</h6>
 							</div>
-							<div class="col-sm-2" style="display: flex; justify-content: flex-end;">
-								<button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
+							<div class="col-sm-8" style="display: flex; justify-content: flex-end;">
+								<div class="searchBox">
+									<select name="searchType" class="input-value selectOption">
+										<option value="inUserId">작성자</option>
+										
+										<option value="inDate">날짜</option>
+									</select>
+									<input type="text" class="input-value" name=keyword>
+									<button type="button" class="btn btn-primary">검색</button>
+								</div>
 							</div>
-							
-							<!-- 다른사람이 쓴 후기 -->
+
 							<c:forEach var="reviewVO" items="${reviewVOs}">
 								<div class="review col-4">
-									<div class="reviewDay">${reviewVO.userId}&nbsp;${reviewVO.inDate}</div>
+									<div class="reviewDay">${reviewVO.inUserId}&nbsp;<fmt:formatDate value="${reviewVO.inDate}" />
+									</div>
 									<div class="rev font-family-maple-bold">
 										${reviewVO.reply}
 										<!-- hover 별 -->
@@ -466,27 +509,34 @@ h1 {
 									</div>
 								</div>
 							</c:forEach>
-							
+							<!-- 후기글 end-->
+
 							<!-- 페이징처리 begin -->
-							<div class="paging col-12 pagination-item">
-								<c:if test="${page.prev}">
-									<a href="/user/userInfo?num=${page.startPageNum-1}">prev</a>
-								</c:if>
-								<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
-									<c:choose>
-									<c:when test="${page.num != num}">
-											<a href="/user/userInfo?num=${num}">${num}</a>
-									</c:when>
-										<c:otherwise>
-											<a href="#">${num}</a>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-								<c:if test="${page.next}">
-									<a href	="/user/userInfo?num=${page.endPageNum+1}">next</a>
-								</c:if>
+							<div class="paging col-12 pagination-item" style="position: relative;">
+								<div class="col-12" style="display: flex; justify-content: center;">
+									<c:if test="${page.prev}">
+										<a href="/user/userInfo?num=${page.startPageNum-1}">prev</a>
+									</c:if>
+									<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+										<c:choose>
+											<c:when test="${page.num != num}">
+												<a href="/user/userInfo?num=${num}">${num}</a>
+											</c:when>
+											<c:otherwise>
+												<a href="#">${num}</a>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+									<c:if test="${page.next}">
+										<a href="/user/userInfo?num=${page.endPageNum+1}">next</a>
+									</c:if>
+								</div>
+								<div class="writeReview">
+									<button type="button" class="btn btn-secondary" style="margin: 0px;" onclick="fn_review()">후기작성</button>
+								</div>
 							</div>
 							<!-- 페이징처리 end -->
+
 						</div>
 					</c:when>
 

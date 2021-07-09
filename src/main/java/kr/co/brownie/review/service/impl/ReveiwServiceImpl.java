@@ -21,12 +21,12 @@ public class ReveiwServiceImpl implements ReviewService{
 			ReviewVO reviewvo = new ReviewVO();
 			reviewvo.setReviewSeq(1);
 			reviewvo.setUserId(page.getId());
-			reviewvo.setStarCnt(0);
-			reviewvo.setReply("empty");
+			reviewvo.setStarCnt(5);
+			reviewvo.setReply("회원가입을 축하드립니다!");
 			reviewvo.setInDate(null);
 			reviewvo.setModDate(null);
-			reviewvo.setInUserId("anonymous");
-			reviewvo.setUpUserId("anonymous");
+			reviewvo.setInUserId("Admin");
+			reviewvo.setUpUserId("Admin");
 		}
 		return reviewList;
 	}
