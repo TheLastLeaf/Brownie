@@ -31,16 +31,11 @@ public class NoticeController {
 
     @PostMapping("/add")
     public String noticeAddPost(@RequestParam Map<String, Object> map,Model model,HttpSession session, HttpServletRequest servletRequest){
+        String id = servletRequest.getParameter("inUserId");
+        String title = servletRequest.getParameter("title");
         String content = servletRequest.getParameter("content");
-        map.put("content",content);
-        noticeService.insertNotice(map);
-        String id = (String)session.getAttribute("id");
-        model.addAttribute("id",id);
-        if(map.get("boardSeq")==null){
-            return "redirect:/notice/list";
-        }else{
-            return "redirect:/notice/detail?boardSeq="+map.get("boardSeq");
-        }
+        noticeService.insertNotice(id,title,content);
+        return "redirect:"+servletRequest.getContextPath()+"/notice/list";
     }
 
     @GetMapping("/detail")

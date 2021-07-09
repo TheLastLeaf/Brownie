@@ -10,7 +10,7 @@ public interface NoticeService {
 
     int count(String keyword);
 
-    int insertNotice(Map<String, Object> map);
+    int insertNotice(String id, String title, String content);
 
     List<NoticeVO> getNoticelist(Map<String, Object> map);
 

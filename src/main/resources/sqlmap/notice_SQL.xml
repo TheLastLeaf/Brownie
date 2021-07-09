@@ -91,12 +91,9 @@
         WHERE USER_ID = #{inUserId}
     </select>
     <insert id="insert" parameterType="hashMap">
-        <selectKey order="BEFORE" keyProperty="boardSeq" resultType="int">
-            SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM BROWNIE_BOARD
-        </selectKey>
         INSERT INTO
         BROWNIE_BOARD(BOARD_SEQ,BOARD_KIND,BOARD_CATEGORY,TITLE,CONTENT,NOTICE_YN,STATUS,IN_DATE,IN_USER_ID,UP_DATE,UP_USER_ID,FILE_SEQ,SUB_SEQ)
-        VALUES (#{boardSeq},'notice','공지사항',#{title},#{content},'Y',NULL,SYSDATE,#{inUserId},SYSDATE,#{inUserId},NULL,NULL)
+        VALUES ((SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM BROWNIE_BOARD),'notice','공지사항',#{title},#{content},'y',NULL,SYSDATE,#{id},SYSDATE,#{id},NULL,NULL)
     </insert>
 
     <update id="update" parameterType="hashMap">

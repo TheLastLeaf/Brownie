@@ -43,9 +43,12 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public int insertNotice(Map<String, Object> map) {
-        int boardSeq = noticeMapper.insert(map);
-        return boardSeq;
+    public int insertNotice(String id, String title, String content) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("id",id);
+        map.put("title",title);
+        map.put("content",content);
+        return noticeMapper.insert(map);
     }
 
     @Override
