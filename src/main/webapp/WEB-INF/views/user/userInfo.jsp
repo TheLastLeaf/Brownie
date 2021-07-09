@@ -70,6 +70,8 @@
 
 button {
 	margin: 10px;
+	height: 33px;
+	font-size: 15px;
 }
 
 .sync {
@@ -102,11 +104,6 @@ hr {
 	border: 1px solid white;
 	border-radius: 3px 3px 15px 15px;
 	color: white;
-}
-
-button {
-	height: 33px;
-	font-size: 15px;
 }
 
 .review {
@@ -281,107 +278,12 @@ h1 {
 	color: black;
 	background: lightgray;
 }
+
+.searchBtn {
+	width: 60px;
+}
 </style>
-<script>
-	function fn_sync() {
-		window.open("/user/userSync", "userSync",
-				"width=800, height=680, left=250,top=200");
-	}
 
-	function fn_infoMod() {
-		window.open("/user/userModify", "userModify",
-				"width=800, height=680, left=250,top=200");
-	}
-
-	function fn_review() {
-		window.open("/user/userReview", "userReview",
-				"width=870, height=500, left=400,top=200");
-	}
-
-	function fn_declaration() {
-		window.open("/user/userDeclar", "userDeclar",
-				"width=980, height=500, left=400,top=200");
-	}
-
-	function fn_infoDel() {
-		confirm("탈퇴하시겠습니까?")
-	}
-
-	// 마우스 우클릭 TEXTCONTENT
-	$(function() {
-		$(".review").contextmenu(
-				function(e) {
-					const winWidth = $(document).width();
-					const winHeight = $(document).height();
-					const posX = e.pageX;
-					const posY = e.pageY;
-					const contextmenu = $(".contextmenu");
-					const menuWidth = contextmenu.width();
-					const menuHeight = contextmenu.height();
-					const secMargin = 10;
-					let posLeft;
-					let posTop;
-					if (posX + menuWidth + secMargin >= winWidth
-							&& posY + menuHeight + secMargin >= winHeight) {
-						posLeft = posX - menuWidth - secMargin + "px";
-						posTop = posY - menuHeight - secMargin + "px";
-					} else if (posX + menuWidth + secMargin >= winWidth) {
-						posLeft = posX - menuWidth - secMargin + "px";
-						posTop = posY + secMargin + "px";
-					} else if (posY + menuHeight + secMargin >= winHeight) {
-						posLeft = posX + secMargin + "px";
-						posTop = posY - menuHeight - secMargin + "px";
-					} else {
-						posLeft = posX + secMargin + "px";
-						posTop = posY + secMargin + "px";
-					}
-
-					contextmenu.css({
-						"left" : posLeft,
-						"top" : posTop
-					}).show();
-					return false;
-				});
-		$(document).click(function() {
-			$(".contextmenu").hide();
-		});
-	});
-
-	// 	input type date 선택했을때 상자모양 변하게
-	// 	function fn_search() {
-	//         searching = $("#searchType option:selected").val();
-	// 		//alert(searching)
-
-	//         var param = "dummy=" + Math.random();
-	//          param += "&searching="+searching;
-	//          $.ajax({
-	//             url : '/user/userInfo',
-	//             data : param,
-	//             dataType : "json",
-	//             type : "post",
-	//             async: false,
-	//             statusCode : {
-	//                404 : function() {
-	//                   alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
-	//                }
-	//             },
-	//             success : function(data) {
-	//                alert("hi")
-	//             }
-	//          });
-	//      }
-	$(function() {
-		$('#searchType').click(function() {
-			if (this.value == 'writerId') {
-				$('#writeUsers').css('display', 'block');
-				$('#dateSelects').css('display', 'none');
-			} else {
-				$('#writeUsers').css('display', 'none');
-				$('#dateSelects').css('display', 'block');
-			}
-		})
-	});
-</script>
 <!-- Main Content Post Section Begin -->
 <section class="details-post-section spad" style="padding: 0;">
 	<!-- class="container"는 글을 가운데 정렬해주는 역할 -->
@@ -390,8 +292,7 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a>
-						<span>userDetail</span>
+						<a href="#">userInfo</a> <span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -479,8 +380,7 @@ h1 {
 								<div class="infoDetail">【 최근 게시글 내역 】</div>
 								<c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
 									<div class="upload">
-										${vs.index+1}.
-										<a href="">${recentBoard}</a>
+										${vs.index+1}. <a href="">${recentBoard}</a>
 									</div>
 								</c:forEach>
 							</div>
@@ -523,12 +423,11 @@ h1 {
 								<div class="searchBox">
 									<select name="searchType" id="searchType" class="input-value selectOption">
 										<option class="optionBox" value="writerId">작성자</option>
-										<!-- 										옵션의 value값이 대호형 title 위치 -->
 										<option class="optionBox" value="writeDate">날짜</option>
 									</select>
-									<input type="text" class="input-value" id="writeUsers" name="keyword" style="display: block;">
-									<input type="date" class="input-value" id="dateSelects" name="dateSelect" style="display: none; width: 45%; background: gray;">
-									<button type="button" class="btn btn-primary" style="font-size: 15px;">검색</button>
+									<input type="text" class="input-value" id="writeUser" name="keyword" style="display: block;" placeholder="검색어입력">
+									<input type="date" class="input-value" id="dateSelect" name="keyword" style="display: none; width: 45%; background: gray;">
+									<button type="button" id="searchBtn" class="btn btn-primary">검색</button>
 								</div>
 							</div>
 
@@ -556,12 +455,12 @@ h1 {
 							<div class="paging col-12 pagination-item" style="position: relative;">
 								<div class="col-12" style="display: flex; justify-content: center;">
 									<c:if test="${page.prev}">
-										<a href="/user/userInfo?num=${page.startPageNum-1}">prev</a>
+										<a href="/user/userInfo?num=${page.startPageNum-1}${page.searchType}">prev</a>
 									</c:if>
 									<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 										<c:choose>
 											<c:when test="${page.num != num}">
-												<a href="/user/userInfo?num=${num}">${num}</a>
+												<a href="/user/userInfo?num=${num}${page.searchType}">${num}</a>
 											</c:when>
 											<c:otherwise>
 												<a href="#">${num}</a>
@@ -569,7 +468,7 @@ h1 {
 										</c:choose>
 									</c:forEach>
 									<c:if test="${page.next}">
-										<a href="/user/userInfo?num=${page.endPageNum+1}">next</a>
+										<a href="/user/userInfo?num=${page.endPageNum+1}${page.searchType}">next</a>
 									</c:if>
 								</div>
 								<div class="writeReview">
@@ -699,6 +598,7 @@ h1 {
 </section>
 
 
+
 <!-- Details Post Section End -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.css" integrity="sha512-SWjZLElR5l3FxoO9Bt9Dy3plCWlBi1Mc9/OlojDPwryZxO0ydpZgvXMLhV6jdEyULGNWjKgZWiX/AMzIvZ4JuA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.js" integrity="sha512-kvg/Lknti7OoAw0GqMBP8B+7cGHvp4M9O9V6nAYG91FZVDMW3Xkkq5qrdMhrXiawahqU7IZ5CNsY/wWy1PpGTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -706,3 +606,124 @@ h1 {
 <c:import url="../layout/footer.jsp">
 	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>
+
+<script>
+	function fn_sync() {
+		window.open("/user/userSync", "userSync",
+				"width=800, height=680, left=250,top=200");
+	}
+
+	function fn_infoMod() {
+		window.open("/user/userModify", "userModify",
+				"width=800, height=680, left=250,top=200");
+	}
+
+	function fn_review() {
+		window.open("/user/userReview", "userReview",
+				"width=870, height=500, left=400,top=200");
+	}
+
+	function fn_declaration() {
+		window.open("/user/userDeclar", "userDeclar",
+				"width=980, height=500, left=400,top=200");
+	}
+
+	function fn_infoDel() {
+		confirm("탈퇴하시겠습니까?")
+	}
+
+	// 마우스 우클릭 TEXTCONTENT
+	$(function() {
+		$(".review").contextmenu(
+				function(e) {
+					const winWidth = $(document).width();
+					const winHeight = $(document).height();
+					const posX = e.pageX;
+					const posY = e.pageY;
+					const contextmenu = $(".contextmenu");
+					const menuWidth = contextmenu.width();
+					const menuHeight = contextmenu.height();
+					const secMargin = 10;
+					let posLeft;
+					let posTop;
+					if (posX + menuWidth + secMargin >= winWidth
+							&& posY + menuHeight + secMargin >= winHeight) {
+						posLeft = posX - menuWidth - secMargin + "px";
+						posTop = posY - menuHeight - secMargin + "px";
+					} else if (posX + menuWidth + secMargin >= winWidth) {
+						posLeft = posX - menuWidth - secMargin + "px";
+						posTop = posY + secMargin + "px";
+					} else if (posY + menuHeight + secMargin >= winHeight) {
+						posLeft = posX + secMargin + "px";
+						posTop = posY - menuHeight - secMargin + "px";
+					} else {
+						posLeft = posX + secMargin + "px";
+						posTop = posY + secMargin + "px";
+					}
+
+					contextmenu.css({
+						"left" : posLeft,
+						"top" : posTop
+					}).show();
+					return false;
+				});
+		$(document).click(function() {
+			$(".contextmenu").hide();
+		});
+	});
+
+	// 	input type date 선택했을때 상자모양 변하게
+	// 	function fn_search() {
+	//         searching = $("#searchType option:selected").val();
+	// 		//alert(searching)
+
+	//         var param = "dummy=" + Math.random();
+	//          param += "&searching="+searching;
+	//          $.ajax({
+	//             url : '/user/userInfo',
+	//             data : param,
+	//             dataType : "json",
+	//             type : "post",
+	//             async: false,
+	//             statusCode : {
+	//                404 : function() {
+	//                   alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+	//                }
+	//             },
+	//             success : function(data) {
+	//                alert("hi")
+	//             }
+	//          });
+	//      }
+
+	// 작성자와 날짜 스위칭 display block과 none을 잘 활용
+	$(function() {
+		$('#searchType').click(function() {
+			if (this.value == 'writerId') {
+				$('#writeUser').css('display', 'block');
+				$('#dateSelect').css('display', 'none');
+			} else {
+				$('#writeUser').css('display', 'none');
+				$('#dateSelect').css('display', 'block');
+			}
+		})
+	});
+
+	// search
+	document.getElementById("searchBtn").onclick = function() {
+
+		let searchType = document.getElementsByName("searchType")[0].value;
+		let keyword = "";
+		if(searchType == 'writerId'){
+			let keyword = document.getElementsByName("keyword")[0].value;
+		}
+		if(searchType == 'writeDate'){
+			let keyword = document.getElementsByName("keyword")[1].value;
+		}
+
+		console.log("searchType: " + searchType)
+		console.log("keyword:" + keyword)
+	};
+
+	//
+</script>
