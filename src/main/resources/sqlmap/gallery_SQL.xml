@@ -98,7 +98,7 @@
         </selectKey>
         INSERT INTO
         BROWNIE_BOARD(BOARD_SEQ,BOARD_KIND,TITLE,CONTENT,NOTICE_YN,STATUS,IN_DATE,IN_USER_ID,UP_DATE,UP_USER_ID,FILE_SEQ,SUB_SEQ)
-        VALUES (#{boardSeq},'notice',#{title},#{content},NULL,NULL,SYSDATE,#{inUserId},SYSDATE,#{inUserId},NULL,NULL)
+        VALUES (#{boardSeq},'gallery',#{title},#{content},NULL,NULL,SYSDATE,#{inUserId},SYSDATE,#{inUserId},NULL,NULL)
     </insert>
 
     <update id="update" parameterType="hashMap">

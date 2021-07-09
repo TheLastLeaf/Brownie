@@ -45,7 +45,7 @@ public class GalleryController {
 		String id = (String) session.getAttribute("id");
 		map.put("id", id);
 		
-		//공지데이터
+		//怨듭��뜲�씠�꽣
 		List<GalleryVO> noticeVOList = this.galleryService.getNoticeList(map);
 		
 		System.out.println(noticeVOList);
@@ -88,10 +88,13 @@ public class GalleryController {
 	}
 	
 	@PostMapping("/add")
-	public String add() {
+	public String add(@RequestParam Map<String, Object> map, Model model,HttpSession session, HttpServletRequest servletRequest) {
+        String title = servletRequest.getParameter("title");
+        String content = servletRequest.getParameter("summernote");
 		
-		
-		
+		System.out.println(title);
+
+		System.out.println(content);
 		
 		return "gallery/galleryAdd";
 	}
