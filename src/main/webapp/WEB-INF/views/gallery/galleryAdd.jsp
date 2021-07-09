@@ -150,7 +150,7 @@
 								    <textarea style="height: height: 100%;" class="summernote"></textarea>
 								</div>
                                 <div class="pad">
-                                    <input type="submit" value="등록"  class="submit">
+                                    <input onclick="location.href=''" type="submit" value="등록"  class="submit">
                                 </div>
                             </div>
                         </div>

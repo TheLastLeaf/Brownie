@@ -15,6 +15,7 @@ import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -83,6 +84,15 @@ public class GalleryController {
 
 	@GetMapping("/add")
 	public String details_add_gallery() {
+		return "gallery/galleryAdd";
+	}
+	
+	@PostMapping("/add")
+	public String add() {
+		
+		
+		
+		
 		return "gallery/galleryAdd";
 	}
 	
