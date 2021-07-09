@@ -11,4 +11,6 @@ public interface FreeMapper {
 	List<FreeVO> selectList();
 
 	List<FreeVO> selectFamous();
+
+	FreeVO selectDetail(int boardSeq);
 }

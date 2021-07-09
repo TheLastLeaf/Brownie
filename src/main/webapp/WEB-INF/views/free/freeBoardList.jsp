@@ -30,7 +30,7 @@
                         <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                     </div>
                     <div class="cl-text">
-                        <h5><a href="#">${freeList.title }</a></h5>
+                        <h5><a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeList.boardSeq}">${freeList.title }</a></h5>
                         <ul>
                             <li>by <span>${freeList.nickName }</span></li>
                             <li><i class="far fa-clock"></i>${freeList.inDate }</li>

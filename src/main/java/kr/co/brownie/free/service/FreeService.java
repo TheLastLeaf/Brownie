@@ -6,4 +6,7 @@ public interface FreeService {
 	List<FreeVO> selectList();
 
 	List<FreeVO> selectFamous();
+
+	FreeVO selectDetail(int boardSeq);
+
 }

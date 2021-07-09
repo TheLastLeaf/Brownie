@@ -12,39 +12,24 @@
 <!--                  </div> -->
                 <div class="details-text">
                     <div class="dt-quote">
-                        <p>우리동네 소갈비살 1kg에 55,000원</p>
+                        <p>${freeDetail.title }</p>
                     </div>
                     <div class="dt-desc">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua accusantium doloremque laudantium.</p>
+                        <p> </p>
                     </div>
                     <div class="dt-item">
-                        <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat.</p>
+                        <p> </p>
                     </div>
                     <div class="dp-text">
-                        <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                            himenaeos. Mauris vel magna ex. Integer gravida tincidunt accumsan. Vestibulum nulla
-                            mauris, condimentum id felis ac, volutpat volutpat mi. In vitae tempor velit of the
-                            impenetrable foliage.</p>
+                        <p>${freeDetail.content } </p>
                     </div>
                     <div class="dt-last-desc">
-                        <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
-                            vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
-                            odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                            nesciunt tempora incidunt ut labore . Neque porro quisquam est, qui dolorem ipsum quia
-                            dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi</p>
+                        <p> </p>
                     </div>
                     <div class="dt-tags">
-                        <a href="#"><span>롤</span></a>
-                        <a href="#"><span>히오스</span></a>
-                        <a href="#"><span>AOS</span></a>
-                        <a href="#"><span>FPS</span></a>
+	                    <c:forTokens items="${freeDetail.boardCategory }" delims="," var="tag">
+	                        <a href="#"><span>${tag }</span></a>
+	                    </c:forTokens>
                     </div>
                     <div class="dt-share" style="justify-content: center; align-content: center; text-align: center;">
                         <div class="ds-links">
@@ -95,7 +80,7 @@
                             <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
-                            <h5>better</h5>
+                            <h5>${freeDetail.nickName }</h5>
                             <p>허리펴 물마셔 목펴 눕고싶어 이 아래에 롤 티어 보여줘도 될듯</p>
                         </div>
                     </div>
@@ -150,78 +135,29 @@
                         <div class="section-title">
                             <h5>Best of Best</h5>
                         </div>
-                        <div class="bp-item">
-                            <div class="bp-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-1" data-cpvalue="95"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point" style="text-align: center;">99+</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bp-text">
-                                <h6><a href="#">여기는 추천수 두 자릿 수 이상 게시글</a></h6>
-                                <ul>
-                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                    <li><i class="far fa-comment"></i> 20</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bp-item">
-                            <div class="bp-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-2" data-cpvalue="85"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">43</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bp-text">
-                                <h6><a href="#">어제자 롤드컵 개쩌는장면</a></h6>
-                                <ul>
-                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                    <li><i class="far fa-comment"></i> 20</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bp-item">
-                            <div class="bp-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-3" data-cpvalue="80"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">84</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bp-text">
-                                <h6><a href="#">롤 개갓겜아니냐?</a></h6>
-                                <ul>
-                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                    <li><i class="far fa-comment"></i> 20</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="bp-item">
-                            <div class="bp-loader">
-                                <div class="loader-circle-wrap">
-                                    <div class="loader-circle">
-                                            <span class="circle-progress-1" data-cpid="id-4" data-cpvalue="75"
-                                                  data-cpcolor="#c20000"></span>
-                                        <div class="review-point">66</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bp-text">
-                                <h6><a href="#">마라샹궈 먹고싶네</a></h6>
-                                <ul>
-                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                    <li><i class="far fa-comment"></i> 20</li>
-                                </ul>
-                            </div>
-                        </div>
+
+                         <c:forEach var="freeFamousList" items="${freeFamousList }" varStatus="status">
+
+	                        <div class="bp-item">
+	                            <div class="bp-loader">
+	                                <div class="loader-circle-wrap">
+	                                    <div class="loader-circle">
+	                                            <span class="circle-progress-1" data-cpid="id-1" data-cpvalue="${freeFamousList.likeCnt }"
+	                                                  data-cpcolor="#c20000"></span>
+	                                        <div class="review-point" style="text-align: center;">${freeFamousList.likeCnt }</div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                            <div class="bp-text">
+	                                <h6><a href="#">${freeFamousList.title }</a></h6>
+	                                <ul>
+	                                    <li><i class="far fa-clock"></i>${freeFamousList.inDate }</li>
+	                                    <li><i class="far fa-comment"></i> 20</li>
+	                                </ul>
+	                            </div>
+	                        </div>
+						</c:forEach>
+
                     </div>
                 </div>
             </div>

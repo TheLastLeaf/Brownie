@@ -1,5 +1,7 @@
 package kr.co.brownie.free.service;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -21,4 +23,7 @@ public class FreeVO {
 
 	//좋아요 수
 	private String likeCnt;
+
+	//카테고리 태그
+	private String[] tags;
 }

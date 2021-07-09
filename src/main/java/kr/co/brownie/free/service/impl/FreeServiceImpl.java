@@ -24,6 +24,11 @@ public class FreeServiceImpl implements FreeService{
 		return freeMapper.selectFamous();
 	}
 
+	@Override
+	public FreeVO selectDetail(int boardSeq) {
+		return freeMapper.selectDetail(boardSeq);
+	}
+
 
 
 }
