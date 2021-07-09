@@ -68,8 +68,7 @@
                success: function (data) {
                    $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
                }
-           });
-       }
+           );       }
 </script>
 <style>
     .spad{

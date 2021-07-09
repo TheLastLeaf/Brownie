@@ -79,10 +79,11 @@
 	position: relative;
 	top:160px;
 }
-	
-.startLand{
-	position: absolute;
-	left: 26.5%;
+
+.startLine{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/etc/starting-point.jpeg");
+	background-repeat : no-repeat;
+	background-position: center;
 }
 	
 
@@ -300,8 +301,7 @@
 			<table class="pan">
 				<tbody>
 					<tr>
-						<td class="td_tb startLine corner">
-							<img class="startLand" src="${pageContext.request.contextPath}/img/miniGame/etc/starting-point.jpeg">
+						<td class="td_tb startLine corner" background="">
 							<div class="player">
 								<i style="color: red;" class="fas fa-chess-knight fa-8x"></i>
 							</div>
@@ -317,7 +317,7 @@
 						</td>
 
 						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[2].kind}/${infoList[2].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/coin.png">
 						</td>
 
 
