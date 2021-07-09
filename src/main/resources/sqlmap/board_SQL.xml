@@ -16,4 +16,33 @@
 		WHERE BOARD_SEQ = #{boardSeq}
 	</select>
 
+	<update id="updateLikeHate">
+		MERGE INTO
+			like_board
+		USING dual
+		ON
+			(BOARD_SEQ = #{boardSeq} and IN_USER_ID='#{userId}')
+		WHEN MATCHED THEN
+			UPDATE SET
+				UP_USER_ID='#{userId}'
+			DELETE
+				where BOARD_SEQ = #{boardSeq} and IN_USER_ID='#{userId}'
+		WHEN NOT MATCHED THEN
+			INSERT (
+				BOARD_SEQ,
+				KIND,
+				IN_DATE,
+				IN_USER_ID,
+				UP_DATE,
+				UP_USER_ID
+			) values(
+				#{boardSeq},
+				#{kind},
+				sysdate,
+				'#{userId}',
+				sysdate,
+				'#{userId}'
+			)
+	</update>
+
 </mapper>

@@ -17,4 +17,9 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO likeHateCnt(int boardSeq) {
 		return boardMapper.likeHateCnt(boardSeq);
 	}
+
+	@Override
+	public void updateLikeHate(int boardSeq, int kind, String userId) {
+		boardMapper.updateLikeHate(boardSeq, kind, userId);
+	}
 }
