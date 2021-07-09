@@ -21,13 +21,8 @@
 			        ) rv
 			    WHERE userId = '${id}' AND rNum BETWEEN ${startPost} and ${endPost}) a, BROWNIE_USER b
 				WHERE a.inUserId = b.user_id
-				<if test='searchType.equals("title")'>
-				AND LOWER(a.reply) LIKE LOWER('%'||'EM'||'%')
-				</if>
-<!-- 				<if test=''> -->
 				
-<!-- 				</if> -->
-				
+				AND LOWER(a.reply) LIKE LOWER('%'||'{keyword}'||'%')
 				ORDER BY inDate DESC
 	</select>
 	

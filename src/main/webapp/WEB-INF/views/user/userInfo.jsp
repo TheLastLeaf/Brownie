@@ -276,6 +276,11 @@ h1 {
 	right: 20px;
 	top: 5px;
 }
+
+.optionBox {
+	color: black;
+	background: lightgray;
+}
 </style>
 <script>
 	function fn_sync() {
@@ -340,6 +345,41 @@ h1 {
 		$(document).click(function() {
 			$(".contextmenu").hide();
 		});
+	});
+
+	// 	input type date 선택했을때 상자모양 변하게
+	// 	function fn_search() {
+	//         searching = $("#searchType option:selected").val();
+	// 		//alert(searching)
+
+	//         var param = "dummy=" + Math.random();
+	//          param += "&searching="+searching;
+	//          $.ajax({
+	//             url : '/user/userInfo',
+	//             data : param,
+	//             dataType : "json",
+	//             type : "post",
+	//             async: false,
+	//             statusCode : {
+	//                404 : function() {
+	//                   alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+	//                }
+	//             },
+	//             success : function(data) {
+	//                alert("hi")
+	//             }
+	//          });
+	//      }
+	$(function() {
+		$('#searchType').click(function() {
+			if (this.value == 'writerId') {
+				$('#writeUsers').css('display', 'block');
+				$('#dateSelects').css('display', 'none');
+			} else {
+				$('#writeUsers').css('display', 'none');
+				$('#dateSelects').css('display', 'block');
+			}
+		})
 	});
 </script>
 <!-- Main Content Post Section Begin -->
@@ -481,13 +521,14 @@ h1 {
 							</div>
 							<div class="col-sm-8" style="display: flex; justify-content: flex-end;">
 								<div class="searchBox">
-									<select name="searchType" class="input-value selectOption">
-										<option value="inUserId">작성자</option>
-										
-										<option value="inDate">날짜</option>
+									<select name="searchType" id="searchType" class="input-value selectOption">
+										<option class="optionBox" value="writerId">작성자</option>
+										<!-- 										옵션의 value값이 대호형 title 위치 -->
+										<option class="optionBox" value="writeDate">날짜</option>
 									</select>
-									<input type="text" class="input-value" name=keyword>
-									<button type="button" class="btn btn-primary">검색</button>
+									<input type="text" class="input-value" id="writeUsers" name="keyword" style="display: block;">
+									<input type="date" class="input-value" id="dateSelects" name="dateSelect" style="display: none; width: 45%; background: gray;">
+									<button type="button" class="btn btn-primary" style="font-size: 15px;">검색</button>
 								</div>
 							</div>
 
@@ -656,6 +697,8 @@ h1 {
 		</div>
 	</div>
 </section>
+
+
 <!-- Details Post Section End -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.css" integrity="sha512-SWjZLElR5l3FxoO9Bt9Dy3plCWlBi1Mc9/OlojDPwryZxO0ydpZgvXMLhV6jdEyULGNWjKgZWiX/AMzIvZ4JuA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.js" integrity="sha512-kvg/Lknti7OoAw0GqMBP8B+7cGHvp4M9O9V6nAYG91FZVDMW3Xkkq5qrdMhrXiawahqU7IZ5CNsY/wWy1PpGTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

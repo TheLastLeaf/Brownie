@@ -68,7 +68,7 @@ public class ReviewPagingVO {
 		}
 	}
 
-	private String searchType = "title";
+	private String searchType = "";
 	private String keyword = "";
 
 	public String getSearchType() {
