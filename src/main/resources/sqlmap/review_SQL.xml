@@ -21,8 +21,7 @@
 			        ) rv
 			    WHERE userId = '${id}' AND rNum BETWEEN ${startPost} and ${endPost}) a, BROWNIE_USER b
 				WHERE a.inUserId = b.user_id
-				
-				AND LOWER(a.reply) LIKE LOWER('%'||'{keyword}'||'%')
+<!-- 				AND LOWER(a.reply) LIKE LOWER('%'||'{keyword}'||'%') -->
 				ORDER BY inDate DESC
 	</select>
 	
