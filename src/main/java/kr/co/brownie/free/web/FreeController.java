@@ -36,7 +36,6 @@ public class FreeController {
 		//자유게시판 글 리스트 출력
 		List<FreeVO> freeList = freeService.selectList();
 		model.addAttribute("freeList", freeList);
-		System.out.println(freeList);
 
 		//최근 일주일 간 좋아요 수가 많은 상위 5개
 		List<FreeVO> freeFamousList = freeService.selectFamous();
@@ -56,9 +55,6 @@ public class FreeController {
     	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
     	model.addAttribute("likeHateCnt", likeHateCnt);
 
-    	System.out.println(likeHateCnt);
-    	System.out.println(freeDetail);
-
     	//최근 일주일 간 좋아요 수가 많은 상위 5개
     	List<FreeVO> freeFamousList = freeService.selectFamous();
     	model.addAttribute("freeFamousList", freeFamousList);
@@ -74,18 +70,8 @@ public class FreeController {
     @ResponseBody
     @RequestMapping(value="/ajax.likeHate", method=RequestMethod.GET)
     public BoardVO AjaxLikeHate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
-
     	int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
-    	String kind = map.get("kind").toString();
-    	String inUserId = map.get("inUserId").toString();
     	System.out.println("map :"+map);
-    	System.out.println(boardSeq +" "+ kind +" "+ inUserId);
-
-//    	BoardVO likeHate = new BoardVO();
-//
-//    	likeHate.setBoardSeq(boardSeq);
-//    	likeHate.setLikeHateKind(kind);
-//    	likeHate.setInUserId(inUserId);
 
     	boardService.updateLikeHate(map);
 

@@ -16,6 +16,7 @@
 		WHERE BOARD_SEQ = #{boardSeq}
 	</select>
 
+
 	<update id="updateLikeHate" parameterType="hashMap">
 		MERGE INTO
 			like_board
@@ -24,9 +25,8 @@
 			(BOARD_SEQ = #{boardSeq} and IN_USER_ID = #{inUserId})
 		WHEN MATCHED THEN
 			UPDATE SET
-				UP_USER_ID = #{inUserId}
-			DELETE
-				where BOARD_SEQ = #{boardSeq} and IN_USER_ID = #{inUserId}
+				UP_USER_ID = #{inUserId},
+				kind = #{kind}
 		WHEN NOT MATCHED THEN
 			INSERT (
 				BOARD_SEQ,

@@ -22,10 +22,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void updateLikeHate(Map<String, Object> map) {
-    	int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
-    	String kind = map.get("kind").toString();
-    	String inUserId = map.get("inUserId").toString();
-    	System.out.println("????? "+boardSeq +" "+ kind +" "+ inUserId);
 		boardMapper.updateLikeHate(map);
 	}
+
 }
