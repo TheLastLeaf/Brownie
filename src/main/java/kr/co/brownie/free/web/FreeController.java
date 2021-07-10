@@ -73,7 +73,7 @@ public class FreeController {
 
     @ResponseBody
     @RequestMapping(value="/ajax.likeHate", method=RequestMethod.GET)
-    public void AjaxLikeHate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+    public BoardVO AjaxLikeHate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
 
     	int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
     	String kind = map.get("kind").toString();
@@ -90,9 +90,9 @@ public class FreeController {
     	boardService.updateLikeHate(map);
 
     	//좋아요 싫어요 개수 출력
-//    	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
-//    	model.addAttribute("likeHateCnt", likeHateCnt);
-//    	return likeHateCnt;
+    	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+    	model.addAttribute("likeHateCnt", likeHateCnt);
+    	return likeHateCnt;
 
     }
 

@@ -15,7 +15,10 @@
 					"kind": kind
 			},
 			success : function(data) {
-				alert(data);
+				$('#hateCnt').html(data.hateCnt);
+				$('#likeCnt').html(data.likeCnt);
+				console.log(data.hateCnt);
+				console.log(data.likeCnt);
 			},
 			error : function() {
 				alert("에러나요");
@@ -57,11 +60,11 @@
                     </div>
                     <div class="dt-share" style="justify-content: center; align-content: center; text-align: center;">
                         <div class="ds-links">
-                            <a href="#" class="wide"><i class="far fa-heart"></i><span>${likeHateCnt.hateCnt }</span></a>
+                            <a href="javascript:likeHateCheck('1')" class="wide"><i class="far fa-heart"></i><span id="hateCnt">${likeHateCnt.hateCnt }</span></a>
                         </div>
                         <div class="ds-title">싫어요</div>
                         <div class="ds-links">
-                            <a href="javascript:likeHateCheck('0')" class="wide"><i class="fas fa-heart"></i><span>${likeHateCnt.likeCnt }</span></a>
+                            <a href="javascript:likeHateCheck('0')" class="wide"><i class="fas fa-heart"></i><span id="likeCnt">${likeHateCnt.likeCnt }</span></a>
                         </div>
                         <div class="ds-title">좋아요</div>
                     </div>
