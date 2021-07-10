@@ -71,54 +71,25 @@
                }
            });
        }
-           function fn_post(){
-        		alert("post에용")
-        	    result = Math.random().toString(36).substring(3,10);
-        		var title = $(".title").val();
-        		var summernote = $(".summernote").val();
-        		var param = "";
-        		param += "dummy=" + Math.random();
-        		param += "&title=" + title
-        		param += "&mem_email=" + mem_email
-        		param += "&summernote=" + summernote
-        		$.ajax({
-        			url : "add",
-        			data : param,
-        			dataType : "json",
-        			type : "post",
-        			async : false,
-        			statusCode : {
-        				404 : function() {
-        					alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
-        				}
-        			},
-        			success : function(data) {
-        				if(data.msg == "ok"){
-        					alert("이메일을 발송했습니다. 인증번호를 확인해주세요.")
-        				} else{
-        					alert("없는 이메일입니다. 확인하십시오.")
-        				}
-        			}
-        		});
-        	}
            
            function fn_add(){
-        		alert("에이젝스에용");
         		var title = $(".title").val();
         		var summernote = $(".summernote").val();
         		
         		$.ajax({
         			url : "./ajax.galleryadd",
-        			type : "get",
+        			type : "post",
         			data : {
         					"title" : title,
         					"summernote" : summernote,
         			},
         			success : function(data) {
-        				location.href='gallery/list'
+        				if(data==1){
+        					location.href='list'
+        				}
         			},
         			error : function() {
-        				alert("에러나요");
+        				alert("글이 등록되지 않았습니다.");
         			}
         		})
         	}
@@ -192,7 +163,6 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="get" enctype="multipart/form-data">
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
@@ -209,7 +179,6 @@
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>

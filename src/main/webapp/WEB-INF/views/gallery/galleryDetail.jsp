@@ -27,6 +27,28 @@ function likeHateCheck(kind) {
 	})
 }
 
+function fn_delete(){
+		if(!confirm("정말 삭제하시겠습니까?")){
+			return;
+		}
+		
+		$.ajax({
+			url : "./ajax.gallerydelete",
+			type : "post",
+			data : {
+					"boardSeq" : ${galleryVO.boardSeq}
+			},
+			success : function(data) {
+				if(data==1){
+					location.href='list'
+				}
+			},
+			error : function() {
+				alert("삭제실패");
+			}
+		})
+	}
+
 </script>
 
 <!-- Details Post Section Begin -->
@@ -40,7 +62,7 @@ function likeHateCheck(kind) {
                     </div>
                     <div class="dt-desc">
                     	<input type="button" onclick="location.href='${pageContext.request.contextPath}/gallery/update?boardSeq=${galleryVO.boardSeq}'" value="수정" />
-                    	<input type="button" onclick="location.href='${pageContext.request.contextPath}/gallery/delete?boardSeq=${galleryVO.boardSeq}'" value="삭제" />
+                    	<input type="button" onclick="fn_delete()" value="삭제" />
                     	${ galleryVO.content }
                     	
                     </div>
