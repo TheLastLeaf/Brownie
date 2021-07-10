@@ -279,7 +279,7 @@ h1 {
 	background: lightgray;
 }
 
-.searchBtn {
+#searchBtn {
 	width: 60px;
 }
 </style>
@@ -425,7 +425,7 @@ h1 {
 										<option class="optionBox" value="writerId">작성자</option>
 										<option class="optionBox" value="writeDate">날짜</option>
 									</select>
-									<input type="text" class="input-value" id="writeUser" name="keyword" style="display: block;" placeholder="검색어입력">
+									<input type="text" class="input-value" id="writeUser" name="keyword" style="display: block;" placeholder="작성자입력">
 									<input type="date" class="input-value" id="dateSelect" name="keyword" style="display: none; width: 45%; background: gray;">
 									<button type="button" id="searchBtn" class="btn btn-primary">검색</button>
 								</div>
@@ -672,32 +672,9 @@ h1 {
 		});
 	});
 
-	// 	input type date 선택했을때 상자모양 변하게
-	// 	function fn_search() {
-	//         searching = $("#searchType option:selected").val();
-	// 		//alert(searching)
 
-	//         var param = "dummy=" + Math.random();
-	//          param += "&searching="+searching;
-	//          $.ajax({
-	//             url : '/user/userInfo',
-	//             data : param,
-	//             dataType : "json",
-	//             type : "post",
-	//             async: false,
-	//             statusCode : {
-	//                404 : function() {
-	//                   alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
-	//                }
-	//             },
-	//             success : function(data) {
-	//                alert("hi")
-	//             }
-	//          });
-	//      }
-
-	// 작성자와 날짜 스위칭 display block과 none을 잘 활용
 	$(function() {
+	// 작성자와 날짜 스위칭 display block과 none을 잘 활용
 		$('#searchType').click(function() {
 			if (this.value == 'writerId') {
 				$('#writeUser').css('display', 'block');
@@ -711,16 +688,16 @@ h1 {
 
 	// search
 	document.getElementById("searchBtn").onclick = function() {
-
+		
 		let searchType = document.getElementsByName("searchType")[0].value;
 		let keyword = "";
-		if(searchType == 'writerId'){
-			let keyword = document.getElementsByName("keyword")[0].value;
+		if(searchType == "writerId"){
+			keyword = document.getElementsByName("keyword")[0].value;
+			location.href="/user/userInfo?num=1"+"&searchType="+searchType+"&keyword="+keyword;
+		}else{
+			keyword = document.getElementsByName("keyword")[1].value;
+			location.href="/user/userInfo?num=1"+"&searchType="+searchType+"&keyword="+keyword;
 		}
-		if(searchType == 'writeDate'){
-			let keyword = document.getElementsByName("keyword")[1].value;
-		}
-
 		console.log("searchType: " + searchType)
 		console.log("keyword:" + keyword)
 	};

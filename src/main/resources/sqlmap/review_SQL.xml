@@ -25,7 +25,7 @@
 				AND LOWER(a.reply) LIKE LOWER('%'||'${keyword}'||'%')
 				</if>
 				<if test='searchType.equals("writeDate")'>
-				AND inDate like '${keyword}'
+				AND inDate = '${keyword}'
 				</if>
 				ORDER BY inDate DESC
 	</select>
