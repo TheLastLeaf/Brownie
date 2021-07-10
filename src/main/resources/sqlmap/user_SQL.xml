@@ -63,7 +63,8 @@
 			UP_DATE AS modDate,
 			IN_USER_ID AS inUserId,
 			UP_USER_ID AS upUserId,
-			USER_POSITION AS userPosition
+			USER_POSITION AS userPosition,
+			BROWNIE_POINT AS browniePoint
 		FROM
 			BROWNIE_USER
 		WHERE

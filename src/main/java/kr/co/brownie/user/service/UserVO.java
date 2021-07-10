@@ -14,6 +14,7 @@ public class UserVO {
     private String inUserId;
     private String upUserId;
     private String userPosition;
+    private int browniePoint;
 
     private String userLevel;
     private String permitLevel;

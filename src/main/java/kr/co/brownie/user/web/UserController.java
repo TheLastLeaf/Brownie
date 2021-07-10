@@ -45,7 +45,7 @@ public class UserController {
 		/* 로그인후 session in 되었을때 */
 		if (id != null) {
 			UserVO userOneSelect = userService.userOneSelect(id);
-
+			System.out.println("userOneSelect: " + userOneSelect);
 			// 포지션 select
 			String position = userOneSelect.getUserPosition();
 
@@ -69,10 +69,10 @@ public class UserController {
 			List<String> recentBoard = userService.recentBoard(id);
 
 			// 후기 페이징
-			page.setTotalCount(reviewService.countAllReview(id));
 			page.setId(id);
+			page.setTotalCount(reviewService.countAllReview(page));
 			List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
-
+			
 			// model.addattribute
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
@@ -89,12 +89,6 @@ public class UserController {
 
 			model.addAttribute("reviewVOs", reviewVOs);
 			model.addAttribute("page", page);
-
-			System.out.println("getEndPageNum : " + page.getEndPageNum());
-			System.out.println("getStartPageNum : " + page.getStartPageNum());
-			System.out.println("getPageNum : " + page.getPageNum());
-			System.out.println("page: "+ page);
-			System.out.println("reviewVOs: " + reviewVOs);
 
 			return "user/userInfo";
 		}

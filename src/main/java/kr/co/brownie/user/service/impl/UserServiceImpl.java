@@ -30,7 +30,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int selectExp(String id) throws IOException {
 		int exp = userMapper.selectExp(id);
-		System.out.println("userImpl exp: " + exp);
 		return exp;
 	}
 
