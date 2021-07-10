@@ -179,7 +179,7 @@
                                     <input type="text" placeholder="Title" class="title"  id="title" name="title" required="required" value="${ galleryVO.title }">
                                 </div>
                                 <div class="galleryCon">
-								    <textarea style="height: height: 100%;" class="summernote" name="summernote" value="${ galleryVO.content }"></textarea>
+								    <textarea style="height: height: 100%;" class="summernote" name="summernote">${ galleryVO.content }</textarea>
 								</div>
                                 <div class="pad">
                                     <input type="submit" value="등록"  class="submit">

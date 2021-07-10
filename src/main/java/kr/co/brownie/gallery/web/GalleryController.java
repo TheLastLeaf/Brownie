@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import kr.co.brownie.board.service.BoardService;
+import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
@@ -17,6 +19,7 @@ import kr.co.brownie.gallery.service.GalleryVO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
@@ -38,6 +41,9 @@ public class GalleryController {
 	@Resource(name = "galleryService")
 	GalleryService galleryService;
 
+	@Resource(name = "boardService")
+	BoardService boardService;
+	
 	private int size = 30;
 
 	@GetMapping({ "", "/list" })
@@ -72,6 +78,10 @@ public class GalleryController {
 		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
 		List<FileVO> fileVOList;
 		
+		BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+    	model.addAttribute("likeHateCnt", likeHateCnt);
+		
+		
 		if (galleryVO.getFileSeq()!=null) {
 			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
 			model.addAttribute("fileVOList", fileVOList);
@@ -87,6 +97,7 @@ public class GalleryController {
 		return "gallery/galleryAdd";
 	}
 	
+	/*
 	@PostMapping("/add")
 	public String add(@RequestParam Map<String, Object> map, Model model,HttpSession session, HttpServletRequest servletRequest) {
         String title = servletRequest.getParameter("title");
@@ -111,11 +122,13 @@ public class GalleryController {
 		}
 		return "gallery/galleryAdd";
 	}
+	*/
 	
 	@GetMapping("/update")
 	public String details_modify_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
 		int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
 		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
+		System.out.println(galleryVO.getContent());
 		model.addAttribute("galleryVO", galleryVO);
 		
 		return "gallery/galleryUpdate";
@@ -157,5 +170,63 @@ public class GalleryController {
 		
 		return "gallery/galleryDetail";
 	}
+	
+	@ResponseBody
+    @RequestMapping(value="/ajax.galleryadd", method=RequestMethod.GET)
+    public int AjaxAdd(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+		String title = map.get("title").toString();
+    	String content = map.get("summernote").toString();
+    	
+    	System.out.println(title);
+
+		System.out.println(content);
+		
+		String inUserId = "곽지훈";
+		map.put("inUserId", inUserId);
+		map.put("title", title);
+		map.put("content", content);
+		
+		int cnt = this.galleryService.insertGallery(map);
+		
+		System.out.println(cnt);
+    	
+		return cnt;
+	}
+	
+	@ResponseBody
+    @RequestMapping(value="/ajax.gallerylikeHate", method=RequestMethod.GET)
+    public BoardVO AjaxLikeHate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+
+    	//새로 들어온 값
+    	int kind = Integer.parseInt(map.get("kind").toString());
+    	int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
+
+    	try {
+    		//유저의 기존 값 가져옴
+    		BoardVO userInBoard = boardService.selectUserStance(map);
+    		int userStance = userInBoard.getLikeHateKind();
+
+    		if(userStance == kind) {
+    			//기존값이 새로 들어온 값과 같을 경우 저장된 값을 삭제함
+    			boardService.deleteUserStance(map);
+
+    		} else {
+    			//기존값이 새로 들어온 값과 다를 경우 값을 업데이트함
+    			boardService.updateLikeHate(map);
+    		}
+
+		} catch (NullPointerException e) {
+			//기존값이 null일 경우 새로 들어온 값을 삽입해줌
+			boardService.updateLikeHate(map);
+		}
+
+    	//좋아요 싫어요 개수 출력
+    	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+    	model.addAttribute("likeHateCnt", likeHateCnt);
+    	return likeHateCnt;
+
+    }
+
+	
 	
 }

@@ -3,7 +3,29 @@
 <c:import url="../layout/header.jsp"/>
 
 <script>
-	
+function likeHateCheck(kind) {
+	console.log(${ galleryVO.boardSeq })
+	console.log(kind)
+
+	$.ajax({
+		url : "./ajax.gallerylikeHate",
+		type : "get",
+		data : {
+				"boardSeq" : ${ galleryVO.boardSeq },
+				"inUserId":'1786827',
+				"kind": kind
+		},
+		success : function(data) {
+			$('#hateCnt').html(data.hateCnt);
+			$('#likeCnt').html(data.likeCnt);
+			console.log(data.hateCnt);
+			console.log(data.likeCnt);
+		},
+		error : function() {
+			alert("에러나요");
+		}
+	})
+}
 
 </script>
 
@@ -19,19 +41,24 @@
                     <div class="dt-desc">
                     	<input type="button" onclick="location.href='${pageContext.request.contextPath}/gallery/update?boardSeq=${galleryVO.boardSeq}'" value="수정" />
                     	<input type="button" onclick="location.href='${pageContext.request.contextPath}/gallery/delete?boardSeq=${galleryVO.boardSeq}'" value="삭제" />
-	                    <c:forEach var="fileVO" items="${fileVOList}">
-		                    <img src="${pageContext.request.contextPath}/img/gallery/${fileVO.saveName}">
-	                	</c:forEach>
-		                    
                     	${ galleryVO.content }
                     	
                     </div>
 
-                    <div class="dt-tags">
-                        <a href="#"><span>Gaming</span></a>
-                        <a href="#"><span>Platform</span></a>
-                        <a href="#"><span>Playstation</span></a>
-                        <a href="#"><span>Hardware</span></a>
+					<div class="dt-tags">
+	                    <c:forTokens items="${freeDetail.boardCategory }" delims="," var="tag">
+	                        <a href="#"><span>${tag }</span></a>
+	                    </c:forTokens>
+                    </div>
+                    <div class="dt-share" style="justify-content: center; align-content: center; text-align: center;">
+                        <div class="ds-links">
+                            <a href="javascript:likeHateCheck('1')" class="wide"><i class="far fa-heart"></i><span id="hateCnt">${likeHateCnt.hateCnt }</span></a>
+                        </div>
+                        <div class="ds-title">싫어요</div>
+                        <div class="ds-links">
+                            <a href="javascript:likeHateCheck('0')" class="wide"><i class="fas fa-heart"></i><span id="likeCnt">${likeHateCnt.likeCnt }</span></a>
+                        </div>
+                        <div class="ds-title">좋아요</div>
                     </div>
 
                     <div class="dt-related-post">
@@ -40,10 +67,10 @@
                                 <a href="#" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
-                                        <img src="${pageContext.request.contextPath}/img/details/prev.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                                     </div>
                                     <div class="rp-text">
-                                        <h6>The Real-Estate Developers Are the Enemy</h6>
+                                        <h6>이전글어쩌구</h6>
                                         <ul>
                                             <li><i class="far fa-clock"></i> Aug 01, 2019</li>
                                             <li><i class="far fa-comment"></i> 20</li>
@@ -55,10 +82,10 @@
                                 <a href="#" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
-                                        <img src="${pageContext.request.contextPath}/img/details/next.jpg" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
                                     </div>
                                     <div class="rp-text">
-                                        <h6>Montreal real estate: Bargains in cottage countrya</h6>
+                                        <h6>다음글어쩌구 게시글 순번으로 쿼리문 조회해</h6>
                                         <ul>
                                             <li><i class="far fa-clock"></i> Aug 01, 2019</li>
                                             <li><i class="far fa-comment"></i> 20</li>
@@ -68,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="dt-author">
                         <div class="da-pic">
                             <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">

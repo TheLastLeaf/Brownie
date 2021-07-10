@@ -9,6 +9,7 @@
            $('.notice_content').html(
                $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
        });*/
+       
        $(function () {
            const toolbar = [
                // 글꼴 설정
@@ -100,6 +101,27 @@
         			}
         		});
         	}
+           
+           function fn_add(){
+        		alert("에이젝스에용");
+        		var title = $(".title").val();
+        		var summernote = $(".summernote").val();
+        		
+        		$.ajax({
+        			url : "./ajax.galleryadd",
+        			type : "get",
+        			data : {
+        					"title" : title,
+        					"summernote" : summernote,
+        			},
+        			success : function(data) {
+        				location.href='gallery/list'
+        			},
+        			error : function() {
+        				alert("에러나요");
+        			}
+        		})
+        	}
 
 </script>
 <style>
@@ -170,7 +192,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post">
+                <form method="get" enctype="multipart/form-data">
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
@@ -182,7 +204,7 @@
 								    <textarea style="height: height: 100%;" class="summernote" name="summernote"></textarea>
 								</div>
                                 <div class="pad">
-                                    <input type="submit" value="등록"  class="submit">
+                                    <input onclick="fn_add()" type="submit" value="등록"  class="submit">
                                 </div>
                             </div>
                         </div>
