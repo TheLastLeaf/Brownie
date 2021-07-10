@@ -699,7 +699,7 @@ h1 {
 			location.href="/user/userInfo?num=1"+"&searchType="+searchType+"&keyword="+keyword;
 		}
 		console.log("searchType: " + searchType)
-		console.log("keyword:" + keyword)
+		console.log("keyword: " + keyword)
 	};
 
 	//

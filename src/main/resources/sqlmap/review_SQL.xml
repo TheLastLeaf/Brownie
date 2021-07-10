@@ -22,7 +22,7 @@
 			    WHERE userId = '${id}' AND rNum BETWEEN ${startPost} and ${endPost}) a, BROWNIE_USER b
 				WHERE a.inUserId = b.user_id
 				<if test='searchType.equals("writerId")'>
-				AND LOWER(a.reply) LIKE LOWER('%'||'${keyword}'||'%')
+				AND LOWER(b.nick_name) LIKE LOWER('%'||'${keyword}'||'%')
 				</if>
 				<if test='searchType.equals("writeDate")'>
 				AND inDate = '${keyword}'
