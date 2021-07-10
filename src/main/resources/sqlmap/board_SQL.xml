@@ -17,6 +17,30 @@
 	</select>
 
 
+	<select id="selectUserStance" resultType="kr.co.brownie.board.service.BoardVO">
+		SELECT
+			BOARD_SEQ as boardSeq,
+			KIND as likeHateKind,
+			IN_DATE as inDate,
+			IN_USER_ID as inUserId,
+			UP_DATE as modDate,
+			UP_USER_ID as upUserId
+		FROM
+			LIKE_BOARD
+        WHERE
+        	BOARD_SEQ = #{boardSeq}
+        AND
+        	IN_USER_ID = #{inUserId}
+	</select>
+
+	<delete id="deleteUserStance">
+		DELETE FROM LIKE_BOARD
+        WHERE
+        	BOARD_SEQ = #{boardSeq}
+        AND
+        	IN_USER_ID = #{inUserId}
+	</delete>
+
 	<update id="updateLikeHate" parameterType="hashMap">
 		MERGE INTO
 			like_board

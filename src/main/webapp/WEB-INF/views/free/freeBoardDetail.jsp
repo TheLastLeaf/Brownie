@@ -6,12 +6,15 @@
 <!-- 스크립트 // 하단 아이디 부분 세션스코프로 바꿔줘야함 -->
 <script type="text/javascript">
 	function likeHateCheck(kind) {
+		console.log(${freeDetail.boardSeq })
+		console.log(kind)
+
 		$.ajax({
 			url : "./ajax.likeHate",
 			type : "get",
 			data : {
 					"boardSeq" : ${freeDetail.boardSeq },
-					"inUserId":'1786827527',
+					"inUserId":'1786827',
 					"kind": kind
 			},
 			success : function(data) {

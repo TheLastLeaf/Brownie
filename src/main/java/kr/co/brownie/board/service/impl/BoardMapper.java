@@ -13,4 +13,8 @@ public interface BoardMapper {
 
 	void updateLikeHate(Map<String, Object> map);
 
+	BoardVO selectUserStance(Map<String, Object> map);
+
+	void deleteUserStance(Map<String, Object> map);
+
 }

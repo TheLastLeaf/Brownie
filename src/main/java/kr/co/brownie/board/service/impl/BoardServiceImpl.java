@@ -21,7 +21,18 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void updateLikeHate(Map<String, Object> map) {
+		System.out.println("?? : " + map);
 		boardMapper.updateLikeHate(map);
+	}
+
+	@Override
+	public BoardVO selectUserStance(Map<String, Object> map) {
+		return boardMapper.selectUserStance(map);
+	}
+
+	@Override
+	public void deleteUserStance(Map<String, Object> map) {
+		boardMapper.deleteUserStance(map);
 	}
 
 }

@@ -14,7 +14,7 @@ public class BoardVO {
     private String status;
     private Date inDate;
     private String inUserId;
-    private Date upDate;
+    private Date modDate;
     private String upUserId;
     private int fileSeq;
     private int subSeq;
