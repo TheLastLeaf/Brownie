@@ -8,6 +8,7 @@ public interface ReviewService {
 
 	List<ReviewVO> selectReviewList(ReviewPagingVO page);
 
-	int countAllReview(String id);
+	int countAllReview(ReviewPagingVO page);
+
 
 }

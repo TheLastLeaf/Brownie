@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class FreeVO {
-	private String boardSeq;
+	private int boardSeq;
 	private String boardKind;
 	private String boardCategory;
 	private String title;

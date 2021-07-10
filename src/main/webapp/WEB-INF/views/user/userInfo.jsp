@@ -292,7 +292,8 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a> <span>userDetail</span>
+						<a href="#">userInfo</a>
+						<span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -310,17 +311,7 @@ h1 {
 									<!-- 프로필 프레임 -->
 									<div class="profileFrame">
 										<img src="${pageContext.request.contextPath}/img/frame/red.png">
-										<div class="profileFrameLv">1</div>
-									</div>
-								</div>
-								<div class="col-7" style="color: white;">
-									<div class="Hierarchy font-family-maple-bold">
-										<i>일반회원</i>
-									</div>
-									<div class="nameLv">
-										<h3 class="font-family-maple-bold text-white">
-											<c:out value="${nick}" />
-											&nbsp;|&nbsp; Lv.
+										<div class="profileFrameLv">
 											<c:choose>
 												<c:when test="${exp > 30}">
 														3
@@ -335,6 +326,19 @@ h1 {
 														0
 												</c:otherwise>
 											</c:choose>
+										</div>
+									</div>
+								</div>
+								<div class="col-7" style="color: white;">
+									<div class="Hierarchy font-family-maple-bold">
+										<i>일반회원</i>
+									</div>
+									<div class="nameLv">
+										<h3 class="font-family-maple-bold text-white">
+											<c:out value="${nick}" />
+											&nbsp;|&nbsp; 
+											${userOneSelect.browniePoint}
+											.BP
 											&nbsp;|&nbsp; <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
 													<i class="fas fa-star"></i>
 												</c:forEach> <c:forEach begin="1" end="${halfStar}">
@@ -380,7 +384,8 @@ h1 {
 								<div class="infoDetail">【 최근 게시글 내역 】</div>
 								<c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
 									<div class="upload">
-										${vs.index+1}. <a href="">${recentBoard}</a>
+										${vs.index+1}.
+										<a href="">${recentBoard}</a>
 									</div>
 								</c:forEach>
 							</div>
@@ -672,9 +677,8 @@ h1 {
 		});
 	});
 
-
 	$(function() {
-	// 작성자와 날짜 스위칭 display block과 none을 잘 활용
+		// 작성자와 날짜 스위칭 display block과 none을 잘 활용
 		$('#searchType').click(function() {
 			if (this.value == 'writerId') {
 				$('#writeUser').css('display', 'block');
@@ -688,15 +692,17 @@ h1 {
 
 	// search
 	document.getElementById("searchBtn").onclick = function() {
-		
+
 		let searchType = document.getElementsByName("searchType")[0].value;
 		let keyword = "";
-		if(searchType == "writerId"){
+		if (searchType == "writerId") {
 			keyword = document.getElementsByName("keyword")[0].value;
-			location.href="/user/userInfo?num=1"+"&searchType="+searchType+"&keyword="+keyword;
-		}else{
+			location.href = "/user/userInfo?num=1" + "&searchType="
+					+ searchType + "&keyword=" + keyword;
+		} else {
 			keyword = document.getElementsByName("keyword")[1].value;
-			location.href="/user/userInfo?num=1"+"&searchType="+searchType+"&keyword="+keyword;
+			location.href = "/user/userInfo?num=1" + "&searchType="
+					+ searchType + "&keyword=" + keyword;
 		}
 		console.log("searchType: " + searchType)
 		console.log("keyword: " + keyword)

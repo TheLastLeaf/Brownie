@@ -32,7 +32,7 @@ public class ReveiwServiceImpl implements ReviewService{
 	}
 
 	@Override
-	public int countAllReview(String id) {
-		return reviewMapper.countAllReview(id);
+	public int countAllReview(ReviewPagingVO page) {
+		return reviewMapper.countAllReview(page);
 	}
 }

@@ -10,26 +10,28 @@
 		on (BROWNIE_USER.user_id = '${id}')
 		when not matched then
 		insert (
-		USER_ID,
-		LOL_ID,
-		NICK_NAME,
-		BLACK_STACK,
-		STATUS,
-		IN_DATE,
-		UP_DATE,
-		IN_USER_ID,
-		UP_USER_ID,
-		USER_POSITION)
+			USER_ID,
+			LOL_ID,
+			NICK_NAME,
+			BLACK_STACK,
+			STATUS,
+			IN_DATE,
+			UP_DATE,
+			IN_USER_ID,
+			UP_USER_ID,
+			USER_POSITION,
+			brownie_point)
 		values ('${id}',
-		'${tempLolNick}',
-		'${tempBrownieNick}',
-		0,
-		'Y',
-		SYSDATE,
-		SYSDATE,
-		'${id}',
-		'${id}',
-		'${position}')
+			'${tempLolNick}',
+			'${tempBrownieNick}',
+			0,
+			'Y',
+			SYSDATE,
+			SYSDATE,
+			'${id}',
+			'${id}',
+			'${position}',
+			0)
 	</update>
 
 	<update id="insertPermitLevel">
