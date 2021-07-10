@@ -35,7 +35,7 @@
 		FROM(
 		    SELECT r.USER_ID, r.IN_USER_ID, b.nick_name, r.IN_DATE
 		    FROM review r, brownie_user b
-		    WHERE  b.user_id(+) = r.in_user_id
+		    WHERE  b.user_id = r.in_user_id
 		    AND r.user_id = '${id}'
 		    )
 		<if test='searchType.equals("writerId")'>
