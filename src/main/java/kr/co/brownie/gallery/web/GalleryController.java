@@ -96,16 +96,65 @@ public class GalleryController {
 
 		System.out.println(content);
 		
+		String id = (String) session.getAttribute("id");
+		map.put("id", id);
+		map.put("title", title);
+		map.put("content", content);
+		
+		int cnt = this.galleryService.insertGallery(map);
+		
+		System.out.println(cnt);
+		
+		//file 이름가져오기
+		if(cnt==1) {
+			return "gallery/galleryList";
+		}
 		return "gallery/galleryAdd";
 	}
 	
 	@GetMapping("/update")
-	public String details_modify_gallery() {
-		return "gallery/galleryDetail";
+	public String details_modify_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
+		int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
+		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
+		model.addAttribute("galleryVO", galleryVO);
+		
+		return "gallery/galleryUpdate";
+	}
+	
+	@PostMapping("/update")
+	public String update(@RequestParam Map<String, Object> map, Model model, HttpSession session, HttpServletRequest servletRequest) {
+		String title = servletRequest.getParameter("title");
+        String content = servletRequest.getParameter("summernote");
+		
+		System.out.println(title);
+
+		System.out.println(content);
+		
+		String id = (String) session.getAttribute("id");
+		map.put("id", id);
+		map.put("title", title);
+		map.put("content", content);
+		
+		int cnt = this.galleryService.updateGallery(map);
+		
+		System.out.println(cnt);
+		
+		if(cnt==1) {
+			return "gallery/galleryDetail";
+		}
+		return "gallery/galleryUpdate";
 	}
 
 	@GetMapping("/delete")
-	public String details_delete_gallery() {
+	public String details_delete_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
+		int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
+		int cnt = this.galleryService.deleteGallery(boardSeq);
+		System.out.println("delete : "+cnt);
+		
+		if(cnt==1) {
+			return "gallery/galleryList";
+		}
+		
 		return "gallery/galleryDetail";
 	}
 	
