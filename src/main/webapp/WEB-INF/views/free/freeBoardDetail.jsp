@@ -20,8 +20,6 @@
 			success : function(data) {
 				$('#hateCnt').html(data.hateCnt);
 				$('#likeCnt').html(data.likeCnt);
-				console.log(data.hateCnt);
-				console.log(data.likeCnt);
 			},
 			error : function() {
 				alert("에러나요");
@@ -73,29 +71,33 @@
                     </div>
                     <div class="dt-related-post">
                         <div class="row">
+
                             <div class="col-lg-6">
-                                <a href="#" class="rp-prev">
+                               <c:if test="${freePrev.title ne null}">
+                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freePrev.boardSeq}" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
-                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
                                     </div>
                                     <div class="rp-text">
-                                        <h6>이전글어쩌구</h6>
+                                        <h6>${freePrev.title }</h6>
                                         <ul>
                                             <li><i class="far fa-clock"></i> Aug 01, 2019</li>
                                             <li><i class="far fa-comment"></i> 20</li>
                                         </ul>
                                     </div>
                                 </a>
+                               </c:if>
                             </div>
+
                             <div class="col-lg-6">
-                                <a href="#" class="rp-next">
+                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeNext.boardSeq}" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
                                         <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
                                     </div>
                                     <div class="rp-text">
-                                        <h6>다음글어쩌구 게시글 순번으로 쿼리문 조회해</h6>
+                                        <h6>${freeNext.title }</h6>
                                         <ul>
                                             <li><i class="far fa-clock"></i> Aug 01, 2019</li>
                                             <li><i class="far fa-comment"></i> 20</li>
@@ -103,6 +105,8 @@
                                     </div>
                                 </a>
                             </div>
+
+
                         </div>
                     </div>
                     <div class="dt-author">

@@ -95,4 +95,66 @@
 			BB.BOARD_SEQ = #{boardSeq}
 	</select>
 
+
+	<select id="selectRecent" resultType="kr.co.brownie.free.service.FreeVO">
+		<![CDATA[
+			SELECT
+				BOARD_SEQ as boardSeq,
+				BOARD_KIND as boardKind,
+				BOARD_CATEGORY as boardCategory,
+				TITLE as title,
+				CONTENT as content,
+				NOTICE_YN as noticeYn,
+				STATUS as status,
+				IN_DATE as inDate,
+				IN_USER_ID as inUserId
+			FROM
+				(SELECT
+					BOARD_SEQ,
+					BOARD_KIND,
+					BOARD_CATEGORY,
+					TITLE,
+					CONTENT,
+					NOTICE_YN,
+					STATUS,
+					IN_DATE,
+					IN_USER_ID
+				FROM
+					BROWNIE_BOARD
+				WHERE
+					(BOARD_KIND= 'FREE' OR	BOARD_KIND= 'FREE')
+      			AND
+					STATUS = 'Y'
+				AND
+					BOARD_SEQ < #{boardSeq}
+				AND
+					ROWNUM < 2
+				ORDER BY
+					BOARD_SEQ DESC )
+			UNION ALL
+			SELECT
+				BOARD_SEQ as boardSeq,
+				BOARD_KIND as boardKind,
+				BOARD_CATEGORY as boardCategory,
+				TITLE as title,
+				CONTENT as content,
+				NOTICE_YN as noticeYn,
+				STATUS as status,
+				IN_DATE as inDate,
+				IN_USER_ID as inUserId
+			FROM
+				BROWNIE_BOARD
+			WHERE
+				(BOARD_KIND= 'FREE' OR	BOARD_KIND= 'FREE')
+         	AND
+            	STATUS = 'Y'
+			AND
+				BOARD_SEQ > #{boardSeq}
+			AND
+				ROWNUM < 2
+			ORDER BY
+				boardSeq
+		]]>
+	</select>
+
 </mapper>

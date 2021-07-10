@@ -21,7 +21,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void updateLikeHate(Map<String, Object> map) {
-		System.out.println("?? : " + map);
 		boardMapper.updateLikeHate(map);
 	}
 

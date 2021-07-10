@@ -59,6 +59,21 @@ public class FreeController {
     	List<FreeVO> freeFamousList = freeService.selectFamous();
     	model.addAttribute("freeFamousList", freeFamousList);
 
+    	//게시글 하단 : 이전 게시글과 다음 게시글을 리스트로 가져옵니다.
+    	List<FreeVO> freeRecent = freeService.selectRecent(boardSeq);
+
+    	for(FreeVO freeRecentOne : freeRecent) {
+    		if(Integer.parseInt(freeRecentOne.getBoardSeq()) < boardSeq) {
+    			//게시글 번호가 해당 게시글 번호보다 작다면 이전 게시글
+    			model.addAttribute("freePrev", freeRecentOne);
+
+    		} else if(Integer.parseInt(freeRecentOne.getBoardSeq()) > boardSeq) {
+    			//게시글 번호가 해당 게시글 번호보다 크다면 다음 게시글
+    			model.addAttribute("freeNext", freeRecentOne);
+    		}
+
+    	}
+
         return "free/freeBoardDetail"; // 자유게시판 리스트 디테일화면
     }
 
@@ -100,13 +115,5 @@ public class FreeController {
     	return likeHateCnt;
 
     }
-
-
-
-
-
-
-
-
 
 }
