@@ -63,11 +63,11 @@ public class FreeController {
     	List<FreeVO> freeRecent = freeService.selectRecent(boardSeq);
 
     	for(FreeVO freeRecentOne : freeRecent) {
-    		if(Integer.parseInt(freeRecentOne.getBoardSeq()) < boardSeq) {
+    		if(freeRecentOne.getBoardSeq() < boardSeq) {
     			//게시글 번호가 해당 게시글 번호보다 작다면 이전 게시글
     			model.addAttribute("freePrev", freeRecentOne);
 
-    		} else if(Integer.parseInt(freeRecentOne.getBoardSeq()) > boardSeq) {
+    		} else if(freeRecentOne.getBoardSeq() > boardSeq) {
     			//게시글 번호가 해당 게시글 번호보다 크다면 다음 게시글
     			model.addAttribute("freeNext", freeRecentOne);
     		}

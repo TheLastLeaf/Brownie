@@ -91,6 +91,7 @@
                             </div>
 
                             <div class="col-lg-6">
+                               <c:if test="${freeNext.title ne null}">
                                 <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeNext.boardSeq}" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
@@ -104,6 +105,7 @@
                                         </ul>
                                     </div>
                                 </a>
+                               </c:if>
                             </div>
 
 
@@ -150,19 +152,25 @@
                                 <h5>세웅지훈포에버</h5>
                                 <span class="c-date">15 Aug 2017</span>
                                 <p>우르르롹끼.</p>
-                                <a href="#" class="reply-btn"><span>Reply</span></a>
+                                <a href="#" id="" class="reply-btn"><span>Reply</span></a>
+	                            <textarea class="replyToReply" placeholder="Message"></textarea>
                             </div>
                         </div>
                     </div>
+
+                    <!-- 리플작성구간 시작 -->
                     <div class="dt-leave-comment">
                         <h4>comment</h4>
                         <form action="#">
-                            <textarea placeholder="Message"></textarea>
-                            <button type="submit">Submit</button>
+                            <textarea class="replyToBoard" placeholder="Message"></textarea>
+                            <button type="button" onclick="">작성</button>
                         </form>
                     </div>
+                    <!-- 리플작성구간 끝 -->
                 </div>
             </div>
+
+            <!-- 사이드바 시작 -->
             <div class="col-lg-4 col-md-7">
                 <div class="sidebar-option">
                    <div class="best-of-post">
@@ -195,6 +203,8 @@
                     </div>
                 </div>
             </div>
+            <!-- 사이드바 끝 -->
+
         </div>
     </div>
 </section>
