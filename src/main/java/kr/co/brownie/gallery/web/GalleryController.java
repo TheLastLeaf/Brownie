@@ -44,7 +44,7 @@ public class GalleryController {
 	@Resource(name = "boardService")
 	BoardService boardService;
 	
-	private int size = 30;
+	private int size = 18;
 
 	@GetMapping({ "", "/list" })
 	public String galleryList(@RequestParam Map<String, Object> map, Model model, HttpSession session) {

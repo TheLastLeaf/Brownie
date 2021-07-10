@@ -111,9 +111,11 @@
         border: 1px solid #666666;
         color:white;
     }
+    .card-block{
+    	height: 840px !important;
+    }
     .summernote{
         color: #666666;
-        
     }
     .card{
         background-color: black;
@@ -129,10 +131,7 @@
     }
     .galleryCon{
         border:1px solid #666666;
-        height: 600px;
-    }
-    .note-editable{
-    	height: 100%;
+        height: 900px;
     }
     
     .pad{
@@ -171,7 +170,7 @@
                                     <input type="text" placeholder="Title" class="title"  id="title" name="title" required="required">
                                 </div>
                                 <div class="galleryCon">
-								    <textarea style="height: height: 100%;" class="summernote" name="summernote"></textarea>
+								    <textarea class="summernote" name="summernote"></textarea>
 								</div>
                                 <div class="pad">
                                     <input onclick="fn_add()" type="submit" value="등록"  class="submit">

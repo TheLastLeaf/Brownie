@@ -39,7 +39,7 @@
                     ORDER BY BOARD_SEQ DESC
             )T
         )S
-        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*30-29 AND TO_NUMBER(#{pageNum})*30
+        WHERE S.RNUM BETWEEN TO_NUMBER(#{pageNum})*18-17 AND TO_NUMBER(#{pageNum})*18
 
     </select>
 	
