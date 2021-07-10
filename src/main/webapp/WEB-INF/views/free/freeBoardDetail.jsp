@@ -4,11 +4,9 @@
 
 
 <!-- 스크립트 // 하단 아이디 부분 세션스코프로 바꿔줘야함 -->
+
 <script type="text/javascript">
 	function likeHateCheck(kind) {
-		console.log(${freeDetail.boardSeq })
-		console.log(kind)
-
 		$.ajax({
 			url : "./ajax.likeHate",
 			type : "get",
@@ -27,6 +25,38 @@
 		})
 	}
 
+	function replyToBoard(boardSeq){
+		console.log("boardSeq : "+boardSeq);
+
+		var replyContent = $("#userReply").val();
+		console.log(replyContent);
+
+		$.ajax({
+			url : "../reply/ajax.replyToBoard",
+			type : "get",
+			data : {
+					"boardSeq" : ${freeDetail.boardSeq },
+					"inUserId":'1786827',
+					"replyContent": replyContent
+			},
+			success : function(data) {
+				alert("?")
+			},
+			error : function() {
+				alert("에러나요");
+			}
+		})
+
+
+	}
+
+	function replyToReply(boardSeq, replySeq){
+		console.log("boardSeq : "+boardSeq);
+		console.log("replySeq : " + replySeq);
+
+
+	}
+
 </script>
 <!-- 스크립트 -->
 
@@ -42,23 +72,17 @@
                     <div class="dt-quote">
                         <p>${freeDetail.title }</p>
                     </div>
-                    <div class="dt-desc">
-                        <p> </p>
-                    </div>
-                    <div class="dt-item">
-                        <p> </p>
-                    </div>
                     <div class="dp-text">
                         <p>${freeDetail.content } </p>
                     </div>
-                    <div class="dt-last-desc">
-                        <p> </p>
-                    </div>
+                    <!-- 태그 -->
                     <div class="dt-tags">
 	                    <c:forTokens items="${freeDetail.boardCategory }" delims="," var="tag">
 	                        <a href="#"><span>${tag }</span></a>
 	                    </c:forTokens>
                     </div>
+
+                    <!-- 좋아요 싫어요 -->
                     <div class="dt-share" style="justify-content: center; align-content: center; text-align: center;">
                         <div class="ds-links">
                             <a href="javascript:likeHateCheck('1')" class="wide"><i class="far fa-heart"></i><span id="hateCnt">${likeHateCnt.hateCnt }</span></a>
@@ -72,6 +96,7 @@
                     <div class="dt-related-post">
                         <div class="row">
 
+							<!-- 이전 게시글 안내 -->
                             <div class="col-lg-6">
                                <c:if test="${freePrev.title ne null}">
                                 <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freePrev.boardSeq}" class="rp-prev">
@@ -90,6 +115,7 @@
                                </c:if>
                             </div>
 
+							<!-- 다음 게시글 안내 -->
                             <div class="col-lg-6">
                                <c:if test="${freeNext.title ne null}">
                                 <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeNext.boardSeq}" class="rp-next">
@@ -121,49 +147,61 @@
                         </div>
                     </div>
                     <div class="dt-comment">
-                        <h4>3 comment</h4>
-                        <div class="dc-item">
-                            <div class="dc-pic">
-                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
-                            </div>
-                            <div class="dc-text">
-                                <h5>Smart HAK</h5>
-                                <span class="c-date">15 Aug 2017</span>
-                                <p>코딩테스트 존나쉽죠?</p>
-                                <a href="#" class="reply-btn"><span>Reply</span></a>
-                            </div>
-                        </div>
-                        <div class="dc-item reply-item">
-                            <div class="dc-pic">
-                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
-                            </div>
-                            <div class="dc-text">
-                                <h5>adorable Hyun-on</h5>
-                                <span class="c-date">15 Aug 2017</span>
-                                <p>조카 애기들 귀여워</p>
-                                <a href="#" class="reply-btn"><span>Reply</span></a>
-                            </div>
-                        </div>
-                        <div class="dc-item">
-                            <div class="dc-pic">
-                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-3.jpg" alt="">
-                            </div>
-                            <div class="dc-text">
-                                <h5>세웅지훈포에버</h5>
-                                <span class="c-date">15 Aug 2017</span>
-                                <p>우르르롹끼.</p>
-                                <a href="#" id="" class="reply-btn"><span>Reply</span></a>
-	                            <textarea class="replyToReply" placeholder="Message"></textarea>
-                            </div>
-                        </div>
+                        <h4>3 comment 리플 개수 으아아아아아</h4>
+
+                        <c:forEach var="replyOnBoard" items="${replyOnBoard }" varStatus="status">
+	                        <c:choose>
+								<c:when test="${replyOnBoard.status eq 'y' }">
+			                        <div class="dc-item">
+			                            <div class="dc-pic">
+			                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
+			                            </div>
+			                            <div class="dc-text">
+			                                <h5>${replyOnBoard.nickName }</h5>
+			                                <span class="c-date">15 Aug 2017</span>
+			                                <p>${replyOnBoard.replyContent }</p>
+			                                <a href="#" class="reply-btn"><span>Reply</span></a>
+			                            </div>
+			                        </div>
+								</c:when>
+								<c:otherwise>
+			                        <div class="dc-item">
+			                            <div class="dc-pic">
+			                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
+			                            </div>
+			                            <div class="dc-text">
+			                                <h5>블랙처리된사람 닉네임 자리</h5>
+			                                <span class="c-date">15 Aug 2017</span>
+			                                <p>블랙처리된 사람 리플 컨텐츠 자리</p>
+			                                <a href="#" class="reply-btn"><span>Reply</span></a>
+			                            </div>
+			                        </div>
+								</c:otherwise>
+	                        </c:choose>
+
+							<!-- 이건 대댓글 표시/ 이프문 달아서 대댓글 존재할 경우에만 표시하게 적기 여기서 포문 한번 더 돌려야 할듯  -->
+		                        <div class="dc-item reply-item">
+		                            <div class="dc-pic">
+		                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
+		                            </div>
+		                            <div class="dc-text">
+		                                <h5>adorable Hyun-on</h5>
+		                                <span class="c-date">15 Aug 2017</span>
+		                                <p>조카 애기들 귀여워</p>
+		                                <a href="#" class="reply-btn"><span>Reply</span></a>
+		                            </div>
+		                        </div>
+							<!-- 대댓글 끝 -->
+
+                        </c:forEach>
                     </div>
 
                     <!-- 리플작성구간 시작 -->
                     <div class="dt-leave-comment">
                         <h4>comment</h4>
                         <form action="#">
-                            <textarea class="replyToBoard" placeholder="Message"></textarea>
-                            <button type="button" onclick="">작성</button>
+                            <textarea id="userReply" placeholder="Message"></textarea>
+                            <button type="button" onclick="javascript:replyToBoard(${freeDetail.boardSeq })">작성</button>
                         </form>
                     </div>
                     <!-- 리플작성구간 끝 -->

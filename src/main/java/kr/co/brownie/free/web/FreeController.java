@@ -21,6 +21,8 @@ import kr.co.brownie.board.service.impl.BoardMapper;
 import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.free.service.impl.FreeMapper;
+import kr.co.brownie.reply.service.ReplyService;
+import kr.co.brownie.reply.service.ReplyVO;
 
 @Controller
 @RequestMapping("/free")
@@ -30,6 +32,9 @@ public class FreeController {
 
 	@Resource(name = "boardService")
 	BoardService boardService;
+
+	@Resource(name = "replyService")
+	ReplyService replyService;
 
 	@GetMapping(path= {"", "/freeList"})
 	public String freeList(Model model) {
@@ -51,28 +56,35 @@ public class FreeController {
     	FreeVO freeDetail = freeService.selectDetail(boardSeq);
     	model.addAttribute("freeDetail", freeDetail);
 
-    	//좋아요 싫어요 개수
-    	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
-    	model.addAttribute("likeHateCnt", likeHateCnt);
-
     	//최근 일주일 간 좋아요 수가 많은 상위 5개
     	List<FreeVO> freeFamousList = freeService.selectFamous();
     	model.addAttribute("freeFamousList", freeFamousList);
 
+    	//좋아요 싫어요 개수
+    	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+    	model.addAttribute("likeHateCnt", likeHateCnt);
+
     	//게시글 하단 : 이전 게시글과 다음 게시글을 리스트로 가져옵니다.
     	List<FreeVO> freeRecent = freeService.selectRecent(boardSeq);
-
     	for(FreeVO freeRecentOne : freeRecent) {
     		if(freeRecentOne.getBoardSeq() < boardSeq) {
     			//게시글 번호가 해당 게시글 번호보다 작다면 이전 게시글
     			model.addAttribute("freePrev", freeRecentOne);
-
     		} else if(freeRecentOne.getBoardSeq() > boardSeq) {
     			//게시글 번호가 해당 게시글 번호보다 크다면 다음 게시글
     			model.addAttribute("freeNext", freeRecentOne);
     		}
-
     	}
+
+    	//게시글 리플 : 현재 프로필 사진 누락되어있어서 쿼리문 수정해야함 / file 테이블도 연결해서 쿼리쓰기
+    	List<ReplyVO> replyOnBoard = replyService.replyOnBoard(boardSeq);
+    	model.addAttribute("replyOnBoard", replyOnBoard);
+
+    	//리플에 대한 리플 : 쿼리문 다시짜야함
+    	//같은 게시글 번호를 가진 리플들 중에서 헤드 리플 번호가 0이 아닌 리플 목록을 가져오기
+//    	List<ReplyVO> replyOnReply = replyService.replyOnReply(boardSeq);
+//    	model.addAttribute("replyOnReply", replyOnReply);
+
 
         return "free/freeBoardDetail"; // 자유게시판 리스트 디테일화면
     }
@@ -84,7 +96,7 @@ public class FreeController {
 
     @ResponseBody
     @RequestMapping(value="/ajax.likeHate", method=RequestMethod.GET)
-    public BoardVO AjaxLikeHate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+    public BoardVO ajaxLikeHate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
 
     	//새로 들어온 값
     	int kind = Integer.parseInt(map.get("kind").toString());

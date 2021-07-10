@@ -3,7 +3,100 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.reply.service.impl.ReplyMapper">
+	<select id="replyOnBoard" resultType="kr.co.brownie.reply.service.ReplyVO">
+		SELECT
+			RE.REPLY_SEQ as replySeq,
+			RE.REPLY_CONTENT as replyContent,
+			RE.IN_DATE as inDate,
+			RE.IN_USER_ID as inUserId,
+			RE.UP_DATE as modDate,
+			RE.UP_USER_ID as upUserId,
+			RE.BOARD_SEQ as boardSeq,
+			RE.HEAD_REPLY_SEQ as headReplySeq,
+			RE.STATUS AS STATUS,
+            BU.NICK_NAME AS nickName
+		FROM
+			REPLY RE, BROWNIE_USER BU
+		WHERE
+			RE.IN_USER_ID = BU.IN_USER_ID
+		AND
+			BOARD_SEQ = #{boardSeq}
+	</select>
 
+	<select id="replyOnReply" resultType="kr.co.brownie.reply.service.ReplyVO">
+		SELECT
+			RE.REPLY_SEQ as replySeq,
+			RE.REPLY_CONTENT as replyContent,
+			RE.IN_DATE as inDate,
+			RE.IN_USER_ID as inUserId,
+			RE.UP_DATE as modDate,
+			RE.UP_USER_ID as upUserId,
+			RE.BOARD_SEQ as boardSeq,
+			RE.HEAD_REPLY_SEQ as headReplySeq,
+			RE.STATUS AS STATUS,
+            BU.NICK_NAME AS nickName
+		FROM
+			REPLY RE, BROWNIE_USER BU
+		WHERE
+			HEAD_REPLY_SEQ != 0
+		AND
+			BOARD_SEQ = #{boardSeq}
+	</select>
+
+	<insert id="replyToBoard">
+		INSERT INTO REPLY
+			(
+				REPLY_SEQ,
+				REPLY_CONTENT,
+				IN_DATE,
+				IN_USER_ID,
+				UP_DATE,
+				UP_USER_ID,
+				BOARD_SEQ,
+				HEAD_REPLY_SEQ,
+				STATUS
+			)
+			VALUES
+			(
+				REPLY_SEQ.NEXTVAL,
+				#{replyContent},
+				SYSDATE,
+				#{inUserId},
+				SYSDATE,
+				#{inUserId},
+				#{boardSeq},
+				0,
+				'y'
+			)
+	</insert>
+
+
+	<insert id="replyToReply">
+		INSERT INTO REPLY
+			(
+				REPLY_SEQ,
+				REPLY_CONTENT,
+				IN_DATE,
+				IN_USER_ID,
+				UP_DATE,
+				UP_USER_ID,
+				BOARD_SEQ,
+				HEAD_REPLY_SEQ,
+				STATUS
+			)
+		VALUES
+			(
+				REPLY_SEQ.NEXTVAL,
+				#{replyContent},
+				SYSDATE,
+				#{inUserId},
+				SYSDATE,
+				#{inUserId},
+				#{boardSeq},
+				#{headReplySeq},
+				'y'
+			)
+	</insert>
 
 
 </mapper>
