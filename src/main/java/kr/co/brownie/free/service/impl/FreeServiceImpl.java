@@ -29,6 +29,11 @@ public class FreeServiceImpl implements FreeService{
 		return freeMapper.selectDetail(boardSeq);
 	}
 
+	@Override
+	public List<FreeVO> selectRecent(int boardSeq) {
+		return freeMapper.selectRecent(boardSeq);
+	}
+
 
 
 }

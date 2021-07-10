@@ -20,8 +20,6 @@
 			success : function(data) {
 				$('#hateCnt').html(data.hateCnt);
 				$('#likeCnt').html(data.likeCnt);
-				console.log(data.hateCnt);
-				console.log(data.likeCnt);
 			},
 			error : function() {
 				alert("에러나요");
@@ -73,36 +71,44 @@
                     </div>
                     <div class="dt-related-post">
                         <div class="row">
+
                             <div class="col-lg-6">
-                                <a href="#" class="rp-prev">
+                               <c:if test="${freePrev.title ne null}">
+                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freePrev.boardSeq}" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
-                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
                                     </div>
                                     <div class="rp-text">
-                                        <h6>이전글어쩌구</h6>
+                                        <h6>${freePrev.title }</h6>
                                         <ul>
                                             <li><i class="far fa-clock"></i> Aug 01, 2019</li>
                                             <li><i class="far fa-comment"></i> 20</li>
                                         </ul>
                                     </div>
                                 </a>
+                               </c:if>
                             </div>
+
                             <div class="col-lg-6">
-                                <a href="#" class="rp-next">
+                               <c:if test="${freeNext.title ne null}">
+                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeNext.boardSeq}" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
                                         <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
                                     </div>
                                     <div class="rp-text">
-                                        <h6>다음글어쩌구 게시글 순번으로 쿼리문 조회해</h6>
+                                        <h6>${freeNext.title }</h6>
                                         <ul>
                                             <li><i class="far fa-clock"></i> Aug 01, 2019</li>
                                             <li><i class="far fa-comment"></i> 20</li>
                                         </ul>
                                     </div>
                                 </a>
+                               </c:if>
                             </div>
+
+
                         </div>
                     </div>
                     <div class="dt-author">
@@ -146,19 +152,25 @@
                                 <h5>세웅지훈포에버</h5>
                                 <span class="c-date">15 Aug 2017</span>
                                 <p>우르르롹끼.</p>
-                                <a href="#" class="reply-btn"><span>Reply</span></a>
+                                <a href="#" id="" class="reply-btn"><span>Reply</span></a>
+	                            <textarea class="replyToReply" placeholder="Message"></textarea>
                             </div>
                         </div>
                     </div>
+
+                    <!-- 리플작성구간 시작 -->
                     <div class="dt-leave-comment">
                         <h4>comment</h4>
                         <form action="#">
-                            <textarea placeholder="Message"></textarea>
-                            <button type="submit">Submit</button>
+                            <textarea class="replyToBoard" placeholder="Message"></textarea>
+                            <button type="button" onclick="">작성</button>
                         </form>
                     </div>
+                    <!-- 리플작성구간 끝 -->
                 </div>
             </div>
+
+            <!-- 사이드바 시작 -->
             <div class="col-lg-4 col-md-7">
                 <div class="sidebar-option">
                    <div class="best-of-post">
@@ -191,6 +203,8 @@
                     </div>
                 </div>
             </div>
+            <!-- 사이드바 끝 -->
+
         </div>
     </div>
 </section>

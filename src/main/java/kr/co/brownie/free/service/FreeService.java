@@ -9,4 +9,6 @@ public interface FreeService {
 
 	FreeVO selectDetail(int boardSeq);
 
+	List<FreeVO> selectRecent(int boardSeq);
+
 }

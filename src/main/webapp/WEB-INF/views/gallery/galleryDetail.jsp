@@ -2,6 +2,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 
+<script>
+	
+
+</script>
+
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -12,6 +17,8 @@
                         <h1 style="color: white">${ galleryVO.title }</h1>
                     </div>
                     <div class="dt-desc">
+                    	<input type="button" onclick="location.href='${pageContext.request.contextPath}/gallery/update?boardSeq=${galleryVO.boardSeq}'" value="수정" />
+                    	<input type="button" onclick="location.href='${pageContext.request.contextPath}/gallery/delete?boardSeq=${galleryVO.boardSeq}'" value="삭제" />
 	                    <c:forEach var="fileVO" items="${fileVOList}">
 		                    <img src="${pageContext.request.contextPath}/img/gallery/${fileVO.saveName}">
 	                	</c:forEach>

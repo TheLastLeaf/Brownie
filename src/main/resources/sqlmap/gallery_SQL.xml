@@ -103,7 +103,7 @@
 
     <update id="update" parameterType="hashMap">
         UPDATE BROWNIE_BOARD
-        SET BOARD_KIND = 'notice',
+        SET BOARD_KIND = 'gallery',
             TITLE      = #{title},
             CONTENT    = #{content},
             NOTICE_YN  = 1,
