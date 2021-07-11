@@ -282,6 +282,7 @@ h1 {
 #searchBtn {
 	width: 60px;
 }
+
 </style>
 
 <!-- Main Content Post Section Begin -->
@@ -292,8 +293,7 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a>
-						<span>userDetail</span>
+						<a href="#">userInfo</a> <span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -304,15 +304,36 @@ h1 {
 						<div class="dt-desc" style="display: block;">
 							<div class="row outBox" style="margin-left: 5px;">
 								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
-									<!-- 프로필사진 -->
+									<!-- 프로필사진 + exp 툴팁 -->
 									<div class="profilePic">
 										<img src="${pageContext.request.contextPath}/img/user/lux.gif">
+										
 									</div>
+
 									<!-- 프로필 프레임 -->
 									<div class="profileFrame">
-										<img src="${pageContext.request.contextPath}/img/frame/red.png">
+										<c:choose>
+											<c:when test="${exp > 40}">
+												<img src="${pageContext.request.contextPath}/img/frame/fianl.png" title="MAX">
+											</c:when>
+											<c:when test="${exp > 30}">
+												<img src="${pageContext.request.contextPath}/img/frame/fianl.png" title="경험치: ${exp}/40">
+											</c:when>
+											<c:when test="${exp > 20}">
+												<img src="${pageContext.request.contextPath}/img/frame/purple.png" title="경험치: ${exp}/30">
+											</c:when>
+											<c:when test="${exp > 10}">
+												<img src="${pageContext.request.contextPath}/img/frame/blue.png" title="경험치: ${exp}/20">
+											</c:when>
+											<c:otherwise>
+												<img src="${pageContext.request.contextPath}/img/frame/green.png" title="경험치: ${exp}/10">
+											</c:otherwise>
+										</c:choose>
 										<div class="profileFrameLv">
 											<c:choose>
+												<c:when test="${exp > 40}">
+														4
+													</c:when>
 												<c:when test="${exp > 30}">
 														3
 													</c:when>
@@ -336,10 +357,7 @@ h1 {
 									<div class="nameLv">
 										<h3 class="font-family-maple-bold text-white">
 											<c:out value="${nick}" />
-											&nbsp;|&nbsp; 
-											${userOneSelect.browniePoint}
-											.BP
-											&nbsp;|&nbsp; <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
+											&nbsp;|&nbsp; ${userOneSelect.browniePoint} .BP &nbsp;|&nbsp; <span class="rating-star"> <c:forEach begin="1" end="${fullStar}">
 													<i class="fas fa-star"></i>
 												</c:forEach> <c:forEach begin="1" end="${halfStar}">
 													<i class="fas fa-star-half-alt"></i>
@@ -384,8 +402,7 @@ h1 {
 								<div class="infoDetail">【 최근 게시글 내역 】</div>
 								<c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
 									<div class="upload">
-										${vs.index+1}.
-										<a href="">${recentBoard}</a>
+										${vs.index+1}.<a href="">${recentBoard}</a>
 									</div>
 								</c:forEach>
 							</div>
@@ -418,12 +435,13 @@ h1 {
 						<br />
 
 						<!-- 후기글 begin -->
-
 						<div class="reputation row">
 							<div class="col-sm-4" style="display: flex; justify-content: flex-start; align-items: center;">
 								후기를 써서 테러하세요!
 								<h6>&nbsp;[우클릭하여 신고]</h6>
 							</div>
+
+							<!-- 검색 begin -->
 							<div class="col-sm-8" style="display: flex; justify-content: flex-end;">
 								<div class="searchBox">
 									<select name="searchType" id="searchType" class="input-value selectOption">
@@ -435,6 +453,7 @@ h1 {
 									<button type="button" id="searchBtn" class="btn btn-primary">검색</button>
 								</div>
 							</div>
+							<!-- 검색 end-->
 
 							<c:forEach var="reviewVO" items="${reviewVOs}">
 								<div class="review col-4">
@@ -497,7 +516,7 @@ h1 {
 									<!-- 프로필 프레임(테두리) -->
 									<div class="profileFrame">
 										<img src="${pageContext.request.contextPath}/img/frame/final.png">
-										<div class="profileFrameLv">12</div>
+										<div class="profileFrameLv">99</div>
 									</div>
 								</div>
 								<div class="col-7" style="color: white;">
@@ -608,6 +627,8 @@ h1 {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.css" integrity="sha512-SWjZLElR5l3FxoO9Bt9Dy3plCWlBi1Mc9/OlojDPwryZxO0ydpZgvXMLhV6jdEyULGNWjKgZWiX/AMzIvZ4JuA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.js" integrity="sha512-kvg/Lknti7OoAw0GqMBP8B+7cGHvp4M9O9V6nAYG91FZVDMW3Xkkq5qrdMhrXiawahqU7IZ5CNsY/wWy1PpGTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.ui.position.js" integrity="sha512-vBR2rismjmjzdH54bB2Gx+xSe/17U0iHpJ1gkyucuqlTeq+Q8zwL8aJDIfhQtnWMVbEKMzF00pmFjc9IPjzR7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <c:import url="../layout/footer.jsp">
 	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>
@@ -677,8 +698,8 @@ h1 {
 		});
 	});
 
+	// 작성자와 날짜 스위칭 display block과 none을 잘 활용
 	$(function() {
-		// 작성자와 날짜 스위칭 display block과 none을 잘 활용
 		$('#searchType').click(function() {
 			if (this.value == 'writerId') {
 				$('#writeUser').css('display', 'block');

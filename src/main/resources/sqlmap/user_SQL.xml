@@ -122,8 +122,9 @@
 		    TITLE
 		FROM 
 		    BROWNIE_BOARD
-		WHERE 
+		WHERE
 		    IN_USER_ID IN '${id}' AND ROWNUM <= 3
+		AND LOWER(notice_yn) = LOWER('y')
 		ORDER BY UP_DATE DESC
 	]]>
 	</select>
