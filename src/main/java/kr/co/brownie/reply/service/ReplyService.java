@@ -10,5 +10,5 @@ public interface ReplyService {
 
 	List<ReplyVO> replyOnBoard(int boardSeq);
 
-	List<ReplyVO> replyOnReply(int boardSeq);
+	List<ReplyVO> replyOnReply(int replySeq);
 }

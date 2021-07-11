@@ -1,5 +1,6 @@
 package kr.co.brownie.free.web;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -79,12 +80,22 @@ public class FreeController {
     	//게시글 리플 : 현재 프로필 사진 누락되어있어서 쿼리문 수정해야함 / file 테이블도 연결해서 쿼리쓰기
     	List<ReplyVO> replyOnBoard = replyService.replyOnBoard(boardSeq);
     	model.addAttribute("replyOnBoard", replyOnBoard);
+    	
+    	//게시글 리리플 :리리플에 유저 태그 기능도 고려해보도록 하겠음 아빠가 제안해줌 하하
+    	Map<String, Object> reReplyMap = new HashMap<String, Object>();
+    	for(ReplyVO reply : replyOnBoard) {
+    		//리플 시퀀스 번호를 받아와서 시퀀스 번호에 맞게 해당 리리플 목록을 가져와서 맵에 저장
+    		int replySeq = reply.getReplySeq();
+    		
+    		//리플 시퀀스 번호를 기반으로 리리플 리스트를 구함
+    		List<ReplyVO> replyOnReply = replyService.replyOnReply(replySeq);
 
-    	//리플에 대한 리플 : 쿼리문 다시짜야함
-    	//같은 게시글 번호를 가진 리플들 중에서 헤드 리플 번호가 0이 아닌 리플 목록을 가져오기
-//    	List<ReplyVO> replyOnReply = replyService.replyOnReply(boardSeq);
-//    	model.addAttribute("replyOnReply", replyOnReply);
-
+    		//값이 있는 경우 { replySeq : List<replyVO> } 이런 식으로 넣어줘야할듯
+    		if(replyOnReply.size() > 0) {
+    			reReplyMap.put(replySeq+"", replyOnReply);
+    		}
+    	}
+    	model.addAttribute("reReplyMap", reReplyMap);
 
         return "free/freeBoardDetail"; // 자유게시판 리스트 디테일화면
     }
@@ -123,7 +134,6 @@ public class FreeController {
 
     	//좋아요 싫어요 개수 출력
     	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
-    	model.addAttribute("likeHateCnt", likeHateCnt);
     	return likeHateCnt;
 
     }

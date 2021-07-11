@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:import url="../layout/header.jsp"/>
 
 
@@ -147,7 +148,7 @@
                         </div>
                     </div>
                     <div class="dt-comment">
-                        <h4>3 comment 리플 개수 으아아아아아</h4>
+                        <h4>${fn:length(replyOnBoard)} comments 이거 대댓글도 카운트 해야하나?</h4>
 
                         <c:forEach var="replyOnBoard" items="${replyOnBoard }" varStatus="status">
 	                        <c:choose>
@@ -158,7 +159,7 @@
 			                            </div>
 			                            <div class="dc-text">
 			                                <h5>${replyOnBoard.nickName }</h5>
-			                                <span class="c-date">15 Aug 2017</span>
+			                                <span class="c-date">${replyOnBoard.modDate }</span>
 			                                <p>${replyOnBoard.replyContent }</p>
 			                                <a href="#" class="reply-btn"><span>Reply</span></a>
 			                            </div>
@@ -170,27 +171,34 @@
 			                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
 			                            </div>
 			                            <div class="dc-text">
-			                                <h5>블랙처리된사람 닉네임 자리</h5>
-			                                <span class="c-date">15 Aug 2017</span>
-			                                <p>블랙처리된 사람 리플 컨텐츠 자리</p>
-			                                <a href="#" class="reply-btn"><span>Reply</span></a>
+			                                <h5>******</h5>
+			                                <span class="c-date">${replyOnBoard.modDate }</span>
+			                                <p>신고 접수로 블라인드 처리 된 댓글입니다.</p>
+			                                <a href="#" class="reply-btn" id="blackReply_${replyOnBoard.replySeq }"><span>내용보기</span></a>
 			                            </div>
 			                        </div>
 								</c:otherwise>
 	                        </c:choose>
-
+	                        
 							<!-- 이건 대댓글 표시/ 이프문 달아서 대댓글 존재할 경우에만 표시하게 적기 여기서 포문 한번 더 돌려야 할듯  -->
-		                        <div class="dc-item reply-item">
-		                            <div class="dc-pic">
-		                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
-		                            </div>
-		                            <div class="dc-text">
-		                                <h5>adorable Hyun-on</h5>
-		                                <span class="c-date">15 Aug 2017</span>
-		                                <p>조카 애기들 귀여워</p>
-		                                <a href="#" class="reply-btn"><span>Reply</span></a>
-		                            </div>
-		                        </div>
+							<c:set var="repSeq" value="${replyOnBoard.replySeq }" />
+								<c:forEach var="reMap" items="${reReplyMap}">
+									<c:if test="${reMap.key eq repSeq}">
+										<c:forEach var="rm" items="${reMap.value}">
+				                        <div class="dc-item reply-item">
+				                            <div class="dc-pic">
+				                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
+				                            </div>
+				                            <div class="dc-text">
+				                                <h5>${rm.nickName }</h5>
+				                                <span class="c-date">${rm.modDate }</span>
+				                                <p><a href="#">@${replyOnBoard.nickName }</a> ${rm.replyContent}</p>
+				                                <a href="#" class="reply-btn"><span>Reply</span></a>
+				                            </div>
+				                        </div>
+										</c:forEach>
+									</c:if>
+								</c:forEach>
 							<!-- 대댓글 끝 -->
 
                         </c:forEach>

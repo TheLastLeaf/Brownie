@@ -20,7 +20,10 @@
 		WHERE
 			RE.IN_USER_ID = BU.IN_USER_ID
 		AND
-			BOARD_SEQ = #{boardSeq}
+			RE.HEAD_REPLY_SEQ = 0
+		AND
+			RE.BOARD_SEQ = #{boardSeq}
+		ORDER BY RE.IN_DATE
 	</select>
 
 	<select id="replyOnReply" resultType="kr.co.brownie.reply.service.ReplyVO">
@@ -38,9 +41,9 @@
 		FROM
 			REPLY RE, BROWNIE_USER BU
 		WHERE
-			HEAD_REPLY_SEQ != 0
-		AND
-			BOARD_SEQ = #{boardSeq}
+			RE.IN_USER_ID = BU.IN_USER_ID
+		AND	
+			HEAD_REPLY_SEQ = #{replySeq}
 	</select>
 
 	<insert id="replyToBoard">

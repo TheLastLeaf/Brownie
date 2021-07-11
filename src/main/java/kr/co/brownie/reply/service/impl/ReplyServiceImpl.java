@@ -32,8 +32,8 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public List<ReplyVO> replyOnReply(int boardSeq) {
-		return replyMapper.replyOnReply(boardSeq);
+	public List<ReplyVO> replyOnReply(int replySeq) {
+		return replyMapper.replyOnReply(replySeq);
 	}
 
 
