@@ -46,8 +46,6 @@ public class UserController {
 		if (id != null) {
 			UserVO userOneSelect = userService.userOneSelect(id);
 			System.out.println("userOneSelect: " + userOneSelect);
-			// 포지션 select
-			String position = userOneSelect.getUserPosition();
 
 			// 경험치 select
 			int exp = userService.selectExp(id);
@@ -72,11 +70,10 @@ public class UserController {
 			page.setId(id);
 			page.setTotalCount(reviewService.countAllReview(page));
 			List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
-			
+
 			// model.addattribute
 			model.addAttribute("userOneSelect", userOneSelect);
 			model.addAttribute("exp", exp);
-			model.addAttribute("position", position);
 			model.addAttribute("fullStar", fullStar);
 			if (halfStar == 1) {
 				model.addAttribute("halfStar", halfStar);

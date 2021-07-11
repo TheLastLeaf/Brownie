@@ -314,16 +314,16 @@ h1 {
 									<div class="profileFrame">
 										<c:choose>
 											<c:when test="${exp > 40}">
-												<img src="${pageContext.request.contextPath}/img/frame/fianl.png" title="MAX">
+												<img src="${pageContext.request.contextPath}/img/frame/final.png" title="MAX">
 											</c:when>
 											<c:when test="${exp > 30}">
-												<img src="${pageContext.request.contextPath}/img/frame/fianl.png" title="경험치: ${exp}/40">
+												<img src="${pageContext.request.contextPath}/img/frame/purple.png" title="경험치: ${exp}/40">
 											</c:when>
 											<c:when test="${exp > 20}">
-												<img src="${pageContext.request.contextPath}/img/frame/purple.png" title="경험치: ${exp}/30">
+												<img src="${pageContext.request.contextPath}/img/frame/blue.png" title="경험치: ${exp}/30">
 											</c:when>
 											<c:when test="${exp > 10}">
-												<img src="${pageContext.request.contextPath}/img/frame/blue.png" title="경험치: ${exp}/20">
+												<img src="${pageContext.request.contextPath}/img/frame/red.png" title="경험치: ${exp}/20">
 											</c:when>
 											<c:otherwise>
 												<img src="${pageContext.request.contextPath}/img/frame/green.png" title="경험치: ${exp}/10">
@@ -386,8 +386,7 @@ h1 {
 									${userOneSelect.lolId} | 롤Lv. | 롤Tier
 								</div>
 								<div class="sync">
-									<%-- <c:set var="position" value="${userOneSelect.userPosition}"/> --%>
-									[메인포지션] : ${position}
+									[메인포지션] : ${userOneSelect.userPosition}
 								</div>
 							</div>
 							<!-- 뭉태기2 -->
