@@ -49,6 +49,7 @@ public class UserController {
 
 			// 경험치 select
 			int exp = userService.selectExp(id);
+
 			// 별카운트
 			float starCnt = userService.starCntSelect(id);
 			int fullStar = (int) starCnt / 1;
@@ -66,6 +67,7 @@ public class UserController {
 			// 로그인한 사람의 최근 게시글 3개가져오기
 			List<String> recentBoard = userService.recentBoard(id);
 
+			//
 			// 후기 페이징
 			page.setId(id);
 			page.setTotalCount(reviewService.countAllReview(page));
@@ -104,11 +106,8 @@ public class UserController {
 		String[] positions = request.getParameterValues("positions");
 		System.out.println(Arrays.toString(positions));
 
-		// 넣을때는 모든 정보를 넣고 가져올때 split() 사켜서 null이 아닌것만 jsp에 띄워주기
-		// String userPosition = top + "/" + jun + "/" + mid + "/" + bot + "/" + sup;
 		// map.put("userPosition", userPosition);
 
-		// System.out.println("id, nick, top, jun, mid, bot, sup : " + id + "/" + nick + "/" + top + "/" + jun + "/" + mid + "/" + bot + "/" + sup);
 		// userService.insertNick(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
 
 		return "msg";
