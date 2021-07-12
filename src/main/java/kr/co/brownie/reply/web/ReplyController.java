@@ -42,30 +42,23 @@ public class ReplyController {
     	int kind = Integer.parseInt(map.get("kind").toString());
     	int replySeq = Integer.parseInt(map.get("replySeq").toString());
 
-    	System.out.println("map : "+map);
-
     	try {
     		//유저의 기존 값 가져옴
     		ReplyVO userInReply = replyService.selectReplyStance(map);
     		int userStance = userInReply.getLikeHateKind();
 
-    		System.out.println("userStance : " + userStance);
-
     		if(userStance == kind) {
-    			System.out.println("if 1");
     			//기존값이 새로 들어온 값과 같을 경우 저장된 값을 삭제함
     			replyService.deleteReplyStance(map);
 
     		} else {
     			//기존값이 새로 들어온 값과 다를 경우 값을 업데이트함
     			replyService.updateReplyStance(map);
-    			System.out.println("if 2");
     		}
 
 		} catch (NullPointerException e) {
 			//기존값이 null일 경우 새로 들어온 값을 삽입해줌
 			replyService.updateReplyStance(map);
-			System.out.println("catch !!!!!!!!!!!!!!!!!!!!");
 		}
 
     	//좋아요 싫어요 개수 출력
@@ -79,7 +72,6 @@ public class ReplyController {
     		likeHateCntZero.setLikeCnt("0");
     		return likeHateCntZero;
     	}
-    	System.out.println(likeHateCnt);
     	return likeHateCnt;
     }
 

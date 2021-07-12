@@ -77,11 +77,14 @@ public class FreeController {
     		}
     	}
 
+    	//게시글 리플 개수
+    	int replyCnt = replyService.boardReplyCnt(boardSeq);
+    	model.addAttribute("replyCnt", replyCnt);
+
     	//게시글 리플 : 현재 프로필 사진 누락되어있어서 쿼리문 수정해야함 / file 테이블도 연결해서 쿼리쓰기
     	List<ReplyVO> replyOnBoard = replyService.replyOnBoard(boardSeq);
     	System.out.println("replyOnBoard : "+replyOnBoard);
     	model.addAttribute("replyOnBoard", replyOnBoard);
-
 
     	//게시글 리리플 :리리플에 유저 태그 기능도 고려해보도록 하겠음 아빠가 제안해줌 하하
     	Map<String, Object> reReplyMap = new HashMap<String, Object>();
@@ -143,7 +146,6 @@ public class FreeController {
     		likeHateCntZero.setBoardSeq(boardSeq);
     		likeHateCntZero.setHateCnt("0");
     		likeHateCntZero.setLikeCnt("0");
-    		System.out.println("likeHateCntZero : "+likeHateCntZero);
     		return likeHateCntZero;
     	}
     	return likeHateCnt;

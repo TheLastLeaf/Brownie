@@ -23,4 +23,7 @@ public class ReplyVO {
 	private String likeCnt;
 	private String hateCnt;
 	private int likeHateKind;
+
+	//게시글 당 리플 개수
+	private int replyCnt;
 }

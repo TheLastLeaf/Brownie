@@ -56,4 +56,9 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.replyLHCnt(replySeq);
 	}
 
+	@Override
+	public int boardReplyCnt(int boardSeq) {
+		return replyMapper.boardReplyCnt(boardSeq);
+	}
+
 }

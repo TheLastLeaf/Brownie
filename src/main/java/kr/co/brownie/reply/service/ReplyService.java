@@ -20,4 +20,7 @@ public interface ReplyService {
 
 	ReplyVO replyLHCnt(int replySeq);
 
+	int boardReplyCnt(int boardSeq);
+
+
 }

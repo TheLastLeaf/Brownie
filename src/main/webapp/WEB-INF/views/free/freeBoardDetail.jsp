@@ -219,7 +219,7 @@
                         </div>
                     </div>
                     <div class="dt-comment">
-                        <h4>${fn:length(replyOnBoard)} comments 이거 대댓글도 카운트 해야하나?</h4>
+                        <h4>${replyCnt} comments</h4>
 
                         <c:forEach var="replyOnBoard" items="${replyOnBoard }" varStatus="status">
 	                        <c:choose>
@@ -270,24 +270,48 @@
 								<c:forEach var="reMap" items="${reReplyMap}">
 									<c:if test="${reMap.key eq repSeq}">
 										<c:forEach var="rm" items="${reMap.value}">
-				                        <div class="dc-item reply-item">
-				                            <div class="dc-pic">
-				                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
-				                            </div>
-				                            <div class="dc-text">
-				                                <h5>${rm.nickName }</h5>
-				                                <span class="c-date">${rm.modDate }</span>
-				                                <p><a href="#">@${replyOnBoard.nickName }</a> ${rm.replyContent}</p>
-				                                <div class="actForReply">
-					                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${rm.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
-					                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${rm.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-					                                <a href="#"><span class="replyCall">신고하기</span></a>
-				                            	</div>
-				                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
-				                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
-				                               	</c:if>
-				                            </div>
-				                        </div>
+	                        				<c:choose>
+												<c:when test="${rm.status eq 'y' }">
+							                        <div class="dc-item reply-item">
+							                            <div class="dc-pic">
+							                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
+							                            </div>
+							                            <div class="dc-text">
+							                                <h5>${rm.nickName }</h5>
+							                                <span class="c-date">${rm.modDate }</span>
+							                                <p><a href="#">@${replyOnBoard.nickName }</a> ${rm.replyContent}</p>
+							                                <div class="actForReply">
+								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${rm.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
+								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${rm.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+								                                <a href="#"><span class="replyCall">신고하기</span></a>
+							                            	</div>
+							                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
+							                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
+							                               	</c:if>
+							                            </div>
+							                        </div>
+												</c:when>
+												<c:otherwise>
+							                        <div class="dc-item reply-item">
+							                            <div class="dc-pic">
+							                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
+							                            </div>
+							                            <div class="dc-text">
+							                                <h5>******</h5>
+							                                <span class="c-date">${rm.modDate }</span>
+							                                <p><span id="">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</span></p>
+							                                <div class="actForReply">
+								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${rm.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
+								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${rm.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+								                                <a href="#"><span class="replyCall">신고하기</span></a>
+								                            </div>
+							                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
+							                               		<a href="#" class="reply-btn"><span>수정하기</span></a>
+							                               	</c:if>
+							                            </div>
+							                        </div>
+												</c:otherwise>
+	                        				</c:choose>
 										</c:forEach>
 									</c:if>
 								</c:forEach>
