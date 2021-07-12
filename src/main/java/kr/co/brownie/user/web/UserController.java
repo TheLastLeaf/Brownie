@@ -101,19 +101,18 @@ public class UserController {
 	public String userName(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) {
 
 		String uploadFolder = "C:\\upload";
-		
-		
-		for(MultipartFile multipartFile : uploadFile) {
+
+		for (MultipartFile multipartFile : uploadFile) {
 			String uploadFileName = multipartFile.getOriginalFilename();
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+ 1);
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
 			File savefile = new File(uploadFolder, uploadFileName);
 			try {
 				multipartFile.transferTo(savefile);
-			}catch (Exception e) {
+			} catch (Exception e) {
 				System.out.println("예외발생");
 			}
 		}
-		
+
 		// 세션 아이디 -> map에 삽입
 		String id = (String) httpSession.getAttribute("id");
 		map.put("id", id);

@@ -234,7 +234,7 @@ h1 {
 .paging {
 	display: flex;
 	justify-content: center;
-	margin: 0px 0px 8px;
+	margin: 8px 0px 8px;
 }
 
 .modInfo {

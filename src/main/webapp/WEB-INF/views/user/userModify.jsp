@@ -120,7 +120,7 @@ input[name="position"] {
 		var formData = new FormData();
 		var inputFile = $("input[name='file']");
 		var files = inputFile[0].files;
-// 		console.log(files);
+// 		console.log(files[0]);
 		formData.append("uploadFile",files[0]);
 		//파일처리 끝 -----------
 		var nickNameBox = $("input[name=nickNameBox]").val();
