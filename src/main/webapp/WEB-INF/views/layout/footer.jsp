@@ -45,7 +45,7 @@
                         </div>
                         <div class="ec-text">
                             <h6>
-                                <a href="#">빙고어쩌구</a>
+                                <a href="${pageContext.request.contextPath}/attendance">출석체크</a>
                             </h6>
                             <ul>
                                 <li><i class="far fa-clock"></i>잔여시간</li>

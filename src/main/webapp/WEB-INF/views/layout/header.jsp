@@ -105,7 +105,7 @@
             <li><a href="${pageContext.request.contextPath}/teamGame">GROUP</a></li>
             <li><a href="${pageContext.request.contextPath}/tip">CHAMPIONS TIP</a></li>
             <li><a href="${pageContext.request.contextPath}/gallery">FANART</a></li>
-            <li><a href="${pageContext.request.contextPath}/board">LOUNGE</a></li>
+            <li><a href="${pageContext.request.contextPath}/free">LOUNGE</a></li>
         </ul>
     </div>
     <div id="mobile-menu-wrap"></div>
@@ -490,7 +490,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/board"><span>LOUNGE
+                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/free"><span>LOUNGE
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
