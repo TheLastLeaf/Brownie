@@ -12,23 +12,21 @@
 <title>MODIFY</title>
 
 <!-- favicon -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap"
-		  rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
 
-	<!-- Css Styles -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@icon/elegant-icons@0.0.1-alpha.4/elegant-icons.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="https://raw.githubusercontent.com/9bitStudios/barfiller/master/css/style.css"/>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css" integrity="sha512-heyoieAHmpAL3BdaQMsbIOhVvGb4+pl4aGCZqWzX/f1BChRArrBy/XUZDHW9WVi5p6pf92pX4yjkfmdaIYa2QQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<!-- Css Styles -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@icon/elegant-icons@0.0.1-alpha.4/elegant-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://raw.githubusercontent.com/9bitStudios/barfiller/master/css/style.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css" integrity="sha512-heyoieAHmpAL3BdaQMsbIOhVvGb4+pl4aGCZqWzX/f1BChRArrBy/XUZDHW9WVi5p6pf92pX4yjkfmdaIYa2QQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <style>
 body {
@@ -116,31 +114,51 @@ input[name="position"] {
 	padding-top: 40px;
 }
 </style>
-<script>
+ <script>
 	function fn_submit() {
+		//파일처리 시작 ----------
+		var formData = new FormData();
+		var inputFile = $("input[name='file']");
+		var files = inputFile[0].files;
+// 		console.log(files);
+		formData.append("uploadFile",files[0]);
+		//파일처리 끝 -----------
 		var nickNameBox = $("input[name=nickNameBox]").val();
 		var positions = []
-		$('input[name="positions"]:checked').each(funtion(){
-			positions.push($(this).val())			
-		})
+		$('input[name="positions"]:checked').each(function() {
+			positions.push($(this).val())
+		});		
 
-		var param = "";
-		param += "dummy=" + Math.random()
-		param += "&nickNameBox=" + nickNameBox + "&positions=" + positions;
-		console.log(positions);
+// 		var param = "";
+// 		param += "dummy=" + Math.random()
+// 		param += "&nickNameBox=" + nickNameBox
+// 				+ "&positions=" + positions
+		formData.append("nickNameBox",nickNameBox);
+		formData.append("positions",positions);
+// 		console.log(nickNameBox);
+// 		console.log(positions);
+		console.log(formData);
+		
 		$.ajax({
 			url : "/user/userInfo",
 			type : "POST",
-			data : param,
+			data : formData,
+			processData:false,
+			contentType:false,
 			success : function(data) {
 				alert("성공");
-				window.close();
-				window.reload();
+				//window.close();
+				//window.reload();
 			},
 			error : function() {
 				alert("실패ㅜㅜ err");
-			}
+			},
 		});
+	}
+
+	function fn_loginPlz() {
+		alert("로그인이 필요합니다!")
+
 	}
 </script>
 
@@ -159,29 +177,54 @@ input[name="position"] {
 					<h2 class="font-family-maple-bold text-white">정보수정</h2>
 					<p class="advice">사진을 눌러서 프로필을 바꿔보세요!</p>
 				</div>
-
+				
+			
 				<!-- form태그 begin -->
-				<form action="/user/userInfo" name="frm" class="signup-form" method="POST">
+				<form action="/user/userInfo" name="frm" class="signup-form" id="form" method="POST" enctype="multipart/form-data">
 					<div class="sf-input-list ">
 						<!-- 					text-center justify-content-center align-items-center d-flex -->
 						<div class="profileBox" style="border: none;">
-							<label for="file"> <img class="profile" src="${pageContext.request.contextPath}/img/user/sana1.gif"> <input type="file" id="file" />
+							<label for="file">
+								<img class="profile" src="">
+								<input type="file" id="file" name="file" multiple/>
 							</label>
 						</div>
 						<input type="text" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*">
 
 						<!-- 포지션선택 -->
 						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
-							<label class="btn btn-danger position"> <input type="checkbox" name="positions" value="top"> <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
-							</label> &nbsp; <label class="btn btn-danger position"> <input type="checkbox" name="positions" value="jun"> <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
-							</label> &nbsp; <label class="btn btn-danger position"> <input type="checkbox" name="positions" value="mid"> <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
-							</label> &nbsp; <label class="btn btn-danger position"> <input type="checkbox" name="positions" value="bot"> <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
-							</label> &nbsp; <label class="btn btn-danger position"> <input type="checkbox" name="positions" value="sup"> <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
-							</label> &nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="positions" value="top">
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
+							</label>
+							&nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="positions" value="jun">
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
+							</label>
+							&nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="positions" value="mid">
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
+							</label>
+							&nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="positions" value="bot">
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
+							</label>
+							&nbsp;
+							<label class="btn btn-danger position">
+								<input type="checkbox" name="positions" value="sup">
+								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
+							</label>
+							&nbsp;
 						</div>
 					</div>
 					<div class="radio-check" style="margin: 10px;">
-						<label for="rc-agree"> 30일내에 변경불가합니다 동의하시면 체크해주세요. <input type="checkbox" id="rc-agree"> <span class="checkbox"></span>
+						<label for="rc-agree">
+							30일내에 변경불가합니다 동의하시면 체크해주세요.
+							<input type="checkbox" id="rc-agree">
+							<span class="checkbox"></span>
 						</label>
 					</div>
 					<button type="button" style="margin: 15px;" onclick="fn_submit()">
@@ -192,7 +235,31 @@ input[name="position"] {
 			</div>
 		</div>
 	</div>
-
+	
+	<!-- <script>
+	    $("#file").change(function(e)){
+	        var form = $("form")[0];        
+	        var formData = new FormData(form);
+	        
+	        alert(formData);
+	
+	        $.ajax({
+	            cache : false,
+	            url : "${pageContext.request.contextPath}/testForm2", // 요기에
+	            processData: false,
+	            contentType: false,
+	            type : 'POST', 
+	            data : formData, 
+	            success : function(data) {
+	                var jsonObj = JSON.parse(data);
+	            }, // success 
+	    
+	            error : function(xhr, status) {
+	                alert(xhr + " : " + status);
+	            }
+	        }); // $.ajax */    }
+	</script> -->
+	
 
 	<!-- Js Plugins -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

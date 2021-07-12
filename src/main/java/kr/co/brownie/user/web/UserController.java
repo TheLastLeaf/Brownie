@@ -1,5 +1,6 @@
 package kr.co.brownie.user.web;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.brownie.review.service.ReviewService;
 import kr.co.brownie.review.service.ReviewVO;
@@ -96,14 +98,29 @@ public class UserController {
 
 	@PostMapping("/userInfo")
 	@ResponseBody // AJAX 사용시 써야함
-	public String userName(@RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) {
+	public String userName(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) {
 
+		String uploadFolder = "C:\\upload";
+		
+		
+		for(MultipartFile multipartFile : uploadFile) {
+			String uploadFileName = multipartFile.getOriginalFilename();
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+ 1);
+			File savefile = new File(uploadFolder, uploadFileName);
+			try {
+				multipartFile.transferTo(savefile);
+			}catch (Exception e) {
+				System.out.println("예외발생");
+			}
+		}
+		
 		// 세션 아이디 -> map에 삽입
 		String id = (String) httpSession.getAttribute("id");
 		map.put("id", id);
 
 		String nick = (String) map.get("nickNameBox");
 		String[] positions = request.getParameterValues("positions");
+		System.out.println("nick:" + nick);
 		System.out.println(Arrays.toString(positions));
 
 		// map.put("userPosition", userPosition);
