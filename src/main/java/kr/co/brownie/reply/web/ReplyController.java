@@ -25,12 +25,9 @@ public class ReplyController {
 
 
 	@ResponseBody
-	@RequestMapping(value="/ajax.replyToBoard", method=RequestMethod.GET)
-	public ReplyVO ajaxReplyToBoard(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
-		System.out.println(map);
-
+	@RequestMapping(value="/ajax.replyToBoard", method= {RequestMethod.GET, RequestMethod.POST})
+	public void ajaxReplyToBoard(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
 		replyService.replyToBoard(map);
-		return null;
 	}
 
 

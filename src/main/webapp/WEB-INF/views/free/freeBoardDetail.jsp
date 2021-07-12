@@ -101,27 +101,23 @@
 		})
 	}
 
-	function replyToBoard(boardSeq){
-		console.log("boardSeq : "+boardSeq);
-
+	function replyToBoard(){
 		var replyContent = $("#userReply").val();
-		console.log(replyContent);
-
-// 		$.ajax({
-// 			url : "../reply/ajax.replyToBoard",
-// 			type : "get",
-// 			data : {
-// 					"boardSeq" : ${freeDetail.boardSeq },
-// 					"inUserId":'1786827',
-// 					"replyContent": replyContent
-// 			},
-// 			success : function(data) {
-// 				alert("?")
-// 			},
-// 			error : function() {
-// 				alert("에러나요");
-// 			}
-// 		})
+		$.ajax({
+			url : "../reply/ajax.replyToBoard",
+			type : "POST",
+			data : {
+					"boardSeq" : ${freeDetail.boardSeq },
+					"inUserId": inUserId,
+					"replyContent": replyContent
+			},
+			success : function(data) {
+				location.reload();
+			},
+			error : function() {
+				alert("에러나요");
+			}
+		})
 	}
 
 	function replyToReply(boardSeq, replySeq){
@@ -219,7 +215,7 @@
                         </div>
                     </div>
                     <div class="dt-comment">
-                        <h4>${replyCnt} comments</h4>
+                        <h4> 댓글 수 ${replyCnt} 개</h4>
 
                         <c:forEach var="replyOnBoard" items="${replyOnBoard }" varStatus="status">
 	                        <c:choose>
@@ -325,7 +321,7 @@
                         <h4>comment</h4>
                         <form action="#">
                             <textarea id="userReply" placeholder="Message"></textarea>
-                            <button type="button" onclick="javascript:replyToBoard(${freeDetail.boardSeq })">작성</button>
+                            <button type="button" onclick="javascript:replyToBoard()">댓글 작성</button>
                         </form>
                     </div>
                     <!-- 리플작성구간 끝 -->
