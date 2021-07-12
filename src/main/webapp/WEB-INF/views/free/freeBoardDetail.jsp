@@ -342,7 +342,7 @@
 	                                </div>
 	                            </div>
 	                            <div class="bp-text">
-	                                <h6><a href="#">${freeFamousList.title }</a></h6>
+	                                <h6><a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeFamousList.boardSeq}">${freeFamousList.title }</a></h6>
 	                                <ul>
 	                                    <li><i class="far fa-clock"></i>${freeFamousList.inDate }</li>
 	                                    <li><i class="far fa-comment"></i> 20</li>

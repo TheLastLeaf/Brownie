@@ -2,6 +2,8 @@ package kr.co.brownie.common.web;
 
 import com.google.gson.JsonObject;
 import kr.co.brownie.common.service.CommonService;
+import kr.co.brownie.free.service.FreeService;
+import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.youtube.service.YouTubeService;
 import kr.co.brownie.youtube.service.YouTubeVO;
 import org.apache.commons.io.FileUtils;
@@ -28,12 +30,20 @@ public class CommonController {
     @Resource(name = "youTubeService")
     YouTubeService youTubeService;
 
+    @Resource(name = "freeService")
+    FreeService freeService;
+
 
     @GetMapping(path = {"", "index"})
     public String index(Model model) {
         //main youtube list
         List<YouTubeVO> youTubeVoList = youTubeService.selectList();
         model.addAttribute("youTubeVoList", youTubeVoList);
+
+		//상단 메뉴바 자유게시판에 마우스 오버 시 드롭다운 최근 게시물 5개
+        List<FreeVO> recentList = freeService.selectRecentForMenu();
+        System.out.println(recentList);
+        model.addAttribute("recentList", recentList);
 
         return "common/index";
     }

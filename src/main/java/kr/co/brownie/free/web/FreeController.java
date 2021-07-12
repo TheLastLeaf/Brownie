@@ -47,6 +47,11 @@ public class FreeController {
 		List<FreeVO> freeFamousList = freeService.selectFamous();
 		model.addAttribute("freeFamousList", freeFamousList);
 
+		//상단 메뉴바에 표시되는 최근 게시물 5개
+        List<FreeVO> recentList = freeService.selectRecentForMenu();
+        System.out.println(recentList);
+        model.addAttribute("recentList", recentList);
+
 		return "free/freeBoardList";  // 자유게시판 리스트
 	}
 
@@ -101,6 +106,12 @@ public class FreeController {
     		}
     	}
     	model.addAttribute("reReplyMap", reReplyMap);
+
+
+		//상단 메뉴바에 표시되는 최근 게시물 5개
+        List<FreeVO> recentList = freeService.selectRecentForMenu();
+        System.out.println(recentList);
+        model.addAttribute("recentList", recentList);
 
         return "free/freeBoardDetail"; // 자유게시판 리스트 디테일화면
     }

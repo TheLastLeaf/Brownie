@@ -34,6 +34,9 @@ public class FreeServiceImpl implements FreeService{
 		return freeMapper.selectRecent(boardSeq);
 	}
 
-
+	@Override
+	public List<FreeVO> selectRecentForMenu() {
+		return freeMapper.selectRecentForMenu();
+	}
 
 }

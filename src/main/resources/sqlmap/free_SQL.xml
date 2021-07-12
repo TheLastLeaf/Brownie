@@ -4,6 +4,53 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.free.service.impl.FreeMapper">
 
+	<select id="selectRecentForMenu" resultType="kr.co.brownie.free.service.FreeVO">
+		 <![CDATA[
+			SELECT
+				BOARDSEQ,
+				TITLE,
+				INDATE,
+				REPLYCNT
+			FROM
+				(
+				SELECT
+					BOARD_SEQ,
+					TITLE,
+					IN_DATE AS INDATE
+				FROM
+					BROWNIE_BOARD
+				WHERE
+					BOARD_KIND = 'FREE' OR BOARD_KIND='free'
+				) ALLB
+			LEFT JOIN
+				(
+				SELECT
+					BB.BOARD_SEQ BOARDSEQ,
+					NVL(RE.CNT,0) REPLYCNT
+				FROM
+					BROWNIE_BOARD BB
+				LEFT JOIN
+				(SELECT
+					BOARD_SEQ,
+					COUNT(REPLY_SEQ) CNT
+				FROM
+					REPLY
+				GROUP BY
+					BOARD_SEQ) RE
+				ON
+					(BB.BOARD_SEQ = RE.BOARD_SEQ)
+				ORDER BY
+					BOARDSEQ
+				) ALLR
+			ON
+				(ALLR.BOARDSEQ = ALLB.BOARD_SEQ)
+			WHERE
+				ROWNUM < 6
+			ORDER BY
+				INDATE DESC
+		]]>
+	</select>
+
 	<select id="selectList" resultType="kr.co.brownie.free.service.FreeVO">
 		SELECT
 			BB.BOARD_SEQ AS BOARDSEQ,

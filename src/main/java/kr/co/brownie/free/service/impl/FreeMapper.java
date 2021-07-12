@@ -15,4 +15,6 @@ public interface FreeMapper {
 	FreeVO selectDetail(int boardSeq);
 
 	List<FreeVO> selectRecent(int boardSeq);
+
+	List<FreeVO> selectRecentForMenu();
 }

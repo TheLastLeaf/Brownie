@@ -11,4 +11,5 @@ public interface FreeService {
 
 	List<FreeVO> selectRecent(int boardSeq);
 
+	List<FreeVO> selectRecentForMenu();
 }

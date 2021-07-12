@@ -26,4 +26,7 @@ public class FreeVO {
 
 	//카테고리 태그
 	private String[] tags;
+
+	//리플 수
+	private int replyCnt;
 }
