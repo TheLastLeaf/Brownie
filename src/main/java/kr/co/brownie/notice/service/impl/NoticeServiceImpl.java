@@ -84,4 +84,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.nickname(inUserId);
 	}
 
+    @Override
+    public List<NoticeVO> noticeList() {
+        return noticeMapper.noticelist();
+    }
+
 }

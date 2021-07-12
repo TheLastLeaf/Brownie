@@ -114,4 +114,26 @@
         WHERE BOARD_SEQ = #{Seq}
     </delete>
 
+
+    <select id="noticelist" resultType="kr.co.brownie.notice.service.NoticeVO">
+        <![CDATA[
+        SELECT A.BOARD_SEQ  AS BOARDSEQ,
+               UPPER(A.BOARD_KIND) AS BOARDKIND,
+               A.BOARD_CATEGORY AS BOARDCATEGORY,
+               A.TITLE      AS TITLE,
+               A.CONTENT    AS CONTENT,
+               A.NOTICE_YN  AS NOTICEYN,
+               A.STATUS     AS STATUS,
+               A.IN_DATE    AS INDATE,
+               A.IN_USER_ID AS INUSERID,
+               A.UP_DATE AS "UPDATE",
+               A.UP_USER_ID AS UPUSERID,
+               A.FILE_SEQ   AS FILESEQ,
+               A.SUB_SEQ    AS SUBSEQ,
+               B.NICK_NAME AS NICKNAME
+        FROM BROWNIE_BOARD A , BROWNIE_USER B
+        WHERE B.USER_ID = A.IN_USER_ID
+        ORDER BY A.BOARD_SEQ DESC
+        ]]>
+    </select>
 </mapper>

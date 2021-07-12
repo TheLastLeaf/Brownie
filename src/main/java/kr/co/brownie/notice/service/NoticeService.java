@@ -24,4 +24,5 @@ public interface NoticeService {
 
     String selectnickname(String inUserId);
 
+    List<NoticeVO> noticeList();
 }

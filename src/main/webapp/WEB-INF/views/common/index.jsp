@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
 
 <!-- Hero Section Begin -->
@@ -81,7 +82,23 @@
 								<div class="col-lg-12">
 									<div class="row">
 										<div style="width: 100%; color: white; text-align: center;">
-										여기다 공지사항 ㄷ
+												<table border="1" style="width: 100%; color: white; text-align: center;">
+													<tr>
+														<th style="width: 20%">제목</th>
+														<th style="width: 20%">게시판</th>
+														<th style="width: 30%">작성일</th>
+														<th style="width: 20%">작성자</th>
+													</tr>
+											<c:forEach items="${noticeList}" var="notice" begin="0" end="10">
+												<fmt:formatDate value="${notice.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss" />
+													<tr>
+														<th><span onclick="location.href='notice/detail?boardSeq=${notice.boardSeq}'" style="cursor: pointer">${notice.title}</span></th>
+														<th>${notice.boardKind}</th>
+														<th>${update}</th>
+														<th>${notice.nickName}</th>
+													</tr>
+											</c:forEach>
+												</table>
 										</div>
 									</div>
 								</div>
