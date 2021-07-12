@@ -33,7 +33,7 @@
         	IN_USER_ID = #{inUserId}
 	</select>
 
-	<delete id="deleteUserStance">
+	<delete id="deleteUserStance" parameterType="hashMap">
 		DELETE FROM LIKE_BOARD
         WHERE
         	BOARD_SEQ = #{boardSeq}
@@ -43,14 +43,14 @@
 
 	<update id="updateLikeHate" parameterType="hashMap">
 		MERGE INTO
-			like_board
-		USING dual
+			LIKE_BOARD
+		USING DUAL
 		ON
-			(BOARD_SEQ = #{boardSeq} and IN_USER_ID = #{inUserId})
+			(BOARD_SEQ = #{boardSeq} AND IN_USER_ID = #{inUserId})
 		WHEN MATCHED THEN
 			UPDATE SET
 				UP_USER_ID = #{inUserId},
-				kind = #{kind}
+				KIND = #{kind}
 		WHEN NOT MATCHED THEN
 			INSERT (
 				BOARD_SEQ,
@@ -59,12 +59,12 @@
 				IN_USER_ID,
 				UP_DATE,
 				UP_USER_ID
-			) values(
+			) VALUES(
 				#{boardSeq},
 				#{kind},
-				sysdate,
+				SYSDATE,
 				#{inUserId},
-				sysdate,
+				SYSDATE,
 				#{inUserId}
 			)
 	</update>

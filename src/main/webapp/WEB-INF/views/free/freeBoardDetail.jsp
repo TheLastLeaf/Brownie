@@ -3,22 +3,97 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:import url="../layout/header.jsp"/>
 
+<style>
 
-<!-- 스크립트 // 하단 아이디 부분 세션스코프로 바꿔줘야함 -->
+.actForReply{
+	font-size: 10px;
+	margin-bottom: 3px;
+	justify-content: right;
+    text-align: right;
+}
 
+.replyHate {
+	border: 1px solid #336666;
+	padding: 2px;
+	cursor: pointer;
+	margin: 3px;
+	color: #336666;
+}
+
+.replyLike {
+	border: 1px solid #ffffcc;
+	padding: 2px;
+	cursor: pointer;
+	margin: 3px;
+	color: #ffffcc;
+}
+
+.replyCall {
+	border: 1px solid #DC143C;
+	padding: 2px;
+	cursor: pointer;
+	margin: 3px;
+	color: 	#DC143C;
+}
+
+</style>
+
+<!-- 스크립트 -->
 <script type="text/javascript">
+
+// 	const inUserId = '${sessionScope.id}';
+	const inUserId = '1786827527';
+
 	function likeHateCheck(kind) {
+		console.log("sessionId : "+inUserId);
+		if(inUserId == ''){
+			alert("로그인이 필요합니다.");
+			return;
+		}
+
 		$.ajax({
 			url : "./ajax.likeHate",
 			type : "get",
 			data : {
 					"boardSeq" : ${freeDetail.boardSeq },
-					"inUserId":'1786827',
+					"inUserId": inUserId,
 					"kind": kind
 			},
 			success : function(data) {
 				$('#hateCnt').html(data.hateCnt);
 				$('#likeCnt').html(data.likeCnt);
+			},
+			error : function() {
+				alert("에러나요");
+			}
+		})
+	}
+
+	function ReplyLikeHate(replySeq, kind) {
+		console.log("sessionId : "+inUserId);
+		console.log("replySeq : " + replySeq);
+		console.log("kind : " + kind);
+
+		var hateCntId = "#replyHateCnt_" + replySeq;
+		var LikeCntId = "#replyLikeCnt_" + replySeq;
+
+		if(inUserId == ''){
+			alert("로그인이 필요합니다.");
+			return;
+		}
+		$.ajax({
+			url : "../reply/ajax.replyLikeHate",
+			type : "get",
+			data : {
+					"replySeq" : replySeq,
+					"inUserId": inUserId,
+					"kind": kind
+			},
+			success : function(data) {
+				console.log("hateCntId : "+hateCntId);
+				console.log("LikeCntId : "+LikeCntId);
+				$(hateCntId).html(data.hateCnt);
+				$(LikeCntId).html(data.likeCnt);
 			},
 			error : function() {
 				alert("에러나요");
@@ -32,34 +107,30 @@
 		var replyContent = $("#userReply").val();
 		console.log(replyContent);
 
-		$.ajax({
-			url : "../reply/ajax.replyToBoard",
-			type : "get",
-			data : {
-					"boardSeq" : ${freeDetail.boardSeq },
-					"inUserId":'1786827',
-					"replyContent": replyContent
-			},
-			success : function(data) {
-				alert("?")
-			},
-			error : function() {
-				alert("에러나요");
-			}
-		})
-
-
+// 		$.ajax({
+// 			url : "../reply/ajax.replyToBoard",
+// 			type : "get",
+// 			data : {
+// 					"boardSeq" : ${freeDetail.boardSeq },
+// 					"inUserId":'1786827',
+// 					"replyContent": replyContent
+// 			},
+// 			success : function(data) {
+// 				alert("?")
+// 			},
+// 			error : function() {
+// 				alert("에러나요");
+// 			}
+// 		})
 	}
 
 	function replyToReply(boardSeq, replySeq){
 		console.log("boardSeq : "+boardSeq);
 		console.log("replySeq : " + replySeq);
-
-
 	}
 
 </script>
-<!-- 스크립트 -->
+<!-- 스크립트 끝 -->
 
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -161,7 +232,14 @@
 			                                <h5>${replyOnBoard.nickName }</h5>
 			                                <span class="c-date">${replyOnBoard.modDate }</span>
 			                                <p>${replyOnBoard.replyContent }</p>
-			                                <a href="#" class="reply-btn"><span>Reply</span></a>
+			                                <div class="actForReply">
+				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
+				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+				                                <a href="#"><span class="replyCall">신고하기</span></a>
+				                            </div>
+			                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
+			                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
+			                               	</c:if>
 			                            </div>
 			                        </div>
 								</c:when>
@@ -173,13 +251,20 @@
 			                            <div class="dc-text">
 			                                <h5>******</h5>
 			                                <span class="c-date">${replyOnBoard.modDate }</span>
-			                                <p>신고 접수로 블라인드 처리 된 댓글입니다.</p>
-			                                <a href="#" class="reply-btn" id="blackReply_${replyOnBoard.replySeq }"><span>내용보기</span></a>
+			                                <p><span id="">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</span></p>
+			                                <div class="actForReply">
+				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
+				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+				                                <a href="#"><span class="replyCall">신고하기</span></a>
+				                            </div>
+			                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
+			                               		<a href="#" class="reply-btn"><span>수정하기</span></a>
+			                               	</c:if>
 			                            </div>
 			                        </div>
 								</c:otherwise>
 	                        </c:choose>
-	                        
+
 							<!-- 이건 대댓글 표시/ 이프문 달아서 대댓글 존재할 경우에만 표시하게 적기 여기서 포문 한번 더 돌려야 할듯  -->
 							<c:set var="repSeq" value="${replyOnBoard.replySeq }" />
 								<c:forEach var="reMap" items="${reReplyMap}">
@@ -193,7 +278,14 @@
 				                                <h5>${rm.nickName }</h5>
 				                                <span class="c-date">${rm.modDate }</span>
 				                                <p><a href="#">@${replyOnBoard.nickName }</a> ${rm.replyContent}</p>
-				                                <a href="#" class="reply-btn"><span>Reply</span></a>
+				                                <div class="actForReply">
+					                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${rm.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
+					                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${rm.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+					                                <a href="#"><span class="replyCall">신고하기</span></a>
+				                            	</div>
+				                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
+				                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
+				                               	</c:if>
 				                            </div>
 				                        </div>
 										</c:forEach>

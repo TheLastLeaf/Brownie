@@ -18,4 +18,12 @@ public interface ReplyMapper {
 
 	List<ReplyVO> replyOnReply(int replySeq);
 
+	ReplyVO selectReplyStance(Map<String, Object> map);
+
+	void deleteReplyStance(Map<String, Object> map);
+
+	void updateReplyStance(Map<String, Object> map);
+
+	ReplyVO replyLHCnt(int replySeq);
+
 }

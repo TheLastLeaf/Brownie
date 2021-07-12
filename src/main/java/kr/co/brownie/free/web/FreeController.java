@@ -79,14 +79,16 @@ public class FreeController {
 
     	//게시글 리플 : 현재 프로필 사진 누락되어있어서 쿼리문 수정해야함 / file 테이블도 연결해서 쿼리쓰기
     	List<ReplyVO> replyOnBoard = replyService.replyOnBoard(boardSeq);
+    	System.out.println("replyOnBoard : "+replyOnBoard);
     	model.addAttribute("replyOnBoard", replyOnBoard);
-    	
+
+
     	//게시글 리리플 :리리플에 유저 태그 기능도 고려해보도록 하겠음 아빠가 제안해줌 하하
     	Map<String, Object> reReplyMap = new HashMap<String, Object>();
     	for(ReplyVO reply : replyOnBoard) {
     		//리플 시퀀스 번호를 받아와서 시퀀스 번호에 맞게 해당 리리플 목록을 가져와서 맵에 저장
     		int replySeq = reply.getReplySeq();
-    		
+
     		//리플 시퀀스 번호를 기반으로 리리플 리스트를 구함
     		List<ReplyVO> replyOnReply = replyService.replyOnReply(replySeq);
 
@@ -134,8 +136,17 @@ public class FreeController {
 
     	//좋아요 싫어요 개수 출력
     	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
-    	return likeHateCnt;
 
+    	//해당 게시글에 좋아요 싫어요가 하나도 없을 경우 쿼리문에 값이 나타나지 않아서 적어둠 / 쿼리 너무어려워서ㅠ 쿼리수정 임시보류함
+    	if(likeHateCnt == null) {
+    		BoardVO likeHateCntZero = new BoardVO();
+    		likeHateCntZero.setBoardSeq(boardSeq);
+    		likeHateCntZero.setHateCnt("0");
+    		likeHateCntZero.setLikeCnt("0");
+    		System.out.println("likeHateCntZero : "+likeHateCntZero);
+    		return likeHateCntZero;
+    	}
+    	return likeHateCnt;
     }
 
 }

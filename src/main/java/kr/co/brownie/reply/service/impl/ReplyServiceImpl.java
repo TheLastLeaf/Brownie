@@ -36,5 +36,24 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.replyOnReply(replySeq);
 	}
 
+	@Override
+	public ReplyVO selectReplyStance(Map<String, Object> map) {
+		return replyMapper.selectReplyStance(map);
+	}
+
+	@Override
+	public void deleteReplyStance(Map<String, Object> map) {
+		replyMapper.deleteReplyStance(map);
+	}
+
+	@Override
+	public void updateReplyStance(Map<String, Object> map) {
+		replyMapper.updateReplyStance(map);
+	}
+
+	@Override
+	public ReplyVO replyLHCnt(int replySeq) {
+		return replyMapper.replyLHCnt(replySeq);
+	}
 
 }

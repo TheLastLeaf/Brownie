@@ -18,4 +18,9 @@ public class ReplyVO {
 
 	//작성자 닉네임
 	private String nickName;
+
+	//좋아요 싫어요
+	private String likeCnt;
+	private String hateCnt;
+	private int likeHateKind;
 }
