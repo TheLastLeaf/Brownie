@@ -26,6 +26,6 @@ public interface ReplyMapper {
 
 	ReplyVO replyLHCnt(int replySeq);
 
-	int boardReplyCnt(int boardSeq);
+	ReplyVO boardReplyCnt(int boardSeq);
 
 }

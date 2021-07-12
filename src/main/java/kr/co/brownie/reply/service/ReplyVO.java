@@ -24,6 +24,12 @@ public class ReplyVO {
 	private String hateCnt;
 	private int likeHateKind;
 
-	//게시글 당 리플 개수
+	//앞 뒤 게시글 리플개수
 	private int replyCnt;
+	private int beforeSeq;
+	private String beforeDate;
+	private int beforeCnt;
+	private int afterSeq;
+	private String afterDate;
+	private int afterCnt;
 }

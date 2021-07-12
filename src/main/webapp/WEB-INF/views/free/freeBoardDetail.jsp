@@ -70,10 +70,6 @@
 	}
 
 	function ReplyLikeHate(replySeq, kind) {
-		console.log("sessionId : "+inUserId);
-		console.log("replySeq : " + replySeq);
-		console.log("kind : " + kind);
-
 		var hateCntId = "#replyHateCnt_" + replySeq;
 		var LikeCntId = "#replyLikeCnt_" + replySeq;
 
@@ -90,8 +86,6 @@
 					"kind": kind
 			},
 			success : function(data) {
-				console.log("hateCntId : "+hateCntId);
-				console.log("LikeCntId : "+LikeCntId);
 				$(hateCntId).html(data.hateCnt);
 				$(LikeCntId).html(data.likeCnt);
 			},
@@ -175,8 +169,8 @@
                                     <div class="rp-text">
                                         <h6>${freePrev.title }</h6>
                                         <ul>
-                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                            <li><i class="far fa-comment"></i> 20</li>
+                                            <li><i class="far fa-clock"></i> ${recentBoardReplyDate.beforeDate}</li>
+                                            <li><i class="far fa-comment"></i> ${recentBoardReplyDate.beforeCnt}</li>
                                         </ul>
                                     </div>
                                 </a>
@@ -194,8 +188,8 @@
                                     <div class="rp-text">
                                         <h6>${freeNext.title }</h6>
                                         <ul>
-                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                            <li><i class="far fa-comment"></i> 20</li>
+                                            <li><i class="far fa-clock"></i> ${recentBoardReplyDate.afterDate}</li>
+                                            <li><i class="far fa-comment"></i> ${recentBoardReplyDate.afterCnt}</li>
                                         </ul>
                                     </div>
                                 </a>
@@ -215,7 +209,7 @@
                         </div>
                     </div>
                     <div class="dt-comment">
-                        <h4> 댓글 수 ${replyCnt} 개</h4>
+                        <h4> 댓글 수 ${recentBoardReplyDate.replyCnt} 개</h4>
 
                         <c:forEach var="replyOnBoard" items="${replyOnBoard }" varStatus="status">
 	                        <c:choose>
@@ -318,7 +312,6 @@
 
                     <!-- 리플작성구간 시작 -->
                     <div class="dt-leave-comment">
-                        <h4>comment</h4>
                         <form action="#">
                             <textarea id="userReply" placeholder="Message"></textarea>
                             <button type="button" onclick="javascript:replyToBoard()">댓글 작성</button>

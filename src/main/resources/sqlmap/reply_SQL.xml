@@ -4,10 +4,51 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.reply.service.impl.ReplyMapper">
 
-	<select id="boardReplyCnt" resultType="int">
-		 SELECT COUNT(REPLY_SEQ) as replyCnt
-		 FROM REPLY
-		 WHERE BOARD_SEQ = #{boardSeq}
+	<select id="boardReplyCnt" resultType="kr.co.brownie.reply.service.ReplyVO">
+		SELECT
+			BOARDSEQ,
+			REPLYCNT,
+			BEFORESEQ,
+			BEFOREDATE,
+			BEFORECNT,
+			AFTERSEQ,
+			AFTERDATE,
+			AFTERCNT
+		FROM
+			(
+			SELECT
+				BOARDSEQ,
+				REPLYCNT,
+				LAG(BOARDSEQ) OVER(ORDER BY BOARDSEQ) AS BEFORESEQ,
+				LAG(INDATE) OVER(ORDER BY BOARDSEQ) AS BEFOREDATE,
+				LAG(REPLYCNT) OVER(ORDER BY BOARDSEQ) AS BEFORECNT,
+				LEAD(BOARDSEQ) OVER(ORDER BY BOARDSEQ) AS AFTERSEQ,
+				LEAD(INDATE) OVER(ORDER BY BOARDSEQ) AS AFTERDATE,
+				LEAD(REPLYCNT) OVER(ORDER BY BOARDSEQ) AS AFTERCNT
+			FROM
+				(
+				SELECT
+					BB.BOARD_SEQ BOARDSEQ,
+                	BB.IN_DATE INDATE,
+			        NVL(RE.CNT,0) REPLYCNT
+	        	FROM
+	        		BROWNIE_BOARD BB
+	        	LEFT JOIN
+	        		(
+	        		SELECT
+	        			BOARD_SEQ,
+	        			COUNT(REPLY_SEQ) CNT
+			      	FROM
+			      		REPLY
+			      	GROUP BY
+			      		BOARD_SEQ
+			      	) RE
+		     	ON (BB.BOARD_SEQ = RE.BOARD_SEQ)
+		     	WHERE BB.BOARD_KIND='FREE'
+		     	ORDER BY BOARDSEQ
+				)
+			)
+		WHERE BOARDSEQ = ${boardSeq}
 	</select>
 
 	<select id="replyOnBoard" resultType="kr.co.brownie.reply.service.ReplyVO">

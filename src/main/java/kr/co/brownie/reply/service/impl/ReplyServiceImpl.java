@@ -57,7 +57,7 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public int boardReplyCnt(int boardSeq) {
+	public ReplyVO boardReplyCnt(int boardSeq) {
 		return replyMapper.boardReplyCnt(boardSeq);
 	}
 

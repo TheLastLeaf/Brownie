@@ -77,9 +77,9 @@ public class FreeController {
     		}
     	}
 
-    	//게시글 리플 개수
-    	int replyCnt = replyService.boardReplyCnt(boardSeq);
-    	model.addAttribute("replyCnt", replyCnt);
+    	//게시글 하단 : 현재글 이전글 다음글 작성일자 및 리플 개수
+    	ReplyVO recentBoardReplyDate = replyService.boardReplyCnt(boardSeq);
+    	model.addAttribute("recentBoardReplyDate", recentBoardReplyDate);
 
     	//게시글 리플 : 현재 프로필 사진 누락되어있어서 쿼리문 수정해야함 / file 테이블도 연결해서 쿼리쓰기
     	List<ReplyVO> replyOnBoard = replyService.replyOnBoard(boardSeq);
