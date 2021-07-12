@@ -44,7 +44,7 @@
 			      		BOARD_SEQ
 			      	) RE
 		     	ON (BB.BOARD_SEQ = RE.BOARD_SEQ)
-		     	WHERE BB.BOARD_KIND='FREE'
+		     	WHERE UPPER(BB.BOARD_KIND)='FREE'
 		     	ORDER BY BOARDSEQ
 				)
 			)

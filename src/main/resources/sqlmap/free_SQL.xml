@@ -25,6 +25,8 @@
 		WHERE
 			BB.IN_USER_ID = BU.USER_ID
 		AND
+			(BB.STATUS = 'y' or BB.STATUS = 'Y')
+		AND
 			UPPER(BB.BOARD_KIND)='FREE'
 		ORDER BY
 			BB.IN_DATE
@@ -55,6 +57,8 @@
 				BROWNIE_BOARD
 			WHERE
 				UPPER(BOARD_KIND)='FREE'
+			AND
+				(STATUS = 'y' or STATUS = 'Y')
 			AND
 				IN_DATE
 			BETWEEN
