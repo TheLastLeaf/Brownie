@@ -26,14 +26,14 @@ public class TipController {
     @Resource(name = "leagueOfLegendsChampionsService")
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
 
-    @GetMapping("/add")
+    @GetMapping("/write")
     public String add(Model model) {
         model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
-        return "tip/add";
+        return "tip/write";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/write")
     public String add_form(HttpServletRequest httpServletRequest) {
         String author = httpServletRequest.getSession().getAttribute("id").toString();
         String champion = httpServletRequest.getParameter("champion");
@@ -58,6 +58,8 @@ public class TipController {
         model.addAttribute("leagueOfLegendsChampionsVOList",
                 leagueOfLegendsChampionsService.selectRecentlyChampionsList());
         model.addAttribute("tipPagingVO", tipService.selectList(champion, currentPageNumber));
+
+        System.out.println(tipService.selectList(champion, currentPageNumber));
 
         return "tip/list";
     }

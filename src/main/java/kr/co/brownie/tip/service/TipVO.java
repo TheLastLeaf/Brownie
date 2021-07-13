@@ -23,12 +23,12 @@ public class TipVO {
     private int subSeq;
 
     public String getImgSrc() {
-        if (content == null) return "/img/categories-list/cl-1.jpg";
+        if (content == null) return "https://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/984.png";
 
         Document document = Jsoup.parse(content);
         String src = document.select("img").attr("src");
         if ("".equals(src)) {
-            src = "/img/categories-list/cl-1.jpg";
+            src = "http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/" + boardCategory + ".png";
         }
         return src;
     }

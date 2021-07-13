@@ -152,7 +152,7 @@
                             <div class="dt-leave-comment">
                                 <div class="row">
                                     <div class="col-3">
-                                        <select name="champion">
+                                        <select class="w-100" name="champion">
                                             <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
                                                 <option value="${champion.id}">${champion.name}</option>
                                             </c:forEach>
