@@ -82,7 +82,7 @@ p {
     color: #c4c4c4;
     font-weight: 400;
     line-height: 24px;
-    margin: 0 0 15px 0;
+/*     margin: 0 0 15px 0; */
 }
 
 img {
@@ -3086,11 +3086,12 @@ ol {
 .details-text .dt-comment .dc-item,
 .contact-form .dt-comment .dc-item {
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .details-text .dt-comment .dc-item.reply-item,
 .contact-form .dt-comment .dc-item.reply-item {
-    margin-left: 116px;
+    margin-left: 100px;
 }
 
 .details-text .dt-comment .dc-item .dc-pic,

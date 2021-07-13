@@ -222,7 +222,7 @@
 				SYSDATE,
 				#{inUserId},
 				#{boardSeq},
-				0,
+				#{headReplySeq},
 				'y'
 			)
 	</insert>
