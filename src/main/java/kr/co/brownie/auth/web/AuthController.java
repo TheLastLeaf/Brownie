@@ -41,7 +41,7 @@ public class AuthController {
 			int reviewSeq = 1;
 			int starCnt = 0;
 			String reply = "empty";
-			String writeUserId = "anonymous";
+			String writeUserId = "admin";
 
 			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
 

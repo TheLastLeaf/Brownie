@@ -5,7 +5,7 @@
 <mapper namespace="kr.co.brownie.review.service.impl.ReviewMapper">
 	<select id="selectReviewList" resultType="kr.co.brownie.review.service.ReviewVO">
 		SELECT a.reviewSeq, a.userId, a.starCnt, a.reply, a.inDate, b.nick_name as inUserId
-			from(
+			FROM(
 			    SELECT 
 			        reviewSeq, userId, starCnt, reply, inDate, inUserId
 			    FROM(
