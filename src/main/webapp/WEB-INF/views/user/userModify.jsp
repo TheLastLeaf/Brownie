@@ -114,62 +114,6 @@ input[name="position"] {
 	padding-top: 40px;
 }
 </style>
-<script>
-	function fn_changeProfile(){
-		$("input[type=file]").change(function(){
-			var formData = new formData($("frm")[0]);
-			alert("성공");
-		})
-	}
-
-
-
-
-	function fn_submit() {
-		//파일처리 시작 ----------
-		var formData = new FormData();
-		var inputFile = $("input[name='file']");
-		var files = inputFile[0].files;
-// 		console.log(files[0]);
-		formData.append("uploadFile",files[0]);
-		//파일처리 끝 -----------
-		var nickNameBox = $("input[name=nickNameBox]").val();
-		var positions = []
-		$('input[name="positions"]:checked').each(function() {
-			positions.push($(this).val())
-		});		
-
-// 		var param = "";
-// 		param += "dummy=" + Math.random()
-		formData.append("nickNameBox",nickNameBox);
-		formData.append("positions",positions);
-		
-		$.ajax({
-			url : "/user/userInfo",
-			type : "POST",
-			data : formData,
-			processData:false,
-			contentType:false,
-			success : function(profilePath) {
-					alert("성공: "+profilePath);
-					console.log(profilePath);
-					console.log(files);
-					$("#file").attr("style", "background-image: url(" + profilePath + ");");
-					//window.close();
-					//window.reload();
-			},
-			error : function(e) {
-				alert("실패ㅜㅜ err");
-				console.log(e);
-			},
-		});
-	}
-
-	function fn_loginPlz() {
-		alert("로그인이 필요합니다!")
-
-	}
-</script>
 
 <body>
 	<div id="preloder">
@@ -194,7 +138,7 @@ input[name="position"] {
 						<!-- 					text-center justify-content-center align-items-center d-flex -->
 						<div class="profileBox" style="border: none;">
 							<label for="file">
-								<img class="profile" src="">
+								<img class="profile" id="img" src="">
 								<input type="file" id="file" name="file" multiple />
 							</label>
 						</div>
@@ -268,6 +212,89 @@ input[name="position"] {
 	            }
 	        }); // $.ajax */    }
 	</script> -->
+
+	<script>
+		var sel_file;
+		
+		$(function(){
+			$("#file").on("change",handleImgFileSelect);
+		});
+		
+		function handleImgFileSelect(e){
+			var files = e.target.files;
+			var filesArr = Array.prototype.slice.call(files);
+			
+			filesArr.forEach(function(f){
+				if(!f.type.match("image.*")){
+					alert("확장자는 이미지 확장자만 가능합니다.");
+					return;
+				}
+				
+				sel_file = f;
+				
+				var reader = new FileReader();
+				reader.onload = function(e){
+					$("#img").attr("src",e.target.result);
+				}
+				reader.readAsDataURL(f);
+			});
+		}
+	
+// 		function fn_hi(){
+// 			alert("gd");
+// 			$("input[type=file]").change(function(){
+// 				alert("무언가됨");
+// 				var formData = new FormData($("#file")[0]);
+// 				console.log(formData);
+// 			})
+// 		}
+
+		function fn_submit() {
+			//파일처리 시작 ----------
+			var formData = new FormData();
+			var inputFile = $("input[name='file']");
+			var files = inputFile[0].files;
+			// 		console.log(files[0]);
+			formData.append("uploadFile", files[0]);
+			//파일처리 끝 -----------
+			var nickNameBox = $("input[name=nickNameBox]").val();
+			var positions = []
+			$('input[name="positions"]:checked').each(function() {
+				positions.push($(this).val())
+			});
+
+			// 		var param = "";
+			// 		param += "dummy=" + Math.random()
+			formData.append("nickNameBox", nickNameBox);
+			formData.append("positions", positions);
+
+			$.ajax({
+				url : "/user/userInfo",
+				type : "POST",
+				data : formData,
+				processData : false,
+				contentType : false,
+				success : function(profilePath) {
+					alert("성공: " + profilePath);
+					console.log(profilePath);
+					console.log(files);
+					$("#file").attr("style",
+							"background-image: url(" + profilePath + ");");
+					//window.close();
+					//window.reload();
+				},
+				error : function(e) {
+					alert("실패ㅜㅜ err");
+					console.log(e);
+				},
+			});
+		}
+
+		function fn_loginPlz() {
+			alert("로그인이 필요합니다!")
+
+		}
+	</script>
 
 
 	<!-- Js Plugins -->

@@ -123,9 +123,10 @@ public class UserController {
 			String originFileName = multipartFile.getOriginalFilename();
 			// 진짜 파일 이름
 			originFileName = originFileName.substring(originFileName.lastIndexOf("\\") + 1);
-			File savefileName = new File(uploadFolder, originFileName);
 			// 내가 날짜_이름 으로 지어주는 이름
-			profilePath = String.format("resources/static/img/userProfile/%s_%s", System.currentTimeMillis(), originFileName); 
+			profilePath = String.format("/%s_%s", System.currentTimeMillis(), originFileName); 
+//			File savefileName = new File(uploadFolder, originFileName);
+			File savefileName = new File(uploadFolder, profilePath);
 			
 			System.out.println("savefileName : " + savefileName);
 			System.out.println("profile_img : " + profilePath);
@@ -144,7 +145,7 @@ public class UserController {
 		fileService.insertPath(map);
 		userService.insertNickPosition(map) ; // 스크립트로 가져와서 <script>??</script> 방법도 잇음
 		
-		return profilePath;
+		return "/img/userProfile/" + profilePath;
 	}
 
 	@GetMapping("/userSync")
