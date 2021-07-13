@@ -5,10 +5,14 @@
 
 <style>
 
+h5 {
+	margin-top: 10px;
+}
+
 .actForReply{
 	font-size: 10px;
 	margin-top: 3px;
-	margin-bottom: 3px;
+	margin-bottom: 5px;
 	justify-content: right;
     text-align: right;
 }
@@ -59,6 +63,7 @@
 
 .userReplys {
 	font-size: 12px;
+	word-break: break-word;
 }
 
 .blackReplysId {
@@ -66,14 +71,14 @@
 }
 
 
-.replyMod {
+.replyMod, .reReplyToUser {
 	width:100%;
 	background-color: black;
 	font-size: 12px;
 	color: #666666;
 }
 
-.replyModArea, .reModComBut {
+.replyModArea, .reModComBut, .reReplyBox {
 	display: none;
 }
 
@@ -85,6 +90,12 @@
 	color: 	#ffffff;
 }
 
+.reReplyBox {
+    margin-bottom: 20px;
+}
+
+.reply-item {
+}
 </style>
 
 
@@ -97,7 +108,6 @@
 
 	//게시글 좋아요 싫어요
 	function likeHateCheck(kind) {
-		console.log("sessionId : "+inUserId);
 		if(inUserId == ''){
 			alert("로그인이 필요합니다.");
 			return;
@@ -164,7 +174,8 @@
 			data : {
 					"boardSeq" : ${freeDetail.boardSeq },
 					"inUserId": inUserId,
-					"replyContent": replyContent
+					"replyContent": replyContent,
+					"headReplySeq": 0
 			},
 			success : function(data) {
 				location.reload();
@@ -176,14 +187,39 @@
 	}
 
 	//리리플 작성 박스 펼치기
-	function replyToReply() {
-
+	function replyToReply(replySeq) {
+		var reReplyBoxId = 'reReplyBox_'+replySeq;
+		document.getElementById(reReplyBoxId).style.display="block";
+		document.getElementById(reReplyBoxId).style.visibility="visible";
 
 	}
 
 	//리리플 작성
-	function addReReply() {
+	function addReReply(replySeq) {
+		var reReplyToUser = 'reReplyToUser_'+replySeq;
+		var reReplyContent = document.getElementById(reReplyToUser).value;
 
+		if(inUserId == ''){
+			alert("로그인이 필요합니다.");
+			return;
+		}
+
+		$.ajax({
+			url : "../reply/ajax.replyToBoard",
+			type : "POST",
+			data : {
+					"boardSeq" : ${freeDetail.boardSeq },
+					"inUserId": inUserId,
+					"replyContent": reReplyContent,
+					"headReplySeq": replySeq
+			},
+			success : function(data) {
+				location.reload();
+			},
+			error : function() {
+				alert("에러나요");
+			}
+		})
 
 	}
 
@@ -263,6 +299,7 @@
 		var callText = 'callPolice_' + replySeq;
 		document.getElementById(callText).style.display="none";
 	}
+
 
 	function fn_report(userId){
 		window.open("report?userId="+userId,"report", "width=660, height=500, left=250,top=200");
@@ -370,15 +407,38 @@
 			                            <div class="dc-text">
 			                                <h5>${replyOnBoard.nickName }</h5>
 			                                <span class="c-date">${replyOnBoard.modDate }</span>
-			                                <p>${replyOnBoard.replyContent }</p>
-			                                <div class="actForReply">
-				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
-				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-				                                <span class="replyCall" onclick="fn_report('${replyOnBoard.inUserId}')">신고하기</span>
-				                            </div>
-			                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
-			                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
-			                               	</c:if>
+			                                <p class="userReplys">${replyOnBoard.replyContent }</p>
+			                                <div class="replyModArea" id="replyModArea_${replyOnBoard.replySeq }">
+				                                <textarea class="replyMod" id="replyMod_${replyOnBoard.replySeq }" rows="3" cols="57">${replyOnBoard.replyContent }</textarea>
+			                                </div>
+
+				                                <div class="actForReply">
+					                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
+					                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+					                                <a href="javascript:replyToReply('${replyOnBoard.replySeq }')"><span class="reReply">답글달기</span></a>
+					                               	<c:choose>
+						                               	<c:when test="${sessionScope.id eq replyOnBoard.inUserId}">
+							                                <a href="javascript:delMyReply('${replyOnBoard.replySeq }')"><span class="replyCall">삭제하기</span></a>
+														</c:when>
+														<c:otherwise>
+							                                <a href="#"><span class="replyCall" onclick="fn_report('${replyOnBoard.inUserId}')">신고하기</span></a>
+														</c:otherwise>
+					                               	</c:choose>
+					                            </div>
+				                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
+													<span id="reModButBefore_${replyOnBoard.replySeq }">
+				                                	<a href="javascript:modReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModBut_${replyOnBoard.replySeq }">수정하기</span></a>
+													</span>
+													<span class="reModComBut" id="reModComButAfter_${replyOnBoard.replySeq }">
+					                                <a href="javascript:modMyReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModComBut_${replyOnBoard.replySeq }">수정완료</span></a>
+													</span>
+				                               	</c:if>
+			                            </div>
+			                        </div>
+   			                        <div class="reReplyBox" id="reReplyBox_${replyOnBoard.replySeq }">
+			                        	<textarea class="reReplyToUser" id="reReplyToUser_${replyOnBoard.replySeq }"></textarea>
+		                                <div class="actForReply">
+		                                <a href="javascript:addReReply('${replyOnBoard.replySeq }')"><span class="reReply">작성완료</span></a>
 			                            </div>
 			                        </div>
 								</c:when>
