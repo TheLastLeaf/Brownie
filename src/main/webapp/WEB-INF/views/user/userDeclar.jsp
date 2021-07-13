@@ -71,8 +71,28 @@ button {
 }
 </style>
 <script>
-	function fn_close() {
-		window.close();
+	function fn_submit(){
+		const userId = $(".userId").val();
+		const reportName = $(".reportName").val();
+		const content = $(".content").val();
+
+		$.ajax({
+			url : "./userReport",
+			type : "post",
+			data : {
+				"userId" : userId,
+				"reportName" : reportName,
+				"content" : content
+			},
+			success : function(data) {
+				if(data==1){
+					window.close();
+				}
+			},
+			error : function() {
+				alert("신고 접수 실패");
+			}
+		})
 	}
 </script>
 
@@ -92,38 +112,36 @@ button {
 					<!-- 					<p class="title">신고창</p> -->
 				</div>
 				<div class="nameInfo row">
-					<div class="suspect col-3">용의자:&nbsp; 쓋빨롬</div>
+					<input type="hidden" value="${userId}" name="userId" id="UserId" class="userId">
+					<div class="suspect col-3">용의자:&nbsp; ${nickName}</div>
 					<!-- 					<div class="suspect col-6">피해자:&nbsp; 유미</div> -->
 				</div>
-				<form action="#" class="signup-form">
 					<div class="sf-input-list ">
 						<div class="custom-control custom-checkbox">
-							<input type="checkbox" id="jb-checkbox2" class="custom-control-input">
+							<input type="checkbox" id="jb-checkbox2" class="custom-control-input reportName" name="reportName" value="혐오발언">
 							<label class="custom-control-label" for="jb-checkbox2" style="color: white;">혐오발언</label>
 						</div>
 						<div class="custom-control custom-checkbox">
-							<input type="checkbox" id="jb-checkbox3" class="custom-control-input">
+							<input type="checkbox" id="jb-checkbox3" class="custom-control-input reportName" name="reportName" value="티어사칭">
 							<label class="custom-control-label" for="jb-checkbox3" style="color: white;">티어사칭</label>
 						</div>
 						<div class="custom-control custom-checkbox">
-							<input type="checkbox" id="jb-checkbox4" class="custom-control-input">
+							<input type="checkbox" id="jb-checkbox4" class="custom-control-input reportName" name="reportName" value="욕설리폿">
 							<label class="custom-control-label" for="jb-checkbox4" style="color: white;">욕설리풋</label>
 						</div>
 						<div class="custom-control custom-checkbox">
-							<input type="checkbox" id="jb-checkbox1" class="custom-control-input">
+							<input type="checkbox" id="jb-checkbox1" class="custom-control-input reportName" name="reportName" value="맘에안듬">
 							<label class="custom-control-label" for="jb-checkbox1" style="color: white;">맘에안듬</label>
 						</div>
 						<div class="comment">
-							<input type="text" placeholder="기타 사유를 적어주세요!">
+							<input type="text" placeholder="기타 사유를 적어주세요!" maxlength="1000" class="content" name="content">
 						</div>
 
 						<!-- <input type="checkbox" class="col-1" name="position" id="s" value="SUP" /> -->
 					</div>
-					<button type="submit">
+					<button type="button" onclick="fn_submit()">
 						<span>신고하기</span>
 					</button>
-				</form>
-
 			</div>
 		</div>
 	</div>

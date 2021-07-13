@@ -608,7 +608,7 @@ h1 {
 
 				<!-- 마우스 우클릭 (숨김처리됨li태그들) -->
 				<ul class="contextmenu">
-					<li><a onclick="fn_declaration()">신고하기</a></li>
+					<li><a onclick="fn_declaration('${userOneSelect.upUserId}','${userOneSelect.nickName}')">신고하기</a></li>
 					<!-- 다른유저페이지로 이동->> -->
 					<li><a href="#">둘러보기</a></li>
 				</ul>
@@ -648,8 +648,8 @@ h1 {
 				"width=870, height=500, left=400,top=200");
 	}
 
-	function fn_declaration() {
-		window.open("/user/userDeclar", "userDeclar",
+	function fn_declaration(userId,nickName) {
+		window.open("/user/userDeclar?userId="+userId+"&nickName="+nickName, "userDeclar",
 				"width=980, height=500, left=400,top=200");
 	}
 
