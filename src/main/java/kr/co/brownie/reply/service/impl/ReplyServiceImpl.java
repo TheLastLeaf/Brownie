@@ -71,4 +71,9 @@ public class ReplyServiceImpl implements ReplyService {
 		replyMapper.delReply(map);
 	}
 
+	@Override
+	public void delHadReReply(Map<String, Object> map) {
+		replyMapper.delHadReReply(map);
+	}
+
 }

@@ -337,7 +337,7 @@
 
                         <c:forEach var="replyOnBoard" items="${replyOnBoard }" varStatus="status">
 	                        <c:choose>
-								<c:when test="${replyOnBoard.status eq 'y' }">
+								<c:when test="${replyOnBoard.status eq 'y'}">
 			                        <div class="dc-item">
 			                            <div class="dc-pic">
 			                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
@@ -349,26 +349,42 @@
 			                                <div class="replyModArea" id="replyModArea_${replyOnBoard.replySeq }">
 				                                <textarea class="replyMod" id="replyMod_${replyOnBoard.replySeq }" rows="3" cols="57">${replyOnBoard.replyContent }</textarea>
 			                                </div>
-			                                <div class="actForReply">
-				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
-				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-				                               	<c:choose>
-					                               	<c:when test="${sessionScope.id eq replyOnBoard.inUserId}">
-						                                <a href="javascript:delMyReply('${replyOnBoard.replySeq }')"><span class="replyCall">삭제하기</span></a>
-													</c:when>
-													<c:otherwise>
-						                                <a href="#"><span class="replyCall">신고하기</span></a>
-													</c:otherwise>
-				                               	</c:choose>
-				                            </div>
-			                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
-												<span id="reModButBefore_${replyOnBoard.replySeq }">
-			                                	<a href="javascript:modReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModBut_${replyOnBoard.replySeq }">수정하기</span></a>
-												</span>
-												<span class="reModComBut" id="reModComButAfter_${replyOnBoard.replySeq }">
-				                                <a href="javascript:modMyReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModComBut_${replyOnBoard.replySeq }">수정완료</span></a>
-												</span>
-			                               	</c:if>
+
+				                                <div class="actForReply">
+					                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
+					                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+					                               	<c:choose>
+						                               	<c:when test="${sessionScope.id eq replyOnBoard.inUserId}">
+							                                <a href="javascript:delMyReply('${replyOnBoard.replySeq }')"><span class="replyCall">삭제하기</span></a>
+														</c:when>
+														<c:otherwise>
+							                                <a href="#"><span class="replyCall">신고하기</span></a>
+														</c:otherwise>
+					                               	</c:choose>
+					                            </div>
+				                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
+													<span id="reModButBefore_${replyOnBoard.replySeq }">
+				                                	<a href="javascript:modReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModBut_${replyOnBoard.replySeq }">수정하기</span></a>
+													</span>
+													<span class="reModComBut" id="reModComButAfter_${replyOnBoard.replySeq }">
+					                                <a href="javascript:modMyReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModComBut_${replyOnBoard.replySeq }">수정완료</span></a>
+													</span>
+				                               	</c:if>
+			                            </div>
+			                        </div>
+								</c:when>
+								<c:when test="${replyOnBoard.status eq 'd'}">
+			                        <div class="dc-item">
+			                            <div class="dc-pic">
+			                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
+			                            </div>
+			                            <div class="dc-text">
+			                                <h5>${replyOnBoard.nickName }</h5>
+			                                <span class="c-date">${replyOnBoard.modDate }</span>
+			                                <p class="userReplys">${replyOnBoard.replyContent }</p>
+			                                <div class="replyModArea" id="replyModArea_${replyOnBoard.replySeq }">
+				                                <textarea class="replyMod" id="replyMod_${replyOnBoard.replySeq }" rows="3" cols="57">${replyOnBoard.replyContent }</textarea>
+			                                </div>
 			                            </div>
 			                        </div>
 								</c:when>
@@ -450,6 +466,21 @@
 								                                <a href="javascript:modMyReply('${rm.replySeq }')" class="reply-btn"><span id="reModComBut_${rm.replySeq }">수정완료</span></a>
 																</span>
 							                               	</c:if>
+							                            </div>
+							                        </div>
+												</c:when>
+												<c:when test="${rm.status eq 'd' }">
+							                        <div class="dc-item reply-item">
+							                            <div class="dc-pic">
+							                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-2.jpg" alt="">
+							                            </div>
+							                            <div class="dc-text">
+							                                <h5>${rm.nickName }</h5>
+							                                <span class="c-date">${rm.modDate }</span>
+							                                <p class="userReplys"><a href="#">@${replyOnBoard.nickName }</a> ${rm.replyContent}</p>
+							                                <div class="replyModArea" id="replyModArea_${rm.replySeq }">
+				                            					<textarea class="replyMod" id="replyMod_${rm.replySeq }" rows="3" cols="57">${rm.replyContent }</textarea>
+			                                				</div>
 							                            </div>
 							                        </div>
 												</c:when>

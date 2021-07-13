@@ -116,6 +116,17 @@
 			REPLY_SEQ = #{replySeq}
 	</update>
 
+	<update id="delHadReReply">
+		UPDATE REPLY
+		SET
+			REPLY_CONTENT = #{replyContent},
+			UP_DATE = SYSDATE,
+			UP_USER_ID = #{upUserId},
+			STATUS = 'D'
+		WHERE
+			REPLY_SEQ = #{replySeq}
+	</update>
+
 	<delete id="delReply">
 		DELETE FROM REPLY
 		WHERE

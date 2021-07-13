@@ -1,5 +1,7 @@
 package kr.co.brownie.reply.web;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -34,14 +36,30 @@ public class ReplyController {
 	@RequestMapping(value="/ajax.modReply", method= {RequestMethod.GET, RequestMethod.POST})
 	public void ajaxModReply(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
 		replyService.modReply(map);
-		System.out.println("mod -----------------------------");
 	}
 
 	@ResponseBody
 	@RequestMapping(value="/ajax.delReply", method= {RequestMethod.GET, RequestMethod.POST})
 	public void ajaxDelReply(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
-		replyService.delReply(map);
-		System.out.println("del -----------------------------");
+
+		int replySeq = Integer.parseInt(map.get("replySeq").toString());
+		List<ReplyVO> replyOnReply = replyService.replyOnReply(replySeq);
+
+		//리리플이 존재하는 경우 삭제하면 안되고 업데이트를 해야함ㅠ
+		if(replyOnReply.size() > 0) {
+			String upUserId= map.get("replySeq").toString();
+
+			Map<String, Object> delReplyMap = new HashMap<String, Object>();
+			delReplyMap.put("replySeq", replySeq);
+			delReplyMap.put("replyContent", "작성자에 의해 삭제된 댓글입니다.");
+			delReplyMap.put("upUserId", upUserId);
+
+			replyService.delHadReReply(delReplyMap);
+
+		} else {
+			//리리플이 없는 경우 그대로 삭제 진행
+			replyService.delReply(map);
+		}
 	}
 
     @ResponseBody

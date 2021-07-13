@@ -26,5 +26,7 @@ public interface ReplyService {
 
 	void delReply(Map<String, Object> map);
 
+	void delHadReReply(Map<String, Object> map);
+
 
 }

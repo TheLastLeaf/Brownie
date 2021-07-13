@@ -32,4 +32,6 @@ public interface ReplyMapper {
 
 	void delReply(Map<String, Object> map);
 
+	void delHadReReply(Map<String, Object> map);
+
 }
