@@ -21,6 +21,8 @@
 
 <!-- 달력 스크립트 시작 -->
 <script>
+	const inUserId = '${sessionScope.id}';
+
 	const year = ${dateForCheck.get('year')};			//올해
 	const month = ${dateForCheck.get('month')};			//이번달
 	const day = ${dateForCheck.get('day')};				//오늘날짜
@@ -75,25 +77,23 @@
 
 	//사용자가 출석체크 할 때 작동하는 함수
 	function dateCheck(){
-		//이미 체크된 날짜일 경우 함수 종료
-		if(UserCheckeddates.indexOf(day) > -1){
+		if(inUserId == ''){
+			alert("로그인이 필요합니다.");
 			return;
 		}
-		//이미 체크된 날짜일 경우 함수 종료 : 이건 디비 연결 제대로 되면 그냥 지워도 됨
-		if(checkedFlag){
-			return;
-		}
-  		if(!checkedFlag){
-			//디비에 day 날짜 저장하면 됨. ajax 쓸 것 같은데 인서트 모르겠네요 천천히 보고 바꿔보겠음.
-
-			alert("출석 체크가 완료되었습니다.");
-
-			//달력 상단에 있는 오늘 날짜 클릭하면 출석 체크가 완료됨니다 어쩌구 멘트도 바꿔주기.
-
-			document.getElementById(day).innerHTML = "<i class='fa fa-cloud'></i>";
-			document.getElementById(day).style.cursor='';
-			checkedFlag = true;	//디비 연결되면 지울 것
-		}
+		$.ajax({
+			url : "../attendance/ajax.dayCheck",
+			type : "get",
+			data : {
+					"inUserId": inUserId
+			},
+			success : function(data) {
+				location.reload();
+			},
+			error : function() {
+				alert("에러나요");
+			}
+		})
 	}
 
 </script>

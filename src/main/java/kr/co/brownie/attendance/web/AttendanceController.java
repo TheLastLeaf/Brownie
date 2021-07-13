@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.brownie.attendance.service.AttendanceService;
 import kr.co.brownie.attendance.service.AttendanceVO;
@@ -23,7 +29,7 @@ public class AttendanceController {
 	AttendanceService attendanceService;
 
 	@GetMapping(path={"", "/day"})
-	public String dayView(Model model) {
+	public String dayView(Model model, HttpSession session) {
 		//서버 오늘 날짜
     	HashMap<String, Integer> dateForCheck = dateForDayMethod();
     	model.addAttribute("dateForCheck", dateForCheck);
@@ -31,8 +37,13 @@ public class AttendanceController {
     	String year = dateForCheck.get("year")+ "";
     	Integer month = dateForCheck.get("month");
 
+    	//세션아이디 없을 경우
+    	String userId = (String)session.getAttribute("id");
+    	if(userId==null) {
+    		userId = "";
+    	}
     	//유저가 출석 체크한 날짜 : test 유저라서 test 써 놨음. 나중에 유저 아이디로 바꾸면 됨
-    	List<AttendanceVO> checkedList = this.attendanceService.getCheckedDate("test");
+    	List<AttendanceVO> checkedList = this.attendanceService.getCheckedDate(userId);
     	List<Integer> dateList = new ArrayList<>();
     	for ( AttendanceVO attendance : checkedList ) {
     		String tempDate = attendance.getInDate();
@@ -43,8 +54,15 @@ public class AttendanceController {
     		}
     	}
     	model.addAttribute("dateList", dateList);
-    	return "attendance/day";	//이게 jsp 경로인가봐
+    	return "attendance/day";
 	}
+
+    @ResponseBody
+    @RequestMapping(value="/ajax.dayCheck", method=RequestMethod.GET)
+    public void ajaxDayCheck(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+    	String userId = map.get("inUserId").toString();
+    	attendanceService.insertOne(userId);
+    }
 
     public HashMap<String, Integer> dateForDayMethod() {
 		Calendar cal = Calendar.getInstance();

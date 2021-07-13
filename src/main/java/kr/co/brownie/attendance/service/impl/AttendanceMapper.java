@@ -11,7 +11,7 @@ import kr.co.brownie.attendance.service.AttendanceVO;
 @Repository("attendanceMapper")
 public interface AttendanceMapper {
 
-	List<AttendanceVO> selectOne(String userId);
+	List<AttendanceVO> getCheckedDate(String userId);
 
 	int insertOne(String userId);
 

@@ -16,7 +16,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 
 	@Override
 	public List<AttendanceVO> getCheckedDate(String userId) {
-		return attendanceMapper.selectOne(userId);
+		return attendanceMapper.getCheckedDate(userId);
 	}
 
 	@Override
