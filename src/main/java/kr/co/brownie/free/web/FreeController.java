@@ -174,7 +174,7 @@ public class FreeController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value="/ajax.reportadd", method = RequestMethod.POST)
+	@RequestMapping(value="/reportadd", method = { RequestMethod.GET, RequestMethod.POST})
 	public Object reportPost(Map<String,Object> map, HttpSession session, Model model, HttpServletRequest servletRequest){
 		String id = (String)session.getAttribute("id");
 		String content = servletRequest.getParameter("content");

@@ -54,7 +54,7 @@
         console.log(content)
 
         $.ajax({
-            url : "/ajax.reportadd",
+            url : "./reportadd",
             type : "post",
             data : {
                 "userId" : userId,
