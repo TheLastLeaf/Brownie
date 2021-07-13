@@ -3,6 +3,8 @@ package kr.co.brownie.gallery.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.brownie.reply.service.ReplyVO;
+
 public interface GalleryService {
 	public int insertGallery(Map<String, Object> map);
 
@@ -23,4 +25,6 @@ public interface GalleryService {
     public int insertThumbnail(String fileName);
     
     public int selectFile(String fileName);
+    
+    public ReplyVO galleryAB(int boardSeq);
 }

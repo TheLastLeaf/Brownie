@@ -16,6 +16,8 @@ import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
+import kr.co.brownie.reply.service.ReplyService;
+import kr.co.brownie.reply.service.ReplyVO;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,9 @@ public class GalleryController {
 
 	@Resource(name = "boardService")
 	BoardService boardService;
+	
+	@Resource(name = "replyService")
+	ReplyService replyService;
 	
 	@Resource(name = "commonService")
 	CommonService commonService;
@@ -69,14 +74,28 @@ public class GalleryController {
 	
 	@GetMapping("/detail")
 	public String details_post_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session, HttpServletRequest request) {
+		int rnd = (int)((Math.random()*11)+1);
+	    model.addAttribute("rnd", rnd);
 		String id = (String) session.getAttribute("id");
 		int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
 		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
 		List<FileVO> fileVOList;
 		
 		
-		//조회수 증가
-			//ip가져오기
+		System.out.println("boardSeq"+boardSeq);
+		//이전글 다음글
+		
+		ReplyVO recentBoardReplyDate = replyService.boardReplyCnt(boardSeq);
+    	model.addAttribute("recentBoardReplyDate", recentBoardReplyDate);
+    	
+    	System.out.println("recentBoardReplyDate"+recentBoardReplyDate);
+		
+		//
+		
+		
+		//조회수 기능
+		
+		//ip가져오기
 		String ip = request.getHeader("X-Forwarded-For");
  
         if (ip == null) {
@@ -94,8 +113,10 @@ public class GalleryController {
         if (ip == null) {
             ip = request.getRemoteAddr();
         }
-        
         System.out.println("ip:"+ip);
+		//ip가져오기
+        
+        
 		//조회수증가
         map.put("ip", ip);
         map.put("boardSeq", boardSeq);
@@ -113,11 +134,13 @@ public class GalleryController {
         
         int hit = this.commonService.checkHit(boardSeq);
         model.addAttribute("hit", hit);
-        //
+        //조회수증가
         
+        
+        //좋싫
 		BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
     	model.addAttribute("likeHateCnt", likeHateCnt);
-		
+        //좋싫
 		
 		if (galleryVO.getFileSeq()!=null) {
 			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
@@ -129,7 +152,11 @@ public class GalleryController {
 	}
 
 	@GetMapping({"gallery/add","/add"})
-	public String details_add_gallery() {
+	public String details_add_gallery(Model model) {
+		int rnd = (int)((Math.random()*11)+1);
+
+	    model.addAttribute("rnd", rnd);
+		
 		return "gallery/galleryAdd";
 	}
 	
@@ -137,6 +164,11 @@ public class GalleryController {
 	@GetMapping("/update")
 	public String details_modify_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
 		int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
+		
+		int rnd = (int)((Math.random()*11)+1);
+
+	    model.addAttribute("rnd", rnd);
+		
 		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
 		System.out.println(galleryVO.getContent());
 		model.addAttribute("galleryVO", galleryVO);
@@ -180,7 +212,13 @@ public class GalleryController {
 		String content = servletRequest.getParameter("summernote");
 		String fileName = servletRequest.getParameter("fileName");
 		
-		int fileSeq = Integer.parseInt(this.galleryService.getGallery(boardSeq).getFileSeq());
+		int fileSeq = 0;
+		try {
+			fileSeq = Integer.parseInt(this.galleryService.getGallery(boardSeq).getFileSeq());
+		} catch (Exception e) {
+			
+		}
+		
 		System.out.println("과연?:"+fileSeq);
 		
 		System.out.println(fileName);
@@ -192,6 +230,7 @@ public class GalleryController {
 				System.out.println("fileSeq:"+fileSeq);
 			}
 		}
+		
 		map.put("fileSeq", fileSeq);
 		map.put("inUserId", id);
 		map.put("title", title);

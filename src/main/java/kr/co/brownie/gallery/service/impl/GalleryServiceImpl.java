@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
+import kr.co.brownie.reply.service.ReplyVO;
 
 @Service("galleryService")
 public class GalleryServiceImpl implements GalleryService {
@@ -67,5 +68,10 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public int selectFile(String fileName) {
 		return galleryMapper.selectFile(fileName);
+	}
+
+	@Override
+	public ReplyVO galleryAB(int boardSeq) {
+		return galleryMapper.galleryAB(boardSeq);
 	}
 }

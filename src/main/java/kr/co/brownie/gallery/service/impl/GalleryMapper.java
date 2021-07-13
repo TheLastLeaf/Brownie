@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryVO;
+import kr.co.brownie.reply.service.ReplyVO;
 
 @Mapper
 @Repository("galleryMapper")
@@ -31,4 +32,6 @@ public interface GalleryMapper {
     int selectFile(String fileName);
     
     int insertThumb(String fileName);
+    
+    ReplyVO galleryAB(int boardSeq);
 }

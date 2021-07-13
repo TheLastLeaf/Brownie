@@ -11,7 +11,7 @@
 
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" style="height: 500px;"
+<section class="breadcrumb-section set-bg spad" style="height: 500px; padding-top:200px;"
 	data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${rnd}.jpg">
 	<div class="container">
 		<div class="row">
@@ -165,7 +165,7 @@
 									<td>${noticeVO.inUserId}</td>
 									<td>${noticeVO.inDate}</td>
 									<td>${noticeVO.subSeq}</td>
-									<td>3</td>
+									<td>${noticeVO.love}</td>
 								</tr>
 							</c:forEach>
 
@@ -309,7 +309,7 @@
 								<li><span>${ galleryVO.inUserId }</span></li>
 								<li><i class="far fa-clock"></i> ${ galleryVO.inDate } </li>
 								<li><i class="far fa-comment">조회</i> ${ galleryVO.subSeq }</li>
-								<li><i class="far fa-comment">추천</i> 20</li>
+								<li><i class="far fa-comment">추천</i> ${ galleryVO.love }</li>
 							</ul>
 						</div>
 					</div>

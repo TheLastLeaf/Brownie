@@ -2,6 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 
+<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
+
 <script>
 function likeHateCheck(kind) {
 	console.log(${ galleryVO.boardSeq })
@@ -51,6 +55,32 @@ function fn_delete(){
 
 </script>
 
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg spad" style="height: 430px; padding-top:200px;"
+	data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${rnd}.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+
+				<div class="breadcrumb-text" style="text-align: center">
+					<h3>
+						<div class="breadcrumb-text">
+							<h3>
+								<h1 data-heading="Brownie  Gallery" style="z-index: 5">
+									<span data-heading="Brownie  Gallery" contenteditable>
+										Brownie  Gallery </span>
+								</h1>
+							</h3>
+							<div class="bt-option"></div>
+						</div>
+					</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Breadcrumb Section End -->
+
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -58,7 +88,7 @@ function fn_delete(){
             <div class="col-lg-12 p-0">
                 <div class="details-text gallery-page">
                     <div class="dt-title-gallery details-hero-text">
-                        <h1 style="color: white">${ galleryVO.title }</h1>
+                        <h2 style="color: white">${ galleryVO.title }</h2>
                     </div>
                     <div class="dt-desc">
                     	조회수 : ${ hit }
@@ -86,35 +116,42 @@ function fn_delete(){
 
                     <div class="dt-related-post">
                         <div class="row">
+							<!-- 이전 게시글 안내 -->
                             <div class="col-lg-6">
-                                <a href="#" class="rp-prev">
+                               <c:if test="${freePrev.title ne null}">
+                                <a href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${freePrev.boardSeq}" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
-                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
                                     </div>
                                     <div class="rp-text">
-                                        <h6>이전글어쩌구</h6>
+                                        <h6>${freePrev.title }</h6>
                                         <ul>
-                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                            <li><i class="far fa-comment"></i> 20</li>
+                                            <li><i class="far fa-clock"></i> ${recentBoardReplyDate.beforeDate}</li>
+                                            <li><i class="far fa-comment"></i> ${recentBoardReplyDate.beforeCnt}</li>
                                         </ul>
                                     </div>
                                 </a>
+                               </c:if>
                             </div>
+
+							<!-- 다음 게시글 안내 -->
                             <div class="col-lg-6">
-                                <a href="#" class="rp-next">
+                               <c:if test="${freeNext.title ne null}">
+                                <a href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${freeNext.boardSeq}" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
                                         <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
                                     </div>
                                     <div class="rp-text">
-                                        <h6>다음글어쩌구 게시글 순번으로 쿼리문 조회해</h6>
+                                        <h6>${freeNext.title }</h6>
                                         <ul>
-                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                            <li><i class="far fa-comment"></i> 20</li>
+                                            <li><i class="far fa-clock"></i> ${recentBoardReplyDate.afterDate}</li>
+                                            <li><i class="far fa-comment"></i> ${recentBoardReplyDate.afterCnt}</li>
                                         </ul>
                                     </div>
                                 </a>
+                               </c:if>
                             </div>
                         </div>
                     </div>

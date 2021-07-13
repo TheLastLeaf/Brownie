@@ -20,4 +20,6 @@ public class GalleryVO {
     private String upUserId;
     private String fileSeq;
     private int subSeq;
+    private int love;
+    private int hate;
 }

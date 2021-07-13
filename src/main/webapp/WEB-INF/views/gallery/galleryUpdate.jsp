@@ -4,6 +4,10 @@
 
 <!--  -->
 
+<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
+
 <script>
 var fileName = [];
 /*   $(function(){
@@ -145,20 +149,28 @@ var fileName = [];
 
 </style>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb-text">
-                    <h3>공지사항 등록</h3>
-                    <div class="bt-option">
-                        <a href="/index" style="color: black;">Home</a>
-                        <span>notice Add</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="breadcrumb-section set-bg spad" style="height: 430px; padding-top:200px;"
+	data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${rnd}.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+
+				<div class="breadcrumb-text" style="text-align: center">
+					<h3>
+						<div class="breadcrumb-text">
+							<h3>
+								<h1 data-heading="Brownie  Gallery" style="z-index: 5">
+									<span data-heading="Brownie  Gallery" contenteditable>
+										Brownie  Gallery </span>
+								</h1>
+							</h3>
+							<div class="bt-option"></div>
+						</div>
+					</h3>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- Breadcrumb Section End -->
 
