@@ -7,6 +7,7 @@
 
 .actForReply{
 	font-size: 10px;
+	margin-top: 3px;
 	margin-bottom: 3px;
 	justify-content: right;
     text-align: right;
@@ -55,14 +56,38 @@
 .blackReplysId {
  	visibility: hidden;
 }
+
+
+.replyMod {
+	width:100%;
+	background-color: black;
+	font-size: 12px;
+	color: #666666;
+}
+
+.replyModArea, .reModComBut {
+	display: none;
+}
+
+.modReplyBut {
+	border: 1px solid #ffffff;
+	padding: 2px;
+	cursor: pointer;
+	margin: 3px;
+	color: 	#ffffff;
+}
+
 </style>
+
+
 
 <!-- 스크립트 -->
 <script type="text/javascript">
 
-// 	const inUserId = '${sessionScope.id}';
-	const inUserId = '1786827527';
+	const inUserId = '${sessionScope.id}';
+// 	const inUserId = '1786827527';
 
+	//게시글 좋아요 싫어요
 	function likeHateCheck(kind) {
 		console.log("sessionId : "+inUserId);
 		if(inUserId == ''){
@@ -88,6 +113,7 @@
 		})
 	}
 
+	//리플 비공감 공감
 	function ReplyLikeHate(replySeq, kind) {
 		var hateCntId = "#replyHateCnt_" + replySeq;
 		var LikeCntId = "#replyLikeCnt_" + replySeq;
@@ -114,7 +140,8 @@
 		})
 	}
 
-	function replyToBoard(){
+	//리플 작성
+	function replyToBoard() {
 		var replyContent = $("#userReply").val();
 		$.ajax({
 			url : "../reply/ajax.replyToBoard",
@@ -133,11 +160,73 @@
 		})
 	}
 
-	function replyToReply(boardSeq, replySeq){
+	//리리플 작성
+	function replyToReply(boardSeq, replySeq) {
 		console.log("boardSeq : "+boardSeq);
 		console.log("replySeq : " + replySeq);
 	}
 
+	//리플 수정 박스 펼치기
+	function modReply(replySeq) {
+		var modReplyId = 'replyModArea_' + replySeq;
+		document.getElementById(modReplyId).style.display="block";
+		document.getElementById(modReplyId).style.visibility="visible";
+
+		var modReplyBut = 'reModButBefore_' + replySeq;
+		document.getElementById(modReplyBut).style.display="none";
+
+		var modReplyComBut = 'reModComButAfter_' + replySeq;
+		document.getElementById(modReplyComBut).style.display="block";
+	}
+
+	//리플 수정하기
+	function modMyReply(replySeq) {
+		var modTextareaId = 'replyMod_'+replySeq;
+		var replyContent = document.getElementById(modTextareaId).value;
+
+		$.ajax({
+			url : "../reply/ajax.modReply",
+			type : "POST",
+			data : {
+					"replySeq" : replySeq,
+					"replyContent": replyContent,
+					"upUserId": inUserId
+			},
+			success : function(data) {
+				alert('리플 수정 완료');
+				location.reload();
+			},
+			error : function() {
+				alert("에러나요");
+			}
+		})
+	}
+
+	//리플 삭제하기
+	function delMyReply(replySeq) {
+		var delReply = confirm('댓글을 삭제하시겠습니까?');
+		if(!delReply){
+			return;
+		} else {
+			$.ajax({
+				url : "../reply/ajax.delReply",
+				type : "POST",
+				data : {
+						"replySeq" : replySeq,
+						"inUserId": inUserId
+				},
+				success : function(data) {
+					alert('리플 삭제 완료');
+					location.reload();
+				},
+				error : function() {
+					alert("에러나요");
+				}
+			})
+		}
+	}
+
+	//신고된 리플 보기
 	function showBlackReply(replySeq) {
 		var blackReplyId = 'blackReply_' + replySeq;
 		var blackRepltId = 'blackReply_' + replySeq;
@@ -146,12 +235,12 @@
 
 		var blackIdStar = 'blackIdStar_' + replySeq;
 		var blackUserId = 'blackId_' + replySeq;
-
 		document.getElementById(blackIdStar).style.display="none";
 		document.getElementById(blackUserId).style.visibility="visible";
 		document.getElementById(blackReplyId).style.height="auto";
 
-		console.log(blackRepltId)
+		var callText = 'callPolice_' + replySeq;
+		document.getElementById(callText).style.display="none";
 	}
 
 </script>
@@ -257,13 +346,28 @@
 			                                <h5>${replyOnBoard.nickName }</h5>
 			                                <span class="c-date">${replyOnBoard.modDate }</span>
 			                                <p class="userReplys">${replyOnBoard.replyContent }</p>
+			                                <div class="replyModArea" id="replyModArea_${replyOnBoard.replySeq }">
+				                                <textarea class="replyMod" id="replyMod_${replyOnBoard.replySeq }" rows="3" cols="57">${replyOnBoard.replyContent }</textarea>
+			                                </div>
 			                                <div class="actForReply">
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-				                                <a href="#"><span class="replyCall">신고하기</span></a>
+				                               	<c:choose>
+					                               	<c:when test="${sessionScope.id eq replyOnBoard.inUserId}">
+						                                <a href="javascript:delMyReply('${replyOnBoard.replySeq }')"><span class="replyCall">삭제하기</span></a>
+													</c:when>
+													<c:otherwise>
+						                                <a href="#"><span class="replyCall">신고하기</span></a>
+													</c:otherwise>
+				                               	</c:choose>
 				                            </div>
 			                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
-			                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
+												<span id="reModButBefore_${replyOnBoard.replySeq }">
+			                                	<a href="javascript:modReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModBut_${replyOnBoard.replySeq }">수정하기</span></a>
+												</span>
+												<span class="reModComBut" id="reModComButAfter_${replyOnBoard.replySeq }">
+				                                <a href="javascript:modMyReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModComBut_${replyOnBoard.replySeq }">수정완료</span></a>
+												</span>
 			                               	</c:if>
 			                            </div>
 			                        </div>
@@ -277,15 +381,30 @@
 			                                <h5 id="blackIdStar_${replyOnBoard.replySeq }">******</h5>
 			                                <h5 class="blackReplysId" id="blackId_${replyOnBoard.replySeq }">${replyOnBoard.nickName }</h5>
 			                                <span class="c-date">${replyOnBoard.modDate }</span>
-			                                <p><span id=""><a class="blackClick" href="javascript:showBlackReply('${replyOnBoard.replySeq }')">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</a></span></p>
+			                                <p><span id="callPolice_${replyOnBoard.replySeq }"><a class="blackClick" href="javascript:showBlackReply('${replyOnBoard.replySeq }')">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</a></span></p>
 			                                <div class="blackReplys" id="blackReply_${replyOnBoard.replySeq }">${replyOnBoard.replyContent }</div>
+                    			            <div class="replyModArea" id="replyModArea_${replyOnBoard.replySeq }">
+				                            	<textarea class="replyMod" id="replyMod_${replyOnBoard.replySeq }" rows="3" cols="57">${replyOnBoard.replyContent }</textarea>
+			                                </div>
 			                                <div class="actForReply">
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-				                                <a href="#"><span class="replyCall">신고하기</span></a>
+				                                <c:choose>
+					                               	<c:when test="${sessionScope.id eq replyOnBoard.inUserId}">
+						                                <a href="javascript:delMyReply('${replyOnBoard.replySeq }')"><span class="replyCall">삭제하기</span></a>
+													</c:when>
+													<c:otherwise>
+						                                <a href="#"><span class="replyCall">신고하기</span></a>
+													</c:otherwise>
+				                               	</c:choose>
 				                            </div>
 			                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
-			                               		<a href="#" class="reply-btn"><span>수정하기</span></a>
+												<span id="reModButBefore_${replyOnBoard.replySeq }">
+			                                	<a href="javascript:modReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModBut_${replyOnBoard.replySeq }">수정하기</span></a>
+												</span>
+												<span class="reModComBut" id="reModComButAfter_${replyOnBoard.replySeq }">
+				                                <a href="javascript:modMyReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModComBut_${replyOnBoard.replySeq }">수정완료</span></a>
+												</span>
 			                               	</c:if>
 			                            </div>
 			                        </div>
@@ -307,13 +426,29 @@
 							                                <h5>${rm.nickName }</h5>
 							                                <span class="c-date">${rm.modDate }</span>
 							                                <p class="userReplys"><a href="#">@${replyOnBoard.nickName }</a> ${rm.replyContent}</p>
+							                                <div class="replyModArea" id="replyModArea_${rm.replySeq }">
+				                            					<textarea class="replyMod" id="replyMod_${rm.replySeq }" rows="3" cols="57">${rm.replyContent }</textarea>
+			                                				</div>
 							                                <div class="actForReply">
 								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${rm.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${rm.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-								                                <a href="#"><span class="replyCall">신고하기</span></a>
+									                            <c:choose>
+									                               	<c:when test="${sessionScope.id eq rm.inUserId}">
+										                                <a href="javascript:delMyReply('${rm.replySeq }')"><span class="replyCall">삭제하기</span></a>
+																	</c:when>
+																	<c:otherwise>
+										                                <a href="#"><span class="replyCall">신고하기</span></a>
+																	</c:otherwise>
+								                               	</c:choose>
 							                            	</div>
 							                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
-							                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
+							                                	<span id="reModButBefore_${rm.replySeq }">
+							                                	<a href="javascript:modReply('${rm.replySeq }')" class="reply-btn"><span id="reModBut_${rm.replySeq }">수정하기</span></a>
+																</span>
+
+																<span class="reModComBut" id="reModComButAfter_${rm.replySeq }">
+								                                <a href="javascript:modMyReply('${rm.replySeq }')" class="reply-btn"><span id="reModComBut_${rm.replySeq }">수정완료</span></a>
+																</span>
 							                               	</c:if>
 							                            </div>
 							                        </div>
@@ -327,15 +462,31 @@
 							                                <h5 id="blackIdStar_${rm.replySeq }">******</h5>
 			                                				<h5 class="blackReplysId" id="blackId_${rm.replySeq }">${rm.nickName }</h5>
 							                                <span class="c-date">${rm.modDate }</span>
-							                                <p><span id=""><a class="blackClick" href="javascript:showBlackReply('${rm.replySeq }')">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</a></span></p>
+							                                <p><span id="callPolice_${rm.replySeq }"><a class="blackClick" href="javascript:showBlackReply('${rm.replySeq }')">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</a></span></p>
 							                                <div class="blackReplys" id="blackReply_${rm.replySeq }">${rm.replyContent }</div>
+							                                <div class="replyModArea" id="replyModArea_${rm.replySeq }">
+				                            					<textarea class="replyMod" id="replyMod_${rm.replySeq }" rows="3" cols="57">${rm.replyContent }</textarea>
+			                                				</div>
 							                                <div class="actForReply">
 								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${rm.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${rm.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-								                                <a href="#"><span class="replyCall">신고하기</span></a>
+								                                <c:choose>
+									                               	<c:when test="${sessionScope.id eq rm.inUserId}">
+										                                <a href="javascript:delMyReply('${rm.replySeq }')"><span class="replyCall">삭제하기</span></a>
+																	</c:when>
+																	<c:otherwise>
+										                                <a href="#"><span class="replyCall">신고하기</span></a>
+																	</c:otherwise>
+								                               	</c:choose>
 								                            </div>
 							                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
-							                               		<a href="#" class="reply-btn"><span>수정하기</span></a>
+							                               		<span id="reModButBefore_${rm.replySeq }">
+							                                	<a href="javascript:modReply('${rm.replySeq }')" class="reply-btn"><span id="reModBut_${rm.replySeq }">수정하기</span></a>
+																</span>
+
+																<span class="reModComBut" id="reModComButAfter_${rm.replySeq }">
+								                                <a href="javascript:modMyReply('${rm.replySeq }')" class="reply-btn"><span id="reModComBut_${rm.replySeq }">수정완료</span></a>
+																</span>
 							                               	</c:if>
 							                            </div>
 							                        </div>

@@ -106,6 +106,24 @@
 			HEAD_REPLY_SEQ = #{replySeq}
 	</select>
 
+	<update id="modReply">
+		UPDATE REPLY
+		SET
+			REPLY_CONTENT = #{replyContent},
+			UP_DATE = SYSDATE,
+			UP_USER_ID = #{upUserId}
+		WHERE
+			REPLY_SEQ = #{replySeq}
+	</update>
+
+	<delete id="delReply">
+		DELETE FROM REPLY
+		WHERE
+			IN_USER_ID = #{inUserId}
+		AND
+			REPLY_SEQ = #{replySeq}
+	</delete>
+
 	<select id="selectReplyStance" parameterType="hashMap" resultType="kr.co.brownie.reply.service.ReplyVO">
 		SELECT
 			REPLY_SEQ as replySeq,

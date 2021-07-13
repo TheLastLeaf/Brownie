@@ -28,4 +28,8 @@ public interface ReplyMapper {
 
 	ReplyVO boardReplyCnt(int boardSeq);
 
+	void modReply(Map<String, Object> map);
+
+	void delReply(Map<String, Object> map);
+
 }

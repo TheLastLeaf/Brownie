@@ -30,6 +30,19 @@ public class ReplyController {
 		replyService.replyToBoard(map);
 	}
 
+	@ResponseBody
+	@RequestMapping(value="/ajax.modReply", method= {RequestMethod.GET, RequestMethod.POST})
+	public void ajaxModReply(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+		replyService.modReply(map);
+		System.out.println("mod -----------------------------");
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/ajax.delReply", method= {RequestMethod.GET, RequestMethod.POST})
+	public void ajaxDelReply(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+		replyService.delReply(map);
+		System.out.println("del -----------------------------");
+	}
 
     @ResponseBody
     @RequestMapping(value="/ajax.replyLikeHate", method=RequestMethod.GET)

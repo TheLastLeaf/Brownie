@@ -61,4 +61,14 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.boardReplyCnt(boardSeq);
 	}
 
+	@Override
+	public void modReply(Map<String, Object> map) {
+		replyMapper.modReply(map);
+	}
+
+	@Override
+	public void delReply(Map<String, Object> map) {
+		replyMapper.delReply(map);
+	}
+
 }
