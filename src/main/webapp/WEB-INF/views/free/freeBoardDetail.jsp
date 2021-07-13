@@ -29,6 +29,14 @@
 	color: #ffffcc;
 }
 
+.reReply {
+	border: 1px solid #007bff;
+	padding: 2px;
+	cursor: pointer;
+	margin: 3px;
+	color: #007bff;
+}
+
 .replyCall {
 	border: 1px solid #DC143C;
 	padding: 2px;
@@ -89,7 +97,6 @@
 
 	//게시글 좋아요 싫어요
 	function likeHateCheck(kind) {
-		console.log("sessionId : "+inUserId);
 		if(inUserId == ''){
 			alert("로그인이 필요합니다.");
 			return;
@@ -122,6 +129,7 @@
 			alert("로그인이 필요합니다.");
 			return;
 		}
+
 		$.ajax({
 			url : "../reply/ajax.replyLikeHate",
 			type : "get",
@@ -143,6 +151,12 @@
 	//리플 작성
 	function replyToBoard() {
 		var replyContent = $("#userReply").val();
+
+		if(inUserId == ''){
+			alert("로그인이 필요합니다.");
+			return;
+		}
+
 		$.ajax({
 			url : "../reply/ajax.replyToBoard",
 			type : "POST",
@@ -160,10 +174,16 @@
 		})
 	}
 
+	//리리플 작성 박스 펼치기
+	function replyToReply() {
+
+
+	}
+
 	//리리플 작성
-	function replyToReply(boardSeq, replySeq) {
-		console.log("boardSeq : "+boardSeq);
-		console.log("replySeq : " + replySeq);
+	function addReReply() {
+
+
 	}
 
 	//리플 수정 박스 펼치기
@@ -353,6 +373,7 @@
 				                                <div class="actForReply">
 					                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 					                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+					                                <a href="javascript:replyToReply()"><span class="reReply">답글달기</span></a>
 					                               	<c:choose>
 						                               	<c:when test="${sessionScope.id eq replyOnBoard.inUserId}">
 							                                <a href="javascript:delMyReply('${replyOnBoard.replySeq }')"><span class="replyCall">삭제하기</span></a>
