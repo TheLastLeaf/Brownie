@@ -1,14 +1,17 @@
 package kr.co.brownie.user.web;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.brownie.fileUpload.service.FileService;
 import kr.co.brownie.review.service.ReviewService;
 import kr.co.brownie.review.service.ReviewVO;
 import kr.co.brownie.review.service.impl.ReviewPagingVO;
@@ -32,6 +36,9 @@ public class UserController {
 
 	@Resource(name = "reviewService")
 	ReviewService reviewService;
+
+	@Resource(name = "fileService")
+	FileService fileService;
 
 	/**
 	 * @author 박세웅
@@ -69,10 +76,11 @@ public class UserController {
 			// 로그인한 사람의 최근 게시글 3개가져오기
 			List<String> recentBoard = userService.recentBoard(id);
 
-			//
 			// 후기 페이징
 			page.setId(id);
 			page.setTotalCount(reviewService.countAllReview(page));
+
+			// 리뷰
 			List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
 
 			// model.addattribute
@@ -98,35 +106,45 @@ public class UserController {
 
 	@PostMapping("/userInfo")
 	@ResponseBody // AJAX 사용시 써야함
-	public String userName(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) {
-
-		String uploadFolder = "C:\\upload";
+	public String userName(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) throws IOException {
+		// 세션 아이디 -> map에 삽입
+		String id = (String) httpSession.getAttribute("id");
+		map.put("id", id);
+		
+		// 내부경로로 저장
+		//		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+		//		String uploadFolder = contextRoot + "resources/static/img/userProfile/";
+		
+		// 파일 저장되는 경로
+		String uploadFolder = "C:\\Users\\PC13\\git\\Brownie\\src\\main\\resources\\static\\img\\userProfile";
+		String profilePath = "";
 
 		for (MultipartFile multipartFile : uploadFile) {
-			String uploadFileName = multipartFile.getOriginalFilename();
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-			File savefile = new File(uploadFolder, uploadFileName);
+			String originFileName = multipartFile.getOriginalFilename();
+			// 진짜 파일 이름
+			originFileName = originFileName.substring(originFileName.lastIndexOf("\\") + 1);
+			File savefileName = new File(uploadFolder, originFileName);
+			// 내가 날짜_이름 으로 지어주는 이름
+			profilePath = String.format("resources/static/img/userProfile/%s_%s", System.currentTimeMillis(), originFileName); 
+			
+			System.out.println("savefileName : " + savefileName);
+			System.out.println("profile_img : " + profilePath);
 			try {
-				multipartFile.transferTo(savefile);
+				multipartFile.transferTo(savefileName);
+				map.put("profilePath", profilePath);
+				map.put("originFileName", originFileName);
+				map.put("savefileName", savefileName);
+				
+				
 			} catch (Exception e) {
 				System.out.println("예외발생");
 			}
 		}
-
-		// 세션 아이디 -> map에 삽입
-		String id = (String) httpSession.getAttribute("id");
-		map.put("id", id);
-
-		String nick = (String) map.get("nickNameBox");
-		String[] positions = request.getParameterValues("positions");
-		System.out.println("nick:" + nick);
-		System.out.println(Arrays.toString(positions));
-
-		// map.put("userPosition", userPosition);
-
-		// userService.insertNick(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
-
-		return "msg";
+		
+		fileService.insertPath(map);
+		userService.insertNickPosition(map) ; // 스크립트로 가져와서 <script>??</script> 방법도 잇음
+		
+		return profilePath;
 	}
 
 	@GetMapping("/userSync")

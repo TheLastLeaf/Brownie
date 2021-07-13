@@ -12,7 +12,7 @@ public interface UserMapper {
 
 	UserVO userOneSelect(String id);
 
-	void insertNick(Map<String, Object> map);
+	void insertNickPosition(Map<String, Object> map);
 
 	int selectExp(String id);
 

@@ -114,7 +114,17 @@ input[name="position"] {
 	padding-top: 40px;
 }
 </style>
- <script>
+<script>
+	function fn_changeProfile(){
+		$("input[type=file]").change(function(){
+			var formData = new formData($("frm")[0]);
+			alert("성공");
+		})
+	}
+
+
+
+
 	function fn_submit() {
 		//파일처리 시작 ----------
 		var formData = new FormData();
@@ -131,13 +141,8 @@ input[name="position"] {
 
 // 		var param = "";
 // 		param += "dummy=" + Math.random()
-// 		param += "&nickNameBox=" + nickNameBox
-// 				+ "&positions=" + positions
 		formData.append("nickNameBox",nickNameBox);
 		formData.append("positions",positions);
-// 		console.log(nickNameBox);
-// 		console.log(positions);
-		console.log(formData);
 		
 		$.ajax({
 			url : "/user/userInfo",
@@ -145,13 +150,17 @@ input[name="position"] {
 			data : formData,
 			processData:false,
 			contentType:false,
-			success : function(data) {
-				alert("성공");
-				//window.close();
-				//window.reload();
+			success : function(profilePath) {
+					alert("성공: "+profilePath);
+					console.log(profilePath);
+					console.log(files);
+					$("#file").attr("style", "background-image: url(" + profilePath + ");");
+					//window.close();
+					//window.reload();
 			},
-			error : function() {
+			error : function(e) {
 				alert("실패ㅜㅜ err");
+				console.log(e);
 			},
 		});
 	}
@@ -177,8 +186,8 @@ input[name="position"] {
 					<h2 class="font-family-maple-bold text-white">정보수정</h2>
 					<p class="advice">사진을 눌러서 프로필을 바꿔보세요!</p>
 				</div>
-				
-			
+
+
 				<!-- form태그 begin -->
 				<form action="/user/userInfo" name="frm" class="signup-form" id="form" method="POST" enctype="multipart/form-data">
 					<div class="sf-input-list ">
@@ -186,7 +195,7 @@ input[name="position"] {
 						<div class="profileBox" style="border: none;">
 							<label for="file">
 								<img class="profile" src="">
-								<input type="file" id="file" name="file" multiple/>
+								<input type="file" id="file" name="file" multiple />
 							</label>
 						</div>
 						<input type="text" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*">
@@ -235,7 +244,7 @@ input[name="position"] {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- <script>
 	    $("#file").change(function(e)){
 	        var form = $("form")[0];        
@@ -259,7 +268,7 @@ input[name="position"] {
 	            }
 	        }); // $.ajax */    }
 	</script> -->
-	
+
 
 	<!-- Js Plugins -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

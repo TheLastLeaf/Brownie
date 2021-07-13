@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.user.service.impl.UserMapper">
+
 	<select id="selectList" resultType="kr.co.brownie.user.service.UserVO">
     	SELECT 	BU.USER_ID AS USERID,
 				BU.LOL_ID AS LOLID,
@@ -21,35 +22,17 @@
             AND BU.USER_ID = BE.USER_ID
 	</select>
 
-	<insert id="insertNick" parameterType="HashMap">
-		insert into
-		BROWNIE_USER
-		(
-		USER_ID,
-		LOL_ID,
-		NICK_NAME,
-		BLACK_STACK,
-		STATUS,
-		IN_DATE,
-		UP_DATE,
-		IN_USER_ID,
-		UP_USER_ID,
-		USER_POSITION
-		)
-		values
-		(
-		#{id},
-		nvl('','롤아이디미연동'),
-		nvl(#{nickName},'닉네임미기입'),
-		0,
-		'y',
-		to_char(sysdate, 'yyyy-MM-dd'),
-		'',
-		'',
-		'',
-		nvl(#{userPosition},'top/jun/mid/bot/sup')
-		)
-	</insert>
+	<update id="insertNickPosition">
+		MERGE INTO BROWNIE_USER
+		USING DUAL
+			on (USER_ID = '${id}')
+		WHEN MATCHED THEN
+		    UPDATE SET
+		        NICK_NAME = '${nickNameBox}',
+		        UP_DATE = SYSDATE,
+		        UP_USER_ID = '${id}',
+		        USER_POSITION = '${positions}'
+	</update>
 
 	<select id="userOneSelect"
 		resultType="kr.co.brownie.user.service.UserVO">

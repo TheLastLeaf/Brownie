@@ -23,11 +23,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void insertNick(Map<String, Object> map) throws IOException {
-		userMapper.insertNick(map);
-	}
-
-	@Override
 	public int selectExp(String id) throws IOException {
 		int exp = userMapper.selectExp(id);
 		return exp;
@@ -92,4 +87,11 @@ public class UserServiceImpl implements UserService {
 	public List<UserVO> selectList() {
 		return userMapper.selectList();
 	}
+
+	@Override
+	public void insertNickPosition(Map<String, Object> map) throws IOException {
+		System.out.println("service: " + map);
+		userMapper.insertNickPosition(map);
+	}
+
 }
