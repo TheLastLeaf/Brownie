@@ -172,8 +172,10 @@ public class FreeController {
 		model.addAttribute("id",id);
 		return "free/report";
 	}
-	@PostMapping("/report")
-	public String reportPost(Map<String,Object> map, HttpSession session, Model model, HttpServletRequest servletRequest){
+
+	@ResponseBody
+	@RequestMapping(value="/ajax.reportadd", method = RequestMethod.POST)
+	public Object reportPost(Map<String,Object> map, HttpSession session, Model model, HttpServletRequest servletRequest){
 		String id = (String)session.getAttribute("id");
 		String content = servletRequest.getParameter("content");
 		String reportName = servletRequest.getParameter("reportName");
@@ -182,12 +184,14 @@ public class FreeController {
 		map.put("reportName",reportName);
 		map.put("id",id);
 		map.put("userId",userId);
+		System.out.println("map"+map);
 		if(id==null){
 			model.addAttribute("message", "<script>alert('로그인 후 이용가능한 서비스입니다.'); history.go(-1);</script>");
 			return "common/message";
 		}else{
-			reportService.insert(map);
-			return "free/report";
+			int cnt = reportService.insert(map);
+			model.addAttribute("cnt",cnt);
+			return cnt;
 		}
 	}
 }

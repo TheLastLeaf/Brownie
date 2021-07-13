@@ -479,7 +479,7 @@ h5 {
 						                                <a href="javascript:delMyReply('${replyOnBoard.replySeq }')"><span class="replyCall">삭제하기</span></a>
 													</c:when>
 													<c:otherwise>
-						                                <a href="#"><span class="replyCall">신고하기</span></a>
+														<span class="replyCall" onclick="fn_report('${replyOnBoard.inUserId}')">신고하기</span>
 													</c:otherwise>
 				                               	</c:choose>
 				                            </div>
@@ -522,7 +522,7 @@ h5 {
 										                                <a href="javascript:delMyReply('${rm.replySeq }')"><span class="replyCall">삭제하기</span></a>
 																	</c:when>
 																	<c:otherwise>
-										                                <a href="#"><span class="replyCall">신고하기</span></a>
+																		<span class="replyCall" onclick="fn_report('${replyOnBoard.inUserId}')">신고하기</span>
 																	</c:otherwise>
 								                               	</c:choose>
 							                            	</div>
@@ -575,7 +575,7 @@ h5 {
 										                                <a href="javascript:delMyReply('${rm.replySeq }')"><span class="replyCall">삭제하기</span></a>
 																	</c:when>
 																	<c:otherwise>
-										                                <a href="#"><span class="replyCall">신고하기</span></a>
+																		<span class="replyCall" onclick="fn_report('${replyOnBoard.inUserId}')">신고하기</span>
 																	</c:otherwise>
 								                               	</c:choose>
 								                            </div>

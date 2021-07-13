@@ -44,6 +44,34 @@
         });
     });
 
+
+    function fn_submit(){
+        const userId = $(".userId").val();
+        const reportName = $(".reportName").val();
+        const content = $(".content").val();
+        console.log(userId)
+        console.log(reportName)
+        console.log(content)
+
+        $.ajax({
+            url : "/ajax.reportadd",
+            type : "post",
+            data : {
+                "userId" : userId,
+                "reportName" : reportName,
+                "content" : content
+            },
+            success : function(data) {
+                if(data==1){
+                    window.close();
+                }
+            },
+            error : function() {
+                alert("신고 접수 실패");
+            }
+        })
+    }
+
 </script>
 <style>
     .userName{
@@ -72,25 +100,22 @@
     <div class="container">
         <div class="row">
             <div class="col text-center" style="border: 1px solid white;">
-                <form method="post" onsubmit="fn_submit()">
-                        <input type="hidden" name="inUserId" value="${id}">
-                        <input type="hidden" name="userId" value="${userId}">
-                        <p>
-                        <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${userId}</h5>
-                        </p>
-                        <p class="check"><input type="checkbox" name="reportName" id="abuse" value="욕설"><label for="abuse">욕설</label></p>
-                        <p class="check"><input type="checkbox" name="reportName" id="abusecon" value="부적절한 내용"><label for="abusecon">부적절한 내용</label></p>
-                        <p class="check"><input type="checkbox" name="reportName" id="abuseId" value="부적절한 아이디"><label for="abuseId">부적절한 아이디</label></p>
-                        <p>
-                            <b class="font-family-maple-bold">신고내용</b>
-                            <br />
-                            <textarea cols="30" rows="5" id="content" name="content"></textarea>
-                            <div id="content_cnt">(0 / 1000)</div>
-                        </p>
-                        <div class="submit">
-                            <input type="submit" value="신고하기" onclick="opener.parent.location.reload(); window.close();">
-                        </div>
-                </form>
+                <input type="hidden" name="userId" value="${userId}" class="userId">
+                <p>
+                <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${userId}</h5>
+                </p>
+                <p class="check"><input type="checkbox" name="reportName" class="reportName" id="abuse" value="욕설"><label for="abuse">욕설</label></p>
+                <p class="check"><input type="checkbox" name="reportName" class="reportName" id="abusecon" value="부적절한 내용"><label for="abusecon">부적절한 내용</label></p>
+                <p class="check"><input type="checkbox" name="reportName" class="reportName" id="abuseId" value="부적절한 아이디"><label for="abuseId">부적절한 아이디</label></p>
+                <p>
+                    <b class="font-family-maple-bold">신고내용</b>
+                    <br />
+                    <textarea cols="30" rows="5" id="content" name="content" class="content"></textarea>
+                    <div id="content_cnt">(0 / 1000)</div>
+                </p>
+                <div class="submit">
+                    <input type="button" value="신고하기" onclick="fn_submit()">
+                </div>
             </div>
         </div>
     </div>
