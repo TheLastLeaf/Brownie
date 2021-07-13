@@ -97,6 +97,7 @@
 
 	//게시글 좋아요 싫어요
 	function likeHateCheck(kind) {
+		console.log("sessionId : "+inUserId);
 		if(inUserId == ''){
 			alert("로그인이 필요합니다.");
 			return;
@@ -263,6 +264,10 @@
 		document.getElementById(callText).style.display="none";
 	}
 
+	function fn_report(userId){
+		window.open("report?userId="+userId,"report", "width=660, height=500, left=250,top=200");
+	}
+
 </script>
 <!-- 스크립트 끝 -->
 
@@ -365,32 +370,15 @@
 			                            <div class="dc-text">
 			                                <h5>${replyOnBoard.nickName }</h5>
 			                                <span class="c-date">${replyOnBoard.modDate }</span>
-			                                <p class="userReplys">${replyOnBoard.replyContent }</p>
-			                                <div class="replyModArea" id="replyModArea_${replyOnBoard.replySeq }">
-				                                <textarea class="replyMod" id="replyMod_${replyOnBoard.replySeq }" rows="3" cols="57">${replyOnBoard.replyContent }</textarea>
-			                                </div>
-
-				                                <div class="actForReply">
-					                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
-					                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-					                                <a href="javascript:replyToReply()"><span class="reReply">답글달기</span></a>
-					                               	<c:choose>
-						                               	<c:when test="${sessionScope.id eq replyOnBoard.inUserId}">
-							                                <a href="javascript:delMyReply('${replyOnBoard.replySeq }')"><span class="replyCall">삭제하기</span></a>
-														</c:when>
-														<c:otherwise>
-							                                <a href="#"><span class="replyCall">신고하기</span></a>
-														</c:otherwise>
-					                               	</c:choose>
-					                            </div>
-				                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
-													<span id="reModButBefore_${replyOnBoard.replySeq }">
-				                                	<a href="javascript:modReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModBut_${replyOnBoard.replySeq }">수정하기</span></a>
-													</span>
-													<span class="reModComBut" id="reModComButAfter_${replyOnBoard.replySeq }">
-					                                <a href="javascript:modMyReply('${replyOnBoard.replySeq }')" class="reply-btn"><span id="reModComBut_${replyOnBoard.replySeq }">수정완료</span></a>
-													</span>
-				                               	</c:if>
+			                                <p>${replyOnBoard.replyContent }</p>
+			                                <div class="actForReply">
+				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
+				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
+				                                <a href="#"><span class="replyCall">신고하기</span></a>
+				                            </div>
+			                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
+			                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
+			                               	</c:if>
 			                            </div>
 			                        </div>
 								</c:when>

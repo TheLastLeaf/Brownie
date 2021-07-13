@@ -3,6 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
 <fmt:formatDate value="${noticeVO.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss" />
+<style>
+    .dt-desc{
+        color: #666666;
+    }
+</style>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -25,9 +30,6 @@
                         </div>
                         <hr class="w-auto bg-white">
                         <h4 class="text-secondary font-family-maple-bold">${noticeVO.title}</h4>
-<%--                        <div class="dp-pic">--%>
-<%--                            <img src="${pageContext.request.contextPath}/img/details/dp-p1.jpg" alt="">--%>
-<%--                        </div>--%>
                     </div>
                     <div class="dt-desc">
                             ${noticeVO.content}

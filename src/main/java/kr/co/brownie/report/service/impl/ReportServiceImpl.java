@@ -1,6 +1,7 @@
 package kr.co.brownie.report.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -17,6 +18,11 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public List<ReportVO> selectReportList() {
 		return reportMapper.selectReportList();
+	}
+
+	@Override
+	public int insert(Map<String, Object> map) {
+		return reportMapper.insert(map);
 	}
 
 }

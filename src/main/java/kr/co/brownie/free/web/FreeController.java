@@ -8,13 +8,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import kr.co.brownie.report.service.ReportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
@@ -37,6 +34,9 @@ public class FreeController {
 	@Resource(name = "replyService")
 	ReplyService replyService;
 
+	@Resource(name = "reportService")
+	ReportService reportService;
+
 	@GetMapping(path= {"", "/freeList"})
 	public String freeList(Model model) {
 		//자유게시판 글 리스트 출력
@@ -51,6 +51,8 @@ public class FreeController {
         List<FreeVO> recentList = freeService.selectRecentForMenu();
         System.out.println(recentList);
         model.addAttribute("recentList", recentList);
+
+
 
 		return "free/freeBoardList";  // 자유게시판 리스트
 	}
@@ -162,4 +164,30 @@ public class FreeController {
     	return likeHateCnt;
     }
 
+    @GetMapping("/report")
+	public String report(HttpServletRequest request, Model model, HttpSession session){
+		String userId = request.getParameter("userId");
+		model.addAttribute("userId",userId);
+		String id = (String)session.getAttribute("id");
+		model.addAttribute("id",id);
+		return "free/report";
+	}
+	@PostMapping("/report")
+	public String reportPost(Map<String,Object> map, HttpSession session, Model model, HttpServletRequest servletRequest){
+		String id = (String)session.getAttribute("id");
+		String content = servletRequest.getParameter("content");
+		String reportName = servletRequest.getParameter("reportName");
+		String userId = servletRequest.getParameter("userId");
+		map.put("content",content);
+		map.put("reportName",reportName);
+		map.put("id",id);
+		map.put("userId",userId);
+		if(id==null){
+			model.addAttribute("message", "<script>alert('로그인 후 이용가능한 서비스입니다.'); history.go(-1);</script>");
+			return "common/message";
+		}else{
+			reportService.insert(map);
+			return "free/report";
+		}
+	}
 }

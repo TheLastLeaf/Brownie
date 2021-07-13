@@ -132,7 +132,7 @@
                A.SUB_SEQ    AS SUBSEQ,
                B.NICK_NAME AS NICKNAME
         FROM BROWNIE_BOARD A , BROWNIE_USER B
-        WHERE B.USER_ID = A.IN_USER_ID
+        WHERE B.USER_ID = A.UP_USER_ID
         ORDER BY A.BOARD_SEQ DESC
         ]]>
     </select>

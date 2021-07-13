@@ -9,7 +9,7 @@ public class ReportVO {
 	private String reportName;
 	private String userId;
 	private String inDate;
-	private String modDate;
+	private String upDate;
 	private String inUserId;
 	private String upUserId;
 	private String status;
