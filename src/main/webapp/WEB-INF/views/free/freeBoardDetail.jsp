@@ -374,7 +374,7 @@
 			                                <div class="actForReply">
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
-				                                <a href="#"><span class="replyCall">신고하기</span></a>
+				                                <span class="replyCall" onclick="fn_report('${replyOnBoard.inUserId}')">신고하기</span>
 				                            </div>
 			                               	<c:if test="${sessionScope.id eq replyOnBoard.inUserId}">
 			                                	<a href="#" class="reply-btn"><span>수정하기</span></a>
