@@ -58,4 +58,14 @@ public class GalleryServiceImpl implements GalleryService {
 	public List<GalleryVO> getNoticeList(Map<String, Object> map) {
 		return galleryMapper.noticeList(map);
 	}
+
+	@Override
+	public int insertThumbnail(String fileName) {
+		return galleryMapper.insertThumb(fileName);
+	}
+
+	@Override
+	public int selectFile(String fileName) {
+		return galleryMapper.selectFile(fileName);
+	}
 }

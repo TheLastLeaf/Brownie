@@ -56,6 +56,12 @@
         FROM BROWNIE_FILE
         WHERE FILE_SEQ = #{fileSeq}
     </select>
+    
+	<select id="selectFile" parameterType="String" resultType="int">
+        SELECT FILE_SEQ AS FILESEQ
+        FROM BROWNIE_FILE
+        WHERE SAVE_NAME = #{fileName}
+    </select>
 	
 	<select id="noticeList" resultType="kr.co.brownie.gallery.service.GalleryVO">
         SELECT BOARD_SEQ  AS BOARDSEQ,
@@ -91,14 +97,20 @@
         FROM BROWNIE_BOARD
         WHERE BOARD_SEQ = #{boardSeq}
     </select>
-
+    
     <insert id="insert" parameterType="hashMap">
         <selectKey order="BEFORE" keyProperty="boardSeq" resultType="int">
             SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM BROWNIE_BOARD
         </selectKey>
         INSERT INTO
         BROWNIE_BOARD(BOARD_SEQ,BOARD_KIND,TITLE,CONTENT,NOTICE_YN,STATUS,IN_DATE,IN_USER_ID,UP_DATE,UP_USER_ID,FILE_SEQ,SUB_SEQ)
-        VALUES (#{boardSeq},'gallery',#{title},#{content},NULL,NULL,SYSDATE,#{inUserId},SYSDATE,#{inUserId},NULL,NULL)
+        VALUES (#{boardSeq},'gallery',#{title},#{content},'n',NULL,SYSDATE,#{inUserId},SYSDATE,#{inUserId},#{fileSeq},NULL)
+    </insert>
+    
+    <insert id="insertThumb" parameterType="hashMap">
+        INSERT INTO
+        BROWNIE_FILE(FILE_SEQ,SUB_SEQ,FILE_PATH,ORIGINAL_NAME,SAVE_NAME,IN_DATE,IN_USER_ID,UP_DATE,UP_USER_ID)
+        VALUES ((SELECT NVL(MAX(FILE_SEQ),0)+1 FROM BROWNIE_FILE),1,NULL,NULL,#{fileName},SYSDATE,#{inUserId},SYSDATE,#{inUserId})
     </insert>
 
     <update id="update" parameterType="hashMap">
@@ -109,7 +121,7 @@
             NOTICE_YN  = 1,
             STATUS     = 1,
             UP_DATE    = SYSDATE,
-            FILE_SEQ   = NULL,
+            FILE_SEQ   = #{fileSeq},
             SUB_SEQ    = NULL
         WHERE BOARD_SEQ = #{boardSeq}
     </update>

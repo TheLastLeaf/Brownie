@@ -19,4 +19,8 @@ public interface GalleryService {
     public int selectCount();
     
     public List<FileVO> getFileList(int fileSeq);
+    
+    public int insertThumbnail(String fileName);
+    
+    public int selectFile(String fileName);
 }

@@ -27,4 +27,8 @@ public interface GalleryMapper {
     int update(Map<String, Object> map);
     
     List<FileVO> selectFiles(int fileSeq);
+    
+    int selectFile(String fileName);
+    
+    int insertThumb(String fileName);
 }

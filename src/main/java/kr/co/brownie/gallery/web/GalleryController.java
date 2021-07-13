@@ -86,13 +86,12 @@ public class GalleryController {
 			fileVOList = this.galleryService.getFileList(Integer.parseInt(galleryVO.getFileSeq()));
 			model.addAttribute("fileVOList", fileVOList);
 		}
-		
-		model.addAttribute("galleryVO", galleryVO);
+				model.addAttribute("galleryVO", galleryVO);
 		
 		return "gallery/galleryDetail";
 	}
 
-	@GetMapping("/add")
+	@GetMapping({"gallery/add","/add"})
 	public String details_add_gallery() {
 		return "gallery/galleryAdd";
 	}
@@ -111,22 +110,27 @@ public class GalleryController {
 	@ResponseBody
     @RequestMapping(value="/ajax.galleryadd", method=RequestMethod.POST)
     public int AjaxAdd(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+		String inUserId = "곽지훈";
 		String title = servletRequest.getParameter("title");
         String content = servletRequest.getParameter("summernote");
-    	
-    	System.out.println(title);
-
-		System.out.println(content);
+        String fileName = servletRequest.getParameter("fileName");
 		
-		String inUserId = "곽지훈";
 		map.put("inUserId", inUserId);
+		map.put("fileName", fileName);
+		
+		int thumbCnt = this.galleryService.insertThumbnail(fileName);
+		int fileSeq = 0;
+		if(thumbCnt==1) {
+			fileSeq = this.galleryService.selectFile(fileName);
+		}
+		
 		map.put("title", title);
 		map.put("content", content);
+		map.put("fileSeq", fileSeq);
 		
 		int cnt = this.galleryService.insertGallery(map);
 		
 		model.addAttribute("cnt", cnt);
-		System.out.println(cnt);
     	
 		return cnt;
 	}
@@ -134,15 +138,26 @@ public class GalleryController {
 	@ResponseBody
 	@RequestMapping(value="/ajax.galleryupdate", method=RequestMethod.POST)
 	public int AjaxUpdate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+		String id = (String) session.getAttribute("id");
+		int boardSeq = Integer.parseInt(servletRequest.getParameter("boardSeq"));
 		String title = servletRequest.getParameter("title");
 		String content = servletRequest.getParameter("summernote");
+		String fileName = servletRequest.getParameter("fileName");
 		
-		System.out.println(title);
+		int fileSeq = Integer.parseInt(this.galleryService.getGallery(boardSeq).getFileSeq());
+		System.out.println("과연?:"+fileSeq);
 		
-		System.out.println(content);
-		
-		String inUserId = "곽지훈";
-		map.put("inUserId", inUserId);
+		System.out.println(fileName);
+		if(fileName!=null) {
+			int thumbCnt = this.galleryService.insertThumbnail(fileName);
+			System.out.println(thumbCnt);
+			if(thumbCnt==1) {
+				fileSeq = this.galleryService.selectFile(fileName);
+				System.out.println("fileSeq:"+fileSeq);
+			}
+		}
+		map.put("fileSeq", fileSeq);
+		map.put("inUserId", id);
 		map.put("title", title);
 		map.put("content", content);
 		

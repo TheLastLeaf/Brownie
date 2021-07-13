@@ -5,6 +5,7 @@
 <!--  -->
 
 <script>
+	var fileName = [];
     /*   $(function(){
            $('.notice_content').html(
                $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
@@ -68,6 +69,7 @@
                processData: false,
                success: function (data) {
                    $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
+                   fileName.push(data.url);
                }
            });
        }
@@ -82,10 +84,12 @@
         			data : {
         					"title" : title,
         					"summernote" : summernote,
+        					"fileName" : fileName[0]
         			},
         			success : function(data) {
         				if(data==1){
-        					location.href='list'
+        					history.back();
+        					//location.href=''
         				}
         			},
         			error : function() {

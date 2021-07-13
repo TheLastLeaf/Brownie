@@ -249,7 +249,7 @@
 					<a href="" class="" style="margin-left: 3px;">오늘의 화제</a>
 					<a href="" class="" style="margin-left: 3px;">인기만점</a>
 					<a href="" class="" style="margin-left: 3px;">내가쓴글</a>
-					<input style="float: right; color: black;" type="button" value="글쓰기" onclick="location.href='add'">
+					<input style="float: right; color: black;" type="button" value="글쓰기" onclick="location.href='gallery/add'">
 				</div>
 				
 				<div class="col-lg-12">
@@ -261,7 +261,7 @@
 				<div class="col-lg-2">
 					<div class="cg-item">
 						<div class="cg-pic set-bg thumbnail"
-							data-setbg="${pageContext.request.contextPath}/img/gallery/${galleryVO.fileSeq}"
+							data-setbg="${pageContext.request.contextPath}${galleryVO.fileSeq}"
 							onclick="location.href='${pageContext.request.contextPath}/gallery/detail?boardSeq=${galleryVO.boardSeq}'">
 							<div class="label">
 								<span>${ galleryVO.boardCategory }</span>

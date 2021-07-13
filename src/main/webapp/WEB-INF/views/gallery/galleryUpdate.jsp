@@ -5,71 +5,75 @@
 <!--  -->
 
 <script>
-    /*   $(function(){
-           $('.notice_content').html(
-               $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
-       });*/
-       $(function () {
-           const toolbar = [
-               // 글꼴 설정
-               ['fontname', ['fontname']],
-               // 글자 크기 설정
-               ['fontsize', ['fontsize']],
-               // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-               ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-               // 글자색
-               ['color', ['forecolor', 'color']],
-               // 표만들기
-               ['table', ['table']],
-               // 글머리 기호, 번호매기기, 문단정렬
-               ['para', ['ul', 'ol', 'paragraph']],
-               // 줄간격
-               ['height', ['height']],
-               // 그림첨부, 링크만들기, 동영상첨부
-               ['insert', ['picture', 'link', 'video']],
-               // 코드보기, 확대해서보기, 도움말
-               ['view', ['codeview', 'fullscreen', 'help']]
-           ];
+var fileName = [];
+/*   $(function(){
+       $('.notice_content').html(
+           $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
+   });*/
+   
+   $(function () {
+       const toolbar = [
+           // 글꼴 설정
+           ['fontname', ['fontname']],
+           // 글자 크기 설정
+           ['fontsize', ['fontsize']],
+           // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+           ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+           // 글자색
+           ['color', ['forecolor', 'color']],
+           // 표만들기
+           ['table', ['table']],
+           // 글머리 기호, 번호매기기, 문단정렬
+           ['para', ['ul', 'ol', 'paragraph']],
+           // 줄간격
+           ['height', ['height']],
+           // 그림첨부, 링크만들기, 동영상첨부
+           ['insert', ['picture', 'link', 'video']],
+           // 코드보기, 확대해서보기, 도움말
+           ['view', ['codeview', 'fullscreen', 'help']]
+       ];
 
-           const setting = {
-               height: 300,
-               minHeight: null,
-               maxHeight: null,
-               focus: true,
-               lang: 'ko-KR',
-               toolbar: toolbar,
-               callbacks: { //여기 부분이 이미지를 첨부하는 부분
-                   onImageUpload: function (files, editor, welEditable) {
-                       for (let i = files.length - 1; i >= 0; i--) {
-                           uploadSummernoteImageFile(files[i], this);
-                       }
+       const setting = {
+           height: 300,
+           minHeight: null,
+           maxHeight: null,
+           focus: true,
+           lang: 'ko-KR',
+           toolbar: toolbar,
+           callbacks: { //여기 부분이 이미지를 첨부하는 부분
+               onImageUpload: function (files, editor, welEditable) {
+                   for (let i = files.length - 1; i >= 0; i--) {
+                       uploadSummernoteImageFile(files[i], this);
                    }
                }
-           };
-
-           $('.summernote').summernote(setting);
-       });
-
-       function uploadSummernoteImageFile(file, el) {
-           const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
-           if (!file.type.match(reg)) {
-               alert("확장자는 이미지 확장자만 가능합니다.");
-               return;
            }
-           const data = new FormData();
-           data.append("file", file);
-           $.ajax({
-               data: data,
-               type: "POST",
-               url: "${pageContext.request.contextPath}/uploadSummernoteImageFile",
-               contentType: false,
-               enctype: 'multipart/form-data',
-               processData: false,
-               success: function (data) {
-                   $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
-               }
-           });
+       };
+
+       $('.summernote').summernote(setting);
+   });
+
+   function uploadSummernoteImageFile(file, el) {
+       const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
+       if (!file.type.match(reg)) {
+           alert("확장자는 이미지 확장자만 가능합니다.");
+           return;
        }
+       const data = new FormData();
+       data.append("file", file);
+       $.ajax({
+           data: data,
+           type: "POST",
+           url: "${pageContext.request.contextPath}/uploadSummernoteImageFile",
+           contentType: false,
+           enctype: 'multipart/form-data',
+           processData: false,
+           success: function (data) {
+               $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
+               fileName.push(data.url);
+               alert
+           }
+       });
+   }
        
        function fn_update(){
    		var title = $(".title").val();
@@ -81,7 +85,8 @@
    			data : {
    					"title" : title,
    					"summernote" : summernote,
-   					"boardSeq" : ${galleryVO.boardSeq}
+   					"boardSeq" : ${galleryVO.boardSeq},
+   					"fileName" : fileName[0]
    			},
    			success : function(data) {
    				if(data==1){
@@ -111,9 +116,11 @@
         border: 1px solid #666666;
         color:white;
     }
+    .card-block{
+    	height: 840px !important;
+    }
     .summernote{
         color: #666666;
-        
     }
     .card{
         background-color: black;
@@ -129,10 +136,7 @@
     }
     .galleryCon{
         border:1px solid #666666;
-        height: 600px;
-    }
-    .note-editable{
-    	height: 100%;
+        height: 900px;
     }
     
     .pad{
