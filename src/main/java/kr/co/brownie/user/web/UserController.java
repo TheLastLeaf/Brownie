@@ -2,23 +2,25 @@ package kr.co.brownie.user.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
-import kr.co.brownie.report.service.ReportService;
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.brownie.fileUpload.service.FileService;
+import kr.co.brownie.report.service.ReportService;
 import kr.co.brownie.review.service.ReviewService;
 import kr.co.brownie.review.service.ReviewVO;
 import kr.co.brownie.review.service.impl.ReviewPagingVO;
@@ -99,6 +101,9 @@ public class UserController {
 			model.addAttribute("reviewVOs", reviewVOs);
 			model.addAttribute("page", page);
 
+			System.out.println("reviewVOs: " + reviewVOs);
+			System.out.println("page: " + page);
+
 			return "user/userInfo";
 		}
 		return "user/userInfo";
@@ -106,15 +111,16 @@ public class UserController {
 
 	@PostMapping("/userInfo")
 	@ResponseBody // AJAX 사용시 써야함
-	public String userName(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request) throws IOException {
+	public String userName(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request)
+			throws IOException {
 		// 세션 아이디 -> map에 삽입
 		String id = (String) httpSession.getAttribute("id");
 		map.put("id", id);
-		
+
 		// 내부경로로 저장
-		//		String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-		//		String uploadFolder = contextRoot + "resources/static/img/userProfile/";
-		
+		// String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+		// String uploadFolder = contextRoot + "resources/static/img/userProfile/";
+
 		// 파일 저장되는 경로
 		String uploadFolder = "C:\\Users\\PC13\\git\\Brownie\\src\\main\\resources\\static\\img\\userProfile";
 		String profilePath = "";
@@ -124,10 +130,10 @@ public class UserController {
 			// 진짜 파일 이름
 			originFileName = originFileName.substring(originFileName.lastIndexOf("\\") + 1);
 			// 내가 날짜_이름 으로 지어주는 이름
-			profilePath = String.format("/%s_%s", System.currentTimeMillis(), originFileName); 
+			profilePath = String.format("/%s_%s", System.currentTimeMillis(), originFileName);
 //			File savefileName = new File(uploadFolder, originFileName);
 			File savefileName = new File(uploadFolder, profilePath);
-			
+
 			System.out.println("savefileName : " + savefileName);
 			System.out.println("profile_img : " + profilePath);
 			try {
@@ -135,16 +141,15 @@ public class UserController {
 				map.put("profilePath", profilePath);
 				map.put("originFileName", originFileName);
 				map.put("savefileName", savefileName);
-				
-				
+
 			} catch (Exception e) {
 				System.out.println("예외발생");
 			}
 		}
-		
+
 		fileService.insertPath(map);
-		userService.insertNickPosition(map) ; // 스크립트로 가져와서 <script>??</script> 방법도 잇음
-		
+		userService.insertNickPosition(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
+
 		return "/img/userProfile/" + profilePath;
 	}
 
@@ -164,32 +169,32 @@ public class UserController {
 	}
 
 	@GetMapping("/userDeclar")
-	public String userDeclar(HttpServletRequest request,Model model,HttpSession session) {
+	public String userDeclar(HttpServletRequest request, Model model, HttpSession session) {
 		String userId = request.getParameter("userId");
 		String nickName = request.getParameter("nickName");
-		model.addAttribute("userId",userId);
-		model.addAttribute("nickName",nickName);
+		model.addAttribute("userId", userId);
+		model.addAttribute("nickName", nickName);
 		return "user/userDeclar";
 	}
 
 	@ResponseBody
-	@RequestMapping(value="/userReport", method = { RequestMethod.GET, RequestMethod.POST})
-	public Object reportPost(Map<String,Object> map, HttpSession session, Model model, HttpServletRequest servletRequest){
-		String id = (String)session.getAttribute("id");
+	@RequestMapping(value = "/userReport", method = { RequestMethod.GET, RequestMethod.POST })
+	public Object reportPost(Map<String, Object> map, HttpSession session, Model model, HttpServletRequest servletRequest) {
+		String id = (String) session.getAttribute("id");
 		String content = servletRequest.getParameter("content");
 		String[] reportName = servletRequest.getParameterValues("reportName");
 		String userId = servletRequest.getParameter("userId");
-		map.put("content",content);
-		map.put("reportName",reportName);
-		map.put("id",id);
-		map.put("userId",userId);
+		map.put("content", content);
+		map.put("reportName", reportName);
+		map.put("id", id);
+		map.put("userId", userId);
 		System.out.println(map);
-		if(id==null){
+		if (id == null) {
 			model.addAttribute("message", "<script>alert('로그인 후 이용가능한 서비스입니다.'); history.go(-1);</script>");
 			return "common/message";
-		}else{
+		} else {
 			int cnt = reportService.insert(map);
-			model.addAttribute("cnt",cnt);
+			model.addAttribute("cnt", cnt);
 			return cnt;
 		}
 	}
