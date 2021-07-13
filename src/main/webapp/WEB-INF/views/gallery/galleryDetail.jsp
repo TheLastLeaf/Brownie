@@ -61,6 +61,7 @@ function fn_delete(){
                         <h1 style="color: white">${ galleryVO.title }</h1>
                     </div>
                     <div class="dt-desc">
+                    	조회수 : ${ hit }
                     	<input type="button" onclick="location.href='${pageContext.request.contextPath}/gallery/update?boardSeq=${galleryVO.boardSeq}'" value="수정" />
                     	<input type="button" onclick="fn_delete()" value="삭제" />
                     	${ galleryVO.content }

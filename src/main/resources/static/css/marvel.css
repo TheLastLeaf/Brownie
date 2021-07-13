@@ -1,17 +1,17 @@
 h1 {
 	font-family: "strato-roman";
 	text-transform: uppercase;
-	font-size: 50px;
+	font-size: 70px;
 	text-align: center;
 	font-weight: normal;
 	line-height: 1;
 	margin: 0;
-	top: 50%;
+	top: 100%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	position: absolute;
 	color: #a2adff;
-	letter-spacing: 1rem;
+	letter-spacing: 0.6rem;
 	width: 100%;
 	text-shadow: -1px -1px 0 #5a66c4, 1px -1px 0 #5a66c4, -1px 1px 0 #5a66c4,
 		1px 1px 0 #5a66c4;

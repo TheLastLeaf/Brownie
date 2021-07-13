@@ -11,29 +11,20 @@ import org.springframework.ui.Model;
 
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
+import kr.co.brownie.common.service.CommonService;
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.UUID;
-
-import com.google.gson.JsonObject;
-import org.apache.commons.io.FileUtils;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 
 @Controller
 @RequestMapping("/gallery")
@@ -44,18 +35,22 @@ public class GalleryController {
 	@Resource(name = "boardService")
 	BoardService boardService;
 	
+	@Resource(name = "commonService")
+	CommonService commonService;
+	
 	private int size = 18;
 
 	@GetMapping({ "", "/list" })
 	public String galleryList(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");
-		map.put("id", id);
+		map.put("inUserId", id);
 		
-		//怨듭��뜲�씠�꽣
+	    int rnd = (int)((Math.random()*11)+1);
+
+	    model.addAttribute("rnd", rnd);
+	    
+	    
 		List<GalleryVO> noticeVOList = this.galleryService.getNoticeList(map);
-		
-		System.out.println(noticeVOList);
-		System.out.println(noticeVOList.get(1).getUpDate());
 		
 		int total = this.galleryService.selectCount();
 		String strPageNum = (String) map.get("pageNum") == null ? "1" : (String) map.get("pageNum");
@@ -73,11 +68,53 @@ public class GalleryController {
 
 	
 	@GetMapping("/detail")
-	public String details_post_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
+	public String details_post_gallery(@RequestParam Map<String, Object> map, Model model, HttpSession session, HttpServletRequest request) {
+		String id = (String) session.getAttribute("id");
 		int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
 		GalleryVO galleryVO = this.galleryService.getGallery(boardSeq);
 		List<FileVO> fileVOList;
 		
+		
+		//조회수 증가
+			//ip가져오기
+		String ip = request.getHeader("X-Forwarded-For");
+ 
+        if (ip == null) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null) {
+            ip = request.getHeader("WL-Proxy-Client-IP"); // 웹로직
+        }
+        if (ip == null) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (ip == null) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (ip == null) {
+            ip = request.getRemoteAddr();
+        }
+        
+        System.out.println("ip:"+ip);
+		//조회수증가
+        map.put("ip", ip);
+        map.put("boardSeq", boardSeq);
+        int cnt = 0;
+        if(id!=null) {
+        	map.put("userId", id);
+        	cnt = this.commonService.insertMember(map);
+        	System.out.println("mem");
+        	System.out.println(cnt);
+        } else {
+        	cnt = this.commonService.insertNoMem(map);
+        	System.out.println("nomem");
+        	System.out.println(cnt);
+        }
+        
+        int hit = this.commonService.checkHit(boardSeq);
+        model.addAttribute("hit", hit);
+        //
+        
 		BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
     	model.addAttribute("likeHateCnt", likeHateCnt);
 		
@@ -130,7 +167,6 @@ public class GalleryController {
 		
 		int cnt = this.galleryService.insertGallery(map);
 		
-		model.addAttribute("cnt", cnt);
     	
 		return cnt;
 	}
@@ -215,6 +251,4 @@ public class GalleryController {
 
     }
 
-	
-	
 }

@@ -5,21 +5,31 @@
 	<c:param name="path" value="${pageContext.request.contextPath}" />
 </c:import>
 
+<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad"
-	data-setbg="${pageContext.request.contextPath}/img/gallery/main.jpg">
+<section class="breadcrumb-section set-bg spad" style="height: 500px;"
+	data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${rnd}.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 text-center">
-				<div class="breadcrumb-text">
+
+				<div class="breadcrumb-text" style="text-align: center">
 					<h3>
-						팬아트 게시판<span><i class="fas fa-camera fa-sm fa-spin"></i></span>
+						<div class="breadcrumb-text">
+							<h3>
+								<h1 data-heading="Brownie  Gallery" style="z-index: 5">
+									<span data-heading="Brownie  Gallery" contenteditable>
+										Brownie  Gallery </span>
+								</h1>
+									<span onclick="fn_click()" id="mouseC"><i class="fas fa-camera fa-3x"></i></span>
+							</h3>
+							<div class="bt-option"></div>
+						</div>
 					</h3>
-					<div class="bt-option">
-						<a href="#">인기글</a> <a href="#">Latest posts</a> <span>Hardware</span>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -49,7 +59,7 @@
 }
 
 #preview {
-	z-index: 9999;
+	z-index: 9998;
 	position: absolute;
 	border: 0px solid #ccc;
 	background: #333;
@@ -58,16 +68,42 @@
 	color: #fff;
 }
 
+#mouseC {
+	z-index: 9999;
+	visibility: hidden;
+}
+
 .lef{
 	margin-left: 30px;
 }
 
 </style>
 <script>
+	var flag = false;
+	function fn_click(){
+		flag = true;
+		//var base = $('.fas');
+	 	//base.addClass('fa-spin');
+	 	$("#mouseC").css("position", "absolute");
+	 	$("#mouseC").css("visibility;", "visible");
+	}
+	
 	$(document).ready(
 			function() {
+					$(document).on(
+							"mousemove",
+							function(e) { //마우스 이동시
+						if(flag){
+						$("#mouseC")
+							.css("top", (e.pageY-365) + "px")
+							.css("left", (e.pageX-325) + "px");
+						}
+					});
 				var xOffset = 10;
 				var yOffset = 30;
+				
+				var mxOffset = 0;
+				var myOffset = 0;
 
 				$(document).on(
 						"mouseover",
@@ -93,7 +129,7 @@
 									.css("top", (e.pageY - xOffset) + "px")
 									.css("left", (e.pageX + yOffset) + "px");
 
-						});
+				});
 
 				$(document).on("mouseout", ".thumbnail", function() { //마우스 아웃시
 					$("#preview").remove();
@@ -128,7 +164,7 @@
 									<td class="text-left"><a class="lef" href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${noticeVO.boardSeq}"><strong>${noticeVO.title}</strong></a></td>
 									<td>${noticeVO.inUserId}</td>
 									<td>${noticeVO.inDate}</td>
-									<td>12</td>
+									<td>${noticeVO.subSeq}</td>
 									<td>3</td>
 								</tr>
 							</c:forEach>
@@ -140,7 +176,7 @@
 
 				<div class="col-lg-12">
 					<hr class="gallery_hr">
-					<h3 style="color: white;">히트다 히트!</h3>
+					<h3 style="color: white;">오늘의 히트!</h3>
 					<br/><br/><br/>
 				</div>
 
@@ -236,14 +272,12 @@
 				
 				<div class="col-lg-12">
 				
-					<select
-						onchange="location.href = INVEN.QueryMaker.getLink('https://www.inven.co.kr/board/lol/2775', 'come_idx->2775,category->' + this.value, 'remove->p,category2');"
-						style="color: black; display: inline; float: left;">
+					<select style="color: black; display: inline; float: left;">
 						<option value="">전체</option>
+						<option value="일러스트">일러스트</option>
+						<option value="카툰">카툰</option>
+						<option value="짤">짤</option>
 						<option value="장례식">장례식</option>
-						<option value="자작">자작</option>
-						<option value="연재">연재</option>
-						<option value="퍼온글">퍼온글</option>
 						<option value="기타">기타</option>
 					</select>
 					<a href="" class="" style="margin-left: 3px;">오늘의 화제</a>
@@ -274,7 +308,7 @@
 							<ul>
 								<li><span>${ galleryVO.inUserId }</span></li>
 								<li><i class="far fa-clock"></i> ${ galleryVO.inDate } </li>
-								<li><i class="far fa-comment">조회</i> 20</li>
+								<li><i class="far fa-comment">조회</i> ${ galleryVO.subSeq }</li>
 								<li><i class="far fa-comment">추천</i> 20</li>
 							</ul>
 						</div>
