@@ -36,6 +36,25 @@
 	color: 	#DC143C;
 }
 
+.blackReplys {
+	height: 5px;
+	color: #5d5d5d;
+	font-size: 12px;
+ 	visibility: hidden;
+}
+
+.blackClick {
+	font-size: 12px;
+	color: #e57373;
+}
+
+.userReplys {
+	font-size: 12px;
+}
+
+.blackReplysId {
+ 	visibility: hidden;
+}
 </style>
 
 <!-- 스크립트 -->
@@ -117,6 +136,22 @@
 	function replyToReply(boardSeq, replySeq){
 		console.log("boardSeq : "+boardSeq);
 		console.log("replySeq : " + replySeq);
+	}
+
+	function showBlackReply(replySeq) {
+		var blackReplyId = 'blackReply_' + replySeq;
+		var blackRepltId = 'blackReply_' + replySeq;
+		document.getElementById(blackReplyId).style.visibility="visible";
+		document.getElementById(blackReplyId).style.height="auto";
+
+		var blackIdStar = 'blackIdStar_' + replySeq;
+		var blackUserId = 'blackId_' + replySeq;
+
+		document.getElementById(blackIdStar).style.display="none";
+		document.getElementById(blackUserId).style.visibility="visible";
+		document.getElementById(blackReplyId).style.height="auto";
+
+		console.log(blackRepltId)
 	}
 
 </script>
@@ -221,7 +256,7 @@
 			                            <div class="dc-text">
 			                                <h5>${replyOnBoard.nickName }</h5>
 			                                <span class="c-date">${replyOnBoard.modDate }</span>
-			                                <p>${replyOnBoard.replyContent }</p>
+			                                <p class="userReplys">${replyOnBoard.replyContent }</p>
 			                                <div class="actForReply">
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
@@ -239,9 +274,11 @@
 			                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
 			                            </div>
 			                            <div class="dc-text">
-			                                <h5>******</h5>
+			                                <h5 id="blackIdStar_${replyOnBoard.replySeq }">******</h5>
+			                                <h5 class="blackReplysId" id="blackId_${replyOnBoard.replySeq }">${replyOnBoard.nickName }</h5>
 			                                <span class="c-date">${replyOnBoard.modDate }</span>
-			                                <p><span id="">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</span></p>
+			                                <p><span id=""><a class="blackClick" href="javascript:showBlackReply('${replyOnBoard.replySeq }')">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</a></span></p>
+			                                <div class="blackReplys" id="blackReply_${replyOnBoard.replySeq }">${replyOnBoard.replyContent }</div>
 			                                <div class="actForReply">
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${replyOnBoard.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 				                                <a href="javascript:ReplyLikeHate('${replyOnBoard.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${replyOnBoard.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
@@ -269,7 +306,7 @@
 							                            <div class="dc-text">
 							                                <h5>${rm.nickName }</h5>
 							                                <span class="c-date">${rm.modDate }</span>
-							                                <p><a href="#">@${replyOnBoard.nickName }</a> ${rm.replyContent}</p>
+							                                <p class="userReplys"><a href="#">@${replyOnBoard.nickName }</a> ${rm.replyContent}</p>
 							                                <div class="actForReply">
 								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${rm.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${rm.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
@@ -287,9 +324,11 @@
 							                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
 							                            </div>
 							                            <div class="dc-text">
-							                                <h5>******</h5>
+							                                <h5 id="blackIdStar_${rm.replySeq }">******</h5>
+			                                				<h5 class="blackReplysId" id="blackId_${rm.replySeq }">${rm.nickName }</h5>
 							                                <span class="c-date">${rm.modDate }</span>
-							                                <p><span id="">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</span></p>
+							                                <p><span id=""><a class="blackClick" href="javascript:showBlackReply('${rm.replySeq }')">신고 접수로 블라인드 처리 된 댓글입니다. 내용을 보려면 클릭해주세요.</a></span></p>
+							                                <div class="blackReplys" id="blackReply_${rm.replySeq }">${rm.replyContent }</div>
 							                                <div class="actForReply">
 								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','1')"><span class="replyHate">비공감 <span id="replyHateCnt_${rm.replySeq }">${replyOnBoard.hateCnt }</span></span></a>
 								                                <a href="javascript:ReplyLikeHate('${rm.replySeq }','0')"><span class="replyLike">공감 <span id="replyLikeCnt_${rm.replySeq }">${replyOnBoard.likeCnt }</span></span></a>
