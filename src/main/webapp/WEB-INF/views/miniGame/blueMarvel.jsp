@@ -85,9 +85,10 @@
 }
 
 .startLine{
-	background-image:url("${pageContext.request.contextPath}/img/miniGame/etc/starting-point.jpeg");
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/use/start.png");
 	background-repeat : no-repeat;
 	background-position: center;
+	background-size: 128px;
 }
 	
 
@@ -341,27 +342,27 @@
 						</td>
 
 						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[0].kind}/${infoList[0].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[0].degree}/${infoList[0].kind}/${infoList[0].imgName}.png">
 						</td>
 
 
 						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[1].kind}/${infoList[1].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[1].degree}/${infoList[1].kind}/${infoList[1].imgName}.png">
 						</td>
 
 						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/coin.png">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[2].degree}/${infoList[1].kind}/${infoList[1].imgName}.png"">
 						</td>
 
 
 						<td class="td_tb rightUp corner">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[3].kind}/${infoList[3].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[3].degree}/${infoList[3].kind}/${infoList[3].imgName}.png">
 						</td>
 					</tr>
 					<!-- 세로축 -->
 					<tr class="verti">
 						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[4].kind}/${infoList[4].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[4].degree}/${infoList[4].kind}/${infoList[4].imgName}.png">
 						</td>
 						
 						<td class="center" id="gameAlert1" colspan="3" rowspan="3">
@@ -378,46 +379,46 @@
 						</td>
 						
 						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[5].kind}/${infoList[5].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[5].degree}/${infoList[5].kind}/${infoList[5].imgName}.png">
 						</td>
 					</tr>
 
 
 					<tr class="verti">
 						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[6].kind}/${infoList[6].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[6].degree}/${infoList[6].kind}/${infoList[6].imgName}.png">
 						</td>
 
 						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[7].kind}/${infoList[7].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[7].degree}/${infoList[7].kind}/${infoList[7].imgName}.png">
 						</td>
 					</tr>
 
 					<tr class="verti">
 						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[8].kind}/${infoList[8].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[8].degree}/${infoList[8].kind}/${infoList[8].imgName}.png">
 						</td>
 
 						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[9].kind}/${infoList[9].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[9].degree}/${infoList[9].kind}/${infoList[9].imgName}.png">
 						</td>
 					</tr>
 					<!-- 세로축 -->
 					<tr style="margin-bottom: 30px">
 						<td class="td_tb leftDown corner">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[10].kind}/${infoList[10].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[10].degree}/${infoList[10].kind}/${infoList[10].imgName}.png">
 						</td>
 						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[11].kind}/${infoList[11].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[11].degree}/${infoList[11].kind}/${infoList[11].imgName}.png">
 						</td>
 						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[12].kind}/${infoList[12].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[12].degree}/${infoList[12].kind}/${infoList[12].imgName}.png">
 						</td>
 						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[13].kind}/${infoList[13].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[13].degree}/${infoList[13].kind}/${infoList[13].imgName}.png">
 						</td>
 						<td class="td_tb rightDown corner">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[14].kind}/${infoList[14].imgName}">
+							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[14].degree}/${infoList[14].kind}/${infoList[14].imgName}.png">
 						</td>
 					</tr>
 				</tbody>
