@@ -46,7 +46,6 @@ public class UserController {
      */
     @GetMapping("/userInfo/{user_id}")
     public String userInfo(Model model, HttpSession httpSession, ReviewPagingVO page, @PathVariable String user_id) throws Exception {
-
         UserVO userOneSelect = userService.userOneSelect(user_id);
         if (userOneSelect == null) {
             model.addAttribute("message", "alert(\"등록되지 않은 유저입니다.\");history.go(-1);");
@@ -160,8 +159,12 @@ public class UserController {
         return "user/userReview";
     }
 
-    @GetMapping("/userModify")
-    public String userModify() {
+    @GetMapping("/userModify/{user_id}")
+    public String userModify(Model model, HttpSession httpSession, @PathVariable String user_id) {
+    	System.out.println("user_id: " + user_id);
+    	String selectProfile = fileService.selectProfile(user_id);
+    	model.addAttribute("selectProfile",selectProfile);
+    	
         return "user/userModify";
     }
 

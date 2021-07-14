@@ -138,7 +138,7 @@ input[name="position"] {
 						<!-- 					text-center justify-content-center align-items-center d-flex -->
 						<div class="profileBox" style="border: none;">
 							<label for="file">
-								<img class="profile" id="img" src="">
+								<img class="profile" id="img" src="${pageContext.request.contextPath}${selectProfile}">
 								<input type="file" id="file" name="file" multiple />
 							</label>
 						</div>

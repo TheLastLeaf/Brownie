@@ -282,7 +282,6 @@ h1 {
 #searchBtn {
 	width: 60px;
 }
-
 </style>
 
 <!-- Main Content Post Section Begin -->
@@ -293,7 +292,8 @@ h1 {
 			<div class="details-text typography-page" style="width: 1050px; margin-left: -90px;">
 				<div class="dt-breadcrumb" style="margin-bottom: 10px;">
 					<div class="dt-bread-option" style="margin-bottom: 10px;">
-						<a href="#">userInfo</a> <span>userDetail</span>
+						<a href="#">userInfo</a>
+						<span>userDetail</span>
 					</div>
 				</div>
 				<br />
@@ -306,10 +306,10 @@ h1 {
 								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
 									<!-- 프로필사진 + exp 툴팁 -->
 									<div class="profilePic">
-<!-- 										${pageContext.request.contextPath} 경로:  -->
-<!-- 										${selectProfile} 경로: /img/user/lux.gif -->
-<!-- 바꿧을때 -->
-										<img src="${pageContext.request.contextPath}/img/userProfile${selectProfile}">
+										<!-- ${pageContext.request.contextPath} 경로:  -->
+										<!-- ${selectProfile} 경로: /img/user/lux.gif -->
+										<!-- 바꿧을때 -->
+										<img src="${pageContext.request.contextPath}${selectProfile}">
 									</div>
 
 									<!-- 프로필 프레임 -->
@@ -371,7 +371,7 @@ h1 {
 									</div>
 								</div>
 								<div class="modInfo col-3">
-									<button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
+									<button type="button" class="btn btn-dark" onclick="fn_infoMod('${userOneSelect.upUserId}')">정보수정</button>
 									<button type="button" class="btn btn-danger" onclick="fn_infoDel()">탈퇴</button>
 								</div>
 							</div>
@@ -387,9 +387,7 @@ h1 {
 									<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
 									${userOneSelect.lolId} | 롤Lv. | 롤Tier
 								</div>
-								<div class="sync">
-									[메인포지션] : ${userOneSelect.userPosition}
-								</div>
+								<div class="sync">[메인포지션] : ${userOneSelect.userPosition}</div>
 							</div>
 							<!-- 뭉태기2 -->
 							<div class="userInfoBox col-sm-4">
@@ -403,7 +401,8 @@ h1 {
 								<div class="infoDetail">【 최근 게시글 내역 】</div>
 								<c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
 									<div class="upload">
-										${vs.index+1}.<a href="">${recentBoard}</a>
+										${vs.index+1}.
+										<a href="">${recentBoard}</a>
 									</div>
 								</c:forEach>
 							</div>
@@ -640,8 +639,8 @@ h1 {
 				"width=800, height=680, left=250,top=200");
 	}
 
-	function fn_infoMod() {
-		window.open("/user/userModify", "userModify",
+	function fn_infoMod(userId) {
+		window.open("/user/userModify?userId="+ userId, "userModify",
 				"width=800, height=680, left=250,top=200");
 	}
 
@@ -651,7 +650,7 @@ h1 {
 	}
 
 	function fn_declaration(userId) {
-		window.open("/user/userDeclar?userId="+userId, "userDeclar",
+		window.open("/user/userDeclar?userId=" + userId, "userDeclar",
 				"width=980, height=500, left=400,top=200");
 	}
 

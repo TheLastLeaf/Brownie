@@ -19,7 +19,7 @@
 			)
 			VALUES (
 				FILE_SEQ.NEXTVAL, 0,
-				'/userProfile/img/user/lux.gif', 'lux.gif', '/userProfile/img/user/lux.gif',
+				'/img/userProfile/lux.gif', 'lux.gif', '/img/userProfile/lux.gif',
 				SYSDATE, '${id}',
 				SYSDATE, '${id}'
 			)
@@ -30,9 +30,9 @@
 		UPDATE BROWNIE_FILE
 	    	SET 
 		        SUB_SEQ = SUB_SEQ + 1,
-		        FILE_PATH = '${profilePath}',
+		        FILE_PATH = '/img/userProfile'||'${profilePath}',
 		        ORIGINAL_NAME = '${originFileName}',
-		        SAVE_NAME = '${savefileName}',
+		        SAVE_NAME = '/img/userProfile/'||'${savefileName}',
 		        UP_DATE = SYSDATE,
 		        UP_USER_ID = '${id}'
 		WHERE 
