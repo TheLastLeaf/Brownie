@@ -114,7 +114,6 @@ public class FreeController {
     @GetMapping("/freeBoardWrite")
     public String freeBoardWrite(HttpSession session, Model model) {
         String inUserId = (String)session.getAttribute("id");
-
         model.addAttribute("inUserId",inUserId);
         if(inUserId == null){
         	return "free/freeBoardWrite";
@@ -140,9 +139,16 @@ public class FreeController {
     }
 
     @GetMapping("/freeBoardModify/{boardSeq}")
+    public String freeModify(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest, @PathVariable String boardSeq){
+    	int boardSeqForMod = Integer.parseInt(boardSeq);
+    	return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
+    }
+
+    @PostMapping("/freeBoardModify/{boardSeq}")
     public String freeModPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest, @PathVariable String boardSeq){
     	int boardSeqForMod = Integer.parseInt(boardSeq);
-    	return "redirect:/free/freeBoardModify?boardSeq=" + boardSeq;
+
+    	return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
     }
 
 	@ResponseBody

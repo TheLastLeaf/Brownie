@@ -117,7 +117,7 @@
 		AND
 			UPPER(BB.BOARD_KIND)='FREE'
 		ORDER BY
-			BB.IN_DATE DESC
+			BB.BOARD_SEQ DESC
 	</select>
 
 	<select id="selectFamous" resultType="kr.co.brownie.free.service.FreeVO">
