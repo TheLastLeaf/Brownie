@@ -39,7 +39,7 @@
                             <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
-                            <a href="/user/userInfo?id=${noticeVO.inUserId}">
+                            <a href="/user/userInfo?id=${noticeVO.upUserId}">
                                 <h5>
                                     ${noticeVO.nickName}
                                 </h5>
