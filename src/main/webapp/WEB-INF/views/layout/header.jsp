@@ -125,13 +125,13 @@
                                 <c:choose>
                                     <c:when test="${id != null}">
                                         <span style="margin-left:4px;">
-                                            <a onclick="location.href='/user/userInfo'"
+                                            <a onclick="location.href='/user/userInfo/${sessionScope.id}'"
                                                style="text-decoration: underline;">${id}</a>
                                             <span style="cursor:text">님 환영합니다</span>
                                         </span>
                                         <span style="margin-left:4px; cursor:text;">Lv. 3</span>
                                         <span style="margin-left:4px;">
-                                            <a onclick="location.href='/user/userInfo'">
+                                            <a onclick="location.href='/user/userInfo/${sessionScope.id}'">
                                                 <i class="far fa-address-book" aria-hidden="true"></i>
                                             </a>
                                         </span>
