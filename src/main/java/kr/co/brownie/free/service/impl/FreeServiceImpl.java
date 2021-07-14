@@ -50,4 +50,9 @@ public class FreeServiceImpl implements FreeService{
 		freeMapper.deleteFree(map);
 	}
 
+	@Override
+	public int update(Map<String, Object> map) {
+		return freeMapper.update(map);
+	}
+
 }

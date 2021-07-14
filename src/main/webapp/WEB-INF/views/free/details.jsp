@@ -297,7 +297,7 @@ h5 {
 				},
 				success : function(data) {
 					alert('게시글 삭제 완료');
-					location.href='${pageContext.request.contextPath}/free/freeBoardList';
+					location.href='${pageContext.request.contextPath}/free/list';
 				},
 				error : function() {
 					alert("에러나요");
@@ -338,7 +338,7 @@ h5 {
             <div class="col-lg-8 p-0">
             	<c:if test="${sessionScope.id eq freeDetail.inUserId }">
 	                <div class="actForBoard">
-	                	<a href="/free/freeBoardModify/${freeDetail.boardSeq}"><span id="freeModify">수정하기</span></a>
+	                	<a href="/free/modify/${freeDetail.boardSeq}"><span id="freeModify">수정하기</span></a>
 	                	<a href="javascript:deleteFreeBoard()"><span id="freeDelete">삭제하기</span></a>
 	                 </div>
             	</c:if>
@@ -373,7 +373,7 @@ h5 {
 							<!-- 이전 게시글 안내 -->
                             <div class="col-lg-6">
                                <c:if test="${freePrev.title ne null}">
-                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freePrev.boardSeq}" class="rp-prev">
+                                <a href="${pageContext.request.contextPath}/free/details/${freePrev.boardSeq}" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
                                         <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
@@ -392,7 +392,7 @@ h5 {
 							<!-- 다음 게시글 안내 -->
                             <div class="col-lg-6">
                                <c:if test="${freeNext.title ne null}">
-                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeNext.boardSeq}" class="rp-next">
+                                <a href="${pageContext.request.contextPath}/free/details/${freeNext.boardSeq}" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
                                         <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
@@ -658,7 +658,7 @@ h5 {
 	                                </div>
 	                            </div>
 	                            <div class="bp-text">
-	                                <h6><a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeFamousList.boardSeq}">${freeFamousList.title }</a></h6>
+	                                <h6><a href="${pageContext.request.contextPath}/free/details/${freeFamousList.boardSeq}">${freeFamousList.title }</a></h6>
 	                                <ul>
 	                                    <li><i class="far fa-clock"></i>${freeFamousList.inDate }</li>
 	                                    <li><i class="far fa-comment"></i> 20</li>

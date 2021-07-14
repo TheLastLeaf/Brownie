@@ -59,8 +59,8 @@
         })
 
         $.ajax({
-            url : "./reportadd",
-            type : "post",
+            url : "./report",
+            type : "POST",
             data : {
                 "userId" : userId,
                 "reportName" : reportName,

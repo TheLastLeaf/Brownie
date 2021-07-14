@@ -17,4 +17,6 @@ public interface FreeService {
 	void insertFree(Map<String, Object> map);
 
 	void deleteFree(Map<String, Object> map);
+
+	int update(Map<String, Object> map);
 }

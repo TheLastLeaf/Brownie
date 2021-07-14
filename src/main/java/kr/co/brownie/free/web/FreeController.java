@@ -1,18 +1,16 @@
 package kr.co.brownie.free.web;
 
-import java.time.Clock;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import kr.co.brownie.report.service.ReportService;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import kr.co.brownie.board.service.BoardService;
@@ -37,7 +35,7 @@ public class FreeController {
 	@Resource(name = "reportService")
 	ReportService reportService;
 
-	@GetMapping(path= {"", "/freeBoardList"})
+	@GetMapping(path= {"", "/list"})
 	public String freeList(Model model) {
 		//자유게시판 글 리스트 출력
 		List<FreeVO> freeList = freeService.selectList();
@@ -51,19 +49,14 @@ public class FreeController {
         List<FreeVO> recentList = freeService.selectRecentForMenu();
         model.addAttribute("recentList", recentList);
 
-		return "free/freeBoardList";  // 자유게시판 리스트
+		return "free/list";  // 자유게시판 리스트
 	}
 
-    @GetMapping("/freeBoardDetail")
-    public String freeBoardDetail(@RequestParam Map<String, Object> map, Model model) {
-
-    	int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
+    @GetMapping("/details/{boardSeq}")
+    public String freeBoardDetail(@PathVariable int boardSeq,
+    		@RequestParam Map<String, Object> map, Model model) {
     	FreeVO freeDetail = freeService.selectDetail(boardSeq);
     	model.addAttribute("freeDetail", freeDetail);
-
-    	//최근 일주일 간 좋아요 수가 많은 상위 5개
-    	List<FreeVO> freeFamousList = freeService.selectFamous();
-    	model.addAttribute("freeFamousList", freeFamousList);
 
     	//좋아요 싫어요 개수
     	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
@@ -109,23 +102,23 @@ public class FreeController {
         List<FreeVO> recentList = freeService.selectRecentForMenu();
         model.addAttribute("recentList", recentList);
 
-        return "free/freeBoardDetail"; // 자유게시판 리스트 디테일화면
+        return "free/details"; // 자유게시판 리스트 디테일화면
     }
 
-    @GetMapping("/freeBoardWrite")
+    @GetMapping("/write")
     public String freeBoardWrite(HttpSession session, Model model) {
         String inUserId = (String)session.getAttribute("id");
         model.addAttribute("inUserId",inUserId);
         if(inUserId == null){
-        	return "free/freeBoardWrite";
+        	return "free/write";
 //        	return "redirect:/free/freeBoardList";
 //        	ERR_TOO_MANY_REDIRECTS
         	//이렇게 하면 로그아웃 유저가 링크에 접근했을때 리디렉션 오류나서 잠시 보류하겠음ㅇ_ㅇ 왜안될까
         }
-        return "free/freeBoardWrite"; // 자유게시판 글쓰기 화면
+        return "free/write"; // 자유게시판 글쓰기 화면
     }
 
-    @PostMapping("/freeBoardWrite")
+    @PostMapping("/write")
     public String freeAddPost(@RequestParam Map<String, Object> map){
 
     	//공지사항 여부가 체크되지 않았을 경우
@@ -136,35 +129,40 @@ public class FreeController {
         }
         freeService.insertFree(map);
 
-        return "redirect:/free/freeBoardList";
+        return "redirect:/free/list";
     }
 
-    @GetMapping("/freeBoardModify/{boardSeq}")
-    public String freeModify(Model model, HttpServletRequest servletRequest, @PathVariable int boardSeq){
+    @GetMapping("/modify/{boardSeq}")
+    public String modify(Model model,
+							 HttpServletRequest servletRequest,
+							 @PathVariable int boardSeq){
+		Assert.notNull(servletRequest.getSession().getAttribute("id"), "로그인 후 이용하세요.");
 		String inUserId = servletRequest.getSession().getAttribute("id").toString();
-		if(inUserId == null){
-			return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
-		}
-		try {
-			//여기서 뭘 해줄 거냐면 ... 받아온 보드 시퀀스로 기존에 저장된 보드 값을 불러올것임. 그래야 이 친구를 수정 창에 뿌려줄 수 있음.
-			//해당 시퀀스의 값이 디비에 없을 경우 등등 오류가 뜰 수도 있어서 일단 트라이캐치 안에 넣어줌
-			FreeVO freeVO = freeService.selectDetail(boardSeq);
 
-			//저장된 보드값을 불러오면 그걸 모델에 넣어줌^_^ ! 그럼 우리친구는 jsp단에 model을 들고가는것임! (아마도)
-			model.addAttribute("freeVO",freeVO);
-			model.addAttribute("inUserId",inUserId);
-		}catch (Exception e){
-			System.out.println(e);
-			return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
-		}
-		return "redirect:/free/freeBoardModify";
+		FreeVO freeVO = freeService.selectDetail(boardSeq);
+		model.addAttribute("freeVO",freeVO);
+		Assert.notNull(freeVO, "해당 글이 없습니다.");
+		Assert.state(freeVO.getInUserId().equals(inUserId), "작성자만 수정할 수 있습니다.");
+
+		return "free/modify";
     }
 
-    @PostMapping("/freeBoardModify/{boardSeq}")
-    public String freeModPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest, @PathVariable String boardSeq){
-    	int boardSeqForMod = Integer.parseInt(boardSeq);
+    @PostMapping("/modify/{boardSeq}")
+    public String update(@RequestParam Map<String, Object> map,
+                              HttpServletRequest servletRequest,
+                              @PathVariable int boardSeq){
+		Assert.notNull(servletRequest.getSession().getAttribute("id"), "로그인 후 이용하세요.");
+		String author = servletRequest.getSession().getAttribute("id").toString();
 
-    	return "redirect:/free/freeBoardDetail";
+	    FreeVO freeVO = freeService.selectDetail(boardSeq);
+		Assert.notNull(freeVO, "해당 글이 없습니다.");
+		Assert.state(author.equals(freeVO.getInUserId()), "작성자만 수정할 수 있습니다.");
+
+        map.put("boardSeq", boardSeq);
+        map.put("author", author);
+        Assert.state(freeService.update(map) == 1, "수정에 실패했습니다.");
+
+    	return "redirect:/free/details/" + boardSeq;
     }
 
 	@ResponseBody
@@ -224,7 +222,7 @@ public class FreeController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value="/reportadd", method = { RequestMethod.GET, RequestMethod.POST})
+	@PostMapping("/report")
 	public Object reportPost(Map<String,Object> map, HttpSession session, HttpServletRequest servletRequest){
 		String id = (String)session.getAttribute("id");
 		String content = servletRequest.getParameter("content");

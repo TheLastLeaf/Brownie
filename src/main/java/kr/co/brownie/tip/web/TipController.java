@@ -106,10 +106,12 @@ public class TipController {
                          @RequestParam Map<String, Object> map) {
         Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
         String author = httpServletRequest.getSession().getAttribute("id").toString();
-        map.put("board_seq", board_seq);
+        map.put("boardSeq", board_seq);
         map.put("author", author);
 
-        Assert.state(author.equals(tipService.select(map).getInUserId()), "작성자만 게시글을 수정할 수 있습니다.");
+        TipVO tipVO = tipService.select(map);
+        Assert.notNull(tipVO, "해당 글이 없습니다.");
+        Assert.state(author.equals(tipVO.getInUserId()), "작성자만 게시글을 수정할 수 있습니다.");
         Assert.state(tipService.update(map) == 1, "수정에 실패했습니다.");
 
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/list";

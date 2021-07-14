@@ -6,247 +6,200 @@
 
     <insert id="insertFree" parameterType="hashMap">
         INSERT INTO BROWNIE_BOARD
-        	(
-        	BOARD_SEQ,
-        	BOARD_KIND,
-        	BOARD_CATEGORY,
-        	TITLE,
-        	CONTENT,
-        	NOTICE_YN,
-        	STATUS,
-        	IN_DATE,
-        	IN_USER_ID,
-        	UP_DATE,
-        	UP_USER_ID,
-        	FILE_SEQ,
-        	SUB_SEQ
-        	)
-        VALUES
-        	(
-        	(SELECT NVL(MAX(BOARD_SEQ),0)+1 FROM BROWNIE_BOARD),
-        	'FREE',
-        	#{tags},
-        	#{title},
-        	#{content},
-        	#{noticeYn},
-        	'y',
-        	SYSDATE,
-        	#{inUserId},
-        	SYSDATE,
-        	#{inUserId},
-        	NULL,
-        	NULL
-        	)
+        (BOARD_SEQ,
+         BOARD_KIND,
+         BOARD_CATEGORY,
+         TITLE,
+         CONTENT,
+         NOTICE_YN,
+         STATUS,
+         IN_DATE,
+         IN_USER_ID,
+         UP_DATE,
+         UP_USER_ID,
+         FILE_SEQ,
+         SUB_SEQ)
+        VALUES ((SELECT NVL(MAX(BOARD_SEQ), 0) + 1 FROM BROWNIE_BOARD),
+                'FREE',
+                #{tags},
+                #{title},
+                #{content},
+                #{noticeYn},
+                'y',
+                SYSDATE,
+                #{inUserId},
+                SYSDATE,
+                #{inUserId},
+                NULL,
+                NULL)
     </insert>
 
-	<delete id="deleteFree">
-		DELETE FROM BROWNIE_BOARD
-		WHERE
-			BOARD_SEQ = #{boardSeq}
-		AND
-			IN_USER_ID = #{inUserId}
-	</delete>
+    <delete id="deleteFree">
+        DELETE
+        FROM BROWNIE_BOARD
+        WHERE BOARD_SEQ = #{boardSeq}
+          AND IN_USER_ID = #{inUserId}
+    </delete>
 
-	<select id="selectRecentForMenu" resultType="kr.co.brownie.free.service.FreeVO">
+    <select id="selectRecentForMenu" resultType="kr.co.brownie.free.service.FreeVO">
 		 <![CDATA[
-			SELECT
-				BOARDSEQ,
-				TITLE,
-				INDATE,
-				REPLYCNT
-			FROM
-				(
-				SELECT
-					BOARD_SEQ,
-					TITLE,
-					IN_DATE AS INDATE
-				FROM
-					BROWNIE_BOARD
-				WHERE
-					BOARD_KIND = 'FREE' OR BOARD_KIND='free'
-                    ORDER BY INDATE DESC
-				) ALLB
-			LEFT JOIN
-				(
-				SELECT
-					BB.BOARD_SEQ BOARDSEQ,
-					NVL(RE.CNT,0) REPLYCNT
-				FROM
-					BROWNIE_BOARD BB
-				LEFT JOIN
-				(SELECT
-					BOARD_SEQ,
-					COUNT(REPLY_SEQ) CNT
-				FROM
-					REPLY
-				GROUP BY
-					BOARD_SEQ) RE
-				ON
-					(BB.BOARD_SEQ = RE.BOARD_SEQ)
-				ORDER BY
-					IN_DATE DESC
-				) ALLR
-			ON
-				(ALLR.BOARDSEQ = ALLB.BOARD_SEQ)
-            WHERE ROWNUM < 6
-		]]>
+        SELECT BOARDSEQ,
+               TITLE,
+               INDATE,
+               REPLYCNT
+        FROM (
+                 SELECT BOARD_SEQ,
+                        TITLE,
+                        IN_DATE AS INDATE
+                 FROM BROWNIE_BOARD
+                 WHERE BOARD_KIND = 'FREE'
+                    OR BOARD_KIND = 'free'
+                 ORDER BY INDATE DESC
+             ) ALLB
+                 LEFT JOIN
+             (
+                 SELECT BB.BOARD_SEQ   BOARDSEQ,
+                        NVL(RE.CNT, 0) REPLYCNT
+                 FROM BROWNIE_BOARD BB
+                          LEFT JOIN
+                      (SELECT BOARD_SEQ,
+                              COUNT(REPLY_SEQ) CNT
+                       FROM REPLY
+                       GROUP BY BOARD_SEQ) RE
+                      ON
+                          (BB.BOARD_SEQ = RE.BOARD_SEQ)
+                 ORDER BY IN_DATE DESC
+             ) ALLR
+             ON
+                 (ALLR.BOARDSEQ = ALLB.BOARD_SEQ)
+        WHERE ROWNUM < 6
+        ]]>
 	</select>
 
-	<select id="selectList" resultType="kr.co.brownie.free.service.FreeVO">
-		SELECT
-			BB.BOARD_SEQ AS BOARDSEQ,
-			BB.BOARD_KIND AS BOARDKIND,
-			BB.BOARD_CATEGORY AS BOARDCATEGORY,
-			BB.TITLE AS TITLE,
-			BB.CONTENT AS CONTENT,
-			BB.NOTICE_YN AS NOTICEYN,
-			BB.STATUS AS STATUS,
-			BB.IN_DATE AS INDATE,
-			BB.IN_USER_ID AS INUSERID,
-			BU.NICK_NAME AS NICKNAME,
-			BB.UP_DATE AS MODDATE,
-			BB.UP_USER_ID AS UPUSERID,
-			BB.FILE_SEQ AS FILESEQ,
-			BB.SUB_SEQ AS SUBSEQ
-		FROM
-			BROWNIE_BOARD BB, BROWNIE_USER BU
-		WHERE
-			BB.IN_USER_ID = BU.USER_ID
-		AND
-			(BB.STATUS = 'y' or BB.STATUS = 'Y')
-		AND
-			UPPER(BB.BOARD_KIND)='FREE'
-		ORDER BY
-			BB.BOARD_SEQ DESC
-	</select>
+    <select id="selectList" resultType="kr.co.brownie.free.service.FreeVO">
+        SELECT BB.BOARD_SEQ      AS BOARDSEQ,
+               BB.BOARD_KIND     AS BOARDKIND,
+               BB.BOARD_CATEGORY AS BOARDCATEGORY,
+               BB.TITLE          AS TITLE,
+               BB.CONTENT        AS CONTENT,
+               BB.NOTICE_YN      AS NOTICEYN,
+               BB.STATUS         AS STATUS,
+               BB.IN_DATE        AS INDATE,
+               BB.IN_USER_ID     AS INUSERID,
+               BU.NICK_NAME      AS NICKNAME,
+               BB.UP_DATE        AS MODDATE,
+               BB.UP_USER_ID     AS UPUSERID,
+               BB.FILE_SEQ       AS FILESEQ,
+               BB.SUB_SEQ        AS SUBSEQ
+        FROM BROWNIE_BOARD BB,
+             BROWNIE_USER BU
+        WHERE BB.IN_USER_ID = BU.USER_ID
+          AND (BB.STATUS = 'y' or BB.STATUS = 'Y')
+          AND UPPER(BB.BOARD_KIND) = 'FREE'
+        ORDER BY BB.BOARD_SEQ DESC
+    </select>
 
-	<select id="selectFamous" resultType="kr.co.brownie.free.service.FreeVO">
+    <select id="selectFamous" resultType="kr.co.brownie.free.service.FreeVO">
 	 <![CDATA[
-		SELECT
-			LB.BOARD_SEQ AS BOARDSEQ,
-			LB.LIKE_CNT AS LIKECNT,
-			BB.TITLE AS TITLE,
-			BB.IN_DATE AS INDATE
-		FROM
-			(SELECT
-				BOARD_SEQ,
-				COUNT(KIND) AS LIKE_CNT
-			FROM
-				LIKE_BOARD
-			WHERE
-				KIND = 0
-			GROUP BY
-				BOARD_SEQ) LB,
-			(SELECT
-				BOARD_SEQ,
-				TITLE,
-				IN_DATE
-			FROM
-				BROWNIE_BOARD
-			WHERE
-				UPPER(BOARD_KIND)='FREE'
-			AND
-				(STATUS = 'y' or STATUS = 'Y')
-			AND
-				IN_DATE
-			BETWEEN
-				SYSDATE-7 AND SYSDATE) BB
-		WHERE
-			LB.BOARD_SEQ = BB.BOARD_SEQ
-		AND
-			ROWNUM < 6
-		ORDER BY
-			LB.LIKE_CNT DESC ,BB.IN_DATE
-			]]>
+        SELECT LB.BOARD_SEQ AS BOARDSEQ,
+               LB.LIKE_CNT  AS LIKECNT,
+               BB.TITLE     AS TITLE,
+               BB.IN_DATE   AS INDATE
+        FROM (SELECT BOARD_SEQ,
+                     COUNT(KIND) AS LIKE_CNT
+              FROM LIKE_BOARD
+              WHERE KIND = 0
+              GROUP BY BOARD_SEQ) LB,
+             (SELECT BOARD_SEQ,
+                     TITLE,
+                     IN_DATE
+              FROM BROWNIE_BOARD
+              WHERE UPPER(BOARD_KIND) = 'FREE'
+                AND (STATUS = 'y' or STATUS = 'Y')
+                AND IN_DATE
+                  BETWEEN
+                  SYSDATE - 7 AND SYSDATE) BB
+        WHERE LB.BOARD_SEQ = BB.BOARD_SEQ
+          AND ROWNUM < 6
+        ORDER BY LB.LIKE_CNT DESC, BB.IN_DATE
+        ]]>
 	</select>
 
+    <select id="selectDetail" resultType="kr.co.brownie.free.service.FreeVO">
+        SELECT BB.BOARD_SEQ      AS BOARDSEQ,
+               BB.BOARD_KIND     AS BOARDKIND,
+               BB.BOARD_CATEGORY AS BOARDCATEGORY,
+               BB.TITLE          AS TITLE,
+               BB.CONTENT        AS CONTENT,
+               BB.NOTICE_YN      AS NOTICEYN,
+               BB.STATUS         AS STATUS,
+               BB.IN_DATE        AS INDATE,
+               BB.IN_USER_ID     AS INUSERID,
+               BU.NICK_NAME      AS NICKNAME,
+               BB.UP_DATE        AS MODDATE,
+               BB.UP_USER_ID     AS UPUSERID,
+               BB.FILE_SEQ       AS FILESEQ,
+               BB.SUB_SEQ        AS SUBSEQ
+        FROM BROWNIE_BOARD BB,
+             BROWNIE_USER BU
+        WHERE BB.IN_USER_ID = BU.USER_ID
+          AND UPPER(BB.BOARD_KIND) = 'FREE'
+          AND BB.BOARD_SEQ = #{boardSeq}
+    </select>
 
-	<select id="selectDetail" resultType="kr.co.brownie.free.service.FreeVO">
-		SELECT
-			BB.BOARD_SEQ AS BOARDSEQ,
-			BB.BOARD_KIND AS BOARDKIND,
-			BB.BOARD_CATEGORY AS BOARDCATEGORY,
-			BB.TITLE AS TITLE,
-			BB.CONTENT AS CONTENT,
-			BB.NOTICE_YN AS NOTICEYN,
-			BB.STATUS AS STATUS,
-			BB.IN_DATE AS INDATE,
-			BB.IN_USER_ID AS INUSERID,
-			BU.NICK_NAME AS NICKNAME,
-			BB.UP_DATE AS MODDATE,
-			BB.UP_USER_ID AS UPUSERID,
-			BB.FILE_SEQ AS FILESEQ,
-			BB.SUB_SEQ AS SUBSEQ
-		FROM
-			BROWNIE_BOARD BB, BROWNIE_USER BU
-		WHERE
-			BB.IN_USER_ID = BU.USER_ID
-		AND
-			UPPER(BB.BOARD_KIND)='FREE'
-		AND
-			BB.BOARD_SEQ = #{boardSeq}
-	</select>
-
-
-	<select id="selectRecent" resultType="kr.co.brownie.free.service.FreeVO">
+    <select id="selectRecent" resultType="kr.co.brownie.free.service.FreeVO">
 		<![CDATA[
-			SELECT
-				BOARD_SEQ as boardSeq,
-				BOARD_KIND as boardKind,
-				BOARD_CATEGORY as boardCategory,
-				TITLE as title,
-				CONTENT as content,
-				NOTICE_YN as noticeYn,
-				STATUS as status,
-				IN_DATE as inDate,
-				IN_USER_ID as inUserId
-			FROM
-				(SELECT
-					BOARD_SEQ,
-					BOARD_KIND,
-					BOARD_CATEGORY,
-					TITLE,
-					CONTENT,
-					NOTICE_YN,
-					STATUS,
-					IN_DATE,
-					IN_USER_ID
-				FROM
-					BROWNIE_BOARD
-				WHERE
-					(BOARD_KIND= 'FREE' OR	BOARD_KIND= 'FREE')
-      			AND
-					STATUS = 'Y'
-				AND
-					BOARD_SEQ < #{boardSeq}
-				AND
-					ROWNUM < 2
-				ORDER BY
-					BOARD_SEQ DESC )
-			UNION ALL
-			SELECT
-				BOARD_SEQ as boardSeq,
-				BOARD_KIND as boardKind,
-				BOARD_CATEGORY as boardCategory,
-				TITLE as title,
-				CONTENT as content,
-				NOTICE_YN as noticeYn,
-				STATUS as status,
-				IN_DATE as inDate,
-				IN_USER_ID as inUserId
-			FROM
-				BROWNIE_BOARD
-			WHERE
-				(BOARD_KIND= 'FREE' OR	BOARD_KIND= 'FREE')
-         	AND
-            	STATUS = 'Y'
-			AND
-				BOARD_SEQ > #{boardSeq}
-			AND
-				ROWNUM < 2
-			ORDER BY
-				boardSeq
-		]]>
+        SELECT BOARD_SEQ      as boardSeq,
+               BOARD_KIND     as boardKind,
+               BOARD_CATEGORY as boardCategory,
+               TITLE          as title,
+               CONTENT        as content,
+               NOTICE_YN      as noticeYn,
+               STATUS         as status,
+               IN_DATE        as inDate,
+               IN_USER_ID     as inUserId
+        FROM (SELECT BOARD_SEQ,
+                     BOARD_KIND,
+                     BOARD_CATEGORY,
+                     TITLE,
+                     CONTENT,
+                     NOTICE_YN,
+                     STATUS,
+                     IN_DATE,
+                     IN_USER_ID
+              FROM BROWNIE_BOARD
+              WHERE (BOARD_KIND = 'FREE' OR BOARD_KIND = 'FREE')
+                AND STATUS = 'Y'
+                AND BOARD_SEQ < #{boardSeq}
+                AND ROWNUM < 2
+              ORDER BY BOARD_SEQ DESC)
+        UNION ALL
+        SELECT BOARD_SEQ      as boardSeq,
+               BOARD_KIND     as boardKind,
+               BOARD_CATEGORY as boardCategory,
+               TITLE          as title,
+               CONTENT        as content,
+               NOTICE_YN      as noticeYn,
+               STATUS         as status,
+               IN_DATE        as inDate,
+               IN_USER_ID     as inUserId
+        FROM BROWNIE_BOARD
+        WHERE (BOARD_KIND = 'FREE' OR BOARD_KIND = 'FREE')
+          AND STATUS = 'Y'
+          AND BOARD_SEQ > #{boardSeq}
+          AND ROWNUM < 2
+        ORDER BY boardSeq
+        ]]>
 	</select>
 
+    <update id="update" parameterType="hashMap">
+        UPDATE BROWNIE_BOARD
+        SET BOARD_CATEGORY = #{tags},
+            TITLE          = #{title},
+            NOTICE_YN      = #{noticeYn},
+            CONTENT        = #{content},
+            UP_DATE        = SYSDATE,
+            UP_USER_ID     = #{author}
+        WHERE BOARD_SEQ = #{boardSeq}
+    </update>
 </mapper>

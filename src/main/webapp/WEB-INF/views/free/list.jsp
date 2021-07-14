@@ -11,7 +11,7 @@
                     <h3>자유게시판</h3>
                 <div>
 <%--                 <c:if test="${sessionScope.id ne null} "> --%>
-					<a href="${pageContext.request.contextPath}/free/freeBoardWrite" style="color: #ffffff;">[글쓰기]</a>
+					<a href="${pageContext.request.contextPath}/free/write" style="color: #ffffff;">[글쓰기]</a>
 <%--                 </c:if> --%>
                 </div>
                 </div>
@@ -32,7 +32,7 @@
                         <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" style="height: 70px;" alt="">
                     </div>
                     <div class="cl-text">
-                        <h5><a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeList.boardSeq}">${freeList.title }</a></h5>
+                        <h5><a href="${pageContext.request.contextPath}/free/details/${freeList.boardSeq}">${freeList.title }</a></h5>
                         <ul>
                             <li>by <span>${freeList.nickName }</span></li>
                             <li><i class="far fa-clock"></i>${freeList.inDate }</li>
@@ -63,7 +63,7 @@
 	                                </div>
 	                            </div>
 	                            <div class="bp-text">
-	                                <h6><a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${freeFamousList.boardSeq}">${freeFamousList.title }</a></h6>
+	                                <h6><a href="${pageContext.request.contextPath}/free/details/${freeFamousList.boardSeq}">${freeFamousList.title }</a></h6>
 	                                <ul>
 	                                    <li><i class="far fa-clock"></i>${freeFamousList.inDate }</li>
 	                                    <li><i class="far fa-comment"></i> 20</li>
