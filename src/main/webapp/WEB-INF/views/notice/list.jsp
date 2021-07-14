@@ -198,7 +198,7 @@
                         <a href="${pageContext.request.contextPath}/notice/list?pageNum=${PagingVO.startPageNumber - 1}"><span>Prev</span></a>
                     </c:if>
                     <c:forEach var="pageNumber" begin="${PagingVO.startPageNumber}" end="${PagingVO.endPageNumber}">
-                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${pageNumber}&notice=${param.notice}&keyword=${param.keyword}"><span>${pageNumber}</span></a>
+                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${pageNumber}&notice=${notice}&keyword=${keyword}"><span>${pageNumber}</span></a>
                     </c:forEach>
                     <c:if test="${PagingVO.endPageNumber < PagingVO.totalPageNumber}">
                         <a href="${pageContext.request.contextPath}/notice/list?pageNum=${PagingVO.endPageNumber + 1}"><span>Next</span></a>

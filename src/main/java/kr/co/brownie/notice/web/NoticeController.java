@@ -65,7 +65,7 @@ public class NoticeController {
         } catch (NullPointerException | NumberFormatException e) {
             currentPageNumber = 1;
         }
-
+        model.addAttribute("notice",notice);
         model.addAttribute("keyword", keyword);
         model.addAttribute("PagingVO", noticeService.selectList(notice, keyword, currentPageNumber));
 
