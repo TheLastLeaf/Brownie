@@ -111,11 +111,9 @@ public class NoticeController {
         return "redirect:/notice/update/" + board_seq;
     }
 
-    @PostMapping("/delete")
-    public String delete(@RequestParam Map<String, Object> map) {
-        String a = map.get("boardSeq").toString();
-        int boardSeq = Integer.parseInt(a);
-        noticeService.deleteNotice(boardSeq);
+    @PostMapping("/delete/{board_seq}")
+    public String delete(@PathVariable int board_seq,@RequestParam Map<String, Object> map) {
+        noticeService.deleteNotice(board_seq);
         return "redirect:/notice/list";
     }
 }
