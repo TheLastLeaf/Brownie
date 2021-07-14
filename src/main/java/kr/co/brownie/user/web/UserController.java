@@ -103,13 +103,16 @@ public class UserController {
         return "user/userInfo";
     }
 
-    @PostMapping("/userInfo")
+    @PostMapping(path = "/userInfo", produces = "application/text;charset=UTF-8")
     @ResponseBody // AJAX 사용시 써야함
-    public String userName(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map, HttpSession httpSession, HttpServletRequest request)
+    public String userName(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map, HttpServletRequest httpServletRequest)
             throws IOException {
+        List<String> changed = new ArrayList<>();
         // 세션 아이디 -> map에 삽입
-        String id = (String) httpSession.getAttribute("id");
+        String id = httpServletRequest.getSession().getAttribute("id").toString();
         map.put("id", id);
+
+        UserVO userVO = userService.userOneSelect(id);
 
         // 내부경로로 저장
         // String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
@@ -119,34 +122,49 @@ public class UserController {
         String uploadFolder = "C:\\Users\\PC13\\git\\Brownie\\src\\main\\resources\\static\\img\\userProfile";
         String profilePath = "";
 
-        for (MultipartFile multipartFile : uploadFile) {
-            String originFileName = multipartFile.getOriginalFilename();
-            // 진짜 파일 이름
-            originFileName = originFileName.substring(originFileName.lastIndexOf("\\") + 1);
-            // 내가 날짜_이름 으로 지어주는 이름
-            profilePath = String.format("/%s_%s", System.currentTimeMillis(), originFileName);
-//			File savefileName = new File(uploadFolder, originFileName);
-            File savefileName = new File(uploadFolder, profilePath);
+        if (uploadFile != null) {
+            for (MultipartFile multipartFile : uploadFile) {
+                String originFileName = multipartFile.getOriginalFilename();
+                // 진짜 파일 이름
+                originFileName = originFileName.substring(originFileName.lastIndexOf("\\") + 1);
+                // 내가 날짜_이름 으로 지어주는 이름
+                profilePath = String.format("/%s_%s", System.currentTimeMillis(), originFileName);
+                //			File savefileName = new File(uploadFolder, originFileName);
+                File savefileName = new File(uploadFolder, profilePath);
 
-            System.out.println("savefileName : " + savefileName);
-            System.out.println("profile_img : " + profilePath);
-            try {
-                multipartFile.transferTo(savefileName);
-                map.put("profilePath", profilePath);
-                map.put("originFileName", originFileName);
-                map.put("savefileName", savefileName);
-
-            } catch (Exception e) {
-                System.out.println("예외발생");
+                System.out.println("savefileName : " + savefileName);
+                System.out.println("profile_img : " + profilePath);
+                try {
+                    multipartFile.transferTo(savefileName);
+                    map.put("profilePath", profilePath);
+                    map.put("originFileName", originFileName);
+                    map.put("savefileName", savefileName);
+                } catch (Exception e) {
+                    System.out.println("예외발생");
+                }
+                fileService.updateProfile(map);
             }
+            changed.add("사진");
         }
 
-        fileService.updateProfile(map);
-        userService.insertNickPosition(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
-//        FileService.updateProfile(map);
+        if (!map.get("positions").toString().equals(userVO.getUserPosition())) {
+            //포지션 변경하는 서비스 여기에 삽입
+            changed.add("포지션");
+        }
+
+        if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
+            //닉네임 변경하는 서비스 여기에 삽입
+            changed.add("닉네임");
+        }
+
         System.out.println("map : " + map);
 
-        return "/img/userProfile" + profilePath;
+        if (changed.size() == 0) {
+            return "변경된 항목이 없습니다.";
+        }
+
+        String result = Arrays.toString(changed.toArray(new String[0]));
+        return result + "(이)가 변경되었습니다.";
     }
 
     @GetMapping("/userSync")
@@ -160,11 +178,15 @@ public class UserController {
     }
 
     @GetMapping("/userModify/{user_id}")
-    public String userModify(Model model, HttpSession httpSession, @PathVariable String user_id) {
-    	System.out.println("user_id: " + user_id);
-    	String selectProfile = fileService.selectProfile(user_id);
-    	model.addAttribute("selectProfile",selectProfile);
-    	
+    public String userModify(Model model,
+                             @PathVariable String user_id)
+            throws IOException {
+        System.out.println("user_id: " + user_id);
+        String selectProfile = fileService.selectProfile(user_id);
+        UserVO userVO = userService.userOneSelect(user_id);
+        model.addAttribute("userOneSelect", userVO);
+        model.addAttribute("selectProfile", selectProfile);
+
         return "user/userModify";
     }
 

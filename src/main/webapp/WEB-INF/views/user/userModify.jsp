@@ -139,10 +139,10 @@ input[name="position"] {
 						<div class="profileBox" style="border: none;">
 							<label for="file">
 								<img class="profile" id="img" src="${pageContext.request.contextPath}${selectProfile}">
-								<input type="file" id="file" name="file" multiple />
+								<input type="file" id="file" name="file" />
 							</label>
 						</div>
-						<input type="text" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*">
+						<input type="text" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
 
 						<!-- 포지션선택 -->
 						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -274,14 +274,9 @@ input[name="position"] {
 				data : formData,
 				processData : false,
 				contentType : false,
-				success : function(profilePath) {
-					alert("성공: " + profilePath);
-					console.log(profilePath);
-					console.log(files);
-					$("#file").attr("style",
-							"background-image: url(" + profilePath + ");");
-					//window.close();
-					//window.reload();
+				success : function(message) {
+					alert(message);
+					location.reload();
 				},
 				error : function(e) {
 					alert("실패ㅜㅜ err");
