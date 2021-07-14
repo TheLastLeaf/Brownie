@@ -52,8 +52,7 @@
                                         <input type="button" class="btn btn-outline-dark btn-sm text-white"
                                                        onclick="location.href='/notice/update/${noticeVO.boardSeq}'"
                                                        value="수정" >
-                                        <form class="d-inline" action="/notice/delete" method="post">
-                                            <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">
+                                        <form class="d-inline" action="/notice/delete/${noticeVO.boardSeq}" method="post">
                                             <input type="submit" class="btn btn-outline-dark btn-sm text-danger" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
                                         </form>
                                 </div>

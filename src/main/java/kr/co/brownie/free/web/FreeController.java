@@ -1,5 +1,6 @@
 package kr.co.brownie.free.web;
 
+import java.time.Clock;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +55,7 @@ public class FreeController {
 	}
 
     @GetMapping("/freeBoardDetail")
-    public String freeBoardDetail(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
+    public String freeBoardDetail(@RequestParam Map<String, Object> map, Model model) {
 
     	int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
     	FreeVO freeDetail = freeService.selectDetail(boardSeq);
@@ -125,7 +126,7 @@ public class FreeController {
     }
 
     @PostMapping("/freeBoardWrite")
-    public String freeAddPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest){
+    public String freeAddPost(@RequestParam Map<String, Object> map){
 
     	//공지사항 여부가 체크되지 않았을 경우
         try {
@@ -139,8 +140,10 @@ public class FreeController {
     }
 
     @GetMapping("/freeBoardModify/{boardSeq}")
-    public String freeModify(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest, @PathVariable String boardSeq){
+    public String freeModify(HttpServletRequest servletRequest, @PathVariable String boardSeq){
     	int boardSeqForMod = Integer.parseInt(boardSeq);
+    	System.out.println("freeModify 여기 들어와있음! ");
+    	System.out.println("boardSeq : "+boardSeq);
     	return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
     }
 
@@ -153,13 +156,13 @@ public class FreeController {
 
 	@ResponseBody
 	@RequestMapping(value="/ajax.delBoard", method= {RequestMethod.GET, RequestMethod.POST})
-	public void ajaxDelBoard (@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+	public void ajaxDelBoard (@RequestParam Map<String, Object> map) {
 		freeService.deleteFree(map);
 	}
 
     @ResponseBody
     @RequestMapping(value="/ajax.likeHate", method=RequestMethod.GET)
-    public BoardVO ajaxLikeHate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+    public BoardVO ajaxLikeHate(@RequestParam Map<String, Object> map) {
 
     	//새로 들어온 값
     	int kind = Integer.parseInt(map.get("kind").toString());
@@ -209,7 +212,7 @@ public class FreeController {
 
 	@ResponseBody
 	@RequestMapping(value="/reportadd", method = { RequestMethod.GET, RequestMethod.POST})
-	public Object reportPost(Map<String,Object> map, HttpSession session, Model model, HttpServletRequest servletRequest){
+	public Object reportPost(Map<String,Object> map, HttpSession session, HttpServletRequest servletRequest){
 		String id = (String)session.getAttribute("id");
 		String content = servletRequest.getParameter("content");
 		String[] reportNameList = servletRequest.getParameterValues("reportName[]");

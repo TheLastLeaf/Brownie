@@ -126,8 +126,7 @@
             </div>
             <div class="nameInfo row">
                 <input type="hidden" value="${userId}" name="userId" id="UserId" class="userId">
-                <div class="suspect col-3">용의자:&nbsp; ${nickName}</div>
-                <!-- 					<div class="suspect col-6">피해자:&nbsp; 유미</div> -->
+                <div class="suspect col-4">용의자:&nbsp; ${nickName}</div>
             </div>
             <div class="sf-input-list ">
                 <div class="custom-control custom-checkbox">
