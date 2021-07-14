@@ -64,6 +64,7 @@
 					BROWNIE_BOARD
 				WHERE
 					BOARD_KIND = 'FREE' OR BOARD_KIND='free'
+                    ORDER BY INDATE DESC
 				) ALLB
 			LEFT JOIN
 				(
@@ -83,14 +84,11 @@
 				ON
 					(BB.BOARD_SEQ = RE.BOARD_SEQ)
 				ORDER BY
-					BOARDSEQ
+					IN_DATE DESC
 				) ALLR
 			ON
 				(ALLR.BOARDSEQ = ALLB.BOARD_SEQ)
-			WHERE
-				ROWNUM < 6
-			ORDER BY
-				INDATE DESC
+            WHERE ROWNUM < 6
 		]]>
 	</select>
 
@@ -119,7 +117,7 @@
 		AND
 			UPPER(BB.BOARD_KIND)='FREE'
 		ORDER BY
-			BB.IN_DATE
+			BB.IN_DATE DESC
 	</select>
 
 	<select id="selectFamous" resultType="kr.co.brownie.free.service.FreeVO">
