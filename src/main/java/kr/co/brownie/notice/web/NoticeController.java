@@ -115,10 +115,10 @@ public class NoticeController {
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam Map<String, Object> map, Model model) {
+    public String delete(@RequestParam Map<String, Object> map) {
         String a = map.get("boardSeq").toString();
-        int b = Integer.parseInt(a);
-        noticeService.deleteNotice(b);
+        int boardSeq = Integer.parseInt(a);
+        noticeService.deleteNotice(boardSeq);
         return "redirect:/notice/list";
     }
 }
