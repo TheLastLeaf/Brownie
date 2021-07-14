@@ -1,19 +1,17 @@
 package kr.co.brownie.tip.web;
 
 import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
-import kr.co.brownie.leagueoflegends.versions.service.LeagueOfLegendsVersionsService;
-import kr.co.brownie.tip.service.TipReplyVO;
 import kr.co.brownie.tip.service.TipService;
 import kr.co.brownie.tip.service.TipVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/tip")
@@ -21,77 +19,52 @@ public class TipController {
     @Resource(name = "tipService")
     TipService tipService;
 
-    @Resource(name = "leagueOfLegendsVersionsService")
-    LeagueOfLegendsVersionsService leagueOfLegendsVersionsService;
-
     @Resource(name = "leagueOfLegendsChampionsService")
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
 
     @GetMapping("/write")
     public String write(Model model,
                         HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id").toString() == null) {
-            model.addAttribute("message",
-                    "alert(\"로그인 후 작성할 수 있습니다.\")" +
-                            "location.href=\"/" + httpServletRequest.getContextPath() + "tip/list\";");
-            return "common/message";
-        }
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
         model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
         return "tip/write";
     }
 
     @PostMapping("/write")
-    public String create(HttpServletRequest httpServletRequest) {
-        String author = httpServletRequest.getSession().getAttribute("id").toString();
-        String champion = httpServletRequest.getParameter("champion");
-        String title = httpServletRequest.getParameter("title");
-        String content = httpServletRequest.getParameter("content");
-
-        tipService.insert(author, champion, title, content);
-
+    public String create(HttpServletRequest httpServletRequest,
+                         @RequestParam Map<String, Object> map) {
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
+        map.put("author", httpServletRequest.getSession().getAttribute("id").toString());
+        tipService.insert(map);
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/list";
     }
 
     @GetMapping({"", "/list"})
-    public String list(HttpServletRequest httpServletRequest,
-                       Model model) {
-        String champion = httpServletRequest.getParameter("champion") == null ? "" : httpServletRequest.getParameter("champion");
-        int currentPageNumber;
-        try {
-            currentPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("currentPage")), 1);
-        } catch (NullPointerException | NumberFormatException e) {
-            currentPageNumber = 1;
-        }
+    public String list(Model model,
+                       @RequestParam(defaultValue = "", required = false) String champion,
+                       @RequestParam(defaultValue = "1", required = false) int currentPageNumber,
+                       Map<String, Object> map) {
+        map.put("champion", champion);
+        map.put("currentPageNumber", currentPageNumber);
+        map.put("contentPerPage", tipService.CONTENT_PER_PAGE);
 
-        model.addAttribute("leagueOfLegendsChampionsVOList",
-                leagueOfLegendsChampionsService.selectRecentlyChampionsList());
-        model.addAttribute("tipPagingVO", tipService.selectList(champion, currentPageNumber));
+        model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsService.selectRecentlyChampionsList());
+        model.addAttribute("tipPagingVO", tipService.selectList(map));
         model.addAttribute("champion", champion);
 
         return "tip/list";
     }
 
     @GetMapping("/details/{board_seq}")
-    public String details(@PathVariable String board_seq,
+    public String details(@PathVariable int board_seq,
                           Model model,
-                          HttpServletRequest httpServletRequest) {
+                          HttpServletRequest httpServletRequest,
+                          Map<String, Object> map) {
+        map.put("boardSeq", board_seq);
+        model.addAttribute("tipVO", tipService.select(map));
 
-        int seq;
-        TipVO tipVO;
-        try {
-            seq = Integer.parseInt(board_seq);
-
-            tipVO = tipService.select(seq);
-            if (tipVO == null) {
-                throw new NullPointerException();
-            }
-            model.addAttribute("tipVO", tipVO);
-        } catch (NullPointerException | NumberFormatException e) {
-            return "error/404";
-        }
-
-        int totalReplyCount = tipVO.getReplyCnt();
+        int totalReplyCount = ((TipVO) Objects.requireNonNull(model.getAttribute("tipVO"))).getReplyCnt();
         int currentReplyPageNumber;
         try {
             currentReplyPageNumber = Integer.parseInt(httpServletRequest.getParameter("currentReplyPageNumber"));
@@ -102,137 +75,94 @@ public class TipController {
             currentReplyPageNumber = (totalReplyCount - 1) / tipService.REPLY_PER_PAGE + 1;
         }
 
-        model.addAttribute("tipReplyPagingVO", tipService.selectReplyList(seq, currentReplyPageNumber, totalReplyCount));
+        map.put("replyPerPage", tipService.REPLY_PER_PAGE);
+        map.put("currentReplyPageNumber", currentReplyPageNumber);
+        map.put("totalReplyCount", totalReplyCount);
+
+        model.addAttribute("tipReplyPagingVO", tipService.selectReplyList(map));
         return "tip/details";
     }
 
     @GetMapping("/modify/{board_seq}")
-    public String modify(@PathVariable String board_seq,
+    public String modify(@PathVariable int board_seq,
                          Model model,
-                         HttpServletRequest httpServletRequest) {
-        try {
-            int seq = Integer.parseInt(board_seq);
-            String id = httpServletRequest.getSession().getAttribute("id").toString();
+                         HttpServletRequest httpServletRequest,
+                         Map<String, Object> map) {
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
+        String id = httpServletRequest.getSession().getAttribute("id").toString();
+        map.put("boardSeq", board_seq);
 
-            TipVO tipVO = tipService.select(seq);
-            if (tipVO == null) {
-                throw new NullPointerException();
-            } else if (!tipVO.getInUserId().equals(id)) {
-                return "error/500";
-            }
-            model.addAttribute("leagueOfLegendsChampionsVOList",
-                    leagueOfLegendsChampionsService.selectRecentlyChampionsList());
-            model.addAttribute("tipVO", tipVO);
-        } catch (NullPointerException | NumberFormatException e) {
-            return "error/404";
-        }
+        model.addAttribute("tipVO", tipService.select(map));
+        Assert.state(((TipVO) Objects.requireNonNull(model.getAttribute("tipVO"))).getInUserId().equals(id), "작성자만 게시글을 수정할 수 있습니다.");
+
+        model.addAttribute("leagueOfLegendsChampionsVOList",
+                leagueOfLegendsChampionsService.selectRecentlyChampionsList());
         return "tip/modify";
     }
 
     @PostMapping("/modify/{board_seq}")
     public String update(HttpServletRequest httpServletRequest,
-                         @PathVariable String board_seq) {
-        try {
-            int seq = Integer.parseInt(board_seq);
-            String author = httpServletRequest.getSession().getAttribute("id").toString();
-            String champion = httpServletRequest.getParameter("champion");
-            String title = httpServletRequest.getParameter("title");
-            String content = httpServletRequest.getParameter("content");
+                         @PathVariable int board_seq,
+                         @RequestParam Map<String, Object> map) {
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
+        String author = httpServletRequest.getSession().getAttribute("id").toString();
+        map.put("board_seq", board_seq);
+        map.put("author", author);
 
-            TipVO tipVO = tipService.select(seq);
-            if (tipVO == null || !tipVO.getInUserId().equals(author)) {
-                return "error/500";
-            }
+        Assert.state(author.equals(tipService.select(map).getInUserId()), "작성자만 게시글을 수정할 수 있습니다.");
+        Assert.state(tipService.update(map) == 1, "수정에 실패했습니다.");
 
-            if (tipService.update(seq, author, champion, title, content) != 1) {
-                throw new NullPointerException();
-            }
-        } catch (NullPointerException | NumberFormatException e) {
-            return "error/404";
-        }
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/list";
     }
 
-    @GetMapping("/delete/{board_seq}")
-    public String delete(Model model,
-                         HttpServletRequest httpServletRequest,
-                         @PathVariable String board_seq) {
-        try {
-            int seq = Integer.parseInt(board_seq);
-            String author = httpServletRequest.getSession().getAttribute("id").toString();
+    @GetMapping("/delete")
+    public String delete(HttpServletRequest httpServletRequest,
+                         @RequestParam Map<String, Object> map) {
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
+        String author = httpServletRequest.getSession().getAttribute("id").toString();
 
-            TipVO tipVO = tipService.select(seq);
-            if (tipVO == null || !tipVO.getInUserId().equals(author)) {
-                return "error/500";
-            }
+        Assert.state(author.equals(tipService.select(map).getInUserId()), "작성자만 게시글을 수정할 수 있습니다.");
+        Assert.state(tipService.update(map) == 1, "삭제에 실패했습니다.");
 
-            if (tipService.delete(seq) != 1) {
-                throw new NullPointerException();
-            }
-        } catch (NullPointerException | NumberFormatException e) {
-            return "error/404";
-        }
-        model.addAttribute("message",
-                "alert(\"삭제 완료\");" +
-                        "location.href=\"/" + httpServletRequest.getContextPath() + "tip/list\";");
-        return "common/message";
+        return "redirect:/tip/list";
     }
 
     @PostMapping("/details/{board_seq}")
-    public String writeReply(Model model,
-                             HttpServletRequest httpServletRequest,
-                             @PathVariable String board_seq) {
+    public String writeReply(HttpServletRequest httpServletRequest,
+                             @PathVariable int board_seq,
+                             @RequestParam String message,
+                             @RequestParam(defaultValue = "", required = false) String headReplySeq,
+                             Map<String, Object> map) {
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
         String author = httpServletRequest.getSession().getAttribute("id").toString();
-        int seq;
-        try {
-            seq = Integer.parseInt(board_seq);
-        } catch (NullPointerException | NumberFormatException e) {
-            return "error/404";
-        }
+        message = message.trim();
 
-        String message = httpServletRequest.getParameter("message").trim();
-        if (message.length() == 0) {
-            model.addAttribute("message", "alert(\"댓글을 입력해주세요.\");history.go(-1);");
-            return "common/message";
-        }
-        String headReplySeq = httpServletRequest.getParameter("headReplySeq") == null ? "" : httpServletRequest.getParameter("headReplySeq");
+        Assert.state(message.length() != 0, "댓글을 입력해주세요.");
 
-        int result = tipService.insertReply(seq, author, message, headReplySeq);
-        if (result != 1) {
-            model.addAttribute("message", "alert(\"댓글 등록 중 문제가 발생했습니다.\");history.go(-1);");
-            return "common/message";
-        }
+        map.put("boardSeq", board_seq);
+        map.put("author", author);
+        map.put("message", message);
+        map.put("headReplySeq", headReplySeq);
+
+        Assert.state(tipService.insertReply(map) == 1, "댓글 등록 중 문제가 발생했습니다.");
 
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/details/" + board_seq;
     }
 
     @GetMapping("/details/{board_seq}/delete/{reply_seq}")
-    public String deleteReply(Model model,
-                              HttpServletRequest httpServletRequest,
-                              @PathVariable String board_seq,
-                              @PathVariable String reply_seq) {
-        int boardSeq;
-        int replySeq;
-        if (httpServletRequest.getSession().getAttribute("id") != null) {
-            try {
-                boardSeq = Integer.parseInt(board_seq);
-                replySeq = Integer.parseInt(reply_seq);
-                String id = httpServletRequest.getSession().getAttribute("id").toString();
+    public String deleteReply(HttpServletRequest httpServletRequest,
+                              @PathVariable int board_seq,
+                              @PathVariable int reply_seq,
+                              Map<String, Object> map) {
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
+        String id = httpServletRequest.getSession().getAttribute("id").toString();
 
-                TipReplyVO replyVO = tipService.selectReply(boardSeq, replySeq);
-                
-                if (id.equals(replyVO.getInUserId())) {
-                    if (tipService.deleteReply(replySeq)== 1) {
-                        return "redirect:/" + httpServletRequest.getContextPath() + "tip/details/" + board_seq;
-                    }
-                    model.addAttribute("message", "alert(\"삭제에 실패했습니다.\");history.go(-1);");
-                    return "common/message";
-                }
-            } catch (NullPointerException | NumberFormatException e) {
-                return "error/404";
-            }
-        }
-        model.addAttribute("message", "alert(\"권한이 없습니다.\");history.go(-1);");
-        return "common/message";
+        map.put("boardSeq", board_seq);
+        map.put("replySeq", reply_seq);
+
+        Assert.state(id.equals(tipService.selectReply(map).getInUserId()), "작성자만 댓글을 삭제할 수 있습니다.");
+        Assert.state(tipService.deleteReply(map) == 1, "댓글 삭제 중 문제가 발생했습니다.");
+
+        return "redirect:/" + httpServletRequest.getContextPath() + "tip/details/" + board_seq;
     }
 }

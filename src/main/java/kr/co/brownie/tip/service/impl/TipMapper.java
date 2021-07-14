@@ -15,13 +15,13 @@ public interface TipMapper {
 
     int countTipList(String champion);
 
-    TipVO select(int boardSeq);
+    TipVO select(Map<String, Object> map);
 
     int insert(Map<String, Object> map);
 
     int update(Map<String, Object> map);
 
-    int delete(int boardSeq);
+    int delete(Map<String, Object> map);
 
     List<TipReplyVO> selectReplyList(Map<String, Object> map);
 
@@ -31,5 +31,5 @@ public interface TipMapper {
 
     TipReplyVO selectReply(Map<String, Object> map);
 
-    int deleteReply(int replySeq);
+    int deleteReply(Map<String, Object> map);
 }

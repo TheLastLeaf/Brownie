@@ -1,38 +1,26 @@
 package kr.co.brownie.tip.service;
 
+import java.util.Map;
+
 public interface TipService {
     int CONTENT_PER_PAGE = 10;
     int REPLY_PER_PAGE = 10;
 
-    TipPagingVO selectList(String champion,
-                           int currentPageNumber);
+    TipPagingVO selectList(Map<String, Object> map);
 
-    TipVO select(int board_seq);
+    TipVO select(Map<String, Object> map);
 
-    int insert(String author,
-               String champion,
-               String title,
-               String content);
+    int insert(Map<String, Object> map);
 
-    int update(int boardSeq,
-               String author,
-               String champion,
-               String title,
-               String content);
+    int update(Map<String, Object> map);
 
-    int delete(int boardSeq);
+    int delete(Map<String, Object> map);
 
-    TipReplyPagingVO selectReplyList(int boardSeq,
-                                     int currentReplyPageNumber,
-                                     int totalReplyCount);
+    TipReplyPagingVO selectReplyList(Map<String, Object> map);
 
-    int insertReply(int boardSeq,
-                    String author,
-                    String message,
-                    String headReplySeq);
+    int insertReply(Map<String, Object> map);
 
-    TipReplyVO selectReply(int boardSeq,
-                           int replySeq);
+    TipReplyVO selectReply(Map<String, Object> map);
 
-    int deleteReply(int replySeq);
+    int deleteReply(Map<String, Object> map);
 }

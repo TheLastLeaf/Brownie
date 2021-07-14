@@ -241,7 +241,7 @@
           AND REPLY_SEQ = ${replySeq}
     </select>
 
-    <delete id="deleteReply" parameterType="int">
+    <delete id="deleteReply" parameterType="hashMap">
         DELETE
         FROM REPLY
         WHERE REPLY_SEQ = ${replySeq}

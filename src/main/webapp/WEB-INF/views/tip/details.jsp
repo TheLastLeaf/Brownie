@@ -11,7 +11,7 @@
             "<div class=\"dt-leave-comment sub_reply_form\">"
             + "<form method=\"POST\">"
             + "<input type=\"hidden\" name=\"headReplySeq\" value=\"" + replySeq + "\"/>"
-            + "<textarea name=\"message\" placeholder=\"Message\"></textarea>"
+            + "<textarea name=\"message\" placeholder=\"Message\" required></textarea>"
             + "<button type=\"submit\">Submit</button>"
             + "</form>"
             + "</div>"
@@ -103,7 +103,7 @@
                     <div class="dt-leave-comment">
                         <h4>Leave a comment</h4>
                         <form method="POST">
-                            <textarea name="message" placeholder="Message"></textarea>
+                            <textarea name="message" placeholder="Message" required></textarea>
                             <button type="submit">Submit</button>
                         </form>
                     </div>
