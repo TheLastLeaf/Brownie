@@ -141,6 +141,17 @@ public class FreeController {
         return "redirect:/free/freeBoardList";
     }
 
+    @PostMapping("/freeBoardModify")
+    public String freeModPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest){
+    	return "redirect:/free/freeBoardDetail?boardSeq=";
+    }
+
+	@ResponseBody
+	@RequestMapping(value="/ajax.delBoard", method= {RequestMethod.GET, RequestMethod.POST})
+	public void ajaxDelBoard (@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+		freeService.deleteFree(map);
+	}
+
     @ResponseBody
     @RequestMapping(value="/ajax.likeHate", method=RequestMethod.GET)
     public BoardVO ajaxLikeHate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {

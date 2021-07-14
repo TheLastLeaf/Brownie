@@ -26,6 +26,7 @@ public class MiniGameController {
 	@GetMapping(path={"", "/blueMarvel"})
 	public String brownieMain(Model model) {
 		
+		//한바뀌 돌았을때 리셋 과정
 		//난수 15개 뽑기
 		int dbSize = 30;
 		Set<Integer> set = new HashSet<Integer>(); 
@@ -59,6 +60,8 @@ public class MiniGameController {
         map.put("name", info.getName());
         map.put("degree", info.getDegree());
         model.addAttribute("map", map);
+        //
+        
         
 		return "miniGame/blueMarvel";
 	}

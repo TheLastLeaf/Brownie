@@ -18,11 +18,9 @@ public interface NoticeService {
 
     NoticeVO getNotice(int boardSeq);
 
-    int updateNotice(Map<String, Object> map);
+    int updateNotice(String id,String title,String content, int boardSeq);
 
     int selectCount();
-
-    String selectnickname(String inUserId);
 
     List<NoticeVO> noticeList();
 }

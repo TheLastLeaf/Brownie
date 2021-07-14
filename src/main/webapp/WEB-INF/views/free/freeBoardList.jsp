@@ -10,9 +10,9 @@
                 <div class="breadcrumb-text">
                     <h3>자유게시판</h3>
                 <div>
-                <c:if test="${sessionScope.id ne null} ">
+<%--                 <c:if test="${sessionScope.id ne null} "> --%>
 					<a href="${pageContext.request.contextPath}/free/freeBoardWrite" style="color: #ffffff;">[글쓰기]</a>
-                </c:if>
+<%--                 </c:if> --%>
                 </div>
                 </div>
             </div>

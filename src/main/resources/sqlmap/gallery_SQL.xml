@@ -7,6 +7,7 @@
         select S.RNUM,
                S.BOARDSEQ AS BOARDSEQ,
                S.BOARDKIND AS BOARDKIND,
+               S.BOARDCATEGORY AS BOARDCATEGORY,
                S.TITLE AS TITLE,
                S.CONTENT AS CONTENT,
                S.NOTICEYN AS NOTICEYN,
@@ -25,6 +26,7 @@
                     SELECT
                         BOARD_SEQ AS BOARDSEQ,
                         BOARD_KIND AS BOARDKIND,
+                        BOARD_CATEGORY AS BOARDCATEGORY,
                         TITLE AS TITLE,
                         CONTENT AS CONTENT,
                         NOTICE_YN AS NOTICEYN,

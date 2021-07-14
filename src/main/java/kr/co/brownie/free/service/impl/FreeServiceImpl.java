@@ -45,4 +45,9 @@ public class FreeServiceImpl implements FreeService{
 		freeMapper.insertFree(map);
 	}
 
+	@Override
+	public void deleteFree(Map<String, Object> map) {
+		freeMapper.deleteFree(map);
+	}
+
 }

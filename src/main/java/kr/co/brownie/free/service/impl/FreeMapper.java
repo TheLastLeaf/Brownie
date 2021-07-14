@@ -20,4 +20,6 @@ public interface FreeMapper {
 	List<FreeVO> selectRecentForMenu();
 
 	void insertFree(Map<String, Object> map);
+
+	void deleteFree(Map<String, Object> map);
 }

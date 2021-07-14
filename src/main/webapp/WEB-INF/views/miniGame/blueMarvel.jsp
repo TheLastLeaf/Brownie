@@ -53,6 +53,10 @@
 
 /*주사위*/
 
+#dice-side-2{
+	display: none;
+}
+
 .dicePic{
 	display: inline-block;
 }
@@ -116,12 +120,11 @@
 <!-- Breadcrumb Section End -->
 
 <script type="text/javascript">
-	var oneInOne = true;
-	var playerPos = 0;
-	var pos = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+	var playerPos = 0 //${marble.position};
+	var pos = [];
 	
-	/*  */
-	
+	//설정
+	var diceSpeed = 450; // 주사위속도
 	
 	var animateButton = function(e) {
 		console.log(1);
@@ -163,37 +166,64 @@
 									.css('background-image',
 											"url('${pageContext.request.contextPath}/img/miniGame/diceDrop.gif')")
 							setTimeout("reset()", 2000);
-							//데이터 전송 추가해야함/.
-							var form = {
-					                name: "aaaddd",
-					                seq: 23
-					        }
-					        $.ajax({
-					            url: "requestObject",
-					            type: "POST",
-					            data: form,
-					            success: function(data){
-					                $('#result').text(data);
-					            },
-					            error: function(){
-					                console.log("error");
-					            }
-					        });
+							setTimeout("diceDis()", 250);
 							
 						});
 	}
-
+	
+	
+	function diceDis() {
+		$('#btnRoll').css('visibility', 'hidden')
+	}
+	
+	function diceApper() {
+		$('#btnRoll').css('visibility', 'visible')
+	}
+	
 	function reset() {
 		$('.wrapper').css('background-image', "none")
 		$('.tamin').css('visibility', 'visible')
 	}
 
-	function dis() {
-		if (!oneInOne) {
-			return;
-		} else {
-			oneInOne = false;
+	function dice() {
+		const buttonRoolDice = document.querySelector('.learn-more');
+
+		const diceSide1 = document.getElementById('dice-side-1');
+		const status1 = document.getElementById('status');
+
+		const side1 = Math.floor(Math.random() * 6) + 1;
+
+		var num = side1 ;
+
+
+		if (num == 1) {
+			num = "<i class='fas fa-dice-one fa-7x'></i>";
 		}
+		if (num == 2) {
+			num = "<i class='fas fa-dice-two fa-7x'></i>";
+		}
+		if (num == 3) {
+			num = "<i class='fas fa-dice-three fa-7x'></i>";
+		}
+		if (num == 4) {
+			num = "<i class='fas fa-dice-four fa-7x'></i>";
+		}
+		if (num == 5) {
+			num = "<i class='fas fa-dice-five fa-7x'></i>";
+		}
+		if (num == 6) {
+			num = "<i class='fas fa-dice-six fa-7x'></i>";
+		}
+
+		diceSide1.innerHTML = num;
+
+		status1.innerHTML = side1 + "!";
+
+		setTimeout('move(' + 13 + ')', 1900);
+	}
+	
+	//주사위 더블
+	function doubleDice() {
 		const buttonRoolDice = document.querySelector('.learn-more');
 
 		const diceSide1 = document.getElementById('dice-side-1');
@@ -209,22 +239,22 @@
 
 		for (var i = 0; i < num.length; i++) {
 			if (num[i] == 1) {
-				num[i] = "<i class='fas fa-dice-one fa-9x'></i>";
+				num[i] = "<i class='fas fa-dice-one fa-7x'></i>";
 			}
 			if (num[i] == 2) {
-				num[i] = "<i class='fas fa-dice-two fa-9x'></i>";
+				num[i] = "<i class='fas fa-dice-two fa-7x'></i>";
 			}
 			if (num[i] == 3) {
-				num[i] = "<i class='fas fa-dice-three fa-9x'></i>";
+				num[i] = "<i class='fas fa-dice-three fa-7x'></i>";
 			}
 			if (num[i] == 4) {
-				num[i] = "<i class='fas fa-dice-four fa-9x'></i>";
+				num[i] = "<i class='fas fa-dice-four fa-7x'></i>";
 			}
 			if (num[i] == 5) {
-				num[i] = "<i class='fas fa-dice-five fa-9x'></i>";
+				num[i] = "<i class='fas fa-dice-five fa-7x'></i>";
 			}
 			if (num[i] == 6) {
-				num[i] = "<i class='fas fa-dice-six fa-9x'></i>";
+				num[i] = "<i class='fas fa-dice-six fa-7x'></i>";
 			}
 		}
 
@@ -240,17 +270,18 @@
 		setTimeout('move(' + diceTotal + ')', 2000);
 		oneInOne = true;
 
-		/* if ($('#dis').css('visibility') == 'hidden') {
-			$('#dis').css('visibility', 'visible')
-		} else {
-			$('#dis').css('visibility', 'hidden')
-		} */
 	}
-
+	
+	function merchant(){
+		alert("안녕?");
+	}
+	
+	//이동
 	function move(diceTotal) {
 		for (var i = 0; i < diceTotal; i++) {
 			if (playerPos == 16) {
 				playerPos = 0;
+				merchant();
 			} else if (0 <= playerPos && playerPos <= 3) {
 				leftMove();
 				playerPos++;
@@ -265,30 +296,32 @@
 				playerPos++;
 			}
 		}
+		setTimeout('diceApper()', 1500);
 	}
-
+	
+	//시각적 이동
 	function leftMove() {
 		$(".player").animate({
 			left : "+=186"
-		}, 750);
+		}, diceSpeed);
 	}
 
 	function rightMove() {
 		$(".player").animate({
 			left : "-=186"
-		}, 750);
+		}, diceSpeed);
 	}
 
 	function downMove() {
 		$(".player").animate({
 			top : "+=186"
-		}, 750);
+		}, diceSpeed);
 	}
 
 	function upMove() {
 		$(".player").animate({
 			top : "-=186"
-		}, 750);
+		}, diceSpeed);
 	}
 </script>
 
@@ -339,7 +372,7 @@
 										<div id="dice-side-2" class="dicePic"></div>
 										<h2 id="status"></h2>
 									</div>
-									<button id="btnRoll" onclick="dis()" class="learn-more">LET'S<br>ROLL</button>
+									<button id="btnRoll" onclick="dice()" class="learn-more">LET'S<br>ROLL</button>
 								</div> 
 								
 						</td>

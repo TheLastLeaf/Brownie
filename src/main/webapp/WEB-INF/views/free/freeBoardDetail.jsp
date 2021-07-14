@@ -9,7 +9,7 @@ h5 {
 	margin-top: 10px;
 }
 
-.actForReply{
+.actForReply, .actForBoard{
 	font-size: 10px;
 	margin-top: 3px;
 	margin-bottom: 5px;
@@ -41,7 +41,7 @@ h5 {
 	color: #007bff;
 }
 
-.replyCall {
+.replyCall, #freeModify, #freeDelete {
 	border: 1px solid #DC143C;
 	padding: 2px;
 	cursor: pointer;
@@ -94,8 +94,7 @@ h5 {
     margin-bottom: 20px;
 }
 
-.reply-item {
-}
+
 </style>
 
 
@@ -103,8 +102,8 @@ h5 {
 <!-- 스크립트 -->
 <script type="text/javascript">
 
-	const inUserId = '${sessionScope.id}';
-// 	const inUserId = '1786827527';
+// 	const inUserId = '${sessionScope.id}';
+	const inUserId = '1786827527';
 
 	//게시글 좋아요 싫어요
 	function likeHateCheck(kind) {
@@ -283,6 +282,35 @@ h5 {
 		}
 	}
 
+	//게시글 삭제
+	function deleteFreeBoard() {
+		var delReply = confirm('게시글을 삭제하시겠습니까?');
+		if(!delReply){
+			return;
+		} else {
+			$.ajax({
+				url : "./ajax.delBoard",
+				type : "POST",
+				data : {
+						"boardSeq" : ${freeDetail.boardSeq },
+						"inUserId": inUserId
+				},
+				success : function(data) {
+					alert('게시글 삭제 완료');
+					location.href='${pageContext.request.contextPath}/free/freeBoardList';
+				},
+				error : function() {
+					alert("에러나요");
+				}
+			})
+		}
+	}
+
+	//게시글 수정
+	function modifyFreeBoard() {
+
+	}
+
 	//신고된 리플 보기
 	function showBlackReply(replySeq) {
 		var blackReplyId = 'blackReply_' + replySeq;
@@ -313,9 +341,12 @@ h5 {
     <div class="container">
         <div class="row">
             <div class="col-lg-8 p-0">
-<!--                 <div class="section-title" style=""> -->
-<!--                   <h5>우리동네 소갈비살 1kg에 55,000원</h5> -->
-<!--                  </div> -->
+            	<c:if test="${sessionScope.id eq freeDetail.inUserId }">
+	                <div class="actForBoard">
+	                	<a href="javascript:modifyFreeBoard()"><span id="freeModify">수정하기</span></a>
+	                	<a href="javascript:deleteFreeBoard()"><span id="freeDelete">삭제하기</span></a>
+	                 </div>
+            	</c:if>
                 <div class="details-text">
                     <div class="dt-quote">
                         <p>${freeDetail.title }</p>

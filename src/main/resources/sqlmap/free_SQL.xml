@@ -39,7 +39,13 @@
         	)
     </insert>
 
-
+	<delete id="deleteFree">
+		DELETE FROM BROWNIE_BOARD
+		WHERE
+			BOARD_SEQ = #{boardSeq}
+		AND
+			IN_USER_ID = #{inUserId}
+	</delete>
 
 	<select id="selectRecentForMenu" resultType="kr.co.brownie.free.service.FreeVO">
 		 <![CDATA[
