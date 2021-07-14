@@ -24,7 +24,8 @@ public class NoticeController {
         String id = (String) session.getAttribute("id");
         model.addAttribute("id", id);
         if (id == null) {
-            return "redirect:/notice/list";
+            model.addAttribute("message","alert('로그인 후 이용가능합니다.'); location.href='/notice/list';");
+            return "common/message";
         }
         return "notice/noticeAdd"; // 공지 글쓰기
     }
@@ -39,7 +40,7 @@ public class NoticeController {
     }
 
     @GetMapping("/detail/{board_seq}")
-    public String detail(Model model, HttpSession session, @PathVariable int board_seq) {
+    public String detail(@PathVariable int board_seq,Model model, HttpSession session) {
         try {
             NoticeVO noticeVO = noticeService.getNotice(board_seq);
             String id = (String) session.getAttribute("id");
@@ -49,7 +50,7 @@ public class NoticeController {
             model.addAttribute("id", id);
             model.addAttribute("noticeVO", noticeVO);
         } catch (NullPointerException | NumberFormatException e) {
-            return "error/404";
+            return "redirect:notice/noticeDetail/"+board_seq;
         }
         return "notice/noticeDetail"; // 공지 디테일화면
     }
@@ -72,7 +73,7 @@ public class NoticeController {
     }
 
     @GetMapping("/update/{board_seq}")
-    public String update(Model model, HttpSession session,@PathVariable int board_seq) {
+    public String update(@PathVariable int board_seq,Model model, HttpSession session) {
         try{
             NoticeVO noticeVO = noticeService.getNotice(board_seq);
             String id = (String) session.getAttribute("id");
@@ -82,10 +83,10 @@ public class NoticeController {
             model.addAttribute("id",id);
             model.addAttribute("noticeVO", noticeVO);
             if (session.getAttribute("id") == null) {
-                return "redirect:/notice/detail?boardSeq=" + board_seq;
+                return "redirect:/notice/detail/" + board_seq;
             }
         }catch (NullPointerException| NumberFormatException e){
-            return "error/404";
+            return "notice/list";
         }
         return "notice/noticeUpdate";
     }
@@ -102,17 +103,17 @@ public class NoticeController {
             if (update > 0) {
                 return "redirect:/notice/detail/" + board_seq;
             }
-            if (this.noticeService.updateNotice(id,title,content,board_seq) != 1) {
+            if (update != 1) {
                 throw new NullPointerException();
             }
         }catch (NullPointerException | NumberFormatException e) {
-            return "error/404";
+            return "redirect:/notice/update/" + board_seq;
         }
         return "redirect:/notice/update/" + board_seq;
     }
 
     @PostMapping("/delete/{board_seq}")
-    public String delete(@PathVariable int board_seq,@RequestParam Map<String, Object> map) {
+    public String delete(@PathVariable int board_seq) {
         noticeService.deleteNotice(board_seq);
         return "redirect:/notice/list";
     }
