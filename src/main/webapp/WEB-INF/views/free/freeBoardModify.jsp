@@ -151,13 +151,13 @@
 								</c:if>
 								<div class="dt-quote input-list">
 									<span>제목</span>&nbsp;
-									<input type="text" value="${ }" class="title" id="title" name="title" required="required" />
+									<input type="text" value="" class="title" id="title" name="title" required="required" />
 								</div>
                                 <div class="content">
-                                    <textarea class="summernote" name="content" id="content" required="required">${ }</textarea>
+                                    <textarea class="summernote" name="content" id="content" required="required"></textarea>
                                 </div>
                                 <div class="tag-box">
-                                 <input type="text" value="${ }" class="tags" id="tags" name="tags" />
+                                 <input type="text" value="" class="tags" id="tags" name="tags" />
                                 </div>
                                 <div class="submit-box">
                                     <input type="submit" value="수정완료" class="submit" />
