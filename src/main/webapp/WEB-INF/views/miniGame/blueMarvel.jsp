@@ -219,7 +219,7 @@
 
 		status1.innerHTML = side1 + "!";
 
-		setTimeout('move(' + 13 + ')', 1900);
+		setTimeout('move(' + side1 + ')', 1900);
 	}
 	
 	//주사위 더블
@@ -268,12 +268,10 @@
 		}
 
 		setTimeout('move(' + diceTotal + ')', 2000);
-		oneInOne = true;
-
 	}
 	
 	function merchant(){
-		alert("안녕?");
+		setTimeout('alert('+playerPos+')', 500);
 	}
 	
 	//이동
@@ -282,7 +280,8 @@
 			if (playerPos == 16) {
 				playerPos = 0;
 				merchant();
-			} else if (0 <= playerPos && playerPos <= 3) {
+			}
+			if (0 <= playerPos && playerPos <= 3) {
 				leftMove();
 				playerPos++;
 			} else if (4 <= playerPos && playerPos <= 7) {
@@ -295,6 +294,7 @@
 				upMove();
 				playerPos++;
 			}
+			
 		}
 		setTimeout('diceApper()', 1500);
 	}
