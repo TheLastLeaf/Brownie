@@ -122,13 +122,13 @@
                     </div>
                 </div>
                 <div class="row champion-select overflow-auto overflow-x-hidden rounded">
-                        <div class="col-sm-2 col-lg-1 league-of-legends-champion">
-                            <a href="${pageContext.request.contextPath}/tip/list">
-                                <img src="https://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/29.png"
-                                     alt=""/>
-                                <p class="text-nowrap-overflow-ellipsis-hidden">전체</p>
-                            </a>
-                        </div>
+                    <div class="col-sm-2 col-lg-1 league-of-legends-champion">
+                        <a href="${pageContext.request.contextPath}/tip/list">
+                            <img src="https://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/29.png"
+                                 alt=""/>
+                            <p class="text-nowrap-overflow-ellipsis-hidden">전체</p>
+                        </a>
+                    </div>
                     <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
                         <div class="col-sm-2 col-lg-1 league-of-legends-champion">
                             <a href="?champion=${champion.id}">
@@ -162,25 +162,35 @@
                         </div>
                         <div class="cl-text">
                             <div class="label"><span>${tipVO.boardCategory}</span></div>
-                            <h5><a href="${pageContext.request.contextPath}/tip/details/${tipVO.boardSeq}">${tipVO.title}</a></h5>
+                            <h5>
+                                <a href="${pageContext.request.contextPath}/tip/details/${tipVO.boardSeq}">${tipVO.title}</a>
+                            </h5>
                             <ul>
-                                <li>by <span>${tipVO.inUserId}</span></li>
+                                <li>by <span>${tipVO.nickName}</span></li>
                                 <li><i class="far fa-clock"></i> ${tipVO.inDate}</li>
-                                <li><i class="far fa-comment"></i> 20</li>
+                                <li><i class="far fa-comment"></i> ${tipVO.replyCnt}</li>
                             </ul>
                         </div>
                     </div>
                 </c:forEach>
                 <div class="pagination-item">
+                    <c:choose>
+                        <c:when test="${champion eq null || champion eq ''}">
+                            <c:set var="paginationLink" value="?currentPageNumber="/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="paginationLink" value="?champion=${champion}&currentPageNumber="/>
+                        </c:otherwise>
+                    </c:choose>
                     <c:if test="${1 < tipPagingVO.startPageNumber}">
-                        <a href="?currentPageNumber=${tipPagingVO.startPageNumber - 1}"><span>Prev</span></a>
+                        <a href="${paginationLink}${tipPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                     </c:if>
                     <c:forEach var="pageNumber" begin="${tipPagingVO.startPageNumber}"
                                end="${tipPagingVO.endPageNumber}">
-                        <a href="?currentPageNumber=${pageNumber}"><span>${pageNumber}</span></a>
+                        <a href="${paginationLink}${pageNumber}"><span>${pageNumber}</span></a>
                     </c:forEach>
                     <c:if test="${tipPagingVO.endPageNumber < tipPagingVO.totalPageNumber}">
-                        <a href="?currentPageNumber=${tipPagingVO.endPageNumber + 1}"><span>Next</span></a>
+                        <a href="${paginationLink}${tipPagingVO.endPageNumber + 1}"><span>Next</span></a>
                     </c:if>
                 </div>
             </div>

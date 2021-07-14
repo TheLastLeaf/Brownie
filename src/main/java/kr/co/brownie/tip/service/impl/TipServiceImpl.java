@@ -59,4 +59,9 @@ public class TipServiceImpl implements TipService {
 
         return tipMapper.update(map);
     }
+
+    @Override
+    public int delete(int boardSeq) {
+        return tipMapper.delete(boardSeq);
+    }
 }

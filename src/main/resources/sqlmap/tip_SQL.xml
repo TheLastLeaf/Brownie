@@ -16,53 +16,80 @@
                INUSERID,
                "UPDATE",
                UPUSERID,
-               FILESEQ,
-               SUBSEQ
-        FROM (SELECT BOARD_SEQ      AS BOARDSEQ,
-                     BOARD_KIND     AS BOARDKIND,
-                     BOARD_CATEGORY AS BOARDCATEGORY,
-                     TITLE          AS TITLE,
-                     CONTENT        AS CONTENT,
-                     NOTICE_YN      AS NOTICEYN,
-                     STATUS         AS STATUS,
-                     IN_DATE        AS INDATE,
-                     IN_USER_ID     AS INUSERID,
-                     UP_DATE        AS "UPDATE",
-                     UP_USER_ID     AS UPUSERID,
-                     FILE_SEQ       AS FILESEQ,
-                     SUB_SEQ        AS SUBSEQ
-              FROM BROWNIE_BOARD
-              WHERE BOARD_KIND = 'tip'
-                AND (#{champion} IS NULL OR BOARD_CATEGORY = #{champion})
-              ORDER BY BOARD_SEQ DESC
+               LOLID,
+               NICKNAME,
+               REPLYCNT
+        FROM (SELECT BOARDSEQ,
+                     BOARDKIND,
+                     BOARDCATEGORY,
+                     TITLE,
+                     CONTENT,
+                     NOTICEYN,
+                     STATUS,
+                     INDATE,
+                     INUSERID,
+                     "UPDATE",
+                     UPUSERID,
+                     LOLID,
+                     NICKNAME,
+                     REPLYCNT,
+                     ROWNUM AS RN
+              FROM (SELECT BROWNIE_BOARD.BOARD_SEQ      AS BOARDSEQ,
+                           BROWNIE_BOARD.BOARD_KIND     AS BOARDKIND,
+                           BROWNIE_BOARD.BOARD_CATEGORY AS BOARDCATEGORY,
+                           BROWNIE_BOARD.TITLE          AS TITLE,
+                           BROWNIE_BOARD.CONTENT        AS CONTENT,
+                           BROWNIE_BOARD.NOTICE_YN      AS NOTICEYN,
+                           BROWNIE_BOARD.STATUS         AS STATUS,
+                           BROWNIE_BOARD.IN_DATE        AS INDATE,
+                           BROWNIE_BOARD.IN_USER_ID     AS INUSERID,
+                           BROWNIE_BOARD.UP_DATE        AS "UPDATE",
+                           BROWNIE_BOARD.UP_USER_ID     AS UPUSERID,
+                           BROWNIE_USER.LOL_ID          AS LOLID,
+                           BROWNIE_USER.NICK_NAME       AS NICKNAME,
+                           NVL(REPLY.CNT, 0)            AS REPLYCNT
+                    FROM BROWNIE_BOARD
+                             LEFT OUTER JOIN BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
+                             LEFT OUTER JOIN (SELECT BOARD_SEQ, COUNT(*) AS CNT FROM REPLY GROUP BY BOARD_SEQ) REPLY
+                                             ON BROWNIE_BOARD.BOARD_SEQ = REPLY.BOARD_SEQ
+                    WHERE UPPER(BROWNIE_BOARD.BOARD_KIND) = 'TIP'
+                      AND (#{champion} IS NULL OR BROWNIE_BOARD.BOARD_CATEGORY = #{champion})
+                    ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC
+                   )
              )
-        WHERE ${contentPerPage} * (${currentPageNumber} - 1) < ROWNUM
-          AND ROWNUM <= ${contentPerPage} * ${currentPageNumber}
+        WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN
+          AND RN <= ${contentPerPage} * ${currentPageNumber}
         ]]>
     </select>
+
     <select id="countTipList" parameterType="String" resultType="int">
         SELECT COUNT(*)
         FROM BROWNIE_BOARD
         WHERE BOARD_KIND = 'tip'
           AND (#{champion} IS NULL OR BOARD_CATEGORY = #{champion})
     </select>
+
     <select id="select" parameterType="int" resultType="kr.co.brownie.tip.service.TipVO">
-        SELECT BOARD_SEQ      AS BOARDSEQ,
-               BOARD_KIND     AS BOARDKIND,
-               BOARD_CATEGORY AS BOARDCATEGORY,
-               TITLE          AS TITLE,
-               CONTENT        AS CONTENT,
-               NOTICE_YN      AS NOTICEYN,
-               STATUS         AS STATUS,
-               IN_DATE        AS INDATE,
-               IN_USER_ID     AS INUSERID,
-               UP_DATE        AS "UPDATE",
-               UP_USER_ID     AS UPUSERID,
-               FILE_SEQ       AS FILESEQ,
-               SUB_SEQ        AS SUBSEQ
+        SELECT BROWNIE_BOARD.BOARD_SEQ      AS BOARDSEQ,
+               BROWNIE_BOARD.BOARD_KIND     AS BOARDKIND,
+               BROWNIE_BOARD.BOARD_CATEGORY AS BOARDCATEGORY,
+               BROWNIE_BOARD.TITLE          AS TITLE,
+               BROWNIE_BOARD.CONTENT        AS CONTENT,
+               BROWNIE_BOARD.NOTICE_YN      AS NOTICEYN,
+               BROWNIE_BOARD.STATUS         AS STATUS,
+               BROWNIE_BOARD.IN_DATE        AS INDATE,
+               BROWNIE_BOARD.IN_USER_ID     AS INUSERID,
+               BROWNIE_BOARD.UP_DATE        AS "UPDATE",
+               BROWNIE_BOARD.UP_USER_ID     AS UPUSERID,
+               BROWNIE_USER.LOL_ID          AS LOLID,
+               BROWNIE_USER.NICK_NAME       AS NICKNAME,
+               NVL(REPLY.CNT, 0)            AS REPLYCNT
         FROM BROWNIE_BOARD
-        WHERE BOARD_KIND = 'tip'
-          AND BOARD_SEQ = ${board_seq}
+                 LEFT OUTER JOIN BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
+                 LEFT OUTER JOIN (SELECT BOARD_SEQ, COUNT(*) AS CNT FROM REPLY GROUP BY BOARD_SEQ) REPLY
+                                 ON BROWNIE_BOARD.BOARD_SEQ = REPLY.BOARD_SEQ
+        WHERE UPPER(BROWNIE_BOARD.BOARD_KIND) = 'TIP'
+          AND BROWNIE_BOARD.BOARD_SEQ = ${boardSeq}
     </select>
 
     <insert id="insert" parameterType="hashMap">
@@ -94,6 +121,7 @@
                 null,
                 null)
     </insert>
+
     <update id="update" parameterType="hashMap">
         UPDATE BROWNIE_BOARD
         SET BOARD_CATEGORY = #{champion},
@@ -103,4 +131,10 @@
             UP_USER_ID     = #{author}
         WHERE BOARD_SEQ = #{boardSeq}
     </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE
+        FROM BROWNIE_BOARD
+        WHERE BOARD_SEQ = #{boardSeq}
+    </delete>
 </mapper>

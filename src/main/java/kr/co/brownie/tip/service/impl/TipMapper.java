@@ -14,9 +14,11 @@ public interface TipMapper {
 
     int countTipList(String champion);
 
-    TipVO select(int board_seq);
+    TipVO select(int boardSeq);
 
     int insert(Map<String, Object> map);
 
     int update(Map<String, Object> map);
+
+    int delete(int boardSeq);
 }

@@ -27,7 +27,13 @@ public class TipController {
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
 
     @GetMapping("/write")
-    public String write(Model model) {
+    public String write(Model model, HttpServletRequest httpServletRequest) {
+        if (httpServletRequest.getSession().getAttribute("id").toString() == null) {
+            model.addAttribute("message",
+                    "alert(\"로그인 후 작성할 수 있습니다.\")" +
+                            "location.href=\"/" + httpServletRequest.getContextPath() + "tip/list\";");
+            return "common/message";
+        }
         model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
         return "tip/write";
@@ -58,8 +64,7 @@ public class TipController {
         model.addAttribute("leagueOfLegendsChampionsVOList",
                 leagueOfLegendsChampionsService.selectRecentlyChampionsList());
         model.addAttribute("tipPagingVO", tipService.selectList(champion, currentPageNumber));
-
-        System.out.println(tipService.selectList(champion, currentPageNumber));
+        model.addAttribute("champion", champion);
 
         return "tip/list";
     }
@@ -122,5 +127,28 @@ public class TipController {
             return "error/404";
         }
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/list";
+    }
+
+    @GetMapping("/delete/{board_seq}")
+    public String delete(Model model, HttpServletRequest httpServletRequest, @PathVariable String board_seq) {
+        try {
+            int seq = Integer.parseInt(board_seq);
+            String author = httpServletRequest.getSession().getAttribute("id").toString();
+
+            TipVO tipVO = tipService.select(seq);
+            if (tipVO == null || !tipVO.getInUserId().equals(author)) {
+                return "error/500";
+            }
+
+            if (tipService.delete(seq) != 1) {
+                throw new NullPointerException();
+            }
+        } catch (NullPointerException | NumberFormatException e) {
+            return "error/404";
+        }
+        model.addAttribute("message",
+                "alert(\"삭제 완료\");" +
+                "location.href=\"/" + httpServletRequest.getContextPath() + "tip/list\";");
+        return "common/message";
     }
 }

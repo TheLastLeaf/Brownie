@@ -19,8 +19,9 @@ public class TipVO {
     private String inUserId;
     private Date upDate;
     private String upUserId;
-    private int fileSeq;
-    private int subSeq;
+    private String lolId;
+    private String nickName;
+    private int replyCnt;
 
     public String getImgSrc() {
         if (content == null) return "https://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/984.png";

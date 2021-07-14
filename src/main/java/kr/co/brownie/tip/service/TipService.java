@@ -10,4 +10,6 @@ public interface TipService {
     int insert(String author, String champion, String title, String content);
 
     int update(int boardSeq, String author, String champion, String title, String content);
+
+    int delete(int boardSeq);
 }

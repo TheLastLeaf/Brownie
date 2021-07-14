@@ -12,13 +12,13 @@
                     <div class="label"><span>${tipVO.boardCategory}</span></div>
                     <h3>${tipVO.title}</h3>
                     <ul>
-                        <li>by <span>${tipVO.inUserId}</span></li>
+                        <li>by <span>${tipVO.nickName}</span></li>
                         <li>
                             <i class="far fa-clock"></i>
                             <fmt:formatDate value="${tipVO.inDate}" pattern="yyyy-MM-dd HH:mm:ss" var="date"/>
                             ${date}
                         </li>
-                        <li><i class="far fa-comment"></i> 20</li>
+                        <li><i class="far fa-comment"></i> ${tipVO.replyCnt}</li>
                     </ul>
                 </div>
             </div>
@@ -32,28 +32,22 @@
     <div class="container">
         <div class="p-0">
             <div class="details-text">
-                ${tipVO.content}
-
+                <div class="dt-desc">
+                        ${tipVO.content}
+                </div>
                 <div class="dt-author">
                     <div class="da-pic">
                         <img src="/img/details/author-pic.jpg" alt="">
                     </div>
                     <div class="da-text">
-                        <h5>Almil Hmaper</h5>
+                        <h5>${tipVO.nickName}</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <div class="da-links">
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-google-plus"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-youtube-play"></i></a>
-                        </div>
                     </div>
                 </div>
                 <div class="dt-comment">
-                    <h4>3 comment</h4>
+                    <h4>${tipVO.replyCnt} comment</h4>
                     <div class="dc-item">
                         <div class="dc-pic">
                             <img src="/img/details/comment/comment-1.jpg" alt="">
