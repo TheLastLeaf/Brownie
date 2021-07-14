@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class BrownieMarbelInfoVO {
 	private int seq;
-	private int degree;
+	private String degree;
 	private String kind;
 	private String name;
 	private String briefExpl;

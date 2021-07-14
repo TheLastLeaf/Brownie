@@ -50,7 +50,7 @@ public class NoticeController {
             model.addAttribute("id", id);
             model.addAttribute("noticeVO", noticeVO);
         } catch (NullPointerException | NumberFormatException e) {
-            return "redirect:notice/noticeDetail/"+board_seq;
+            return "redirect:notice/list";
         }
         return "notice/noticeDetail"; // 공지 디테일화면
     }
