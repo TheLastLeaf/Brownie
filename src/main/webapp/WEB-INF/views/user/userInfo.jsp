@@ -640,8 +640,7 @@ h1 {
 	}
 
 	function fn_infoMod(userId) {
-		window.open("/user/userModify?userId="+ userId, "userModify",
-				"width=800, height=680, left=250,top=200");
+		window.open("/user/userModify/"+ userId, "userModify", "width=800, height=680, left=250,top=200");
 	}
 
 	function fn_review() {

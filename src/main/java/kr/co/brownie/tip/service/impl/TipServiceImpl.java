@@ -1,6 +1,5 @@
 package kr.co.brownie.tip.service.impl;
 
-import kr.co.brownie.reply.service.ReplyVO;
 import kr.co.brownie.tip.service.*;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,8 @@ public class TipServiceImpl implements TipService {
     TipMapper tipMapper;
 
     @Override
-    public TipPagingVO selectList(String champion, int currentPageNumber) {
+    public TipPagingVO selectList(String champion,
+                                  int currentPageNumber) {
         Map<String, Object> map = new HashMap<>();
         map.put("champion", champion);
         map.put("contentPerPage", CONTENT_PER_PAGE);
@@ -37,7 +37,10 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
-    public int insert(String author, String champion, String title, String content) {
+    public int insert(String author,
+                      String champion,
+                      String title,
+                      String content) {
         Map<String, Object> map = new HashMap<>();
         map.put("author", author);
         map.put("champion", champion);
@@ -48,7 +51,11 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
-    public int update(int boardSeq, String author, String champion, String title, String content) {
+    public int update(int boardSeq,
+                      String author,
+                      String champion,
+                      String title,
+                      String content) {
         Map<String, Object> map = new HashMap<>();
         map.put("boardSeq", boardSeq);
         map.put("author", author);
@@ -65,7 +72,9 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
-    public TipReplyPagingVO selectReplyList(int boardSeq, int currentReplyPageNumber, int totalReplyCount) {
+    public TipReplyPagingVO selectReplyList(int boardSeq,
+                                            int currentReplyPageNumber,
+                                            int totalReplyCount) {
         Map<String, Object> map = new HashMap<>();
         map.put("boardSeq", boardSeq);
         map.put("replyPerPage", REPLY_PER_PAGE);
@@ -81,7 +90,10 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
-    public int insertReply(int boardSeq, String author, String message, String headReplySeq) {
+    public int insertReply(int boardSeq,
+                           String author,
+                           String message,
+                           String headReplySeq) {
         Map<String, Object> map = new HashMap<>();
         map.put("boardSeq", boardSeq);
         map.put("author", author);
@@ -92,7 +104,8 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
-    public TipReplyVO selectReply(int boardSeq, int replySeq) {
+    public TipReplyVO selectReply(int boardSeq,
+                                  int replySeq) {
         Map<String, Object> map = new HashMap<>();
         map.put("boardSeq", boardSeq);
         map.put("replySeq", replySeq);

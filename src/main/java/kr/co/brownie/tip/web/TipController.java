@@ -2,7 +2,6 @@ package kr.co.brownie.tip.web;
 
 import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
 import kr.co.brownie.leagueoflegends.versions.service.LeagueOfLegendsVersionsService;
-import kr.co.brownie.reply.service.ReplyVO;
 import kr.co.brownie.tip.service.TipReplyVO;
 import kr.co.brownie.tip.service.TipService;
 import kr.co.brownie.tip.service.TipVO;
@@ -29,7 +28,8 @@ public class TipController {
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
 
     @GetMapping("/write")
-    public String write(Model model, HttpServletRequest httpServletRequest) {
+    public String write(Model model,
+                        HttpServletRequest httpServletRequest) {
         if (httpServletRequest.getSession().getAttribute("id").toString() == null) {
             model.addAttribute("message",
                     "alert(\"로그인 후 작성할 수 있습니다.\")" +
@@ -54,7 +54,8 @@ public class TipController {
     }
 
     @GetMapping({"", "/list"})
-    public String list(HttpServletRequest httpServletRequest, Model model) {
+    public String list(HttpServletRequest httpServletRequest,
+                       Model model) {
         String champion = httpServletRequest.getParameter("champion") == null ? "" : httpServletRequest.getParameter("champion");
         int currentPageNumber;
         try {
@@ -72,7 +73,9 @@ public class TipController {
     }
 
     @GetMapping("/details/{board_seq}")
-    public String details(@PathVariable String board_seq, Model model, HttpServletRequest httpServletRequest) {
+    public String details(@PathVariable String board_seq,
+                          Model model,
+                          HttpServletRequest httpServletRequest) {
 
         int seq;
         TipVO tipVO;
@@ -104,7 +107,9 @@ public class TipController {
     }
 
     @GetMapping("/modify/{board_seq}")
-    public String modify(@PathVariable String board_seq, Model model, HttpServletRequest httpServletRequest) {
+    public String modify(@PathVariable String board_seq,
+                         Model model,
+                         HttpServletRequest httpServletRequest) {
         try {
             int seq = Integer.parseInt(board_seq);
             String id = httpServletRequest.getSession().getAttribute("id").toString();
@@ -125,7 +130,8 @@ public class TipController {
     }
 
     @PostMapping("/modify/{board_seq}")
-    public String update(HttpServletRequest httpServletRequest, @PathVariable String board_seq) {
+    public String update(HttpServletRequest httpServletRequest,
+                         @PathVariable String board_seq) {
         try {
             int seq = Integer.parseInt(board_seq);
             String author = httpServletRequest.getSession().getAttribute("id").toString();
@@ -148,7 +154,9 @@ public class TipController {
     }
 
     @GetMapping("/delete/{board_seq}")
-    public String delete(Model model, HttpServletRequest httpServletRequest, @PathVariable String board_seq) {
+    public String delete(Model model,
+                         HttpServletRequest httpServletRequest,
+                         @PathVariable String board_seq) {
         try {
             int seq = Integer.parseInt(board_seq);
             String author = httpServletRequest.getSession().getAttribute("id").toString();
@@ -171,7 +179,9 @@ public class TipController {
     }
 
     @PostMapping("/details/{board_seq}")
-    public String writeReply(Model model, HttpServletRequest httpServletRequest, @PathVariable String board_seq) {
+    public String writeReply(Model model,
+                             HttpServletRequest httpServletRequest,
+                             @PathVariable String board_seq) {
         String author = httpServletRequest.getSession().getAttribute("id").toString();
         int seq;
         try {
@@ -197,7 +207,10 @@ public class TipController {
     }
 
     @GetMapping("/details/{board_seq}/delete/{reply_seq}")
-    public String deleteReply(Model model, HttpServletRequest httpServletRequest, @PathVariable String board_seq, @PathVariable String reply_seq) {
+    public String deleteReply(Model model,
+                              HttpServletRequest httpServletRequest,
+                              @PathVariable String board_seq,
+                              @PathVariable String reply_seq) {
         int boardSeq;
         int replySeq;
         if (httpServletRequest.getSession().getAttribute("id") != null) {
