@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryVO;
 import kr.co.brownie.reply.service.ReplyVO;
@@ -34,4 +35,6 @@ public interface GalleryMapper {
     int insertThumb(String fileName);
     
     ReplyVO galleryAB(int boardSeq);
+    
+    List<GalleryVO> selectAB(int boardSeq);
 }

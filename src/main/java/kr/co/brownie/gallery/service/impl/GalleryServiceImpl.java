@@ -74,4 +74,9 @@ public class GalleryServiceImpl implements GalleryService {
 	public ReplyVO galleryAB(int boardSeq) {
 		return galleryMapper.galleryAB(boardSeq);
 	}
+
+	@Override
+	public List<GalleryVO> selectAB(int boardSeq) {
+		return galleryMapper.selectAB(boardSeq);
+	}
 }

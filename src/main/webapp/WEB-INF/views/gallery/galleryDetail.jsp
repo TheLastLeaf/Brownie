@@ -6,6 +6,14 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
+<style>
+
+.dThumb{
+	height:100px;
+}
+
+</style>
+
 <script>
 function likeHateCheck(kind) {
 	console.log(${ galleryVO.boardSeq })
@@ -122,7 +130,7 @@ function fn_delete(){
                                 <a href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${freePrev.boardSeq}" class="rp-prev">
                                     <span>Prev</span>
                                     <div class="rp-pic">
-                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
+                                        <img class="dThumb" src="${pageContext.request.contextPath}${freePrev.fileSeq}" alt="">
                                     </div>
                                     <div class="rp-text">
                                         <h6>${freePrev.title }</h6>
@@ -141,7 +149,7 @@ function fn_delete(){
                                 <a href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${freeNext.boardSeq}" class="rp-next">
                                     <span>Next</span>
                                     <div class="rp-pic">
-                                        <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png" alt="">
+                                        <img class="dThumb" src="${pageContext.request.contextPath}${freeNext.fileSeq}" alt="">
                                     </div>
                                     <div class="rp-text">
                                         <h6>${freeNext.title }</h6>
@@ -170,7 +178,7 @@ function fn_delete(){
                         <h4>3 comment</h4>
                         <div class="dc-item">
                             <div class="dc-pic">
-                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
+                                <img class="dThumb" src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>Brandon Kelley</h5>

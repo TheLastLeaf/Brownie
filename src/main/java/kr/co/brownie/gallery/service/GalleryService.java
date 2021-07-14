@@ -27,4 +27,6 @@ public interface GalleryService {
     public int selectFile(String fileName);
     
     public ReplyVO galleryAB(int boardSeq);
+    
+    List<GalleryVO> selectAB(int boardSeq);
 }

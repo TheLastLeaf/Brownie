@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.common.service.CommonService;
+import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
@@ -82,10 +83,23 @@ public class GalleryController {
 		List<FileVO> fileVOList;
 		
 		
-		System.out.println("boardSeq"+boardSeq);
+		//
+		List<GalleryVO> freeRecent = this.galleryService.selectAB(boardSeq);
+    	for(GalleryVO freeRecentOne : freeRecent) {
+    		if(freeRecentOne.getBoardSeq() < boardSeq) {
+    			//게시글 번호가 해당 게시글 번호보다 작다면 이전 게시글
+    			model.addAttribute("freePrev", freeRecentOne);
+    		} else if(freeRecentOne.getBoardSeq() > boardSeq) {
+    			//게시글 번호가 해당 게시글 번호보다 크다면 다음 게시글
+    			model.addAttribute("freeNext", freeRecentOne);
+    		}
+    	}
+		
+		//
+		
 		//이전글 다음글
 		
-		ReplyVO recentBoardReplyDate = replyService.boardReplyCnt(boardSeq);
+		ReplyVO recentBoardReplyDate = this.galleryService.galleryAB(boardSeq);
     	model.addAttribute("recentBoardReplyDate", recentBoardReplyDate);
     	
     	System.out.println("recentBoardReplyDate"+recentBoardReplyDate);
