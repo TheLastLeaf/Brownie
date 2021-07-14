@@ -71,18 +71,13 @@ public class TipController {
 
     @GetMapping("/details/{board_seq}")
     public String details(@PathVariable String board_seq, Model model, HttpServletRequest httpServletRequest) {
-        int currentReplyPageNumber;
-        try {
-            currentReplyPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("currentPage")), 1);
-        } catch (NullPointerException | NumberFormatException e) {
-            currentReplyPageNumber = 1;
-        }
 
         int seq;
+        TipVO tipVO;
         try {
             seq = Integer.parseInt(board_seq);
 
-            TipVO tipVO = tipService.select(seq);
+            tipVO = tipService.select(seq);
             if (tipVO == null) {
                 throw new NullPointerException();
             }
@@ -91,8 +86,19 @@ public class TipController {
             return "error/404";
         }
 
-        model.addAttribute("tipReplyPagingVO", tipService.selectReplyList(seq, currentReplyPageNumber));
-        return "tip/details"; // 기본화면
+        int totalReplyCount = tipVO.getReplyCnt();
+        int currentReplyPageNumber;
+        try {
+            currentReplyPageNumber = Integer.parseInt(httpServletRequest.getParameter("currentReplyPageNumber"));
+            if (currentReplyPageNumber < 1 || (totalReplyCount - 1) / tipService.REPLY_PER_PAGE + 1 < currentReplyPageNumber) {
+                currentReplyPageNumber = (totalReplyCount - 1) / tipService.REPLY_PER_PAGE + 1;
+            }
+        } catch (NullPointerException | NumberFormatException e) {
+            currentReplyPageNumber = (totalReplyCount - 1) / tipService.REPLY_PER_PAGE + 1;
+        }
+
+        model.addAttribute("tipReplyPagingVO", tipService.selectReplyList(seq, currentReplyPageNumber, totalReplyCount));
+        return "tip/details";
     }
 
     @GetMapping("/modify/{board_seq}")
