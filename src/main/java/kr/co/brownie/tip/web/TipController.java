@@ -169,7 +169,7 @@ public class TipController {
     }
 
     @PostMapping("/details/{board_seq}")
-    public String writeReply(HttpServletRequest httpServletRequest, @PathVariable String board_seq) {
+    public String writeReply(Model model, HttpServletRequest httpServletRequest, @PathVariable String board_seq) {
         String author = httpServletRequest.getSession().getAttribute("id").toString();
         int seq;
         try {
@@ -178,10 +178,18 @@ public class TipController {
             return "error/404";
         }
 
-        String message = httpServletRequest.getParameter("message");
+        String message = httpServletRequest.getParameter("message").trim();
+        if (message.length() == 0) {
+            model.addAttribute("message", "alert(\"댓글을 입력해주세요.\");history.go(-1);");
+            return "common/message";
+        }
         String headReplySeq = httpServletRequest.getParameter("headReplySeq") == null ? "" : httpServletRequest.getParameter("headReplySeq");
 
-        tipService.insertReply(seq, author, message, headReplySeq);
+        int result = tipService.insertReply(seq, author, message, headReplySeq);
+        if (result != 1) {
+            model.addAttribute("message", "alert(\"댓글 등록 중 문제가 발생했습니다.\");history.go(-1);");
+            return "common/message";
+        }
 
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/details/" + board_seq;
     }

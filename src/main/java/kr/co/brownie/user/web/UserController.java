@@ -11,12 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.brownie.fileUpload.service.FileService;
@@ -49,69 +44,63 @@ public class UserController {
      * @throws Exception
      * @author 박세웅
      */
-    @GetMapping("/userInfo")
-    public String userInfo(Model model, HttpSession httpSession, ReviewPagingVO page) throws Exception {
-        String id = (String) httpSession.getAttribute("id");
+    @GetMapping("/userInfo/{user_id}")
+    public String userInfo(Model model, HttpSession httpSession, ReviewPagingVO page, @PathVariable String user_id) throws Exception {
 
-        /* 로그인후 session in 되었을때 */
-        if (id != null) {
-            UserVO userOneSelect = userService.userOneSelect(id);
-            System.out.println("userOneSelect: " + userOneSelect);
-
-            // 프로필 사진들고오기 
-            String selectProfile = fileService.selectProfile(id);
-            
-            // 경험치 select
-            int exp = userService.selectExp(id);
-
-            // 별카운트
-            float starCnt = userService.starCntSelect(id);
-            int fullStar = (int) starCnt / 1;
-            float halfStar = starCnt - fullStar;
-            if (halfStar >= 0.5) {
-                halfStar = 1;
-            }
-
-            // 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
-            int boardTotalCnt = userService.boardTotalCnt(id);
-            int replyTotalCnt = userService.replyTotalCnt(id);
-            int likeReplyCnt = userService.likeReplyCnt(id);
-            int hateReplyCnt = userService.hateReplyCnt(id);
-
-            // 로그인한 사람의 최근 게시글 3개가져오기
-            List<String> recentBoard = userService.recentBoard(id);
-
-            // 후기 페이징
-            page.setId(id);
-            page.setTotalCount(reviewService.countAllReview(page));
-
-            // 리뷰
-            List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
-
-            // model.addattribute
-            model.addAttribute("userOneSelect", userOneSelect);
-            model.addAttribute("selectProfile",selectProfile);
-            
-            model.addAttribute("exp", exp);
-            model.addAttribute("fullStar", fullStar);
-            if (halfStar == 1) {
-                model.addAttribute("halfStar", halfStar);
-            }
-            model.addAttribute("boardTotalCnt", boardTotalCnt);
-            model.addAttribute("replyTotalCnt", replyTotalCnt);
-            model.addAttribute("likeReplyCnt", likeReplyCnt);
-            model.addAttribute("hateReplyCnt", hateReplyCnt);
-            model.addAttribute("recentBoard", recentBoard);
-
-            model.addAttribute("reviewVOs", reviewVOs);
-            model.addAttribute("page", page);
-
-//            System.out.println("reviewVOs: " + reviewVOs);
-//            System.out.println("page: " + page);
-//            System.out.println("selectProfile: "+ selectProfile);
-
-            return "user/userInfo";
+        UserVO userOneSelect = userService.userOneSelect(user_id);
+        if (userOneSelect == null) {
+            model.addAttribute("message", "alert(\"등록되지 않은 유저입니다.\");history.go(-1);");
+            return "common/message";
         }
+
+        // 프로필 사진들고오기
+        String selectProfile = fileService.selectProfile(user_id);
+
+        // 경험치 select
+        int exp = userService.selectExp(user_id);
+
+        // 별카운트
+        float starCnt = userService.starCntSelect(user_id);
+        int fullStar = (int) starCnt;
+        float halfStar = starCnt - fullStar;
+        if (halfStar >= 0.5) {
+            halfStar = 1;
+        }
+
+        // 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
+        int boardTotalCnt = userService.boardTotalCnt(user_id);
+        int replyTotalCnt = userService.replyTotalCnt(user_id);
+        int likeReplyCnt = userService.likeReplyCnt(user_id);
+        int hateReplyCnt = userService.hateReplyCnt(user_id);
+
+        // 로그인한 사람의 최근 게시글 3개가져오기
+        List<String> recentBoard = userService.recentBoard(user_id);
+
+        // 후기 페이징
+        page.setId(user_id);
+        page.setTotalCount(reviewService.countAllReview(page));
+
+        // 리뷰
+        List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
+
+        // model.addattribute
+        model.addAttribute("userOneSelect", userOneSelect);
+        model.addAttribute("selectProfile", selectProfile);
+
+        model.addAttribute("exp", exp);
+        model.addAttribute("fullStar", fullStar);
+        if (halfStar == 1) {
+            model.addAttribute("halfStar", halfStar);
+        }
+        model.addAttribute("boardTotalCnt", boardTotalCnt);
+        model.addAttribute("replyTotalCnt", replyTotalCnt);
+        model.addAttribute("likeReplyCnt", likeReplyCnt);
+        model.addAttribute("hateReplyCnt", hateReplyCnt);
+        model.addAttribute("recentBoard", recentBoard);
+
+        model.addAttribute("reviewVOs", reviewVOs);
+        model.addAttribute("page", page);
+
         return "user/userInfo";
     }
 
@@ -122,6 +111,10 @@ public class UserController {
         // 세션 아이디 -> map에 삽입
         String id = (String) httpSession.getAttribute("id");
         map.put("id", id);
+
+        // 내부경로로 저장
+        // String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
+        // String uploadFolder = contextRoot + "resources/static/img/userProfile/";
 
         // 파일 저장되는 경로
         String uploadFolder = "C:\\Users\\PC13\\git\\Brownie\\src\\main\\resources\\static\\img\\userProfile";
@@ -153,7 +146,7 @@ public class UserController {
         userService.insertNickPosition(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
 //        FileService.updateProfile(map);
         System.out.println("map : " + map);
-        
+
         return "/img/userProfile" + profilePath;
     }
 

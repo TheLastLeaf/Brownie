@@ -10,6 +10,4 @@ public interface FileService {
 	void updateProfile(Map<String, Object> map);
 
 	String selectProfile(String id);
-
-
 }
