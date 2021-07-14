@@ -140,18 +140,31 @@ public class FreeController {
     }
 
     @GetMapping("/freeBoardModify/{boardSeq}")
-    public String freeModify(HttpServletRequest servletRequest, @PathVariable String boardSeq){
-    	int boardSeqForMod = Integer.parseInt(boardSeq);
-    	System.out.println("freeModify 여기 들어와있음! ");
-    	System.out.println("boardSeq : "+boardSeq);
-    	return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
+    public String freeModify(Model model, HttpServletRequest servletRequest, @PathVariable int boardSeq){
+		String inUserId = servletRequest.getSession().getAttribute("id").toString();
+		if(inUserId == null){
+			return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
+		}
+		try {
+			//여기서 뭘 해줄 거냐면 ... 받아온 보드 시퀀스로 기존에 저장된 보드 값을 불러올것임. 그래야 이 친구를 수정 창에 뿌려줄 수 있음.
+			//해당 시퀀스의 값이 디비에 없을 경우 등등 오류가 뜰 수도 있어서 일단 트라이캐치 안에 넣어줌
+			FreeVO freeVO = freeService.selectDetail(boardSeq);
+
+			//저장된 보드값을 불러오면 그걸 모델에 넣어줌^_^ ! 그럼 우리친구는 jsp단에 model을 들고가는것임! (아마도)
+			model.addAttribute("freeVO",freeVO);
+			model.addAttribute("inUserId",inUserId);
+		}catch (Exception e){
+			System.out.println(e);
+			return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
+		}
+		return "redirect:/free/freeBoardModify";
     }
 
     @PostMapping("/freeBoardModify/{boardSeq}")
     public String freeModPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest, @PathVariable String boardSeq){
     	int boardSeqForMod = Integer.parseInt(boardSeq);
 
-    	return "redirect:/free/freeBoardDetail?boardSeq=" + boardSeq;
+    	return "redirect:/free/freeBoardDetail";
     }
 
 	@ResponseBody
