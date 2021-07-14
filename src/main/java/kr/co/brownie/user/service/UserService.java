@@ -26,4 +26,5 @@ public interface UserService {
 
 	void insertNickPosition(Map<String, Object> map) throws IOException;
 
+	String nickName(String id);
 }

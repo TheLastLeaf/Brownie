@@ -30,4 +30,6 @@ public interface UserMapper {
 
 	List<UserVO> selectList();
 
+	String nickName(String id);
+
 }

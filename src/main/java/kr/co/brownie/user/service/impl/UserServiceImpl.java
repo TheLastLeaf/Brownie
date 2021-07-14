@@ -94,4 +94,9 @@ public class UserServiceImpl implements UserService {
 		userMapper.insertNickPosition(map);
 	}
 
+	@Override
+	public String nickName(String id) {
+		return userMapper.nickName(id);
+	}
+
 }

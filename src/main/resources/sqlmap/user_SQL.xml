@@ -111,4 +111,10 @@
 		ORDER BY UP_DATE DESC
 	]]>
 	</select>
+
+	<select id="nickName" resultType="String" parameterType="String">
+		SELECT NICK_NAME AS NICKNAME
+		FROM BROWNIE_USER
+		WHERE USER_ID = #{id}
+	</select>
 </mapper>
