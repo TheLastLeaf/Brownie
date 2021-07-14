@@ -67,19 +67,18 @@ public class TipServiceImpl implements TipService {
     }
 
     @Override
-    public TipReplyPagingVO selectReplyList(int boardSeq, int currentReplyPageNumber) {
+    public TipReplyPagingVO selectReplyList(int boardSeq, int currentReplyPageNumber, int totalReplyCount) {
         Map<String, Object> map = new HashMap<>();
         map.put("boardSeq", boardSeq);
         map.put("replyPerPage", REPLY_PER_PAGE);
         map.put("currentReplyPageNumber", currentReplyPageNumber);
-        int total = tipMapper.countTipReplyList(boardSeq);
         return TipReplyPagingVO.builder()
                 .tipReplyVOList(tipMapper.selectReplyList(map))
                 .replyPerPage(REPLY_PER_PAGE)
                 .startPageNumber((currentReplyPageNumber - 1) / REPLY_PER_PAGE + 1)
                 .currentPageNumber(currentReplyPageNumber)
-                .endPageNumber(Math.min((currentReplyPageNumber - 1) / REPLY_PER_PAGE + 10, (total - 1) / REPLY_PER_PAGE + 1))
-                .totalPageNumber((total - 1) / REPLY_PER_PAGE + 1)
+                .endPageNumber(Math.min((currentReplyPageNumber - 1) / REPLY_PER_PAGE + 10, (totalReplyCount - 1) / REPLY_PER_PAGE + 1))
+                .totalPageNumber((totalReplyCount - 1) / REPLY_PER_PAGE + 1)
                 .build();
     }
 
