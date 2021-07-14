@@ -67,61 +67,72 @@
 </script>
 
 <style>
-    .spad{
+    .spad {
         padding-top: 150px;
         padding-bottom: 100px;
     }
-    .cont-spad{
+
+    .cont-spad {
         padding-top: 50px;
         padding-bottom: 50px;
     }
-    .summernote, .dt-quote{
+
+    .summernote, .dt-quote {
         color: #666666;
     }
+
     .title {
-		width:75%;
-		border:none;
-		background-color:#252525;
-		color:white;
+        width: 75%;
+        border: none;
+        background-color: #252525;
+        color: white;
     }
-    .card{
+
+    .card {
         background-color: black;
     }
-    .card-header{
+
+    .card-header {
         border: 1px solid #666666;
     }
-    .submit{
-		font-size: 15px;
-	    color: #ffffff;
-	    font-weight: 600;
-	    text-transform: uppercase;
-	    background: #252525;
-	    border: none;
-	    width: 100%;
-	    padding: 12px 0;
+
+    .submit {
+        font-size: 15px;
+        color: #ffffff;
+        font-weight: 600;
+        text-transform: uppercase;
+        background: #252525;
+        border: none;
+        width: 100%;
+        padding: 12px 0;
     }
-    .submit-box, .tag-box{
+
+    .submit-box, .tag-box {
         padding-top: 10px;
     }
-	.modal-header, .modal-bottom, .modal-footer, .modal-title {
-		background-color: #252525;
-		color: #252525;
-	}
-	.modal-body {
-		background-color: #000000;
-		color: #ffffff;
-	}
-	.tags {
+
+    .modal-header, .modal-bottom, .modal-footer, .modal-title {
+        background-color: #252525;
+        color: #252525;
+    }
+
+    .modal-body {
+        background-color: #000000;
+        color: #ffffff;
+    }
+
+    .tags {
         width: 100%;
         background-color: black;
         border: 1px solid #000000;
-        color:white;
+        color: white;
         font-size: 12px;
-	}
-	.noticeYn{
+    }
+
+    .noticeYn {
         font-size: 12px;
-		color: #ffffff;
-	}
+        color: #ffffff;
+    }
 
 </style>
 
@@ -135,23 +146,27 @@
                         <div class="contact-form">
                             <div class="dt-leave-comment">
                                 <input type="hidden" name="inUserId" value="${inUserId }" id="inUserId">
-								<c:if test="${permit_level eq 9 }">
-									<div class="noticeCheck">
-										<label class="noticeYn"><input type="checkbox" name="noticeYn" value="noticeYn" />&nbsp;&nbsp;공지사항여부</label>
-									</div>
-								</c:if>
-								<div class="dt-quote input-list">
-									<span>제목</span>&nbsp;
-									<input type="text" class="title"  id="title" name="title" required="required" placeholder="제목을 입력하세요" />
-								</div>
+                                <c:if test="${permit_level eq 9 }">
+                                    <div class="noticeCheck">
+                                        <label class="noticeYn"><input type="checkbox" name="noticeYn"
+                                                                       value="noticeYn"/>&nbsp;&nbsp;공지사항여부</label>
+                                    </div>
+                                </c:if>
+                                <div class="dt-quote input-list">
+                                    <span>제목</span>&nbsp;
+                                    <input type="text" class="title" id="title" name="title" required="required"
+                                           placeholder="제목을 입력하세요"/>
+                                </div>
                                 <div class="content">
-                                    <textarea class="summernote" name="content" id="content" required="required"></textarea>
+                                    <textarea class="summernote" name="content" id="content"
+                                              required="required"></textarea>
                                 </div>
                                 <div class="tag-box">
-                                 <input type="text" placeholder="태그 작성 시 쉼표로 구분해 주세요. 예시) 롤,티모,웃는게,귀여워" class="tags" id="tags" name="tags" />
+                                    <input type="text" placeholder="태그 작성 시 쉼표로 구분해 주세요. 예시) 롤,티모,웃는게,귀여워" class="tags"
+                                           id="tags" name="tags"/>
                                 </div>
                                 <div class="submit-box">
-                                    <input type="submit" value="등록" class="submit" />
+                                    <input type="submit" value="등록" class="submit"/>
                                 </div>
                             </div>
                         </div>

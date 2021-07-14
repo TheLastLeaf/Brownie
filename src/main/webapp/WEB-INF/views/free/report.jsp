@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,18 +38,18 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 </head>
 <script>
-    $(document).ready(function() {
-        $('#content').on('keyup', function() {
-            $('#content_cnt').html("("+$(this).val().length+" / 1000)");
+    $(document).ready(function () {
+        $('#content').on('keyup', function () {
+            $('#content_cnt').html("(" + $(this).val().length + " / 1000)");
 
-            if($(this).val().length > 1000) {
+            if ($(this).val().length > 1000) {
                 $(this).val($(this).val().substring(0, 1000));
                 $('#content_cnt').html("(1000 / 1000)");
             }
         });
     });
 
-    function fn_submit(){
+    function fn_submit() {
         const userId = $(".userId").val();
         const reportName = []
         const content = $(".content").val();
@@ -59,15 +59,15 @@
         })
 
         $.ajax({
-            url : "./report",
-            type : "POST",
-            data : {
-                "userId" : userId,
-                "reportName" : reportName,
-                "content" : content
+            url: "./report",
+            type: "POST",
+            data: {
+                "userId": userId,
+                "reportName": reportName,
+                "content": content
             },
-            success : function(res) {
-                if(res === "success"){
+            success: function (res) {
+                if (res === "success") {
                     alert("신고 접수 성공");
                     window.close();
                 } else if (res === "fail") {
@@ -77,7 +77,7 @@
                     window.close();
                 }
             },
-            error : function() {
+            error: function () {
                 alert("신고 접수 실패");
             }
         })
@@ -85,10 +85,11 @@
 
 </script>
 <style>
-    .userName{
+    .userName {
         color: white;
     }
-    #content_cnt{
+
+    #content_cnt {
         color: white;
     }
 
@@ -97,80 +98,86 @@
         position: relative;
         top: 1.5px;
     }
+
     label[for="abuseId"] {
         position: relative;
         top: -1.5px;
     }
-    label{
+
+    label {
         color: white;
     }
-    .form-check{
+
+    .form-check {
         font-family: MapleLight;
         margin-bottom: 10px;
     }
-    .container{
+
+    .container {
         height: 490px;
     }
 </style>
 <body style="background-color: black">
-    <div class="container" style="border: 1px solid white;">
-        <div class="row">
-            <div class="col text-center">
-                <input type="hidden" name="userId" value="${userId}" class="userId">
-                <p>
-                <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${userId}</h5>
-                </p>
-                <div class="form-check">
-                    <input class="form-check-input reportName" type="checkbox" value="욕설" name="reportName" id="abuse">
-                    <label class="form-check-label" for="abuse">
-                        욕설
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input reportName" type="checkbox" value="부적절한 내용" name="reportName" id="abusecon">
-                    <label class="form-check-label" for="abusecon">
-                        부적절한 내용
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input reportName" type="checkbox" value="부적절한 아이디" name="reportName" id="abuseId">
-                    <label class="form-check-label" for="abuseId">
-                        부적절한 아이디
-                    </label>
-                </div>
-                <p>
-                    <b class="font-family-maple-bold">신고내용</b>
-                    <br />
-                    <textarea cols="30" rows="5" id="content" name="content" class="content"></textarea>
-                    <div id="content_cnt">(0 / 1000)</div>
-                </p>
-                <div class="submit">
-                    <input type="button" value="신고하기" class="btn btn-light" onclick="fn_submit()">
-                </div>
+<div class="container" style="border: 1px solid white;">
+    <div class="row">
+        <div class="col text-center">
+            <input type="hidden" name="userId" value="${userId}" class="userId">
+            <p>
+            <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${userId}</h5>
+            </p>
+            <div class="form-check">
+                <input class="form-check-input reportName" type="checkbox" value="욕설" name="reportName" id="abuse">
+                <label class="form-check-label" for="abuse">
+                    욕설
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input reportName" type="checkbox" value="부적절한 내용" name="reportName"
+                       id="abusecon">
+                <label class="form-check-label" for="abusecon">
+                    부적절한 내용
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input reportName" type="checkbox" value="부적절한 아이디" name="reportName"
+                       id="abuseId">
+                <label class="form-check-label" for="abuseId">
+                    부적절한 아이디
+                </label>
+            </div>
+            <p>
+                <b class="font-family-maple-bold">신고내용</b>
+                <br/>
+                <textarea cols="30" rows="5" id="content" name="content" class="content"></textarea>
+            <div id="content_cnt">(0 / 1000)</div>
+            </p>
+            <div class="submit">
+                <input type="button" value="신고하기" class="btn btn-light" onclick="fn_submit()">
             </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
-            integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"
-            integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://raw.githubusercontent.com/9bitStudios/barfiller/master/js/jquery.barfiller.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.js"
-            integrity="sha512-AmJ0T6lpw/ZQtCleMyfbraDy8AGQ9tWaB/PmRkXdKxH9Kvo0oTuW6+2hTEQ89mHkFIO/LpColEe3+QE+FJtgIg=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-            integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
-            integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+        integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"
+        integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://raw.githubusercontent.com/9bitStudios/barfiller/master/js/jquery.barfiller.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.js"
+        integrity="sha512-AmJ0T6lpw/ZQtCleMyfbraDy8AGQ9tWaB/PmRkXdKxH9Kvo0oTuW6+2hTEQ89mHkFIO/LpColEe3+QE+FJtgIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
 
 </body>
 </html>

@@ -9,19 +9,19 @@ import kr.co.brownie.free.service.FreeVO;
 
 @Repository("freeMapper")
 public interface FreeMapper {
-	List<FreeVO> selectList();
+    List<FreeVO> selectList();
 
-	List<FreeVO> selectFamous();
+    List<FreeVO> selectFamous();
 
-	FreeVO selectDetail(int boardSeq);
+    FreeVO selectDetail(int boardSeq);
 
-	List<FreeVO> selectRecent(int boardSeq);
+    List<FreeVO> selectRecent(int boardSeq);
 
-	List<FreeVO> selectRecentForMenu();
+    List<FreeVO> selectRecentForMenu();
 
-	void insertFree(Map<String, Object> map);
+    void insertFree(Map<String, Object> map);
 
-	void deleteFree(Map<String, Object> map);
+    void deleteFree(Map<String, Object> map);
 
-	int update(Map<String, Object> map);
+    int update(Map<String, Object> map);
 }
