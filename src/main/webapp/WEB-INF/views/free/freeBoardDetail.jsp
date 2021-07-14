@@ -306,11 +306,6 @@ h5 {
 		}
 	}
 
-	//게시글 수정
-	function modifyFreeBoard() {
-
-	}
-
 	//신고된 리플 보기
 	function showBlackReply(replySeq) {
 		var blackReplyId = 'blackReply_' + replySeq;
@@ -343,7 +338,7 @@ h5 {
             <div class="col-lg-8 p-0">
             	<c:if test="${sessionScope.id eq freeDetail.inUserId }">
 	                <div class="actForBoard">
-	                	<a href="javascript:modifyFreeBoard()"><span id="freeModify">수정하기</span></a>
+	                	<a href="/free/freeBoardModify/${freeDetail.boardSeq}"><span id="freeModify">수정하기</span></a>
 	                	<a href="javascript:deleteFreeBoard()"><span id="freeDelete">삭제하기</span></a>
 	                 </div>
             	</c:if>

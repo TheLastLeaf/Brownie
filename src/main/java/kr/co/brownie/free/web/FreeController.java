@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
-import kr.co.brownie.board.service.impl.BoardMapper;
 import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.free.service.FreeVO;
-import kr.co.brownie.free.service.impl.FreeMapper;
 import kr.co.brownie.reply.service.ReplyService;
 import kr.co.brownie.reply.service.ReplyVO;
 
@@ -141,9 +139,10 @@ public class FreeController {
         return "redirect:/free/freeBoardList";
     }
 
-    @PostMapping("/freeBoardModify")
-    public String freeModPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest){
-    	return "redirect:/free/freeBoardDetail?boardSeq=";
+    @GetMapping("/freeBoardModify/{boardSeq}")
+    public String freeModPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest, @PathVariable String boardSeq){
+    	int boardSeqForMod = Integer.parseInt(boardSeq);
+    	return "redirect:/free/freeBoardModify?boardSeq=" + boardSeq;
     }
 
 	@ResponseBody
