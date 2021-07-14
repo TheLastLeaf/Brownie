@@ -4,40 +4,38 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.tip.service.impl.TipMapper">
     <select id="selectTipList" parameterType="hashMap" resultType="kr.co.brownie.tip.service.TipVO">
-        SELECT BOARDSEQ,
-        BOARDKIND,
-        BOARDCATEGORY,
-        TITLE,
-        CONTENT,
-        NOTICEYN,
-        STATUS,
-        INDATE,
-        INUSERID,
-        "UPDATE",
-        UPUSERID,
-        FILESEQ,
-        SUBSEQ
-        FROM (SELECT BOARD_SEQ AS BOARDSEQ,
-        BOARD_KIND AS BOARDKIND,
-        BOARD_CATEGORY AS BOARDCATEGORY,
-        TITLE AS TITLE,
-        CONTENT AS CONTENT,
-        NOTICE_YN AS NOTICEYN,
-        STATUS AS STATUS,
-        IN_DATE AS INDATE,
-        IN_USER_ID AS INUSERID,
-        UP_DATE AS "UPDATE",
-        UP_USER_ID AS UPUSERID,
-        FILE_SEQ AS FILESEQ,
-        SUB_SEQ AS SUBSEQ
-        FROM BROWNIE_BOARD
-        WHERE BOARD_KIND = 'tip'
-        <if test='!champion.equals("")'>
-            AND BOARD_CATEGORY = #{champion}
-        </if>
-        ORDER BY BOARD_SEQ DESC
-        )
         <![CDATA[
+        SELECT BOARDSEQ,
+               BOARDKIND,
+               BOARDCATEGORY,
+               TITLE,
+               CONTENT,
+               NOTICEYN,
+               STATUS,
+               INDATE,
+               INUSERID,
+               "UPDATE",
+               UPUSERID,
+               FILESEQ,
+               SUBSEQ
+        FROM (SELECT BOARD_SEQ      AS BOARDSEQ,
+                     BOARD_KIND     AS BOARDKIND,
+                     BOARD_CATEGORY AS BOARDCATEGORY,
+                     TITLE          AS TITLE,
+                     CONTENT        AS CONTENT,
+                     NOTICE_YN      AS NOTICEYN,
+                     STATUS         AS STATUS,
+                     IN_DATE        AS INDATE,
+                     IN_USER_ID     AS INUSERID,
+                     UP_DATE        AS "UPDATE",
+                     UP_USER_ID     AS UPUSERID,
+                     FILE_SEQ       AS FILESEQ,
+                     SUB_SEQ        AS SUBSEQ
+              FROM BROWNIE_BOARD
+              WHERE BOARD_KIND = 'tip'
+                AND (#{champion} IS NULL OR BOARD_CATEGORY = #{champion})
+              ORDER BY BOARD_SEQ DESC
+             )
         WHERE ${contentPerPage} * (${currentPageNumber} - 1) < ROWNUM
           AND ROWNUM <= ${contentPerPage} * ${currentPageNumber}
         ]]>
@@ -46,9 +44,7 @@
         SELECT COUNT(*)
         FROM BROWNIE_BOARD
         WHERE BOARD_KIND = 'tip'
-        <if test='!champion.equals("")'>
-            AND BOARD_CATEGORY = #{champion}
-        </if>
+          AND (#{champion} IS NULL OR BOARD_CATEGORY = #{champion})
     </select>
     <select id="select" parameterType="int" resultType="kr.co.brownie.tip.service.TipVO">
         SELECT BOARD_SEQ      AS BOARDSEQ,
@@ -98,4 +94,13 @@
                 null,
                 null)
     </insert>
+    <update id="update" parameterType="hashMap">
+        UPDATE BROWNIE_BOARD
+        SET BOARD_CATEGORY = #{champion},
+            TITLE          = #{title},
+            CONTENT        = #{content},
+            UP_DATE        = SYSDATE,
+            UP_USER_ID     = #{author}
+        WHERE BOARD_SEQ = #{boardSeq}
+    </update>
 </mapper>

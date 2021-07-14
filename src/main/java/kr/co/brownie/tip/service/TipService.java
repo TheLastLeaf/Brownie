@@ -8,4 +8,6 @@ public interface TipService {
     TipVO select(int board_seq);
 
     int insert(String author, String champion, String title, String content);
+
+    int update(int boardSeq, String author, String champion, String title, String content);
 }

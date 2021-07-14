@@ -27,14 +27,14 @@ public class TipController {
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
 
     @GetMapping("/write")
-    public String add(Model model) {
+    public String write(Model model) {
         model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
         return "tip/write";
     }
 
     @PostMapping("/write")
-    public String add_form(HttpServletRequest httpServletRequest) {
+    public String create(HttpServletRequest httpServletRequest) {
         String author = httpServletRequest.getSession().getAttribute("id").toString();
         String champion = httpServletRequest.getParameter("champion");
         String title = httpServletRequest.getParameter("title");
@@ -46,7 +46,7 @@ public class TipController {
     }
 
     @GetMapping({"", "/list"})
-    public String tipList(HttpServletRequest httpServletRequest, Model model) {
+    public String list(HttpServletRequest httpServletRequest, Model model) {
         String champion = httpServletRequest.getParameter("champion") == null ? "" : httpServletRequest.getParameter("champion");
         int currentPageNumber;
         try {
@@ -65,10 +65,9 @@ public class TipController {
     }
 
     @GetMapping("/details/{board_seq}")
-    public String details_post_default(@PathVariable String board_seq, Model model) {
-        int seq;
+    public String details(@PathVariable String board_seq, Model model) {
         try {
-            seq = Integer.parseInt(board_seq);
+            int seq = Integer.parseInt(board_seq);
 
             TipVO tipVO = tipService.select(seq);
             if (tipVO == null) {
@@ -79,5 +78,49 @@ public class TipController {
             return "error/404";
         }
         return "tip/details"; // 기본화면
+    }
+
+    @GetMapping("/modify/{board_seq}")
+    public String modify(@PathVariable String board_seq, Model model, HttpServletRequest httpServletRequest) {
+        try {
+            int seq = Integer.parseInt(board_seq);
+            String id = httpServletRequest.getSession().getAttribute("id").toString();
+
+            TipVO tipVO = tipService.select(seq);
+            if (tipVO == null) {
+                throw new NullPointerException();
+            } else if (!tipVO.getInUserId().equals(id)) {
+                return "error/500";
+            }
+            model.addAttribute("leagueOfLegendsChampionsVOList",
+                    leagueOfLegendsChampionsService.selectRecentlyChampionsList());
+            model.addAttribute("tipVO", tipVO);
+        } catch (NullPointerException | NumberFormatException e) {
+            return "error/404";
+        }
+        return "tip/modify";
+    }
+
+    @PostMapping("/modify/{board_seq}")
+    public String update(HttpServletRequest httpServletRequest, @PathVariable String board_seq) {
+        try {
+            int seq = Integer.parseInt(board_seq);
+            String author = httpServletRequest.getSession().getAttribute("id").toString();
+            String champion = httpServletRequest.getParameter("champion");
+            String title = httpServletRequest.getParameter("title");
+            String content = httpServletRequest.getParameter("content");
+
+            TipVO tipVO = tipService.select(seq);
+            if (tipVO == null || !tipVO.getInUserId().equals(author)) {
+                return "error/500";
+            }
+
+            if (tipService.update(seq, author, champion, title, content) != 1) {
+                throw new NullPointerException();
+            }
+        } catch (NullPointerException | NumberFormatException e) {
+            return "error/404";
+        }
+        return "redirect:/" + httpServletRequest.getContextPath() + "tip/list";
     }
 }

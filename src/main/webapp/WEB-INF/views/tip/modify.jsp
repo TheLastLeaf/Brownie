@@ -124,12 +124,12 @@
 <!-- Breadcrumb Section Begin -->
 <section id="tip_add_banner_image"
          class="breadcrumb-section set-bg spad"
-         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg">
+         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${tipVO.boardCategory}_0.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
-                    <h3>팁과 노하우 등록</h3>
+                    <h3>팁과 노하우 수정</h3>
                     <div class="bt-option">
                         <a href="${pageContext.request.contextPath}/index" style="color: black;">Home</a>
                         <span>tip Add</span>
@@ -154,18 +154,25 @@
                                     <div class="col-3">
                                         <select class="w-100" name="champion">
                                             <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
-                                                <option value="${champion.id}">${champion.name}</option>
+                                                <c:choose>
+                                                    <c:when test="${champion.id == tipVO.boardCategory}">
+                                                        <option value="${champion.id}" selected>${champion.name}</option>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <option value="${champion.id}">${champion.name}</option>
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </c:forEach>
                                         </select>
                                     </div>
                                     <div class="input-list col-9" style="padding-bottom: 10px;">
                                         <input type="text" placeholder="Title" class="title" id="title" name="title"
-                                               required="required">
+                                               value="${tipVO.title}" required="required">
                                     </div>
                                 </div>
                                 <div class="content">
                                     <textarea class="summernote" name="content" id="content"
-                                              required="required"></textarea>
+                                              required="required">${tipVO.content}</textarea>
                                 </div>
                                 <div class="pad">
                                     <input type="submit" value="등록" class="submit">

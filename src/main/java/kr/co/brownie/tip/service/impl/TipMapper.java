@@ -17,4 +17,6 @@ public interface TipMapper {
     TipVO select(int board_seq);
 
     int insert(Map<String, Object> map);
+
+    int update(Map<String, Object> map);
 }

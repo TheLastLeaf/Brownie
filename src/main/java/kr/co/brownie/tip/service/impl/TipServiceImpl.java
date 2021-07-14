@@ -45,11 +45,18 @@ public class TipServiceImpl implements TipService {
         map.put("title", title);
         map.put("content", content);
 
-        System.out.println(author);
-        System.out.println(champion);
-        System.out.println(title);
-        System.out.println(content);
-
         return tipMapper.insert(map);
+    }
+
+    @Override
+    public int update(int boardSeq, String author, String champion, String title, String content) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardSeq", boardSeq);
+        map.put("author", author);
+        map.put("champion", champion);
+        map.put("title", title);
+        map.put("content", content);
+
+        return tipMapper.update(map);
     }
 }
