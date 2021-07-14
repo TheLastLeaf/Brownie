@@ -92,7 +92,7 @@
 											<c:forEach items="${noticeList}" var="notice" begin="0" end="10">
 												<fmt:formatDate value="${notice.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss" />
 													<tr>
-														<th><span onclick="location.href='notice/detail?boardSeq=${notice.boardSeq}'" style="cursor: pointer">${notice.title}</span></th>
+														<th><span onclick="location.href='notice/detail/${notice.boardSeq}'" style="cursor: pointer">${notice.title}</span></th>
 														<th>${notice.boardKind}</th>
 														<th>${update}</th>
 														<th>${notice.nickName}</th>
