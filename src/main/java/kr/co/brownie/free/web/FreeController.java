@@ -1,5 +1,6 @@
 package kr.co.brownie.free.web;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -195,19 +196,20 @@ public class FreeController {
 	public Object reportPost(Map<String,Object> map, HttpSession session, Model model, HttpServletRequest servletRequest){
 		String id = (String)session.getAttribute("id");
 		String content = servletRequest.getParameter("content");
-		String reportName = servletRequest.getParameter("reportName");
+		String[] reportNameList = servletRequest.getParameterValues("reportName[]");
 		String userId = servletRequest.getParameter("userId");
 		map.put("content",content);
-		map.put("reportName",reportName);
+		map.put("reportName", Arrays.toString(reportNameList));
 		map.put("id",id);
 		map.put("userId",userId);
 		if(id==null){
-			model.addAttribute("message", "<script>alert('로그인 후 이용가능한 서비스입니다.'); history.go(-1);</script>");
-			return "common/message";
+			return "loginCheck";
 		}else{
-			int cnt = reportService.insert(map);
-			model.addAttribute("cnt",cnt);
-			return cnt;
+			if (reportService.insert(map) == 1) {
+				return "success";
+			} else {
+				return "fail";
+			}
 		}
 	}
 }
