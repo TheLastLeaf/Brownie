@@ -20,45 +20,47 @@ public class NoticeController {
     NoticeService noticeService;
 
     @GetMapping("/add")
-    public String noticeAdd(HttpSession session, Model model){
-        String id = (String)session.getAttribute("id");
-        model.addAttribute("id",id);
-        if(id == null){
+    public String noticeAdd(HttpSession session, Model model) {
+        String id = (String) session.getAttribute("id");
+        model.addAttribute("id", id);
+        if (id == null) {
             return "redirect:/notice/list";
         }
         return "notice/noticeAdd"; // 공지 글쓰기
     }
 
     @PostMapping("/add")
-    public String noticeAddPost(@RequestParam Map<String, Object> map, Model model,HttpSession session, HttpServletRequest servletRequest){
+    public String noticeAddPost(@RequestParam Map<String, Object> map, Model model, HttpSession session, HttpServletRequest servletRequest) {
         String id = servletRequest.getParameter("inUserId");
         String title = servletRequest.getParameter("title");
         String content = servletRequest.getParameter("content");
-        noticeService.insertNotice(id,title,content);
-        return "redirect:"+servletRequest.getContextPath()+"/notice/list";
+        noticeService.insertNotice(id, title, content);
+        return "redirect:" + servletRequest.getContextPath() + "/notice/list";
     }
 
-    @GetMapping("/detail")
-    public String detail(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
-        String a = map.get("boardSeq").toString();
-        int boardSeq = Integer.parseInt(a);
-        NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-        String usernick = noticeVO.getInUserId();
-        String nickName = this.noticeService.selectnickname(usernick);
-        model.addAttribute("nickName",nickName);
-        String id = (String)session.getAttribute("id");
-        model.addAttribute("id",id);
-        model.addAttribute("noticeVO",noticeVO);
+    @GetMapping("/detail/{board_seq}")
+    public String detail(Model model, HttpSession session, @PathVariable String board_seq) {
+        try {
+            int boardSeq = Integer.parseInt(board_seq);
+            NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+            String usernick = noticeVO.getInUserId();
+            String nickName = this.noticeService.selectnickname(usernick);
+            String id = (String) session.getAttribute("id");
+            if (noticeVO == null) {
+                throw new NullPointerException();
+            }
+            model.addAttribute("nickName", nickName);
+            model.addAttribute("id", id);
+            model.addAttribute("noticeVO", noticeVO);
+        } catch (NullPointerException | NumberFormatException e) {
+            return "error/404";
+        }
         return "notice/noticeDetail"; // 공지 디테일화면
     }
 
-    @GetMapping(path={"", "/list"})
+    @GetMapping(path = {"", "/list"})
     public String noticeList(HttpServletRequest httpServletRequest, Model model) {
-        String notice_ = httpServletRequest.getParameter("notice");
-        String notice = "";
-        if(notice_ != null && notice_.equals("")) {
-            notice = notice_;
-        }
+        String notice = httpServletRequest.getParameter("notice") == null ? "" : httpServletRequest.getParameter("notice");
         String keyword = httpServletRequest.getParameter("keyword") == null ? "" : httpServletRequest.getParameter("keyword");
         int currentPageNumber;
         try {
@@ -68,39 +70,39 @@ public class NoticeController {
         }
 
         model.addAttribute("keyword", keyword);
-        model.addAttribute("PagingVO", noticeService.selectList(notice,keyword, currentPageNumber));
+        model.addAttribute("PagingVO", noticeService.selectList(notice, keyword, currentPageNumber));
 
         return "notice/list"; //공지 리스트
     }
 
     @GetMapping("/update")
-    public String update(@RequestParam Map<String,Object> map, Model model,HttpSession session){
+    public String update(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-        model.addAttribute("noticeVO",noticeVO);
-        if(session.getAttribute("id") == null){
-            return "redirect:/notice/detail?boardSeq="+boardSeq;
+        model.addAttribute("noticeVO", noticeVO);
+        if (session.getAttribute("id") == null) {
+            return "redirect:/notice/detail?boardSeq=" + boardSeq;
         }
         return "notice/noticeUpdate";
     }
 
     @PostMapping("/update")
-    public String updatePost(@RequestParam Map<String,Object> map, Model model){
+    public String updatePost(@RequestParam Map<String, Object> map, Model model) {
         String a = map.get("boardSeq").toString();
         int boardSeq = Integer.parseInt(a);
         NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-        model.addAttribute("noticeVO",noticeVO);
+        model.addAttribute("noticeVO", noticeVO);
         int update = this.noticeService.updateNotice(map);
-        if(update>0){
-            return "redirect:/notice/detail?boardSeq="+boardSeq;
-        }else{
-            return "redirect:/notice/update?boardSeq="+boardSeq;
+        if (update > 0) {
+            return "redirect:/notice/detail?boardSeq=" + boardSeq;
+        } else {
+            return "redirect:/notice/update?boardSeq=" + boardSeq;
         }
     }
 
     @PostMapping("/delete")
-    public String delete(@RequestParam Map<String,Object> map, Model model){
+    public String delete(@RequestParam Map<String, Object> map, Model model) {
         String a = map.get("boardSeq").toString();
         int b = Integer.parseInt(a);
         noticeService.deleteNotice(b);

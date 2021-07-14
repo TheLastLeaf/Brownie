@@ -161,7 +161,7 @@
                         </div>
                         <div class="cl-text">
                             <h5 class="title"><a
-                                    href="${pageContext.request.contextPath}/notice/detail?boardSeq=${noticeVO.boardSeq}">${noticeVO.title}</a>
+                                    href="${pageContext.request.contextPath}/notice/detail/${noticeVO.boardSeq}">${noticeVO.title}</a>
                             </h5>
                             <ul>
                                 <li>by <span>${noticeVO.nickName}</span></li>
