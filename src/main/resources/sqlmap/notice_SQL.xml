@@ -49,7 +49,7 @@
                            A.SUB_SEQ        AS SUBSEQ,
                            B.NICK_NAME      AS NICKNAME
                     FROM BROWNIE_BOARD A
-                             LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.IN_USER_ID)
+                             LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.UP_USER_ID)
                     WHERE UPPER(A.BOARD_KIND) = 'NOTICE'
                       AND UPPER(TITLE) LIKE UPPER('%' || #{keyword} || '%')
                     ORDER BY BOARD_SEQ DESC
@@ -68,28 +68,24 @@
     </select>
 
     <select id="read" parameterType="int" resultType="kr.co.brownie.notice.service.NoticeVO">
-        SELECT BOARD_SEQ      AS BOARDSEQ,
-               BOARD_KIND     AS BOARDKIND,
-               BOARD_CATEGORY AS BOARDCATEGORY,
-               TITLE          AS TITLE,
-               CONTENT        AS CONTENT,
-               NOTICE_YN      AS NOTICEYN,
-               STATUS         AS STATUS,
-               IN_DATE        AS INDATE,
-               IN_USER_ID     AS INUSERID,
-               UP_DATE        AS "UPDATE",
-               UP_USER_ID     AS UPUSERID,
-               FILE_SEQ       AS FILESEQ,
-               SUB_SEQ        AS SUBSEQ
-        FROM BROWNIE_BOARD
+        SELECT A.BOARD_SEQ      AS BOARDSEQ,
+               A.BOARD_KIND     AS BOARDKIND,
+               A.BOARD_CATEGORY AS BOARDCATEGORY,
+               A.TITLE          AS TITLE,
+               A.CONTENT        AS CONTENT,
+               A.NOTICE_YN      AS NOTICEYN,
+               A.STATUS         AS STATUS,
+               A.IN_DATE        AS INDATE,
+               A.IN_USER_ID     AS INUSERID,
+               A.UP_DATE        AS "UPDATE",
+               A.UP_USER_ID     AS UPUSERID,
+               A.FILE_SEQ       AS FILESEQ,
+               A.SUB_SEQ        AS SUBSEQ,
+               B.NICK_NAME      AS NICKNAME
+        FROM BROWNIE_BOARD A LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.UP_USER_ID)
         WHERE BOARD_SEQ = #{boardSeq}
     </select>
 
-    <select id="nickname" resultType="String" parameterType="String">
-        SELECT NICK_NAME AS NICKNAME
-        FROM BROWNIE_USER
-        WHERE USER_ID = #{inUserId}
-    </select>
     <insert id="insert" parameterType="hashMap">
         INSERT INTO BROWNIE_BOARD(BOARD_SEQ, BOARD_KIND, BOARD_CATEGORY, TITLE, CONTENT, NOTICE_YN, STATUS, IN_DATE,
                                   IN_USER_ID, UP_DATE, UP_USER_ID, FILE_SEQ, SUB_SEQ)
@@ -102,10 +98,8 @@
         SET BOARD_KIND = 'notice',
             TITLE      = #{title},
             CONTENT    = #{content},
-            STATUS     = 1,
             UP_DATE    = SYSDATE,
-            FILE_SEQ   = NULL,
-            SUB_SEQ    = NULL
+            UP_USER_ID = #{id}
         WHERE BOARD_SEQ = #{boardSeq}
     </update>
 

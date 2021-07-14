@@ -136,10 +136,11 @@
                         <div class="contact-form">
                             <div class="dt-leave-comment">
                                 <div class="input-list">
+                                    <input type="hidden" value="${id}" name="upUserId">
                                     <input type="text" id="title" name="title" value="${noticeVO.title}" required="required">
                                 </div>
                                 <div class="content">
-                                    <textarea class="summernote" id="content" name="content" placeholder="${noticeVO.content}">${noticeVO.content}</textarea>
+                                    <textarea class="summernote" id="content" name="content" required="required">${noticeVO.content}</textarea>
                                 </div>
                                 <div class="sub">
                                     <input type="submit" value="수정" class="submit" >

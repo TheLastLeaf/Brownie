@@ -22,7 +22,7 @@
                         <div class="innerBox text-right">
                             <div class="details-hero-text">
                                 <ul>
-                                    <li>by <span>${nickName}</span></li>
+                                    <li>by <span>${noticeVO.nickName}</span></li>
                                     <li>${update}</li>
                                     <li class="text-secondary cursor-pointer" onclick="location.href='/notice/list'">목록</li>
                                 </ul>
@@ -41,7 +41,7 @@
                         <div class="da-text">
                             <a href="/user/userInfo?id=${noticeVO.inUserId}">
                                 <h5>
-                                    ${nickName}
+                                    ${noticeVO.nickName}
                                 </h5>
                             </a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
@@ -50,7 +50,7 @@
                             <c:if test="${sessionScope.permit_level== 9}">
                                 <div class="innerBox text-right">
                                         <input type="button" class="btn btn-outline-dark btn-sm text-white"
-                                                       onclick="location.href='/notice/update?boardSeq=${noticeVO.boardSeq}'"
+                                                       onclick="location.href='/notice/update/${noticeVO.boardSeq}'"
                                                        value="수정" >
                                         <form class="d-inline" action="/notice/delete" method="post">
                                             <input type="hidden" value="${noticeVO.boardSeq}" name="boardSeq">

@@ -25,7 +25,5 @@ public interface NoticeMapper {
 
     int count();
 
-    String nickname(String inUserId);
-
     List<NoticeVO> noticelist();
 }

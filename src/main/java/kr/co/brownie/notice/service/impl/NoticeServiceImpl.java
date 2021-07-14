@@ -69,7 +69,12 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public int updateNotice(Map<String, Object> map) {
+    public int updateNotice(String id,String title,String content, int boardSeq) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",id);
+        map.put("title",title);
+        map.put("content",content);
+        map.put("boardSeq",boardSeq);
         return noticeMapper.update(map);
     }
 
@@ -77,12 +82,6 @@ public class NoticeServiceImpl implements NoticeService {
     public int selectCount() {
         return noticeMapper.count();
     }
-
-
-	@Override
-	public String selectnickname(String inUserId){
-		return noticeMapper.nickname(inUserId);
-	}
 
     @Override
     public List<NoticeVO> noticeList() {

@@ -30,7 +30,7 @@ public class NoticeController {
     }
 
     @PostMapping("/add")
-    public String noticeAddPost(@RequestParam Map<String, Object> map, Model model, HttpSession session, HttpServletRequest servletRequest) {
+    public String noticeAddPost(HttpServletRequest servletRequest) {
         String id = servletRequest.getParameter("inUserId");
         String title = servletRequest.getParameter("title");
         String content = servletRequest.getParameter("content");
@@ -43,13 +43,10 @@ public class NoticeController {
         try {
             int boardSeq = Integer.parseInt(board_seq);
             NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-            String usernick = noticeVO.getInUserId();
-            String nickName = this.noticeService.selectnickname(usernick);
             String id = (String) session.getAttribute("id");
             if (noticeVO == null) {
                 throw new NullPointerException();
             }
-            model.addAttribute("nickName", nickName);
             model.addAttribute("id", id);
             model.addAttribute("noticeVO", noticeVO);
         } catch (NullPointerException | NumberFormatException e) {
@@ -75,30 +72,46 @@ public class NoticeController {
         return "notice/list"; //공지 리스트
     }
 
-    @GetMapping("/update")
-    public String update(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
-        String a = map.get("boardSeq").toString();
-        int boardSeq = Integer.parseInt(a);
-        NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-        model.addAttribute("noticeVO", noticeVO);
-        if (session.getAttribute("id") == null) {
-            return "redirect:/notice/detail?boardSeq=" + boardSeq;
+    @GetMapping("/update/{board_seq}")
+    public String update(Model model, HttpSession session,@PathVariable String board_seq) {
+        try{
+            int boardSeq = Integer.parseInt(board_seq);
+            NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+            String id = (String) session.getAttribute("id");
+            if(noticeVO==null){
+                throw new NullPointerException();
+            }
+            model.addAttribute("id",id);
+            model.addAttribute("noticeVO", noticeVO);
+            if (session.getAttribute("id") == null) {
+                return "redirect:/notice/detail?boardSeq=" + boardSeq;
+            }
+        }catch (NullPointerException| NumberFormatException e){
+            return "error/404";
         }
         return "notice/noticeUpdate";
     }
 
-    @PostMapping("/update")
-    public String updatePost(@RequestParam Map<String, Object> map, Model model) {
-        String a = map.get("boardSeq").toString();
-        int boardSeq = Integer.parseInt(a);
-        NoticeVO noticeVO = noticeService.getNotice(boardSeq);
-        model.addAttribute("noticeVO", noticeVO);
-        int update = this.noticeService.updateNotice(map);
-        if (update > 0) {
-            return "redirect:/notice/detail?boardSeq=" + boardSeq;
-        } else {
-            return "redirect:/notice/update?boardSeq=" + boardSeq;
+    @PostMapping("/update/{board_seq}")
+    public String updatePost(Model model,@PathVariable String board_seq,HttpServletRequest servletRequest) {
+        int boardSeq = Integer.parseInt(board_seq);
+        try{
+            NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+            model.addAttribute("noticeVO", noticeVO);
+            String id = servletRequest.getParameter("upUserId");
+            String title = servletRequest.getParameter("title");
+            String content = servletRequest.getParameter("content");
+            int update = this.noticeService.updateNotice(id,title,content,boardSeq);
+            if (update > 0) {
+                return "redirect:/notice/detail/" + boardSeq;
+            }
+            if (this.noticeService.updateNotice(id,title,content,boardSeq) != 1) {
+                throw new NullPointerException();
+            }
+        }catch (NullPointerException | NumberFormatException e) {
+            return "error/404";
         }
+        return "redirect:/notice/update/" + boardSeq;
     }
 
     @PostMapping("/delete")
