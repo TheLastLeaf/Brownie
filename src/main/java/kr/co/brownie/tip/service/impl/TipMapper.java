@@ -28,4 +28,8 @@ public interface TipMapper {
     int countTipReplyList(int boardSeq);
 
     int insertReply(Map<String, Object> map);
+
+    TipReplyVO selectReply(Map<String, Object> map);
+
+    int deleteReply(int replySeq);
 }

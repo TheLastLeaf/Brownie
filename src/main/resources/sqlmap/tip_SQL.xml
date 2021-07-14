@@ -221,4 +221,29 @@
                 #{boardSeq},
                 #{headReplySeq})
     </insert>
+
+    <select id="selectReply" parameterType="hashMap" resultType="kr.co.brownie.tip.service.TipReplyVO">
+        SELECT '1'                    AS LV,
+               REPLY.REPLY_SEQ        AS REPLYSEQ,
+               REPLY.REPLY_CONTENT    AS REPLYCONTENT,
+               REPLY.IN_DATE          AS INDATE,
+               REPLY.IN_USER_ID       AS INUSERID,
+               REPLY.UP_DATE          AS "UPDATE",
+               REPLY.UP_USER_ID       AS UPUSERID,
+               REPLY.BOARD_SEQ        AS BOARDSEQ,
+               REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
+               REPLY.STATUS           AS STATUS,
+               BROWNIE_USER.LOL_ID    AS LOLID,
+               BROWNIE_USER.NICK_NAME AS NICKNAME
+        FROM REPLY
+                 LEFT OUTER JOIN BROWNIE_USER ON (REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
+        WHERE BOARD_SEQ = ${boardSeq}
+          AND REPLY_SEQ = ${replySeq}
+    </select>
+
+    <delete id="deleteReply" parameterType="int">
+        DELETE
+        FROM REPLY
+        WHERE REPLY_SEQ = ${replySeq}
+    </delete>
 </mapper>

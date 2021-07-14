@@ -1,9 +1,7 @@
 package kr.co.brownie.tip.service.impl;
 
-import kr.co.brownie.tip.service.TipPagingVO;
-import kr.co.brownie.tip.service.TipReplyPagingVO;
-import kr.co.brownie.tip.service.TipService;
-import kr.co.brownie.tip.service.TipVO;
+import kr.co.brownie.reply.service.ReplyVO;
+import kr.co.brownie.tip.service.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -91,5 +89,19 @@ public class TipServiceImpl implements TipService {
         map.put("headReplySeq", headReplySeq);
 
         return tipMapper.insertReply(map);
+    }
+
+    @Override
+    public TipReplyVO selectReply(int boardSeq, int replySeq) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardSeq", boardSeq);
+        map.put("replySeq", replySeq);
+
+        return tipMapper.selectReply(map);
+    }
+
+    @Override
+    public int deleteReply(int replySeq) {
+        return tipMapper.deleteReply(replySeq);
     }
 }

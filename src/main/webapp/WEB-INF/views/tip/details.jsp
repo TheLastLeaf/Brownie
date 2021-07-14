@@ -77,7 +77,11 @@
                                 <p>${tipReplyVO.replyContent}</p>
                                 <c:if test="${sessionScope.id ne null}">
                                     <a href="javascript:commentReplyButton(${tipReplyVO.replySeq})"
-                                       class="reply-btn"><span>Reply</span></a>
+                                       class="reply-btn d-inline-block"><span>Reply</span></a>
+                                </c:if>
+                                <c:if test="${sessionScope.id eq tipReplyVO.inUserId}">
+                                    <a href="/tip/details/${board_seq}/delete/${tipReplyVO.replySeq}"
+                                       class="reply-btn d-inline-block"><span>Delete</span></a>
                                 </c:if>
                             </div>
                         </div>

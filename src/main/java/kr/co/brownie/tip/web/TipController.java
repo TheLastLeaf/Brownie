@@ -2,6 +2,8 @@ package kr.co.brownie.tip.web;
 
 import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
 import kr.co.brownie.leagueoflegends.versions.service.LeagueOfLegendsVersionsService;
+import kr.co.brownie.reply.service.ReplyVO;
+import kr.co.brownie.tip.service.TipReplyVO;
 import kr.co.brownie.tip.service.TipService;
 import kr.co.brownie.tip.service.TipVO;
 import org.springframework.stereotype.Controller;
@@ -192,5 +194,32 @@ public class TipController {
         }
 
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/details/" + board_seq;
+    }
+
+    @GetMapping("/details/{board_seq}/delete/{reply_seq}")
+    public String deleteReply(Model model, HttpServletRequest httpServletRequest, @PathVariable String board_seq, @PathVariable String reply_seq) {
+        int boardSeq;
+        int replySeq;
+        if (httpServletRequest.getSession().getAttribute("id") != null) {
+            try {
+                boardSeq = Integer.parseInt(board_seq);
+                replySeq = Integer.parseInt(reply_seq);
+                String id = httpServletRequest.getSession().getAttribute("id").toString();
+
+                TipReplyVO replyVO = tipService.selectReply(boardSeq, replySeq);
+                
+                if (id.equals(replyVO.getInUserId())) {
+                    if (tipService.deleteReply(replySeq)== 1) {
+                        return "redirect:/" + httpServletRequest.getContextPath() + "tip/details/" + board_seq;
+                    }
+                    model.addAttribute("message", "alert(\"삭제에 실패했습니다.\");history.go(-1);");
+                    return "common/message";
+                }
+            } catch (NullPointerException | NumberFormatException e) {
+                return "error/404";
+            }
+        }
+        model.addAttribute("message", "alert(\"권한이 없습니다.\");history.go(-1);");
+        return "common/message";
     }
 }

@@ -1,5 +1,7 @@
 package kr.co.brownie.tip.service;
 
+import kr.co.brownie.reply.service.ReplyVO;
+
 public interface TipService {
     int CONTENT_PER_PAGE = 10;
     int REPLY_PER_PAGE = 10;
@@ -17,4 +19,8 @@ public interface TipService {
     TipReplyPagingVO selectReplyList(int boardSeq, int currentReplyPageNumber, int totalReplyCount);
 
     int insertReply(int boardSeq, String author, String message, String headReplySeq);
+
+    TipReplyVO selectReply(int boardSeq, int replySeq);
+
+    int deleteReply(int replySeq);
 }
