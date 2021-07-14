@@ -25,8 +25,6 @@ public interface TipMapper {
 
     List<TipReplyVO> selectReplyList(Map<String, Object> map);
 
-    int countTipReplyList(int boardSeq);
-
     int insertReply(Map<String, Object> map);
 
     TipReplyVO selectReply(Map<String, Object> map);

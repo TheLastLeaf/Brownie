@@ -16,7 +16,12 @@
             + "</form>"
             + "</div>"
         $("#" + replySeq).append(form);
+    }
 
+    function deleteReply(replySeq) {
+        if (confirm("정말 삭제하시겠습니까?")) {
+            location.href = "${pageContext.request.contextPath}/tip/details/${board_seq}/delete/" + replySeq;
+        }
     }
 </script>
 
@@ -77,11 +82,11 @@
                                 <p>${tipReplyVO.replyContent}</p>
                                 <c:if test="${sessionScope.id ne null}">
                                     <a href="javascript:commentReplyButton(${tipReplyVO.replySeq})"
-                                       class="reply-btn d-inline-block"><span>Reply</span></a>
+                                       class="reply-btn position-relative ml-2 mb-2"><span>Reply</span></a>
                                 </c:if>
                                 <c:if test="${sessionScope.id eq tipReplyVO.inUserId}">
-                                    <a href="/tip/details/${board_seq}/delete/${tipReplyVO.replySeq}"
-                                       class="reply-btn d-inline-block"><span>Delete</span></a>
+                                    <a href="javascript:deleteReply(${tipReplyVO.replySeq})"
+                                       class="reply-btn position-relative ml-2 mb-2"><span>Delete</span></a>
                                 </c:if>
                             </div>
                         </div>

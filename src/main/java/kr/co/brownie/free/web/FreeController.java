@@ -1,24 +1,21 @@
 package kr.co.brownie.free.web;
 
-import java.util.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import kr.co.brownie.report.service.ReportService;
-import oracle.jdbc.proxy.annotation.Post;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
-
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.reply.service.ReplyService;
 import kr.co.brownie.reply.service.ReplyVO;
+import kr.co.brownie.report.service.ReportService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.*;
 
 @Controller
 @RequestMapping("/free")
@@ -54,9 +51,27 @@ public class FreeController {
 
     @GetMapping("/details/{boardSeq}")
     public String freeBoardDetail(@PathVariable int boardSeq,
-                                  @RequestParam Map<String, Object> map, Model model) {
-        FreeVO freeDetail = freeService.selectDetail(boardSeq);
-        model.addAttribute("freeDetail", freeDetail);
+                                  @RequestParam Map<String, Object> map, Model model,
+                                  HttpServletRequest httpServletRequest) {
+
+        model.addAttribute("freeDetail", freeService.selectDetail(boardSeq));
+
+        int totalReplyCount = ((FreeVO) Objects.requireNonNull(model.getAttribute("freeDetail"))).getReplyCnt();
+        int currentReplyPageNumber;
+        try {
+            currentReplyPageNumber = Integer.parseInt(httpServletRequest.getParameter("page"));
+            if (currentReplyPageNumber < 1 || (totalReplyCount - 1) / freeService.REPLY_PER_PAGE + 1 < currentReplyPageNumber) {
+                currentReplyPageNumber = (totalReplyCount - 1) / freeService.REPLY_PER_PAGE + 1;
+            }
+        } catch (NullPointerException | NumberFormatException e) {
+            currentReplyPageNumber = (totalReplyCount - 1) / freeService.REPLY_PER_PAGE + 1;
+        }
+        map.put("boardSeq", boardSeq);
+        map.put("replyPerPage", freeService.REPLY_PER_PAGE);
+        map.put("currentReplyPageNumber", currentReplyPageNumber);
+        map.put("totalReplyCount", totalReplyCount);
+
+        model.addAttribute("freeReplyPagingVO", freeService.selectReplyList(map));
 
         //좋아요 싫어요 개수
         BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
@@ -103,6 +118,46 @@ public class FreeController {
         model.addAttribute("recentList", recentList);
 
         return "free/details"; // 자유게시판 리스트 디테일화면
+    }
+
+    @PostMapping("/details/{board_seq}")
+    public String writeReply(HttpServletRequest httpServletRequest,
+                             @PathVariable int board_seq,
+                             @RequestParam String message,
+                             @RequestParam(defaultValue = "", required = false) String headReplySeq) {
+        Map<String, Object> map = new HashMap<>();
+
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
+        String author = httpServletRequest.getSession().getAttribute("id").toString();
+        message = message.trim();
+
+        Assert.state(message.length() != 0, "댓글을 입력해주세요.");
+
+        map.put("boardSeq", board_seq);
+        map.put("author", author);
+        map.put("message", message);
+        map.put("headReplySeq", headReplySeq);
+
+        Assert.state(freeService.insertReply(map) == 1, "댓글 등록 중 문제가 발생했습니다.");
+
+        return "redirect:/" + httpServletRequest.getContextPath() + "free/details/" + board_seq;
+    }
+
+    @GetMapping("/details/{board_seq}/delete/{reply_seq}")
+    public String deleteReply(HttpServletRequest httpServletRequest,
+                              @PathVariable int board_seq,
+                              @PathVariable int reply_seq,
+                              Map<String, Object> map) {
+        Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
+        String id = httpServletRequest.getSession().getAttribute("id").toString();
+
+        map.put("boardSeq", board_seq);
+        map.put("replySeq", reply_seq);
+
+        Assert.state(id.equals(freeService.selectReply(map).getInUserId()), "작성자만 댓글을 삭제할 수 있습니다.");
+        Assert.state(freeService.deleteReply(map) == 1, "댓글 삭제 중 문제가 발생했습니다.");
+
+        return "redirect:/" + httpServletRequest.getContextPath() + "free/details/" + board_seq;
     }
 
     @GetMapping("/write")

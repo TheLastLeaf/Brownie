@@ -139,11 +139,17 @@
                BB.UP_DATE        AS MODDATE,
                BB.UP_USER_ID     AS UPUSERID,
                BB.FILE_SEQ       AS FILESEQ,
-               BB.SUB_SEQ        AS SUBSEQ
-        FROM BROWNIE_BOARD BB,
-             BROWNIE_USER BU
-        WHERE BB.IN_USER_ID = BU.USER_ID
-          AND UPPER(BB.BOARD_KIND) = 'FREE'
+               BB.SUB_SEQ        AS SUBSEQ,
+               REPLY.CNT         AS REPLYCNT
+        FROM BROWNIE_BOARD BB
+                 LEFT OUTER JOIN
+             BROWNIE_USER BU ON (BB.IN_USER_ID = BU.USER_ID)
+                 LEFT OUTER JOIN (SELECT BOARD_SEQ,
+                                         COUNT(*) AS CNT
+                                  FROM REPLY
+                                  GROUP BY BOARD_SEQ) REPLY
+                                 ON (BB.BOARD_SEQ = REPLY.BOARD_SEQ)
+        WHERE UPPER(BB.BOARD_KIND) = 'FREE'
           AND BB.BOARD_SEQ = #{boardSeq}
     </select>
 
@@ -202,4 +208,94 @@
             UP_USER_ID     = #{author}
         WHERE BOARD_SEQ = #{boardSeq}
     </update>
+
+    <select id="selectReplyList" parameterType="hashMap" resultType="kr.co.brownie.free.service.FreeReplyVO">
+        <![CDATA[
+        SELECT LV,
+               REPLYSEQ,
+               REPLYCONTENT,
+               INDATE,
+               INUSERID,
+               "UPDATE",
+               UPUSERID,
+               BOARDSEQ,
+               HEADREPLYSEQ,
+               STATUS,
+               LOLID,
+               NICKNAME
+        FROM (SELECT LV,
+                     REPLYSEQ,
+                     REPLYCONTENT,
+                     INDATE,
+                     INUSERID,
+                     "UPDATE",
+                     UPUSERID,
+                     BOARDSEQ,
+                     HEADREPLYSEQ,
+                     STATUS,
+                     LOLID,
+                     NICKNAME,
+                     ROWNUM AS RN
+              FROM (SELECT LEVEL                  AS LV,
+                           REPLY.REPLY_SEQ        AS REPLYSEQ,
+                           REPLY.REPLY_CONTENT    AS REPLYCONTENT,
+                           REPLY.IN_DATE          AS INDATE,
+                           REPLY.IN_USER_ID       AS INUSERID,
+                           REPLY.UP_DATE          AS "UPDATE",
+                           REPLY.UP_USER_ID       AS UPUSERID,
+                           REPLY.BOARD_SEQ        AS BOARDSEQ,
+                           REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
+                           REPLY.STATUS           AS STATUS,
+                           BROWNIE_USER.LOL_ID    AS LOLID,
+                           BROWNIE_USER.NICK_NAME AS NICKNAME
+                    FROM REPLY
+                             LEFT OUTER JOIN BROWNIE_USER ON (REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
+                    WHERE REPLY.BOARD_SEQ = ${boardSeq} START
+                        WITH REPLY.HEAD_REPLY_SEQ IS NULL
+                    CONNECT BY PRIOR REPLY.REPLY_SEQ = REPLY.HEAD_REPLY_SEQ
+                   )
+             )
+        WHERE ${replyPerPage} * (${currentReplyPageNumber} - 1) < RN
+          AND RN <= ${replyPerPage} * ${currentReplyPageNumber}
+        ]]>
+    </select>
+
+    <insert id="insertReply" parameterType="hashMap">
+        INSERT INTO REPLY
+        (REPLY_CONTENT,
+         IN_USER_ID,
+         UP_USER_ID,
+         BOARD_SEQ,
+         HEAD_REPLY_SEQ)
+        VALUES (#{message},
+                #{author},
+                #{author},
+                #{boardSeq},
+                #{headReplySeq})
+    </insert>
+
+    <select id="selectReply" parameterType="hashMap" resultType="kr.co.brownie.free.service.FreeReplyVO">
+        SELECT '1'                    AS LV,
+               REPLY.REPLY_SEQ        AS REPLYSEQ,
+               REPLY.REPLY_CONTENT    AS REPLYCONTENT,
+               REPLY.IN_DATE          AS INDATE,
+               REPLY.IN_USER_ID       AS INUSERID,
+               REPLY.UP_DATE          AS "UPDATE",
+               REPLY.UP_USER_ID       AS UPUSERID,
+               REPLY.BOARD_SEQ        AS BOARDSEQ,
+               REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
+               REPLY.STATUS           AS STATUS,
+               BROWNIE_USER.LOL_ID    AS LOLID,
+               BROWNIE_USER.NICK_NAME AS NICKNAME
+        FROM REPLY
+                 LEFT OUTER JOIN BROWNIE_USER ON (REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
+        WHERE BOARD_SEQ = ${boardSeq}
+          AND REPLY_SEQ = ${replySeq}
+    </select>
+
+    <delete id="deleteReply" parameterType="hashMap">
+        DELETE
+        FROM REPLY
+        WHERE REPLY_SEQ = ${replySeq}
+    </delete>
 </mapper>

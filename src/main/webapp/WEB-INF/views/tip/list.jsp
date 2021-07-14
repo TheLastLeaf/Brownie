@@ -148,9 +148,11 @@
 <!-- Categories list Section Begin -->
 <section class="categories-list-section spad">
     <div class="container">
-        <div class="pagination-item d-flex flex-row-reverse">
-            <a href="${pageContext.request.contextPath}/tip/write"><span>글쓰기</span></a>
-        </div>
+        <c:if test="${sessionScope.id ne null}">
+            <div class="pagination-item d-flex flex-row-reverse">
+                <a href="${pageContext.request.contextPath}/tip/write"><span>Write</span></a>
+            </div>
+        </c:if>
         <div class="row">
             <div class="col-lg-12 p-0">
                 <c:forEach var="tipVO" items="${tipPagingVO.tipVOList}">

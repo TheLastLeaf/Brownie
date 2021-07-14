@@ -180,19 +180,13 @@
                     FROM REPLY
                              LEFT OUTER JOIN BROWNIE_USER ON (REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
                     WHERE REPLY.BOARD_SEQ = ${boardSeq} START
-                    WITH HEADREPLYSEQ IS NULL
-                    CONNECT BY PRIOR REPLYSEQ = HEADREPLYSEQ
+                    WITH REPLY.HEAD_REPLY_SEQ IS NULL
+                    CONNECT BY PRIOR REPLY.REPLY_SEQ = REPLY.HEAD_REPLY_SEQ
                    )
              )
         WHERE ${replyPerPage} * (${currentReplyPageNumber} - 1) < RN
           AND RN <= ${replyPerPage} * ${currentReplyPageNumber}
         ]]>
-    </select>
-
-    <select id="countTipReplyList" parameterType="int" resultType="int">
-        SELECT COUNT(*)
-        FROM REPLY
-        WHERE BOARD_SEQ = #{boardSeq}
     </select>
 
     <insert id="insertReply" parameterType="hashMap">

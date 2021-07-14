@@ -1,14 +1,14 @@
 package kr.co.brownie.free.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
+import kr.co.brownie.free.service.FreeReplyPagingVO;
+import kr.co.brownie.free.service.FreeReplyVO;
 import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.free.service.FreeVO;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 @Service("freeService")
 public class FreeServiceImpl implements FreeService {
@@ -55,4 +55,33 @@ public class FreeServiceImpl implements FreeService {
         return freeMapper.update(map);
     }
 
+    @Override
+    public FreeReplyPagingVO selectReplyList(Map<String, Object> map) {
+        int totalReplyCount = (int) map.get("totalReplyCount");
+        int currentReplyPageNumber = (int) map.get("currentReplyPageNumber");
+
+        return FreeReplyPagingVO.builder()
+                .freeReplyVOList(freeMapper.selectReplyList(map))
+                .replyPerPage(REPLY_PER_PAGE)
+                .startPageNumber((currentReplyPageNumber - 1) / REPLY_PER_PAGE + 1)
+                .currentPageNumber(currentReplyPageNumber)
+                .endPageNumber(Math.min((currentReplyPageNumber - 1) / REPLY_PER_PAGE + 10, (totalReplyCount - 1) / REPLY_PER_PAGE + 1))
+                .totalPageNumber((totalReplyCount - 1) / REPLY_PER_PAGE + 1)
+                .build();
+    }
+
+    @Override
+    public int insertReply(Map<String, Object> map) {
+        return freeMapper.insertReply(map);
+    }
+
+    @Override
+    public FreeReplyVO selectReply(Map<String, Object> map) {
+        return freeMapper.selectReply(map);
+    }
+
+    @Override
+    public int deleteReply(Map<String, Object> map) {
+        return freeMapper.deleteReply(map);
+    }
 }

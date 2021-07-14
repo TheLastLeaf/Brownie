@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -43,8 +44,8 @@ public class TipController {
     @GetMapping({"", "/list"})
     public String list(Model model,
                        @RequestParam(defaultValue = "", required = false) String champion,
-                       @RequestParam(defaultValue = "1", required = false) int currentPageNumber,
-                       Map<String, Object> map) {
+                       @RequestParam(defaultValue = "1", required = false) int currentPageNumber) {
+        Map<String, Object> map = new HashMap<>();
         map.put("champion", champion);
         map.put("currentPageNumber", currentPageNumber);
         map.put("contentPerPage", tipService.CONTENT_PER_PAGE);
@@ -59,8 +60,8 @@ public class TipController {
     @GetMapping("/details/{board_seq}")
     public String details(@PathVariable int board_seq,
                           Model model,
-                          HttpServletRequest httpServletRequest,
-                          Map<String, Object> map) {
+                          HttpServletRequest httpServletRequest) {
+        Map<String, Object> map = new HashMap<>();
         map.put("boardSeq", board_seq);
         model.addAttribute("tipVO", tipService.select(map));
 
@@ -86,8 +87,8 @@ public class TipController {
     @GetMapping("/modify/{board_seq}")
     public String modify(@PathVariable int board_seq,
                          Model model,
-                         HttpServletRequest httpServletRequest,
-                         Map<String, Object> map) {
+                         HttpServletRequest httpServletRequest) {
+        Map<String, Object> map = new HashMap<>();
         Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
         String id = httpServletRequest.getSession().getAttribute("id").toString();
         map.put("boardSeq", board_seq);
@@ -133,8 +134,8 @@ public class TipController {
     public String writeReply(HttpServletRequest httpServletRequest,
                              @PathVariable int board_seq,
                              @RequestParam String message,
-                             @RequestParam(defaultValue = "", required = false) String headReplySeq,
-                             Map<String, Object> map) {
+                             @RequestParam(defaultValue = "", required = false) String headReplySeq) {
+        Map<String, Object> map = new HashMap<>();
         Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
         String author = httpServletRequest.getSession().getAttribute("id").toString();
         message = message.trim();
@@ -154,8 +155,8 @@ public class TipController {
     @GetMapping("/details/{board_seq}/delete/{reply_seq}")
     public String deleteReply(HttpServletRequest httpServletRequest,
                               @PathVariable int board_seq,
-                              @PathVariable int reply_seq,
-                              Map<String, Object> map) {
+                              @PathVariable int reply_seq) {
+        Map<String, Object> map = new HashMap<>();
         Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
         String id = httpServletRequest.getSession().getAttribute("id").toString();
 
