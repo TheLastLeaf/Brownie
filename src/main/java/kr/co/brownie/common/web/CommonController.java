@@ -50,7 +50,6 @@ public class CommonController {
 
 		//상단 메뉴바 자유게시판에 마우스 오버 시 드롭다운 최근 게시물 5개
         List<FreeVO> recentList = freeService.selectRecentForMenu();
-        System.out.println(recentList);
         model.addAttribute("recentList", recentList);
 
         return "common/index";
