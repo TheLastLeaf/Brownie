@@ -5,6 +5,11 @@ import java.util.Map;
 
 public interface FileService {
 
-	void insertPath(Map<String, Object> map);
+	void defaultProfile(String id);
+
+	void updateProfile(Map<String, Object> map);
+
+	String selectProfile(String id);
+
 
 }

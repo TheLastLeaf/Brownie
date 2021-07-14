@@ -13,9 +13,19 @@ import kr.co.brownie.fileUpload.service.FileService;
 public class FileServiceImpl implements FileService{
 	@Resource(name = "fileMapper")
 	FileMapper fileMapper;
+	
+	@Override
+	public void defaultProfile(String id) {
+		fileMapper.defaultProfile(id);
+	}
+	
+	@Override
+	public void updateProfile(Map<String, Object> map) {
+		fileMapper.updateProfile(map);
+	}
 
 	@Override
-	public void insertPath(Map<String, Object> map) {
-		fileMapper.insertPath(map);
+	public String selectProfile(String id) {
+		return fileMapper.selectProfile(id);
 	}
 }

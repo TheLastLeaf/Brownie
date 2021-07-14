@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.brownie.auth.service.AuthService;
+import kr.co.brownie.fileUpload.service.FileService;
 
 @Controller
 @RequestMapping
 public class AuthController {
 	@Resource(name = "authService")
 	AuthService authService;
+	
+	@Resource(name = "fileService")
+	FileService fileService;
 
 	@GetMapping("login")
 	public String login() {
@@ -42,6 +46,9 @@ public class AuthController {
 			int starCnt = 0;
 			String reply = "empty";
 			String writeUserId = "admin";
+			
+			// 초기 프로필사진 설정
+			fileService.defaultProfile(id);
 
 			// 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
 

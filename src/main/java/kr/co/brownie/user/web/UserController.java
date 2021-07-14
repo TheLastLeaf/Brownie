@@ -6,6 +6,7 @@ import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,9 @@ public class UserController {
             UserVO userOneSelect = userService.userOneSelect(id);
             System.out.println("userOneSelect: " + userOneSelect);
 
+            // 프로필 사진들고오기 
+            String selectProfile = fileService.selectProfile(id);
+            
             // 경험치 select
             int exp = userService.selectExp(id);
 
@@ -86,6 +90,8 @@ public class UserController {
 
             // model.addattribute
             model.addAttribute("userOneSelect", userOneSelect);
+            model.addAttribute("selectProfile",selectProfile);
+            
             model.addAttribute("exp", exp);
             model.addAttribute("fullStar", fullStar);
             if (halfStar == 1) {
@@ -100,8 +106,9 @@ public class UserController {
             model.addAttribute("reviewVOs", reviewVOs);
             model.addAttribute("page", page);
 
-            System.out.println("reviewVOs: " + reviewVOs);
-            System.out.println("page: " + page);
+//            System.out.println("reviewVOs: " + reviewVOs);
+//            System.out.println("page: " + page);
+//            System.out.println("selectProfile: "+ selectProfile);
 
             return "user/userInfo";
         }
@@ -115,10 +122,6 @@ public class UserController {
         // 세션 아이디 -> map에 삽입
         String id = (String) httpSession.getAttribute("id");
         map.put("id", id);
-
-        // 내부경로로 저장
-        // String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-        // String uploadFolder = contextRoot + "resources/static/img/userProfile/";
 
         // 파일 저장되는 경로
         String uploadFolder = "C:\\Users\\PC13\\git\\Brownie\\src\\main\\resources\\static\\img\\userProfile";
@@ -146,10 +149,12 @@ public class UserController {
             }
         }
 
-        fileService.insertPath(map);
+        fileService.updateProfile(map);
         userService.insertNickPosition(map); // 스크립트로 가져와서 <script>??</script> 방법도 잇음
-
-        return "/img/userProfile/" + profilePath;
+//        FileService.updateProfile(map);
+        System.out.println("map : " + map);
+        
+        return "/img/userProfile" + profilePath;
     }
 
     @GetMapping("/userSync")

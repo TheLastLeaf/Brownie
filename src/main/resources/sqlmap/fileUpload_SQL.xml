@@ -2,25 +2,50 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.brownie.fileUpload.service.impl.FileMapper">
+<mapper
+	namespace="kr.co.brownie.fileUpload.service.impl.FileMapper">
+	<update id="defaultProfile">
+		MERGE
+			INTO BROWNIE_FILE
+		USING DUAL
+			ON
+		(BROWNIE_FILE.IN_USER_ID = '${id}')
+		WHEN NOT MATCHED THEN
+			INSERT (
+				FILE_SEQ, SUB_SEQ,
+				FILE_PATH, ORIGINAL_NAME, SAVE_NAME,
+				IN_DATE, IN_USER_ID,
+				UP_DATE, UP_USER_ID
+			)
+			VALUES (
+				FILE_SEQ.NEXTVAL, 0,
+				'/userProfile/img/user/lux.gif', 'lux.gif', '/userProfile/img/user/lux.gif',
+				SYSDATE, '${id}',
+				SYSDATE, '${id}'
+			)
+	</update>
 
-	<insert id="insertPath" parameterType="hashMap">
-		INSERT INTO 
-		    BROWNIE_FILE
-		    (
-		    FILE_SEQ, SUB_SEQ, 
-		    FILE_PATH, ORIGINAL_NAME,
-		    SAVE_NAME, IN_DATE,
-		    IN_USER_ID, UP_DATE, 
-		    UP_USER_ID
-			)
-			values
-			(
-			    FILE_SEQ.nextval, SUB_SEQ.nextval,
-			    '${profilePath}', '${originFileName}',
-			    '${savefileName}', SYSDATE,
-			    '${id}', SYSDATE,
-			    '${id}'
-			)
-	</insert>
+	<update id="updateProfile">
+	<![CDATA[
+		UPDATE BROWNIE_FILE
+	    	SET 
+		        SUB_SEQ = SUB_SEQ + 1,
+		        FILE_PATH = '${profilePath}',
+		        ORIGINAL_NAME = '${originFileName}',
+		        SAVE_NAME = '${savefileName}',
+		        UP_DATE = SYSDATE,
+		        UP_USER_ID = '${id}'
+		WHERE 
+			IN_USER_ID = '${id}'
+			]]>
+	</update>
+
+	<select id="selectProfile" resultType="String">
+		SELECT
+			FILE_PATH
+		FROM
+			BROWNIE_FILE
+		WHERE
+			IN_USER_ID = '${id}'
+	</select>
 </mapper>

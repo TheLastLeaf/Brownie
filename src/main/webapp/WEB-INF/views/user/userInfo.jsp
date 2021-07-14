@@ -306,8 +306,10 @@ h1 {
 								<div class="profileBox text-center justify-content-center align-items-center d-flex" style="position: relative;">
 									<!-- 프로필사진 + exp 툴팁 -->
 									<div class="profilePic">
-										<img src="${pageContext.request.contextPath}/img/user/lux.gif">
-										
+<!-- 										${pageContext.request.contextPath} 경로:  -->
+<!-- 										${selectProfile} 경로: /img/user/lux.gif -->
+<!-- 바꿧을때 -->
+										<img src="${pageContext.request.contextPath}/img/userProfile${selectProfile}">
 									</div>
 
 									<!-- 프로필 프레임 -->

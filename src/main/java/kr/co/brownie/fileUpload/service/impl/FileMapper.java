@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 @Repository("fileMapper")
 public interface FileMapper {
 
-	void insertPath(Map<String, Object> map);
+	void defaultProfile(String id);
+
+	void updateProfile(Map<String, Object> map);
+
+	String selectProfile(String id);
+
 
 }
