@@ -117,7 +117,7 @@
                     <h3>공지사항 수정</h3>
                     <div class="bt-option">
                         <a href="/index" class="home">Home</a>
-                        <span>notice Add</span>
+                        <span>notice Update</span>
                     </div>
                 </div>
             </div>
