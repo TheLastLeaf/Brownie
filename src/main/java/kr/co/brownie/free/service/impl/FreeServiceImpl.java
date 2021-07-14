@@ -1,6 +1,7 @@
 package kr.co.brownie.free.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -37,6 +38,11 @@ public class FreeServiceImpl implements FreeService{
 	@Override
 	public List<FreeVO> selectRecentForMenu() {
 		return freeMapper.selectRecentForMenu();
+	}
+
+	@Override
+	public void insertFree(Map<String, Object> map) {
+		freeMapper.insertFree(map);
 	}
 
 }

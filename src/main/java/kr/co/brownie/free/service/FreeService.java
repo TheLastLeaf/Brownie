@@ -1,6 +1,7 @@
 package kr.co.brownie.free.service;
 
 import java.util.List;
+import java.util.Map;
 
 public interface FreeService {
 	List<FreeVO> selectList();
@@ -12,4 +13,6 @@ public interface FreeService {
 	List<FreeVO> selectRecent(int boardSeq);
 
 	List<FreeVO> selectRecentForMenu();
+
+	void insertFree(Map<String, Object> map);
 }

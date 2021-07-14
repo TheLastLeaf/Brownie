@@ -37,7 +37,7 @@ public class FreeController {
 	@Resource(name = "reportService")
 	ReportService reportService;
 
-	@GetMapping(path= {"", "/freeList"})
+	@GetMapping(path= {"", "/freeBoardList"})
 	public String freeList(Model model) {
 		//자유게시판 글 리스트 출력
 		List<FreeVO> freeList = freeService.selectList();
@@ -49,10 +49,7 @@ public class FreeController {
 
 		//상단 메뉴바에 표시되는 최근 게시물 5개
         List<FreeVO> recentList = freeService.selectRecentForMenu();
-        System.out.println(recentList);
         model.addAttribute("recentList", recentList);
-
-
 
 		return "free/freeBoardList";  // 자유게시판 리스트
 	}
@@ -90,7 +87,6 @@ public class FreeController {
 
     	//게시글 리플 : 현재 프로필 사진 누락되어있어서 쿼리문 수정해야함 / file 테이블도 연결해서 쿼리쓰기
     	List<ReplyVO> replyOnBoard = replyService.replyOnBoard(boardSeq);
-    	System.out.println("replyOnBoard : "+replyOnBoard);
     	model.addAttribute("replyOnBoard", replyOnBoard);
 
     	//게시글 리리플 :리리플에 유저 태그 기능도 고려해보도록 하겠음 아빠가 제안해줌 하하
@@ -109,18 +105,39 @@ public class FreeController {
     	}
     	model.addAttribute("reReplyMap", reReplyMap);
 
-
 		//상단 메뉴바에 표시되는 최근 게시물 5개
         List<FreeVO> recentList = freeService.selectRecentForMenu();
-        System.out.println(recentList);
         model.addAttribute("recentList", recentList);
 
         return "free/freeBoardDetail"; // 자유게시판 리스트 디테일화면
     }
 
     @GetMapping("/freeBoardWrite")
-    public String freeBoardWrite() {
+    public String freeBoardWrite(HttpSession session, Model model) {
+        String inUserId = (String)session.getAttribute("id");
+
+        model.addAttribute("inUserId",inUserId);
+        if(inUserId == null){
+        	return "free/freeBoardWrite";
+//        	return "redirect:/free/freeBoardList";
+//        	ERR_TOO_MANY_REDIRECTS
+        	//이렇게 하면 로그아웃 유저가 링크에 접근했을때 리디렉션 오류나서 잠시 보류하겠음ㅇ_ㅇ 왜안될까
+        }
         return "free/freeBoardWrite"; // 자유게시판 글쓰기 화면
+    }
+
+    @PostMapping("/freeBoardWrite")
+    public String freeAddPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest servletRequest){
+
+    	//공지사항 여부가 체크되지 않았을 경우
+        try {
+        	String noticeYn = map.get("noticeYn").toString();
+        } catch(Exception e) {
+        	map.put("noticeYn", "n");
+        }
+        freeService.insertFree(map);
+
+        return "redirect:/free/freeBoardList";
     }
 
     @ResponseBody
@@ -184,7 +201,6 @@ public class FreeController {
 		map.put("reportName",reportName);
 		map.put("id",id);
 		map.put("userId",userId);
-		System.out.println("map"+map);
 		if(id==null){
 			model.addAttribute("message", "<script>alert('로그인 후 이용가능한 서비스입니다.'); history.go(-1);</script>");
 			return "common/message";

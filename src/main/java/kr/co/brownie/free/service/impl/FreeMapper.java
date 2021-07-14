@@ -1,6 +1,7 @@
 package kr.co.brownie.free.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +18,6 @@ public interface FreeMapper {
 	List<FreeVO> selectRecent(int boardSeq);
 
 	List<FreeVO> selectRecentForMenu();
+
+	void insertFree(Map<String, Object> map);
 }
