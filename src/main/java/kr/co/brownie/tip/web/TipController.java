@@ -70,9 +70,17 @@ public class TipController {
     }
 
     @GetMapping("/details/{board_seq}")
-    public String details(@PathVariable String board_seq, Model model) {
+    public String details(@PathVariable String board_seq, Model model, HttpServletRequest httpServletRequest) {
+        int currentReplyPageNumber;
         try {
-            int seq = Integer.parseInt(board_seq);
+            currentReplyPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("currentPage")), 1);
+        } catch (NullPointerException | NumberFormatException e) {
+            currentReplyPageNumber = 1;
+        }
+
+        int seq;
+        try {
+            seq = Integer.parseInt(board_seq);
 
             TipVO tipVO = tipService.select(seq);
             if (tipVO == null) {
@@ -82,6 +90,8 @@ public class TipController {
         } catch (NullPointerException | NumberFormatException e) {
             return "error/404";
         }
+
+        model.addAttribute("tipReplyPagingVO", tipService.selectReplyList(seq, currentReplyPageNumber));
         return "tip/details"; // 기본화면
     }
 
@@ -148,7 +158,25 @@ public class TipController {
         }
         model.addAttribute("message",
                 "alert(\"삭제 완료\");" +
-                "location.href=\"/" + httpServletRequest.getContextPath() + "tip/list\";");
+                        "location.href=\"/" + httpServletRequest.getContextPath() + "tip/list\";");
         return "common/message";
+    }
+
+    @PostMapping("/details/{board_seq}")
+    public String writeReply(HttpServletRequest httpServletRequest, @PathVariable String board_seq) {
+        String author = httpServletRequest.getSession().getAttribute("id").toString();
+        int seq;
+        try {
+            seq = Integer.parseInt(board_seq);
+        } catch (NullPointerException | NumberFormatException e) {
+            return "error/404";
+        }
+
+        String message = httpServletRequest.getParameter("message");
+        String headReplySeq = httpServletRequest.getParameter("headReplySeq") == null ? "" : httpServletRequest.getParameter("headReplySeq");
+
+        tipService.insertReply(seq, author, message, headReplySeq);
+
+        return "redirect:/" + httpServletRequest.getContextPath() + "tip/details/" + board_seq;
     }
 }

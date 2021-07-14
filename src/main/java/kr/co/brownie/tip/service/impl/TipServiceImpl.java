@@ -1,6 +1,7 @@
 package kr.co.brownie.tip.service.impl;
 
 import kr.co.brownie.tip.service.TipPagingVO;
+import kr.co.brownie.tip.service.TipReplyPagingVO;
 import kr.co.brownie.tip.service.TipService;
 import kr.co.brownie.tip.service.TipVO;
 import org.springframework.stereotype.Service;
@@ -63,5 +64,33 @@ public class TipServiceImpl implements TipService {
     @Override
     public int delete(int boardSeq) {
         return tipMapper.delete(boardSeq);
+    }
+
+    @Override
+    public TipReplyPagingVO selectReplyList(int boardSeq, int currentReplyPageNumber) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardSeq", boardSeq);
+        map.put("replyPerPage", REPLY_PER_PAGE);
+        map.put("currentReplyPageNumber", currentReplyPageNumber);
+        int total = tipMapper.countTipReplyList(boardSeq);
+        return TipReplyPagingVO.builder()
+                .tipReplyVOList(tipMapper.selectReplyList(map))
+                .replyPerPage(REPLY_PER_PAGE)
+                .startPageNumber((currentReplyPageNumber - 1) / REPLY_PER_PAGE + 1)
+                .currentPageNumber(currentReplyPageNumber)
+                .endPageNumber(Math.min((currentReplyPageNumber - 1) / REPLY_PER_PAGE + 10, (total - 1) / REPLY_PER_PAGE + 1))
+                .totalPageNumber((total - 1) / REPLY_PER_PAGE + 1)
+                .build();
+    }
+
+    @Override
+    public int insertReply(int boardSeq, String author, String message, String headReplySeq) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("boardSeq", boardSeq);
+        map.put("author", author);
+        map.put("message", message);
+        map.put("headReplySeq", headReplySeq);
+
+        return tipMapper.insertReply(map);
     }
 }

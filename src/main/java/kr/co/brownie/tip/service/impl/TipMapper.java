@@ -1,5 +1,6 @@
 package kr.co.brownie.tip.service.impl;
 
+import kr.co.brownie.tip.service.TipReplyVO;
 import kr.co.brownie.tip.service.TipVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -21,4 +22,10 @@ public interface TipMapper {
     int update(Map<String, Object> map);
 
     int delete(int boardSeq);
+
+    List<TipReplyVO> selectReplyList(Map<String, Object> map);
+
+    int countTipReplyList(int boardSeq);
+
+    int insertReply(Map<String, Object> map);
 }

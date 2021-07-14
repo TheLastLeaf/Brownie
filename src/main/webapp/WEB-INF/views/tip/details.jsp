@@ -3,6 +3,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:import url="../layout/header.jsp"/>
 <!-- Details Hero Section Begin -->
+<script>
+    function commentReplyButton(replySeq) {
+        $(".sub_reply_form").remove();
+
+        const form =
+            "<div class=\"dt-leave-comment sub_reply_form\">"
+            + "<form method=\"POST\">"
+            + "<input type=\"hidden\" name=\"headReplySeq\" value=\"" + replySeq + "\"/>"
+            + "<textarea name=\"message\" placeholder=\"Message\"></textarea>"
+            + "<button type=\"submit\">Submit</button>"
+            + "</form>"
+            + "</div>"
+        $("#" + replySeq).append(form);
+
+    }
+</script>
+
 <section class="details-hero-section set-bg"
          data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${tipVO.boardCategory}_0.jpg">
     <div class="container">
@@ -33,7 +50,7 @@
         <div class="p-0">
             <div class="details-text">
                 <div class="dt-desc">
-                        ${tipVO.content}
+                    ${tipVO.content}
                 </div>
                 <div class="dt-author">
                     <div class="da-pic">
@@ -48,58 +65,45 @@
                 </div>
                 <div class="dt-comment">
                     <h4>${tipVO.replyCnt} comment</h4>
-                    <div class="dc-item">
-                        <div class="dc-pic">
-                            <img src="/img/details/comment/comment-1.jpg" alt="">
+                    <c:forEach var="tipReplyVO" items="${tipReplyPagingVO.tipReplyVOList}">
+                        <div id="${tipReplyVO.replySeq}" class="dc-item"
+                             style="margin-left: ${(tipReplyVO.lv - 1) * 100}px;">
+                            <div class="dc-pic">
+                                <img src="/img/details/comment/comment-1.jpg" alt="">
+                            </div>
+                            <div class="dc-text">
+                                <h5>${tipReplyVO.nickName}y</h5>
+                                <span class="c-date">${tipReplyVO.inDate}</span>
+                                <p>${tipReplyVO.replyContent}</p>
+                                <c:if test="${sessionScope.id ne null}">
+                                    <a href="javascript:commentReplyButton(${tipReplyVO.replySeq})"
+                                       class="reply-btn"><span>Reply</span></a>
+                                </c:if>
+                            </div>
                         </div>
-                        <div class="dc-text">
-                            <h5>Brandon Kelley</h5>
-                            <span class="c-date">15 Aug 2017</span>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
-                                dolore magnam.</p>
-                            <a href="#" class="reply-btn"><span>Reply</span></a>
-                        </div>
-                    </div>
-                    <div class="dc-item reply-item">
-                        <div class="dc-pic">
-                            <img src="/img/details/comment/comment-2.jpg" alt="">
-                        </div>
-                        <div class="dc-text">
-                            <h5>Brandon Kelley</h5>
-                            <span class="c-date">15 Aug 2017</span>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
-                                dolore magnam.</p>
-                            <a href="#" class="reply-btn"><span>Reply</span></a>
-                        </div>
-                    </div>
-                    <div class="dc-item">
-                        <div class="dc-pic">
-                            <img src="/img/details/comment/comment-3.jpg" alt="">
-                        </div>
-                        <div class="dc-text">
-                            <h5>Matthew Nelson</h5>
-                            <span class="c-date">15 Aug 2017</span>
-                            <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
-                                dolore magnam.</p>
-                            <a href="#" class="reply-btn"><span>Reply</span></a>
-                        </div>
+                    </c:forEach>
+                    <div class="pagination-item">
+                        <c:if test="${1 < tipReplyPagingVO.startPageNumber}">
+                            <a href="?currentReplyPageNumber=${tipReplyPagingVO.startPageNumber - 1}"><span>Prev</span></a>
+                        </c:if>
+                        <c:forEach var="pageNumber" begin="${tipReplyPagingVO.startPageNumber}"
+                                   end="${tipReplyPagingVO.endPageNumber}">
+                            <a href="?currentReplyPageNumber=${pageNumber}"><span>${pageNumber}</span></a>
+                        </c:forEach>
+                        <c:if test="${tipReplyPagingVO.endPageNumber < tipReplyPagingVO.totalPageNumber}">
+                            <a href="?currentReplyPageNumber=${tipReplyPagingVO.endPageNumber + 1}"><span>Next</span></a>
+                        </c:if>
                     </div>
                 </div>
-                <div class="dt-leave-comment">
-                    <h4>Leave a comment</h4>
-                    <form action="#">
-                        <div class="input-list">
-                            <input type="text" placeholder="Name">
-                            <input type="text" placeholder="Email">
-                            <input type="text" placeholder="Website">
-                        </div>
-                        <textarea placeholder="Message"></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
+                <c:if test="${sessionScope.id ne null}">
+                    <div class="dt-leave-comment">
+                        <h4>Leave a comment</h4>
+                        <form method="POST">
+                            <textarea name="message" placeholder="Message"></textarea>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </c:if>
             </div>
         </div>
     </div>

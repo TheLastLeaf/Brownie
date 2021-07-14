@@ -65,7 +65,7 @@
     <select id="countTipList" parameterType="String" resultType="int">
         SELECT COUNT(*)
         FROM BROWNIE_BOARD
-        WHERE BOARD_KIND = 'tip'
+        WHERE UPPER(BROWNIE_BOARD.BOARD_KIND) = 'TIP'
           AND (#{champion} IS NULL OR BOARD_CATEGORY = #{champion})
     </select>
 
@@ -137,4 +137,88 @@
         FROM BROWNIE_BOARD
         WHERE BOARD_SEQ = #{boardSeq}
     </delete>
+
+    <select id="selectReplyList" parameterType="hashMap" resultType="kr.co.brownie.tip.service.TipReplyVO">
+        <![CDATA[
+        SELECT LV,
+               REPLYSEQ,
+               REPLYCONTENT,
+               INDATE,
+               INUSERID,
+               "UPDATE",
+               UPUSERID,
+               BOARDSEQ,
+               HEADREPLYSEQ,
+               STATUS,
+               LOLID,
+               NICKNAME
+        FROM (SELECT LV,
+                     REPLYSEQ,
+                     REPLYCONTENT,
+                     INDATE,
+                     INUSERID,
+                     "UPDATE",
+                     UPUSERID,
+                     BOARDSEQ,
+                     HEADREPLYSEQ,
+                     STATUS,
+                     LOLID,
+                     NICKNAME,
+                     ROWNUM AS RN
+              FROM (SELECT LEVEL AS LV,
+                           REPLYSEQ,
+                           REPLYCONTENT,
+                           INDATE,
+                           INUSERID,
+                           "UPDATE",
+                           UPUSERID,
+                           BOARDSEQ,
+                           HEADREPLYSEQ,
+                           STATUS,
+                           LOLID,
+                           NICKNAME
+                    FROM (SELECT REPLY.REPLY_SEQ        AS REPLYSEQ,
+                                 REPLY.REPLY_CONTENT    AS REPLYCONTENT,
+                                 REPLY.IN_DATE          AS INDATE,
+                                 REPLY.IN_USER_ID       AS INUSERID,
+                                 REPLY.UP_DATE          AS "UPDATE",
+                                 REPLY.UP_USER_ID       AS UPUSERID,
+                                 REPLY.BOARD_SEQ        AS BOARDSEQ,
+                                 REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
+                                 REPLY.STATUS           AS STATUS,
+                                 BROWNIE_USER.LOL_ID    AS LOLID,
+                                 BROWNIE_USER.NICK_NAME AS NICKNAME
+                          FROM REPLY
+                                   LEFT OUTER JOIN BROWNIE_USER ON (REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
+                          WHERE REPLY.BOARD_SEQ = ${boardSeq}
+                          ORDER BY REPLY_SEQ
+                         )
+                    START WITH HEADREPLYSEQ IS NULL
+                    CONNECT BY PRIOR REPLYSEQ = HEADREPLYSEQ
+                   )
+             )
+        WHERE ${replyPerPage} * (${currentReplyPageNumber} - 1) < RN
+          AND RN <= ${replyPerPage} * ${currentReplyPageNumber}
+        ]]>
+    </select>
+
+    <select id="countTipReplyList" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM REPLY
+        WHERE BOARD_SEQ = #{boardSeq}
+    </select>
+
+    <insert id="insertReply" parameterType="hashMap">
+        INSERT INTO REPLY
+        (REPLY_CONTENT,
+         IN_USER_ID,
+         UP_USER_ID,
+         BOARD_SEQ,
+         HEAD_REPLY_SEQ)
+        VALUES (#{message},
+                #{author},
+                #{author},
+                #{boardSeq},
+                #{headReplySeq})
+    </insert>
 </mapper>
