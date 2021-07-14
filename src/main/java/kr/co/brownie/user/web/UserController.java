@@ -189,14 +189,9 @@ public class UserController {
         map.put("content", content);
         map.put("userId", userId);
         map.put("reportName", Arrays.toString(reportNameList));
-        if (id == null) {
-            model.addAttribute("message", "<script>alert('로그인 후 이용가능한 서비스입니다.'); history.go(-1);</script>");
-            return "common/message";
-        } else {
-            int cnt = reportService.insert(map);
-            model.addAttribute("cnt", cnt);
-            return cnt;
-        }
+        int cnt = reportService.insert(map);
+        model.addAttribute("cnt", cnt);
+        return cnt;
     }
 
 }
