@@ -39,10 +39,9 @@ public class NoticeController {
     }
 
     @GetMapping("/detail/{board_seq}")
-    public String detail(Model model, HttpSession session, @PathVariable String board_seq) {
+    public String detail(Model model, HttpSession session, @PathVariable int board_seq) {
         try {
-            int boardSeq = Integer.parseInt(board_seq);
-            NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+            NoticeVO noticeVO = noticeService.getNotice(board_seq);
             String id = (String) session.getAttribute("id");
             if (noticeVO == null) {
                 throw new NullPointerException();
@@ -73,10 +72,9 @@ public class NoticeController {
     }
 
     @GetMapping("/update/{board_seq}")
-    public String update(Model model, HttpSession session,@PathVariable String board_seq) {
+    public String update(Model model, HttpSession session,@PathVariable int board_seq) {
         try{
-            int boardSeq = Integer.parseInt(board_seq);
-            NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+            NoticeVO noticeVO = noticeService.getNotice(board_seq);
             String id = (String) session.getAttribute("id");
             if(noticeVO==null){
                 throw new NullPointerException();
@@ -84,7 +82,7 @@ public class NoticeController {
             model.addAttribute("id",id);
             model.addAttribute("noticeVO", noticeVO);
             if (session.getAttribute("id") == null) {
-                return "redirect:/notice/detail?boardSeq=" + boardSeq;
+                return "redirect:/notice/detail?boardSeq=" + board_seq;
             }
         }catch (NullPointerException| NumberFormatException e){
             return "error/404";
@@ -93,25 +91,24 @@ public class NoticeController {
     }
 
     @PostMapping("/update/{board_seq}")
-    public String updatePost(Model model,@PathVariable String board_seq,HttpServletRequest servletRequest) {
-        int boardSeq = Integer.parseInt(board_seq);
+    public String updatePost(Model model,@PathVariable int board_seq,HttpServletRequest servletRequest) {
         try{
-            NoticeVO noticeVO = noticeService.getNotice(boardSeq);
+            NoticeVO noticeVO = noticeService.getNotice(board_seq);
             model.addAttribute("noticeVO", noticeVO);
             String id = servletRequest.getParameter("upUserId");
             String title = servletRequest.getParameter("title");
             String content = servletRequest.getParameter("content");
-            int update = this.noticeService.updateNotice(id,title,content,boardSeq);
+            int update = this.noticeService.updateNotice(id,title,content,board_seq);
             if (update > 0) {
-                return "redirect:/notice/detail/" + boardSeq;
+                return "redirect:/notice/detail/" + board_seq;
             }
-            if (this.noticeService.updateNotice(id,title,content,boardSeq) != 1) {
+            if (this.noticeService.updateNotice(id,title,content,board_seq) != 1) {
                 throw new NullPointerException();
             }
         }catch (NullPointerException | NumberFormatException e) {
             return "error/404";
         }
-        return "redirect:/notice/update/" + boardSeq;
+        return "redirect:/notice/update/" + board_seq;
     }
 
     @PostMapping("/delete")
