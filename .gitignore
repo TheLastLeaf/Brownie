@@ -204,3 +204,26 @@ hs_err_pid*
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,eclipse
 /brownie.iml
 .classpath
+src/main/resources/static/img/miniGame/event/BET/throw.png
+src/main/resources/static/img/miniGame/event/DICE/doubleDice.png
+src/main/resources/static/img/miniGame/event/MER/change.png
+src/main/resources/static/img/miniGame/event/RIDDLE/moon.png
+src/main/resources/static/img/miniGame/event/SUDDEN/box-void.png
+src/main/resources/static/img/miniGame/event/SUDDEN/box1.png
+src/main/resources/static/img/miniGame/event/SUDDEN/box2.png
+src/main/resources/static/img/miniGame/event/SUDDEN/cat3.png
+src/main/resources/static/img/miniGame/event/SUDDEN/cat4.png
+src/main/resources/static/img/miniGame/event/SUDDEN/chr-reaper.png
+src/main/resources/static/img/miniGame/event/SUDDEN/safe2.png
+src/main/resources/static/img/miniGame/event/TRASIT/box1.png
+src/main/resources/static/img/miniGame/event/TRASIT/box2.png
+src/main/resources/static/img/miniGame/item/equipment/gun1.png
+src/main/resources/static/img/miniGame/item/equipment/gun2.png
+src/main/resources/static/img/miniGame/item/equipment/sheild1.png
+src/main/resources/static/img/miniGame/item/equipment/sheild2.png
+src/main/resources/static/img/miniGame/item/food/food-cherry-red.png
+src/main/resources/static/img/miniGame/item/food/food-cherry.png
+src/main/resources/static/img/miniGame/item/food/food-dou.png
+src/main/resources/static/img/miniGame/item/key/key2.png
+src/main/resources/static/img/miniGame/item/luxury/coin.png
+src/main/resources/static/img/miniGame/item/luxury/scallop-pearl.png
