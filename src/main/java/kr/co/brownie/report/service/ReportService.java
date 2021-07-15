@@ -1,10 +1,14 @@
 package kr.co.brownie.report.service;
 
+import kr.co.brownie.admin.service.ReportPagingVO;
+
 import java.util.List;
 import java.util.Map;
 
 public interface ReportService {
-	List<ReportVO> selectReportList();
+    int CONTENT_PER_PAGE = 10;
 
-	int insert(Map<String,Object> map);
+    ReportPagingVO selectReportList(int currentPageNumber);
+
+    int insert(Map<String, Object> map);
 }

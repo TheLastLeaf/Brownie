@@ -9,7 +9,9 @@ import kr.co.brownie.report.service.ReportVO;
 
 @Repository("reportMapper")
 public interface ReportMapper {
-	List<ReportVO> selectReportList();
+    List<ReportVO> selectReportList(Map<String, Object> map);
 
-	int insert(Map<String,Object> map);
+    int insert(Map<String, Object> map);
+
+    int count();
 }

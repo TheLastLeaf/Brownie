@@ -457,7 +457,7 @@
                                     <img src="/img/details/comment/comment-1.jpg" alt="">
                                 </div>
                                 <div class="dc-text">
-                                    <h5>${freeReplyVO.nickName}y</h5>
+                                    <h5>${freeReplyVO.nickName}</h5>
                                     <span class="c-date">${freeReplyVO.inDate}</span>
                                     <p>${freeReplyVO.replyContent}</p>
                                     <c:if test="${sessionScope.id ne null}">
