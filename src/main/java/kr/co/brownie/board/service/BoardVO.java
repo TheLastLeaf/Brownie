@@ -34,13 +34,13 @@ public class BoardVO {
     private String userPosition;
     private Integer browniePoint;
 
-    //REPLY
+    //BROWNIE_BOARD_REPLY
     private Integer replyCnt;
 
-    //HIT
+    //BROWNIE_BOARD_HIT
     private Integer hitCnt;
 
-    //LIKE_BOARD
+    //BROWNIE_BOARD_LIKE
     private Integer likeCnt;
     private Integer unlikeCnt;
 }

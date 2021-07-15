@@ -152,8 +152,8 @@ public class GalleryController {
         
         
         //좋싫
-		BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
-    	model.addAttribute("likeHateCnt", likeHateCnt);
+//		BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+//    	model.addAttribute("likeHateCnt", likeHateCnt);
         //좋싫
 		
 		if (galleryVO.getFileSeq()!=null) {
@@ -280,28 +280,28 @@ public class GalleryController {
 
     	try {
     		//유저의 기존 값 가져옴
-    		BoardVO userInBoard = boardService.selectUserStance(map);
-    		int userStance = userInBoard.getLikeHateKind();
+//    		BoardVO userInBoard = boardService.selectUserStance(map);
+//    		int userStance = userInBoard.getLikeHateKind();
 
-    		if(userStance == kind) {
+//    		if(userStance == kind) {
     			//기존값이 새로 들어온 값과 같을 경우 저장된 값을 삭제함
-    			boardService.deleteUserStance(map);
+//    			boardService.deleteUserStance(map);
 
-    		} else {
+//    		} else {
     			//기존값이 새로 들어온 값과 다를 경우 값을 업데이트함
-    			boardService.updateLikeHate(map);
-    		}
+//    			boardService.updateLikeHate(map);
+//    		}
 
 		} catch (NullPointerException e) {
 			//기존값이 null일 경우 새로 들어온 값을 삽입해줌
-			boardService.updateLikeHate(map);
+//			boardService.updateLikeHate(map);
 		}
 
     	//좋아요 싫어요 개수 출력
-    	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
-    	model.addAttribute("likeHateCnt", likeHateCnt);
-    	return likeHateCnt;
-
+//    	BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+//    	model.addAttribute("likeHateCnt", likeHateCnt);
+//    	return likeHateCnt;
+return null;
     }
 
 }

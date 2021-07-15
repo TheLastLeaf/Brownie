@@ -73,16 +73,16 @@ public class ReplyController {
     	try {
     		//유저의 기존 값 가져옴
     		ReplyVO userInReply = replyService.selectReplyStance(map);
-    		int userStance = userInReply.getLikeHateKind();
+//    		int userStance = userInReply.getLikeHateKind();
 
-    		if(userStance == kind) {
+//    		if(userStance == kind) {
     			//기존값이 새로 들어온 값과 같을 경우 저장된 값을 삭제함
-    			replyService.deleteReplyStance(map);
+//    			replyService.deleteReplyStance(map);
 
-    		} else {
+//    		} else {
     			//기존값이 새로 들어온 값과 다를 경우 값을 업데이트함
-    			replyService.updateReplyStance(map);
-    		}
+//    			replyService.updateReplyStance(map);
+//    		}
 
 		} catch (NullPointerException e) {
 			//기존값이 null일 경우 새로 들어온 값을 삽입해줌
@@ -95,8 +95,8 @@ public class ReplyController {
     	//해당 댓글에 좋아요 싫어요가 하나도 없을 경우 쿼리문에 값이 나타나지 않아서 적어둠 / 쿼리 너무어려워서ㅠ 쿼리수정 임시보류함
     	if(likeHateCnt == null) {
     		ReplyVO likeHateCntZero = new ReplyVO();
-    		likeHateCntZero.setReplySeq(replySeq);
-    		likeHateCntZero.setHateCnt("0");
+//    		likeHateCntZero.setReplySeq(replySeq);
+//    		likeHateCntZero.setHateCnt("0");
     		likeHateCntZero.setLikeCnt("0");
     		return likeHateCntZero;
     	}

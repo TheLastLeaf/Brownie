@@ -74,8 +74,8 @@ public class FreeController {
         model.addAttribute("freeReplyPagingVO", freeService.selectReplyList(map));
 
         //좋아요 싫어요 개수
-        BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
-        model.addAttribute("likeHateCnt", likeHateCnt);
+//        BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+//        model.addAttribute("likeHateCnt", likeHateCnt);
 
         //게시글 하단 : 이전 게시글과 다음 게시글을 리스트로 가져옵니다.
         List<FreeVO> freeRecent = freeService.selectRecent(boardSeq);
@@ -101,15 +101,15 @@ public class FreeController {
         Map<String, Object> reReplyMap = new HashMap<String, Object>();
         for (ReplyVO reply : replyOnBoard) {
             //리플 시퀀스 번호를 받아와서 시퀀스 번호에 맞게 해당 리리플 목록을 가져와서 맵에 저장
-            int replySeq = reply.getReplySeq();
+//            int replySeq = reply.getReplySeq();
 
             //리플 시퀀스 번호를 기반으로 리리플 리스트를 구함
-            List<ReplyVO> replyOnReply = replyService.replyOnReply(replySeq);
+//            List<ReplyVO> replyOnReply = replyService.replyOnReply(replySeq);
 
             //값이 있는 경우 { replySeq : List<replyVO> } 이런 식으로 넣어줘야할듯
-            if (replyOnReply.size() > 0) {
-                reReplyMap.put(replySeq + "", replyOnReply);
-            }
+//            if (replyOnReply.size() > 0) {
+//                reReplyMap.put(replySeq + "", replyOnReply);
+//            }
         }
         model.addAttribute("reReplyMap", reReplyMap);
 
@@ -234,37 +234,38 @@ public class FreeController {
         int kind = Integer.parseInt(map.get("kind").toString());
         int boardSeq = Integer.parseInt(map.get("boardSeq").toString());
 
-        try {
+//        try {
             //유저의 기존 값 가져옴
-            BoardVO userInBoard = boardService.selectUserStance(map);
-            int userStance = userInBoard.getLikeHateKind();
+//            BoardVO userInBoard = boardService.selectUserStance(map);
+//            int userStance = userInBoard.getLikeHateKind();
 
-            if (userStance == kind) {
+//            if (userStance == kind) {
                 //기존값이 새로 들어온 값과 같을 경우 저장된 값을 삭제함
-                boardService.deleteUserStance(map);
+//                boardService.deleteUserStance(map);
 
-            } else {
+//            } else {
                 //기존값이 새로 들어온 값과 다를 경우 값을 업데이트함
-                boardService.updateLikeHate(map);
-            }
+//                boardService.updateLikeHate(map);
+//            }
 
-        } catch (NullPointerException e) {
+//        } catch (NullPointerException e) {
             //기존값이 null일 경우 새로 들어온 값을 삽입해줌
-            boardService.updateLikeHate(map);
-        }
+//            boardService.updateLikeHate(map);
+//        }
 
         //좋아요 싫어요 개수 출력
-        BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
+//        BoardVO likeHateCnt = boardService.likeHateCnt(boardSeq);
 
         //해당 게시글에 좋아요 싫어요가 하나도 없을 경우 쿼리문에 값이 나타나지 않아서 적어둠 / 쿼리 너무어려워서ㅠ 쿼리수정 임시보류함
-        if (likeHateCnt == null) {
-            BoardVO likeHateCntZero = new BoardVO();
-            likeHateCntZero.setBoardSeq(boardSeq);
-            likeHateCntZero.setHateCnt("0");
-            likeHateCntZero.setLikeCnt("0");
-            return likeHateCntZero;
-        }
-        return likeHateCnt;
+//        if (likeHateCnt == null) {
+//            BoardVO likeHateCntZero = new BoardVO();
+//            likeHateCntZero.setBoardSeq(boardSeq);
+//            likeHateCntZero.setHateCnt("0");
+//            likeHateCntZero.setLikeCnt("0");
+//            return likeHateCntZero;
+//        }
+//        return likeHateCnt;
+            return null;
     }
 
     @GetMapping("/report")
