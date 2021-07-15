@@ -57,6 +57,10 @@
         $("input[name='reportName']:checked").each(function (i) {
             reportName.push($(this).val())
         })
+        if (reportName.length == 0) {
+            alert("신고 사유를 체크해주세요!")
+            return false;
+        }
 
         $.ajax({
             url: "./report",

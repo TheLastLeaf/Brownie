@@ -22,7 +22,7 @@ public class NoticeController {
         String id = (String) session.getAttribute("id");
         model.addAttribute("id", id);
         if (id == null) {
-            model.addAttribute("message","alert('로그인 후 이용가능합니다.'); location.href='/notice/list';");
+            model.addAttribute("message", "alert('로그인 후 이용가능합니다.'); location.href='/notice/list';");
             return "common/message";
         }
         return "notice/write"; // 공지 글쓰기
@@ -38,7 +38,7 @@ public class NoticeController {
     }
 
     @GetMapping("/details/{board_seq}")
-    public String detail(@PathVariable int board_seq,Model model, HttpSession session) {
+    public String detail(@PathVariable int board_seq, Model model, HttpSession session) {
         try {
             NoticeVO noticeVO = noticeService.getNotice(board_seq);
             String id = (String) session.getAttribute("id");
@@ -63,7 +63,7 @@ public class NoticeController {
         } catch (NullPointerException | NumberFormatException e) {
             currentPageNumber = 1;
         }
-        model.addAttribute("notice",notice);
+        model.addAttribute("notice", notice);
         model.addAttribute("keyword", keyword);
         model.addAttribute("PagingVO", noticeService.selectList(notice, keyword, currentPageNumber));
 
@@ -71,40 +71,40 @@ public class NoticeController {
     }
 
     @GetMapping("/modify/{board_seq}")
-    public String update(@PathVariable int board_seq,Model model, HttpSession session) {
-        try{
+    public String update(@PathVariable int board_seq, Model model, HttpSession session) {
+        try {
             NoticeVO noticeVO = noticeService.getNotice(board_seq);
             String id = (String) session.getAttribute("id");
-            if(noticeVO==null){
+            if (noticeVO == null) {
                 throw new NullPointerException();
             }
-            model.addAttribute("id",id);
+            model.addAttribute("id", id);
             model.addAttribute("noticeVO", noticeVO);
             if (session.getAttribute("id") == null) {
                 return "redirect:/notice/details/" + board_seq;
             }
-        }catch (NullPointerException| NumberFormatException e){
+        } catch (NullPointerException | NumberFormatException e) {
             return "notice/list";
         }
         return "notice/modify";
     }
 
     @PostMapping("/modify/{board_seq}")
-    public String updatePost(Model model,@PathVariable int board_seq,HttpServletRequest servletRequest) {
-        try{
+    public String updatePost(Model model, @PathVariable int board_seq, HttpServletRequest servletRequest) {
+        try {
             NoticeVO noticeVO = noticeService.getNotice(board_seq);
             model.addAttribute("noticeVO", noticeVO);
             String id = servletRequest.getParameter("upUserId");
             String title = servletRequest.getParameter("title");
             String content = servletRequest.getParameter("content");
-            int update = this.noticeService.updateNotice(id,title,content,board_seq);
+            int update = this.noticeService.updateNotice(id, title, content, board_seq);
             if (update > 0) {
                 return "redirect:/notice/details/" + board_seq;
             }
             if (update != 1) {
                 throw new NullPointerException();
             }
-        }catch (NullPointerException | NumberFormatException e) {
+        } catch (NullPointerException | NumberFormatException e) {
             return "redirect:/notice/modify/" + board_seq;
         }
         return "redirect:/notice/modify/" + board_seq;

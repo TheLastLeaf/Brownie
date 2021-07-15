@@ -86,6 +86,10 @@
         $("input[name='reportName']:checked").each(function (i) {
             reportName.push($(this).val())
         })
+        if (reportName.length == 0) {
+            alert("신고 사유를 체크해주세요!")
+            return false;
+        }
 
         $.ajax({
             url: "./userReport",
@@ -115,14 +119,10 @@
 </div>
 
 <div class="signup-section" style="display: block;">
-    <!-- 		<div class="signup-close"> -->
-    <!-- 			<i class=fas fa-times" onclick="fn_close()"></i> -->
-    <!-- 		</div> -->
     <div class="signup-text">
         <div class="container">
             <div class="signup-title" style="margin: 10px;">
                 <h3 class="title" style="color: white;">You Die</h3>
-                <!-- 					<p class="title">신고창</p> -->
             </div>
             <div class="nameInfo row">
                 <input type="hidden" value="${userId}" name="userId" id="UserId" class="userId">
@@ -152,8 +152,6 @@
                 <div class="comment">
                     <input type="text" placeholder="기타 사유를 적어주세요!" maxlength="1000" class="content" name="content">
                 </div>
-
-                <!-- <input type="checkbox" class="col-1" name="position" id="s" value="SUP" /> -->
             </div>
             <button type="button" onclick="fn_submit()">
                 <span>신고하기</span>
