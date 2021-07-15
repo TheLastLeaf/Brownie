@@ -81,22 +81,22 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
-
-	//유저 리스트 출력 ( 관리자 화면에서 사용함 )
-	@Override
-	public List<UserVO> selectList() {
-		return userMapper.selectList();
-	}
-
+	
 	@Override
 	public void insertNickPosition(Map<String, Object> map) throws IOException {
 		System.out.println("service: " + map);
 		userMapper.insertNickPosition(map);
 	}
-
+	
 	@Override
 	public String nickName(String id) {
 		return userMapper.nickName(id);
+	}
+
+	//유저 리스트 출력 ( 관리자 화면에서 사용함 )
+	@Override
+	public List<UserVO> selectList() {
+		return userMapper.selectList();
 	}
 
 }

@@ -113,10 +113,9 @@ public class UserController {
         map.put("id", id);
 
         UserVO userVO = userService.userOneSelect(id);
-
-        // 내부경로로 저장
-        // String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-        // String uploadFolder = contextRoot + "resources/static/img/userProfile/";
+        if(map.get("agree").equals("on")) {
+        	System.out.println("ㅎㅇ");
+        }
 
         // 파일 저장되는 경로
         String uploadFolder = "C:\\Users\\PC13\\git\\Brownie\\src\\main\\resources\\static\\img\\userProfile";
@@ -145,26 +144,30 @@ public class UserController {
                 fileService.updateProfile(map);
             }
             changed.add("사진");
-        }
+        }//else{
 
-        if (!map.get("positions").toString().equals(userVO.getUserPosition())) {
-            //포지션 변경하는 서비스 여기에 삽입
-            changed.add("포지션");
-        }
-
+        //닉네임 변경하는 서비스
         if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
-            //닉네임 변경하는 서비스 여기에 삽입
-            changed.add("닉네임");
+        	userService.insertNickPosition(map);
+        	System.out.println("닉네임 변경했을때 map: "+map);
+        	changed.add("닉네임");
         }
-
-        System.out.println("map : " + map);
+        
+        //포지션 변경하는 서비스
+        if (!map.get("positions").toString().equals(userVO.getUserPosition())) {
+        	System.out.println("원래포지션 "+ userVO.getUserPosition());
+        	System.out.println("체크한포지션 "+ map.get("positions"));
+        	userService.insertNickPosition(map);
+        	System.out.println("포지션 변경했을때 map: "+map);
+        		changed.add("포지션");
+        }
 
         if (changed.size() == 0) {
             return "변경된 항목이 없습니다.";
         }
 
         String result = Arrays.toString(changed.toArray(new String[0]));
-        return result + "(이)가 변경되었습니다.";
+        return result + "이 변경되었습니다.";
     }
 
     @GetMapping("/userSync")
@@ -181,7 +184,6 @@ public class UserController {
     public String userModify(Model model,
                              @PathVariable String user_id)
             throws IOException {
-        System.out.println("user_id: " + user_id);
         String selectProfile = fileService.selectProfile(user_id);
         UserVO userVO = userService.userOneSelect(user_id);
         model.addAttribute("userOneSelect", userVO);
