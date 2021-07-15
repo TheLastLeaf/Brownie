@@ -4,23 +4,55 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.report.service.impl.ReportMapper">
 
-    <select id="selectReportList" resultType="kr.co.brownie.report.service.ReportVO">
-        SELECT REPORT_SEQ  as reportSeq,
-               CONTENT     as content,
-               STATUS      as status,
-               REPORT_NAME as reportName,
-               USER_ID     as userId,
-               IN_DATE     as inDate,
-               UP_DATE     as modDate,
-               IN_USER_ID  as inUserId,
-               UP_USER_ID  as upUserId
+    <select id="selectReportList" resultType="kr.co.brownie.report.service.ReportVO" parameterType="hashMap">
+        <![CDATA[
+        SELECT REPORTSEQ,
+               CONTENT,
+               STATUS,
+               REPORTNAME,
+               USERID,
+               INDATE,
+               "UPDATE",
+               INUSERID,
+               UPUSERID
+        FROM (SELECT ROWNUM AS RN,
+                     REPORTSEQ,
+                     CONTENT,
+                     STATUS,
+                     REPORTNAME,
+                     USERID,
+                     INDATE,
+                     "UPDATE",
+                     INUSERID,
+                     UPUSERID
+              FROM (SELECT REPORT_SEQ  as REPORTSEQ,
+                           CONTENT     as CONTENT,
+                           STATUS      as STATUS,
+                           REPORT_NAME as REPORTNAME,
+                           USER_ID     as USERID,
+                           IN_DATE     as INDATE,
+                           UP_DATE     as "UPDATE",
+                           IN_USER_ID  as INUSERID,
+                           UP_USER_ID  as UPUSERID
+                    FROM REPORT
+                    order by STATUS, IN_DATE
+                   )
+             )
+        WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN
+          AND RN <= ${contentPerPage} * ${currentPageNumber}
+        ]]>
+
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
         FROM REPORT
-        order by STATUS, IN_DATE
     </select>
 
     <insert id="insert" parameterType="hashMap">
         INSERT INTO REPORT(REPORT_SEQ, CONTENT, REPORT_NAME, USER_ID, IN_DATE, UP_DATE, IN_USER_ID, UP_USER_ID, STATUS)
         VALUES (REPORT_SEQ.NEXTVAL, #{content}, #{reportName}, #{userId}, sysdate, sysdate, #{id}, #{id}, 'N')
     </insert>
+
 
 </mapper>
