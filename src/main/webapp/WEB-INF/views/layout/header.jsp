@@ -82,6 +82,10 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+        .admin{
+            height: 25px;
+            font-size: small;
+        }
     </style>
 
 </head>
@@ -140,6 +144,9 @@
                                                 <i class="fas fa-sign-out-alt"></i>
                                             </a>
                                         </span>
+                                        <c:if test="${sessionScope.id ne null and sessionScope.permit_level eq 9}">
+                                            <i class="far fa-address-card" onclick="location.href='/admin'"></i>
+                                        </c:if>
                                     </c:when>
                                     <c:otherwise>
                                         <a onclick="location.href = '/login'">
