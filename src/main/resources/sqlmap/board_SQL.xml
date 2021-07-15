@@ -3,64 +3,67 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.board.service.impl.BoardMapper">
+    <insert id="insert" parameterType="hashMap">
+        INSERT INTO BROWNIE_BOARD(
+        <trim suffixOverrides=",">
+            <if test='boardKind != null and boardKind != ""'>BOARD_KIND,</if>
+            <if test='boardCategory != null and boardCategory != ""'>BOARD_CATEGORY,</if>
+            TITLE,
+            CONTENT,
+            <if test='noticeYn != null and noticeYn != ""'>NOTICE_YN,</if>
+            <if test='status != null and status != ""'>STATUS,</if>
+            IN_USER_ID,
+            UP_USER_ID,
+            <if test='fileSeq != null and fileSeq != ""'>FILE_SEQ,</if>
+            <if test='subSeq != null and subSeq != ""'>SUB_SEQ</if>
+        </trim>
+        ) VALUES (
+        <trim suffixOverrides=",">
+            <if test='boardKind != null and boardKind != ""'>#{boardKind},</if>
+            <if test='boardCategory != null and boardCategory != ""'>#{boardCategory},</if>
+            #{title},
+            #{content},
+            <if test='noticeYn != null and noticeYn !=""'>#{noticeYn},</if>
+            <if test='status != null and status != ""'>#{status},</if>
+            #{userId},
+            #{userId},
+            <if test='fileSeq != null and fileSeq != ""'>#{fileSeq},</if>
+            <if test='subSeq != null and subSeq != ""'>#{subSeq}</if>
+        </trim>
+        )
+    </insert>
+
     <select id="count" parameterType="hashMap" resultType="int">
         <![CDATA[
         SELECT COUNT(*)
         FROM (SELECT *
               FROM BROWNIE_BOARD
-              WHERE 1 = 1
         ]]>
-        <if test='boardSeq != null and !boardSeq.equals("")'>
-            <![CDATA[
-                AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
-        ]]>
-        </if>
-        <if test='boardKind != null and !boardKind.equals("")'>
-            <![CDATA[
-                AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
-        ]]>
-        </if>
-        <if test='boardCategory != null and !boardCategory.equals("")'>
-            <![CDATA[
-                AND UPPER(BROWNIE_BOARD.BOARD_CATEGORY) = UPPER(#{boardCategory})
-        ]]>
-        </if>
-        <if test='title != null and !title.equals("")'>
-            <![CDATA[
-                AND UPPER(BROWNIE_BOARD.TITLE) LIKE UPPER('%'||#{title}||'%')
-        ]]>
-        </if>
-        <if test='content != null and !content.equals("")'>
-            <![CDATA[
-                AND UPPER(BROWNIE_BOARD.CONTENT) LIKE UPPER('%'||#{content}||'%')
-        ]]>
-        </if>
-        <if test='noticeYn != null and !noticeYn.equals("")'>
-            <![CDATA[
-                AND UPPER(BROWNIE_BOARD.NOTICE_YN) = UPPER(#{noticeYn})
-        ]]>
-        </if>
-        <if test='boardStatus != null and !boardStatus.equals("")'>
-            <![CDATA[
-                AND UPPER(BROWNIE_BOARD.STATUS) = UPPER(#{boardStatus})
-        ]]>
-        </if>
+        <where>
+            <if test='boardSeq != null and boardSeq != ""'>BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}</if>
+            <if test='boardKind != null and boardKind != ""'>AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
+            </if>
+            <if test='boardCategory != null and boardCategory != ""'>AND UPPER(BROWNIE_BOARD.BOARD_CATEGORY) =
+                UPPER(#{boardCategory})
+            </if>
+            <if test='title != null and title != ""'>AND UPPER(BROWNIE_BOARD.TITLE) LIKE UPPER('%'||#{title}||'%')</if>
+            <if test='content != null and content != ""'>AND UPPER(BROWNIE_BOARD.CONTENT) LIKE
+                UPPER('%'||#{content}||'%')
+            </if>
+            <if test='noticeYn != null and noticeYn != ""'>AND UPPER(BROWNIE_BOARD.NOTICE_YN) = UPPER(#{noticeYn})</if>
+            <if test='boardStatus != null and boardStatus != ""'>AND UPPER(BROWNIE_BOARD.STATUS) =
+                UPPER(#{boardStatus})
+            </if>
+        </where>
         <![CDATA[
                 ) BROWNIE_BOARD
                      INNER JOIN (SELECT *
                                  FROM BROWNIE_USER
-                                 WHERE 1 = 1
-                                    ]]>
-        <if test='nickName != null and !nickName.equals("")'>
-            <![CDATA[
-                                   AND UPPER(NICK_NAME) = UPPER(#{nickName})
         ]]>
-        </if>
-        <if test='userId != null and !userId.equals("")'>
-            <![CDATA[
-                                   AND UPPER(USER_ID) = UPPER(#{userId})
-        ]]>
-        </if>
+        <where>
+            <if test='nickName != null and nickName != ""'>UPPER(NICK_NAME) = UPPER(#{nickName})</if>
+            <if test='userId != null and userId != ""'>AND UPPER(USER_ID) = UPPER(#{userId})</if>
+        </where>
         <![CDATA[
                                    ) BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
         ]]>
@@ -128,59 +131,37 @@
                            NVL(BROWNIE_BOARD_LIKE.UNLIKE_CNT, 0) AS UNLIKECNT
                     FROM (SELECT *
                           FROM BROWNIE_BOARD
-                          WHERE 1 = 1
         ]]>
-        <if test='boardSeq != null and !boardSeq.equals("")'>
-            <![CDATA[
-                            AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
-        ]]>
-        </if>
-        <if test='boardKind != null and !boardKind.equals("")'>
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
-        ]]>
-        </if>
-        <if test='boardCategory != null and !boardCategory.equals("")'>
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.BOARD_CATEGORY) = UPPER(#{boardCategory})
-        ]]>
-        </if>
-        <if test='title != null and !title.equals("")'>
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.TITLE) LIKE UPPER('%'||#{title}||'%')
-        ]]>
-        </if>
-        <if test='content != null and !content.equals("")'>
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.CONTENT) LIKE UPPER('%'||#{content}||'%')
-        ]]>
-        </if>
-        <if test='noticeYn != null and !noticeYn.equals("")'>
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.NOTICE_YN) = UPPER(#{noticeYn})
-        ]]>
-        </if>
-        <if test='boardStatus != null and !boardStatus.equals("")'>
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.STATUS) = UPPER(#{boardStatus})
-        ]]>
-        </if>
+        <where>
+            <if test='boardSeq != null and boardSeq != ""'>BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}</if>
+            <if test='boardKind != null and boardKind != ""'>AND UPPER(BROWNIE_BOARD.BOARD_KIND) =
+                UPPER(#{boardKind})
+            </if>
+            <if test='boardCategory != null and boardCategory != ""'>AND UPPER(BROWNIE_BOARD.BOARD_CATEGORY) =
+                UPPER(#{boardCategory})
+            </if>
+            <if test='title != null and title != ""'>AND UPPER(BROWNIE_BOARD.TITLE) LIKE
+                UPPER('%'||#{title}||'%')
+            </if>
+            <if test='content != null and content != ""'>AND UPPER(BROWNIE_BOARD.CONTENT) LIKE
+                UPPER('%'||#{content}||'%')
+            </if>
+            <if test='noticeYn != null and noticeYn != ""'>AND UPPER(BROWNIE_BOARD.NOTICE_YN) =
+                UPPER(#{noticeYn})
+            </if>
+            <if test='boardStatus != null and boardStatus != ""'>AND UPPER(BROWNIE_BOARD.STATUS) =
+                UPPER(#{boardStatus})
+            </if>
+        </where>
         <![CDATA[
                            ) BROWNIE_BOARD
                                 INNER JOIN (SELECT *
                                             FROM BROWNIE_USER
-                                            WHERE 1 = 1
                                     ]]>
-        <if test='nickName != null and !nickName.equals("")'>
-            <![CDATA[
-                                              AND UPPER(NICK_NAME) = UPPER(#{nickName})
-        ]]>
-        </if>
-        <if test='userId != null and !userId.equals("")'>
-            <![CDATA[
-                                              AND UPPER(USER_ID) = UPPER(#{userId})
-        ]]>
-        </if>
+        <where>
+            <if test='nickName != null and nickName != ""'>UPPER(NICK_NAME) = UPPER(#{nickName})</if>
+            <if test='userId != null and userId != ""'>AND UPPER(USER_ID) = UPPER(#{userId})</if>
+        </where>
         <![CDATA[
                                                 ) BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
                                 LEFT OUTER JOIN (SELECT BOARD_SEQ,
@@ -201,12 +182,14 @@
                       ) BOARD
              )
         ]]>
-        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
-            <![CDATA[
-        WHERE ${contentPerPage} * (${pageNum} - 1) < RN
-          AND RN <= ${contentPerPage} * ${pageNum}
-        ]]>
-        </if>
+        <where>
+            <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+                <![CDATA[
+            ${contentPerPage} * (${pageNum} - 1) < RN
+              AND RN <= ${contentPerPage} * ${pageNum}
+            ]]>
+            </if>
+        </where>
     </select>
 
     <select id="select" parameterType="hashMap" resultType="kr.co.brownie.board.service.BoardVO">
@@ -271,14 +254,13 @@
                            NVL(LIKE_BOARD.UNLIKE_CNT, 0) AS UNLIKECNT
                     FROM (SELECT *
                           FROM BROWNIE_BOARD
-                          WHERE 1 = 1
-                            AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
         ]]>
-        <if test='boardKind != null and !boardKind.equals("")'>
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
-        ]]>
-        </if>
+        <where>
+            <if test='boardSeq != null and boardSeq != ""'>BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}</if>
+            <if test='boardKind != null and !boardKind.equals("")'>AND UPPER(BROWNIE_BOARD.BOARD_KIND) =
+                UPPER(#{boardKind})
+            </if>
+        </where>
         <![CDATA[
                            ) BROWNIE_BOARD
                                 INNER JOIN (SELECT *
@@ -304,157 +286,40 @@
                       ) BOARD
              )
         ]]>
-        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
-            <![CDATA[
-        WHERE ${contentPerPage} * (${pageNum} - 1) < RN
-          AND RN <= ${contentPerPage} * ${pageNum}
-        ]]>
-        </if>
+        <where>
+            <if test='replyPerPage != null and replyPerPage != "" and pageNum != null and pageNum != ""'>
+                <![CDATA[
+            ${contentPerPage} * (${pageNum} - 1) < RN
+              AND RN <= ${contentPerPage} * ${pageNum}
+            ]]>
+            </if>
+        </where>
     </select>
 
-    <insert id="insert" parameterType="hashMap">
-        <![CDATA[
-        INSERT INTO BROWNIE_BOARD(
-                                  ]]>
-        <if test='boardKind != null and !boardKind.equals("")'>
-            <![CDATA[
-                                  BOARD_KIND,
-                                  ]]>
-        </if>
-        <if test='boardCategory != null and !boardCategory.equals("")'>
-            <![CDATA[
-                                  BOARD_CATEGORY,
-                                  ]]>
-        </if>
-        <![CDATA[
-                                  TITLE,
-                                  CONTENT,
-                                                                    ]]>
-        <if test='noticeYn != null and !noticeYn.equals("")'>
-            <![CDATA[
-                                  NOTICE_YN,
-                                  ]]>
-        </if>
-        <if test='status != null and !status.equals("")'>
-            <![CDATA[
-                                  STATUS,
-                                  ]]>
-        </if>
-        <![CDATA[
-                                  IN_USER_ID,
-                                  UP_USER_ID
-                                  ]]>
-        <if test='fileSeq != null and !fileSeq.equals("")'>
-            <![CDATA[
-                                , FILE_SEQ
-                                  ]]>
-        </if>
-        <if test='subSeq != null and !subSeq.equals("")'>
-            <![CDATA[
-                                , SUB_SEQ
-                                  ]]>
-        </if>
-        <![CDATA[
-                                  )
-        VALUES (
-                                                  ]]>
-        <if test='boardKind != null and !boardKind.equals("")'>
-            <![CDATA[
-                #{boardKind},
-                ]]>
-        </if>
-        <if test='boardKind != null and !boardKind.equals("")'>
-            <![CDATA[
-                #{boardCategory},
-                ]]>
-        </if>
-        <![CDATA[
-                #{title},
-                #{content},
-                                                                                    ]]>
-        <if test='noticeYn != null and !noticeYn.equals("")'>
-            <![CDATA[
-                #{noticeYn},
-                ]]>
-        </if>
-        <if test='status != null and !status.equals("")'>
-            <![CDATA[
-                #{status},
-]]>
-        </if>
-        <![CDATA[
-                #{userId},
-                #{userId}
-                ]]>
-        <if test='fileSeq != null and !fileSeq.equals("")'>
-            <![CDATA[
-              , #{fileSeq}
-                                  ]]>
-        </if>
-        <if test='subSeq != null and !subSeq.equals("")'>
-            <![CDATA[
-              , #{subSeq}
-                                  ]]>
-        </if>
-        <![CDATA[
-              )
-        ]]>
-    </insert>
-
     <update id="update">
-        <![CDATA[
         UPDATE BROWNIE_BOARD
-        SET UP_USER_ID     = #{userId}
-          , UP_DATE        = SYSDATE
-        ]]>
-        <if test='boardKind != null and !boardKind.equals("")'>
-            <![CDATA[
-          , BOARD_KIND     = #{boardKind}
-                                  ]]>
-        </if>
-        <if test='boardCategory != null and !boardCategory.equals("")'>
-            <![CDATA[
-          , BOARD_CATEGORY = #{boardCategory}
-                                  ]]>
-        </if>
-        <if test='title != null and !title.equals("")'>
-            <![CDATA[
-          , TITLE = #{title}
-                                  ]]>
-        </if>
-        <if test='content != null and !content.equals("")'>
-            <![CDATA[
-          , CONTENT = #{content}
-                                  ]]>
-        </if>
-        <if test='noticeYn != null and !noticeYn.equals("")'>
-            <![CDATA[
-          , NOTICE_YN = #{noticeYn}
-                                  ]]>
-        </if>
-        <if test='status != null and !status.equals("")'>
-            <![CDATA[
-          , STATUS = #{status}
-                                  ]]>
-        </if>
-        <if test='fileSeq != null and !fileSeq.equals("")'>
-            <![CDATA[
-          , FILE_SEQ = #{fileSeq}
-                                  ]]>
-        </if>
-        <if test='subSeq != null and !subSeq.equals("")'>
-            <![CDATA[
-          , SUB_SEQ = #{subSeq}
-                                  ]]>
-        </if>
-        <![CDATA[
-        WHERE BOARD_SEQ = #{boardSeq}
-        ]]>
+        <set>
+            <if test='boardKind != null and boardKind != ""'>BOARD_KIND = #{boardKind},</if>
+            <if test='boardCategory != null and boardCategory != ""'>BOARD_CATEGORY = #{boardCategory},</if>
+            <if test='title != null and title != ""'>TITLE = #{title},</if>
+            <if test='content != null and content != ""'>CONTENT = #{content},</if>
+            <if test='noticeYn != null and noticeYn != ""'>NOTICE_YN = #{noticeYn},</if>
+            <if test='status != null and status != ""'>STATUS = #{status},</if>
+            UP_DATE = SYSDATE,
+            UP_USER_ID = #{userId},
+            <if test='fileSeq != null and fileSeq != ""'>FILE_SEQ = #{fileSeq},</if>
+            <if test='subSeq != null and subSeq != ""'>SUB_SEQ = #{subSeq}</if>
+        </set>
+        <where>
+            BOARD_SEQ = #{boardSeq}
+        </where>
     </update>
 
     <delete id="delete">
         DELETE
         FROM BROWNIE_BOARD
-        WHERE BOARD_SEQ = #{boardSeq}
+        <where>
+            BOARD_SEQ = #{boardSeq}
+        </where>
     </delete>
 </mapper>

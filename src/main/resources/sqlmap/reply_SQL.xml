@@ -4,46 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.reply.service.impl.ReplyMapper">
     <insert id="insert" parameterType="hashMap">
-        <![CDATA[
-        INSERT INTO BROWNIE_BOARD_REPLY(BOARD_SEQ,
-                                        IN_USER_ID,
-                                        ]]>
-        <if test='headReplySeq != null and !headReplySeq.equals("")'>
-            <![CDATA[
-                                        HEAD_REPLY_SEQ,
-                                        ]]>
-        </if>
-        <![CDATA[
-                                        UP_USER_ID,
-                                        REPLY_CONTENT
-                                                                              ]]>
-        <if test='status != null and !status.equals("")'>
-            <![CDATA[
-                                      , STATUS
-                                        ]]>
-        </if>
-        <![CDATA[
-                                        )
-        VALUES (#{boardSeq},
-                #{userId},
-                ]]>
-        <if test='headReplySeq != null and !headReplySeq.equals("")'>
-            <![CDATA[
-                #{headReplySeq},
-                                        ]]>
-        </if>
-        <![CDATA[
-                #{userId},
-                #{replyContent}
-                                                                                              ]]>
-        <if test='status != null and !status.equals("")'>
-            <![CDATA[
-              , #{status}
-                                        ]]>
-        </if>
-        <![CDATA[
-                )
-        ]]>
+        INSERT INTO BROWNIE_BOARD_REPLY(
+        <trim suffixOverrides=",">
+            REPLY_CONTENT,
+            IN_USER_ID,
+            UP_USER_ID,
+            BOARD_SEQ,
+            <if test='headReplySeq != null and headReplySeq != ""'>HEAD_REPLY_SEQ,</if>
+            <if test='status != null and status != ""'>STATUS</if>
+        </trim>
+        ) VALUES (
+        <trim suffixOverrides=",">
+            #{replyContent},
+            #{userId},
+            #{userId},
+            #{boardSeq},
+            <if test='headReplySeq != null and headReplySeq != ""'>#{headReplySeq},</if>
+            <if test='status != null and status != ""'>#{status}</if>
+        </trim>
+        )
     </insert>
 
     <select id="selectList" parameterType="hashMap" resultType="kr.co.brownie.reply.service.ReplyVO">
@@ -114,12 +93,14 @@
                    ) REPLY
              )
               ]]>
-        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
-            <![CDATA[
-        WHERE ${contentPerPage} * (${pageNum} - 1) < RN
-          AND RN <= ${contentPerPage} * ${pageNum}
-        ]]>
-        </if>
+        <where>
+            <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+                <![CDATA[
+            ${contentPerPage} * (${pageNum} - 1) < RN
+              AND RN <= ${contentPerPage} * ${pageNum}
+            ]]>
+            </if>
+        </where>
     </select>
 
     <select id="select" parameterType="hashMap" resultType="kr.co.brownie.reply.service.ReplyVO">
@@ -189,28 +170,14 @@
     </select>
 
     <update id="update" parameterType="hashMap">
-        <![CDATA[
         UPDATE BROWNIE_BOARD_REPLY
-        SET UP_DATE       = SYSDATE
-        ]]>
-        <if test='replyContent != null and !replyContent.equals("")'>
-            <![CDATA[
-          , REPLY_CONTENT = #{replyContent}
-                                ]]>
-        </if>
-        <if test='userId != null and !userId.equals("")'>
-            <![CDATA[
-          , UP_USER_ID = #{userId}
-                                ]]>
-        </if>
-        <if test='status != null and !status.equals("")'>
-            <![CDATA[
-          , STATUS = #{status}
-                                ]]>
-        </if>
-        <![CDATA[
+        <set>
+            <if test='replyContent != null and replyContent != ""'>REPLY_CONTENT = #{replyContent},</if>
+            UP_DATE = SYSDATE,
+            UP_USER_ID = #{userId},
+            <if test='status != null and status != ""'>STATUS = #{status}</if>
+        </set>
         WHERE BROWNIE_BOARD_REPLY.REPLY_SEQ = #{replySeq}
-        ]]>
     </update>
 
     <delete id="delete" parameterType="hashMap">
