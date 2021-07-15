@@ -167,7 +167,7 @@
         SELECT COUNT(*) CNT FROM BROWNIE_BOARD WHERE BOARD_KIND='GALLERY'
     </select>
     
-    <select id="galleryAB" resultType="kr.co.brownie.reply.service.ReplyVO">
+    <select id="galleryAB" resultType="kr.co.brownie.board.reply.service.ReplyVO">
 		SELECT
 			BOARDSEQ,
 			REPLYCNT,

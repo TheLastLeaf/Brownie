@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.brownie.reply.service.impl.ReplyMapper">
+<mapper namespace="kr.co.brownie.board.reply.service.impl.ReplyMapper">
     <insert id="insert" parameterType="hashMap">
         INSERT INTO BROWNIE_BOARD_REPLY(
         <trim suffixOverrides=",">
@@ -25,7 +25,7 @@
         )
     </insert>
 
-    <select id="selectList" parameterType="hashMap" resultType="kr.co.brownie.reply.service.ReplyVO">
+    <select id="selectList" parameterType="hashMap" resultType="kr.co.brownie.board.reply.service.ReplyVO">
         <![CDATA[
         SELECT LV,
                REPLYSEQ,
@@ -93,17 +93,15 @@
                    ) REPLY
              )
               ]]>
-        <where>
-            <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
-                <![CDATA[
-            ${contentPerPage} * (${pageNum} - 1) < RN
-              AND RN <= ${contentPerPage} * ${pageNum}
-            ]]>
-            </if>
-        </where>
+        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+            <![CDATA[
+        WHERE ${contentPerPage} * (${pageNum} - 1) < RN
+          AND RN <= ${contentPerPage} * ${pageNum}
+        ]]>
+        </if>
     </select>
 
-    <select id="select" parameterType="hashMap" resultType="kr.co.brownie.reply.service.ReplyVO">
+    <select id="select" parameterType="hashMap" resultType="kr.co.brownie.board.reply.service.ReplyVO">
         SELECT LV,
                REPLYSEQ,
                REPLYCONTENT,

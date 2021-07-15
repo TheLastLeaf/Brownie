@@ -12,13 +12,12 @@ import org.springframework.ui.Model;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.common.service.CommonService;
-import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryPage;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
-import kr.co.brownie.reply.service.ReplyService;
-import kr.co.brownie.reply.service.ReplyVO;
+import kr.co.brownie.board.reply.service.ReplyService;
+import kr.co.brownie.board.reply.service.ReplyVO;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

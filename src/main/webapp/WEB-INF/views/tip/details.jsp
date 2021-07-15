@@ -29,8 +29,8 @@
          data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${boardVO.boardCategory}_0.jpg">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
-                <div class="details-hero-text">
+            <div class="col-lg-6" style="background-color: rgba(0, 0, 0, 0.75);">
+                <div class="details-hero-text m-5">
                     <div class="label"><span>${boardVO.boardCategory}</span></div>
                     <h3>${boardVO.title}</h3>
                     <ul>
@@ -57,6 +57,7 @@
                 <div class="dt-desc">
                     ${boardVO.content}
                 </div>
+
                 <div class="dt-author">
                     <div class="da-pic">
                         <img src="/img/details/author-pic.jpg" alt="">
@@ -68,6 +69,18 @@
                             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     </div>
                 </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-outline-primary btn-lg mr-3"><i
+                            class="far fa-thumbs-up"></i> ${boardVO.likeCnt}</button>
+                    <button type="button" class="btn btn-outline-danger btn-lg ml-3 "><i
+                            class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</button>
+                    <c:if test="${sessionScope.id != null}">
+                        <button type="button" class="btn btn-outline-light btn-lg ml-5"><i class="fas fa-bomb"></i>
+                        </button>
+                    </c:if>
+                </div>
+
                 <div class="dt-comment">
                     <h4>${boardVO.replyCnt} comment</h4>
                     <c:forEach var="replyVO" items="${replyPagingVO.replyVOList}">
@@ -79,6 +92,16 @@
                             <div class="dc-text">
                                 <h5>${replyVO.nickName}</h5>
                                 <span class="c-date">${replyVO.replyInDate}</span>
+                                <div class="float-right">
+                                    <button type="button" class="btn btn-outline-primary mr-3"><i
+                                            class="far fa-thumbs-up"></i> ${boardVO.likeCnt}</button>
+                                    <button type="button" class="btn btn-outline-danger ml-3"><i
+                                            class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</button>
+                                    <c:if test="${sessionScope.id != null}">
+                                        <button type="button" class="btn btn-outline-light ml-5"><i
+                                                class="fas fa-bomb"></i></button>
+                                    </c:if>
+                                </div>
                                 <p>${replyVO.replyContent}</p>
                                 <c:if test="${sessionScope.id ne null}">
                                     <a href="javascript:commentReplyButton(${replyVO.replySeq})"

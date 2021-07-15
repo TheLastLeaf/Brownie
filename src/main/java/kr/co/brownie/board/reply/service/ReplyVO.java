@@ -1,4 +1,4 @@
-package kr.co.brownie.reply.service;
+package kr.co.brownie.board.reply.service;
 
 import lombok.Data;
 

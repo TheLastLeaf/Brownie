@@ -182,14 +182,12 @@
                       ) BOARD
              )
         ]]>
-        <where>
-            <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
-                <![CDATA[
-            ${contentPerPage} * (${pageNum} - 1) < RN
-              AND RN <= ${contentPerPage} * ${pageNum}
-            ]]>
-            </if>
-        </where>
+        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+            <![CDATA[
+        WHERE ${contentPerPage} * (${pageNum} - 1) < RN
+          AND RN <= ${contentPerPage} * ${pageNum}
+        ]]>
+        </if>
     </select>
 
     <select id="select" parameterType="hashMap" resultType="kr.co.brownie.board.service.BoardVO">
@@ -286,14 +284,12 @@
                       ) BOARD
              )
         ]]>
-        <where>
-            <if test='replyPerPage != null and replyPerPage != "" and pageNum != null and pageNum != ""'>
-                <![CDATA[
-            ${contentPerPage} * (${pageNum} - 1) < RN
-              AND RN <= ${contentPerPage} * ${pageNum}
-            ]]>
-            </if>
-        </where>
+        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+            <![CDATA[
+        WHERE ${contentPerPage} * (${pageNum} - 1) < RN
+          AND RN <= ${contentPerPage} * ${pageNum}
+        ]]>
+        </if>
     </select>
 
     <update id="update">
@@ -310,16 +306,12 @@
             <if test='fileSeq != null and fileSeq != ""'>FILE_SEQ = #{fileSeq},</if>
             <if test='subSeq != null and subSeq != ""'>SUB_SEQ = #{subSeq}</if>
         </set>
-        <where>
-            BOARD_SEQ = #{boardSeq}
-        </where>
+        WHERE BOARD_SEQ = #{boardSeq}
     </update>
 
     <delete id="delete">
         DELETE
         FROM BROWNIE_BOARD
-        <where>
-            BOARD_SEQ = #{boardSeq}
-        </where>
+        WHERE BOARD_SEQ = #{boardSeq}
     </delete>
 </mapper>

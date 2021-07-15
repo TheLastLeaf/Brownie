@@ -1,9 +1,9 @@
-package kr.co.brownie.tip.web;
+package kr.co.brownie.board.tip.web;
 
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
-import kr.co.brownie.reply.service.ReplyService;
+import kr.co.brownie.board.reply.service.ReplyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/tip")

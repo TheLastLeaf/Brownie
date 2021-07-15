@@ -1,6 +1,6 @@
-package kr.co.brownie.reply.service.impl;
+package kr.co.brownie.board.reply.service.impl;
 
-import kr.co.brownie.reply.service.ReplyVO;
+import kr.co.brownie.board.reply.service.ReplyVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

@@ -6,10 +6,9 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryVO;
-import kr.co.brownie.reply.service.ReplyVO;
+import kr.co.brownie.board.reply.service.ReplyVO;
 
 @Mapper
 @Repository("galleryMapper")

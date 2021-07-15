@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.brownie.gallery.service.FileVO;
 import kr.co.brownie.gallery.service.GalleryService;
 import kr.co.brownie.gallery.service.GalleryVO;
-import kr.co.brownie.reply.service.ReplyVO;
+import kr.co.brownie.board.reply.service.ReplyVO;
 
 @Service("galleryService")
 public class GalleryServiceImpl implements GalleryService {

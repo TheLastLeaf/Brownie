@@ -1,8 +1,8 @@
-package kr.co.brownie.reply.service.impl;
+package kr.co.brownie.board.reply.service.impl;
 
-import kr.co.brownie.reply.service.ReplyPagingVO;
-import kr.co.brownie.reply.service.ReplyService;
-import kr.co.brownie.reply.service.ReplyVO;
+import kr.co.brownie.board.reply.service.ReplyPagingVO;
+import kr.co.brownie.board.reply.service.ReplyService;
+import kr.co.brownie.board.reply.service.ReplyVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
