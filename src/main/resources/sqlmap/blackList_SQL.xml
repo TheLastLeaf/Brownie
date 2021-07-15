@@ -18,7 +18,7 @@
 
     <insert id="insert" parameterType="hashMap">
         INSERT INTO BLACK_LIST( B_LIST_SEQ, USER_ID, RESULT, IN_DATE, IN_USER_ID, UP_DATE, UP_USER_ID, REASON_SEQ)
-        VALUES ((SELECT NVL(MAX(B_LIST_SEQ), 0) + 1 FROM BLACK_LIST),#{userId},#{result},SYSDATE,#{id},SYSDATE,#{id},4)
+        VALUES ((SELECT NVL(MAX(B_LIST_SEQ), 0) + 1 FROM BLACK_LIST),#{userId},#{result},SYSDATE,#{id},SYSDATE,#{id},#{reasonSeq})
     </insert>
 
 </mapper>

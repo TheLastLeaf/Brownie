@@ -90,6 +90,11 @@
     #but{
         cursor: pointer;
     }
+    .reason{
+        text-align: center;
+        width: 80px;
+        height: 30px;
+    }
 </style>
 
 <!-- Details Post Section Begin -->
@@ -106,10 +111,10 @@
 <%--                            </th>--%>
                             <th class="reportListTd">아이디</th>
                             <th class="reportListTd">신고분류</th>
-                            <th class="reportListTd reportContentTd">신고내용</th>
+                            <th class="reportListTd">신고내용</th>
                             <th class="reportListTd">신고자</th>
                             <th class="reportListTd">신고일자</th>
-                            <th></th>
+                            <th class="reportListTd">재재 항목</th>
                             <th class="reportListTd">처리상태</th>
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }" varStatus="status">
@@ -140,6 +145,14 @@
                                 <th class="reportListTd">${reportList.content }</th>
                                 <th class="reportListTd">${reportList.inUserId }</th>
                                 <th class="reportListTd">${reportList.inDate }</th>
+                                <th>
+                                    <select class="form-control reason">
+                                        <option selected value="1">욕설</option>
+                                        <option value="2">사칭</option>
+                                        <option value="3">광고</option>
+                                        <option value="4">그냥</option>
+                                    </select>
+                                </th>
                                 <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i></th>
                                 <input type="hidden" name="userId" value="${reportList.userId}" id="userId" class="userId">
                                 <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
