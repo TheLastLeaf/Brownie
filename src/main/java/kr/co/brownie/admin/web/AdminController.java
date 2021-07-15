@@ -6,6 +6,7 @@ import java.util.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import kr.co.brownie.blackList.service.BlackUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,9 @@ public class AdminController {
 
     @Resource(name = "blackListService")
     BlackListService blackListService;
+
+    @Resource(name = "blackUserService")
+    BlackUserService blackUserService;
 
     @Resource(name = "userService")
     UserService userService;
@@ -82,6 +86,7 @@ public class AdminController {
         } catch (NullPointerException | NumberFormatException e) {
             currentPageNumber = 1;
         }
+        model.addAttribute("blackList",blackListService.selectBlackList());
         model.addAttribute("ReportPagingVO", reportService.selectReportList(currentPageNumber));
         return "admin/adminReportList"; //신고 리스트 화면
     }
@@ -102,14 +107,23 @@ public class AdminController {
         int reportSeq = Integer.parseInt(Seq);
         String userId = httpServletRequest.getParameter("userId");
         String result = httpServletRequest.getParameter("log");
+        String rSeq = httpServletRequest.getParameter("reasonSeq");
+        String bseq = httpServletRequest.getParameter("bListSeq");
+        String eDate = httpServletRequest.getParameter("endDate");
+        int endDate = Integer.parseInt(eDate);
+        int bListSeq = Integer.parseInt(bseq);
+        int reasonSeq = Integer.parseInt(rSeq);
         map.put("id", id);
         map.put("userId", userId);
         map.put("result",result);
         int cnt = reportService.update(reportSeq,id);
         if(cnt == 1){
-            int count = blackListService.insert(userId,result,id);
+            int count = blackListService.insert(userId,result,id,reasonSeq);
             model.addAttribute("count",count);
-            return count;
+            if(count == 1){
+                int bcnt = blackUserService.insert(bListSeq,userId,endDate,id);
+                return bcnt;
+            }
         }
         model.addAttribute("cnt", cnt);
         return cnt;

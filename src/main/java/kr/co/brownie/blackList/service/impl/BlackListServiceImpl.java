@@ -24,11 +24,12 @@ public class BlackListServiceImpl implements BlackListService{
 	}
 
 	@Override
-	public int insert(String userId, String result, String id) {
+	public int insert(String userId, String result, String id,int reasonSeq) {
 		Map<String,Object> map = new HashMap<>();
 		map.put("userId",userId);
 		map.put("result",result);
 		map.put("id",id);
+		map.put("reasonSeq",reasonSeq);
 		return blackListMapper.insert(map);
 	}
 

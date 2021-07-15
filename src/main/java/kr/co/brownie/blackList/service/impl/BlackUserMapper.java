@@ -1,4 +1,11 @@
 package kr.co.brownie.blackList.service.impl;
 
-public class BlackUserMapper {
+import org.springframework.stereotype.Repository;
+
+import java.util.Map;
+
+@Repository("blackUserMapper")
+public interface BlackUserMapper {
+
+    int insert(Map<String, Object> map);
 }

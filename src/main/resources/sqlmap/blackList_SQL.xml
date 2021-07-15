@@ -21,4 +21,17 @@
         VALUES ((SELECT NVL(MAX(B_LIST_SEQ), 0) + 1 FROM BLACK_LIST),#{userId},#{result},SYSDATE,#{id},SYSDATE,#{id},#{reasonSeq})
     </insert>
 
+    <select id="blackUser" parameterType="int" resultType="kr.co.brownie.blackList.service.BlackListVO">
+        SELECT B_LIST_SEQ AS BLISTSEQ,
+               USER_ID    AS USERID,
+               RESULT     AS RESULT,
+               IN_DATE    AS INDATE,
+               IN_USER_ID AS INUSERID,
+               UP_DATE    AS "UPDATE",
+               UP_USER_ID AS UPUSERID,
+               REASON_SEQ AS REASONSEQ
+        FROM BLACK_LIST A LEFT OUTER JOIN REPORT B ON A.USER_ID = B.USER_ID
+        WHERE B.REPORT_SEQ =#{reportSeq}
+    </select>
+
 </mapper>
