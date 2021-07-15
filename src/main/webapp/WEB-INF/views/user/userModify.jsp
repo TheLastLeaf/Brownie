@@ -113,6 +113,10 @@ input[name="position"] {
 .signup-text {
 	padding-top: 40px;
 }
+
+.box.on {
+	color: #999;
+}
 </style>
 
 <body>
@@ -180,74 +184,47 @@ input[name="position"] {
 							<span class="checkbox"></span>
 						</label>
 					</div>
-					<button type="button" style="margin: 15px;" onclick="fn_submit()">
-						<span>update</span>
-					</button>
+					<div class="box on">
+						<button type="button" style="margin: 10px;" onclick="fn_submit()">
+							<span>update</span>
+						</button>
+					</div>
 				</form>
 				<!-- form태그 end -->
 			</div>
 		</div>
 	</div>
 
-	<!-- <script>
-	    $("#file").change(function(e)){
-	        var form = $("form")[0];        
-	        var formData = new FormData(form);
-	        
-	        alert(formData);
-	
-	        $.ajax({
-	            cache : false,
-	            url : "${pageContext.request.contextPath}/testForm2", // 요기에
-	            processData: false,
-	            contentType: false,
-	            type : 'POST', 
-	            data : formData, 
-	            success : function(data) {
-	                var jsonObj = JSON.parse(data);
-	            }, // success 
-	    
-	            error : function(xhr, status) {
-	                alert(xhr + " : " + status);
-	            }
-	        }); // $.ajax */    }
-	</script> -->
-
 	<script>
+		$(".box button").attr("disabled", true);
+		$("#")
+	
+	
 		var sel_file;
-		
-		$(function(){
-			$("#file").on("change",handleImgFileSelect);
+
+		$(function() {
+			$("#file").on("change", handleImgFileSelect);
 		});
-		
-		function handleImgFileSelect(e){
+
+		function handleImgFileSelect(e) {
 			var files = e.target.files;
 			var filesArr = Array.prototype.slice.call(files);
-			
-			filesArr.forEach(function(f){
-				if(!f.type.match("image.*")){
+
+			filesArr.forEach(function(f) {
+				if (!f.type.match("image.*")) {
 					alert("확장자는 이미지 확장자만 가능합니다.");
 					return;
 				}
-				
+
 				sel_file = f;
-				
+
 				var reader = new FileReader();
-				reader.onload = function(e){
-					$("#img").attr("src",e.target.result);
+				reader.onload = function(e) {
+					$("#img").attr("src", e.target.result);
 				}
 				reader.readAsDataURL(f);
 			});
 		}
-	
-// 		function fn_hi(){
-// 			alert("gd");
-// 			$("input[type=file]").change(function(){
-// 				alert("무언가됨");
-// 				var formData = new FormData($("#file")[0]);
-// 				console.log(formData);
-// 			})
-// 		}
 
 		function fn_submit() {
 			//파일처리 시작 ----------
@@ -262,6 +239,9 @@ input[name="position"] {
 			$('input[name="positions"]:checked').each(function() {
 				positions.push($(this).val())
 			});
+			if (positions == null || positions.length < 1) {
+				positions.push("empty");
+			}
 
 			// 		var param = "";
 			// 		param += "dummy=" + Math.random()
@@ -276,7 +256,11 @@ input[name="position"] {
 				contentType : false,
 				success : function(message) {
 					alert(message);
-					location.reload();
+					console.log('Works!'); // 3초후에 work 찍힘
+					// 					setTimeout(function() {
+					// 						window.close();
+					// 						opener.parent.location.reload();
+					// 					}, 2000);
 				},
 				error : function(e) {
 					alert("실패ㅜㅜ err");
