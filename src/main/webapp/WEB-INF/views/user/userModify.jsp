@@ -247,7 +247,6 @@ input[name="position"] {
 				positions.push("empty");
 			}
 			var agree = $("#rc-agree").val();
-			alert("agree: " + agree);
 
 			// 		var param = "";
 			// 		param += "dummy=" + Math.random()

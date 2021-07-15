@@ -22,12 +22,14 @@ public interface UserService {
 
 	List<String> recentBoard(String id);
 
-	// 닉네임과 포지션을 INSERT OR UPDATE 하는 SERVICE
-	void insertNickPosition(Map<String, Object> map) throws IOException;
-
 	String nickName(String id);
 
 	List<UserVO> selectList();
 
 	String dateChecking(String id);
+	
+	// 닉네임과 UPDATE 하는 SERVICE
+	void updateNick(Map<String, Object> map) throws IOException;
+	// 포지션을 UPDATE 하는 SERVICE
+	void updatePosition(Map<String, Object> map) throws IOException;
 }

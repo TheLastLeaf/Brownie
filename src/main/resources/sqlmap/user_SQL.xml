@@ -22,18 +22,6 @@
             AND BU.USER_ID = BE.USER_ID
 	</select>
 
-	<update id="insertNickPosition">
-		MERGE INTO BROWNIE_USER
-		USING DUAL
-			on (USER_ID = '${id}')
-		WHEN MATCHED THEN
-		    UPDATE SET
-		        NICK_NAME = '${nickNameBox}',
-		        UP_DATE = SYSDATE,
-		        UP_USER_ID = '${id}',
-		        USER_POSITION = '${positions}'
-	</update>
-
 	<select id="userOneSelect"
 		resultType="kr.co.brownie.user.service.UserVO">
 		SELECT
@@ -130,4 +118,27 @@
 		    BROWNIE_USER.USER_ID = '${id}'
     ]]>
 	</select>
+	
+	<update id="updateNick">
+		MERGE INTO BROWNIE_USER
+		USING DUAL
+			ON (USER_ID = '${id}')
+		WHEN MATCHED THEN
+		    UPDATE SET
+		        NICK_NAME = '${nickNameBox}',
+		        UP_DATE = SYSDATE,
+		        UP_USER_ID = '${id}'
+	</update>
+	
+	<update id="updatePosition">
+		MERGE INTO BROWNIE_USER
+		USING DUAL
+			ON (USER_ID = '${id}')
+		WHEN MATCHED THEN
+		    UPDATE SET
+		        USER_POSITION = '${positions}',
+		        UP_DATE = SYSDATE,
+		        UP_USER_ID = '${id}'
+	</update>
+
 </mapper>
