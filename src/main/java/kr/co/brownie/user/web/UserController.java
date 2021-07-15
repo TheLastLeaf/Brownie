@@ -85,7 +85,6 @@ public class UserController {
         // model.addattribute
         model.addAttribute("userOneSelect", userOneSelect);
         model.addAttribute("selectProfile", selectProfile);
-
         model.addAttribute("exp", exp);
         model.addAttribute("fullStar", fullStar);
         if (halfStar == 1) {
@@ -195,25 +194,28 @@ public class UserController {
     @GetMapping("/userDeclar")
     public String userDeclar(HttpServletRequest request, Model model) {
         String id = request.getSession().getAttribute("id").toString();
-        String userId = request.getParameter("userId");
         String nickName = userService.nickName(id);
-        model.addAttribute("userId", userId);
+        String log = request.getParameter("log");
+        model.addAttribute("userId", id);
+        model.addAttribute("log",log);
         model.addAttribute("nickName", nickName);
         return "user/userDeclar";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/userReport", method = RequestMethod.POST)
+    @RequestMapping(value = "/userReport", method= {RequestMethod.GET, RequestMethod.POST})
     public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
         Map<String, Object> map = new HashMap<>();
         String id = httpServletRequest.getSession().getAttribute("id").toString();
         String content = httpServletRequest.getParameter("content");
         String userId = httpServletRequest.getParameter("userId");
         String[] reportNameList = httpServletRequest.getParameterValues("reportName[]");
+        String log = httpServletRequest.getParameter("log");
         map.put("id", id);
         map.put("content", content);
         map.put("userId", userId);
         map.put("reportName", Arrays.toString(reportNameList));
+        map.put("log",log);
         int cnt = reportService.insert(map);
         model.addAttribute("cnt", cnt);
         return cnt;

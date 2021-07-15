@@ -22,14 +22,18 @@
 
 <script>
 
-    function selectAll(selectAll) {
-        const checkboxes
-            = document.getElementsByName('addBlack');
+    // function selectAll(selectAll) {
+    //     const checkboxes
+    //         = document.getElementsByName('addBlack');
+    //
+    //     checkboxes.forEach((checkbox) => {
+    //         checkbox.checked = selectAll.checked;
+    //     })
+    // }
+    function fn_submit(){
 
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-        })
     }
+
 
 </script>
 
@@ -70,10 +74,10 @@
                 <div class="">
                     <table class="reportListTable">
                         <tr>
-                            <th class="reportListTd">순번</th>
-                            <th class="reportListTd">
-                                <input type="checkbox" name="selectAll" onclick="selectAll(this)"/>
-                            </th>
+<%--                            <th class="reportListTd">순번</th>--%>
+<%--                            <th class="reportListTd">--%>
+<%--                                <input type="checkbox" name="selectAll" onclick="selectAll(this)"/>--%>
+<%--                            </th>--%>
                             <th class="reportListTd">아이디</th>
                             <th class="reportListTd">신고분류</th>
                             <th class="reportListTd reportContentTd">신고내용</th>
@@ -82,44 +86,36 @@
                             <th class="reportListTd">처리상태</th>
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }" varStatus="status">
+                            <c:if test="${reportList.status eq 'N'}">
                             <tr>
-                                <th class="reportListTd">${status.index }</th>
-                                <c:choose>
-                                    <c:when test="${reportList.status eq 'N' }">
-                                        <th class="reportListTd">
-                                            <input type="checkbox" name="addBlack" value="${reportList.userId }"/>
-                                        </th>
-                                    </c:when>
-                                    <c:when test="${reportList.status eq 'Y' }">
-                                        <th class="reportListTd">
-                                            <input type="checkbox" name="alreadyCheck" value="${reportList.userId }"
-                                                   disabled="disabled"/>
-                                        </th>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <th class="reportListTd">
-                                            <input type="checkbox" name="alreadyCheck" value="${reportList.userId }"
-                                                   checked="checked" disabled="disabled">
-                                        </th>
-                                    </c:otherwise>
-                                </c:choose>
+<%--                                <th class="reportListTd">${status.index }</th>--%>
+<%--                                <c:choose>--%>
+<%--                                    <c:when test="${reportList.status eq 'N' }">--%>
+<%--                                        <th class="reportListTd">--%>
+<%--                                            <input type="checkbox" name="addBlack" value="${reportList.userId }"/>--%>
+<%--                                        </th>--%>
+<%--                                    </c:when>--%>
+<%--                                    <c:when test="${reportList.status eq 'Y' }">--%>
+<%--                                        <th class="reportListTd">--%>
+<%--                                            <input type="checkbox" name="alreadyCheck" value="${reportList.userId }"--%>
+<%--                                                   disabled="disabled"/>--%>
+<%--                                        </th>--%>
+<%--                                    </c:when>--%>
+<%--                                    <c:otherwise>--%>
+<%--                                        <th class="reportListTd">--%>
+<%--                                            <input type="checkbox" name="alreadyCheck" value="${reportList.userId }"--%>
+<%--                                                   checked="checked" disabled="disabled">--%>
+<%--                                        </th>--%>
+<%--                                    </c:otherwise>--%>
+<%--                                </c:choose>--%>
                                 <th class="reportListTd">${reportList.userId }</th>
                                 <th class="reportListTd">${reportList.reportName }</th>
                                 <th class="reportListTd">${reportList.content }</th>
                                 <th class="reportListTd">${reportList.inUserId }</th>
                                 <th class="reportListTd">${reportList.inDate }</th>
-                                <c:choose>
-                                    <c:when test="${reportList.status eq 'N' }">
-                                        <th class="reportListTd"><i class="fas fa-times"></i></th>
-                                    </c:when>
-                                    <c:when test="${reportList.status eq 'Y' }">
-                                        <th class="reportListTd"><i class="far fa-circle"></i></th>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <th class="reportListTd">??</th>
-                                    </c:otherwise>
-                                </c:choose>
+                                <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()"></i></th>
                             </tr>
+                            </c:if>
                         </c:forEach>
                     </table>
                     <div class="reportPageBottom">

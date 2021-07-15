@@ -324,7 +324,7 @@
 
 
     function fn_report(userId) {
-        window.open("report?userId=" + userId, "report", "width=660, height=500, left=250,top=200");
+        window.open("report?userId=" + userId, "REPORT", "width=660, height=500, left=250,top=200");
     }
 
 </script>

@@ -13,4 +13,5 @@ public class ReportVO {
 	private String inUserId;
 	private String upUserId;
 	private String status;
+	private String log;
 }
