@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/slicknav.min.css"
           integrity="sha512-heyoieAHmpAL3BdaQMsbIOhVvGb4+pl4aGCZqWzX/f1BChRArrBy/XUZDHW9WVi5p6pf92pX4yjkfmdaIYa2QQ=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" type="text/css">
 </head>
 <style>
     body {
@@ -76,6 +76,12 @@
 
     button {
         margin-top: 5px;
+        width: 30%;
+    }
+    .content{
+        background-color: black;
+        color: white;
+        width: 50%;
     }
 </style>
 <script>
@@ -83,6 +89,8 @@
         const userId = $(".userId").val();
         const reportName = []
         const content = $(".content").val();
+        const log = $(".log").val();
+
         $("input[name='reportName']:checked").each(function (i) {
             reportName.push($(this).val())
         })
@@ -93,11 +101,12 @@
 
         $.ajax({
             url: "./userReport",
-            type: "post",
+            type: "POST",
             data: {
                 "userId": userId,
-                "reportName": reportName,
-                "content": content
+                "reportName":reportName,
+                "content":content,
+                "log":log
             },
             success: function (data) {
                 console.log(data)
@@ -120,10 +129,11 @@
 
 <div class="signup-section" style="display: block;">
     <div class="signup-text">
-        <div class="container">
+        <div class="container" style="text-align: center">
             <div class="signup-title" style="margin: 10px;">
                 <h3 class="title" style="color: white;">You Die</h3>
             </div>
+            <input type="hidden" name="log" value="${log}" class="log" id="log">
             <div class="nameInfo row">
                 <input type="hidden" value="${userId}" name="userId" id="UserId" class="userId">
                 <div class="suspect col-4">용의자:&nbsp; ${nickName}</div>
@@ -149,11 +159,11 @@
                            value="맘에안듬">
                     <label class="custom-control-label" for="jb-checkbox1" style="color: white;">맘에안듬</label>
                 </div>
-                <div class="comment">
-                    <input type="text" placeholder="기타 사유를 적어주세요!" maxlength="1000" class="content" name="content">
+                <div class="comment label">
+                    <input type="text" placeholder="기타 사유를 적어주세요!" maxlength="1000" class="form-control-sm content" name="content">
                 </div>
             </div>
-            <button type="button" onclick="fn_submit()">
+            <button type="button" onclick="fn_submit()" class="btn btn-outline-danger btn-sm">
                 <span>신고하기</span>
             </button>
         </div>

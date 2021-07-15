@@ -12,8 +12,6 @@ public interface UserMapper {
 
 	UserVO userOneSelect(String id);
 
-	void insertNickPosition(Map<String, Object> map);
-
 	int selectExp(String id);
 
 	float starCntSelect(String id);
@@ -31,5 +29,11 @@ public interface UserMapper {
 	String nickName(String id);
 
 	List<UserVO> selectList();
+
+	String dateChecking(String id);
+	
+	void updateNick(Map<String, Object> map);
+
+	void updatePosition(Map<String, Object> map);
 
 }

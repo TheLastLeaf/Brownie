@@ -223,12 +223,12 @@ h1 {
 }
 
 .contextmenu li:hover {
-	background: #E6E6E6;
-	border-left: 3px solid #9C27B0;
+	background: #E6E6E6 !important;
+	border-left: 3px solid #9C27B0 !important;
 }
 
 .contextmenu li:hover a {
-	color: #0000FF;
+	color: #0000FF !important;
 }
 
 .paging {
@@ -472,6 +472,11 @@ h1 {
 										</div>
 									</div>
 								</div>
+								<ul class="contextmenu">
+									<li><a onclick="fn_declaration('${userOneSelect.upUserId}','${reviewVO.reply}')">신고하기</a></li>
+									<!-- 다른유저페이지로 이동->> -->
+									<li><a href="#">둘러보기</a></li>
+								</ul>
 							</c:forEach>
 							<!-- 후기글 end-->
 
@@ -608,11 +613,6 @@ h1 {
 				</c:choose>
 
 				<!-- 마우스 우클릭 (숨김처리됨li태그들) -->
-				<ul class="contextmenu">
-					<li><a onclick="fn_declaration('${userOneSelect.upUserId}')">신고하기</a></li>
-					<!-- 다른유저페이지로 이동->> -->
-					<li><a href="#">둘러보기</a></li>
-				</ul>
 				<!-- 그냥 밑에서 한칸 띄워 놓고 싶어서 만듬 share box begin  -->
 				<div style="border: none; display: block;" class="dt-share"></div>
 				<!-- share box end -->
@@ -648,8 +648,8 @@ h1 {
 				"width=870, height=500, left=400,top=200");
 	}
 
-	function fn_declaration(userId) {
-		window.open("/user/userDeclar?userId=" + userId, "userDeclar",
+	function fn_declaration(userId,reply) {
+		window.open("/user/userDeclar?" + userId+"&log="+reply, "userDeclar",
 				"width=980, height=500, left=400,top=200");
 	}
 

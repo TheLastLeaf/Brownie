@@ -80,13 +80,6 @@ public class UserServiceImpl implements UserService {
 		}
 		return list;
 	}
-
-	
-	@Override
-	public void insertNickPosition(Map<String, Object> map) throws IOException {
-		System.out.println("service: " + map);
-		userMapper.insertNickPosition(map);
-	}
 	
 	@Override
 	public String nickName(String id) {
@@ -99,4 +92,18 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectList();
 	}
 
+	@Override
+	public String dateChecking(String id) {
+		return userMapper.dateChecking(id);
+	}
+
+	@Override
+	public void updateNick(Map<String, Object> map) throws IOException {
+		userMapper.updateNick(map);
+	}
+
+	@Override
+	public void updatePosition(Map<String, Object> map) throws IOException {
+		userMapper.updatePosition(map);
+	}
 }
