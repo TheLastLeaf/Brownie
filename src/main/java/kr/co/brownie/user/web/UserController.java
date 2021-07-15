@@ -143,14 +143,23 @@ public class UserController {
                 fileService.updateProfile(map);
             }
             changed.add("사진");
-        }//else{
-
-        //닉네임 변경하는 서비스
-        if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
-        	userService.insertNickPosition(map);
-        	System.out.println("닉네임 변경했을때 map: "+map);
-        	changed.add("닉네임");
         }
+
+		// 동의항목 체크했을때 31일 이내에 바꾼건지 확인하는 메서드
+		if (map.get("agree").equals("on")) {
+			System.out.println("map: " + map);
+			String dateChecking = userService.dateChecking(id);
+			if (dateChecking.equals("yes")) {
+				//닉네임 변경하는 서비스
+				if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
+					userService.insertNickPosition(map);
+					System.out.println("닉네임 변경했을때 map: " + map);
+					changed.add("닉네임");
+				}
+			} else {
+				changed.add("31이내에 변경한 아이디이므로 바꿀수 없습니다!");
+			}
+		}
         
         //포지션 변경하는 서비스
         if (!map.get("positions").toString().equals(userVO.getUserPosition())) {

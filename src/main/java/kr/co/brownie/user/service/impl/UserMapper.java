@@ -32,4 +32,6 @@ public interface UserMapper {
 
 	List<UserVO> selectList();
 
+	String dateChecking(String id);
+
 }

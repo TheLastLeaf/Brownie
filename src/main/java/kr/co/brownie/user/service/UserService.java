@@ -28,4 +28,6 @@ public interface UserService {
 	String nickName(String id);
 
 	List<UserVO> selectList();
+
+	String dateChecking(String id);
 }

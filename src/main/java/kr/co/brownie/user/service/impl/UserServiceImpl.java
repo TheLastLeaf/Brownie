@@ -99,4 +99,8 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectList();
 	}
 
+	@Override
+	public String dateChecking(String id) {
+		return userMapper.dateChecking(id);
+	}
 }

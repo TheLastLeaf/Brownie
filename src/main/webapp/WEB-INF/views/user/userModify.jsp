@@ -113,10 +113,6 @@ input[name="position"] {
 .signup-text {
 	padding-top: 40px;
 }
-
-.box.on {
-	color: #999;
-}
 </style>
 
 <body>
@@ -179,7 +175,7 @@ input[name="position"] {
 					</div>
 					<div class="radio-check" style="margin: 10px;">
 						<label for="rc-agree">
-							30일내에 변경불가합니다 동의하시면 체크해주세요.
+							닉네임은 31일내에 변경불가합니다. 동의하면 체크해주세요!
 							<input type="checkbox" id="rc-agree">
 							<span class="checkbox"></span>
 						</label>
@@ -197,9 +193,17 @@ input[name="position"] {
 
 	<script>
 		$(".box button").attr("disabled", true);
-		$("#")
-	
-	
+		$("#rc-agree").on('click', function() {
+			var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
+			if (chk == true) {
+				$(".box button").removeAttr('disabled');
+				$(".box").removeClass("on");
+			} else {
+				$(".box button").attr("disabled", true);
+				$(".box").addClass("on");
+			}
+		});
+
 		var sel_file;
 
 		$(function() {
@@ -242,11 +246,14 @@ input[name="position"] {
 			if (positions == null || positions.length < 1) {
 				positions.push("empty");
 			}
+			var agree = $("#rc-agree").val();
+			alert("agree: " + agree);
 
 			// 		var param = "";
 			// 		param += "dummy=" + Math.random()
 			formData.append("nickNameBox", nickNameBox);
 			formData.append("positions", positions);
+			formData.append("agree", agree);
 
 			$.ajax({
 				url : "/user/userInfo",
@@ -256,7 +263,7 @@ input[name="position"] {
 				contentType : false,
 				success : function(message) {
 					alert(message);
-					console.log('Works!'); // 3초후에 work 찍힘
+					console.log('Works!');
 					// 					setTimeout(function() {
 					// 						window.close();
 					// 						opener.parent.location.reload();
