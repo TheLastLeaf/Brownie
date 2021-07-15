@@ -229,6 +229,12 @@ input[name="position"] {
 				reader.readAsDataURL(f);
 			});
 		}
+		
+		//[영문 대문자 또는 소문자로 시작하는 아이디, 길이는 5~15자, 끝날때 제한 없음]
+		var idReg = /^[A-za-z]{5,15}/g;
+		
+		
+		
 
 		function fn_submit() {
 			//파일처리 시작 ----------
@@ -262,11 +268,10 @@ input[name="position"] {
 				contentType : false,
 				success : function(message) {
 					alert(message);
-					console.log('Works!');
-					// 					setTimeout(function() {
-					// 						window.close();
-					// 						opener.parent.location.reload();
-					// 					}, 2000);
+					setTimeout(function() {
+						window.close();
+						opener.parent.location.reload();
+					}, 3000);
 				},
 				error : function(e) {
 					alert("실패ㅜㅜ err");
@@ -277,8 +282,9 @@ input[name="position"] {
 
 		function fn_loginPlz() {
 			alert("로그인이 필요합니다!")
-
 		}
+		
+
 	</script>
 
 

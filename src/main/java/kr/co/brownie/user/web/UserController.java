@@ -112,9 +112,6 @@ public class UserController {
 		map.put("id", id);
 
 		UserVO userVO = userService.userOneSelect(id);
-		if (map.get("agree").equals("on")) {
-			System.out.println("ㅎㅇ");
-		}
 
 		// 파일 저장되는 경로
 		String uploadFolder = "C:\\Users\\PC13\\git\\Brownie\\src\\main\\resources\\static\\img\\userProfile";
@@ -141,28 +138,26 @@ public class UserController {
 			changed.add("사진");
 		}
 
+		//포지션 변경하는 서비스
+		if (!map.get("positions").toString().equals(userVO.getUserPosition())) {
+			userService.updatePosition(map);
+			changed.add("포지션");
+		}
+		
 		// 동의항목 체크했을때 31일 이내에 바꾼건지 확인하는 메서드
-		System.out.println("HImap: " + map);
 		String dateChecking = userService.dateChecking(id);
 		if (dateChecking.equals("yes")) {
 			//닉네임 변경하는 서비스
 			if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
 				userService.updateNick(map);
-				System.out.println("닉네임 변경했을때 map: " + map);
 				changed.add("닉네임");
 			}
 		} else if(dateChecking.equals("no")){
+			//현주꺼 받고 바꿔야할 부분
+			if(map.get("nickNameBox").toString().equals(userVO.getNickName())) {
+				return "아이디는 변경되지 않았습니다";
+			}
 			changed.add("31이내에 변경한 아이디이므로 바꿀수 없습니다!");
-		}
-		//		}
-
-		//포지션 변경하는 서비스
-		if (!map.get("positions").toString().equals(userVO.getUserPosition())) {
-			System.out.println("원래포지션 " + userVO.getUserPosition());
-			System.out.println("체크한포지션 " + map.get("positions"));
-			userService.updatePosition(map);
-			System.out.println("포지션 변경했을때 map: " + map);
-			changed.add("포지션");
 		}
 
 		if (changed.size() == 0) {
