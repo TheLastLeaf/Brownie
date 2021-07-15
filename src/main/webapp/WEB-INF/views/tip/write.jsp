@@ -88,11 +88,10 @@
         color: #666666;
     }
 
-    .card {
+    .card{
         background-color: black;
     }
-
-    .card-header {
+    .card-header{
         border: 1px solid #666666;
     }
 
@@ -146,7 +145,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post">
+                <form method="POST">
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">

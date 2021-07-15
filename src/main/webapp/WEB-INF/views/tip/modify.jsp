@@ -48,7 +48,7 @@
     function uploadSummernoteImageFile(file, el) {
         const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
         if (!file.type.match(reg)) {
-            alert("확장자는 이미지 확장자만 가능합니다.");
+            alert("이미지 파일만 첨부 가능합니다.");
             return;
         }
         const data = new FormData();
@@ -84,16 +84,15 @@
         color: white;
     }
 
-    .summernote {
-        color: #666666;
-    }
-
-    .card {
+    .card{
         background-color: black;
     }
-
-    .card-header {
+    .card-header{
         border: 1px solid #666666;
+    }
+
+    .summernote {
+        color: #666666;
     }
 
     .submit {
@@ -124,7 +123,7 @@
 <!-- Breadcrumb Section Begin -->
 <section id="tip_add_banner_image"
          class="breadcrumb-section set-bg spad"
-         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${tipVO.boardCategory}_0.jpg">
+         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${boardVO.boardCategory}_0.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -146,7 +145,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post">
+                <form method="POST">
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
@@ -155,7 +154,7 @@
                                         <select class="w-100" name="champion">
                                             <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
                                                 <c:choose>
-                                                    <c:when test="${champion.id == tipVO.boardCategory}">
+                                                    <c:when test="${champion.id == boardVO.boardCategory}">
                                                         <option value="${champion.id}" selected>${champion.name}</option>
                                                     </c:when>
                                                     <c:otherwise>
@@ -167,12 +166,12 @@
                                     </div>
                                     <div class="input-list col-9" style="padding-bottom: 10px;">
                                         <input type="text" placeholder="Title" class="title" id="title" name="title"
-                                               value="${tipVO.title}" required="required">
+                                               value="${boardVO.title}" required="required">
                                     </div>
                                 </div>
                                 <div class="content">
                                     <textarea class="summernote" name="content" id="content"
-                                              required="required">${tipVO.content}</textarea>
+                                              required="required">${boardVO.content}</textarea>
                                 </div>
                                 <div class="pad">
                                     <input type="submit" value="등록" class="submit">

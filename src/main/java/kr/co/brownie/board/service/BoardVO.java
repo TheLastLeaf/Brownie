@@ -3,6 +3,8 @@ package kr.co.brownie.board.service;
 import java.util.Date;
 
 import lombok.Data;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 @Data
 public class BoardVO {
@@ -43,4 +45,22 @@ public class BoardVO {
     //BROWNIE_BOARD_LIKE
     private Integer likeCnt;
     private Integer unlikeCnt;
+
+    public String getImgSrc() {
+        if (content == null) return "/img/categories-list/cl-1.jpg";
+
+        Document document = Jsoup.parse(content);
+        String src = document.select("img").attr("src");
+        if ("".equals(src)) {
+            src = "/img/categories-list/cl-1.jpg";
+        }
+        return src;
+    }
+
+    public String getPreview() {
+        if (content == null) return "";
+
+        Document document = Jsoup.parse(content);
+        return document.text();
+    }
 }

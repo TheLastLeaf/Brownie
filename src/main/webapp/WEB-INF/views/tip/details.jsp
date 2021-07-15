@@ -20,27 +20,27 @@
 
     function deleteReply(replySeq) {
         if (confirm("정말 삭제하시겠습니까?")) {
-            location.href = "${pageContext.request.contextPath}/tip/details/${board_seq}/delete/" + replySeq;
+            location.href = "${pageContext.request.contextPath}/tip/details/${boardSeq}/delete/" + replySeq;
         }
     }
 </script>
 
 <section class="details-hero-section set-bg"
-         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${tipVO.boardCategory}_0.jpg">
+         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${boardVO.boardCategory}_0.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
                 <div class="details-hero-text">
-                    <div class="label"><span>${tipVO.boardCategory}</span></div>
-                    <h3>${tipVO.title}</h3>
+                    <div class="label"><span>${boardVO.boardCategory}</span></div>
+                    <h3>${boardVO.title}</h3>
                     <ul>
-                        <li>by <span>${tipVO.nickName}</span></li>
+                        <li>by <span>${boardVO.nickName}</span></li>
                         <li>
                             <i class="far fa-clock"></i>
-                            <fmt:formatDate value="${tipVO.inDate}" pattern="yyyy-MM-dd HH:mm:ss" var="date"/>
+                            <fmt:formatDate value="${boardVO.boardInDate}" pattern="yyyy-MM-dd HH:mm:ss" var="date"/>
                             ${date}
                         </li>
-                        <li><i class="far fa-comment"></i> ${tipVO.replyCnt}</li>
+                        <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
                     </ul>
                 </div>
             </div>
@@ -55,52 +55,52 @@
         <div class="p-0">
             <div class="details-text">
                 <div class="dt-desc">
-                    ${tipVO.content}
+                    ${boardVO.content}
                 </div>
                 <div class="dt-author">
                     <div class="da-pic">
                         <img src="/img/details/author-pic.jpg" alt="">
                     </div>
                     <div class="da-text">
-                        <h5>${tipVO.nickName}</h5>
+                        <h5>${boardVO.nickName}</h5>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                             exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     </div>
                 </div>
                 <div class="dt-comment">
-                    <h4>${tipVO.replyCnt} comment</h4>
-                    <c:forEach var="tipReplyVO" items="${tipReplyPagingVO.tipReplyVOList}">
-                        <div id="${tipReplyVO.replySeq}" class="dc-item"
-                             style="margin-left: ${(tipReplyVO.lv - 1) * 100}px;">
+                    <h4>${boardVO.replyCnt} comment</h4>
+                    <c:forEach var="replyVO" items="${replyPagingVO.replyVOList}">
+                        <div id="${replyVO.replySeq}" class="dc-item"
+                             style="margin-left: ${(replyVO.lv - 1) * 100}px;">
                             <div class="dc-pic">
                                 <img src="/img/details/comment/comment-1.jpg" alt="">
                             </div>
                             <div class="dc-text">
-                                <h5>${tipReplyVO.nickName}y</h5>
-                                <span class="c-date">${tipReplyVO.inDate}</span>
-                                <p>${tipReplyVO.replyContent}</p>
+                                <h5>${replyVO.nickName}</h5>
+                                <span class="c-date">${replyVO.replyInDate}</span>
+                                <p>${replyVO.replyContent}</p>
                                 <c:if test="${sessionScope.id ne null}">
-                                    <a href="javascript:commentReplyButton(${tipReplyVO.replySeq})"
+                                    <a href="javascript:commentReplyButton(${replyVO.replySeq})"
                                        class="reply-btn position-relative ml-2 mb-2"><span>Reply</span></a>
                                 </c:if>
-                                <c:if test="${sessionScope.id eq tipReplyVO.inUserId}">
-                                    <a href="javascript:deleteReply(${tipReplyVO.replySeq})"
+                                <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
+                                    <a href="javascript:deleteReply(${replyVO.replySeq})"
                                        class="reply-btn position-relative ml-2 mb-2"><span>Delete</span></a>
                                 </c:if>
                             </div>
                         </div>
                     </c:forEach>
                     <div class="pagination-item">
-                        <c:if test="${1 < tipReplyPagingVO.startPageNumber}">
-                            <a href="?currentReplyPageNumber=${tipReplyPagingVO.startPageNumber - 1}"><span>Prev</span></a>
+                        <c:if test="${1 < replyPagingVO.startPageNumber}">
+                            <a href="?pageNum=${replyPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                         </c:if>
-                        <c:forEach var="pageNumber" begin="${tipReplyPagingVO.startPageNumber}"
-                                   end="${tipReplyPagingVO.endPageNumber}">
-                            <a href="?currentReplyPageNumber=${pageNumber}"><span>${pageNumber}</span></a>
+                        <c:forEach var="pageNum" begin="${replyPagingVO.startPageNumber}"
+                                   end="${replyPagingVO.endPageNumber}">
+                            <a href="?pageNum=${pageNum}"><span>${pageNum}</span></a>
                         </c:forEach>
-                        <c:if test="${tipReplyPagingVO.endPageNumber < tipReplyPagingVO.totalPageNumber}">
-                            <a href="?currentReplyPageNumber=${tipReplyPagingVO.endPageNumber + 1}"><span>Next</span></a>
+                        <c:if test="${replyPagingVO.endPageNumber < replyPagingVO.totalPageNumber}">
+                            <a href="?pageNum=${replyPagingVO.endPageNumber + 1}"><span>Next</span></a>
                         </c:if>
                     </div>
                 </div>

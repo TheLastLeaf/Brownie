@@ -90,16 +90,16 @@ public class FreeController {
         }
 
         //게시글 하단 : 현재글 이전글 다음글 작성일자 및 리플 개수
-        ReplyVO recentBoardReplyDate = replyService.boardReplyCnt(boardSeq);
-        model.addAttribute("recentBoardReplyDate", recentBoardReplyDate);
+//        ReplyVO recentBoardReplyDate = replyService.boardReplyCnt(boardSeq);
+//        model.addAttribute("recentBoardReplyDate", recentBoardReplyDate);
 
         //게시글 리플 : 현재 프로필 사진 누락되어있어서 쿼리문 수정해야함 / file 테이블도 연결해서 쿼리쓰기
-        List<ReplyVO> replyOnBoard = replyService.replyOnBoard(boardSeq);
-        model.addAttribute("replyOnBoard", replyOnBoard);
+//        List<ReplyVO> replyOnBoard = replyService.replyOnBoard(boardSeq);
+//        model.addAttribute("replyOnBoard", replyOnBoard);
 
         //게시글 리리플 :리리플에 유저 태그 기능도 고려해보도록 하겠음 아빠가 제안해줌 하하
         Map<String, Object> reReplyMap = new HashMap<String, Object>();
-        for (ReplyVO reply : replyOnBoard) {
+//        for (ReplyVO reply : replyOnBoard) {
             //리플 시퀀스 번호를 받아와서 시퀀스 번호에 맞게 해당 리리플 목록을 가져와서 맵에 저장
 //            int replySeq = reply.getReplySeq();
 
@@ -110,12 +110,12 @@ public class FreeController {
 //            if (replyOnReply.size() > 0) {
 //                reReplyMap.put(replySeq + "", replyOnReply);
 //            }
-        }
-        model.addAttribute("reReplyMap", reReplyMap);
+//        }
+//        model.addAttribute("reReplyMap", reReplyMap);
 
         //상단 메뉴바에 표시되는 최근 게시물 5개
         List<FreeVO> recentList = freeService.selectRecentForMenu();
-        model.addAttribute("recentList", recentList);
+//        model.addAttribute("recentList", recentList);
 
         return "free/details"; // 자유게시판 리스트 디테일화면
     }

@@ -22,10 +22,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardPagingVO selectPagingList(Map<String, Object> map) {
 		int pageNum = (int) map.get("pageNum");
-		int totalContent = boardMapper.count(map);
+		int totalContent = this.boardMapper.count(map);
 
 		return BoardPagingVO.builder()
-				.boardVOList(boardMapper.selectList(map))
+				.boardVOList(this.boardMapper.selectList(map))
 				.contentPerPage(CONTENT_PER_PAGE)
 				.startPageNumber((pageNum - 1) / CONTENT_PER_PAGE + 1)
 				.currentPageNumber(pageNum)
@@ -41,7 +41,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public BoardVO select(Map<String, Object> map) {
-		return null;
+		return this.boardMapper.select(map);
 	}
 
 	@Override

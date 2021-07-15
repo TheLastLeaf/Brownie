@@ -1,79 +1,58 @@
 package kr.co.brownie.reply.service.impl;
 
+import kr.co.brownie.reply.service.ReplyPagingVO;
+import kr.co.brownie.reply.service.ReplyService;
+import kr.co.brownie.reply.service.ReplyVO;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
-import kr.co.brownie.reply.service.ReplyService;
-import kr.co.brownie.reply.service.ReplyVO;
-
 @Service("replyService")
 public class ReplyServiceImpl implements ReplyService {
-
 	@Resource(name = "replyMapper")
 	ReplyMapper replyMapper;
 
 	@Override
-	public void replyToBoard(Map<String, Object> map) {
-		replyMapper.replyToBoard(map);
+	public int insert(Map<String, Object> map) {
+		return this.replyMapper.insert(map);
 	}
 
 	@Override
-	public void replyToReply(Map<String, Object> map) {
-		replyMapper.replyToReply(map);
+	public ReplyPagingVO selectPagingList(Map<String, Object> map) {
+		int pageNum = (int) map.get("pageNum");
+		int totalContent = (int) map.get("totalContent");
+
+		System.out.println(map);
+
+		return ReplyPagingVO.builder()
+				.replyVOList(this.replyMapper.selectList(map))
+				.contentPerPage(CONTENT_PER_PAGE)
+				.startPageNumber((pageNum - 1) / CONTENT_PER_PAGE + 1)
+				.currentPageNumber(pageNum)
+				.endPageNumber(Math.min((pageNum - 1) / CONTENT_PER_PAGE + 10,(totalContent - 1) / CONTENT_PER_PAGE + 1))
+				.totalPageNumber((totalContent - 1) / CONTENT_PER_PAGE + 1)
+				.build();
 	}
 
 	@Override
-	public List<ReplyVO> replyOnBoard(int boardSeq) {
-		return replyMapper.replyOnBoard(boardSeq);
+	public List<ReplyVO> selectList(Map<String, Object> map) {
+		return this.replyMapper.selectList(map);
 	}
 
 	@Override
-	public List<ReplyVO> replyOnReply(int replySeq) {
-		return replyMapper.replyOnReply(replySeq);
+	public ReplyVO select(Map<String, Object> map) {
+		return this.replyMapper.select(map);
 	}
 
 	@Override
-	public ReplyVO selectReplyStance(Map<String, Object> map) {
-		return replyMapper.selectReplyStance(map);
+	public int update(Map<String, Object> map) {
+		return this.replyMapper.update(map);
 	}
 
 	@Override
-	public void deleteReplyStance(Map<String, Object> map) {
-		replyMapper.deleteReplyStance(map);
+	public int delete(Map<String, Object> map) {
+		return this.replyMapper.delete(map);
 	}
-
-	@Override
-	public void updateReplyStance(Map<String, Object> map) {
-		replyMapper.updateReplyStance(map);
-	}
-
-	@Override
-	public ReplyVO replyLHCnt(int replySeq) {
-		return replyMapper.replyLHCnt(replySeq);
-	}
-
-	@Override
-	public ReplyVO boardReplyCnt(int boardSeq) {
-		return replyMapper.boardReplyCnt(boardSeq);
-	}
-
-	@Override
-	public void modReply(Map<String, Object> map) {
-		replyMapper.modReply(map);
-	}
-
-	@Override
-	public void delReply(Map<String, Object> map) {
-		replyMapper.delReply(map);
-	}
-
-	@Override
-	public void delHadReReply(Map<String, Object> map) {
-		replyMapper.delHadReReply(map);
-	}
-
 }

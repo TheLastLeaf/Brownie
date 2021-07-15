@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class ReplyVO {
+    private String lv;
+
     //BROWNIE_BOARD_REPLY
     private String replySeq;
     private String replyContent;
@@ -13,13 +15,14 @@ public class ReplyVO {
     private String replyUpUserId;
     private String boardSeq;
     private String headReplySeq;
+    private String boardStatus;
 
     //BROWNIE_USER
     private String userId;
     private String lolId;
     private String nickName;
     private String blackStack;
-    private String status;
+    private String userStatus;
     private String userInDate;
     private String userUpDate;
     private String userInUserId;

@@ -155,22 +155,22 @@
         </c:if>
         <div class="row">
             <div class="col-lg-12 p-0">
-                <c:forEach var="tipVO" items="${tipPagingVO.tipVOList}">
+                <c:forEach var="boardVO" items="${boardPagingVO.boardVOList}">
                     <div class="cl-item">
                         <div class="cl-pic">
                             <img class="img-rounded tip-board-img-thumbnail"
-                                 src="${tipVO.imgSrc}"
+                                 src="${boardVO.imgSrc}"
                                  alt="">
                         </div>
                         <div class="cl-text">
-                            <div class="label"><span>${tipVO.boardCategory}</span></div>
+                            <div class="label"><span>${boardVO.boardCategory}</span></div>
                             <h5>
-                                <a href="${pageContext.request.contextPath}/tip/details/${tipVO.boardSeq}">${tipVO.title}</a>
+                                <a href="${pageContext.request.contextPath}/tip/details/${boardVO.boardSeq}">${boardVO.title}</a>
                             </h5>
                             <ul>
-                                <li>by <span>${tipVO.nickName}</span></li>
-                                <li><i class="far fa-clock"></i> ${tipVO.inDate}</li>
-                                <li><i class="far fa-comment"></i> ${tipVO.replyCnt}</li>
+                                <li>by <span>${boardVO.nickName}</span></li>
+                                <li><i class="far fa-clock"></i> ${boardVO.boardInDate}</li>
+                                <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
                             </ul>
                         </div>
                     </div>
@@ -178,21 +178,21 @@
                 <div class="pagination-item">
                     <c:choose>
                         <c:when test="${champion eq null || champion eq ''}">
-                            <c:set var="paginationLink" value="?currentPageNumber="/>
+                            <c:set var="paginationLink" value="?pageNum="/>
                         </c:when>
                         <c:otherwise>
-                            <c:set var="paginationLink" value="?champion=${champion}&currentPageNumber="/>
+                            <c:set var="paginationLink" value="?champion=${champion}&pageNum="/>
                         </c:otherwise>
                     </c:choose>
-                    <c:if test="${1 < tipPagingVO.startPageNumber}">
-                        <a href="${paginationLink}${tipPagingVO.startPageNumber - 1}"><span>Prev</span></a>
+                    <c:if test="${1 < boardPagingVO.startPageNumber}">
+                        <a href="${paginationLink}${boardPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                     </c:if>
-                    <c:forEach var="pageNumber" begin="${tipPagingVO.startPageNumber}"
-                               end="${tipPagingVO.endPageNumber}">
+                    <c:forEach var="pageNumber" begin="${boardPagingVO.startPageNumber}"
+                               end="${boardPagingVO.endPageNumber}">
                         <a href="${paginationLink}${pageNumber}"><span>${pageNumber}</span></a>
                     </c:forEach>
-                    <c:if test="${tipPagingVO.endPageNumber < tipPagingVO.totalPageNumber}">
-                        <a href="${paginationLink}${tipPagingVO.endPageNumber + 1}"><span>Next</span></a>
+                    <c:if test="${boardPagingVO.endPageNumber < boardPagingVO.totalPageNumber}">
+                        <a href="${paginationLink}${boardPagingVO.endPageNumber + 1}"><span>Next</span></a>
                     </c:if>
                 </div>
             </div>

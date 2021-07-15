@@ -8,39 +8,39 @@
         SELECT COUNT(*)
         FROM (SELECT *
               FROM BROWNIE_BOARD
-              WHERE 1=1
+              WHERE 1 = 1
         ]]>
-        <if test="boardSeq isNotNull and boardSeq isNotEmpty">
+        <if test='boardSeq != null and !boardSeq.equals("")'>
             <![CDATA[
                 AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
         ]]>
         </if>
-        <if test="boardKind isNotNull and boardKind isNotEmpty">
+        <if test='boardKind != null and !boardKind.equals("")'>
             <![CDATA[
                 AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
         ]]>
         </if>
-        <if test="boardCategory isNotNull and boardCategory isNotEmpty">
+        <if test='boardCategory != null and !boardCategory.equals("")'>
             <![CDATA[
                 AND UPPER(BROWNIE_BOARD.BOARD_CATEGORY) = UPPER(#{boardCategory})
         ]]>
         </if>
-        <if test="title isNotNull and title isNotEmpty">
+        <if test='title != null and !title.equals("")'>
             <![CDATA[
                 AND UPPER(BROWNIE_BOARD.TITLE) LIKE UPPER('%'||#{title}||'%')
         ]]>
         </if>
-        <if test="content isNotNull and content isNotEmpty">
+        <if test='content != null and !content.equals("")'>
             <![CDATA[
                 AND UPPER(BROWNIE_BOARD.CONTENT) LIKE UPPER('%'||#{content}||'%')
         ]]>
         </if>
-        <if test="noticeYn isNotNull and noticeYn isNotEmpty">
+        <if test='noticeYn != null and !noticeYn.equals("")'>
             <![CDATA[
                 AND UPPER(BROWNIE_BOARD.NOTICE_YN) = UPPER(#{noticeYn})
         ]]>
         </if>
-        <if test="boardStatus isNotNull and boardStatus isNotEmpty">
+        <if test='boardStatus != null and !boardStatus.equals("")'>
             <![CDATA[
                 AND UPPER(BROWNIE_BOARD.STATUS) = UPPER(#{boardStatus})
         ]]>
@@ -49,14 +49,14 @@
                 ) BROWNIE_BOARD
                      INNER JOIN (SELECT *
                                  FROM BROWNIE_USER
-                                 WHERE 1=1
+                                 WHERE 1 = 1
                                     ]]>
-        <if test="nickName isNotNull and nickName isNotEmpty">
+        <if test='nickName != null and !nickName.equals("")'>
             <![CDATA[
                                    AND UPPER(NICK_NAME) = UPPER(#{nickName})
         ]]>
         </if>
-        <if test="userId isNotNull and userId isNotEmpty">
+        <if test='userId != null and !userId.equals("")'>
             <![CDATA[
                                    AND UPPER(USER_ID) = UPPER(#{userId})
         ]]>
@@ -97,70 +97,70 @@
                LIKECNT,
                UNLIKECNT
         FROM (SELECT ROWNUM AS RN,
-                     *
-              FROM (SELECT BROWNIE_BOARD.BOARD_SEQ       AS BOARDSEQ,
-                           BROWNIE_BOARD.BOARD_KIND      AS BOARDKIND,
-                           BROWNIE_BOARD.BOARD_CATEGORY  AS BOARDCATEGORY,
-                           BROWNIE_BOARD.TITLE           AS TITLE,
-                           BROWNIE_BOARD.CONTENT         AS CONTENT,
-                           BROWNIE_BOARD.NOTICE_YN       AS NOTICEYN,
-                           BROWNIE_BOARD.STATUS          AS BOARDSTATUS,
-                           BROWNIE_BOARD.IN_DATE         AS BOARDINDATE,
-                           BROWNIE_BOARD.IN_USER_ID      AS BOARDINUSERID,
-                           BROWNIE_BOARD.UP_DATE         AS BOARDUPDATE,
-                           BROWNIE_BOARD.UP_USER_ID      AS BOARDUPUSERID,
-                           BROWNIE_BOARD.FILE_SEQ        AS FILESEQ,
-                           BROWNIE_BOARD.SUB_SEQ         AS SUBSEQ,
-                           BROWNIE_USER.USER_ID          AS USERID,
-                           BROWNIE_USER.LOL_ID           AS LOLID,
-                           BROWNIE_USER.NICK_NAME        AS NICKNAME,
-                           BROWNIE_USER.BLACK_STACK      AS BLACKSTACK,
-                           BROWNIE_USER.STATUS           AS USERSTATUS,
-                           BROWNIE_USER.IN_DATE          AS USERINDATE,
-                           BROWNIE_USER.UP_DATE          AS USERUPDATE,
-                           BROWNIE_USER.IN_USER_ID       AS USERINUSERID,
-                           BROWNIE_USER.UP_USER_ID       AS USERUPUSERID,
-                           BROWNIE_USER.USER_POSITION    AS USERPOSITION,
-                           BROWNIE_USER.BROWNIE_POINT    AS BROWNIEPOINT,
-                           NVL(REPLY.REPLY_CNT, 0)       AS REPLYCNT,
-                           NVL(HIT.HIT_CNT, 0)           AS HITCNT,
-                           NVL(LIKE_BOARD.LIKE_CNT, 0)   AS LIKECNT,
-                           NVL(LIKE_BOARD.UNLIKE_CNT, 0) AS UNLIKECNT
+                     BOARD.*
+              FROM (SELECT BROWNIE_BOARD.BOARD_SEQ               AS BOARDSEQ,
+                           BROWNIE_BOARD.BOARD_KIND              AS BOARDKIND,
+                           BROWNIE_BOARD.BOARD_CATEGORY          AS BOARDCATEGORY,
+                           BROWNIE_BOARD.TITLE                   AS TITLE,
+                           BROWNIE_BOARD.CONTENT                 AS CONTENT,
+                           BROWNIE_BOARD.NOTICE_YN               AS NOTICEYN,
+                           BROWNIE_BOARD.STATUS                  AS BOARDSTATUS,
+                           BROWNIE_BOARD.IN_DATE                 AS BOARDINDATE,
+                           BROWNIE_BOARD.IN_USER_ID              AS BOARDINUSERID,
+                           BROWNIE_BOARD.UP_DATE                 AS BOARDUPDATE,
+                           BROWNIE_BOARD.UP_USER_ID              AS BOARDUPUSERID,
+                           BROWNIE_BOARD.FILE_SEQ                AS FILESEQ,
+                           BROWNIE_BOARD.SUB_SEQ                 AS SUBSEQ,
+                           BROWNIE_USER.USER_ID                  AS USERID,
+                           BROWNIE_USER.LOL_ID                   AS LOLID,
+                           BROWNIE_USER.NICK_NAME                AS NICKNAME,
+                           BROWNIE_USER.BLACK_STACK              AS BLACKSTACK,
+                           BROWNIE_USER.STATUS                   AS USERSTATUS,
+                           BROWNIE_USER.IN_DATE                  AS USERINDATE,
+                           BROWNIE_USER.UP_DATE                  AS USERUPDATE,
+                           BROWNIE_USER.IN_USER_ID               AS USERINUSERID,
+                           BROWNIE_USER.UP_USER_ID               AS USERUPUSERID,
+                           BROWNIE_USER.USER_POSITION            AS USERPOSITION,
+                           BROWNIE_USER.BROWNIE_POINT            AS BROWNIEPOINT,
+                           NVL(BROWNIE_BOARD_REPLY.REPLY_CNT, 0) AS REPLYCNT,
+                           NVL(BROWNIE_BOARD_HIT.HIT_CNT, 0)     AS HITCNT,
+                           NVL(BROWNIE_BOARD_LIKE.LIKE_CNT, 0)   AS LIKECNT,
+                           NVL(BROWNIE_BOARD_LIKE.UNLIKE_CNT, 0) AS UNLIKECNT
                     FROM (SELECT *
                           FROM BROWNIE_BOARD
-                          WHERE 1=1
+                          WHERE 1 = 1
         ]]>
-        <if test="boardSeq isNotNull and boardSeq isNotEmpty">
+        <if test='boardSeq != null and !boardSeq.equals("")'>
             <![CDATA[
                             AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
         ]]>
         </if>
-        <if test="boardKind isNotNull and boardKind isNotEmpty">
+        <if test='boardKind != null and !boardKind.equals("")'>
             <![CDATA[
                             AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
         ]]>
         </if>
-        <if test="boardCategory isNotNull and boardCategory isNotEmpty">
+        <if test='boardCategory != null and !boardCategory.equals("")'>
             <![CDATA[
                             AND UPPER(BROWNIE_BOARD.BOARD_CATEGORY) = UPPER(#{boardCategory})
         ]]>
         </if>
-        <if test="title isNotNull and title isNotEmpty">
+        <if test='title != null and !title.equals("")'>
             <![CDATA[
                             AND UPPER(BROWNIE_BOARD.TITLE) LIKE UPPER('%'||#{title}||'%')
         ]]>
         </if>
-        <if test="content isNotNull and content isNotEmpty">
+        <if test='content != null and !content.equals("")'>
             <![CDATA[
                             AND UPPER(BROWNIE_BOARD.CONTENT) LIKE UPPER('%'||#{content}||'%')
         ]]>
         </if>
-        <if test="noticeYn isNotNull and noticeYn isNotEmpty">
+        <if test='noticeYn != null and !noticeYn.equals("")'>
             <![CDATA[
                             AND UPPER(BROWNIE_BOARD.NOTICE_YN) = UPPER(#{noticeYn})
         ]]>
         </if>
-        <if test="boardStatus isNotNull and boardStatus isNotEmpty">
+        <if test='boardStatus != null and !boardStatus.equals("")'>
             <![CDATA[
                             AND UPPER(BROWNIE_BOARD.STATUS) = UPPER(#{boardStatus})
         ]]>
@@ -169,14 +169,14 @@
                            ) BROWNIE_BOARD
                                 INNER JOIN (SELECT *
                                             FROM BROWNIE_USER
-                                            WHERE 1=1
+                                            WHERE 1 = 1
                                     ]]>
-        <if test="nickName isNotNull and nickName isNotEmpty">
+        <if test='nickName != null and !nickName.equals("")'>
             <![CDATA[
                                               AND UPPER(NICK_NAME) = UPPER(#{nickName})
         ]]>
         </if>
-        <if test="userId isNotNull and userId isNotEmpty">
+        <if test='userId != null and !userId.equals("")'>
             <![CDATA[
                                               AND UPPER(USER_ID) = UPPER(#{userId})
         ]]>
@@ -185,26 +185,26 @@
                                                 ) BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
                                 LEFT OUTER JOIN (SELECT BOARD_SEQ,
                                                         COUNT(*) AS REPLY_CNT
-                                                 FROM BROWNIE_BOARD_REPLY
-                                                 GROUP BY BOARD_SEQ) REPLY ON BROWNIE_BOARD.BOARD_SEQ = REPLY.BOARD_SEQ
+                                                 FROM BROWNIE_BOARD_REPLY INNER JOIN BROWNIE_USER ON BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID
+                                                 GROUP BY BOARD_SEQ) BROWNIE_BOARD_REPLY ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_REPLY.BOARD_SEQ
                                 LEFT OUTER JOIN (SELECT BOARD_SEQ,
                                                         COUNT(*) AS HIT_CNT
                                                  FROM BROWNIE_BOARD_HIT
-                                                 GROUP BY BOARD_SEQ) HIT ON BROWNIE_BOARD.BOARD_SEQ = HIT.BOARD_SEQ
-                                LEFT OUTER JOIN (SELECT BOARD_SEQ, UNLIKE_CNT, LIKE_CNT
+                                                 GROUP BY BOARD_SEQ) BROWNIE_BOARD_HIT ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_HIT.BOARD_SEQ
+                                LEFT OUTER JOIN (SELECT BOARD_SEQ, LIKE_CNT, UNLIKE_CNT
                                                  FROM (SELECT BOARD_SEQ, KIND FROM BROWNIE_BOARD_LIKE) PIVOT (
                                                      COUNT(*)
                                                      FOR KIND
-                                                     IN (0 AS UNLIKE_CNT, 1 AS LIKE_CNT))) LIKE_BOARD
-                                                ON BROWNIE_BOARD.BOARD_SEQ = LIKE_BOARD.BOARD_SEQ
-                       ORDER BY BROWNIE_BOARD.BOARD_SEQ
-                      )
+                                                     IN (1 AS LIKE_CNT, 0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE
+                                                ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE.BOARD_SEQ
+                       ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC
+                      ) BOARD
              )
         ]]>
-        <if test="replyPerPage isNotNull and replyPerPage isNotEmpty and pageNum isNotNull and pageNum isNotEmpty">
+        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
             <![CDATA[
-        WHERE #{contentPerPage} * (#{pageNum} - 1) < RN
-          AND RN <= #{contentPerPage} * #{pageNum}
+        WHERE ${contentPerPage} * (${pageNum} - 1) < RN
+          AND RN <= ${contentPerPage} * ${pageNum}
         ]]>
         </if>
     </select>
@@ -240,7 +240,7 @@
                LIKECNT,
                UNLIKECNT
         FROM (SELECT ROWNUM AS RN,
-                     *
+                     BOARD.*
               FROM (SELECT BROWNIE_BOARD.BOARD_SEQ       AS BOARDSEQ,
                            BROWNIE_BOARD.BOARD_KIND      AS BOARDKIND,
                            BROWNIE_BOARD.BOARD_CATEGORY  AS BOARDCATEGORY,
@@ -271,64 +271,22 @@
                            NVL(LIKE_BOARD.UNLIKE_CNT, 0) AS UNLIKECNT
                     FROM (SELECT *
                           FROM BROWNIE_BOARD
-                          WHERE 1=1
-        ]]>
-        <if test="boardSeq isNotNull and boardSeq isNotEmpty">
-            <![CDATA[
+                          WHERE 1 = 1
                             AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
         ]]>
-        </if>
-        <if test="boardKind isNotNull and boardKind isNotEmpty">
+        <if test='boardKind != null and !boardKind.equals("")'>
             <![CDATA[
                             AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
-        ]]>
-        </if>
-        <if test="boardCategory isNotNull and boardCategory isNotEmpty">
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.BOARD_CATEGORY) = UPPER(#{boardCategory})
-        ]]>
-        </if>
-        <if test="title isNotNull and title isNotEmpty">
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.TITLE) LIKE UPPER('%'||#{title}||'%')
-        ]]>
-        </if>
-        <if test="content isNotNull and content isNotEmpty">
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.CONTENT) LIKE UPPER('%'||#{content}||'%')
-        ]]>
-        </if>
-        <if test="noticeYn isNotNull and noticeYn isNotEmpty">
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.NOTICE_YN) = UPPER(#{noticeYn})
-        ]]>
-        </if>
-        <if test="boardStatus isNotNull and boardStatus isNotEmpty">
-            <![CDATA[
-                            AND UPPER(BROWNIE_BOARD.STATUS) = UPPER(#{boardStatus})
         ]]>
         </if>
         <![CDATA[
                            ) BROWNIE_BOARD
                                 INNER JOIN (SELECT *
                                             FROM BROWNIE_USER
-                                            WHERE 1=1
-                                    ]]>
-        <if test="nickName isNotNull and nickName isNotEmpty">
-            <![CDATA[
-                                              AND UPPER(NICK_NAME) = UPPER(#{nickName})
-        ]]>
-        </if>
-        <if test="userId isNotNull and userId isNotEmpty">
-            <![CDATA[
-                                              AND UPPER(USER_ID) = UPPER(#{userId})
-        ]]>
-        </if>
-        <![CDATA[
                                                 ) BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
                                 LEFT OUTER JOIN (SELECT BOARD_SEQ,
                                                         COUNT(*) AS REPLY_CNT
-                                                 FROM BROWNIE_BOARD_REPLY
+                                                 FROM BROWNIE_BOARD_REPLY INNER JOIN BROWNIE_USER ON BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID
                                                  GROUP BY BOARD_SEQ) REPLY ON BROWNIE_BOARD.BOARD_SEQ = REPLY.BOARD_SEQ
                                 LEFT OUTER JOIN (SELECT BOARD_SEQ,
                                                         COUNT(*) AS HIT_CNT
@@ -342,14 +300,14 @@
                                                      FOR KIND
                                                      IN (0 AS UNLIKE_CNT, 1 AS LIKE_CNT))) LIKE_BOARD
                                                 ON BROWNIE_BOARD.BOARD_SEQ = LIKE_BOARD.BOARD_SEQ
-                       ORDER BY BROWNIE_BOARD.BOARD_SEQ
-                      )
+                       ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC
+                      ) BOARD
              )
         ]]>
-        <if test="replyPerPage isNotNull and replyPerPage isNotEmpty and pageNum isNotNull and pageNum isNotEmpty">
+        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
             <![CDATA[
-        WHERE #{contentPerPage} * (#{pageNum} - 1) < RN
-          AND RN <= #{contentPerPage} * #{pageNum}
+        WHERE ${contentPerPage} * (${pageNum} - 1) < RN
+          AND RN <= ${contentPerPage} * ${pageNum}
         ]]>
         </if>
     </select>
@@ -358,12 +316,12 @@
         <![CDATA[
         INSERT INTO BROWNIE_BOARD(
                                   ]]>
-        <if test="boardKind isNotNull and boardKind isNotEmpty">
+        <if test='boardKind != null and !boardKind.equals("")'>
             <![CDATA[
                                   BOARD_KIND,
                                   ]]>
         </if>
-        <if test="boardCategory isNotNull and boardCategory isNotEmpty">
+        <if test='boardCategory != null and !boardCategory.equals("")'>
             <![CDATA[
                                   BOARD_CATEGORY,
                                   ]]>
@@ -372,12 +330,12 @@
                                   TITLE,
                                   CONTENT,
                                                                     ]]>
-        <if test="noticeYn isNotNull and noticeYn isNotEmpty">
+        <if test='noticeYn != null and !noticeYn.equals("")'>
             <![CDATA[
                                   NOTICE_YN,
                                   ]]>
         </if>
-        <if test="status isNotNull and status isNotEmpty">
+        <if test='status != null and !status.equals("")'>
             <![CDATA[
                                   STATUS,
                                   ]]>
@@ -386,12 +344,12 @@
                                   IN_USER_ID,
                                   UP_USER_ID
                                   ]]>
-        <if test="fileSeq isNotNull and fileSeq isNotEmpty">
+        <if test='fileSeq != null and !fileSeq.equals("")'>
             <![CDATA[
                                 , FILE_SEQ
                                   ]]>
         </if>
-        <if test="subSeq isNotNull and subSeq isNotEmpty">
+        <if test='subSeq != null and !subSeq.equals("")'>
             <![CDATA[
                                 , SUB_SEQ
                                   ]]>
@@ -400,12 +358,12 @@
                                   )
         VALUES (
                                                   ]]>
-        <if test="boardKind isNotNull and boardKind isNotEmpty">
+        <if test='boardKind != null and !boardKind.equals("")'>
             <![CDATA[
                 #{boardKind},
                 ]]>
         </if>
-        <if test="boardKind isNotNull and boardKind isNotEmpty">
+        <if test='boardKind != null and !boardKind.equals("")'>
             <![CDATA[
                 #{boardCategory},
                 ]]>
@@ -414,12 +372,12 @@
                 #{title},
                 #{content},
                                                                                     ]]>
-        <if test="noticeYn isNotNull and noticeYn isNotEmpty">
+        <if test='noticeYn != null and !noticeYn.equals("")'>
             <![CDATA[
                 #{noticeYn},
                 ]]>
         </if>
-        <if test="status isNotNull and status isNotEmpty">
+        <if test='status != null and !status.equals("")'>
             <![CDATA[
                 #{status},
 ]]>
@@ -428,12 +386,12 @@
                 #{userId},
                 #{userId}
                 ]]>
-        <if test="fileSeq isNotNull and fileSeq isNotEmpty">
+        <if test='fileSeq != null and !fileSeq.equals("")'>
             <![CDATA[
               , #{fileSeq}
                                   ]]>
         </if>
-        <if test="subSeq isNotNull and subSeq isNotEmpty">
+        <if test='subSeq != null and !subSeq.equals("")'>
             <![CDATA[
               , #{subSeq}
                                   ]]>
@@ -449,42 +407,42 @@
         SET UP_USER_ID     = #{userId}
           , UP_DATE        = SYSDATE
         ]]>
-        <if test="boardKind isNotNull and boardKind isNotEmpty">
+        <if test='boardKind != null and !boardKind.equals("")'>
             <![CDATA[
           , BOARD_KIND     = #{boardKind}
                                   ]]>
         </if>
-        <if test="boardCategory isNotNull and boardCategory isNotEmpty">
+        <if test='boardCategory != null and !boardCategory.equals("")'>
             <![CDATA[
           , BOARD_CATEGORY = #{boardCategory}
                                   ]]>
         </if>
-        <if test="title isNotNull and title isNotEmpty">
+        <if test='title != null and !title.equals("")'>
             <![CDATA[
           , TITLE = #{title}
                                   ]]>
         </if>
-        <if test="content isNotNull and content isNotEmpty">
+        <if test='content != null and !content.equals("")'>
             <![CDATA[
           , CONTENT = #{content}
                                   ]]>
         </if>
-        <if test="noticeYn isNotNull and noticeYn isNotEmpty">
+        <if test='noticeYn != null and !noticeYn.equals("")'>
             <![CDATA[
           , NOTICE_YN = #{noticeYn}
                                   ]]>
         </if>
-        <if test="status isNotNull and status isNotEmpty">
+        <if test='status != null and !status.equals("")'>
             <![CDATA[
           , STATUS = #{status}
                                   ]]>
         </if>
-        <if test="fileSeq isNotNull and fileSeq isNotEmpty">
+        <if test='fileSeq != null and !fileSeq.equals("")'>
             <![CDATA[
           , FILE_SEQ = #{fileSeq}
                                   ]]>
         </if>
-        <if test="subSeq isNotNull and subSeq isNotEmpty">
+        <if test='subSeq != null and !subSeq.equals("")'>
             <![CDATA[
           , SUB_SEQ = #{subSeq}
                                   ]]>

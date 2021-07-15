@@ -3,9 +3,7 @@ package kr.co.brownie.free.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import kr.co.brownie.free.service.FreeReplyPagingVO;
 import kr.co.brownie.free.service.FreeReplyVO;
-import kr.co.brownie.tip.service.TipReplyVO;
 import org.springframework.stereotype.Repository;
 
 import kr.co.brownie.free.service.FreeVO;
