@@ -94,16 +94,14 @@ public class MiniGameController {
 		int hp = Integer.parseInt(servletRequest.getParameter("hp"));
 		String item	= servletRequest.getParameter("item");
 		int point = Integer.parseInt(servletRequest.getParameter("point"));
-		String recentMap = servletRequest.getParameter("recentMap");
 		String quest = servletRequest.getParameter("quest");
 		String dicetimes = servletRequest.getParameter("dicetimes");
 		int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
 		
-		HashMap<String, Object> param = new HashMap<>();
+		String recentMap = addMap();
+		System.out.println("recentMap : "+recentMap);
 		System.out.println("position : "+position);
-		if(position==0||position==16) {
-			recentMap = addMap();
-		}
+		HashMap<String, Object> param = new HashMap<>();
 		
 		param.put("position", position);
 		param.put("round", round);
@@ -116,21 +114,13 @@ public class MiniGameController {
 		param.put("recentHp", recentHp);
 		param.put("userId", id);
 		
-		System.out.println("par : "+param.get("recentMap"));
 		
 		int cnt = this.miniGameService.updatePlayer(param);
-		System.out.println(cnt);
-		
 		BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
-		
 		
 		HashMap<String, Object> passmap = transMap(player);
 		List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
-		
-        model.addAttribute("infoList",brownieMarbelInfo);
-		model.addAttribute("player",player);
-    	System.out.println("통과함");
-    	
+		System.out.println("맵만들기끝"+cnt);
 		return brownieMarbelInfo;
 	}
 	
@@ -152,7 +142,13 @@ public class MiniGameController {
 		int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
 		
 		HashMap<String, Object> param = new HashMap<>();
-		
+		//asdddddddddddddddddd
+		//asdddddddddddddddddd
+		//asdddddddddddddddddd
+		//asdddddddddddddddddd
+		//asdddddddddddddddddd
+		//asdddddddddddddddddd
+		//asdddddddddddddddddd
 		param.put("position", position);
 		param.put("round", round);
 		param.put("hp", hp);
@@ -180,9 +176,10 @@ public class MiniGameController {
 		String id = "1797573825";
 		
 		int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
+		System.out.println("UserPosition"+UserPosition);
 		if(UserPosition==0) {
 			System.out.println("시작점 상점");
-			return 1;
+			return 2;
 		}
 		
 		int ObjPosition = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
@@ -195,7 +192,7 @@ public class MiniGameController {
 	}
 	
 	public String addMap() {
-		int dbSize = 59;
+		int dbSize = 68;
 		Set<Integer> set = new HashSet<Integer>(); 
 		while (set.size() < 15) { 
 			Double d = Math.random() * dbSize + 1; 
@@ -206,13 +203,12 @@ public class MiniGameController {
 		
 		Collections.shuffle(randomNum); 
 		Collections.shuffle(randomNum); 
-		Collections.shuffle(randomNum); 
-		
 		
 		String array = randomNum.toString();
 		
 		return array;
 	}
+	
 	
 	public HashMap<String, Object> transMap(BrownieMarbelVO player) {
 		//DB에 있는 맵 가공 추출
@@ -223,13 +219,12 @@ public class MiniGameController {
 		int[] a = Arrays.asList(str).stream().mapToInt(Integer::parseInt).toArray();
 		List<Integer> randomNum = new ArrayList<>(); 
 		
-		Collections.shuffle(randomNum); 
-		Collections.shuffle(randomNum); 
-		Collections.shuffle(randomNum);
 		
 		for(int n : a) {
 			randomNum.add(n);
 		}
+		
+		System.out.println("trans"+randomNum);
 		
 		HashMap<String, Object> passmap = new HashMap<String, Object>();
 		passmap.put("randomNum", randomNum);

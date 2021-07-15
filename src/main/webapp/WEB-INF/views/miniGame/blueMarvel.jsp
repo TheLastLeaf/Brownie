@@ -294,15 +294,16 @@
 	//반환점 돌면 맵랜덤리셋하기(ajax)
 	function autoRenew() {
 		temp = "[";
-		 for (var i = 0; i < 14; i++) {
+		 for (var i = 0; i < 15; i++) {
 			if(i!=0){
-				recentMap += ", "
+				temp += ", "
 			}
-			recentMap += recentMap[i].seq
+			temp += recentMap[i]
 			if(i==14){
-				recentMap += "]"
+				temp += "]"
 			}
 		}
+		console.log("temp"+temp);
 		$.ajax({
 			url : "./ajax.autorenew",
 			type : "post",
@@ -329,17 +330,16 @@
 	}
 	
 	function rndMapCreate() {
-		const str1 = recentMap.join(', ');
 		$.ajax({
 			url : "./ajax.rndmapcreate",
 			type : "post",
+			async: false,
 			data : {
 					"position" : playerPos,
 					"round" : round,   	
 					"hp" : hp,  		
 					"item" : item, 		
 					"point" : point,   	
-					"recentMap" : str1, 	
 					"quest" : quest,   	
 					"dicetimes" : dicetimes,	
 					"recentHp" : recentHp	
@@ -350,10 +350,10 @@
 				 
 				 recentMap = [];
 				 for (var i = 0; i < data.length; i++) {
-					 recentMap = recentMap.push(data[i].seq);
+					 recentMap.push(data[i].seq);
 				 }
 				 
-				 /* recentMap = "[";
+				 /*recentMap = "[";
 				 for (var i = 0; i < data.length; i++) {
 					if(i!=0){
 						recentMap += ", "
@@ -362,7 +362,7 @@
 					if(i==14){
 						recentMap += "]"
 					}
-				} */
+				}*/
 				
 				 $('.l1').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[0].kind+"/"+data[0].imgName);
 				 $('.l2').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[1].kind+"/"+data[1].imgName);
@@ -403,7 +403,6 @@
 			},
 			success : function(data) {
 				autoRenew();
-				console.log("랜드효과 성공!");
 			},
 			error : function() {
 				alert("글이 등록되지 않았습니다.");
@@ -446,7 +445,7 @@
 
 		status1.innerHTML = side1 + "!";
 
-		setTimeout('move(' + side1 + ')', 1900);
+		setTimeout('move(' + 9+ ')', 1900);
 	}
 	
 	//한번더! 주사위 더블이벤트
@@ -517,10 +516,10 @@
 			} else if (12 <= playerPos && playerPos <= 15) {
 				upMove();
 				++playerPos;
-			} else {
+			} 
+			if (playerPos==16) {
 				playerPos = 0;
 				rndMapCreate();
-				merchant();
 			}
 		}
 		effectAct();
