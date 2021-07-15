@@ -1,6 +1,5 @@
-package kr.co.brownie.admin.service;
+package kr.co.brownie.report.service;
 
-import kr.co.brownie.report.service.ReportVO;
 import lombok.Builder;
 import lombok.Data;
 

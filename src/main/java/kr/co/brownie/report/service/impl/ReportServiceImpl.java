@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
-import kr.co.brownie.admin.service.ReportPagingVO;
+import kr.co.brownie.report.service.ReportPagingVO;
 import kr.co.brownie.notice.service.PagingVO;
 import org.springframework.stereotype.Service;
 

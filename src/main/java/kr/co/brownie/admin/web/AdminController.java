@@ -83,7 +83,7 @@ public class AdminController {
         } catch (NullPointerException | NumberFormatException e) {
             currentPageNumber = 1;
         }
-        model.addAttribute("reportList", reportService.selectReportList(currentPageNumber));
+        model.addAttribute("ReportPagingVO", reportService.selectReportList(currentPageNumber));
         return "admin/adminReportList"; //신고 리스트 화면
     }
 
