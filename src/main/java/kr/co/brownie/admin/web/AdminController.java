@@ -1,10 +1,7 @@
 package kr.co.brownie.admin.web;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +21,8 @@ import kr.co.brownie.user.service.UserVO;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -92,5 +91,27 @@ public class AdminController {
         List<BlackListVO> blackList = blackListService.selectBlackList();
         model.addAttribute("blackList", blackList);
         return "admin/adminBlackList"; //블랙리스트 화면
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/addblacklist", method= {RequestMethod.GET, RequestMethod.POST})
+    public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
+        Map<String, Object> map = new HashMap<>();
+        String id = httpServletRequest.getSession().getAttribute("id").toString();
+        String Seq = httpServletRequest.getParameter("reportSeq");
+        int reportSeq = Integer.parseInt(Seq);
+        String userId = httpServletRequest.getParameter("userId");
+        String result = httpServletRequest.getParameter("log");
+        map.put("id", id);
+        map.put("userId", userId);
+        map.put("result",result);
+        int cnt = reportService.update(reportSeq,id);
+        if(cnt == 1){
+            int count = blackListService.insert(userId,result,id);
+            model.addAttribute("count",count);
+            return count;
+        }
+        model.addAttribute("cnt", cnt);
+        return cnt;
     }
 }

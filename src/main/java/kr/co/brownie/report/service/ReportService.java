@@ -8,4 +8,6 @@ public interface ReportService {
     ReportPagingVO selectReportList(int currentPageNumber);
 
     int insert(Map<String, Object> map);
+
+    int update(int reportSeq, String id);
 }

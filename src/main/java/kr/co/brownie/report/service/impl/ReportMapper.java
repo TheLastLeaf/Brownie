@@ -14,4 +14,6 @@ public interface ReportMapper {
     int insert(Map<String, Object> map);
 
     int count();
+
+    int update(Map<String, Object> map);
 }

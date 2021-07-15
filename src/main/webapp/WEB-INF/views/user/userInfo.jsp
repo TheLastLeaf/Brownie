@@ -649,7 +649,7 @@ h1 {
 	}
 
 	function fn_declaration(userId,reply) {
-		window.open("/user/userDeclar?" + userId+"&log="+reply, "userDeclar",
+		window.open("/user/userDeclar?userId=" + userId+"&log="+reply, "userDeclar",
 				"width=980, height=500, left=400,top=200");
 	}
 

@@ -8,7 +8,7 @@ public class BlackListVO {
 	private String result;
 	private String inDate;
 	private String inUserId;
-	private String modDate;
+	private String upDate;
 	private String upUserId;
 	private String reasonSeq;
 

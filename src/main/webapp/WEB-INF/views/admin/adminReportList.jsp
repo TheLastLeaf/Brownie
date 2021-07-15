@@ -31,7 +31,30 @@
     //     })
     // }
     function fn_submit(){
+        confirm("블랙리스트로 추가하시겠습니까?")
+        const userId = $(".userId").val();
+        const log = $(".log").val();
+        const reportSeq = $(".reportSeq").val();
 
+        $.ajax({
+            url: "./addblacklist",
+            type: "POST",
+            data: {
+                "userId": userId,
+                "log": log,
+                "reportSeq":reportSeq
+            },
+            success: function (data) {
+                console.log(data)
+                if (data === 1) {
+                    alert("블랙리스트 추가 완료.")
+                    location.reload();
+                }
+            },
+            error: function () {
+                alert("신고 접수 실패");
+            }
+        })
     }
 
 
@@ -64,6 +87,9 @@
     .reportPageBottom {
         padding-top: 50px;
     }
+    #but{
+        cursor: pointer;
+    }
 </style>
 
 <!-- Details Post Section Begin -->
@@ -83,6 +109,7 @@
                             <th class="reportListTd reportContentTd">신고내용</th>
                             <th class="reportListTd">신고자</th>
                             <th class="reportListTd">신고일자</th>
+                            <th></th>
                             <th class="reportListTd">처리상태</th>
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }" varStatus="status">
@@ -108,12 +135,15 @@
 <%--                                        </th>--%>
 <%--                                    </c:otherwise>--%>
 <%--                                </c:choose>--%>
-                                <th class="reportListTd">${reportList.userId }</th>
+                                <th class="reportListTd">${reportList.userId}</th>
                                 <th class="reportListTd">${reportList.reportName }</th>
                                 <th class="reportListTd">${reportList.content }</th>
                                 <th class="reportListTd">${reportList.inUserId }</th>
                                 <th class="reportListTd">${reportList.inDate }</th>
-                                <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()"></i></th>
+                                <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i></th>
+                                <input type="hidden" name="userId" value="${reportList.userId}" id="userId" class="userId">
+                                <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
+                                <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq" class="reportSeq">
                             </tr>
                             </c:if>
                         </c:forEach>

@@ -14,7 +14,8 @@
                INDATE,
                "UPDATE",
                INUSERID,
-               UPUSERID
+               UPUSERID,
+               LOG
         FROM (SELECT ROWNUM AS RN,
                      REPORTSEQ,
                      CONTENT,
@@ -24,7 +25,8 @@
                      INDATE,
                      "UPDATE",
                      INUSERID,
-                     UPUSERID
+                     UPUSERID,
+                     LOG
               FROM (SELECT REPORT_SEQ  as REPORTSEQ,
                            CONTENT     as CONTENT,
                            STATUS      as STATUS,
@@ -33,7 +35,8 @@
                            IN_DATE     as INDATE,
                            UP_DATE     as "UPDATE",
                            IN_USER_ID  as INUSERID,
-                           UP_USER_ID  as UPUSERID
+                           UP_USER_ID  as UPUSERID,
+                           LOG         as "LOG"
                     FROM REPORT
                     order by STATUS, IN_DATE
                    )
@@ -47,6 +50,7 @@
     <select id="count" resultType="int">
         SELECT COUNT(*)
         FROM REPORT
+        WHERE STATUS = 'N'
     </select>
 
     <insert id="insert" parameterType="hashMap">
@@ -55,6 +59,14 @@
         VALUES (REPORT_SEQ.NEXTVAL, #{content}, #{reportName}, #{userId}, sysdate, sysdate, #{id}, #{id}, 'N',#{log})
         ]]>
     </insert>
+
+    <update id="update" parameterType="hashMap">
+        UPDATE REPORT
+        SET UP_USER_ID = #{id},
+            UP_DATE = SYSDATE,
+            STATUS = 'Y'
+        WHERE REPORT_SEQ = #{reportSeq}
+    </update>
 
 
 </mapper>

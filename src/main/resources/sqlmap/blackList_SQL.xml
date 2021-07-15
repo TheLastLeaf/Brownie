@@ -4,17 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.blackList.service.impl.BlackListMapper">
 
-	<select id="selectBlackList" resultType="kr.co.brownie.blackList.service.BlackListVO">
-			select
-				B_LIST_SEQ as bListSeq,
-				USER_ID as userId,
-				RESULT as result,
-				IN_DATE as inDate,
-				IN_USER_ID as inUserId,
-				UP_DATE as modDate,
-				UP_USER_ID as upUserId,
-				REASON_SEQ as reasonSeq
-			from black_list
-	</select>
+    <select id="selectBlackList" resultType="kr.co.brownie.blackList.service.BlackListVO">
+        SELECT B_LIST_SEQ AS BLISTSEQ,
+               USER_ID    AS USERID,
+               RESULT     AS RESULT,
+               IN_DATE    AS INDATE,
+               IN_USER_ID AS INUSERID,
+               UP_DATE    AS "UPDATE",
+               UP_USER_ID AS UPUSERID,
+               REASON_SEQ AS REASONSEQ
+        FROM BLACK_LIST
+    </select>
+
+    <insert id="insert" parameterType="hashMap">
+        INSERT INTO BLACK_LIST( B_LIST_SEQ, USER_ID, RESULT, IN_DATE, IN_USER_ID, UP_DATE, UP_USER_ID, REASON_SEQ)
+        VALUES ((SELECT NVL(MAX(B_LIST_SEQ), 0) + 1 FROM BLACK_LIST),#{userId},#{result},SYSDATE,#{id},SYSDATE,#{id},4)
+    </insert>
 
 </mapper>

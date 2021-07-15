@@ -1,6 +1,8 @@
 package kr.co.brownie.blackList.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -19,6 +21,15 @@ public class BlackListServiceImpl implements BlackListService{
 	@Override
 	public List<BlackListVO> selectBlackList() {
 		return blackListMapper.selectBlackList();
+	}
+
+	@Override
+	public int insert(String userId, String result, String id) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("userId",userId);
+		map.put("result",result);
+		map.put("id",id);
+		return blackListMapper.insert(map);
 	}
 
 }

@@ -195,10 +195,10 @@ public class UserController {
 
 	@GetMapping("/userDeclar")
 	public String userDeclar(HttpServletRequest request, Model model) {
-		String id = request.getSession().getAttribute("id").toString();
-		String nickName = userService.nickName(id);
+		String userId = request.getParameter("userId");
+		String nickName = userService.nickName(userId);
 		String log = request.getParameter("log");
-		model.addAttribute("userId", id);
+		model.addAttribute("userId", userId);
 		model.addAttribute("log", log);
 		model.addAttribute("nickName", nickName);
 		return "user/userDeclar";

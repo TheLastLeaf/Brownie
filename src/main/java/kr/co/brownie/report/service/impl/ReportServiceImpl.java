@@ -41,4 +41,12 @@ public class ReportServiceImpl implements ReportService {
         return reportMapper.insert(map);
     }
 
+    @Override
+    public int update(int reportSeq, String id) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("reportSeq",reportSeq);
+        map.put("id",id);
+        return reportMapper.update(map);
+    }
+
 }
