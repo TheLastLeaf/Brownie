@@ -113,7 +113,7 @@
     <select id="noticelist" resultType="kr.co.brownie.notice.service.NoticeVO">
         <![CDATA[
         SELECT A.BOARD_SEQ         AS BOARDSEQ,
-               UPPER(A.BOARD_KIND) AS BOARDKIND,
+               LOWER(A.BOARD_KIND) AS BOARDKIND,
                A.BOARD_CATEGORY    AS BOARDCATEGORY,
                A.TITLE             AS TITLE,
                A.CONTENT           AS CONTENT,
