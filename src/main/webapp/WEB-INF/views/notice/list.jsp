@@ -130,7 +130,7 @@
         <c:when test="${sessionScope.id ne null and sessionScope.permit_level == 9}">
             <div class="margin-le">
                 <input type="button" class="btn btn-outline-dark btn-sm notiadd" value="글쓰기"
-                       onclick="location.href='/notice/add'">
+                       onclick="location.href='/notice/write'">
             </div>
         </c:when>
         <c:otherwise>
@@ -161,7 +161,7 @@
                         </div>
                         <div class="cl-text">
                             <h5 class="title"><a
-                                    href="${pageContext.request.contextPath}/notice/detail/${noticeVO.boardSeq}">${noticeVO.title}</a>
+                                    href="${pageContext.request.contextPath}/notice/details/${noticeVO.boardSeq}">${noticeVO.title}</a>
                             </h5>
                             <ul>
                                 <li>by <span>${noticeVO.nickName}</span></li>

@@ -11,15 +11,13 @@ import kr.co.brownie.notice.service.NoticeService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
     @Resource(name = "noticeService")
     NoticeService noticeService;
 
-    @GetMapping("/add")
+    @GetMapping("/write")
     public String noticeAdd(HttpSession session, Model model) {
         String id = (String) session.getAttribute("id");
         model.addAttribute("id", id);
@@ -27,10 +25,10 @@ public class NoticeController {
             model.addAttribute("message","alert('로그인 후 이용가능합니다.'); location.href='/notice/list';");
             return "common/message";
         }
-        return "notice/noticeAdd"; // 공지 글쓰기
+        return "notice/write"; // 공지 글쓰기
     }
 
-    @PostMapping("/add")
+    @PostMapping("/write")
     public String noticeAddPost(HttpServletRequest servletRequest) {
         String id = servletRequest.getParameter("inUserId");
         String title = servletRequest.getParameter("title");
@@ -39,7 +37,7 @@ public class NoticeController {
         return "redirect:" + servletRequest.getContextPath() + "/notice/list";
     }
 
-    @GetMapping("/detail/{board_seq}")
+    @GetMapping("/details/{board_seq}")
     public String detail(@PathVariable int board_seq,Model model, HttpSession session) {
         try {
             NoticeVO noticeVO = noticeService.getNotice(board_seq);
@@ -52,7 +50,7 @@ public class NoticeController {
         } catch (NullPointerException | NumberFormatException e) {
             return "redirect:notice/list";
         }
-        return "notice/noticeDetail"; // 공지 디테일화면
+        return "notice/details"; // 공지 디테일화면
     }
 
     @GetMapping(path = {"", "/list"})
@@ -72,7 +70,7 @@ public class NoticeController {
         return "notice/list"; //공지 리스트
     }
 
-    @GetMapping("/update/{board_seq}")
+    @GetMapping("/modify/{board_seq}")
     public String update(@PathVariable int board_seq,Model model, HttpSession session) {
         try{
             NoticeVO noticeVO = noticeService.getNotice(board_seq);
@@ -83,15 +81,15 @@ public class NoticeController {
             model.addAttribute("id",id);
             model.addAttribute("noticeVO", noticeVO);
             if (session.getAttribute("id") == null) {
-                return "redirect:/notice/detail/" + board_seq;
+                return "redirect:/notice/details/" + board_seq;
             }
         }catch (NullPointerException| NumberFormatException e){
             return "notice/list";
         }
-        return "notice/noticeUpdate";
+        return "notice/modify";
     }
 
-    @PostMapping("/update/{board_seq}")
+    @PostMapping("/modify/{board_seq}")
     public String updatePost(Model model,@PathVariable int board_seq,HttpServletRequest servletRequest) {
         try{
             NoticeVO noticeVO = noticeService.getNotice(board_seq);
@@ -101,15 +99,15 @@ public class NoticeController {
             String content = servletRequest.getParameter("content");
             int update = this.noticeService.updateNotice(id,title,content,board_seq);
             if (update > 0) {
-                return "redirect:/notice/detail/" + board_seq;
+                return "redirect:/notice/details/" + board_seq;
             }
             if (update != 1) {
                 throw new NullPointerException();
             }
         }catch (NullPointerException | NumberFormatException e) {
-            return "redirect:/notice/update/" + board_seq;
+            return "redirect:/notice/modify/" + board_seq;
         }
-        return "redirect:/notice/update/" + board_seq;
+        return "redirect:/notice/modify/" + board_seq;
     }
 
     @PostMapping("/delete/{board_seq}")
