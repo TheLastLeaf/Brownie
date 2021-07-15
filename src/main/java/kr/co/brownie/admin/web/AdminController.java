@@ -6,6 +6,7 @@ import java.util.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import kr.co.brownie.blackList.service.BlackUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +34,9 @@ public class AdminController {
 
     @Resource(name = "blackListService")
     BlackListService blackListService;
+
+    @Resource(name = "blackUserService")
+    BlackUserService blackUserService;
 
     @Resource(name = "userService")
     UserService userService;
@@ -82,8 +86,29 @@ public class AdminController {
         } catch (NullPointerException | NumberFormatException e) {
             currentPageNumber = 1;
         }
+        model.addAttribute("blackList",blackListService.selectBlackList());
         model.addAttribute("ReportPagingVO", reportService.selectReportList(currentPageNumber));
         return "admin/adminReportList"; //신고 리스트 화면
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/addblack", method= {RequestMethod.GET, RequestMethod.POST})
+    public Object addblackPost(Model model, HttpServletRequest httpServletRequest) {
+        String id = httpServletRequest.getSession().getAttribute("id").toString();
+        String Seq = httpServletRequest.getParameter("bListSeq");
+        int bListSeq = Integer.parseInt(Seq);
+        String userId = httpServletRequest.getParameter("userId");
+        String eDate = httpServletRequest.getParameter("endDate");
+        int endDate = Integer.parseInt(eDate);
+        System.out.println(endDate);
+        int count = blackListService.update(id,bListSeq);
+        if(count == 1){
+            int cnt = blackUserService.insert(bListSeq,userId,endDate,id);
+            model.addAttribute("cnt",cnt);
+            return cnt;
+        }
+        model.addAttribute("cnt", count);
+        return count;
     }
 
     @GetMapping("/adminBlackList")
@@ -102,12 +127,14 @@ public class AdminController {
         int reportSeq = Integer.parseInt(Seq);
         String userId = httpServletRequest.getParameter("userId");
         String result = httpServletRequest.getParameter("log");
+        String rSeq = httpServletRequest.getParameter("reasonSeq");
+        int reasonSeq = Integer.parseInt(rSeq);
         map.put("id", id);
         map.put("userId", userId);
         map.put("result",result);
         int cnt = reportService.update(reportSeq,id);
         if(cnt == 1){
-            int count = blackListService.insert(userId,result,id);
+            int count = blackListService.insert(userId,result,id,reasonSeq);
             model.addAttribute("count",count);
             return count;
         }

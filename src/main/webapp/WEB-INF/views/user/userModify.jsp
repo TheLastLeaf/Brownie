@@ -243,6 +243,7 @@ input[name="position"] {
 				processData : false,
 				contentType : false,
 				success : function(data) {
+					console.log(typeof(data)); // data 타입은 String!
 					alert("data : " + data);
 				},
 				error : function(e) {

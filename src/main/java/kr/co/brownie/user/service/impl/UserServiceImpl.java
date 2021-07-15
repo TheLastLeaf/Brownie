@@ -1,7 +1,6 @@
 package kr.co.brownie.user.service.impl;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -80,13 +79,13 @@ public class UserServiceImpl implements UserService {
 		}
 		return list;
 	}
-	
+
 	@Override
 	public String nickName(String id) {
 		return userMapper.nickName(id);
 	}
 
-	//유저 리스트 출력 ( 관리자 화면에서 사용함 )
+	// 유저 리스트 출력 ( 관리자 화면에서 사용함 )
 	@Override
 	public List<UserVO> selectList() {
 		return userMapper.selectList();
@@ -108,7 +107,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String validating(String userNick) {
+	public int validating(String userNick) {
 		return userMapper.validating(userNick);
 	}
+
 }

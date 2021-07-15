@@ -27,11 +27,13 @@ public interface UserService {
 	List<UserVO> selectList();
 
 	String dateChecking(String id);
-	
+
 	// 닉네임과 UPDATE 하는 SERVICE
 	void updateNick(Map<String, Object> map) throws IOException;
+
 	// 포지션을 UPDATE 하는 SERVICE
 	void updatePosition(Map<String, Object> map) throws IOException;
+
 	// 아이디 중복체크
-	String validating(String userNick);
+	int validating(String userNick);
 }

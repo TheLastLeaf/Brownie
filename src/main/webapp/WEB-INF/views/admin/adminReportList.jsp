@@ -21,20 +21,17 @@
 <!-- Breadcrumb Section End -->
 
 <script>
-
-    // function selectAll(selectAll) {
-    //     const checkboxes
-    //         = document.getElementsByName('addBlack');
-    //
-    //     checkboxes.forEach((checkbox) => {
-    //         checkbox.checked = selectAll.checked;
-    //     })
-    // }
     function fn_submit(){
         confirm("블랙리스트로 추가하시겠습니까?")
         const userId = $(".userId").val();
         const log = $(".log").val();
         const reportSeq = $(".reportSeq").val();
+        const reasonSeq = $("#reason option:selected").val();
+        const bListSeq = $(".bListSeq").val();
+        const endDate = $(".endDate").val();
+        console.log(bListSeq);
+        console.log(endDate);
+
 
         $.ajax({
             url: "./addblacklist",
@@ -42,7 +39,10 @@
             data: {
                 "userId": userId,
                 "log": log,
-                "reportSeq":reportSeq
+                "reportSeq":reportSeq,
+                "reasonSeq":reasonSeq,
+                "bListSeq":bListSeq,
+                "endDate":endDate
             },
             success: function (data) {
                 console.log(data)
@@ -80,8 +80,11 @@
         padding: 10px;
     }
 
-    .reportContentTd {
-        width: 50%;
+    .reportContent {
+        width: 25%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     .reportPageBottom {
@@ -90,11 +93,14 @@
     #but{
         cursor: pointer;
     }
+    .checkReason{
+        width: 90px;
+        height: 35px;
+    }
     .reason{
         text-align: center;
-        width: 80px;
-        height: 30px;
     }
+
 </style>
 
 <!-- Details Post Section Begin -->
@@ -105,52 +111,28 @@
                 <div class="">
                     <table class="reportListTable">
                         <tr>
-<%--                            <th class="reportListTd">순번</th>--%>
-<%--                            <th class="reportListTd">--%>
-<%--                                <input type="checkbox" name="selectAll" onclick="selectAll(this)"/>--%>
-<%--                            </th>--%>
                             <th class="reportListTd">아이디</th>
                             <th class="reportListTd">신고분류</th>
                             <th class="reportListTd">신고내용</th>
                             <th class="reportListTd">신고자</th>
-                            <th class="reportListTd">신고일자</th>
+                            <th class="reportListTd" style="width: 180px">신고일자</th>
                             <th class="reportListTd">재재 항목</th>
                             <th class="reportListTd">처리상태</th>
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }" varStatus="status">
                             <c:if test="${reportList.status eq 'N'}">
                             <tr>
-<%--                                <th class="reportListTd">${status.index }</th>--%>
-<%--                                <c:choose>--%>
-<%--                                    <c:when test="${reportList.status eq 'N' }">--%>
-<%--                                        <th class="reportListTd">--%>
-<%--                                            <input type="checkbox" name="addBlack" value="${reportList.userId }"/>--%>
-<%--                                        </th>--%>
-<%--                                    </c:when>--%>
-<%--                                    <c:when test="${reportList.status eq 'Y' }">--%>
-<%--                                        <th class="reportListTd">--%>
-<%--                                            <input type="checkbox" name="alreadyCheck" value="${reportList.userId }"--%>
-<%--                                                   disabled="disabled"/>--%>
-<%--                                        </th>--%>
-<%--                                    </c:when>--%>
-<%--                                    <c:otherwise>--%>
-<%--                                        <th class="reportListTd">--%>
-<%--                                            <input type="checkbox" name="alreadyCheck" value="${reportList.userId }"--%>
-<%--                                                   checked="checked" disabled="disabled">--%>
-<%--                                        </th>--%>
-<%--                                    </c:otherwise>--%>
-<%--                                </c:choose>--%>
                                 <th class="reportListTd">${reportList.userId}</th>
                                 <th class="reportListTd">${reportList.reportName }</th>
-                                <th class="reportListTd">${reportList.content }</th>
+                                <th class="reportContent">${reportList.content }</th>
                                 <th class="reportListTd">${reportList.inUserId }</th>
                                 <th class="reportListTd">${reportList.inDate }</th>
                                 <th>
-                                    <select class="form-control reason">
-                                        <option selected value="1">욕설</option>
-                                        <option value="2">사칭</option>
-                                        <option value="3">광고</option>
-                                        <option value="4">그냥</option>
+                                    <select class="form-control checkReason" id="reason">
+                                        <option class="reason" selected value="1">욕설</option>
+                                        <option class="reason" value="2">사칭</option>
+                                        <option class="reason" value="3">광고</option>
+                                        <option class="reason" value="4">그냥</option>
                                     </select>
                                 </th>
                                 <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i></th>

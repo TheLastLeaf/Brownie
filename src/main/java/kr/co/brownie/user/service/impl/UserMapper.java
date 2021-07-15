@@ -31,11 +31,11 @@ public interface UserMapper {
 	List<UserVO> selectList();
 
 	String dateChecking(String id);
-	
+
 	void updateNick(Map<String, Object> map);
 
 	void updatePosition(Map<String, Object> map);
 
-	String validating(String userNick);
+	int validating(String userNick);
 
 }

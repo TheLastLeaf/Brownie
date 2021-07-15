@@ -8,9 +8,9 @@
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
                     <h3> </h3>
-                <div>
-					<a href="#" style="color: #ffffff;"></a>
-                </div>
+                    <div>
+                        <a href="#" style="color: #ffffff;"></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -20,9 +20,12 @@
 
 <style>
 
-.adminMenu{
-	cursor: pointer;
-}
+    .adminMenu{
+        cursor: pointer;
+    }
+    .social-media{
+        display: inline !important;
+    }
 
 
 </style>
@@ -39,51 +42,51 @@
                                 <div class="or-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
-											<span class="circle-progress-2" data-cpid="id-5" data-cpvalue="60"
-                                                      data-cpcolor="#c20000"></span>
+                                 <span class="circle-progress-2" data-cpid="id-5" data-cpvalue="60"
+                                       data-cpcolor="#c20000"></span>
                                             <c:choose>
-                                            	<c:when test="${dayMap.get('month') lt 10}">
-		                                            <div class="review-point" style="top:55px;">
-		                                                <div style="top: 60px;">${dayMap.get("month")}월</div>
-		                                            </div>
-	                                           </c:when>
-                                            	<c:otherwise>
-	                                            	<div class="review-point" style="top:55px; left: 25px;">
-	                                                	<div style="top: 60px;">${dayMap.get("month")}월</div>
-	                                            	</div>
-	                                            </c:otherwise>
+                                                <c:when test="${dayMap.get('month') lt 10}">
+                                                    <div class="review-point" style="top:55px;">
+                                                        <div style="top: 60px;">${dayMap.get("month")}월</div>
+                                                    </div>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <div class="review-point" style="top:55px; left: 25px;">
+                                                        <div style="top: 60px;">${dayMap.get("month")}월</div>
+                                                    </div>
+                                                </c:otherwise>
                                             </c:choose>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="or-text">
                                     <div class="" >
-	                                    <div class="sidebar-option">
-                    <div class="social-media">
-                        <ul>
-                            <li>
-                                <div class="sm-icon"><i class="fas fa-pen-square"></i></div>
-                                	<span class="adminMenu">게시판 관리</span>
-                                <div class="follow">5개</div>
-                            </li>
-                            <li>
-                                <div class="sm-icon"><i class="far fa-user"></i></div>
-                                	<a href="admin/adminMemberList"><span class="adminMenu">멤버 관리</span></a>
-                                <div class="follow">${UserCnt.allUserCnt }명</div>
-                            </li>
-                            <li>
-                                <div class="sm-icon"><i class="fas fa-address-card"></i></div>
-                                	<a href="admin/adminReportList"><span class="adminMenu">신고 내역</span></a>
-                                <div class="follow">${reportCnt.reportUserCnt }건</div>
-                            </li>
-                            <li>
-                                <div class="sm-icon"><i class="far fa-circle"></i></div>
-                                	<span class="adminMenu">블랙 리스트</span>
-                                <div class="follow">52명</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                                        <div class="sidebar-option">
+                                            <div class="social-media">
+                                                <ul>
+                                                    <li>
+                                                        <div class="sm-icon"><i class="fas fa-pen-square"></i></div>
+                                                        <span class="adminMenu">게시판 관리</span>
+                                                        <div class="follow">5개</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="sm-icon"><i class="far fa-user"></i></div>
+                                                        <span class="adminMenu" onclick="location.href='admin/adminMemberList'">멤버 관리</span>
+                                                        <div class="follow">${UserCnt.allUserCnt }명</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="sm-icon"><i class="fas fa-address-card"></i></div>
+                                                        <span class="adminMenu" onclick="location.href='admin/adminReportList'">신고 내역</span>
+                                                        <div class="follow">${reportCnt.reportUserCnt }건</div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="sm-icon"><i class="far fa-circle"></i></div>
+                                                        <span class="adminMenu" onclick="location.href='admin/adminBlackList'">블랙 리스트</span>
+                                                        <div class="follow">52명</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

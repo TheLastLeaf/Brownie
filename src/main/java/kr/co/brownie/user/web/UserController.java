@@ -2,16 +2,25 @@ package kr.co.brownie.user.web;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.brownie.fileUpload.service.FileService;
@@ -138,7 +147,7 @@ public class UserController {
 			changed.add("사진");
 		}
 
-		//포지션 변경하는 서비스
+		// 포지션 변경하는 서비스
 		if (!map.get("positions").toString().equals(userVO.getUserPosition())) {
 			userService.updatePosition(map);
 			changed.add("포지션");
@@ -147,13 +156,12 @@ public class UserController {
 		// 동의항목 체크했을때 31일 이내에 바꾼건지 확인하는 메서드
 		String dateChecking = userService.dateChecking(id);
 		if (dateChecking.equals("yes")) {
-			//닉네임 변경하는 서비스
+			// 닉네임 변경하는 서비스
 			if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
 				userService.updateNick(map);
 				changed.add("닉네임");
 			}
 		} else if (dateChecking.equals("no")) {
-			//현주꺼 받고 바꿔야할 부분
 			if (map.get("nickNameBox").toString().equals(userVO.getNickName())) {
 				return "아이디는 변경되지 않았습니다";
 			}
@@ -193,9 +201,19 @@ public class UserController {
 	@ResponseBody
 	public String userPostModify(Model model, @RequestParam Map<String, Object> map, HttpServletRequest httpServletRequest) throws IOException {
 		String userNick = (String) map.get("user_nick");
-		String checkValue = userService.validating(userNick);
-		
-		return "ok";
+		System.out.println("기입한닉: " + userNick);
+		int checkValue = userService.validating(userNick);
+		String msg = "";
+		System.out.println("전달완료");
+		if (checkValue == 1) {
+			msg = "1";
+			return msg;
+		} else {
+			msg = "0";
+			return msg;
+		}
+
+//		return "ok";
 	}
 
 	@GetMapping("/userDeclar")

@@ -18,7 +18,34 @@
     </div>
 </section>
 <!-- Breadcrumb Section End -->
- 
+ <script>
+	 function fn_addBlack(){
+		 confirm("블랙처리 하시겠습니까?")
+		 const userId = $(".userId").val();
+		 const bListSeq = $(".bListSeq").val();
+		 const endDate = $(".endDate").val();
+		 console.log(endDate)
+		 $.ajax({
+			 url: "./addblack",
+			 type: "POST",
+			 data: {
+				 "userId": userId,
+				 "bListSeq":bListSeq,
+				 "endDate":endDate
+			 },
+			 success: function (data) {
+				 console.log(data)
+				 if (data === 1) {
+					 alert("블랙처리 완료.")
+					 location.reload();
+				 }
+			 },
+			 error: function () {
+				 alert("블랙 처리 접수 실패");
+			 }
+		 })
+	 }
+ </script>
 
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -28,32 +55,42 @@
 	            <div class="">
 	                <table border="1px solid grey" style="margin: auto;">
 	                	<tr>
-	                		<th>순번</th>
+	                		<th>접수번호</th>
 	                		<th>아이디</th>
-	                		<th>신고분류</th>
 	                		<th>신고내용</th>
-	                		<th>정지기한</th>
-	                		<th>상태</th>
-	                		<th>관리</th>
+	                		<th>접수날짜</th>
+	                		<th colspan="2">관리</th>
 	                	</tr>
-	                	<tr>
-	                		<th>1</th>
-	                		<th>better</th>
-	                		<th>욕설</th>
-	                		<th>계속 뻐큐함</th>
-	                		<th>2022.12.12.</th>
-	                		<th>정지중</th>
-	                		<th><button onclick="alert('better 회원의 정지를 해제하시겠습니까? 아직 기한이 남았습니다 어쩌구저쩌구')">해제하기</button></th>
-	                	</tr>
-	                	<tr>
-	                		<th>2</th>
-	                		<th>nine</th>
-	                		<th>스팸</th>
-	                		<th>광고성 게시글 도배</th>
-	                		<th>2020.03.23</th>
-	                		<th>해제</th>
-	                		<th><button onclick="alert('이미 정지 기한이 종료된 회원입니다.')">해제하기</button></th>
-	                	</tr>
+						<c:forEach var="blackList" items="${blackList}">
+							<c:if test="${blackList.status eq 'N'}">
+								<tr>
+									<th>${blackList.BListSeq}</th>
+									<th>${blackList.userId}</th>
+									<th>${blackList.reasonKind1}</th>
+									<th>${blackList.inDate}</th>
+									<th colspan="2">
+										<button class="btn btn-outline-danger" onclick="fn_addBlack()">블랙하기</button>
+										<button class="btn btn-outline-light" onclick="alert('better 회원의 정지를 해제하시겠습니까? 아직 기한이 남았습니다 어쩌구저쩌구')">해제하기</button>
+									</th>
+								</tr>
+							<c:choose>
+								<c:when test="${blacklist.reasonSeq == 1}">
+									<input type="hidden" value="7" name="endDate" class="endDate">
+								</c:when>
+								<c:when test="${blacklist.reasonSeq == 2}">
+									<input type="hidden" value="7" name="endDate" class="endDate">
+								</c:when>
+								<c:when test="${blacklist.reasonSeq == 3}">
+									<input type="hidden" value="7" name="endDate" class="endDate">
+								</c:when>
+								<c:otherwise>
+									<input type="hidden" value="3" name="endDate" class="endDate">
+								</c:otherwise>
+								</c:choose>
+							<input type="hidden" value="${blackList.BListSeq}" name="bListSeq" class="bListSeq">
+							<input type="hidden" value="${blackList.userId}" name="userId" class="userId">
+							</c:if>
+						</c:forEach>
 	                </table>
 	                <div>
 	                 <div class="pagination-item" style="padding-top: 50px;">
