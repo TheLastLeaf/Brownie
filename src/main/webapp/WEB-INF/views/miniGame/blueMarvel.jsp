@@ -91,6 +91,96 @@
 	background-size: 128px;
 }
 	
+.l1{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[0].kind}/${infoList[0].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l2{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[1].kind}/${infoList[1].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l3{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[2].kind}/${infoList[2].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l4{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[3].kind}/${infoList[3].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l5{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[4].kind}/${infoList[4].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l6{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[5].kind}/${infoList[5].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l7{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[6].kind}/${infoList[6].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l8{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[7].kind}/${infoList[7].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l9{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[8].kind}/${infoList[8].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l10{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[9].kind}/${infoList[9].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l11{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[10].kind}/${infoList[10].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l12{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[11].kind}/${infoList[11].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l13{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[12].kind}/${infoList[12].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l14{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[13].kind}/${infoList[13].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
+.l15{
+	background-image:url("${pageContext.request.contextPath}/img/miniGame/${infoList[14].kind}/${infoList[14].imgName}");
+	background-repeat : no-repeat;
+	background-position: center;
+	background-size: 128px;
+}
 
 </style>
 
@@ -121,34 +211,30 @@
 <!-- Breadcrumb Section End -->
 
 <script type="text/javascript">
-	var playerPos = 0 //${marble.position};
-	var pos = [];
+	var playerPos   = ${player.position};
+	var round   	= ${player.round};
+    var hp  		= ${player.hp};
+    var item 		= '${player.item}';
+    var point   	= ${player.point};
+    var recentMap 	= '${player.recentMap}';
+    recentMap = recentMap.replace("[", "");
+	recentMap = recentMap.replace("]", "");
+	recentMap = recentMap.split(", ");
+	console.log("first"+recentMap);
+    var quest   	= '${player.quest}';
+    var dicetimes	= ${player.dicetimes};
+    var recentHp	= ${player.recentHp};
 	
 	//설정
+	var playerImg = "<div class='player'><i style='color: red;' class='fas fa-chess-knight fa-8x'></i></div>";
 	var diceSpeed = 450; // 주사위속도
 	
-	var animateButton = function(e) {
-		console.log(1);
-		e.preventDefault;
-		//reset animation
-		e.target.classList.remove('animate');
-
-		e.target.classList.add('animate');
-		setTimeout(function() {
-			console.log(2);
-			e.target.classList.remove('animate');
-		}, 700);
-	};
-
-	var bubblyButtons = document.getElementsByClassName("learn-more");
-
-	/*  */
-
+	
 	/* 주사위 */
 	window.onload = function() {
+		$(".l"+playerPos+"").append(playerImg);
 		
 		for (var i = 0; i < bubblyButtons.length; i++) {
-			console.log(3);
 			bubblyButtons[i].addEventListener('click', animateButton, false);
 		}
 		//클릭중
@@ -173,6 +259,25 @@
 	}
 	
 	
+	var animateButton = function(e) {
+		e.preventDefault;
+		//reset animation
+		e.target.classList.remove('animate');
+
+		e.target.classList.add('animate');
+		setTimeout(function() {
+			console.log(2);
+			e.target.classList.remove('animate');
+		}, 700);
+	};
+
+	var bubblyButtons = document.getElementsByClassName("learn-more");
+
+	/*  */
+
+	
+	
+	
 	function diceDis() {
 		$('#btnRoll').css('visibility', 'hidden')
 	}
@@ -185,7 +290,128 @@
 		$('.wrapper').css('background-image', "none")
 		$('.tamin').css('visibility', 'visible')
 	}
-
+	
+	//반환점 돌면 맵랜덤리셋하기(ajax)
+	function autoRenew() {
+		temp = "[";
+		 for (var i = 0; i < 14; i++) {
+			if(i!=0){
+				recentMap += ", "
+			}
+			recentMap += recentMap[i].seq
+			if(i==14){
+				recentMap += "]"
+			}
+		}
+		$.ajax({
+			url : "./ajax.autorenew",
+			type : "post",
+			data : {
+					"position" : playerPos,
+					"round" : round,   	
+					"hp" : hp,  		
+					"item" : item, 		
+					"point" : point,   	
+					"recentMap" : temp, 	
+					"quest" : quest,   	
+					"dicetimes" : dicetimes,	
+					"recentHp" : recentHp	
+			},
+			success : function(data) {
+				if(data==1){
+					console.log("갱신저장 성공!");
+				}
+			},
+			error : function() {
+				console.log("갱신저장 실패!");
+			}
+		})
+	}
+	
+	function rndMapCreate() {
+		const str1 = recentMap.join(', ');
+		$.ajax({
+			url : "./ajax.rndmapcreate",
+			type : "post",
+			data : {
+					"position" : playerPos,
+					"round" : round,   	
+					"hp" : hp,  		
+					"item" : item, 		
+					"point" : point,   	
+					"recentMap" : str1, 	
+					"quest" : quest,   	
+					"dicetimes" : dicetimes,	
+					"recentHp" : recentHp	
+			},
+			success : function(data) {
+				 //$(".pan").load(window.location.href + ".pan");
+				 //location.href='${pageContext.request.contextPath}/gallery/detail?boardSeq=${galleryVO.boardSeq}';
+				 
+				 recentMap = [];
+				 for (var i = 0; i < data.length; i++) {
+					 recentMap = recentMap.push(data[i].seq);
+				 }
+				 
+				 /* recentMap = "[";
+				 for (var i = 0; i < data.length; i++) {
+					if(i!=0){
+						recentMap += ", "
+					}
+					recentMap += data[i].seq
+					if(i==14){
+						recentMap += "]"
+					}
+				} */
+				
+				 $('.l1').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[0].kind+"/"+data[0].imgName);
+				 $('.l2').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[1].kind+"/"+data[1].imgName);
+				 $('.l3').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[2].kind+"/"+data[2].imgName);
+				 $('.l4').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[3].kind+"/"+data[3].imgName);
+				 $('.l5').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[4].kind+"/"+data[4].imgName);
+				 $('.l6').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[5].kind+"/"+data[5].imgName);
+				 $('.l7').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[6].kind+"/"+data[6].imgName);
+				 $('.l8').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[7].kind+"/"+data[7].imgName);
+				 $('.l9').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[8].kind+"/"+data[8].imgName);
+				 $('.l10').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[9].kind+"/"+data[9].imgName);
+				 $('.l11').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[10].kind+"/"+data[10].imgName);
+				 $('.l12').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[11].kind+"/"+data[11].imgName);
+				 $('.l13').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[12].kind+"/"+data[12].imgName);
+				 $('.l14').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[13].kind+"/"+data[13].imgName);
+				 $('.l15').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[14].kind+"/"+data[14].imgName);
+			},
+			error : function() {
+				alert("글이 등록되지 않았습니다.");
+			}
+		})
+	}
+	
+	//랜드효과발동
+	function effectAct() {
+		var objposition = "start";
+		if (playerPos!=0) {
+			objposition = recentMap[playerPos-1];
+			console.log(recentMap[playerPos-1]);
+			console.log(objposition);
+		}
+		$.ajax({
+			url : "./ajax.effectact",
+			type : "post",
+			data : {
+					"UserPosition" : playerPos,
+					"ObjPosition" : objposition
+			},
+			success : function(data) {
+				autoRenew();
+				console.log("랜드효과 성공!");
+			},
+			error : function() {
+				alert("글이 등록되지 않았습니다.");
+			}
+		})
+	}
+	
+	//디폴트주사위
 	function dice() {
 		const buttonRoolDice = document.querySelector('.learn-more');
 
@@ -223,7 +449,7 @@
 		setTimeout('move(' + side1 + ')', 1900);
 	}
 	
-	//주사위 더블
+	//한번더! 주사위 더블이벤트
 	function doubleDice() {
 		const buttonRoolDice = document.querySelector('.learn-more');
 
@@ -271,32 +497,34 @@
 		setTimeout('move(' + diceTotal + ')', 2000);
 	}
 	
+	//상인
 	function merchant(){
-		setTimeout('alert('+playerPos+')', 500);
+		
 	}
 	
 	//이동
 	function move(diceTotal) {
 		for (var i = 0; i < diceTotal; i++) {
-			if (playerPos == 16) {
-				playerPos = 0;
-				merchant();
-			}
 			if (0 <= playerPos && playerPos <= 3) {
 				leftMove();
-				playerPos++;
+				++playerPos;
 			} else if (4 <= playerPos && playerPos <= 7) {
 				downMove();
-				playerPos++;
+				++playerPos;
 			} else if (8 <= playerPos && playerPos <= 11) {
 				rightMove();
-				playerPos++;
+				++playerPos;
 			} else if (12 <= playerPos && playerPos <= 15) {
 				upMove();
-				playerPos++;
+				++playerPos;
+			} else {
+				playerPos = 0;
+				rndMapCreate();
+				merchant();
 			}
-			
 		}
+		effectAct();
+		
 		setTimeout('diceApper()', 1500);
 	}
 	
@@ -335,34 +563,25 @@
 			<table class="pan">
 				<tbody>
 					<tr>
-						<td class="td_tb startLine corner" background="">
-							<div class="player">
-								<i style="color: red;" class="fas fa-chess-knight fa-8x"></i>
-							</div>
+						<td class="td_tb startLine corner l0">
 						</td>
 
-						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[0].degree}/${infoList[0].kind}/${infoList[0].imgName}.png">
+						<td class="td_tb l1">
 						</td>
 
-
-						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[1].degree}/${infoList[1].kind}/${infoList[1].imgName}.png">
+						<td class="td_tb l2">
 						</td>
 
-						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[2].degree}/${infoList[1].kind}/${infoList[1].imgName}.png"">
+						<td class="td_tb l3">
 						</td>
 
 
-						<td class="td_tb rightUp corner">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[3].degree}/${infoList[3].kind}/${infoList[3].imgName}.png">
+						<td class="td_tb rightUp corner l4">
 						</td>
 					</tr>
 					<!-- 세로축 -->
 					<tr class="verti">
-						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[4].degree}/${infoList[4].kind}/${infoList[4].imgName}.png">
+						<td class="td_rl l15">
 						</td>
 						
 						<td class="center" id="gameAlert1" colspan="3" rowspan="3">
@@ -378,49 +597,39 @@
 								
 						</td>
 						
-						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[5].degree}/${infoList[5].kind}/${infoList[5].imgName}.png">
+						<td class="td_rl l5">
 						</td>
 					</tr>
 
 
 					<tr class="verti">
-						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[6].degree}/${infoList[6].kind}/${infoList[6].imgName}.png">
+						<td class="td_rl l14">
 						</td>
 
-						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[7].degree}/${infoList[7].kind}/${infoList[7].imgName}.png">
+						<td class="td_rl l6">
 						</td>
 					</tr>
 
 					<tr class="verti">
-						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[8].degree}/${infoList[8].kind}/${infoList[8].imgName}.png">
+						<td class="td_rl l13">
 						</td>
 
-						<td class="td_rl">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[9].degree}/${infoList[9].kind}/${infoList[9].imgName}.png">
+						<td class="td_rl l7">
 						</td>
 					</tr>
 					<!-- 세로축 -->
 					<tr style="margin-bottom: 30px">
-						<td class="td_tb leftDown corner">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[10].degree}/${infoList[10].kind}/${infoList[10].imgName}.png">
-						</td>
-						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[11].degree}/${infoList[11].kind}/${infoList[11].imgName}.png">
-						</td>
-						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[12].degree}/${infoList[12].kind}/${infoList[12].imgName}.png">
-						</td>
-						<td class="td_tb">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[13].degree}/${infoList[13].kind}/${infoList[13].imgName}.png">
-						</td>
-						<td class="td_tb rightDown corner">
-							<img src="${pageContext.request.contextPath}/img/miniGame/${infoList[14].degree}/${infoList[14].kind}/${infoList[14].imgName}.png">
-						</td>
-					</tr>
+						<td class="td_tb leftDown corner l12">                           
+						</td>                                                        
+						<td class="td_tb l11">                                           
+						</td>                                                        
+						<td class="td_tb l10">                                           
+						</td>                                                        
+						<td class="td_tb l9">                                           
+						</td>                                                        
+						<td class="td_tb rightDown corner l8">                          
+						</td>                                                        
+					</tr>                                                            
 				</tbody>
 			</table>
 			<!-- 보드 끝 -->

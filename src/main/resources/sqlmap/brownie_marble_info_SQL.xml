@@ -18,4 +18,76 @@
         	#{item}
         </foreach>
     </select>
+
+    <select id="selectInfo" resultType="kr.co.brownie.miniGame.service.BrownieMarbelInfoVO">
+	    SELECT SEQ      	 AS SEQ,
+	           DEGREE      	 AS DEGREE,
+	           KIND      	 AS KIND,
+	           NAME      	 AS NAME,
+	           BRIEF_EXPL    AS BRIEFEXPL,
+	           DETAILED_EXPL AS DETAILEDEXPL,
+	           FUNCTION      AS FUNCTION,
+	           IMG_NAME      AS IMGNAME
+	    FROM BROWNIE_MARBLE_INFO
+	    WHERE SEQ = #{seq}
+    </select>
+    
+    
+    
+    <select id="selectPlayer" resultType="kr.co.brownie.miniGame.service.BrownieMarbelVO">
+        SELECT USER_ID AS USERID,
+		        ROUND AS ROUND,
+		        HP,
+		        RECENT_HP AS RECENTHP,
+		        ITEM AS ITEM,
+		        POSITION,
+		        POINT,
+		        RECENT_MAP AS RECENTMAP,
+		        QUEST,
+		        DICETIMES
+		FROM BROWNIE_MARBLE
+		WHERE USER_ID = #{userId}
+    </select>
+    
+    <insert id="insertPlayer" parameterType="hashMap">
+        INSERT INTO
+        BROWNIE_MARBLE(USER_ID,ROUND,HP,ITEM,POSITION,POINT,RECENT_MAP,QUEST,DICETIMES,RECENT_HP)
+        VALUES (#{userId},1,3,'0,0,0,0',0,100,#{recentMap},#{quest},8,3)
+    </insert>
+    
+    <update id="updatePlayer" parameterType="hashMap">
+        UPDATE BROWNIE_MARBLE
+        SET
+            ROUND   	= #{round},
+            HP  		= #{hp},
+            ITEM 		= #{item},
+            POSITION    = #{position},
+            POINT   	= #{point},
+            RECENT_MAP 	= #{recentMap},
+            QUEST   	= #{quest},
+            DICETIMES	= #{dicetimes},
+            RECENT_HP	= #{recentHp}
+        WHERE USER_ID = #{userId}
+    </update>
+    
+    <select id="selectLogs" resultType="kr.co.brownie.miniGame.service.BrownieMarbelLogVO">
+        SELECT USER_ID AS USERID,
+	        ROUND,
+	        LOG_SEQ AS LOGSEQ,
+	        DICENUM,
+	        TIME,
+	        OBJECT,
+	        ACT,
+	        RESULT
+		FROM BROWNIE_MARBLE_LOG
+		WHERE USER_ID = #{userId}
+		AND ROUND = #{round}
+    </select>
+    
+    <insert id="insertLog" parameterType="hashMap">
+        INSERT INTO
+        BROWNIE_MARBLE_LOG(USER_ID,ROUND,LOG_SEQ,DICENUM,TIME,OBJECT,ACT,RESULT)
+        VALUES (#{userId},(SELECT ROUND FROM BROWNIE_MARBLE WHERE USER_ID = #{userId}),(SELECT NVL(MAX(LOG_SEQ),0)+1 FROM BROWNIE_MARBLE_LOG WHERE USER_ID = #{userId} AND ROUND = #{round}),#{dicenum},SYSDATE,#{object},#{act},#{result})
+    </insert>
+    
 </mapper>

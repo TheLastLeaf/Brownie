@@ -1,6 +1,9 @@
 package kr.co.brownie.miniGame.service.impl;
 
 import kr.co.brownie.miniGame.service.BrownieMarbelInfoVO;
+import kr.co.brownie.miniGame.service.BrownieMarbelLogVO;
+import kr.co.brownie.miniGame.service.BrownieMarbelVO;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -16,8 +19,16 @@ public interface BrownieMarbelInfoMapper {
     List<BrownieMarbelInfoVO> selectList(HashMap<String, Object> passmap);
 
     BrownieMarbelInfoVO read(int boardSeq);
-
-    int update(Map<String, Object> map);
     
-    int delete(int boardSeq);
+    BrownieMarbelVO selectPlayer(String userId);
+    
+    List<BrownieMarbelLogVO> selectLogs(HashMap<String, Object> map);
+    
+    int insertPlayer(HashMap<String, Object> map);
+    
+    int updatePlayer(HashMap<String, Object> map);
+
+    int insertLog(HashMap<String, Object> map);
+    
+    BrownieMarbelInfoVO selectInfo(int seq);
 }

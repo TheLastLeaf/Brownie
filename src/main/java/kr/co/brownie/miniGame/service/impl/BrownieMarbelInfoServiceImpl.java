@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import kr.co.brownie.miniGame.service.BrownieMarbelInfoService;
 import kr.co.brownie.miniGame.service.BrownieMarbelInfoVO;
+import kr.co.brownie.miniGame.service.BrownieMarbelLogVO;
+import kr.co.brownie.miniGame.service.BrownieMarbelVO;
 
 @Service("brownieMarbelInfoService")
 public class BrownieMarbelInfoServiceImpl implements BrownieMarbelInfoService {
@@ -34,12 +36,34 @@ public class BrownieMarbelInfoServiceImpl implements BrownieMarbelInfoService {
 	}
 
 	@Override
-	public int updateBrownieMarbel(Map<String, Object> map) {
-		return brownieMarbelMapper.update(map);
+	public BrownieMarbelVO selectPlayer(String userId) {
+		return brownieMarbelMapper.selectPlayer(userId);
 	}
 
 	@Override
-	public int deleteBrownieMarbel(int boardSeq) {
-		return brownieMarbelMapper.delete(boardSeq);
+	public List<BrownieMarbelLogVO> selectLogs(HashMap<String, Object> map) {
+		return brownieMarbelMapper.selectLogs(map);
 	}
+
+	@Override
+	public int insertPlayer(HashMap<String, Object> map) {
+		return brownieMarbelMapper.insertPlayer(map);
+	}
+
+	@Override
+	public int updatePlayer(HashMap<String, Object> map) {
+		return brownieMarbelMapper.updatePlayer(map);
+	}
+
+	@Override
+	public int insertLog(HashMap<String, Object> map) {
+		return brownieMarbelMapper.insertLog(map);
+	}
+
+	@Override
+	public BrownieMarbelInfoVO selectInfo(int seq) {
+		return brownieMarbelMapper.selectInfo(seq);
+
+	}
+
 }

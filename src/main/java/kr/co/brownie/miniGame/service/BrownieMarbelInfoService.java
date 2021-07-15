@@ -13,7 +13,15 @@ public interface BrownieMarbelInfoService {
 
 	BrownieMarbelInfoVO getBrownieMarbel(int boardSeq);
 
-	int updateBrownieMarbel(Map<String, Object> map);
+	BrownieMarbelVO selectPlayer(String userId);
+    
+    List<BrownieMarbelLogVO> selectLogs(HashMap<String, Object> map);
+    
+    int insertPlayer(HashMap<String, Object> map);
+    
+    int updatePlayer(HashMap<String, Object> map);
 
-	int deleteBrownieMarbel(int boardSeq);
+    int insertLog(HashMap<String, Object> map);
+    
+    BrownieMarbelInfoVO selectInfo(int seq);
 }
