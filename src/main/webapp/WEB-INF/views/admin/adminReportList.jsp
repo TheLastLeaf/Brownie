@@ -81,7 +81,7 @@
                             <th class="reportListTd">신고일자</th>
                             <th class="reportListTd">처리상태</th>
                         </tr>
-                        <c:forEach var="reportList" items="${reportList.reportVOList }" varStatus="status">
+                        <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }" varStatus="status">
                             <tr>
                                 <th class="reportListTd">${status.index }</th>
                                 <c:choose>
@@ -124,15 +124,15 @@
                     </table>
                     <div class="reportPageBottom">
                         <div class="pagination-item">
-                            <c:if test="${1 < reportList.startPageNumber}">
-                                <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${reportList.startPageNumber - 1}"><span>Prev</span></a>
+                            <c:if test="${1 < ReportPagingVO.startPageNumber}">
+                                <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${ReportPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                             </c:if>
-                            <c:forEach var="pageNumber" begin="${reportList.startPageNumber}"
-                                       end="${reportList.endPageNumber}">
+                            <c:forEach var="pageNumber" begin="${ReportPagingVO.startPageNumber}"
+                                       end="${ReportPagingVO.endPageNumber}">
                                 <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${pageNumber}"><span>${pageNumber}</span></a>
                             </c:forEach>
-                            <c:if test="${reportList.endPageNumber < reportList.totalPageNumber}">
-                                <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${reportList.endPageNumber + 1}"><span>Next</span></a>
+                            <c:if test="${ReportPagingVO.endPageNumber < ReportPagingVO.totalPageNumber}">
+                                <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${ReportPagingVO.endPageNumber + 1}"><span>Next</span></a>
                             </c:if>
                         </div>
 

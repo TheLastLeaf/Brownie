@@ -1,8 +1,5 @@
 package kr.co.brownie.report.service;
 
-import kr.co.brownie.admin.service.ReportPagingVO;
-
-import java.util.List;
 import java.util.Map;
 
 public interface ReportService {
