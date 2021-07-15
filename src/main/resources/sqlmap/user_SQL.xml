@@ -140,5 +140,8 @@
 		        UP_DATE = SYSDATE,
 		        UP_USER_ID = '${id}'
 	</update>
-
+	
+	<select id="validating">
+		
+	</select>
 </mapper>

@@ -130,20 +130,19 @@ input[name="position"] {
 					<h2 class="font-family-maple-bold text-white">정보수정</h2>
 					<p class="advice">사진을 눌러서 프로필을 바꿔보세요!</p>
 				</div>
-
-
 				<!-- form태그 begin -->
 				<form action="/user/userInfo" name="frm" class="signup-form" id="form" method="POST" enctype="multipart/form-data">
 					<div class="sf-input-list ">
-						<!-- 					text-center justify-content-center align-items-center d-flex -->
 						<div class="profileBox" style="border: none;">
 							<label for="file">
 								<img class="profile" id="img" src="${pageContext.request.contextPath}${selectProfile}">
 								<input type="file" id="file" name="file" />
 							</label>
 						</div>
-						<input type="text" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
-
+						<div>
+							<input type="text" id="user_nick" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
+							<div class="check_front" id="id_check">중복체크(안보여야함)</div>
+						</div>
 						<!-- 포지션선택 -->
 						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 							<label class="btn btn-danger position">
@@ -209,7 +208,6 @@ input[name="position"] {
 		$(function() {
 			$("#file").on("change", handleImgFileSelect);
 		});
-
 		function handleImgFileSelect(e) {
 			var files = e.target.files;
 			var filesArr = Array.prototype.slice.call(files);
@@ -219,9 +217,7 @@ input[name="position"] {
 					alert("확장자는 이미지 확장자만 가능합니다.");
 					return;
 				}
-
 				sel_file = f;
-
 				var reader = new FileReader();
 				reader.onload = function(e) {
 					$("#img").attr("src", e.target.result);
@@ -229,12 +225,33 @@ input[name="position"] {
 				reader.readAsDataURL(f);
 			});
 		}
-		
+
+		// 		<div>
+		// 		<input type="text" id="user_nick" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
+		// 		<div class="check_front" id="id_check">중복체크(안보여야함)</div>
+		// 		</div>
 		//[영문 대문자 또는 소문자로 시작하는 아이디, 길이는 5~15자, 끝날때 제한 없음]
 		var idReg = /^[A-za-z]{5,15}/g;
-		
-		
-		
+		$("#user_nick").blur(function() {
+			var user_nick = $('#user_nick').val();
+			var formData = new FormData();
+			formData.append("user_nick", user_nick);
+			$.ajax({
+				url : "/user/userModify",
+				type : "POST",
+				data : formData,
+				processData : false,
+				contentType : false,
+				success : function(data) {
+					alert("data : " + data);
+				},
+				error : function(e) {
+					alert("실패ㅜㅜ err");
+					console.log(e);
+				}
+			});
+		});
+
 
 		function fn_submit() {
 			//파일처리 시작 ----------
@@ -276,15 +293,13 @@ input[name="position"] {
 				error : function(e) {
 					alert("실패ㅜㅜ err");
 					console.log(e);
-				},
+				}
 			});
 		}
 
 		function fn_loginPlz() {
 			alert("로그인이 필요합니다!")
 		}
-		
-
 	</script>
 
 

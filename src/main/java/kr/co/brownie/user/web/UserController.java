@@ -143,7 +143,7 @@ public class UserController {
 			userService.updatePosition(map);
 			changed.add("포지션");
 		}
-		
+
 		// 동의항목 체크했을때 31일 이내에 바꾼건지 확인하는 메서드
 		String dateChecking = userService.dateChecking(id);
 		if (dateChecking.equals("yes")) {
@@ -152,9 +152,9 @@ public class UserController {
 				userService.updateNick(map);
 				changed.add("닉네임");
 			}
-		} else if(dateChecking.equals("no")){
+		} else if (dateChecking.equals("no")) {
 			//현주꺼 받고 바꿔야할 부분
-			if(map.get("nickNameBox").toString().equals(userVO.getNickName())) {
+			if (map.get("nickNameBox").toString().equals(userVO.getNickName())) {
 				return "아이디는 변경되지 않았습니다";
 			}
 			changed.add("31이내에 변경한 아이디이므로 바꿀수 없습니다!");
@@ -180,12 +180,22 @@ public class UserController {
 
 	@GetMapping("/userModify/{user_id}")
 	public String userModify(Model model, @PathVariable String user_id) throws IOException {
+		System.out.println("get");
 		String selectProfile = fileService.selectProfile(user_id);
 		UserVO userVO = userService.userOneSelect(user_id);
 		model.addAttribute("userOneSelect", userVO);
 		model.addAttribute("selectProfile", selectProfile);
 
 		return "user/userModify";
+	}
+
+	@PostMapping("/userModify")
+	@ResponseBody
+	public String userPostModify(Model model, @RequestParam Map<String, Object> map, HttpServletRequest httpServletRequest) throws IOException {
+		String userNick = (String) map.get("user_nick");
+		String checkValue = userService.validating(userNick);
+		
+		return "ok";
 	}
 
 	@GetMapping("/userDeclar")

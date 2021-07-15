@@ -106,4 +106,9 @@ public class UserServiceImpl implements UserService {
 	public void updatePosition(Map<String, Object> map) throws IOException {
 		userMapper.updatePosition(map);
 	}
+
+	@Override
+	public String validating(String userNick) {
+		return userMapper.validating(userNick);
+	}
 }

@@ -36,4 +36,6 @@ public interface UserMapper {
 
 	void updatePosition(Map<String, Object> map);
 
+	String validating(String userNick);
+
 }

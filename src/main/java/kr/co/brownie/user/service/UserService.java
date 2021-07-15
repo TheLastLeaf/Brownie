@@ -32,4 +32,6 @@ public interface UserService {
 	void updateNick(Map<String, Object> map) throws IOException;
 	// 포지션을 UPDATE 하는 SERVICE
 	void updatePosition(Map<String, Object> map) throws IOException;
+	// 아이디 중복체크
+	String validating(String userNick);
 }
