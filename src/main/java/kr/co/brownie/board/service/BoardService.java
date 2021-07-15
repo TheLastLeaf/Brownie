@@ -1,14 +1,20 @@
 package kr.co.brownie.board.service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface BoardService {
-	BoardVO likeHateCnt(int boardSeq);
+	int CONTENT_PER_PAGE = 10;
 
-	void updateLikeHate(Map<String, Object> map);
+	int insert(Map<String, Object> map);
 
-	BoardVO selectUserStance(Map<String, Object> map);
+	BoardPagingVO selectPagingList(Map<String, Object> map);
 
-	void deleteUserStance(Map<String, Object> map);
+	List<BoardVO> selectList(Map<String, Object> map);
 
+	BoardVO select(Map<String, Object> map);
+
+	int update(Map<String, Object> map);
+
+	int delete(Map<String, Object> map);
 }

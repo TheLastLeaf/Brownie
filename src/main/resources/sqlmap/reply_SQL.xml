@@ -39,7 +39,7 @@
 	        			BOARD_SEQ,
 	        			COUNT(REPLY_SEQ) CNT
 			      	FROM
-			      		REPLY
+			      		BROWNIE_BOARD_REPLY
 			      	GROUP BY
 			      		BOARD_SEQ
 			      	) RE
@@ -67,12 +67,12 @@
             NVL(LH.HCNT,0) AS HATECNT
 		FROM
 			BROWNIE_USER BU,
-            REPLY RE
+            BROWNIE_BOARD_REPLY RE
         LEFT JOIN
         	(
             SELECT REPLY_SEQ, "0" AS LCNT, "1" AS HCNT
             FROM (SELECT REPLY_SEQ, KIND
-            FROM LIKE_REPLY)
+            FROM BROWNIE_BOARD_REPLY_LIKE)
             PIVOT ( COUNT(*) FOR KIND IN (0, 1))
             ) LH
         ON
@@ -99,7 +99,7 @@
 			RE.STATUS AS STATUS,
             BU.NICK_NAME AS nickName
 		FROM
-			REPLY RE, BROWNIE_USER BU
+			BROWNIE_BOARD_REPLY RE, BROWNIE_USER BU
 		WHERE
 			RE.IN_USER_ID = BU.IN_USER_ID
 		AND
@@ -107,7 +107,7 @@
 	</select>
 
 	<update id="modReply">
-		UPDATE REPLY
+		UPDATE BROWNIE_BOARD_REPLY
 		SET
 			REPLY_CONTENT = #{replyContent},
 			UP_DATE = SYSDATE,
@@ -117,7 +117,7 @@
 	</update>
 
 	<update id="delHadReReply">
-		UPDATE REPLY
+		UPDATE BROWNIE_BOARD_REPLY
 		SET
 			REPLY_CONTENT = #{replyContent},
 			UP_DATE = SYSDATE,
@@ -128,7 +128,7 @@
 	</update>
 
 	<delete id="delReply">
-		DELETE FROM REPLY
+		DELETE FROM BROWNIE_BOARD_REPLY
 		WHERE
 			IN_USER_ID = #{inUserId}
 		AND
@@ -144,7 +144,7 @@
 			UP_DATE as modDate,
 			UP_USER_ID as upUserId
 		FROM
-			LIKE_REPLY
+			BROWNIE_BOARD_REPLY_LIKE
         WHERE
         	REPLY_SEQ = #{replySeq}
         AND
@@ -152,7 +152,7 @@
 	</select>
 
 	<delete id="deleteReplyStance" parameterType="hashMap">
-		DELETE FROM LIKE_REPLY
+		DELETE FROM BROWNIE_BOARD_REPLY_LIKE
         WHERE
         	REPLY_SEQ = #{replySeq}
         AND
@@ -161,7 +161,7 @@
 
 	<update id="updateReplyStance" parameterType="hashMap">
   	 	MERGE INTO
-			LIKE_REPLY
+			BROWNIE_BOARD_REPLY_LIKE
 		USING DUAL
 		ON
 			(reply_SEQ = #{replySeq} AND IN_USER_ID = #{inUserId})
@@ -190,7 +190,7 @@
 	<select id="replyLHCnt" resultType="kr.co.brownie.reply.service.ReplyVO">
 		SELECT REPLY_SEQ, "0" as LIKECNT, "1" as HATECNT
 		FROM (SELECT REPLY_SEQ, KIND
-		FROM LIKE_REPLY)
+		FROM BROWNIE_BOARD_REPLY_LIKE)
 		PIVOT (
 		    COUNT(*)
 		    FOR KIND
@@ -201,7 +201,7 @@
 
 
 	<insert id="replyToBoard">
-		INSERT INTO REPLY
+		INSERT INTO BROWNIE_BOARD_REPLY
 			(
 				REPLY_SEQ,
 				REPLY_CONTENT,
@@ -228,7 +228,7 @@
 	</insert>
 
 	<insert id="replyToReply">
-		INSERT INTO REPLY
+		INSERT INTO BROWNIE_BOARD_REPLY
 			(
 				REPLY_SEQ,
 				REPLY_CONTENT,

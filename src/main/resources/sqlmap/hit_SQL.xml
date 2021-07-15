@@ -6,14 +6,14 @@
 
     <select id="checkHit" parameterType="int" resultType="int">
         SELECT COUNT(*) as cnt
-        FROM HIT
+        FROM BROWNIE_BOARD_HIT
         WHERE 1 = 1
           AND BOARD_SEQ = #{boardSeq}
     </select>
 
     <insert id="insertMember" parameterType="hashMap">
-        INSERT INTO HIT (HIT_SEQ, BOARD_SEQ, IP, USER_ID)
-        SELECT (SELECT NVL(MAX(HIT_SEQ), 0) + 1 FROM HIT),
+        INSERT INTO BROWNIE_BOARD_HIT (HIT_SEQ, BOARD_SEQ, IP, USER_ID)
+        SELECT (SELECT NVL(MAX(HIT_SEQ), 0) + 1 FROM BROWNIE_BOARD_HIT),
                #{boardSeq},
                #{ip},
                #{userId}
@@ -21,7 +21,7 @@
         WHERE NOT EXISTS
             (
                 SELECT *
-                FROM HIT
+                FROM BROWNIE_BOARD_HIT
                 WHERE 1 = 1
                   AND BOARD_SEQ = #{boardSeq}
                   AND USER_ID = #{userId}
@@ -29,8 +29,8 @@
     </insert>
 
     <insert id="insertNoMem" parameterType="hashMap">
-        INSERT INTO HIT (HIT_SEQ, BOARD_SEQ, IP, USER_ID)
-        SELECT (SELECT NVL(MAX(HIT_SEQ), 0) + 1 FROM HIT),
+        INSERT INTO BROWNIE_BOARD_HIT (HIT_SEQ, BOARD_SEQ, IP, USER_ID)
+        SELECT (SELECT NVL(MAX(HIT_SEQ), 0) + 1 FROM BROWNIE_BOARD_HIT),
                #{boardSeq},
                #{ip},
                'NonMem'
@@ -38,7 +38,7 @@
         WHERE NOT EXISTS
             (
                 SELECT *
-                FROM HIT
+                FROM BROWNIE_BOARD_HIT
                 WHERE 1 = 1
                   AND BOARD_SEQ = #{boardSeq}
                   AND USER_ID = 'NonMem'

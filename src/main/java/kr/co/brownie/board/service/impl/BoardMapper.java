@@ -1,20 +1,24 @@
 package kr.co.brownie.board.service.impl;
 
-import java.util.Map;
-
-import org.apache.ibatis.annotations.Param;
+import kr.co.brownie.board.service.BoardVO;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import kr.co.brownie.board.service.BoardVO;
+import java.util.List;
+import java.util.Map;
 
+@Mapper
 @Repository("boardMapper")
 public interface BoardMapper {
-	BoardVO likeHateCnt(int boardSeq);
+	int insert(Map<String, Object> map);
 
-	void updateLikeHate(Map<String, Object> map);
+	int count(Map<String, Object> map);
 
-	BoardVO selectUserStance(Map<String, Object> map);
+	List<BoardVO> selectList(Map<String, Object> map);
 
-	void deleteUserStance(Map<String, Object> map);
+	BoardVO select(Map<String, Object> map);
 
+	int update(Map<String, Object> map);
+
+	int delete(Map<String, Object> map);
 }

@@ -80,21 +80,21 @@
 
 	<select id="replyTotalCnt" resultType="int">
 		SELECT COUNT(*) 
-			FROM LIKE_REPLY
+			FROM BROWNIE_BOARD_REPLY_LIKE
 		WHERE 
 			IN_USER_ID = '${id}'
 	</select>
 	
 	<select id="likeReplyCnt" resultType="int">
 		SELECT COUNT(*) 
-			FROM LIKE_REPLY
+			FROM BROWNIE_BOARD_REPLY_LIKE
 		WHERE 
 			IN_USER_ID = '${id}' AND KIND = '0'
 	</select>
 
 	<select id="hateReplyCnt" resultType="int">
 		SELECT COUNT(*) 
-			FROM LIKE_REPLY
+			FROM BROWNIE_BOARD_REPLY_LIKE
 		WHERE 
 			IN_USER_ID = '${id}' AND KIND = '1'
 	</select>

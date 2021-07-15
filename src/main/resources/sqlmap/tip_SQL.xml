@@ -50,7 +50,7 @@
                            NVL(REPLY.CNT, 0)            AS REPLYCNT
                     FROM BROWNIE_BOARD
                              LEFT OUTER JOIN BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
-                             LEFT OUTER JOIN (SELECT BOARD_SEQ, COUNT(*) AS CNT FROM REPLY GROUP BY BOARD_SEQ) REPLY
+                             LEFT OUTER JOIN (SELECT BOARD_SEQ, COUNT(*) AS CNT FROM BROWNIE_BOARD_REPLY GROUP BY BOARD_SEQ) REPLY
                                              ON BROWNIE_BOARD.BOARD_SEQ = REPLY.BOARD_SEQ
                     WHERE UPPER(BROWNIE_BOARD.BOARD_KIND) = 'TIP'
                       AND (#{champion} IS NULL OR BROWNIE_BOARD.BOARD_CATEGORY = #{champion})
@@ -86,7 +86,7 @@
                NVL(REPLY.CNT, 0)            AS REPLYCNT
         FROM BROWNIE_BOARD
                  LEFT OUTER JOIN BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
-                 LEFT OUTER JOIN (SELECT BOARD_SEQ, COUNT(*) AS CNT FROM REPLY GROUP BY BOARD_SEQ) REPLY
+                 LEFT OUTER JOIN (SELECT BOARD_SEQ, COUNT(*) AS CNT FROM BROWNIE_BOARD_REPLY GROUP BY BOARD_SEQ) REPLY
                                  ON BROWNIE_BOARD.BOARD_SEQ = REPLY.BOARD_SEQ
         WHERE UPPER(BROWNIE_BOARD.BOARD_KIND) = 'TIP'
           AND BROWNIE_BOARD.BOARD_SEQ = ${boardSeq}
@@ -166,22 +166,22 @@
                      NICKNAME,
                      ROWNUM AS RN
               FROM (SELECT LEVEL                  AS LV,
-                           REPLY.REPLY_SEQ        AS REPLYSEQ,
-                           REPLY.REPLY_CONTENT    AS REPLYCONTENT,
-                           REPLY.IN_DATE          AS INDATE,
-                           REPLY.IN_USER_ID       AS INUSERID,
-                           REPLY.UP_DATE          AS "UPDATE",
-                           REPLY.UP_USER_ID       AS UPUSERID,
-                           REPLY.BOARD_SEQ        AS BOARDSEQ,
-                           REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
-                           REPLY.STATUS           AS STATUS,
+                           BROWNIE_BOARD_REPLY.REPLY_SEQ        AS REPLYSEQ,
+                           BROWNIE_BOARD_REPLY.REPLY_CONTENT    AS REPLYCONTENT,
+                           BROWNIE_BOARD_REPLY.IN_DATE          AS INDATE,
+                           BROWNIE_BOARD_REPLY.IN_USER_ID       AS INUSERID,
+                           BROWNIE_BOARD_REPLY.UP_DATE          AS "UPDATE",
+                           BROWNIE_BOARD_REPLY.UP_USER_ID       AS UPUSERID,
+                           BROWNIE_BOARD_REPLY.BOARD_SEQ        AS BOARDSEQ,
+                           BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
+                           BROWNIE_BOARD_REPLY.STATUS           AS STATUS,
                            BROWNIE_USER.LOL_ID    AS LOLID,
                            BROWNIE_USER.NICK_NAME AS NICKNAME
-                    FROM REPLY
-                             LEFT OUTER JOIN BROWNIE_USER ON (REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
-                    WHERE REPLY.BOARD_SEQ = ${boardSeq} START
-                    WITH REPLY.HEAD_REPLY_SEQ IS NULL
-                    CONNECT BY PRIOR REPLY.REPLY_SEQ = REPLY.HEAD_REPLY_SEQ
+                    FROM BROWNIE_BOARD_REPLY
+                             LEFT OUTER JOIN BROWNIE_USER ON (BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
+                    WHERE BROWNIE_BOARD_REPLY.BOARD_SEQ = ${boardSeq} START
+                    WITH BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ IS NULL
+                    CONNECT BY PRIOR BROWNIE_BOARD_REPLY.REPLY_SEQ = BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ
                    )
              )
         WHERE ${replyPerPage} * (${currentReplyPageNumber} - 1) < RN
@@ -190,7 +190,7 @@
     </select>
 
     <insert id="insertReply" parameterType="hashMap">
-        INSERT INTO REPLY
+        INSERT INTO BROWNIE_BOARD_REPLY
         (REPLY_CONTENT,
          IN_USER_ID,
          UP_USER_ID,
@@ -205,26 +205,26 @@
 
     <select id="selectReply" parameterType="hashMap" resultType="kr.co.brownie.tip.service.TipReplyVO">
         SELECT '1'                    AS LV,
-               REPLY.REPLY_SEQ        AS REPLYSEQ,
-               REPLY.REPLY_CONTENT    AS REPLYCONTENT,
-               REPLY.IN_DATE          AS INDATE,
-               REPLY.IN_USER_ID       AS INUSERID,
-               REPLY.UP_DATE          AS "UPDATE",
-               REPLY.UP_USER_ID       AS UPUSERID,
-               REPLY.BOARD_SEQ        AS BOARDSEQ,
-               REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
-               REPLY.STATUS           AS STATUS,
+               BROWNIE_BOARD_REPLY.REPLY_SEQ        AS REPLYSEQ,
+               BROWNIE_BOARD_REPLY.REPLY_CONTENT    AS REPLYCONTENT,
+               BROWNIE_BOARD_REPLY.IN_DATE          AS INDATE,
+               BROWNIE_BOARD_REPLY.IN_USER_ID       AS INUSERID,
+               BROWNIE_BOARD_REPLY.UP_DATE          AS "UPDATE",
+               BROWNIE_BOARD_REPLY.UP_USER_ID       AS UPUSERID,
+               BROWNIE_BOARD_REPLY.BOARD_SEQ        AS BOARDSEQ,
+               BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
+               BROWNIE_BOARD_REPLY.STATUS           AS STATUS,
                BROWNIE_USER.LOL_ID    AS LOLID,
                BROWNIE_USER.NICK_NAME AS NICKNAME
-        FROM REPLY
-                 LEFT OUTER JOIN BROWNIE_USER ON (REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
+        FROM BROWNIE_BOARD_REPLY
+                 LEFT OUTER JOIN BROWNIE_USER ON (BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
         WHERE BOARD_SEQ = ${boardSeq}
           AND REPLY_SEQ = ${replySeq}
     </select>
 
     <delete id="deleteReply" parameterType="hashMap">
         DELETE
-        FROM REPLY
+        FROM BROWNIE_BOARD_REPLY
         WHERE REPLY_SEQ = ${replySeq}
     </delete>
 </mapper>
