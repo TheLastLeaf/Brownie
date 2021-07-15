@@ -33,4 +33,12 @@ public class BlackListServiceImpl implements BlackListService{
 		return blackListMapper.insert(map);
 	}
 
+	@Override
+	public int update(String id, int bListSeq) {
+		Map<String,Object> map = new HashMap<>();
+		map.put("id",id);
+		map.put("bListSeq",bListSeq);
+		return blackListMapper.updateBlackUser(map);
+	}
+
 }

@@ -71,17 +71,17 @@
                                                     </li>
                                                     <li>
                                                         <div class="sm-icon"><i class="far fa-user"></i></div>
-                                                        <a href="admin/adminMemberList"><span class="adminMenu">멤버 관리</span></a>
+                                                        <span class="adminMenu" onclick="location.href='admin/adminMemberList'">멤버 관리</span>
                                                         <div class="follow">${UserCnt.allUserCnt }명</div>
                                                     </li>
                                                     <li>
                                                         <div class="sm-icon"><i class="fas fa-address-card"></i></div>
-                                                        <a href="admin/adminReportList"><span class="adminMenu">신고 내역</span></a>
+                                                        <span class="adminMenu" onclick="location.href='admin/adminReportList'">신고 내역</span>
                                                         <div class="follow">${reportCnt.reportUserCnt }건</div>
                                                     </li>
                                                     <li>
                                                         <div class="sm-icon"><i class="far fa-circle"></i></div>
-                                                        <span class="adminMenu">블랙 리스트</span>
+                                                        <span class="adminMenu" onclick="location.href='admin/adminBlackList'">블랙 리스트</span>
                                                         <div class="follow">52명</div>
                                                     </li>
                                                 </ul>

@@ -140,23 +140,6 @@
                                 <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
                                 <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq" class="reportSeq">
                             </tr>
-                                <c:forEach items="${blackList}" var="blacklist">
-                                    <input type="hidden" value="${blacklist.BListSeq}" name="bListSeq" class="bListSeq">
-                                    <c:choose>
-                                        <c:when test="${blacklist.reasonSeq eq 1}">
-                                            <input type="hidden" value="7" name="endDate" class="endDate">
-                                        </c:when>
-                                        <c:when test="${blacklist.reasonSeq eq 2}">
-                                            <input type="hidden" value="7" name="endDate" class="endDate">
-                                        </c:when>
-                                        <c:when test="${blacklist.reasonSeq eq 3}">
-                                            <input type="hidden" value="7" name="endDate" class="endDate">
-                                        </c:when>
-                                        <c:otherwise>
-                                            <input type="hidden" value="3" name="endDate" class="endDate">
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
                             </c:if>
                         </c:forEach>
                     </table>

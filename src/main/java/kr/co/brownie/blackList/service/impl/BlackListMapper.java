@@ -13,4 +13,6 @@ public interface BlackListMapper {
 	List<BlackListVO> selectBlackList();
 
 	int insert(Map<String, Object> map);
+
+	int updateBlackUser(Map<String,Object> map);
 }

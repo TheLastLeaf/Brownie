@@ -91,6 +91,26 @@ public class AdminController {
         return "admin/adminReportList"; //신고 리스트 화면
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/addblack", method= {RequestMethod.GET, RequestMethod.POST})
+    public Object addblackPost(Model model, HttpServletRequest httpServletRequest) {
+        String id = httpServletRequest.getSession().getAttribute("id").toString();
+        String Seq = httpServletRequest.getParameter("bListSeq");
+        int bListSeq = Integer.parseInt(Seq);
+        String userId = httpServletRequest.getParameter("userId");
+        String eDate = httpServletRequest.getParameter("endDate");
+        int endDate = Integer.parseInt(eDate);
+        System.out.println(endDate);
+        int count = blackListService.update(id,bListSeq);
+        if(count == 1){
+            int cnt = blackUserService.insert(bListSeq,userId,endDate,id);
+            model.addAttribute("cnt",cnt);
+            return cnt;
+        }
+        model.addAttribute("cnt", count);
+        return count;
+    }
+
     @GetMapping("/adminBlackList")
     public String adminBlackList(Model model) {
         List<BlackListVO> blackList = blackListService.selectBlackList();
@@ -108,10 +128,6 @@ public class AdminController {
         String userId = httpServletRequest.getParameter("userId");
         String result = httpServletRequest.getParameter("log");
         String rSeq = httpServletRequest.getParameter("reasonSeq");
-        String bseq = httpServletRequest.getParameter("bListSeq");
-        String eDate = httpServletRequest.getParameter("endDate");
-        int endDate = Integer.parseInt(eDate);
-        int bListSeq = Integer.parseInt(bseq);
         int reasonSeq = Integer.parseInt(rSeq);
         map.put("id", id);
         map.put("userId", userId);
@@ -120,10 +136,7 @@ public class AdminController {
         if(cnt == 1){
             int count = blackListService.insert(userId,result,id,reasonSeq);
             model.addAttribute("count",count);
-            if(count == 1){
-                int bcnt = blackUserService.insert(bListSeq,userId,endDate,id);
-                return bcnt;
-            }
+            return count;
         }
         model.addAttribute("cnt", cnt);
         return cnt;

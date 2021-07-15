@@ -11,5 +11,7 @@ public class BlackListVO {
 	private String upDate;
 	private String upUserId;
 	private String reasonSeq;
+	private String reasonKind1;
+	private String status;
 
 }
