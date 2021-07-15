@@ -172,11 +172,16 @@
                                                         COUNT(*) AS HIT_CNT
                                                  FROM BROWNIE_BOARD_HIT
                                                  GROUP BY BOARD_SEQ) BROWNIE_BOARD_HIT ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_HIT.BOARD_SEQ
-                                LEFT OUTER JOIN (SELECT BOARD_SEQ, LIKE_CNT, UNLIKE_CNT
-                                                 FROM (SELECT BOARD_SEQ, KIND FROM BROWNIE_BOARD_LIKE) PIVOT (
+                                LEFT OUTER JOIN (SELECT BOARD_SEQ,
+                                                        LIKE_CNT,
+                                                        UNLIKE_CNT
+                                                 FROM (SELECT BOARD_SEQ,
+                                                              KIND
+                                                 FROM BROWNIE_BOARD_LIKE) PIVOT (
                                                      COUNT(*)
                                                      FOR KIND
-                                                     IN (1 AS LIKE_CNT, 0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE
+                                                     IN (1 AS LIKE_CNT,
+                                                         0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE
                                                 ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE.BOARD_SEQ
                        ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC
                       ) BOARD
@@ -272,13 +277,16 @@
                                                         COUNT(*) AS HIT_CNT
                                                  FROM BROWNIE_BOARD_HIT
                                                  GROUP BY BOARD_SEQ) HIT ON BROWNIE_BOARD.BOARD_SEQ = HIT.BOARD_SEQ
-                                LEFT OUTER JOIN (SELECT BOARD_SEQ, UNLIKE_CNT, LIKE_CNT
+                                LEFT OUTER JOIN (SELECT BOARD_SEQ,
+                                                        LIKE_CNT,
+                                                        UNLIKE_CNT
                                                  FROM (SELECT BOARD_SEQ,
                                                               KIND
                                                        FROM BROWNIE_BOARD_LIKE) PIVOT (
                                                      COUNT(*)
                                                      FOR KIND
-                                                     IN (0 AS UNLIKE_CNT, 1 AS LIKE_CNT))) LIKE_BOARD
+                                                     IN (1 AS LIKE_CNT,
+                                                         0 AS UNLIKE_CNT))) LIKE_BOARD
                                                 ON BROWNIE_BOARD.BOARD_SEQ = LIKE_BOARD.BOARD_SEQ
                        ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC
                       ) BOARD

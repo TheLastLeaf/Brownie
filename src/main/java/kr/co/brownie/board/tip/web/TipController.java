@@ -1,5 +1,6 @@
 package kr.co.brownie.board.tip.web;
 
+import kr.co.brownie.board.like.service.BoardLikeService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
@@ -27,11 +28,14 @@ public class TipController {
     @Resource(name = "leagueOfLegendsChampionsService")
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
 
+    @Resource(name = "boardLikeService")
+    BoardLikeService boardLikeService;
+
     @GetMapping("/write")
     public String write(Model model,
                         HttpServletRequest httpServletRequest) {
         Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
-        model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsService.selectRecentlyChampionsList());
+        model.addAttribute("leagueOfLegendsChampionsVOList", this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
         return "tip/write";
     }
@@ -48,8 +52,7 @@ public class TipController {
         map.put("content", content);
         map.put("boardKind", "tip");
         map.put("boardCategory", champion);
-        System.out.println(map);
-        Assert.state(boardService.insert(map) == 1, "글 작성에 실패하였습니다.");
+        Assert.state(this.boardService.insert(map) == 1, "글 작성에 실패하였습니다.");
 
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/list";
     }
@@ -62,9 +65,9 @@ public class TipController {
         map.put("boardKind", "tip");
         map.put("boardCategory", champion);
         map.put("pageNum", pageNum);
-        map.put("contentPerPage", boardService.CONTENT_PER_PAGE);
+        map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
 
-        model.addAttribute("leagueOfLegendsChampionsVOList", leagueOfLegendsChampionsService.selectRecentlyChampionsList());
+        model.addAttribute("leagueOfLegendsChampionsVOList", this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
         model.addAttribute("champion", champion);
 
@@ -79,7 +82,7 @@ public class TipController {
         map.put("boardKind", "tip");
         map.put("boardSeq", boardSeq);
 
-        BoardVO boardVO = boardService.select(map);
+        BoardVO boardVO = this.boardService.select(map);
 
         model.addAttribute("boardVO", boardVO);
         Assert.notNull(boardVO, "해당 글이 없습니다.");
@@ -88,18 +91,22 @@ public class TipController {
         int pageNum;
         try {
             pageNum = Integer.parseInt(httpServletRequest.getParameter("pageNum"));
-            if (pageNum < 1 || (totalContent - 1) / replyService.CONTENT_PER_PAGE + 1 < pageNum) {
-                pageNum = (totalContent - 1) / replyService.CONTENT_PER_PAGE + 1;
+            if (pageNum < 1 || (totalContent - 1) / this.replyService.CONTENT_PER_PAGE + 1 < pageNum) {
+                pageNum = (totalContent - 1) / this.replyService.CONTENT_PER_PAGE + 1;
             }
         } catch (NullPointerException | NumberFormatException e) {
-            pageNum = (totalContent - 1) / replyService.CONTENT_PER_PAGE + 1;
+            pageNum = (totalContent - 1) / this.replyService.CONTENT_PER_PAGE + 1;
         }
 
-        map.put("contentPerPage", replyService.CONTENT_PER_PAGE);
+        map.put("contentPerPage", this.replyService.CONTENT_PER_PAGE);
         map.put("pageNum", pageNum);
         map.put("totalContent", totalContent);
 
-        model.addAttribute("replyPagingVO", replyService.selectPagingList(map));
+        model.addAttribute("replyPagingVO", this.replyService.selectPagingList(map));
+
+        map.put("userId", httpServletRequest.getSession().getAttribute("id") == null ? "" : httpServletRequest.getSession().getAttribute("id").toString());
+        model.addAttribute("boardLikeVo", this.boardLikeService.select(map));
+
         return "tip/details";
     }
 
@@ -114,13 +121,13 @@ public class TipController {
         map.put("boardKind", "tip");
         map.put("boardSeq", boardSeq);
 
-        BoardVO boardVO = boardService.select(map);
+        BoardVO boardVO = this.boardService.select(map);
         Assert.notNull(boardVO, "해당 글이 없습니다.");
         Assert.state(boardVO.getBoardInUserId().equals(id), "작성자만 게시글을 수정할 수 있습니다.");
 
         model.addAttribute("boardVO", boardVO);
         model.addAttribute("leagueOfLegendsChampionsVOList",
-                leagueOfLegendsChampionsService.selectRecentlyChampionsList());
+                this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
         return "tip/modify";
     }
@@ -135,12 +142,10 @@ public class TipController {
         map.put("boardKind", "tip");
         map.put("userId", userId);
 
-        System.out.println(map);
-
-        BoardVO boardVO = boardService.select(map);
+        BoardVO boardVO = this.boardService.select(map);
         Assert.notNull(boardVO, "해당 글이 없습니다.");
         Assert.state(userId.equals(boardVO.getBoardInUserId()), "작성자만 게시글을 수정할 수 있습니다.");
-        Assert.state(boardService.update(map) == 1, "수정에 실패했습니다.");
+        Assert.state(this.boardService.update(map) == 1, "수정에 실패했습니다.");
 
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/list";
     }
@@ -151,8 +156,8 @@ public class TipController {
         Assert.notNull(httpServletRequest.getSession().getAttribute("id"), "로그인이 필요합니다.");
         String userId = httpServletRequest.getSession().getAttribute("id").toString();
 
-        Assert.state(userId.equals(boardService.select(map).getBoardInUserId()), "작성자만 게시글을 삭제할 수 있습니다.");
-        Assert.state(boardService.delete(map) == 1, "삭제에 실패했습니다.");
+        Assert.state(userId.equals(this.boardService.select(map).getBoardInUserId()), "작성자만 게시글을 삭제할 수 있습니다.");
+        Assert.state(this.boardService.delete(map) == 1, "삭제에 실패했습니다.");
 
         return "redirect:/tip/list";
     }
@@ -174,7 +179,7 @@ public class TipController {
         map.put("replyContent", message);
         map.put("headReplySeq", headReplySeq);
 
-        Assert.state(replyService.insert(map) == 1, "댓글 등록 중 문제가 발생했습니다.");
+        Assert.state(this.replyService.insert(map) == 1, "댓글 등록 중 문제가 발생했습니다.");
 
         return "redirect:/" + httpServletRequest.getContextPath() + "tip/details/" + boardSeq;
     }
@@ -190,8 +195,8 @@ public class TipController {
         map.put("boardSeq", boardSeq);
         map.put("replySeq", replySeq);
 
-        Assert.state(id.equals(replyService.select(map).getReplyInUserId()), "작성자만 댓글을 삭제할 수 있습니다.");
-        Assert.state(replyService.delete(map) == 1, "댓글 삭제 중 문제가 발생했습니다.");
+        Assert.state(id.equals(this.replyService.select(map).getReplyInUserId()), "작성자만 댓글을 삭제할 수 있습니다.");
+        Assert.state(this.replyService.delete(map) == 1, "댓글 삭제 중 문제가 발생했습니다.");
 
         return "redirect:/" + httpSession.getServletContext().getContextPath() + "tip/details/" + boardSeq;
     }

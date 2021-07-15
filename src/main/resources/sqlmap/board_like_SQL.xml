@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.board.like.service.impl.BoardLikeMapper">
+    <insert id="insert" parameterType="hashMap">
+        INSERT INTO BROWNIE_BOARD_LIKE(BOARD_SEQ,
+                                       KIND,
+                                       IN_USER_ID,
+                                       UP_USER_ID)
+        VALUES (#{boardSeq},
+                #{kind},
+                #{userId},
+                #{userId})
+    </insert>
+
+    <select id="select" resultType="kr.co.brownie.board.like.service.BoardLikeVO">
+        SELECT BOARD_SEQ  AS BOARDSEQ,
+               KIND       AS KIND,
+               IN_DATE    AS INDATE,
+               IN_USER_ID AS INUSERID,
+               UP_DATE    AS "UPDATE",
+               UP_USER_ID AS UPUSERID
+        FROM BROWNIE_BOARD_LIKE
+        WHERE BOARD_SEQ = #{boardSeq}
+          AND IN_USER_ID = #{userId}
+    </select>
+
+    <select id="count" parameterType="hashMap" resultType="kr.co.brownie.board.like.service.BoardLikeCountVO">
+        SELECT BOARD_SEQ  AS BOARDSEQ,
+               LIKE_CNT   AS LIKECNT,
+               UNLIKE_CNT AS UNLIKECNT
+        FROM (SELECT BOARD_SEQ,
+                     KIND
+              FROM BROWNIE_BOARD_LIKE
+              WHERE BOARD_SEQ = #{boardSeq}
+        ) PIVOT (
+            COUNT(*)
+            FOR KIND
+            IN (1 AS LIKE_CNT,
+                0 AS UNLIKE_CNT)
+            )
+    </select>
+
+    <delete id="delete" parameterType="hashMap">
+        DELETE
+        FROM BROWNIE_BOARD_LIKE
+        WHERE BOARD_SEQ = #{boardSeq}
+          AND IN_USER_ID = #{userId}
+    </delete>
+</mapper>

@@ -23,6 +23,44 @@
             location.href = "${pageContext.request.contextPath}/tip/details/${boardSeq}/delete/" + replySeq;
         }
     }
+
+    function boardLike(boardSeq, kind) {
+        $.ajax({
+            url: "/board/like/like.ajax",
+            type: "POST",
+            data: {
+                boardSeq: boardSeq,
+                kind: kind
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.status === "ng") {
+                    alert(data.message);
+
+                    return;
+                }
+
+                const likeButton = $(".board-like>.like");
+                likeButton.html("<i class=\"far fa-thumbs-up\"></i> " + data.boardLikeCount.likeCnt);
+                if (data.message === "1") {
+                    likeButton.removeClass("btn-outline-primary").addClass("btn-primary");
+                } else {
+                    likeButton.addClass("btn-outline-primary").removeClass("btn-primary");
+                }
+
+                const unlikeButton = $(".board-like>.unlike");
+                unlikeButton.html("<i class=\"far fa-thumbs-up fa-flip-vertical\"></i> " + data.boardLikeCount.unlikeCnt);
+                if (data.message === "0") {
+                    unlikeButton.removeClass("btn-outline-danger").addClass("btn-danger");
+                } else {
+                    unlikeButton.addClass("btn-outline-danger").removeClass("btn-danger");
+                }
+            },
+            error: function () {
+                alert("문제가 발생하였습니다.");
+            }
+        })
+    }
 </script>
 
 <section class="details-hero-section set-bg"
@@ -70,10 +108,28 @@
                     </div>
                 </div>
 
-                <div class="text-center">
-                    <button type="button" class="btn btn-outline-primary btn-lg mr-3"><i
-                            class="far fa-thumbs-up"></i> ${boardVO.likeCnt}</button>
-                    <button type="button" class="btn btn-outline-danger btn-lg ml-3 "><i
+                <div class="text-center board-like">
+                    <button type="button" class="like btn
+                    <c:choose>
+                        <c:when test='${boardLikeVo != null and "1" eq boardLikeVo.kind}'>
+                            btn-primary
+                        </c:when>
+                        <c:otherwise>
+                            btn-outline-primary
+                        </c:otherwise>
+                    </c:choose>
+                    btn-lg mr-3" onclick="boardLike(${boardSeq}, 1)"><i class="far fa-thumbs-up"></i> ${boardVO.likeCnt}
+                    </button>
+                    <button type="button" class="unlike btn
+                    <c:choose>
+                        <c:when test='${boardLikeVo != null and "0" eq boardLikeVo.kind}'>
+                            btn-danger
+                        </c:when>
+                        <c:otherwise>
+                            btn-outline-danger
+                        </c:otherwise>
+                    </c:choose>
+                    btn-lg ml-3" onclick="boardLike(${boardSeq}, 0)"><i
                             class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</button>
                     <c:if test="${sessionScope.id != null}">
                         <button type="button" class="btn btn-outline-light btn-lg ml-5"><i class="fas fa-bomb"></i>

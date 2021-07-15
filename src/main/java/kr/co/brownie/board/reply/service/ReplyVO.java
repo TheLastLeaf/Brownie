@@ -2,35 +2,37 @@ package kr.co.brownie.board.reply.service;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class ReplyVO {
-    private String lv;
+    private Integer lv;
 
     //BROWNIE_BOARD_REPLY
-    private String replySeq;
+    private Integer replySeq;
     private String replyContent;
-    private String replyInDate;
+    private Date replyInDate;
     private String replyInUserId;
-    private String replyUpDate;
+    private Date replyUpDate;
     private String replyUpUserId;
-    private String boardSeq;
-    private String headReplySeq;
+    private Integer boardSeq;
+    private Integer headReplySeq;
     private String boardStatus;
 
     //BROWNIE_USER
     private String userId;
     private String lolId;
     private String nickName;
-    private String blackStack;
+    private Integer blackStack;
     private String userStatus;
-    private String userInDate;
-    private String userUpDate;
+    private Date userInDate;
+    private Date userUpDate;
     private String userInUserId;
     private String userUpUserId;
     private String userPosition;
-    private String browniePoint;
+    private Integer browniePoint;
 
     //BROWNIE_BOARD_REPLY_LIKE
-    private String likeCnt;
-    private String unlikeCnt;
+    private Integer likeCnt;
+    private Integer unlikeCnt;
 }
