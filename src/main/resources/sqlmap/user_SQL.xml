@@ -3,156 +3,140 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.user.service.impl.UserMapper">
+    <select id="selectList" resultType="kr.co.brownie.user.service.UserVO">
+        SELECT BU.USER_ID       AS USERID,
+               BU.LOL_ID        AS LOLID,
+               BU.NICK_NAME     AS NICKNAME,
+               BU.BLACK_STACK   AS BLACKSTACK,
+               BU.STATUS        AS STATUS,
+               BU.IN_DATE       AS INDATE,
+               BU.UP_DATE       AS MODDATE,
+               BU.IN_USER_ID    AS INUSERID,
+               BU.UP_USER_ID    AS UPUSERID,
+               BU.USER_POSITION AS USERPOSITION,
+               PM.PERMIT_LEVEL  AS PERMITLEVEL,
+               BE.USER_LEVEL    AS USERLEVEL
+        FROM BROWNIE_USER BU,
+             PERMIT PM,
+             BROWNIE_EXP BE
+        WHERE BU.USER_ID = PM.USER_ID
+          AND BU.USER_ID = BE.USER_ID
+    </select>
 
-	<select id="selectList" resultType="kr.co.brownie.user.service.UserVO">
-    	SELECT 	BU.USER_ID AS USERID,
-				BU.LOL_ID AS LOLID,
-				BU.NICK_NAME AS NICKNAME,
-				BU.BLACK_STACK AS BLACKSTACK,
-				BU.STATUS,
-				BU.IN_DATE AS INDATE,
-				BU.UP_DATE AS MODDATE,
-				BU.IN_USER_ID AS INUSERID,
-				BU.UP_USER_ID AS UPUSERID,
-				BU.USER_POSITION AS USERPOSITION,
-                PM.PERMIT_LEVEL AS PERMITLEVEL,
-                BE.USER_LEVEL AS USERLEVEL
-		   FROM BROWNIE_USER BU, PERMIT PM, BROWNIE_EXP BE
-          WHERE BU.USER_ID = PM.USER_ID
-            AND BU.USER_ID = BE.USER_ID
-	</select>
+    <select id="userOneSelect"
+            resultType="kr.co.brownie.user.service.UserVO">
+        SELECT USER_ID       AS USERID,
+               LOL_ID        AS LOLID,
+               NICK_NAME     AS NICKNAME,
+               BLACK_STACK   AS BLACKSTACK,
+               STATUS        AS STATUS,
+               IN_DATE       AS INDATE,
+               UP_DATE       AS MODDATE,
+               IN_USER_ID    AS INUSERID,
+               UP_USER_ID    AS UPUSERID,
+               USER_POSITION AS USERPOSITION,
+               BROWNIE_POINT AS BROWNIEPOINT
+        FROM BROWNIE_USER
+        WHERE USER_ID = #{id}
+    </select>
 
-	<select id="userOneSelect"
-		resultType="kr.co.brownie.user.service.UserVO">
-		SELECT
-			USER_ID AS userId,
-			LOL_ID AS lolId,
-			NICK_NAME AS nickName,
-			BLACK_STACK AS blackStack,
-			STATUS AS status,
-			IN_DATE AS inDate,
-			UP_DATE AS modDate,
-			IN_USER_ID AS inUserId,
-			UP_USER_ID AS upUserId,
-			USER_POSITION AS userPosition,
-			BROWNIE_POINT AS browniePoint
-		FROM
-			BROWNIE_USER
-		WHERE
-			USER_ID = #{id}
-	</select>
+    <select id="selectExp" resultType="int">
+        SELECT USER_EXP
+        FROM BROWNIE_EXP
+        WHERE USER_ID = '${id}'
+    </select>
 
-	<select id="selectExp" resultType="int">
-		SELECT 
-			USER_EXP
-    	FROM 
-    		BROWNIE_EXP
-    	WHERE 
-    		USER_ID = '${id}'
-	</select>
+    <select id="starCntSelect" resultType="float">
+        SELECT SUM(STAR_CNT) / COUNT(STAR_CNT)
+        FROM REVIEW
+        WHERE USER_ID = '${id}'
+    </select>
 
-	<select id="starCntSelect" resultType="float">
-		SELECT SUM(STAR_CNT) / COUNT(STAR_CNT)
-			FROM REVIEW
-		WHERE USER_ID = '${id}'
-	</select>
-	
-	<select id="boardTotalCnt" resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM 
-			BROWNIE_BOARD
-		WHERE 
-			IN_USER_ID = '${id}'
-	</select>
+    <select id="boardTotalCnt" resultType="int">
+        SELECT COUNT(*)
+        FROM BROWNIE_BOARD
+        WHERE IN_USER_ID = '${id}'
+    </select>
 
-	<select id="replyTotalCnt" resultType="int">
-		SELECT COUNT(*) 
-			FROM BROWNIE_BOARD_REPLY_LIKE
-		WHERE 
-			IN_USER_ID = '${id}'
-	</select>
-	
-	<select id="likeReplyCnt" resultType="int">
-		SELECT COUNT(*) 
-			FROM BROWNIE_BOARD_REPLY_LIKE
-		WHERE 
-			IN_USER_ID = '${id}' AND KIND = '0'
-	</select>
+    <select id="replyTotalCnt" resultType="int">
+        SELECT COUNT(*)
+        FROM BROWNIE_BOARD_REPLY_LIKE
+        WHERE IN_USER_ID = '${id}'
+    </select>
 
-	<select id="hateReplyCnt" resultType="int">
-		SELECT COUNT(*) 
-			FROM BROWNIE_BOARD_REPLY_LIKE
-		WHERE 
-			IN_USER_ID = '${id}' AND KIND = '1'
-	</select>
-	
-	<select id="recentBoard" resultType="String">
+    <select id="likeReplyCnt" resultType="int">
+        SELECT COUNT(*)
+        FROM BROWNIE_BOARD_REPLY_LIKE
+        WHERE IN_USER_ID = '${id}'
+          AND KIND = '0'
+    </select>
+
+    <select id="hateReplyCnt" resultType="int">
+        SELECT COUNT(*)
+        FROM BROWNIE_BOARD_REPLY_LIKE
+        WHERE IN_USER_ID = '${id}'
+          AND KIND = '1'
+    </select>
+
+    <select id="recentBoard" resultType="String">
 	<![CDATA[
-		SELECT 
-		    TITLE
-		FROM 
-		    BROWNIE_BOARD
-		WHERE
-		    IN_USER_ID IN '${id}' AND ROWNUM <= 3
-		AND LOWER(notice_yn) = LOWER('y')
-		ORDER BY UP_DATE DESC
-	]]>
+        SELECT TITLE
+        FROM BROWNIE_BOARD
+        WHERE IN_USER_ID IN '${id}'
+          AND ROWNUM <= 3
+          AND LOWER(notice_yn) = LOWER('y')
+        ORDER BY UP_DATE DESC
+        ]]>
 	</select>
 
-	<select id="nickName" resultType="String" parameterType="String">
-		SELECT NICK_NAME AS NICKNAME
-		FROM BROWNIE_USER
-		WHERE USER_ID = #{id}
-	</select>
-	
-	<select id="dateChecking" parameterType="String" resultType="String">
+    <select id="nickName" resultType="String" parameterType="String">
+        SELECT NICK_NAME AS NICKNAME
+        FROM BROWNIE_USER
+        WHERE USER_ID = #{id}
+    </select>
+
+    <select id="dateChecking" parameterType="String" resultType="String">
 	<![CDATA[
-		SELECT 
-		    CASE
-		       WHEN SYSDATE < UP_DATE + 31 THEN 'no'
-		       WHEN SYSDATE > UP_DATE + 31 THEN 'yes'
-		       END AS "check"
-		    FROM BROWNIE_USER
-		WHERE 
-		    BROWNIE_USER.USER_ID = '${id}'
-    ]]>
-	</select>
-	
-	<update id="updateNick">
-		MERGE INTO BROWNIE_USER
-		USING DUAL
-			ON (USER_ID = '${id}')
-		WHEN MATCHED THEN
-		    UPDATE SET
-		        NICK_NAME = '${nickNameBox}',
-		        UP_DATE = SYSDATE,
-		        UP_USER_ID = '${id}'
-	</update>
-	
-	<update id="updatePosition">
-		MERGE INTO BROWNIE_USER
-		USING DUAL
-			ON (USER_ID = '${id}')
-		WHEN MATCHED THEN
-		    UPDATE SET
-		        USER_POSITION = '${positions}',
-		        UP_DATE = SYSDATE,
-		        UP_USER_ID = '${id}'
-	</update>
-	
-	<select id="validating" resultType="int">
-		SELECT COUNT(*)
-		FROM 
-			BROWNIE_USER
-		WHERE 
-			NICK_NAME = '${userNick}'
+        SELECT CASE
+                   WHEN SYSDATE < UP_DATE + 31 THEN 'no'
+                   WHEN SYSDATE > UP_DATE + 31 THEN 'yes'
+                   END AS "check"
+        FROM BROWNIE_USER
+        WHERE BROWNIE_USER.USER_ID = '${id}'
+        ]]>
 	</select>
 
-	<update id="blackStack" parameterType="String">
-		UPDATE BROWNIE_USER
-		SET BLACK_STACK = BLACK_STACK + 1
-		WHERE USER_ID = #{userId}
-	</update>
+    <update id="updateNick">
+        MERGE INTO BROWNIE_USER
+        USING DUAL
+        ON (USER_ID = '${id}')
+        WHEN MATCHED THEN
+            UPDATE
+            SET NICK_NAME  = '${nickNameBox}',
+                UP_DATE    = SYSDATE,
+                UP_USER_ID = '${id}'
+    </update>
 
+    <update id="updatePosition">
+        MERGE INTO BROWNIE_USER
+        USING DUAL
+        ON (USER_ID = '${id}')
+        WHEN MATCHED THEN
+            UPDATE
+            SET USER_POSITION = '${positions}',
+                UP_DATE       = SYSDATE,
+                UP_USER_ID    = '${id}'
+    </update>
+
+    <select id="validating" resultType="int">
+        SELECT COUNT(*)
+        FROM BROWNIE_USER
+        WHERE NICK_NAME = '${userNick}'
+    </select>
+
+    <update id="blackStack" parameterType="String">
+        UPDATE BROWNIE_USER
+        SET BLACK_STACK = BLACK_STACK + 1
+        WHERE USER_ID = #{userId}
+    </update>
 </mapper>
