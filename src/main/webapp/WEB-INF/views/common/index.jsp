@@ -90,11 +90,11 @@
 														<th style="width: 20%">작성자</th>
 													</tr>
 											<c:forEach items="${noticeList}" var="notice" begin="0" end="10">
-												<fmt:formatDate value="${notice.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss" />
+												<fmt:formatDate value="${notice.upDate}" type="both" var="indate" pattern="yyyy-MM-dd hh:mm:ss" />
 													<tr>
 														<th><span onclick="location.href='${notice.boardKind}/details/${notice.boardSeq}'" style="cursor: pointer">${notice.title}</span></th>
 														<th>${notice.boardKind}</th>
-														<th>${update}</th>
+														<th>${indate}</th>
 														<th>${notice.nickName}</th>
 													</tr>
 											</c:forEach>

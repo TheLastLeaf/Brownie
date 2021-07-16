@@ -170,6 +170,7 @@
                             <ul>
                                 <li>by <span>${boardVO.nickName}</span></li>
                                 <li><i class="far fa-clock"></i> ${boardVO.boardInDate}</li>
+                                <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
                                 <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
                                 <li><i class="far fa-thumbs-up"></i> ${boardVO.likeCnt}</li>
                                 <li><i class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</li>

@@ -166,8 +166,10 @@
                             <ul>
                                 <li>by <span>${boardVO.nickName}</span></li>
                                 <li><i class="far fa-clock"></i> ${boardVO.boardInDate}</li>
+                                <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
                             </ul>
-                                <p class="content-text con" style="overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">${boardVO.preview}</p>
+                            <p class="content-text con"
+                               style="overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">${boardVO.preview}</p>
                         </div>
                     </div>
                 </c:forEach>

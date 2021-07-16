@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
-<fmt:formatDate value="${boardVO.boardUpDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss"/>
+<fmt:formatDate value="${boardVO.boardInDate}" type="both" var="indate" pattern="yyyy-MM-dd hh:mm:ss"/>
 <style>
     .dt-desc {
         color: #666666;
@@ -23,7 +23,8 @@
                             <div class="details-hero-text">
                                 <ul>
                                     <li>by <span>${boardVO.nickName}</span></li>
-                                    <li>${update}</li>
+                                    <li>${indate}</li>
+                                    <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
                                     <li class="text-secondary cursor-pointer" onclick="location.href='/notice/list'">
                                         목록
                                     </li>

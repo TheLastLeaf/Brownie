@@ -2,31 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:import url="../layout/header.jsp"/>
-<!-- Details Hero Section Begin -->
-<section class="details-hero-section set-bg"
-         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${boardVO.boardCategory}_0.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6" style="background-color: rgba(0, 0, 0, 0.75);">
-                <div class="details-hero-text m-5">
-                    <div class="label"><span>${boardVO.boardCategory}</span></div>
-                    <h3>${boardVO.title}</h3>
-                    <ul>
-                        <li>by <span>${boardVO.nickName}</span></li>
-                        <li>
-                            <i class="far fa-clock"></i>
-                            <fmt:formatDate value="${boardVO.boardInDate}" pattern="yyyy-MM-dd HH:mm:ss" var="date"/>
-                            ${date}
-                        </li>
-                        <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Details Hero Section End -->
-
 <style>
     .skewXButton {
         display: inline-block;
@@ -51,6 +26,32 @@
         text-transform: uppercase;
     }
 </style>
+
+<!-- Details Hero Section Begin -->
+<section class="details-hero-section set-bg"
+         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${boardVO.boardCategory}_0.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6" style="background-color: rgba(0, 0, 0, 0.75);">
+                <div class="details-hero-text m-5">
+                    <div class="label"><span>${boardVO.boardCategory}</span></div>
+                    <h3>${boardVO.title}</h3>
+                    <ul>
+                        <li>by <span>${boardVO.nickName}</span></li>
+                        <li>
+                            <i class="far fa-clock"></i>
+                            <fmt:formatDate value="${boardVO.boardInDate}" pattern="yyyy-MM-dd HH:mm:ss" var="date"/>
+                            ${date}
+                        </li>
+                        <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
+                        <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Details Hero Section End -->
 
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -122,7 +123,7 @@
                         <div id="${replyVO.replySeq}" class="dc-item"
                              style="margin-left: ${(replyVO.lv - 1) * 100}px;">
                             <div class="dc-pic">
-                                <img src="/img/details/comment/comment-1.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
                             </div>
                             <div class="dc-text">
                                 <h5>${replyVO.nickName}</h5>

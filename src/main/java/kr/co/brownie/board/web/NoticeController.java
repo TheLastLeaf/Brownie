@@ -1,5 +1,6 @@
 package kr.co.brownie.board.web;
 
+import kr.co.brownie.board.hit.service.BoardHitService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +19,9 @@ import java.util.Map;
 public class NoticeController {
     @Resource(name = "boardService")
     BoardService boardService;
+
+    @Resource(name = "boardHitService")
+    BoardHitService boardHitService;
 
     @GetMapping("/write")
     public String write(HttpSession httpSession) {
@@ -60,12 +65,15 @@ public class NoticeController {
 
     @GetMapping("/details/{boardSeq}")
     public String detail(@PathVariable int boardSeq,
-                         HttpSession httpSession,
+                         HttpServletRequest httpServletRequest,
                          Model model) {
         Map<String, Object> map = new HashMap<>();
-        map.put("userId", httpSession.getAttribute("id"));
+        map.put("userId", httpServletRequest.getSession().getAttribute("id"));
         map.put("boardKind", "notice");
         map.put("boardSeq", boardSeq);
+        map.put("ip", httpServletRequest.getRemoteAddr());
+
+        this.boardHitService.merge(map);
 
         BoardVO boardVO = this.boardService.select(map);
         Assert.notNull(boardVO, "해당 글이 없습니다.");

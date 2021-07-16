@@ -86,10 +86,11 @@ public class TipController {
         map.put("boardSeq", boardSeq);
         map.put("ip", httpServletRequest.getRemoteAddr());
 
+        this.boardHitService.merge(map);
+
         BoardVO boardVO = this.boardService.select(map);
         Assert.notNull(boardVO, "해당 글이 없습니다.");
         model.addAttribute("boardVO", boardVO);
-        this.boardHitService.merge(map);
 
         int totalContent = (boardVO.getReplyCnt());
         int pageNum;
