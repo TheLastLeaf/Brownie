@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:import url="../layout/header.jsp"/>
+<c:import url="../../layout/header.jsp"/>
 <fmt:formatDate value="${boardVO.boardInDate}" type="both" var="indate" pattern="yyyy-MM-dd hh:mm:ss"/>
 <style>
     .dt-desc {
@@ -70,4 +70,4 @@
     </div>
 </section>
 <!-- Details Post Section End -->
-<c:import url="../layout/footer.jsp"/>
+<c:import url="../../layout/footer.jsp"/>

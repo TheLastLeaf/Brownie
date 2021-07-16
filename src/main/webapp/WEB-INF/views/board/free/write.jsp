@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:import url="../layout/header.jsp"/>
+<c:import url="../../layout/header.jsp"/>
 <script>
     $(function () {
         const toolbar = [
@@ -145,29 +145,28 @@
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
+                                <input type="hidden" name="inUserId" value="${inUserId }" id="inUserId">
                                 <c:if test="${permit_level eq 9 }">
                                     <div class="noticeCheck">
-                                        <label class="noticeYn"><input type="checkbox" name="noticeYn" value="y"
-                                                <c:if test="${freeVO.noticeYn eq 'y'}">
-                                                    checked
-                                                </c:if>
-                                        /> &nbsp;&nbsp;공지사항여부</label>
+                                        <label class="noticeYn"><input type="checkbox" name="noticeYn"
+                                                                       value="noticeYn"/>&nbsp;&nbsp;공지사항여부</label>
                                     </div>
                                 </c:if>
                                 <div class="dt-quote input-list">
                                     <span>제목</span>&nbsp;
-                                    <input type="text" value="${freeVO.title}" class="title" id="title" name="title"
-                                           required="required"/>
+                                    <input type="text" class="title" id="title" name="title" required="required"
+                                           placeholder="제목을 입력하세요"/>
                                 </div>
                                 <div class="content">
                                     <textarea class="summernote" name="content" id="content"
-                                              required="required">${freeVO.content}</textarea>
+                                              required="required"></textarea>
                                 </div>
                                 <div class="tag-box">
-                                    <input type="text" value="${freeVO.tags}" class="tags" id="tags" name="tags"/>
+                                    <input type="text" placeholder="태그 작성 시 쉼표로 구분해 주세요. 예시) 롤,티모,웃는게,귀여워" class="tags"
+                                           id="tags" name="tags"/>
                                 </div>
                                 <div class="submit-box">
-                                    <input type="submit" value="수정완료" class="submit"/>
+                                    <input type="submit" value="등록" class="submit"/>
                                 </div>
                             </div>
                         </div>
@@ -178,4 +177,4 @@
     </div>
 </section>
 <!-- Details Post Section End -->
-<c:import url="../layout/footer.jsp"/>
+<c:import url="../../layout/footer.jsp"/>

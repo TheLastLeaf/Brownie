@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:import url="../layout/header.jsp"/>
+<c:import url="../../layout/header.jsp"/>
+
+<!-- -->
 <script>
     $(function () {
         const toolbar = [
@@ -46,7 +48,7 @@
     function uploadSummernoteImageFile(file, el) {
         const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
         if (!file.type.match(reg)) {
-            alert("확장자는 이미지 확장자만 가능합니다.");
+            alert("이미지 파일만 첨부 가능합니다.");
             return;
         }
         const data = new FormData();
@@ -65,59 +67,71 @@
     }
 </script>
 <style>
-    .spad{
+    .spad {
         padding-top: 150px;
         padding-bottom: 100px;
     }
-    .cont-spad{
+
+    .cont-spad {
         padding-top: 50px;
         padding-bottom: 50px;
     }
-    #content{
-        color: #666666;
-    }
 
-    #title{
+    .title {
         width: 100%;
         background-color: black;
         border: 1px solid #666666;
-        color:white;
+        color: white;
     }
+
     .card{
         background-color: black;
     }
     .card-header{
         border: 1px solid #666666;
     }
-    .content{
-        border:1px solid #666666;
+
+    .summernote {
+        color: #666666;
     }
-    .sub{
-        padding-top: 10px;
-    }
-    .submit{
+
+    .submit {
         width: 100%;
         background-color: black;
+        border: 1px solid #666666;
         color: white;
+    }
+
+    .content {
         border: 1px solid #666666;
     }
-    .input-list{
-        padding-bottom: 10px;
-    }
-    .home{
-        color: black;
+
+    .pad {
+        padding-top: 10px;
     }
 </style>
+<script>
+    $(function () {
+        $("select[name=champion]").on("change", function () {
+            const champion = $("select>option:selected").val();
+            $("#tip_add_banner_image")
+                .attr("data-setbg", "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + champion + "_0.jpg")
+                .css({backgroundImage: 'url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion + '_0.jpg'})
+        });
+    });
+</script>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
+<section id="tip_add_banner_image"
+         class="breadcrumb-section set-bg spad"
+         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${boardVO.boardCategory}_0.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
-                    <h3>공지사항 수정</h3>
+                    <h3>팁과 노하우 수정</h3>
                     <div class="bt-option">
-                        <a href="<c:url value="/index"/>" class="home">Home</a>
-                        <span>notice Update</span>
+                        <a href="${pageContext.request.contextPath}/index" style="color: black;">Home</a>
+                        <span>tip Add</span>
                     </div>
                 </div>
             </div>
@@ -131,18 +145,36 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post">
+                <form method="POST">
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
-                                <div class="input-list">
-                                    <input type="text" id="title" name="title" value="${boardVO.title}" required="required">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <select class="w-100" name="champion">
+                                            <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
+                                                <c:choose>
+                                                    <c:when test="${champion.id == boardVO.boardCategory}">
+                                                        <option value="${champion.id}" selected>${champion.name}</option>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <option value="${champion.id}">${champion.name}</option>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="input-list col-9" style="padding-bottom: 10px;">
+                                        <input type="text" placeholder="Title" class="title" id="title" name="title"
+                                               value="${boardVO.title}" required="required">
+                                    </div>
                                 </div>
                                 <div class="content">
-                                    <textarea class="summernote" id="content" name="content" required="required">${boardVO.content}</textarea>
+                                    <textarea class="summernote" name="content" id="content"
+                                              required="required">${boardVO.content}</textarea>
                                 </div>
-                                <div class="sub">
-                                    <input type="submit" value="수정" class="submit" >
+                                <div class="pad">
+                                    <input type="submit" value="등록" class="submit">
                                 </div>
                             </div>
                         </div>
@@ -153,4 +185,4 @@
     </div>
 </section>
 <!-- Contact Section End -->
-<c:import url="../layout/footer.jsp"/>
+<c:import url="../../layout/footer.jsp"/>
