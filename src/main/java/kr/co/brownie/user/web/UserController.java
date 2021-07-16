@@ -90,6 +90,7 @@ public class UserController {
 
 		// 리뷰
 		List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
+		System.out.println("reviewVOs" + reviewVOs);
 
 		// model.addattribute
 		model.addAttribute("userOneSelect", userOneSelect);

@@ -39,7 +39,7 @@
 		    AND r.user_id = '${id}'
 		    )
 		<if test='searchType.equals("writerId")'>
-		where LOWER(nick_name) LIKE LOWER('%'||'${keyword}'||'%')
+		WHERE LOWER(nick_name) LIKE LOWER('%'||'${keyword}'||'%')
 		</if>
 		<if test='searchType.equals("writeDate")'>
 		WHERE IN_DATE = '${keyword}'
