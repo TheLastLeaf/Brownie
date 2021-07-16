@@ -27,9 +27,9 @@
     </select>
 
     <select id="count" parameterType="hashMap" resultType="kr.co.brownie.board.reply.like.service.ReplyLikeCountVO">
-        SELECT REPLY_SEQ  AS REPLY_SEQ,
-               LIKE_CNT   AS LIKE_CNT,
-               UNLIKE_CNT AS UNLIKE_CNT
+        SELECT REPLY_SEQ  AS REPLYSEQ,
+               LIKE_CNT   AS LIKECNT,
+               UNLIKE_CNT AS UNLIKECNT
         FROM (SELECT REPLY_SEQ,
                      KIND
               FROM BROWNIE_BOARD_REPLY_LIKE
