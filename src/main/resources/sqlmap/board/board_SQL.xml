@@ -201,9 +201,6 @@
             <if test='nickName != null and nickName != ""'>
                 UPPER(NICK_NAME) = UPPER(#{nickName})
             </if>
-            <if test='userId != null and userId != ""'>
-                AND UPPER(USER_ID) = UPPER(#{userId})
-            </if>
         </where>
         <![CDATA[
                                                 ) BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
