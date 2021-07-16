@@ -10,18 +10,26 @@
         const username = [['익명이']];
 
         $("#disconn").on("click", (e) => {
-            disconnect();
+            websocket.close();
         })
 
         $("#button-send").on("click", (e) => {
             send();
         });
 
+        $("#enter-chat").on("click", (e) => {
+            onOpen();
+        });
+
         //이게 방 주소
-        const websocket = new WebSocket("ws://192.168.41.27:80/replyEcho?bno=1234");
+        const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=1");
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
         websocket.onclose = onClose;
+        websocket.onerror = function (err) {
+            console.log('Error:',err);
+            setTimeout( function(){ connect(); }, 1000); // retry connection!!
+        };
 
         function send(){
             let msg = document.getElementById("msg");
@@ -31,13 +39,14 @@
         }
 
         //채팅창에서 나갔을 때 인식이 안되네 ... 이거 세션 종료 제대로 해야하는데 나중에 체크해봐야할듯
-        function onClose(evt) {
+        function onClose() {
+            console.log(username + ": 님이 방을 나가셨습니다.");
             var str = username + ": 님이 방을 나가셨습니다.";
             websocket.send(str);
         }
 
         //채팅창에 들어왔을 때 이건 잘 됨
-        function onOpen(evt) {
+        function onOpen() {
             var str = username + ": 님이 입장하셨습니다.";
             websocket.send(str);
         }
@@ -82,6 +91,8 @@
                         <input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+                            <button class="btn btn-outline-secondary" type="button" id="disconn">나가기</button>
+                            <button class="btn btn-outline-secondary" type="button" id="enter-chat">접속</button>
                         </div>
                     </div>
                 </div>
