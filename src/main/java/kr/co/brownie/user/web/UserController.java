@@ -155,6 +155,7 @@ public class UserController {
 
 		// 동의항목 체크했을때 31일 이내에 바꾼건지 확인하는 메서드
 		String dateChecking = userService.dateChecking(id);
+		
 		if (dateChecking.equals("yes")) {
 			// 닉네임 변경하는 서비스
 			if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
@@ -162,6 +163,7 @@ public class UserController {
 				changed.add("닉네임");
 			}
 		} else if (dateChecking.equals("no")) {
+			
 			if (map.get("nickNameBox").toString().equals(userVO.getNickName())) {
 				return "아이디는 변경되지 않았습니다";
 			}
@@ -206,10 +208,11 @@ public class UserController {
 		String msg = "";
 		System.out.println("전달완료");
 		if (checkValue == 1) {
-			msg = "1";
+			// 아이디 중복
+			msg = "ng";
 			return msg;
 		} else {
-			msg = "0";
+			msg = "ok";
 			return msg;
 		}
 
