@@ -1,5 +1,7 @@
 package kr.co.brownie.teamGame.service;
 
-public interface TeamGameService {
+import java.util.Map;
 
+public interface TeamGameService {
+    void makeTeamGameRoom(Map<String, Object> map);
 }
