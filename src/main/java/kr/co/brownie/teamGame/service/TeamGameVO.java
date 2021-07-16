@@ -18,4 +18,10 @@ public class TeamGameVO {
     private Date modDate;
     private String upUserId;
 
+    //position
+    private String top;
+    private String mid;
+    private String jun;
+    private String bot;
+    private String sup;
 }
