@@ -213,15 +213,29 @@ input[name="position"] {
 		$(".box button").attr("disabled", true);
 		$("#rc-agree").on('click', function() {
 			var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
-			if (chk == true) {
+			if (chk == true && $('#user_nick').hasClass("check_success")) {
 				$(".box button").removeAttr('disabled');
 				$(".box").removeClass("on");
-			} else {
+				
+			} else if(chk == false || $('#user_nick').hasClass("check_fail")) {
 				$(".box button").attr("disabled", true);
 				$(".box").addClass("on");
 			}
 		});
-
+		$("#user_nick").on('click', function() {
+			$(".box button").attr("disabled", "disabled");
+			var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
+			alert(chk);
+			alert($('#user_nick').hasClass("check_success"))
+			if (chk == true && $('#user_nick').hasClass("check_success")) {
+				$(".box button").removeAttr('disabled');
+// 				$(".box").removeClass("on");
+				
+// 			} else if(chk == false || $('#user_nick').hasClass("check_fail")) {
+// 				$(".box button").attr("disabled", true);
+// 				$(".box").addClass("on");
+			}
+		});
 		var sel_file;
 
 		$(function() {
@@ -245,13 +259,7 @@ input[name="position"] {
 			});
 		}
 
-		// 		<div>
-		// 		<div class="check_success" id="nick_check"></div>
-		// 		<input type="text" id="user_nick" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
-		// 		</div>
-
 		//엔터치면 문제발생함
-		//[닉네임은 한글, 영문, 숫자만 가능하며 2-10자리 가능.]
 		var nickRegcheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,10}$/;
 		$("#user_nick").blur(function() {
 			$('#user_nick').removeClass('check_success');
