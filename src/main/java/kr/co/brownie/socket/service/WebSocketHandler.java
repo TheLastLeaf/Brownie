@@ -71,6 +71,18 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        System.out.println("afterConnectionClosed : "+session + " : " + status);
+        System.out.println("afterConnectionClosed session : " + session );
+        System.out.println("status : " + status);
+        //이거 세션 끝난것도 메시지에 보내줘야하나 ?
+
+        //종료된 세션의 방 번호 뽑아내기
+        String roomNumber = session.getUri().getQuery().split("=")[1];
+        //해당 방 번호를 가진 리스트 가져와서 나간 친구만 제거해주는 메서드 와 드디어
+        List<WebSocketSession> sessions = userSessions.get(roomNumber);
+        sessions.remove(session);
+
+        if(status.getCode() != 1000){
+            //afterConnectionEstablished(session);
+        }
     }
 }
