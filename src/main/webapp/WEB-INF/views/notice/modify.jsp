@@ -116,7 +116,7 @@
                 <div class="breadcrumb-text">
                     <h3>공지사항 수정</h3>
                     <div class="bt-option">
-                        <a href="/index" class="home">Home</a>
+                        <a href="<c:url value="/index"/>" class="home">Home</a>
                         <span>notice Update</span>
                     </div>
                 </div>
@@ -136,11 +136,10 @@
                         <div class="contact-form">
                             <div class="dt-leave-comment">
                                 <div class="input-list">
-                                    <input type="hidden" value="${id}" name="upUserId">
-                                    <input type="text" id="title" name="title" value="${noticeVO.title}" required="required">
+                                    <input type="text" id="title" name="title" value="${boardVO.title}" required="required">
                                 </div>
                                 <div class="content">
-                                    <textarea class="summernote" id="content" name="content" required="required">${noticeVO.content}</textarea>
+                                    <textarea class="summernote" id="content" name="content" required="required">${boardVO.content}</textarea>
                                 </div>
                                 <div class="sub">
                                     <input type="submit" value="수정" class="submit" >

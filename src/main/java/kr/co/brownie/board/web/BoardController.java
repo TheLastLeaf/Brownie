@@ -17,6 +17,4 @@ public class BoardController {
 
     @Resource(name = "replyService")
     ReplyService replyService;
-
-
 }

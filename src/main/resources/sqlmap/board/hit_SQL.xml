@@ -2,49 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.brownie.common.service.impl.CommonMapper">
-
-    <select id="checkHit" parameterType="int" resultType="int">
-        SELECT COUNT(*) as cnt
-        FROM BROWNIE_BOARD_HIT
-        WHERE 1 = 1
-          AND BOARD_SEQ = #{boardSeq}
-    </select>
-
-    <insert id="insertMember" parameterType="hashMap">
-        INSERT INTO BROWNIE_BOARD_HIT (HIT_SEQ, BOARD_SEQ, IP, USER_ID)
-        SELECT (SELECT NVL(MAX(HIT_SEQ), 0) + 1 FROM BROWNIE_BOARD_HIT),
-               #{boardSeq},
-               #{ip},
-               #{userId}
-        FROM dual
-        WHERE NOT EXISTS
-            (
-                SELECT *
-                FROM BROWNIE_BOARD_HIT
-                WHERE 1 = 1
-                  AND BOARD_SEQ = #{boardSeq}
-                  AND USER_ID = #{userId}
-            )
+<mapper namespace="kr.co.brownie.board.hit.service.impl.BoardHitMapper">
+    <insert id="merge" parameterType="hashMap">
+        MERGE INTO BROWNIE_BOARD_HIT
+        USING DUAL
+        ON (BROWNIE_BOARD_HIT.BOARD_SEQ = #{boardSeq}
+            AND BROWNIE_BOARD_HIT.IP = #{ip})
+        WHEN NOT MATCHED THEN
+            INSERT (BOARD_SEQ,
+                    IP)
+            VALUES (#{boardSeq},
+                    #{ip})
     </insert>
-
-    <insert id="insertNoMem" parameterType="hashMap">
-        INSERT INTO BROWNIE_BOARD_HIT (HIT_SEQ, BOARD_SEQ, IP, USER_ID)
-        SELECT (SELECT NVL(MAX(HIT_SEQ), 0) + 1 FROM BROWNIE_BOARD_HIT),
-               #{boardSeq},
-               #{ip},
-               'NonMem'
-        FROM dual
-        WHERE NOT EXISTS
-            (
-                SELECT *
-                FROM BROWNIE_BOARD_HIT
-                WHERE 1 = 1
-                  AND BOARD_SEQ = #{boardSeq}
-                  AND USER_ID = 'NonMem'
-                  AND ip = #{ip}
-            )
-    </insert>
-
 </mapper>
 

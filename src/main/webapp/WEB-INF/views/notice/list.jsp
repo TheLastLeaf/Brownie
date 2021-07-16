@@ -115,7 +115,7 @@
                         <span class="main" onclick="location.href='/index'">Home</span>
                         <span class="slash"> / </span>
                         <span class="last-post"
-                              onclick="location.href='/notice/list?pageNum=${PagingVO.startPageNumber}'">Latest posts</span>
+                              onclick="location.href='/notice/list?pageNum=${boardPagingVO.startPageNumber}'">Latest posts</span>
                     </div>
                 </div>
             </div>
@@ -145,30 +145,29 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 p-0">
-                <c:forEach var="noticeVO" items="${PagingVO.noticeVOList}">
+                <c:forEach var="boardVO" items="${boardPagingVO.boardVOList}">
                     <div class="cl-item">
                         <div class="cl-pic">
                             <img class="notice-img img-fluid"
                             <c:choose>
-                            <c:when test="${fn:startsWith(noticeVO.imgSrc, '/')}">
-                                 src="${pageContext.request.contextPath}${noticeVO.imgSrc}"
+                            <c:when test="${fn:startsWith(boardVO.imgSrc, '/')}">
+                                 src="${pageContext.request.contextPath}${boardVO.imgSrc}"
                             </c:when>
                             <c:otherwise>
-                                 src="${noticeVO.imgSrc}"
+                                 src="${boardVO.imgSrc}"
                             </c:otherwise>
                             </c:choose>
                                  alt="">
                         </div>
                         <div class="cl-text">
                             <h5 class="title"><a
-                                    href="${pageContext.request.contextPath}/notice/details/${noticeVO.boardSeq}">${noticeVO.title}</a>
+                                    href="${pageContext.request.contextPath}/notice/details/${boardVO.boardSeq}">${boardVO.title}</a>
                             </h5>
                             <ul>
-                                <li>by <span>${noticeVO.nickName}</span></li>
+                                <li>by <span>${boardVO.nickName}</span></li>
+                                <li><i class="far fa-clock"></i> ${boardVO.boardInDate}</li>
                             </ul>
-                            <ul>
-                                <p class="content-text con">${noticeVO.preview}</p>
-                            </ul>
+                                <p class="content-text con" style="overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">${boardVO.preview}</p>
                         </div>
                     </div>
                 </c:forEach>
@@ -183,7 +182,6 @@
                         <form method="get">
                             <span>
                                 <select name="notice" id="notice" class="notice">
-                                    <option value="" selected="selected">선택</option>
                                     <option value="title">제목</option>
                                 </select>
                                 <input type="text" placeholder="검색" id="keyword" name="keyword" value="${keyword}"
@@ -194,14 +192,22 @@
                     </div>
                 </form>
                 <div class="innerBox text-center pagination-item">
-                    <c:if test="${1 < PagingVO.startPageNumber}">
-                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${PagingVO.startPageNumber - 1}"><span>Prev</span></a>
+                    <c:if test="${1 < boardPagingVO.startPageNumber}">
+                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${boardPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                     </c:if>
-                    <c:forEach var="pageNumber" begin="${PagingVO.startPageNumber}" end="${PagingVO.endPageNumber}">
-                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${pageNumber}&notice=${notice}&keyword=${keyword}"><span>${pageNumber}</span></a>
+                    <c:forEach var="pageNum" begin="${boardPagingVO.startPageNumber}"
+                               end="${boardPagingVO.endPageNumber}">
+                        <c:choose>
+                            <c:when test="${keyword != null}">
+                                <a href="${pageContext.request.contextPath}/notice/list?pageNum=${pageNum}"><span>${pageNum}</span></a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="${pageContext.request.contextPath}/notice/list?pageNum=${pageNum}&keyword=${keyword}"><span>${pageNum}</span></a>
+                            </c:otherwise>
+                        </c:choose>
                     </c:forEach>
-                    <c:if test="${PagingVO.endPageNumber < PagingVO.totalPageNumber}">
-                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${PagingVO.endPageNumber + 1}"><span>Next</span></a>
+                    <c:if test="${boardPagingVO.endPageNumber < boardPagingVO.totalPageNumber}">
+                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${boardPagingVO.endPageNumber + 1}"><span>Next</span></a>
                     </c:if>
                 </div>
             </div>

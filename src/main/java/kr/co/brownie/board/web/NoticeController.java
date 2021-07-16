@@ -1,6 +1,5 @@
 package kr.co.brownie.board.web;
 
-import kr.co.brownie.board.reply.service.ReplyService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
 import org.springframework.stereotype.Controller;
@@ -18,9 +17,6 @@ import java.util.Map;
 public class NoticeController {
     @Resource(name = "boardService")
     BoardService boardService;
-
-    @Resource(name = "replyService")
-    ReplyService replyService;
 
     @GetMapping("/write")
     public String write(HttpSession httpSession) {

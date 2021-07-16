@@ -2,9 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
-<fmt:formatDate value="${noticeVO.upDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss" />
+<fmt:formatDate value="${boardVO.boardUpDate}" type="both" var="update" pattern="yyyy-MM-dd hh:mm:ss"/>
 <style>
-    .dt-desc{
+    .dt-desc {
         color: #666666;
     }
 </style>
@@ -22,26 +22,28 @@
                         <div class="innerBox text-right">
                             <div class="details-hero-text">
                                 <ul>
-                                    <li>by <span>${noticeVO.nickName}</span></li>
+                                    <li>by <span>${boardVO.nickName}</span></li>
                                     <li>${update}</li>
-                                    <li class="text-secondary cursor-pointer" onclick="location.href='/notice/list'">목록</li>
+                                    <li class="text-secondary cursor-pointer" onclick="location.href='/notice/list'">
+                                        목록
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                         <hr class="w-auto bg-white">
-                        <h4 class="text-secondary font-family-maple-bold">${noticeVO.title}</h4>
+                        <h4 class="text-secondary font-family-maple-bold">${boardVO.title}</h4>
                     </div>
                     <div class="dt-desc">
-                            ${noticeVO.content}
+                        ${boardVO.content}
                     </div>
                     <div class="dt-author border">
                         <div class="da-pic">
                             <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
                         </div>
                         <div class="da-text">
-                            <a href="/user/userInfo/${noticeVO.upUserId}">
+                            <a href="/user/userInfo/${boardVO.boardUpUserId}">
                                 <h5>
-                                    ${noticeVO.nickName}
+                                    ${boardVO.nickName}
                                 </h5>
                             </a>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
@@ -49,27 +51,16 @@
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <c:if test="${sessionScope.permit_level== 9}">
                                 <div class="innerBox text-right">
-                                        <input type="button" class="btn btn-outline-dark btn-sm text-white"
-                                                       onclick="location.href='/notice/modify/${noticeVO.boardSeq}'"
-                                                       value="수정" >
-                                        <form class="d-inline" action="/notice/delete/${noticeVO.boardSeq}" method="post">
-                                            <input type="submit" class="btn btn-outline-dark btn-sm text-danger" value="삭제" onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
-                                        </form>
+                                    <input type="button" class="btn btn-outline-dark btn-sm text-white"
+                                           onclick="location.href='/notice/modify/${boardVO.boardSeq}'"
+                                           value="수정">
+                                    <form action="${pageContext.request.contextPath}/tip/delete" method="POST"
+                                          class="d-inline">
+                                        <input type="submit" class="btn btn-outline-dark btn-sm text-danger" value="삭제"
+                                               onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
+                                    </form>
                                 </div>
                             </c:if>
-                        </div>
-                    </div>
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="contact-text">
-                                        <div class="contact-form">
-                                            <div class="dt-leave-comment">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

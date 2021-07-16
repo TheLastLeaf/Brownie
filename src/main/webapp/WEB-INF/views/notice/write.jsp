@@ -113,7 +113,7 @@
                 <div class="breadcrumb-text">
                     <h3>공지사항 등록</h3>
                     <div class="bt-option">
-                        <a href="/index" style="color: black;">Home</a>
+                        <a href="<c:url value="/index"/>" style="color: black;">Home</a>
                         <span>notice Add</span>
                     </div>
                 </div>
@@ -132,7 +132,6 @@
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
-                                <input type="hidden" name="inUserId" value="${id}" id="inUserId">
                                 <div class="input-list" style="padding-bottom: 10px;">
                                     <input type="text" placeholder="Title" class="title"  id="title" name="title" required="required">
                                 </div>
@@ -140,7 +139,7 @@
                                     <textarea class="summernote" name="content" id="content" required="required"></textarea>
                                 </div>
                                 <div class="pad">
-                                    <input type="submit" value="등록"  class="submit">
+                                    <input type="submit" value="등록" class="submit">
                                 </div>
                             </div>
                         </div>

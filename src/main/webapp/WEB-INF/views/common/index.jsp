@@ -66,7 +66,7 @@
                             <div class="col-xl-6 col-md-12">
                                 <c:forEach var="youTubeVo" items="${youTubeVoList}">
                                     <div class="p-1" style="border-width: 1px 0 1px 0; border-color: white; border-style: solid">
-                                        <p class="m-0 font-weight-bold" onclick="show_video('${youTubeVo.idVideoid}')" style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap">
+                                        <p class="m-0 font-weight-bold" onclick="show_video('${youTubeVo.idVideoid}')" style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">
                                             ${youTubeVo.snippetTitle}
                                         </p>
                                     </div>

@@ -1,5 +1,6 @@
 package kr.co.brownie.board.web;
 
+import kr.co.brownie.board.hit.service.BoardHitService;
 import kr.co.brownie.board.reply.service.ReplyService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
@@ -23,6 +24,9 @@ public class TipController {
 
     @Resource(name = "replyService")
     ReplyService replyService;
+
+    @Resource(name="boardHitService")
+    BoardHitService boardHitService;
 
     @Resource(name = "leagueOfLegendsChampionsService")
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
@@ -80,10 +84,12 @@ public class TipController {
         map.put("userId", httpServletRequest.getSession().getAttribute("id"));
         map.put("boardKind", "tip");
         map.put("boardSeq", boardSeq);
+        map.put("ip", httpServletRequest.getRemoteAddr());
 
         BoardVO boardVO = this.boardService.select(map);
         Assert.notNull(boardVO, "해당 글이 없습니다.");
         model.addAttribute("boardVO", boardVO);
+        this.boardHitService.merge(map);
 
         int totalContent = (boardVO.getReplyCnt());
         int pageNum;

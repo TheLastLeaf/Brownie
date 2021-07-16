@@ -75,7 +75,6 @@
                     </c:if>
                 </div>
 
-
                 <div class="dt-author">
                     <div class="da-pic">
                         <img src="/img/details/author-pic.jpg" alt="">
