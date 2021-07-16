@@ -27,6 +27,12 @@
     }
 </style>
 
+<script>
+    function fn_report(userId,log){
+        window.open("report?userId=" + userId +"&log="+log, "REPORT", "width=660, height=500, left=250,top=200");
+    }
+</script>
+
 <!-- Details Hero Section Begin -->
 <section class="details-hero-section set-bg"
          data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${boardVO.boardCategory}_0.jpg">
@@ -112,7 +118,7 @@
                     btn-lg ml-3" onclick="boardLike(${boardSeq}, 0)"><i
                             class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</button>
                     <c:if test="${sessionScope.id != null}">
-                        <button type="button" class="btn btn-outline-light btn-lg ml-5"><i class="fas fa-bomb"></i>
+                        <button type="button" class="btn btn-outline-light btn-lg ml-5" onclick="fn_report('${boardVO.boardUpUserId}','${boardVO.content}')"><i class="fas fa-bomb"></i>
                         </button>
                     </c:if>
                 </div>

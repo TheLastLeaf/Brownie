@@ -37,7 +37,7 @@ public class TipController {
         Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
         model.addAttribute("leagueOfLegendsChampionsVOList", this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
-        return "tip/write";
+        return "board/tip/write";
     }
 
     @PostMapping("/write")
@@ -73,7 +73,7 @@ public class TipController {
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
         model.addAttribute("champion", champion);
 
-        return "tip/list";
+        return "board/tip/list";
     }
 
     @GetMapping("/details/{boardSeq}")
@@ -109,7 +109,7 @@ public class TipController {
 
         model.addAttribute("replyPagingVO", this.replyService.selectPagingList(map));
 
-        return "tip/details";
+        return "board/tip/details";
     }
 
     @GetMapping("/modify/{boardSeq}")
@@ -131,7 +131,7 @@ public class TipController {
         model.addAttribute("leagueOfLegendsChampionsVOList",
                 this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
-        return "tip/modify";
+        return "board/tip/modify";
     }
 
     @PostMapping("/modify/{boardSeq}")

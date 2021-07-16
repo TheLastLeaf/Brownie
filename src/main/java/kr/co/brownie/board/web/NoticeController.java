@@ -27,7 +27,7 @@ public class NoticeController {
     public String write(HttpSession httpSession) {
         Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
 
-        return "notice/write"; // 공지 글쓰기
+        return "board/notice/write"; // 공지 글쓰기
     }
 
     @PostMapping("/write")
@@ -60,7 +60,7 @@ public class NoticeController {
 
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
 
-        return "notice/list"; //공지 리스트
+        return "board/notice/list"; //공지 리스트
     }
 
     @GetMapping("/details/{boardSeq}")
@@ -79,7 +79,7 @@ public class NoticeController {
         Assert.notNull(boardVO, "해당 글이 없습니다.");
         model.addAttribute("boardVO", boardVO);
 
-        return "notice/details"; // 공지 디테일화면
+        return "board/notice/details"; // 공지 디테일화면
     }
 
     @GetMapping("/modify/{boardSeq}")
@@ -99,7 +99,7 @@ public class NoticeController {
 
         model.addAttribute("boardVO", boardVO);
 
-        return "notice/modify";
+        return "board/notice/modify";
     }
 
     @PostMapping("/modify/{boardSeq}")
