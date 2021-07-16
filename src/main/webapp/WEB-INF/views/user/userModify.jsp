@@ -159,8 +159,9 @@ input[name="position"] {
 						</div>
 						<!-- 닉네임 박스 -->
 						<div>
-							<input type="text" id="user_nick" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
+							<input type="text" id="user_nick" class="input-value check_success" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
 							<input type="hidden" name="nickNameHidden" value="${userOneSelect.nickName}">
+							<input type="text" id="regCheckMsg" value="[닉네임은 한글, 영문, 숫자만 가능하며 2-10자리 가능.]" style="display: none;"/>
 						</div>
 						<!-- 포지션 선택 -->
 						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -222,20 +223,19 @@ input[name="position"] {
 				$(".box").addClass("on");
 			}
 		});
-		$("#user_nick").on('click', function() {
-			$(".box button").attr("disabled", "disabled");
-			var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
-			alert(chk);
-			alert($('#user_nick').hasClass("check_success"))
-			if (chk == true && $('#user_nick').hasClass("check_success")) {
-				$(".box button").removeAttr('disabled');
+		
+// 		$("#user_nick").change(function() {
+// 			$(".box button").attr("disabled", true);
+// 			var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
+// 			if (chk == true && $('#user_nick').hasClass("check_success")) {
+// 				$(".box button").removeAttr('disabled');
 // 				$(".box").removeClass("on");
-				
-// 			} else if(chk == false || $('#user_nick').hasClass("check_fail")) {
+//			}
+//			else if(chk == false || $('#user_nick').hasClass("check_fail")) {
 // 				$(".box button").attr("disabled", true);
 // 				$(".box").addClass("on");
-			}
-		});
+// 			}
+// 		});
 		var sel_file;
 
 		$(function() {
@@ -258,10 +258,11 @@ input[name="position"] {
 				reader.readAsDataURL(f);
 			});
 		}
-
+		
 		//엔터치면 문제발생함
 		var nickRegcheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,10}$/;
-		$("#user_nick").blur(function() {
+		$("#user_nick").keyup(function() {
+			//$(".box button").attr("disabled", "disabled");
 			$('#user_nick').removeClass('check_success');
 			$('#user_nick').removeClass('check_fail');
 			var user_nick = $('#user_nick').val();
@@ -285,9 +286,15 @@ input[name="position"] {
 							}else { // 아이디가 실제로 올바른 값인지 체킹
 								if(nickRegcheck.test(user_nick)){
 									$('#user_nick').addClass('check_success');
+									
+// 									if($('input:checkbox[id="rc-agree"]').is(":checked")){
+// 										console.log("성공");
+// 										$(".box button").removeAttr('disabled');
+// 									}
+									
 								}else{
-									alert("[닉네임은 한글, 영문, 숫자만 가능하며 2-10자리 가능.]");
-									$('#user_nick').val('');
+//									$('#regCheckMsg').text();
+// 									$('#user_nick').val('');
 									$('#user_nick').addClass('check_fail');
 								}
 							}
