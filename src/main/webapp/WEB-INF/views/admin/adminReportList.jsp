@@ -141,7 +141,14 @@
                             <tr>
                                 <th class="reportListTd">${reportList.userId}</th>
                                 <th class="reportListTd">${reportList.reportName }</th>
-                                <th class="reportContent">${reportList.content }</th>
+                                <c:choose>
+                                    <c:when test="${reportList.content ne null}">
+                                        <th class="reportContent">${reportList.content }</th>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <th>-신고내용 없음-</th>
+                                    </c:otherwise>
+                                </c:choose>
                                 <th class="reportListTd">${reportList.inUserId }</th>
                                 <th class="reportListTd">${reportList.inDate }</th>
                                 <th>
