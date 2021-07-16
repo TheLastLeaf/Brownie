@@ -174,42 +174,55 @@
                     </div>
                 </c:forEach>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 p-0">
-                <form>
-                    <div class="innerBox text-center selectBox">
-                        <form method="get">
-                            <span>
-                                <select name="notice" id="notice" class="notice">
-                                    <option value="title">제목</option>
-                                </select>
-                                <input type="text" placeholder="검색" id="keyword" name="keyword" value="${keyword}"
-                                       class="keyword"/>
-                            </span>
-                            <input type="submit" class="btn btn-outline-dark submit" value="조회">
-                        </form>
-                    </div>
-                </form>
-                <div class="innerBox text-center pagination-item">
+            <div class="col-lg-12" style="justify-content: center; align-content: center; text-align: center;">
+                <div class="board-search" style="margin-bottom: 30px;">
+                    <select name="type"
+                            style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;">
+                        <option value="title"
+                                <c:if test='${type ne null and type eq "title"}'>
+                                    selected
+                                </c:if>
+                        >제목
+                        </option>
+                        <option value="content"
+                                <c:if test='${type ne null and type eq "content"}'>
+                                    selected
+                                </c:if>
+                        >내용
+                        </option>
+                        <option value="nickName"
+                                <c:if test='${type ne null and type eq "nickName"}'>
+                                    selected
+                                </c:if>
+                        >작성자
+                        </option>
+                    </select>
+                    <input type="text" name="query"
+                           style="width: 200px; border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
+                           placeholder="search"
+                           value="${query}"/>
+                    <input type="button" onclick="search()"
+                           style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
+                           value="search"/>
+                </div>
+                <div class="pagination-item">
+                    <c:choose>
+                        <c:when test='${type eq null || type eq "" || query eq null || query eq ""}'>
+                            <c:set var="paginationLink" value="?pageNum="/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="paginationLink" value="?type=${type}&query=${query}&pageNum="/>
+                        </c:otherwise>
+                    </c:choose>
                     <c:if test="${1 < boardPagingVO.startPageNumber}">
-                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${boardPagingVO.startPageNumber - 1}"><span>Prev</span></a>
+                        <a href="${paginationLink}${boardPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                     </c:if>
                     <c:forEach var="pageNum" begin="${boardPagingVO.startPageNumber}"
                                end="${boardPagingVO.endPageNumber}">
-                        <c:choose>
-                            <c:when test="${keyword != null}">
-                                <a href="${pageContext.request.contextPath}/notice/list?pageNum=${pageNum}"><span>${pageNum}</span></a>
-                            </c:when>
-                            <c:otherwise>
-                                <a href="${pageContext.request.contextPath}/notice/list?pageNum=${pageNum}&keyword=${keyword}"><span>${pageNum}</span></a>
-                            </c:otherwise>
-                        </c:choose>
+                        <a href="${paginationLink}${pageNum}"><span>${pageNum}</span></a>
                     </c:forEach>
                     <c:if test="${boardPagingVO.endPageNumber < boardPagingVO.totalPageNumber}">
-                        <a href="${pageContext.request.contextPath}/notice/list?pageNum=${boardPagingVO.endPageNumber + 1}"><span>Next</span></a>
+                        <a href="${paginationLink}${boardPagingVO.endPageNumber + 1}"><span>Next</span></a>
                     </c:if>
                 </div>
             </div>

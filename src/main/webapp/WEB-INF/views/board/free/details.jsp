@@ -475,9 +475,9 @@
                             <c:if test="${1 < freeReplyPagingVO.startPageNumber}">
                                 <a href="?page=${freeReplyPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                             </c:if>
-                            <c:forEach var="pageNumber" begin="${freeReplyPagingVO.startPageNumber}"
+                            <c:forEach var="pageNum" begin="${freeReplyPagingVO.startPageNumber}"
                                        end="${freeReplyPagingVO.endPageNumber}">
-                                <a href="?page=${pageNumber}"><span>${pageNumber}</span></a>
+                                <a href="?page=${pageNum}"><span>${pageNum}</span></a>
                             </c:forEach>
                             <c:if test="${freeReplyPagingVO.endPageNumber < freeReplyPagingVO.totalPageNumber}">
                                 <a href="?page=${freeReplyPagingVO.endPageNumber + 1}"><span>Next</span></a>

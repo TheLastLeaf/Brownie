@@ -61,7 +61,9 @@ public class TipController {
     public String list(HttpSession httpSession,
                        Model model,
                        @RequestParam(defaultValue = "", required = false) String champion,
-                       @RequestParam(defaultValue = "1", required = false) int pageNum) {
+                       @RequestParam(defaultValue = "1", required = false) int pageNum,
+                       @RequestParam(required = false) String type,
+                       @RequestParam(required = false) String query) {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", httpSession.getAttribute("id"));
         map.put("boardKind", "tip");
@@ -69,9 +71,16 @@ public class TipController {
         map.put("pageNum", pageNum);
         map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
 
+        if (type != null && !"".equals(type) && query != null && !"".equals(query)) {
+            map.put(type, query);
+
+            model.addAttribute("type", type);
+            model.addAttribute("query", query);
+        }
+
+        model.addAttribute("champion", champion);
         model.addAttribute("leagueOfLegendsChampionsVOList", this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
-        model.addAttribute("champion", champion);
 
         return "board/tip/list";
     }

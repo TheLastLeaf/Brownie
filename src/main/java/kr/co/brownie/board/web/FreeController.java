@@ -38,7 +38,6 @@ public class FreeController {
 
     @PostMapping("/write")
     public String create(HttpSession httpSession,
-                         @RequestParam String champion,
                          @RequestParam String title,
                          @RequestParam String content,
                          @RequestParam(defaultValue = "n", required = false) String noticeYn) {
@@ -48,7 +47,6 @@ public class FreeController {
         map.put("title", title);
         map.put("content", content);
         map.put("boardKind", "free");
-        map.put("boardCategory", champion);
         map.put("noticeYn", noticeYn);
 
         Assert.state(this.boardService.insert(map) == 1, "글 작성에 실패하였습니다.");
@@ -59,12 +57,21 @@ public class FreeController {
     @GetMapping(path = {"", "/list"})
     public String list(HttpSession httpSession,
                        Model model,
-                       @RequestParam(defaultValue = "1", required = false) int pageNum) {
+                       @RequestParam(defaultValue = "1", required = false) int pageNum,
+                       @RequestParam(required = false) String type,
+                       @RequestParam(required = false) String query) {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", httpSession.getAttribute("id"));
         map.put("boardKind", "free");
         map.put("pageNum", pageNum);
         map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
+
+        if (type != null && !"".equals(type) && query != null && !"".equals(query)) {
+            map.put(type, query);
+
+            model.addAttribute("type", type);
+            model.addAttribute("query", query);
+        }
 
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
 

@@ -199,7 +199,7 @@
                                     ]]>
         <where>
             <if test='nickName != null and nickName != ""'>
-                UPPER(NICK_NAME) = UPPER(#{nickName})
+                UPPER(NICK_NAME) LIKE '%'||UPPER(#{nickName})||'%'
             </if>
         </where>
         <![CDATA[

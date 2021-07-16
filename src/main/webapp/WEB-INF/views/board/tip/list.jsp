@@ -1,6 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../../layout/header.jsp"/>
+<script>
+    function search() {
+        const type = $(".board-search>select>option:selected").val();
+        const query = $(".board-search>input[name=query]").val();
+
+        location.href = "?"
+            <c:if test='${champion ne null and champion ne ""}'>
+            + "champion=${champion}&"
+            </c:if>
+            + "type=" + type + "&query=" + query;
+    }
+</script>
 
 <style>
     .tip-board-img-thumbnail {
@@ -178,21 +190,61 @@
                         </div>
                     </div>
                 </c:forEach>
+            </div>
+            <div class="col-lg-12" style="justify-content: center; align-content: center; text-align: center;">
+                <div class="board-search" style="margin-bottom: 30px;">
+                    <select name="type"
+                            style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;">
+                        <option value="title"
+                                <c:if test='${type ne null and type eq "title"}'>
+                                    selected
+                                </c:if>
+                        >제목
+                        </option>
+                        <option value="content"
+                                <c:if test='${type ne null and type eq "content"}'>
+                                    selected
+                                </c:if>
+                        >내용
+                        </option>
+                        <option value="nickName"
+                                <c:if test='${type ne null and type eq "nickName"}'>
+                                    selected
+                                </c:if>
+                        >작성자
+                        </option>
+                    </select>
+                    <input type="text" name="query"
+                           style="width: 200px; border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
+                           placeholder="search"
+                           value="${query}"/>
+                    <input type="button" onclick="search()"
+                           style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
+                           value="search"/>
+                </div>
                 <div class="pagination-item">
                     <c:choose>
-                        <c:when test="${champion eq null || champion eq ''}">
-                            <c:set var="paginationLink" value="?pageNum="/>
+                        <c:when test='${champion eq null or champion eq ""}'>
+                            <c:set var="paginationLink" value="?"/>
                         </c:when>
                         <c:otherwise>
-                            <c:set var="paginationLink" value="?champion=${champion}&pageNum="/>
+                            <c:set var="paginationLink" value="?champion=${champion}&"/>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test='${type eq null || type eq "" || query eq null || query eq ""}'>
+                            <c:set var="paginationLink" value="${paginationLink}pageNum="/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="paginationLink" value="${paginationLink}type=${type}&query=${query}&pageNum="/>
                         </c:otherwise>
                     </c:choose>
                     <c:if test="${1 < boardPagingVO.startPageNumber}">
                         <a href="${paginationLink}${boardPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                     </c:if>
-                    <c:forEach var="pageNumber" begin="${boardPagingVO.startPageNumber}"
+                    <c:forEach var="pageNum" begin="${boardPagingVO.startPageNumber}"
                                end="${boardPagingVO.endPageNumber}">
-                        <a href="${paginationLink}${pageNumber}"><span>${pageNumber}</span></a>
+                        <a href="${paginationLink}${pageNum}"><span>${pageNum}</span></a>
                     </c:forEach>
                     <c:if test="${boardPagingVO.endPageNumber < boardPagingVO.totalPageNumber}">
                         <a href="${paginationLink}${boardPagingVO.endPageNumber + 1}"><span>Next</span></a>

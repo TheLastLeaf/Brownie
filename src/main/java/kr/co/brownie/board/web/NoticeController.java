@@ -50,13 +50,22 @@ public class NoticeController {
     public String noticeList(HttpSession httpSession,
                              Model model,
                              @RequestParam(required = false) String keyword,
-                             @RequestParam(defaultValue = "1", required = false) int pageNum) {
+                             @RequestParam(defaultValue = "1", required = false) int pageNum,
+                             @RequestParam(required = false) String type,
+                             @RequestParam(required = false) String query) {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", httpSession.getAttribute("id"));
         map.put("boardKind", "notice");
         map.put("title", keyword);
         map.put("pageNum", pageNum);
         map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
+
+        if (type != null && !"".equals(type) && query != null && !"".equals(query)) {
+            map.put(type, query);
+
+            model.addAttribute("type", type);
+            model.addAttribute("query", query);
+        }
 
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
 

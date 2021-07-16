@@ -1,6 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../../layout/header.jsp"/>
+<script>
+    function search() {
+        const type = $(".board-search>select>option:selected").val();
+        const query = $(".board-search>input[name=query]").val();
+
+        location.href = "?type=" + type + "&query=" + query;
+    }
+</script>
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
@@ -27,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 p-0">
-                <c:forEach var="freeList" items="${boardPagingVO}" varStatus="status">
+                <c:forEach var="boardVO" items="${boardPagingVO.boardVOList}" varStatus="status">
                     <div class="cl-item">
                         <div class="cl-pic">
                             <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png"
@@ -35,11 +43,11 @@
                         </div>
                         <div class="cl-text">
                             <h5>
-                                <a href="${pageContext.request.contextPath}/free/details/${freeList.boardSeq}">${freeList.title }</a>
+                                <a href="${pageContext.request.contextPath}/free/details/${boardVO.boardSeq}">${boardVO.title}</a>
                             </h5>
                             <ul>
-                                <li>by <span>${freeList.nickName }</span></li>
-                                <li><i class="far fa-clock"></i>${freeList.inDate }</li>
+                                <li>by <span>${boardVO.nickName}</span></li>
+                                <li><i class="far fa-clock"></i>${boardVO.boardInDate}</li>
                                 <li><i class="far fa-comment"></i> 20</li>
                             </ul>
                         </div>
@@ -54,56 +62,86 @@
                             <h5>Best of Best</h5>
                         </div>
 
-                        <c:forEach var="freeFamousList" items="${freeFamousList }" varStatus="status">
+                        <%--                        <c:forEach var="freeFamousList" items="${freeFamousList}" varStatus="status">--%>
 
-                            <div class="bp-item">
-                                <div class="bp-loader">
-                                    <div class="loader-circle-wrap">
-                                        <div class="loader-circle">
-	                                            <span class="circle-progress-1" data-cpid="id-1"
-                                                      data-cpvalue="${freeFamousList.likeCnt }"
-                                                      data-cpcolor="#c20000"></span>
-                                            <div class="review-point"
-                                                 style="text-align: center;">${freeFamousList.likeCnt }</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bp-text">
-                                    <h6>
-                                        <a href="${pageContext.request.contextPath}/free/details/${freeFamousList.boardSeq}">${freeFamousList.title }</a>
-                                    </h6>
-                                    <ul>
-                                        <li><i class="far fa-clock"></i>${freeFamousList.inDate }</li>
-                                        <li><i class="far fa-comment"></i> 20</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </c:forEach>
+                        <%--                            <div class="bp-item">--%>
+                        <%--                                <div class="bp-loader">--%>
+                        <%--                                    <div class="loader-circle-wrap">--%>
+                        <%--                                        <div class="loader-circle">--%>
+                        <%--	                                            <span class="circle-progress-1" data-cpid="id-1"--%>
+                        <%--                                                      data-cpvalue="${freeFamousList.likeCnt}"--%>
+                        <%--                                                      data-cpcolor="#c20000"></span>--%>
+                        <%--                                            <div class="review-point"--%>
+                        <%--                                                 style="text-align: center;">${freeFamousList.likeCnt}</div>--%>
+                        <%--                                        </div>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </div>--%>
+                        <%--                                <div class="bp-text">--%>
+                        <%--                                    <h6>--%>
+                        <%--                                        <a href="${pageContext.request.contextPath}/free/details/${freeFamousList.boardSeq}">${freeFamousList.title}</a>--%>
+                        <%--                                    </h6>--%>
+                        <%--                                    <ul>--%>
+                        <%--                                        <li><i class="far fa-clock"></i>${freeFamousList.inDate}</li>--%>
+                        <%--                                        <li><i class="far fa-comment"></i> 20</li>--%>
+                        <%--                                    </ul>--%>
+                        <%--                                </div>--%>
+                        <%--                            </div>--%>
+                        <%--                        </c:forEach>--%>
 
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-12" style="justify-content: center; align-content: center; text-align: center;">
-                <div class="board_search" style="margin-bottom: 30px;">
-                    <select style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;">
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                        <option value="author">작성자</option>
+                <div class="board-search" style="margin-bottom: 30px;">
+                    <select name="type"
+                            style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;">
+                        <option value="title"
+                                <c:if test='${type ne null and type eq "title"}'>
+                                    selected
+                                </c:if>
+                        >제목
+                        </option>
+                        <option value="content"
+                                <c:if test='${type ne null and type eq "content"}'>
+                                    selected
+                                </c:if>
+                        >내용
+                        </option>
+                        <option value="nickName"
+                                <c:if test='${type ne null and type eq "nickName"}'>
+                                    selected
+                                </c:if>
+                        >작성자
+                        </option>
                     </select>
-                    <input type="text"
+                    <input type="text" name="query"
                            style="width: 200px; border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
-                           placeholder="search"/>
-                    <input type="button"
+                           placeholder="search"
+                           value="${query}"/>
+                    <input type="button" onclick="search()"
                            style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
                            value="search"/>
                 </div>
                 <div class="pagination-item">
-                    <a href="#"><span>Prev</span></a>
-                    <a href="#"><span>1</span></a>
-                    <a href="#"><span>2</span></a>
-                    <a href="#"><span>3</span></a>
-                    <a href="#"><span>Next</span></a>
+                    <c:choose>
+                        <c:when test='${type eq null || type eq "" || query eq null || query eq ""}'>
+                            <c:set var="paginationLink" value="?pageNum="/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="paginationLink" value="?type=${type}&query=${query}&pageNum="/>
+                        </c:otherwise>
+                    </c:choose>
+                    <c:if test="${1 < boardPagingVO.startPageNumber}">
+                        <a href="${paginationLink}${boardPagingVO.startPageNumber - 1}"><span>Prev</span></a>
+                    </c:if>
+                    <c:forEach var="pageNum" begin="${boardPagingVO.startPageNumber}"
+                               end="${boardPagingVO.endPageNumber}">
+                        <a href="${paginationLink}${pageNum}"><span>${pageNum}</span></a>
+                    </c:forEach>
+                    <c:if test="${boardPagingVO.endPageNumber < boardPagingVO.totalPageNumber}">
+                        <a href="${paginationLink}${boardPagingVO.endPageNumber + 1}"><span>Next</span></a>
+                    </c:if>
                 </div>
             </div>
 
