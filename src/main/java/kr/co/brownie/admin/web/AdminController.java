@@ -75,6 +75,8 @@ public class AdminController {
         AdminVO boardCnt = adminService.BoardCnt();
         model.addAttribute("boardCnt", boardCnt);
 
+        AdminVO todayUser = adminService.todayUser();
+        model.addAttribute("todayUser",todayUser);
 
 
         return "admin/adminView"; //관리자 화면 기본

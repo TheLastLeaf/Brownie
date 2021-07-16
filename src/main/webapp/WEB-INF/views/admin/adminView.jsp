@@ -63,11 +63,6 @@
                                             <div class="social-media">
                                                 <ul>
                                                     <li>
-                                                        <div class="sm-icon"><i class="fas fa-pen-square"></i></div>
-                                                        <span class="adminMenu">게시판 관리</span>
-                                                        <div class="follow">5개</div>
-                                                    </li>
-                                                    <li>
                                                         <div class="sm-icon"><i class="far fa-user"></i></div>
                                                         <span class="adminMenu" onclick="location.href='admin/adminMemberList'">멤버 관리</span>
                                                         <div class="follow">${UserCnt.allUserCnt }명</div>
@@ -112,10 +107,10 @@
                                 <div class="skill-item">
                                     <p>신규 가입자 수</p>
                                     <div id="bar-5" class="barfiller">
-                                        <span class="fill" data-percentage="${UserCnt.recentUserCnt }"></span>
+                                        <span class="fill" data-percentage="${todayUser.todayUser}"></span>
                                         <div class="tipWrap" style="display: inline;">
                                             <span class="tip"></span>
-                                            <span class="bar-point"> ${UserCnt.recentUserCnt }</span>
+                                            <span class="bar-point"> ${todayUser.todayUser }</span>
                                         </div>
                                     </div>
                                 </div>
