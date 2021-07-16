@@ -8,6 +8,6 @@ import kr.co.brownie.teamGame.service.TeamGameService;
 
 @Service("teamGameService")
 public class TeamGameServiceImpl implements TeamGameService {
-	@Resource(name = "teamGameDAO")
-	TeamGameDAO teamGameDAO;
+	@Resource(name = "teamGameMapper")
+    TeamGameMapper teamGameMapper;
 }

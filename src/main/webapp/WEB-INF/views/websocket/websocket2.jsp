@@ -48,13 +48,6 @@
             msg.value = '';
         }
 
-        //채팅창에서 나갔을 때 인식이 안되네 ... 이거 세션 종료 제대로 해야하는데 나중에 체크해봐야할듯
-        function onClose(evt) {
-            console.log(username + ": 님이 방을 나가셨습니다.");
-            var str = username + ": 님이 방을 나가셨습니다.";
-            websocket.send(str);
-        }
-
         //채팅창에 들어왔을 때 이건 잘 됨
         function onOpen(evt) {
             var str = username + ": 님이 입장하셨습니다.";
