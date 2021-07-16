@@ -60,4 +60,10 @@
 			UPPER(STATUS)='Y'
 	</select>
 
+
+	<select id="todayUser" resultType="kr.co.brownie.admin.service.AdminVO">
+		SELECT COUNT(*) as todayUser
+		FROM BROWNIE_USER
+		WHERE IN_DATE = SYSDATE
+	</select>
 </mapper>

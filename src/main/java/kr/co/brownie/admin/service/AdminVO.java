@@ -18,4 +18,7 @@ public class AdminVO {
 	//블랙유저 집계
 	private int blackUserCnt;
 
+	//오늘 신규 가입한 회원
+	private int todayUser;
+
 }

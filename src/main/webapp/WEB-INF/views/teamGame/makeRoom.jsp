@@ -153,12 +153,12 @@ input.apple-switch:checked:after {
 	<!-- <span style="text-align: right;"> -->
 	<!-- 	포인트 -->
 	<!-- </span> -->
-	<div class="container d-flex justify-content-end">Lv.백신 / exp : 2810</div>
+	<div class="container d-flex justify-content-end">Lv.백신 / exp : ${userExp}</div>
 	<div class="container">
 		<div class="row">
 			<div class="col text-center" style="border: 1px solid white;">
 				<p>
-				<h5 class="font-family-maple-bold">닉네임 : FFF</h5>
+				<h5 class="font-family-maple-bold">닉네임 : ${userInfo.nickName}</h5>
 				</p>
 				<p id="title" class="botton" style="margin-bottom: 10px;">
 					<b class="font-family-maple-bold">제목 :&nbsp; <input type="text" maxlength='12' /></b>

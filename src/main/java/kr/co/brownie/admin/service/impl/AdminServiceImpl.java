@@ -31,5 +31,10 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public AdminVO BlackUserCnt() { return adminMapper.BlackUserCnt(); }
 
+	@Override
+	public AdminVO todayUser() {
+		return adminMapper.todayUser();
+	}
+
 
 }

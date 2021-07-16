@@ -113,6 +113,24 @@ input[name="position"] {
 .signup-text {
 	padding-top: 40px;
 }
+
+.check_success {
+	style =border-color: #28a745 !important;
+	padding-right: calc(1.5em + .75rem) !important;
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/59/Feedbin-Icon-check.svg') !important;
+	background-repeat: no-repeat !important;
+	background-position: center right calc(.375em + .1875rem) !important;
+	background-size: calc(.75em + .375rem) calc(.75em + .375rem) !important;
+}
+
+.check_fail {
+	style =border-color: #28a745 !important;
+	padding-right: calc(1.5em + .75rem) !important;
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5f/Red_X.svg') !important;
+	background-repeat: no-repeat !important;
+	background-position: center right calc(.375em + .1875rem) !important;
+	background-size: calc(.75em + .375rem) calc(.75em + .375rem) !important;
+}
 </style>
 
 <body>
@@ -139,11 +157,12 @@ input[name="position"] {
 								<input type="file" id="file" name="file" />
 							</label>
 						</div>
+						<!-- 닉네임 박스 -->
 						<div>
 							<input type="text" id="user_nick" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
-							<div class="check_front" id="id_check">중복체크(안보여야함)</div>
+							<input type="hidden" name="nickNameHidden" value="${userOneSelect.nickName}">
 						</div>
-						<!-- 포지션선택 -->
+						<!-- 포지션 선택 -->
 						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 							<label class="btn btn-danger position">
 								<input type="checkbox" name="positions" value="top">
@@ -227,32 +246,52 @@ input[name="position"] {
 		}
 
 		// 		<div>
+		// 		<div class="check_success" id="nick_check"></div>
 		// 		<input type="text" id="user_nick" class="input-value" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
-		// 		<div class="check_front" id="id_check">중복체크(안보여야함)</div>
 		// 		</div>
-		//[영문 대문자 또는 소문자로 시작하는 아이디, 길이는 5~15자, 끝날때 제한 없음]
-		var idReg = /^[A-za-z]{5,15}/g;
+
+		//엔터치면 문제발생함
+		//[닉네임은 한글, 영문, 숫자만 가능하며 2-10자리 가능.]
+		var nickRegcheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,10}$/;
 		$("#user_nick").blur(function() {
+			$('#user_nick').removeClass('check_success');
+			$('#user_nick').removeClass('check_fail');
 			var user_nick = $('#user_nick').val();
 			var formData = new FormData();
 			formData.append("user_nick", user_nick);
-			$.ajax({
-				url : "/user/userModify",
-				type : "POST",
-				data : formData,
-				processData : false,
-				contentType : false,
-				success : function(data) {
-					console.log(typeof(data)); // data 타입은 String!
-					alert("data : " + data);
-				},
-				error : function(e) {
-					alert("실패ㅜㅜ err");
-					console.log(e);
-				}
-			});
+			if (user_nick == $('input[name=nickNameHidden]').val()) {
+				$('#user_nick').addClass('check_success');
+			} else {
+				$.ajax({
+					url : "/user/userModify",
+					type : "POST",
+					data : formData,
+					processData : false,
+					contentType : false,
+					success : function(data) {
+						if (data == "ng") { // 아이디가 중복됨
+							$('#user_nick').addClass('check_fail');
+						} else { // 아이디 중복은 회피함, 빈칸체킹
+							if ($('#user_nick').val()=="" ||$('#user_nick').val()==null) {
+								$('#user_nick').addClass('check_fail');
+							}else { // 아이디가 실제로 올바른 값인지 체킹
+								if(nickRegcheck.test(user_nick)){
+									$('#user_nick').addClass('check_success');
+								}else{
+									alert("[닉네임은 한글, 영문, 숫자만 가능하며 2-10자리 가능.]");
+									$('#user_nick').val('');
+									$('#user_nick').addClass('check_fail');
+								}
+							}
+						}
+					},
+					error : function(e) {
+						alert("실패ㅜㅜ err");
+						console.log(e);
+					}
+				});
+			}
 		});
-
 
 		function fn_submit() {
 			//파일처리 시작 ----------
@@ -271,9 +310,6 @@ input[name="position"] {
 				positions.push("empty");
 			}
 			var agree = $("#rc-agree").val();
-
-			// 		var param = "";
-			// 		param += "dummy=" + Math.random()
 			formData.append("nickNameBox", nickNameBox);
 			formData.append("positions", positions);
 			formData.append("agree", agree);
