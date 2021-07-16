@@ -3,14 +3,14 @@
 <c:import url="../layout/header.jsp"/>
 
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/breadcrumb-bg.jpg">
+<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/details/details-post-review.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
-                    <h3>정지목록</h3>
+                    <h3>블랙유저목록</h3>
                 <div>
-					<a href="#" style="color: #ffffff;">[돌아가기]</a>               
+					<a href="/admin" style="color: #ffffff;">[돌아가기]</a>
                 </div>
                 </div>
             </div>
@@ -19,33 +19,40 @@
 </section>
 <!-- Breadcrumb Section End -->
  <script>
-	 function fn_addBlack(){
-		 confirm("블랙처리 하시겠습니까?")
-		 const userId = $(".userId").val();
-		 const bListSeq = $(".bListSeq").val();
-		 const endDate = $(".endDate").val();
-		 console.log(endDate)
+	 function fn_upDateBlack(){
+	 	 confirm("블랙해제 하시겠습니까?")
+	 	 const bUserSeq = $(".bUserSeq").val()
+
 		 $.ajax({
-			 url: "./addblack",
+			 url: "./upDateblack",
 			 type: "POST",
 			 data: {
-				 "userId": userId,
-				 "bListSeq":bListSeq,
-				 "endDate":endDate
+			 	"bUserSeq":bUserSeq
 			 },
 			 success: function (data) {
 				 console.log(data)
 				 if (data === 1) {
-					 alert("블랙처리 완료.")
+					 alert("블랙해제 완료.")
 					 location.reload();
 				 }
 			 },
 			 error: function () {
-				 alert("블랙 처리 접수 실패");
+				 alert("블랙해제 실패");
 			 }
 		 })
 	 }
  </script>
+<style>
+	.blackUserPageBottom {
+		padding-top: 50px;
+	}
+	table{
+		width: 100%;
+	}
+	.update{
+		width: 100%;
+	}
+</style>
 
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -56,52 +63,38 @@
 	                <table border="1px solid grey" style="margin: auto;">
 	                	<tr>
 	                		<th>접수번호</th>
-	                		<th>아이디</th>
-	                		<th>신고내용</th>
-	                		<th>접수날짜</th>
-	                		<th colspan="2">관리</th>
+	                		<th>닉네임</th>
+	                		<th>정지기간</th>
+	                		<th>관리</th>
 	                	</tr>
-						<c:forEach var="blackList" items="${blackList}">
-							<c:if test="${blackList.status eq 'N'}">
+						<c:forEach var="blackUser" items="${BlackUserPagingVO.blackUserVO}">
+							<c:if test="${blackUser.status eq 'Y'}">
 								<tr>
-									<th>${blackList.BListSeq}</th>
-									<th>${blackList.userId}</th>
-									<th>${blackList.reasonKind1}</th>
-									<th>${blackList.inDate}</th>
-									<th colspan="2">
-										<button class="btn btn-outline-danger" onclick="fn_addBlack()">블랙하기</button>
-										<button class="btn btn-outline-light" onclick="alert('better 회원의 정지를 해제하시겠습니까? 아직 기한이 남았습니다 어쩌구저쩌구')">해제하기</button>
+									<th>${blackUser.BUserSeq}</th>
+									<th>${blackUser.nickName}</th>
+									<th>${blackUser.endDate}</th>
+									<th>
+										<button class="btn btn-outline-light update" onclick="fn_upDateBlack()">해제하기</button>
 									</th>
 								</tr>
-							<c:choose>
-								<c:when test="${blacklist.reasonSeq == 1}">
-									<input type="hidden" value="7" name="endDate" class="endDate">
-								</c:when>
-								<c:when test="${blacklist.reasonSeq == 2}">
-									<input type="hidden" value="7" name="endDate" class="endDate">
-								</c:when>
-								<c:when test="${blacklist.reasonSeq == 3}">
-									<input type="hidden" value="7" name="endDate" class="endDate">
-								</c:when>
-								<c:otherwise>
-									<input type="hidden" value="3" name="endDate" class="endDate">
-								</c:otherwise>
-								</c:choose>
-							<input type="hidden" value="${blackList.BListSeq}" name="bListSeq" class="bListSeq">
-							<input type="hidden" value="${blackList.userId}" name="userId" class="userId">
+								<input type="hidden" value="${blackUser.BUserSeq}" name="bUserSeq" class="bUserSeq">
 							</c:if>
 						</c:forEach>
 	                </table>
-	                <div>
-	                 <div class="pagination-item" style="padding-top: 50px;">
-		                 <a href="#"><span>Prev</span></a>
-		                 <a href="#"><span>1</span></a>
-		                 <a href="#"><span>2</span></a>
-		                 <a href="#"><span>3</span></a>
-		                 <a href="#"><span>Next</span></a>
-		             </div>
-		             
-	                </div>
+					<div class="blackUserPageBottom">
+						<div class="pagination-item">
+							<c:if test="${1 < BlackUserPagingVO.startPageNumber}">
+								<a href="${pageContext.request.contextPath}/admin/adminBlackList?pageNum=${BlackUserPagingVO.startPageNumber - 1}"><span>Prev</span></a>
+							</c:if>
+							<c:forEach var="pageNumber" begin="${BlackUserPagingVO.startPageNumber}"
+									   end="${BlackUserPagingVO.endPageNumber}">
+								<a href="${pageContext.request.contextPath}/admin/adminBlackList?pageNum=${pageNumber}"><span>${pageNumber}</span></a>
+							</c:forEach>
+							<c:if test="${BlackUserPagingVO.endPageNumber < BlackUserPagingVO.totalPageNumber}">
+								<a href="${pageContext.request.contextPath}/admin/adminBlackList?pageNum=${BlackUserPagingVO.endPageNumber + 1}"><span>Next</span></a>
+							</c:if>
+						</div>
+					</div>
 	                
 	            </div>
             </div>

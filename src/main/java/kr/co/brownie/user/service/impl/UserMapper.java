@@ -38,4 +38,6 @@ public interface UserMapper {
 
 	int validating(String userNick);
 
+	int blackStack(String userId);
+
 }

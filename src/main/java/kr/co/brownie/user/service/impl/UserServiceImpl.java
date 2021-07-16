@@ -111,4 +111,9 @@ public class UserServiceImpl implements UserService {
 		return userMapper.validating(userNick);
 	}
 
+	@Override
+	public int blackstack(String userId) {
+		return userMapper.blackStack(userId);
+	}
+
 }

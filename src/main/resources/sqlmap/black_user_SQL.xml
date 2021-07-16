@@ -3,8 +3,67 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.blackList.service.impl.BlackUserMapper">
+    <select id="blackUserList" resultType="kr.co.brownie.blackList.service.BlackUserVO" parameterType="hashMap">
+        <![CDATA[
+        SELECT BUSERSEQ,
+               BLISTSEQ,
+               USERID,
+               ENDDATE,
+               STATUS,
+               INDATE,
+               "UPDATE",
+               INUSERID,
+               UPUSERID,
+               NICKNAME
+        FROM (SELECT ROWNUM AS RN,
+                     BUSERSEQ,
+                     BLISTSEQ,
+                     USERID,
+                     ENDDATE,
+                     STATUS,
+                     INDATE,
+                     "UPDATE",
+                     INUSERID,
+                     UPUSERID,
+                     NICKNAME
+              FROM (
+                       SELECT A.B_USER_SEQ AS BUSERSEQ,
+                              A.B_LIST_SEQ AS BLISTSEQ,
+                              A.USER_ID    AS USERID,
+                              A.END_DATE   AS ENDDATE,
+                              A.STATUS     AS STATUS,
+                              A.IN_DATE    AS INDATE,
+                              A.UP_DATE    AS "UPDATE",
+                              A.IN_USER_ID AS INUSERID,
+                              A.UP_USER_ID AS UPUSERID,
+                              B.NICK_NAME AS NICKNAME
+                       FROM BLACK_USER A LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.USER_ID)
+                       ORDER BY B_USER_SEQ
+                   )
+             )
+        WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN
+          AND RN <= ${contentPerPage} * ${currentPageNumber}
+        ]]>
+    </select>
+
     <insert id="insert" parameterType="hashMap">
-        INSERT INTO BLACK_USER(B_USER_SEQ, B_LIST_SEQ, USER_ID, END_DATE, STATUS, IN_DATE, UP_DATE, IN_USER_ID, UP_USER_ID)
-        VALUES ((SELECT NVL(MAX(B_USER_SEQ), 0) + 1 FROM BLACK_USER),#{bListSeq},#{userId},SYSDATE+#{endDate},'Y',SYSDATE,SYSDATE,#{id},#{id})
+        INSERT INTO BLACK_USER(B_USER_SEQ, B_LIST_SEQ, USER_ID, END_DATE, STATUS, IN_DATE, UP_DATE, IN_USER_ID,
+                               UP_USER_ID)
+        VALUES ((SELECT NVL(MAX(B_USER_SEQ), 0) + 1 FROM BLACK_USER), #{bListSeq}, #{userId}, SYSDATE + #{endDate}, 'Y',
+                SYSDATE, SYSDATE, #{id}, #{id})
     </insert>
+
+    <select id="count" resultType="int">
+        SELECT COUNT(*)
+        FROM BLACK_USER
+    </select>
+
+    <update id="update" parameterType="hashMap">
+        UPDATE BLACK_USER
+        SET
+            STATUS = 'N',
+            UP_DATE = SYSDATE
+        WHERE
+            B_USER_SEQ = #{bUserSeq}
+    </update>
 </mapper>

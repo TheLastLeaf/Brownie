@@ -109,6 +109,23 @@
         <div class="row">
             <div class="col-lg-12 reportListdiv">
                 <div class="">
+                    <c:forEach var="blacklist" items="${blackList}">
+                        <input type="hidden" value="${blacklist.BListSeq}" name="bListSeq" class="bListSeq">
+                        <c:choose>
+                            <c:when test="${blacklist.reasonSeq == 1}">
+                                <input type="hidden" value="7" name="endDate" class="endDate">
+                            </c:when>
+                            <c:when test="${blacklist.reasonSeq == 2}">
+                                <input type="hidden" value="7" name="endDate" class="endDate">
+                            </c:when>
+                            <c:when test="${blacklist.reasonSeq == 3}">
+                                <input type="hidden" value="7" name="endDate" class="endDate">
+                            </c:when>
+                            <c:otherwise>
+                                <input type="hidden" value="3" name="endDate" class="endDate">
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
                     <table class="reportListTable">
                         <tr>
                             <th class="reportListTd">아이디</th>
@@ -119,7 +136,7 @@
                             <th class="reportListTd">재재 항목</th>
                             <th class="reportListTd">처리상태</th>
                         </tr>
-                        <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }" varStatus="status">
+                        <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }">
                             <c:if test="${reportList.status eq 'N'}">
                             <tr>
                                 <th class="reportListTd">${reportList.userId}</th>
@@ -156,9 +173,7 @@
                                 <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${ReportPagingVO.endPageNumber + 1}"><span>Next</span></a>
                             </c:if>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>

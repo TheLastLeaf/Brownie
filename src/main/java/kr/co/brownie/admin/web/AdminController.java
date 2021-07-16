@@ -62,10 +62,15 @@ public class AdminController {
         AdminVO reportCnt = adminService.ReportCnt();
         model.addAttribute("reportCnt", reportCnt);
 
+        //블랙유저 집계
+        AdminVO blackUserCnt = adminService.BlackUserCnt();
+        model.addAttribute("blackUserCnt",blackUserCnt);
 
         // 공지사항 포함 총 게시글 수 / (공지사항 제외한) 최근 일주일 간 신규 게시글 수 집계
         AdminVO boardCnt = adminService.BoardCnt();
         model.addAttribute("boardCnt", boardCnt);
+
+
 
         return "admin/adminView"; //관리자 화면 기본
     }
@@ -78,6 +83,30 @@ public class AdminController {
         return "admin/adminMemberList"; //회원 리스트 화면
     }
 
+
+    @GetMapping("/adminBlackList")
+    public String adminBlackList(Model model,HttpServletRequest httpServletRequest) {
+        int currentPageNumber;
+        try {
+            currentPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("pageNum")), 1);
+        } catch (NullPointerException | NumberFormatException e) {
+            currentPageNumber = 1;
+        }
+        model.addAttribute("BlackUserPagingVO", blackUserService.blackUserList(currentPageNumber));
+        return "admin/adminBlackList"; //블랙리스트 화면
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/upDateblack", method = {RequestMethod.GET, RequestMethod.POST})
+    public Object addblackPost(Model model, HttpServletRequest httpServletRequest) {
+        String Seq = httpServletRequest.getParameter("bUserSeq");
+        int bUserSeq = Integer.parseInt(Seq);
+        String status = httpServletRequest.getParameter("status");
+        int count = blackUserService.update(bUserSeq);
+        model.addAttribute("count", count);
+        return count;
+    }
+
     @GetMapping("/adminReportList")
     public String adminReportList(Model model, HttpServletRequest httpServletRequest) {
         int currentPageNumber;
@@ -86,42 +115,14 @@ public class AdminController {
         } catch (NullPointerException | NumberFormatException e) {
             currentPageNumber = 1;
         }
-        model.addAttribute("blackList",blackListService.selectBlackList());
+        model.addAttribute("blackList", blackListService.selectBlackList());
         model.addAttribute("ReportPagingVO", reportService.selectReportList(currentPageNumber));
         return "admin/adminReportList"; //신고 리스트 화면
     }
 
     @ResponseBody
-    @RequestMapping(value = "/addblack", method= {RequestMethod.GET, RequestMethod.POST})
-    public Object addblackPost(Model model, HttpServletRequest httpServletRequest) {
-        String id = httpServletRequest.getSession().getAttribute("id").toString();
-        String Seq = httpServletRequest.getParameter("bListSeq");
-        int bListSeq = Integer.parseInt(Seq);
-        String userId = httpServletRequest.getParameter("userId");
-        String eDate = httpServletRequest.getParameter("endDate");
-        int endDate = Integer.parseInt(eDate);
-        System.out.println(endDate);
-        int count = blackListService.update(id,bListSeq);
-        if(count == 1){
-            int cnt = blackUserService.insert(bListSeq,userId,endDate,id);
-            model.addAttribute("cnt",cnt);
-            return cnt;
-        }
-        model.addAttribute("cnt", count);
-        return count;
-    }
-
-    @GetMapping("/adminBlackList")
-    public String adminBlackList(Model model) {
-        List<BlackListVO> blackList = blackListService.selectBlackList();
-        model.addAttribute("blackList", blackList);
-        return "admin/adminBlackList"; //블랙리스트 화면
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/addblacklist", method= {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/addblacklist", method = {RequestMethod.GET, RequestMethod.POST})
     public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
-        Map<String, Object> map = new HashMap<>();
         String id = httpServletRequest.getSession().getAttribute("id").toString();
         String Seq = httpServletRequest.getParameter("reportSeq");
         int reportSeq = Integer.parseInt(Seq);
@@ -129,14 +130,22 @@ public class AdminController {
         String result = httpServletRequest.getParameter("log");
         String rSeq = httpServletRequest.getParameter("reasonSeq");
         int reasonSeq = Integer.parseInt(rSeq);
-        map.put("id", id);
-        map.put("userId", userId);
-        map.put("result",result);
-        int cnt = reportService.update(reportSeq,id);
-        if(cnt == 1){
-            int count = blackListService.insert(userId,result,id,reasonSeq);
-            model.addAttribute("count",count);
-            return count;
+        String bSeq = httpServletRequest.getParameter("bListSeq");
+        int bListSeq = Integer.parseInt(bSeq);
+        String endD = httpServletRequest.getParameter("endDate");
+        int endDate = Integer.parseInt(endD);
+        int cnt = reportService.update(reportSeq, id);
+        if (cnt == 1) {
+            int ucount = userService.blackstack(userId);
+            model.addAttribute("ucount", ucount);
+            if (ucount == 1) {
+                int count = blackListService.insert(userId, result, id, reasonSeq);
+                model.addAttribute("count", count);
+                if (count == 1) {
+                    int bcount = blackUserService.insert(bListSeq, userId, endDate, id);
+                    return bcount;
+                }
+            }
         }
         model.addAttribute("cnt", cnt);
         return cnt;

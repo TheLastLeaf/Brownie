@@ -11,4 +11,6 @@ public interface AdminMapper {
 	AdminVO ReportCnt();
 
 	AdminVO BoardCnt();
+
+	AdminVO BlackUserCnt();
 }
