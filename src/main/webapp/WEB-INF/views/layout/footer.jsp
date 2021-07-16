@@ -103,6 +103,7 @@
 <!-- Search model end -->
 
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/board.js"></script>
 </body>
 
 </html>
