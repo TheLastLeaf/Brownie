@@ -38,7 +38,7 @@
                            UP_USER_ID  as UPUSERID,
                            LOG         as "LOG"
                     FROM REPORT
-                    order by STATUS, IN_DATE
+                    ORDER BY STATUS, IN_DATE DESC
                    )
              )
         WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN

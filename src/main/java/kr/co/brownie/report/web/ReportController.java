@@ -21,13 +21,15 @@ public class ReportController {
     @Resource(name = "reportService")
     ReportService reportService;
 
-    @GetMapping("/")
+    @GetMapping("/write")
     public String report(HttpServletRequest request, Model model, HttpSession session) {
         String userId = request.getParameter("userId");
         model.addAttribute("userId", userId);
         String id = (String) session.getAttribute("id");
         model.addAttribute("id", id);
-        return "free/report";
+        String log = request.getParameter("log");
+        model.addAttribute("log",log);
+        return "board/free/report";
     }
 
     @ResponseBody
@@ -37,16 +39,20 @@ public class ReportController {
         String content = servletRequest.getParameter("content");
         String[] reportNameList = servletRequest.getParameterValues("reportName[]");
         String userId = servletRequest.getParameter("userId");
+        String log = servletRequest.getParameter("log");
         map.put("content", content);
         map.put("reportName", Arrays.toString(reportNameList));
         map.put("id", id);
         map.put("userId", userId);
+        map.put("log", log);
+        System.out.println(map);
         if (id == null) {
             return "loginCheck";
         } else {
             if (reportService.insert(map) == 1) {
                 return "success";
             } else {
+                System.out.println(reportService.insert(map));
                 return "fail";
             }
         }
