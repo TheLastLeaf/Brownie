@@ -27,7 +27,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 p-0">
-                <c:forEach var="freeList" items="${freeList }" varStatus="status">
+                <c:forEach var="freeList" items="${boardPagingVO}" varStatus="status">
                     <div class="cl-item">
                         <div class="cl-pic">
                             <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png"

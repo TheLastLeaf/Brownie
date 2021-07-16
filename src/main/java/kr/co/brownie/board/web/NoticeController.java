@@ -54,7 +54,7 @@ public class NoticeController {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", httpSession.getAttribute("id"));
         map.put("boardKind", "notice");
-        map.put("keyword", keyword);
+        map.put("title", keyword);
         map.put("pageNum", pageNum);
         map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
 
