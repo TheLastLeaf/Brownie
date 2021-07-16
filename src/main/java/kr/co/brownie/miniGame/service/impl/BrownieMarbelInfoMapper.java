@@ -17,6 +17,8 @@ public interface BrownieMarbelInfoMapper {
     int insert(Map<String,Object> map);
 
     List<BrownieMarbelInfoVO> selectList(HashMap<String, Object> passmap);
+    
+    List<BrownieMarbelInfoVO> selectListPoint(List<Integer> list);
 
     BrownieMarbelInfoVO read(int boardSeq);
     

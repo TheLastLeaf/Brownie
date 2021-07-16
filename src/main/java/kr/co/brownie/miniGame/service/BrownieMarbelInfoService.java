@@ -10,6 +10,8 @@ public interface BrownieMarbelInfoService {
 	int insertBrownieMarbel(Map<String, Object> map);
 
 	List<BrownieMarbelInfoVO> getBrownieMarbelList(HashMap<String, Object> passmap);
+	
+	List<BrownieMarbelInfoVO> selectListPoint(List<Integer> list);
 
 	BrownieMarbelInfoVO getBrownieMarbel(int boardSeq);
 

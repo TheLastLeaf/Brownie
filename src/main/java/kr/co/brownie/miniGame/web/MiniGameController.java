@@ -35,8 +35,8 @@ public class MiniGameController {
 	@GetMapping(path={"", "/blueMarvel"})
 	public String brownieMain(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
 		//정보 로드하기
-		//String id = (String) session.getAttribute("id");
-		String id = "1797573825";
+		String id = (String) session.getAttribute("id");
+		id = "1797573825";
 		BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
 		HashMap<String, Object> param = new HashMap<>();
 		
@@ -67,22 +67,67 @@ public class MiniGameController {
 		
 		List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
 		System.out.println("logs:"+logs);
+		model.addAttribute("logs",logs);
 		
 		//DB에 있는 맵 가공 추출
 		
-		
 		HashMap<String, Object> passmap = transMap(player);
-		
 		//DB에 있는 랜드정보 가져오는것.
 		List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
-		
         model.addAttribute("infoList",brownieMarbelInfo);
         //
         
 		return "miniGame/blueMarvel";
 	}
+
+	/*
+	 * @GetMapping(path={"", "/blueMarvel"}) public String brownieMain(@RequestParam
+	 * Map<String, Object> map, Model model, HttpSession session) { //정보 로드하기
+	 * //String id = (String) session.getAttribute("id"); String id = "1797573825";
+	 * BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
+	 * HashMap<String, Object> param = new HashMap<>();
+	 * 
+	 * //처음 생성할때 if (player==null) { System.out.println("플레이어 데이터 생성"); String quest
+	 * = "race[x],beginer[x],barter[x],riddle[x],tothemoon[x],bet[x],dice[x]";
+	 * String recentMap = addMap();
+	 * 
+	 * param.put("userId", id); param.put("recentMap", recentMap);
+	 * param.put("quest", quest);
+	 * 
+	 * //플레이어 정보삽입 int cnt = this.miniGameService.insertPlayer(param); if(cnt==1) {
+	 * System.out.println("데이터 삽입 성공"); player =
+	 * this.miniGameService.selectPlayer(id); } }
+	 * 
+	 * System.out.println("player:"+player); model.addAttribute("player",player);
+	 * 
+	 * int round = player.getRound(); param.put("round", round); param.put("userId",
+	 * id);
+	 * 
+	 * List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
+	 * System.out.println("logs:"+logs);
+	 * 
+	 * //DB에 있는 맵 가공 추출 String recentMap = player.getRecentMap(); recentMap =
+	 * recentMap.replace("[", ""); recentMap = recentMap.replace("]", ""); String[]
+	 * str = recentMap.split(", "); int[] a =
+	 * Arrays.asList(str).stream().mapToInt(Integer::parseInt).toArray();
+	 * List<Integer> list = new ArrayList<>();
+	 * 
+	 * for(int n : a) { list.add(n); }
+	 * 
+	 * 
+	 * List<BrownieMarbelInfoVO> brownieMarbelInfo = new
+	 * ArrayList<BrownieMarbelInfoVO>(); for (int n : list) {
+	 * brownieMarbelInfo.add(this.miniGameService.selectInfo(n)); }
+	 * 
+	 * //DB에 있는 랜드정보 가져오는것. //List<BrownieMarbelInfoVO> brownieMarbelInfo =
+	 * this.miniGameService.getBrownieMarbelList(passmap);
+	 * 
+	 * model.addAttribute("infoList",brownieMarbelInfo); //
+	 * 
+	 * return "miniGame/blueMarvel"; }
+	 */	
 	
-	@ResponseBody
+	/*@ResponseBody
     @RequestMapping(value="/ajax.rndmapcreate", method=RequestMethod.POST)
     public List<BrownieMarbelInfoVO> rndMapCreate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
 		System.out.println("!!!!맵만드는것");
@@ -98,7 +143,11 @@ public class MiniGameController {
 		String dicetimes = servletRequest.getParameter("dicetimes");
 		int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
 		
-		String recentMap = addMap();
+		//String recentMap = addMap();
+		//ㅈ됬을때 쓸것 (비상 프로토콜)
+		List<Integer> list = addMapPoint();
+		String recentMap = list.toString();
+		
 		System.out.println("recentMap : "+recentMap);
 		System.out.println("position : "+position);
 		HashMap<String, Object> param = new HashMap<>();
@@ -117,10 +166,66 @@ public class MiniGameController {
 		
 		int cnt = this.miniGameService.updatePlayer(param);
 		BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
+		System.out.println("playerr"+player.getRecentMap());
+		
+		//HashMap<String, Object> passmap = transMapPoint(player);
+		HashMap<String, Object> passmap = transMapPoint(list);
+		//List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
+		List<BrownieMarbelInfoVO> brownieMarbelInfo = new ArrayList<BrownieMarbelInfoVO>();
+		
+		for (int n : list) {
+			brownieMarbelInfo.add(this.miniGameService.selectInfo(n));
+		}
+		
+		System.out.println("맵만들기끝"+cnt);
+		System.out.println(brownieMarbelInfo);
+		return brownieMarbelInfo;
+	}*/
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/ajax.rndmapcreate", method=RequestMethod.POST)
+	public List<BrownieMarbelInfoVO> rndMapCreate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+		System.out.println("!!!!맵만드는것");
+		//String id = (String) session.getAttribute("id");
+		String id = "1797573825";
+		
+		int position = Integer.parseInt(servletRequest.getParameter("position"));
+		int round = Integer.parseInt(servletRequest.getParameter("round"));
+		int hp = Integer.parseInt(servletRequest.getParameter("hp"));
+		String item	= servletRequest.getParameter("item");
+		int point = Integer.parseInt(servletRequest.getParameter("point"));
+		String quest = servletRequest.getParameter("quest");
+		String dicetimes = servletRequest.getParameter("dicetimes");
+		int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
+		
+		String recentMap = addMap();
+		//ㅈ됬을때 쓸것 (비상 프로토콜)
+		
+		System.out.println("recentMap : "+recentMap);
+		System.out.println("position : "+position);
+		HashMap<String, Object> param = new HashMap<>();
+		
+		param.put("position", position);
+		param.put("round", round);
+		param.put("hp", hp);
+		param.put("item", item);
+		param.put("point", point);
+		param.put("recentMap", recentMap);
+		param.put("quest", quest);
+		param.put("dicetimes", dicetimes);
+		param.put("recentHp", recentHp);
+		param.put("userId", id);
+		
+		
+		int cnt = this.miniGameService.updatePlayer(param);
+		BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
+		System.out.println("playerr"+player.getRecentMap());
 		
 		HashMap<String, Object> passmap = transMap(player);
 		List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
 		System.out.println("맵만들기끝"+cnt);
+		System.out.println(brownieMarbelInfo);
 		return brownieMarbelInfo;
 	}
 	
@@ -142,13 +247,6 @@ public class MiniGameController {
 		int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
 		
 		HashMap<String, Object> param = new HashMap<>();
-		//asdddddddddddddddddd
-		//asdddddddddddddddddd
-		//asdddddddddddddddddd
-		//asdddddddddddddddddd
-		//asdddddddddddddddddd
-		//asdddddddddddddddddd
-		//asdddddddddddddddddd
 		param.put("position", position);
 		param.put("round", round);
 		param.put("hp", hp);
@@ -177,10 +275,17 @@ public class MiniGameController {
 		
 		int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
 		System.out.println("UserPosition"+UserPosition);
+		
 		if(UserPosition==0) {
 			System.out.println("시작점 상점");
 			return 2;
 		}
+		if(UserPosition==0) {
+			System.out.println("시작점 상점");
+			return 2;
+		}
+		
+		
 		
 		int ObjPosition = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
 		BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(ObjPosition);
@@ -209,10 +314,75 @@ public class MiniGameController {
 		return array;
 	}
 	
+	public List<Integer> addMapPoint() {
+		List<Integer> list = new ArrayList<Integer>();
+		for(int i=0;i<15;i++) {
+			int ins = 0;
+			int d = (int)(Math.random() * 101);
+			if(94<=d&&d<=96) {
+				ins=46;
+			} else if (0<=d&&d<=25) {
+				ins=38;
+			} else if (26<=d&&d<=50) {
+				ins=42;
+			} else if (51<=d&&d<=60) {
+				ins=39;
+			} else if (61<=d&&d<=75) {
+				ins=47;
+			} else if (76<=d&&d<=80) {
+				ins=40;
+			} else if (81<=d&&d<=85) {
+				ins=44;
+			} else if (86<=d&&d<=90) {
+				ins=43;
+			} else if (91<=d&&d<=93) {
+				ins=41;
+			} else if (97<=d&&d<=100) {
+				ins=45;
+			}
+			list.add(ins);
+		}
+		
+		Collections.shuffle(list); 
+		Collections.shuffle(list); 
+		Collections.shuffle(list); 
+		
+		if(list.contains(47)) {
+			for(int i=0;i<list.size();i++) {
+				if(list.get(i)==47) {
+					int ins = 0;
+					int d = (int)(Math.random() * 101);
+					if(d==100) {
+						ins=68;
+					} else if (0<=d&&d<=55) {
+						ins=61;
+					} else if (56<=d&&d<=70) {
+						ins=62;
+					} else if (71<=d&&d<=80) {
+						ins=67;
+					} else if (81<=d&&d<=87) {
+						ins=64;
+					} else if (88<=d&&d<=93) {
+						ins=66;
+					} else if (94<=d&&d<=96) {
+						ins=65;
+					} else if (97<=d&&d<=99) {
+						ins=63;
+					}
+					list.set(i, ins);
+				}
+			}
+		}
+		
+		return list;
+	}
+	
 	
 	public HashMap<String, Object> transMap(BrownieMarbelVO player) {
 		//DB에 있는 맵 가공 추출
 		String recentMap = player.getRecentMap();
+		
+		System.out.println("transMap :"+recentMap);
 		recentMap = recentMap.replace("[", "");
 		recentMap = recentMap.replace("]", "");
 		String[] str = recentMap.split(", ");
@@ -228,6 +398,15 @@ public class MiniGameController {
 		
 		HashMap<String, Object> passmap = new HashMap<String, Object>();
 		passmap.put("randomNum", randomNum);
+		
+		return passmap;
+	}
+	
+	public HashMap<String, Object> transMapPoint(List<Integer> list) {
+		//DB에 있는 맵 가공 추출
+		
+		HashMap<String, Object> passmap = new HashMap<String, Object>();
+		passmap.put("randomNum", list);
 		
 		return passmap;
 	}

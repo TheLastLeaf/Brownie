@@ -66,4 +66,9 @@ public class BrownieMarbelInfoServiceImpl implements BrownieMarbelInfoService {
 
 	}
 
+	@Override
+	public List<BrownieMarbelInfoVO> selectListPoint(List<Integer> list) {
+		return brownieMarbelMapper.selectListPoint(list);
+	}
+
 }

@@ -18,6 +18,22 @@
         	#{item}
         </foreach>
     </select>
+    
+    <select id="selectListPoint" resultType="kr.co.brownie.miniGame.service.BrownieMarbelInfoVO">
+        SELECT SEQ      	 AS SEQ,
+               DEGREE      	 AS DEGREE,
+               KIND      	 AS KIND,
+               NAME      	 AS NAME,
+               BRIEF_EXPL    AS BRIEFEXPL,
+               DETAILED_EXPL AS DETAILEDEXPL,
+               FUNCTION      AS FUNCTION,
+               IMG_NAME      AS IMGNAME
+        FROM BROWNIE_MARBLE_INFO
+        WHERE SEQ IN
+        <foreach collection="list" item="type" index="index"  open="(" close=")" separator=",">
+            #{type.value}
+        </foreach>
+    </select>
 
     <select id="selectInfo" resultType="kr.co.brownie.miniGame.service.BrownieMarbelInfoVO">
 	    SELECT SEQ      	 AS SEQ,
@@ -82,6 +98,7 @@
 		FROM BROWNIE_MARBLE_LOG
 		WHERE USER_ID = #{userId}
 		AND ROUND = #{round}
+		ORDER BY LOG_SEQ DESC
     </select>
     
     <insert id="insertLog" parameterType="hashMap">

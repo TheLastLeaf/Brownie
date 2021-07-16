@@ -7,7 +7,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
 <style>
+.sideKick{
+	display: inline-block; 
+    float: left;
+    position: absolute;
+    background-color: cornflowerblue;
+    width: 450px;
+    height: 920px;
+    top: 700px;
+    border-radius: 10px;
+}
+
+
 .pan {
+	display: inline-block;
 	border-collapse: separate;
 	border-spacing: 6px;
 	border: 3px solid black;
@@ -345,24 +358,10 @@
 					"recentHp" : recentHp	
 			},
 			success : function(data) {
-				 //$(".pan").load(window.location.href + ".pan");
-				 //location.href='${pageContext.request.contextPath}/gallery/detail?boardSeq=${galleryVO.boardSeq}';
-				 
 				 recentMap = [];
 				 for (var i = 0; i < data.length; i++) {
 					 recentMap.push(data[i].seq);
 				 }
-				 
-				 /*recentMap = "[";
-				 for (var i = 0; i < data.length; i++) {
-					if(i!=0){
-						recentMap += ", "
-					}
-					recentMap += data[i].seq
-					if(i==14){
-						recentMap += "]"
-					}
-				}*/
 				
 				 $('.l1').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[0].kind+"/"+data[0].imgName);
 				 $('.l2').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[1].kind+"/"+data[1].imgName);
@@ -381,7 +380,7 @@
 				 $('.l15').css('background-image',"url('${pageContext.request.contextPath}/img/miniGame/"+data[14].kind+"/"+data[14].imgName);
 			},
 			error : function() {
-				alert("글이 등록되지 않았습니다.");
+				alert("맵생성 실패");
 			}
 		})
 	}
@@ -405,7 +404,7 @@
 				autoRenew();
 			},
 			error : function() {
-				alert("글이 등록되지 않았습니다.");
+				alert("효과 실패!");
 			}
 		})
 	}
@@ -445,7 +444,7 @@
 
 		status1.innerHTML = side1 + "!";
 
-		setTimeout('move(' + 9+ ')', 1900);
+		setTimeout('move(' + 12 + ')', 1900);
 	}
 	
 	//한번더! 주사위 더블이벤트
@@ -493,7 +492,7 @@
 			status1.innerHTML += ' 더블! 한접시 더!<br>';
 		}
 
-		setTimeout('move(' + diceTotal + ')', 2000);
+		setTimeout('move(' + side1 + ')', 2000);
 	}
 	
 	//상인
@@ -556,87 +555,94 @@
 <!-- Categories Grid Section Begin -->
 <section class="categories-grid-section spad">
 	<div class="container">
-	<div class="row">
-
-		<div style="margin-left: auto; margin-right: auto;">
-			<table class="pan">
-				<tbody>
-					<tr>
-						<td class="td_tb startLine corner l0">
-						</td>
-
-						<td class="td_tb l1">
-						</td>
-
-						<td class="td_tb l2">
-						</td>
-
-						<td class="td_tb l3">
-						</td>
-
-
-						<td class="td_tb rightUp corner l4">
-						</td>
-					</tr>
-					<!-- 세로축 -->
-					<tr class="verti">
-						<td class="td_rl l15">
-						</td>
-						
-						<td class="center" id="gameAlert1" colspan="3" rowspan="3">
-						
+		<div class="row">
+			<div style="margin-left: auto; margin-right: auto;">
+				<table class="pan">
+					<tbody>
+						<tr>
+							<td class="td_tb startLine corner l0"></td>
+							<td class="td_tb l1"></td>
+							<td class="td_tb l2"></td>
+							<td class="td_tb l3"></td>
+							<td class="td_tb rightUp corner l4"></td>
+						</tr>
+						<!-- 세로축 -->
+						<tr class="verti">
+							<td class="td_rl l15"></td>
+							<td class="center" id="gameAlert1" colspan="3" rowspan="3">
 								<div class="wrapper">
 									<div class="tamin">
 										<div id="dice-side-1" class="dicePic"></div>
 										<div id="dice-side-2" class="dicePic"></div>
 										<h2 id="status"></h2>
 									</div>
-									<button id="btnRoll" onclick="dice()" class="learn-more">LET'S<br>ROLL</button>
-								</div> 
-								
-						</td>
-						
-						<td class="td_rl l5">
-						</td>
-					</tr>
+									<button id="btnRoll" onclick="dice()" class="learn-more">
+										LET'S<br>ROLL
+									</button>
+								</div>
+							</td>
+							<td class="td_rl l5"></td>
+						</tr>
+						<tr class="verti">
+							<td class="td_rl l14"></td>
 
+							<td class="td_rl l6"></td>
+						</tr>
+						<tr class="verti">
+							<td class="td_rl l13"></td>
 
-					<tr class="verti">
-						<td class="td_rl l14">
-						</td>
-
-						<td class="td_rl l6">
-						</td>
-					</tr>
-
-					<tr class="verti">
-						<td class="td_rl l13">
-						</td>
-
-						<td class="td_rl l7">
-						</td>
-					</tr>
-					<!-- 세로축 -->
-					<tr style="margin-bottom: 30px">
-						<td class="td_tb leftDown corner l12">                           
-						</td>                                                        
-						<td class="td_tb l11">                                           
-						</td>                                                        
-						<td class="td_tb l10">                                           
-						</td>                                                        
-						<td class="td_tb l9">                                           
-						</td>                                                        
-						<td class="td_tb rightDown corner l8">                          
-						</td>                                                        
-					</tr>                                                            
-				</tbody>
-			</table>
-			<!-- 보드 끝 -->
-
-		</div>
-		<!-- 갤러리끝 -->
+							<td class="td_rl l7"></td>
+						</tr>
+						<!-- 세로축 -->
+						<tr style="margin-bottom: 30px">
+							<td class="td_tb leftDown corner l12"></td>
+							<td class="td_tb l11"></td>
+							<td class="td_tb l10"></td>
+							<td class="td_tb l9"></td>
+							<td class="td_tb rightDown corner l8"></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- 보드 끝 -->
+				
+                <div class="sidebar-option sideKick">
+                    <div class="best-of-post">
+                        <div style="padding: 10px; margin-top:30px;   overflow: overlay;   width: 390px;    height: 400px;    background-color: lightcyan;">
+	                        <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;"><span>GAME LOG</span></div>
+	                        <c:forEach var="log" items="${ logs }" varStatus="status">
+	                        	<p><i class="far fa-clock"></i>${ log.logSeq }</p>
+			                </c:forEach>
+                        </div>
+                        
+                        <div class="hp">
+                        	hp : 
+                        	<table class="" style = "width: 390px; background-color: floralwhite; border-radius: 1.3em;">
+								<tbody>
+									<tr>
+										<td class="hp"><img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png" /></td>
+										<td class="hp"><img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png" /></td>
+										<td class="hp"><img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png" /></td>
+										<td class="hp"><img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png" /></td>
+									</tr>
+								</tbody>
+							</table>
+                        </div>
+                        
+                        <!-- 시간나면 -->
+                        <div class="itemList">
+                        	
+                        </div>
+                        <!-- 시간나면 -->
+                        
+                    </div>
+                </div>
 			</div>
+		</div>
 	</div>
+	
+	
+	
+	
 </section>
 <!-- Categories Grid Section End -->
 <c:import url="../layout/footer.jsp"/>
