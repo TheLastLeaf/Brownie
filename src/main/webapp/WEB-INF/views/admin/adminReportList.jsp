@@ -22,7 +22,7 @@
 
 <script>
     function fn_submit(){
-        confirm("블랙리스트로 추가하시겠습니까?")
+        alert("블랙리스트로 추가하시겠습니까?")
         const userId = $(".userId").val();
         const log = $(".log").val();
         const reportSeq = $(".reportSeq").val();

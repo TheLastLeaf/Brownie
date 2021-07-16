@@ -23,9 +23,7 @@
     .adminMenu{
         cursor: pointer;
     }
-    .social-media{
-        display: inline !important;
-    }
+
 
 
 </style>
