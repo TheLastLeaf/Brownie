@@ -53,6 +53,7 @@
         const userId = $(".userId").val();
         const reportName = []
         const content = $(".content").val();
+        const log = $(".log").val();
 
         $("input[name='reportName']:checked").each(function (i) {
             reportName.push($(this).val())
@@ -61,14 +62,18 @@
             alert("신고 사유를 체크해주세요!")
             return false;
         }
+        console.log(userId)
+        console.log(reportName)
+        console.log(content)
 
         $.ajax({
-            url: "./report",
+            url: "./reportBoard",
             type: "POST",
             data: {
                 "userId": userId,
                 "reportName": reportName,
-                "content": content
+                "content": content,
+                "log":log
             },
             success: function (res) {
                 if (res === "success") {
@@ -126,6 +131,7 @@
     <div class="row">
         <div class="col text-center">
             <input type="hidden" name="userId" value="${userId}" class="userId">
+            <input type="hidden" name="log" value="${log}" class="log">
             <p>
             <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${userId}</h5>
             </p>

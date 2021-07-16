@@ -29,7 +29,7 @@
 
 <script>
     function fn_report(userId,log){
-        window.open("report?userId=" + userId +"&log="+log, "REPORT", "width=660, height=500, left=250,top=200");
+        window.open("/report/write?userId=" + userId +"&log="+log, "REPORT", "width=660, height=500, left=250,top=200");
     }
 </script>
 
@@ -158,7 +158,7 @@
                                     ml-3" onclick="replyLike(${replyVO.replySeq}, 0)"><i
                                             class="far fa-thumbs-up fa-flip-vertical"></i> ${replyVO.unlikeCnt}</button>
                                     <c:if test="${sessionScope.id != null}">
-                                        <button type="button" class="btn btn-outline-light ml-5"><i
+                                        <button type="button" class="btn btn-outline-light ml-5" onclick="fn_report('${replyVO.replyUpUserId}','${replyVO.replyContent}')"><i
                                                 class="fas fa-bomb"></i></button>
                                     </c:if>
                                 </div>
