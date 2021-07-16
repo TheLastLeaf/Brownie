@@ -161,7 +161,7 @@ input[name="position"] {
 						<div>
 							<input type="text" id="user_nick" class="input-value check_success" name="nickNameBox" placeholder="닉네임 변경 후 31일 동안 변경불가합니다*" value="${userOneSelect.nickName}">
 							<input type="hidden" name="nickNameHidden" value="${userOneSelect.nickName}">
-							<input type="text" id="regCheckMsg" value="[닉네임은 한글, 영문, 숫자만 가능하며 2-10자리 가능.]" style="display: none;"/>
+<!-- 							<div id="regCheckMsg"></div> -->
 						</div>
 						<!-- 포지션 선택 -->
 						<div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -224,18 +224,18 @@ input[name="position"] {
 			}
 		});
 		
-// 		$("#user_nick").change(function() {
-// 			$(".box button").attr("disabled", true);
-// 			var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
-// 			if (chk == true && $('#user_nick').hasClass("check_success")) {
-// 				$(".box button").removeAttr('disabled');
-// 				$(".box").removeClass("on");
-//			}
-//			else if(chk == false || $('#user_nick').hasClass("check_fail")) {
-// 				$(".box button").attr("disabled", true);
-// 				$(".box").addClass("on");
-// 			}
-// 		});
+		$("#user_nick").change(function() {
+			$(".box button").attr("disabled", true);
+			var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
+			if (chk == true && $('#user_nick').hasClass("check_success")) {
+				$(".box button").removeAttr('disabled');
+				$(".box").removeClass("on");
+			}
+			else if(chk == false || $('#user_nick').hasClass("check_fail")) {
+				$(".box button").attr("disabled", true);
+				$(".box").addClass("on");
+			}
+		});
 		var sel_file;
 
 		$(function() {
@@ -260,9 +260,9 @@ input[name="position"] {
 		}
 		
 		//엔터치면 문제발생함
-		var nickRegcheck = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,10}$/;
+		//영문, 숫자, 특수문자를 10자리 이상 포함하는 정규표현식
+		var nickRegcheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
 		$("#user_nick").keyup(function() {
-			//$(".box button").attr("disabled", "disabled");
 			$('#user_nick').removeClass('check_success');
 			$('#user_nick').removeClass('check_fail');
 			var user_nick = $('#user_nick').val();
