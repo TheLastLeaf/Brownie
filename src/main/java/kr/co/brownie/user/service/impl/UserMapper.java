@@ -40,4 +40,8 @@ public interface UserMapper {
 
 	int blackStack(String userId);
 
+	int userCount();
+
+	List<UserVO> userList(Map<String,Object> map);
+
 }

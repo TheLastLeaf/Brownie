@@ -139,4 +139,61 @@
         SET BLACK_STACK = BLACK_STACK + 1
         WHERE USER_ID = #{userId}
     </update>
+
+    <select id="userList" parameterType="hashMap" resultType="kr.co.brownie.user.service.UserVO">
+        <![CDATA[
+        SELECT USERID,
+               LOLID,
+               NICKNAME,
+               BLACKSTACK,
+               STATUS,
+               INDATE,
+               "UPDATE",
+               INUSERID,
+               UPUSERID,
+               USERPOSITION,
+               PERMITLEVEL,
+               USERLEVEL
+        FROM (SELECT ROWNUM AS RN,
+                     USERID,
+                     LOLID,
+                     NICKNAME,
+                     BLACKSTACK,
+                     STATUS,
+                     INDATE,
+                     "UPDATE",
+                     INUSERID,
+                     UPUSERID,
+                     USERPOSITION,
+                     PERMITLEVEL,
+                     USERLEVEL
+              FROM (
+                       SELECT BU.USER_ID       AS USERID,
+                              BU.LOL_ID        AS LOLID,
+                              BU.NICK_NAME     AS NICKNAME,
+                              BU.BLACK_STACK   AS BLACKSTACK,
+                              BU.STATUS        AS STATUS,
+                              BU.IN_DATE       AS INDATE,
+                              BU.UP_DATE       AS "UPDATE",
+                              BU.IN_USER_ID    AS INUSERID,
+                              BU.UP_USER_ID    AS UPUSERID,
+                              BU.USER_POSITION AS USERPOSITION,
+                              PM.PERMIT_LEVEL  AS PERMITLEVEL,
+                              BE.USER_LEVEL    AS USERLEVEL
+                       FROM BROWNIE_USER BU,
+                            PERMIT PM,
+                            BROWNIE_EXP BE
+                       WHERE BU.USER_ID = PM.USER_ID
+                         AND BU.USER_ID = BE.USER_ID
+                   )
+             )
+        WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN
+          AND RN <= ${contentPerPage} * ${currentPageNumber}
+        ]]>
+    </select>
+
+    <select id="userCount" resultType="int">
+        SELECT COUNT(*)
+        FROM BROWNIE_USER
+    </select>
 </mapper>

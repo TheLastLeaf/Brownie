@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface UserService {
+	int CONTENT_PER_PAGE = 10;
 
 	UserVO userOneSelect(String id) throws IOException;
 
@@ -38,4 +39,6 @@ public interface UserService {
 	int validating(String userNick);
 
 	int blackstack(String userId);
+
+	UserPagingVO userList(int currentPageNumber);
 }
