@@ -27,6 +27,31 @@
 </section>
 <!-- Details Hero Section End -->
 
+<style>
+    .skewXButton {
+        display: inline-block;
+        padding: 4px 12px 4px 12px;
+        background: #252525;
+        -webkit-transform: skewX(-10deg);
+        -ms-transform: skewX(-10deg);
+        transform: skewX(-10deg);
+        position: absolute;
+        right: 6px;
+        top: 0;
+    }
+
+    .skewXButton span {
+        -webkit-transform: skewX(10deg);
+        -ms-transform: skewX(10deg);
+        transform: skewX(10deg);
+        display: inline-block;
+        font-size: 12px;
+        color: #ffffff;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+</style>
+
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -34,7 +59,22 @@
             <div class="details-text">
                 <div class="dt-desc">
                     ${boardVO.content}
+                    <c:if test="${sessionScope.id != null and sessionScope.id == boardVO.boardInUserId}">
+                        <div class="d-flex flex-row-reverse">
+                            <form action="${pageContext.request.contextPath}/tip/delete" method="POST"
+                                  onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                                <input type="hidden" name="boardSeq" value="${boardSeq}"/>
+                                <button type="button" onclick="location.href='/tip/modify/${boardSeq}'"
+                                        class="skewXButton position-relative ml-3 mb-3"><span>Modify</span>
+                                </button>
+                                <button type="submit" onsubmit="return confirm('정말 삭제하시겠습니까?');"
+                                        class="skewXButton position-relative ml-3 mb-3"><span>Delete</span>
+                                </button>
+                            </form>
+                        </div>
+                    </c:if>
                 </div>
+
 
                 <div class="dt-author">
                     <div class="da-pic">
@@ -117,14 +157,20 @@
                                     </c:if>
                                 </div>
                                 <p>${replyVO.replyContent}</p>
-                                <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
-                                    <a href="javascript:commentReplyButton(${replyVO.replySeq})"
-                                       class="reply-btn position-relative ml-2 mb-2"><span>Reply</span></a>
-                                </c:if>
-                                <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
-                                    <a href="javascript:deleteReply(${replyVO.replySeq})"
-                                       class="reply-btn position-relative ml-2 mb-2"><span>Delete</span></a>
-                                </c:if>
+                                <form action="${pageContext.request.contextPath}/tip/details/${boardSeq}/reply/delete" method="POST"
+                                      onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                                    <input type="hidden" name="replySeq" value="${replyVO.replySeq}"/>
+                                    <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
+                                        <button type="button" onclick="commentReplyButton(${replyVO.replySeq})"
+                                                class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
+                                        </button>
+                                    </c:if>
+                                    <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
+                                        <button type="submit"
+                                                class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
+                                        </button>
+                                    </c:if>
+                                </form>
                             </div>
                         </div>
                     </c:forEach>

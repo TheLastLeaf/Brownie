@@ -2,9 +2,6 @@ package kr.co.brownie.common.web;
 
 import com.google.gson.JsonObject;
 import kr.co.brownie.common.service.CommonService;
-import kr.co.brownie.common.service.CommonVO;
-import kr.co.brownie.notice.service.NoticeService;
-import kr.co.brownie.notice.service.NoticeVO;
 import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.youtube.service.YouTubeService;
@@ -17,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,17 +32,13 @@ public class CommonController {
     @Resource(name = "freeService")
     FreeService freeService;
 
-    @Resource(name = "noticeService")
-    NoticeService noticeService;
-
-
     @GetMapping(path = {"", "index"})
     public String index(Model model) {
         //main youtube list
         List<YouTubeVO> youTubeVoList = youTubeService.selectList();
         model.addAttribute("youTubeVoList", youTubeVoList);
-        List<NoticeVO> noticeList = noticeService.noticeList();
-        model.addAttribute("noticeList",noticeList);
+//        List<NoticeVO> noticeList = noticeService.noticeList();
+//        model.addAttribute("noticeList",noticeList);
 
 		//상단 메뉴바 자유게시판에 마우스 오버 시 드롭다운 최근 게시물 5개
         List<FreeVO> recentList = freeService.selectRecentForMenu();

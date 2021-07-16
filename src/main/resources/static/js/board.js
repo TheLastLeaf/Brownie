@@ -12,12 +12,6 @@ function commentReplyButton(replySeq) {
     $("#" + replySeq).append(form);
 }
 
-function deleteReply(replySeq) {
-    if (confirm("정말 삭제하시겠습니까?")) {
-        location.href = "${pageContext.request.contextPath}/tip/details/${boardSeq}/delete/" + replySeq;
-    }
-}
-
 function boardLike(boardSeq, kind) {
     $.ajax({
         url: "/board/like/like.ajax",

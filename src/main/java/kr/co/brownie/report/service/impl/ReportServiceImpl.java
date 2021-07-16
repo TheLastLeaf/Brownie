@@ -1,17 +1,12 @@
 package kr.co.brownie.report.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
 import kr.co.brownie.report.service.ReportPagingVO;
-import kr.co.brownie.notice.service.PagingVO;
+import kr.co.brownie.report.service.ReportService;
 import org.springframework.stereotype.Service;
 
-import kr.co.brownie.report.service.ReportService;
-import kr.co.brownie.report.service.ReportVO;
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service("reportService")
 public class ReportServiceImpl implements ReportService {
@@ -48,5 +43,4 @@ public class ReportServiceImpl implements ReportService {
         map.put("id",id);
         return reportMapper.update(map);
     }
-
 }
