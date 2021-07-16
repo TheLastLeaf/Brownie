@@ -149,10 +149,6 @@ input.apple-switch:checked:after {
 		<div class="loader"></div>
 	</div>
 
-	<!-- 라인을 클릭했을때 라인에 따라 움직이는 gif 만들기 -->
-	<!-- <span style="text-align: right;"> -->
-	<!-- 	포인트 -->
-	<!-- </span> -->
 	<div class="container d-flex justify-content-end">Lv.백신 / exp : ${userExp}</div>
 	<div class="container">
 		<div class="row">
@@ -171,54 +167,50 @@ input.apple-switch:checked:after {
 					<label class="btn btn-danger btn-gmode Gmode">
 						<input type="radio" name="jb-radio" class="jb-radio-1">
 						일반게임
-						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Top.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
 						<input type="radio" name="jb-radio" class="jb-radio-2">
 						랭크게임
-						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Jungle.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
 						<input type="radio" name="jb-radio" class="jb-radio-3">
 						자유랭크
-						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Mid.png" /> -->
 					</label>
 					&nbsp;
 					<label class="btn btn-danger btn-gmode Gmode">
 						<input type="radio" name="jb-radio" class="jb-radio-4">
 						칼바람
-						<!-- 						<img src="${pageContext.request.contextPath}/img/lol/Position_Challenger-Bot.png" /> -->
 					</label>
 					&nbsp;
 				</div>
 
 				<br />
-
+				<p>모집할 포지션을 선택하세요</p>
 				<div style="margin-bottom: 3px; margin-top: 10px;" class="btn-group btn-group-toggle" data-toggle="buttons">
 					<label class="btn btn-danger position">
-						<input type="radio" name="jb-radio" class="jb-radio-1" value="top">
+						<input type="radio" name="top" class="jb-radio-1" value="top">
 						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
 					</label>
 					&nbsp;
 					<label class="btn btn-danger position">
-						<input type="radio" name="jb-radio" class="jb-radio-2" value="jun">
+						<input type="radio" name="jun" class="jb-radio-2" value="jun">
 						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
 					</label>
 					&nbsp;
 					<label class="btn btn-danger position">
-						<input type="radio" name="jb-radio" class="jb-radio-3" value="mid">
+						<input type="radio" name="mid" class="jb-radio-3" value="mid">
 						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
 					</label>
 					&nbsp;
 					<label class="btn btn-danger position">
-						<input type="radio" name="jb-radio" class="jb-radio-4" value="bot">
+						<input type="radio" name="bot" class="jb-radio-4" value="bot">
 						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
 					</label>
 					&nbsp;
 					<label class="btn btn-danger position">
-						<input type="radio" name="jb-radio" class="jb-radio-5" value="sup">
+						<input type="radio" name="sup" class="jb-radio-5" value="sup">
 						<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
 					</label>
 					&nbsp;
