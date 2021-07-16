@@ -7,4 +7,6 @@ public interface AdminService {
 
 	AdminVO BoardCnt();
 
+	AdminVO BlackUserCnt();
+
 }

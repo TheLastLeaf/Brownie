@@ -15,4 +15,5 @@ public class BlackUserVO {
     private Date upDate;
     private String inUserId;
     private String upUserId;
+    private String nickName;
 }

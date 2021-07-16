@@ -51,4 +51,13 @@
 			SYSDATE-7 AND SYSDATE) RB
 	</select>
 
+	<select id="BlackUserCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+		SELECT
+			COUNT(STATUS) AS BLACKUSERCNT
+		FROM
+			BLACK_USER
+		WHERE
+			UPPER(STATUS)='Y'
+	</select>
+
 </mapper>

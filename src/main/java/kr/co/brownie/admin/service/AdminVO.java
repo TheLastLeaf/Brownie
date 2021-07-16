@@ -15,4 +15,7 @@ public class AdminVO {
 	private int allBoardCnt;
 	private int recentBoardCnt;
 
+	//블랙유저 집계
+	private int blackUserCnt;
+
 }

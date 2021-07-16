@@ -23,9 +23,7 @@
     .adminMenu{
         cursor: pointer;
     }
-    .social-media{
-        display: inline !important;
-    }
+
 
 
 </style>
@@ -82,7 +80,7 @@
                                                     <li>
                                                         <div class="sm-icon"><i class="far fa-circle"></i></div>
                                                         <span class="adminMenu" onclick="location.href='admin/adminBlackList'">블랙 리스트</span>
-                                                        <div class="follow">52명</div>
+                                                        <div class="follow">${blackUserCnt.blackUserCnt}명</div>
                                                     </li>
                                                 </ul>
                                             </div>

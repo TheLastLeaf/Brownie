@@ -28,5 +28,8 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.BoardCnt();
 	}
 
+	@Override
+	public AdminVO BlackUserCnt() { return adminMapper.BlackUserCnt(); }
+
 
 }

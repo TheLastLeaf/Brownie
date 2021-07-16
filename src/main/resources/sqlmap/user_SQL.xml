@@ -148,4 +148,11 @@
 		WHERE 
 			NICK_NAME = '${userNick}'
 	</select>
+
+	<update id="blackStack" parameterType="String">
+		UPDATE BROWNIE_USER
+		SET BLACK_STACK = BLACK_STACK + 1
+		WHERE USER_ID = #{userId}
+	</update>
+
 </mapper>

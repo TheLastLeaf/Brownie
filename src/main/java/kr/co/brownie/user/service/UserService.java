@@ -36,4 +36,6 @@ public interface UserService {
 
 	// 아이디 중복체크
 	int validating(String userNick);
+
+	int blackstack(String userId);
 }
