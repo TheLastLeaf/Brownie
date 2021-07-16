@@ -261,7 +261,7 @@ input[name="position"] {
 		
 		//엔터치면 문제발생함
 		//영문, 숫자, 특수문자를 10자리 이상 포함하는 정규표현식
-		var nickRegcheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
+		var nickRegcheck = /[0-9]|[a-z]|[A-Z]|[가-힣]/;
 		$("#user_nick").keyup(function() {
 			$('#user_nick').removeClass('check_success');
 			$('#user_nick').removeClass('check_fail');
