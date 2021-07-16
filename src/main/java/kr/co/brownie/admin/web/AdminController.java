@@ -89,9 +89,14 @@ public class AdminController {
             model.addAttribute("message","alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
+        int currentPageNumber;
+        try {
+            currentPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("pageNum")), 1);
+        } catch (NullPointerException | NumberFormatException e) {
+            currentPageNumber = 1;
+        }
+        model.addAttribute("UserPagingVO", userService.userList(currentPageNumber));
         //유저 리스트 셀렉트
-        List<UserVO> userList = userService.selectList();
-        model.addAttribute("userList", userList);
         return "admin/adminMemberList"; //회원 리스트 화면
     }
 

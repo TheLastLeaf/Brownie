@@ -1,11 +1,14 @@
 package kr.co.brownie.user.service.impl;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import kr.co.brownie.blackList.service.BlackUserPagingVO;
+import kr.co.brownie.user.service.UserPagingVO;
 import org.springframework.stereotype.Service;
 
 import kr.co.brownie.user.service.UserService;
@@ -114,6 +117,24 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int blackstack(String userId) {
 		return userMapper.blackStack(userId);
+	}
+
+	@Override
+	public UserPagingVO userList(int currentPageNumber) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("contentPerPage", CONTENT_PER_PAGE);
+		map.put("currentPageNumber", currentPageNumber);
+
+		int total = userMapper.userCount();
+
+		return UserPagingVO.builder()
+				.userVOList(userMapper.userList(map))
+				.contentPerPage(CONTENT_PER_PAGE)
+				.startPageNumber((currentPageNumber - 1) / CONTENT_PER_PAGE + 1)
+				.currentPageNumber(currentPageNumber)
+				.endPageNumber(Math.min((currentPageNumber - 1) / CONTENT_PER_PAGE + 10, (total - 1) / CONTENT_PER_PAGE + 1))
+				.totalPageNumber((total - 1) / CONTENT_PER_PAGE + 1)
+				.build();
 	}
 
 }

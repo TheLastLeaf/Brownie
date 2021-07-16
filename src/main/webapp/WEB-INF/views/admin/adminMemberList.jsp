@@ -18,7 +18,11 @@
     </div>
 </section>
 <!-- Breadcrumb Section End -->
-
+<style>
+	.UserPageBottom {
+		padding-top: 50px;
+	}
+</style>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
@@ -36,7 +40,7 @@
 	                		<th>권한 레벨</th>
 	                		<th>상태</th>
 	                	</tr>
-	                	<c:forEach var="userList" items="${userList }"  varStatus="status">
+	                	<c:forEach var="userList" items="${UserPagingVO.userVOList}"  varStatus="status">
 		                	<tr>
 		                		<th>${status.index }</th>
 		                		<th>${userList.userId }</th>
@@ -61,17 +65,20 @@
 	                	</c:forEach>
 
 	                </table>
-	                <div>
-
-	                 <div class="pagination-item" style="padding-top: 50px;">
-		                 <a href="#"><span>Prev</span></a>
-		                 <a href="#"><span>1</span></a>
-		                 <a href="#"><span>2</span></a>
-		                 <a href="#"><span>3</span></a>
-		                 <a href="#"><span>Next</span></a>
-		             </div>
-
-	                </div>
+					<div class="UserPageBottom">
+						<div class="pagination-item">
+							<c:if test="${1 < UserPagingVO.startPageNumber}">
+								<a href="${pageContext.request.contextPath}/admin/adminMemberList?pageNum=${UserPagingVO.startPageNumber - 1}"><span>Prev</span></a>
+							</c:if>
+							<c:forEach var="pageNumber" begin="${UserPagingVO.startPageNumber}"
+									   end="${UserPagingVO.endPageNumber}">
+								<a href="${pageContext.request.contextPath}/admin/adminMemberList?pageNum=${pageNumber}"><span>${pageNumber}</span></a>
+							</c:forEach>
+							<c:if test="${UserPagingVO.endPageNumber < UserPagingVO.totalPageNumber}">
+								<a href="${pageContext.request.contextPath}/admin/adminMemberList?pageNum=${UserPagingVO.endPageNumber + 1}"><span>Next</span></a>
+							</c:if>
+						</div>
+					</div>
 
 	            </div>
             </div>
