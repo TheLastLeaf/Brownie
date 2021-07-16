@@ -33,6 +33,7 @@ public class ReplyVO {
     private Integer browniePoint;
 
     //BROWNIE_BOARD_REPLY_LIKE
+    private String likeKind;
     private Integer likeCnt;
     private Integer unlikeCnt;
 }

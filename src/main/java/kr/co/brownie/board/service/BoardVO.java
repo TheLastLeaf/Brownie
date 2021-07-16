@@ -43,6 +43,7 @@ public class BoardVO {
     private Integer hitCnt;
 
     //BROWNIE_BOARD_LIKE
+    private String likeKind;
     private Integer likeCnt;
     private Integer unlikeCnt;
 

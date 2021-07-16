@@ -59,9 +59,11 @@ public class TipController {
 
     @GetMapping({"", "/list"})
     public String list(Model model,
+                       HttpSession httpSession,
                        @RequestParam(defaultValue = "", required = false) String champion,
                        @RequestParam(defaultValue = "1", required = false) int pageNum) {
         Map<String, Object> map = new HashMap<>();
+        map.put("userId", httpSession.getAttribute("id"));
         map.put("boardKind", "tip");
         map.put("boardCategory", champion);
         map.put("pageNum", pageNum);
@@ -79,6 +81,7 @@ public class TipController {
                           Model model,
                           HttpServletRequest httpServletRequest) {
         Map<String, Object> map = new HashMap<>();
+        map.put("userId", httpServletRequest.getSession().getAttribute("id"));
         map.put("boardKind", "tip");
         map.put("boardSeq", boardSeq);
 
@@ -103,9 +106,6 @@ public class TipController {
         map.put("totalContent", totalContent);
 
         model.addAttribute("replyPagingVO", this.replyService.selectPagingList(map));
-
-        map.put("userId", httpServletRequest.getSession().getAttribute("id") == null ? "" : httpServletRequest.getSession().getAttribute("id").toString());
-        model.addAttribute("boardLikeVo", this.boardLikeService.select(map));
 
         return "tip/details";
     }

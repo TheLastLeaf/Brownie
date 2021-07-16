@@ -61,6 +61,44 @@
             }
         })
     }
+
+    function replyLike(replySeq, kind) {
+        $.ajax({
+            url: "/board/reply/like/like.ajax",
+            type: "POST",
+            data: {
+                replySeq: replySeq,
+                kind: kind
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                if (data.status === "ng") {
+                    alert(data.message);
+
+                    return;
+                }
+                const likeButton = $("div#" + replySeq + " .like");
+                likeButton.html("<i class=\"far fa-thumbs-up\"></i> " + data.replyLikeCount.likeCnt);
+                if (data.message === "1") {
+                    likeButton.removeClass("btn-outline-primary").addClass("btn-primary");
+                } else {
+                    likeButton.addClass("btn-outline-primary").removeClass("btn-primary");
+                }
+
+                const unlikeButton = $("div#" + replySeq + " .unlike");
+                unlikeButton.html("<i class=\"far fa-thumbs-up fa-flip-vertical\"></i> " + data.replyLikeCount.unlikeCnt);
+                if (data.message === "0") {
+                    unlikeButton.removeClass("btn-outline-danger").addClass("btn-danger");
+                } else {
+                    unlikeButton.addClass("btn-outline-danger").removeClass("btn-danger");
+                }
+            },
+            error: function () {
+                alert("문제가 발생하였습니다.");
+            }
+        })
+    }
 </script>
 
 <section class="details-hero-section set-bg"
@@ -111,7 +149,7 @@
                 <div class="text-center board-like">
                     <button type="button" class="like btn
                     <c:choose>
-                        <c:when test='${boardLikeVo != null and "1" eq boardLikeVo.kind}'>
+                        <c:when test='${boardVO.likeKind != null and boardVO.likeKind eq "1"}'>
                             btn-primary
                         </c:when>
                         <c:otherwise>
@@ -122,7 +160,7 @@
                     </button>
                     <button type="button" class="unlike btn
                     <c:choose>
-                        <c:when test='${boardLikeVo != null and "0" eq boardLikeVo.kind}'>
+                        <c:when test='${boardVO.likeKind != null and boardVO.likeKind eq "0"}'>
                             btn-danger
                         </c:when>
                         <c:otherwise>
@@ -149,17 +187,35 @@
                                 <h5>${replyVO.nickName}</h5>
                                 <span class="c-date">${replyVO.replyInDate}</span>
                                 <div class="float-right">
-                                    <button type="button" class="btn btn-outline-primary mr-3"><i
-                                            class="far fa-thumbs-up"></i> ${boardVO.likeCnt}</button>
-                                    <button type="button" class="btn btn-outline-danger ml-3"><i
-                                            class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</button>
+                                    <button type="button" class="like btn
+                                    <c:choose>
+                                        <c:when test='${replyVO.likeKind != null and replyVO.likeKind eq "1"}'>
+                                            btn-primary
+                                        </c:when>
+                                        <c:otherwise>
+                                            btn-outline-primary
+                                        </c:otherwise>
+                                    </c:choose>
+                                    mr-3" onclick="replyLike(${replyVO.replySeq}, 1)"><i
+                                            class="far fa-thumbs-up"></i> ${replyVO.likeCnt}</button>
+                                    <button type="button" class="unlike btn
+                                    <c:choose>
+                                        <c:when test='${replyVO.likeKind != null and replyVO.likeKind eq "0"}'>
+                                            btn-danger
+                                        </c:when>
+                                        <c:otherwise>
+                                            btn-outline-danger
+                                        </c:otherwise>
+                                    </c:choose>
+                                    ml-3" onclick="replyLike(${replyVO.replySeq}, 0)"><i
+                                            class="far fa-thumbs-up fa-flip-vertical"></i> ${replyVO.unlikeCnt}</button>
                                     <c:if test="${sessionScope.id != null}">
                                         <button type="button" class="btn btn-outline-light ml-5"><i
                                                 class="fas fa-bomb"></i></button>
                                     </c:if>
                                 </div>
                                 <p>${replyVO.replyContent}</p>
-                                <c:if test="${sessionScope.id ne null}">
+                                <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
                                     <a href="javascript:commentReplyButton(${replyVO.replySeq})"
                                        class="reply-btn position-relative ml-2 mb-2"><span>Reply</span></a>
                                 </c:if>

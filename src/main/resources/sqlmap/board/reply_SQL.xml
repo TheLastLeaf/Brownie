@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.board.reply.service.impl.ReplyMapper">
+    <insert id="insert" parameterType="hashMap">
+        INSERT INTO BROWNIE_BOARD_REPLY(
+        <trim suffixOverrides=",">
+            REPLY_CONTENT,
+            IN_USER_ID,
+            UP_USER_ID,
+            BOARD_SEQ,
+            <if test='headReplySeq != null and headReplySeq != ""'>HEAD_REPLY_SEQ,</if>
+            <if test='status != null and status != ""'>STATUS</if>
+        </trim>
+        ) VALUES (
+        <trim suffixOverrides=",">
+            #{replyContent},
+            #{userId},
+            #{userId},
+            #{boardSeq},
+            <if test='headReplySeq != null and headReplySeq != ""'>#{headReplySeq},</if>
+            <if test='status != null and status != ""'>#{status}</if>
+        </trim>
+        )
+    </insert>
+
+    <select id="selectList" parameterType="hashMap" resultType="kr.co.brownie.board.reply.service.ReplyVO">
+        <![CDATA[
+        SELECT LV,
+               REPLYSEQ,
+               REPLYCONTENT,
+               REPLYINDATE,
+               REPLYINUSERID,
+               REPLYUPDATE,
+               REPLYUPUSERID,
+               BOARDSEQ,
+               HEADREPLYSEQ,
+               BOARDSTATUS,
+               USERID,
+               LOLID,
+               NICKNAME,
+               BLACKSTACK,
+               USERSTATUS,
+               USERINDATE,
+               USERUPDATE,
+               USERINUSERID,
+               USERUPUSERID,
+               USERPOSITION,
+               BROWNIEPOINT,
+               LIKEKIND,
+               LIKECNT,
+               UNLIKECNT
+        FROM (SELECT ROWNUM AS RN,
+                     REPLY.*
+              FROM (SELECT LEVEL                                           AS LV,
+                           BROWNIE_BOARD_REPLY.REPLY_SEQ                   AS REPLYSEQ,
+                           BROWNIE_BOARD_REPLY.REPLY_CONTENT               AS REPLYCONTENT,
+                           BROWNIE_BOARD_REPLY.IN_DATE                     AS REPLYINDATE,
+                           BROWNIE_BOARD_REPLY.IN_USER_ID                  AS REPLYINUSERID,
+                           BROWNIE_BOARD_REPLY.UP_DATE                     AS REPLYUPDATE,
+                           BROWNIE_BOARD_REPLY.UP_USER_ID                  AS REPLYUPUSERID,
+                           BROWNIE_BOARD_REPLY.BOARD_SEQ                   AS BOARDSEQ,
+                           BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ              AS HEADREPLYSEQ,
+                           BROWNIE_BOARD_REPLY.STATUS                      AS BOARDSTATUS,
+                           BROWNIE_USER.USER_ID                            AS USERID,
+                           BROWNIE_USER.LOL_ID                             AS LOLID,
+                           BROWNIE_USER.NICK_NAME                          AS NICKNAME,
+                           BROWNIE_USER.BLACK_STACK                        AS BLACKSTACK,
+                           BROWNIE_USER.STATUS                             AS USERSTATUS,
+                           BROWNIE_USER.IN_DATE                            AS USERINDATE,
+                           BROWNIE_USER.UP_DATE                            AS USERUPDATE,
+                           BROWNIE_USER.IN_USER_ID                         AS USERINUSERID,
+                           BROWNIE_USER.UP_USER_ID                         AS USERUPUSERID,
+                           BROWNIE_USER.USER_POSITION                      AS USERPOSITION,
+                           BROWNIE_USER.BROWNIE_POINT                      AS BROWNIEPOINT,
+                           BROWNIE_BOARD_REPLY_LIKE.KIND                   AS LIKEKIND,
+                           NVL(BROWNIE_BOARD_REPLY_LIKE_CNT.LIKE_CNT, 0)   AS LIKECNT,
+                           NVL(BROWNIE_BOARD_REPLY_LIKE_CNT.UNLIKE_CNT, 0) AS UNLIKECNT
+                    FROM (SELECT *
+                          FROM BROWNIE_BOARD_REPLY
+                          WHERE BROWNIE_BOARD_REPLY.BOARD_SEQ = #{boardSeq}
+                         ) BROWNIE_BOARD_REPLY
+                             INNER JOIN BROWNIE_USER ON BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID
+                        LEFT OUTER JOIN (
+                        ]]>
+        <choose>
+            <when test="userId != null">
+                SELECT REPLY_SEQ,
+                KIND,
+                IN_DATE,
+                IN_USER_ID,
+                UP_DATE,
+                UP_USER_ID
+                FROM BROWNIE_BOARD_REPLY_LIKE
+                WHERE IN_USER_ID = #{userId}
+            </when>
+            <otherwise>
+                SELECT NULL AS REPLY_SEQ,
+                NULL AS KIND,
+                NULL AS IN_DATE,
+                NULL AS IN_USER_ID,
+                NULL AS UP_DATE,
+                NULL AS UP_USER_ID
+                FROM BROWNIE_BOARD_REPLY_LIKE
+            </otherwise>
+        </choose>
+        <![CDATA[
+        ) BROWNIE_BOARD_REPLY_LIKE ON BROWNIE_BOARD_REPLY_LIKE.REPLY_SEQ = BROWNIE_BOARD_REPLY.REPLY_SEQ
+                             LEFT OUTER JOIN (SELECT REPLY_SEQ,
+                                                     LIKE_CNT,
+                                                     UNLIKE_CNT
+                                              FROM (SELECT REPLY_SEQ, KIND FROM BROWNIE_BOARD_REPLY_LIKE) PIVOT (
+                                                  COUNT(*)
+                                                  FOR KIND
+                                                  IN (1 AS LIKE_CNT, 0 AS UNLIKE_CNT))) BROWNIE_BOARD_REPLY_LIKE_CNT
+                                             ON BROWNIE_BOARD_REPLY.REPLY_SEQ = BROWNIE_BOARD_REPLY_LIKE_CNT.REPLY_SEQ
+                    START WITH BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ IS NULL
+                    CONNECT BY PRIOR BROWNIE_BOARD_REPLY.REPLY_SEQ = BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ
+                   ) REPLY
+             )
+              ]]>
+        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+            <![CDATA[
+        WHERE #{contentPerPage} * (#{pageNum} - 1) < RN
+          AND RN <= #{contentPerPage} * #{pageNum}
+        ]]>
+        </if>
+    </select>
+
+    <select id="select" parameterType="hashMap" resultType="kr.co.brownie.board.reply.service.ReplyVO">
+        <![CDATA[
+        SELECT LV,
+               REPLYSEQ,
+               REPLYCONTENT,
+               REPLYINDATE,
+               REPLYINUSERID,
+               REPLYUPDATE,
+               REPLYUPUSERID,
+               BOARDSEQ,
+               HEADREPLYSEQ,
+               BOARDSTATUS,
+               USERID,
+               LOLID,
+               NICKNAME,
+               BLACKSTACK,
+               USERSTATUS,
+               USERINDATE,
+               USERUPDATE,
+               USERINUSERID,
+               USERUPUSERID,
+               USERPOSITION,
+               BROWNIEPOINT,
+               LIKEKIND,
+               LIKECNT,
+               UNLIKECNT
+        FROM (SELECT LEVEL                                           AS LV,
+                     BROWNIE_BOARD_REPLY.REPLY_SEQ                   AS REPLYSEQ,
+                     BROWNIE_BOARD_REPLY.REPLY_CONTENT               AS REPLYCONTENT,
+                     BROWNIE_BOARD_REPLY.IN_DATE                     AS REPLYINDATE,
+                     BROWNIE_BOARD_REPLY.IN_USER_ID                  AS REPLYINUSERID,
+                     BROWNIE_BOARD_REPLY.UP_DATE                     AS REPLYUPDATE,
+                     BROWNIE_BOARD_REPLY.UP_USER_ID                  AS REPLYUPUSERID,
+                     BROWNIE_BOARD_REPLY.BOARD_SEQ                   AS BOARDSEQ,
+                     BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ              AS HEADREPLYSEQ,
+                     BROWNIE_BOARD_REPLY.STATUS                      AS BOARDSTATUS,
+                     BROWNIE_USER.USER_ID                            AS USERID,
+                     BROWNIE_USER.LOL_ID                             AS LOLID,
+                     BROWNIE_USER.NICK_NAME                          AS NICKNAME,
+                     BROWNIE_USER.BLACK_STACK                        AS BLACKSTACK,
+                     BROWNIE_USER.STATUS                             AS USERSTATUS,
+                     BROWNIE_USER.IN_DATE                            AS USERINDATE,
+                     BROWNIE_USER.UP_DATE                            AS USERUPDATE,
+                     BROWNIE_USER.IN_USER_ID                         AS USERINUSERID,
+                     BROWNIE_USER.UP_USER_ID                         AS USERUPUSERID,
+                     BROWNIE_USER.USER_POSITION                      AS USERPOSITION,
+                     BROWNIE_USER.BROWNIE_POINT                      AS BROWNIEPOINT,
+                     BROWNIE_BOARD_REPLY_LIKE.KIND                   AS LIKEKIND,
+                     NVL(BROWNIE_BOARD_REPLY_LIKE_CNT.LIKE_CNT, 0)   AS LIKECNT,
+                     NVL(BROWNIE_BOARD_REPLY_LIKE_CNT.UNLIKE_CNT, 0) AS UNLIKECNT
+              FROM (SELECT *
+                    FROM BROWNIE_BOARD_REPLY
+                    WHERE BROWNIE_BOARD_REPLY.BOARD_SEQ = #{boardSeq}
+                   ) BROWNIE_BOARD_REPLY
+                       INNER JOIN BROWNIE_USER ON BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID
+        LEFT OUTER JOIN (
+        ]]>
+        <choose>
+            <when test="userId != null">
+                SELECT REPLY_SEQ,
+                KIND,
+                IN_DATE,
+                IN_USER_ID,
+                UP_DATE,
+                UP_USER_ID
+                FROM BROWNIE_BOARD_REPLY_LIKE
+                WHERE IN_USER_ID = #{userId}
+            </when>
+            <otherwise>
+                SELECT NULL AS REPLY_SEQ,
+                NULL AS KIND,
+                NULL AS IN_DATE,
+                NULL AS IN_USER_ID,
+                NULL AS UP_DATE,
+                NULL AS UP_USER_ID
+                FROM BROWNIE_BOARD_REPLY_LIKE
+            </otherwise>
+        </choose>
+        <![CDATA[
+        ) BROWNIE_BOARD_REPLY_LIKE ON BROWNIE_BOARD_REPLY_LIKE.REPLY_SEQ = BROWNIE_BOARD_REPLY.REPLY_SEQ
+                       LEFT OUTER JOIN (SELECT REPLY_SEQ,
+                                               LIKE_CNT,
+                                               UNLIKE_CNT
+                                        FROM (SELECT REPLY_SEQ, KIND FROM BROWNIE_BOARD_REPLY_LIKE) PIVOT (
+                                            COUNT(*)
+                                            FOR KIND
+                                            IN (1 AS LIKE_CNT, 0 AS UNLIKE_CNT))) BROWNIE_BOARD_REPLY_LIKE_CNT
+                                       ON BROWNIE_BOARD_REPLY.REPLY_SEQ = BROWNIE_BOARD_REPLY_LIKE_CNT.REPLY_SEQ
+              START WITH BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ IS NULL
+              CONNECT BY PRIOR BROWNIE_BOARD_REPLY.REPLY_SEQ = BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ
+             )
+        WHERE REPLYSEQ = #{replySeq}
+                  ]]>
+    </select>
+
+    <update id="update" parameterType="hashMap">
+        UPDATE BROWNIE_BOARD_REPLY
+        <set>
+            <if test='replyContent != null and replyContent != ""'>REPLY_CONTENT = #{replyContent},</if>
+            UP_DATE = SYSDATE,
+            UP_USER_ID = #{userId},
+            <if test='status != null and status != ""'>STATUS = #{status}</if>
+        </set>
+        WHERE BROWNIE_BOARD_REPLY.REPLY_SEQ = #{replySeq}
+    </update>
+
+    <delete id="delete" parameterType="hashMap">
+        DELETE
+        FROM BROWNIE_BOARD_REPLY
+        WHERE REPLY_SEQ = #{replySeq}
+    </delete>
+</mapper>
