@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.review.service.impl.ReviewMapper">
 	<select id="selectReviewList" resultType="kr.co.brownie.review.service.ReviewVO">
-		SELECT a.reviewSeq, a.userId, a.starCnt, a.reply, a.inDate, b.nick_name as inUserId
+		SELECT a.reviewSeq, a.userId, a.starCnt, a.reply, a.inDate, b.nick_name as inUserId , a.UPUSERID
 			FROM(
 			    SELECT 
-			        reviewSeq, userId, starCnt, reply, inDate, inUserId
+			        reviewSeq, userId, starCnt, reply, inDate, inUserId ,UPUSERID
 			    FROM(
 			        select 
 			            REVIEW_SEQ 	AS reviewSeq,
@@ -16,6 +16,7 @@
 			            REPLY 		AS reply,
 			            IN_DATE 	AS inDate,
 			            IN_USER_ID 	AS inUserId,
+			            UP_USER_ID AS UPUSERID,
 			            row_number()over(order by user_id desc) as rNum
 			        FROM REVIEW
 			        ) rv

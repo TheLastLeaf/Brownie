@@ -473,7 +473,7 @@ h1 {
 									</div>
 								</div>
 								<ul class="contextmenu" id="divContextmenu_${status.index }">
-									<li><a onclick="fn_declaration('${userOneSelect.upUserId}','${reviewVO.reply}')">신고하기</a></li>
+									<li><a onclick="fn_declaration('${reviewVO.upUserId}','${reviewVO.reply}')">신고하기</a></li>
 									<!-- 다른유저페이지로 이동->> -->
 									<li><a href="#">둘러보기</a></li>
 								</ul>
