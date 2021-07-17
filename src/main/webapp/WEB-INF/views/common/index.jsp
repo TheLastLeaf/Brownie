@@ -89,13 +89,13 @@
 														<th style="width: 30%">작성일</th>
 														<th style="width: 20%">작성자</th>
 													</tr>
-											<c:forEach items="${noticeList}" var="notice" begin="0" end="10">
-												<fmt:formatDate value="${notice.upDate}" type="both" var="indate" pattern="yyyy-MM-dd hh:mm:ss" />
+											<c:forEach items="${boardList}" var="board" begin="0" end="10">
+												<fmt:formatDate value="${board.boardUpDate}" type="both" var="indate" pattern="yyyy-MM-dd hh:mm:ss" />
 													<tr>
-														<th><span onclick="location.href='${notice.boardKind}/details/${notice.boardSeq}'" style="cursor: pointer">${notice.title}</span></th>
-														<th>${notice.boardKind}</th>
+														<th><span onclick="location.href='${board.boardKind}/details/${board.boardSeq}'" style="cursor: pointer">${board.title}</span></th>
+														<th>${board.boardKind.toUpperCase()}</th>
 														<th>${indate}</th>
-														<th>${notice.nickName}</th>
+														<th>${board.nickName}</th>
 													</tr>
 											</c:forEach>
 												</table>

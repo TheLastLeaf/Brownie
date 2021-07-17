@@ -1,6 +1,8 @@
 package kr.co.brownie.common.web;
 
 import com.google.gson.JsonObject;
+import kr.co.brownie.board.service.BoardService;
+import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.common.service.CommonService;
 import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.free.service.FreeVO;
@@ -32,13 +34,17 @@ public class CommonController {
     @Resource(name = "freeService")
     FreeService freeService;
 
+    @Resource(name = "boardService")
+    BoardService boardService;
+
     @GetMapping(path = {"", "index"})
     public String index(Model model) {
         //main youtube list
         List<YouTubeVO> youTubeVoList = youTubeService.selectList();
         model.addAttribute("youTubeVoList", youTubeVoList);
-//        List<NoticeVO> noticeList = noticeService.noticeList();
-//        model.addAttribute("noticeList",noticeList);
+
+        List<BoardVO> boardList = boardService.boardList();
+        model.addAttribute("boardList",boardList);
 
 		//상단 메뉴바 자유게시판에 마우스 오버 시 드롭다운 최근 게시물 5개
         List<FreeVO> recentList = freeService.selectRecentForMenu();

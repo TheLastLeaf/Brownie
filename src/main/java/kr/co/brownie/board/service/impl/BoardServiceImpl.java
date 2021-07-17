@@ -53,4 +53,9 @@ public class BoardServiceImpl implements BoardService {
 	public int delete(Map<String, Object> map) {
 		return this.boardMapper.delete(map);
 	}
+
+	@Override
+	public List<BoardVO> boardList() { return this.boardMapper.boardList(); }
+
+
 }

@@ -21,4 +21,6 @@ public interface BoardMapper {
 	int update(Map<String, Object> map);
 
 	int delete(Map<String, Object> map);
+
+	List<BoardVO> boardList();
 }
