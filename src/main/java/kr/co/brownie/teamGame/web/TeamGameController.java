@@ -35,10 +35,8 @@ public class TeamGameController {
     	Map<Integer, Object> teamPosition = new HashMap<>();
         for(TeamGameVO tgvo : teamGameList) {
             if(tgvo.getStatus().equals("y")){
-
                 int positionSeq = tgvo.getPositionSeq();
                 List<TeamGameVO> posiList = teamGameService.selectTeamGamePosition(positionSeq);
-                System.out.println("posiList : " + positionSeq + " : " + posiList);
                 teamPosition.put(positionSeq, posiList);
             }
         }
