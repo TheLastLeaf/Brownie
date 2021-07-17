@@ -7,32 +7,45 @@
 	namespace="kr.co.brownie.review.service.impl.ReviewMapper">
 	<select id="selectReviewList"
 		resultType="kr.co.brownie.review.service.ReviewVO">
-		SELECT rNum, a.reviewSeq, a.userId, a.starCnt, a.reply, a.inDate,
-			b.nick_name as inUserId , a.UPUSERID
-		FROM(
-		SELECT
-			rNum, reviewSeq, userId, starCnt, reply, inDate, inUserId , UPUSERID
-		FROM(
-		SELECT
-			REVIEW_SEQ AS reviewSeq,
-			USER_ID AS userId,
-			STAR_CNT AS starCnt,
-			REPLY AS reply,
-			IN_DATE AS inDate,
-			IN_USER_ID AS inUserId,
-			UP_USER_ID AS UPUSERID,
-			row_number()over(ORDER BY IN_DATE ASC) as rNum
-		FROM REVIEW
-			WHERE USER_ID = '${id}'
-			) rv
-			WHERE rNum BETWEEN ${startPost} and ${endPost}) a, BROWNIE_USER b
-			WHERE a.inUserId = b.user_id
-		<if test='searchType.equals("writerId")'>
-			AND LOWER(b.nick_name) LIKE LOWER('%'||'${keyword}'||'%')
-		</if>
-		<if test='searchType.equals("writeDate")'>
-			AND inDate = '${keyword}'
-		</if>
+		SELECT * FROM (
+	        SELECT  
+	            row_number()over(order by userId desc) as rNum,
+	            a.reviewSeq, 
+	            a.userId, 
+	            a.starCnt, 
+	            a.reply, 
+	            a.inDate, 
+	            b.nick_name as inUserId, 
+	            a.UPUSERID
+	         FROM(
+	             SELECT 
+	                    reviewSeq, 
+	                    userId, 
+	                    starCnt, 
+	                    reply, 
+	                    inDate, 
+	                    inUserId,
+	                    UPUSERID
+	             FROM(
+	                 select 
+	                     REVIEW_SEQ    AS reviewSeq,
+	                     USER_ID    AS userId,
+	                     STAR_CNT    AS starCnt,
+	                     REPLY       AS reply,
+	                     IN_DATE    AS inDate,
+	                     IN_USER_ID    AS inUserId,
+	                     UP_USER_ID  AS UPUSERID
+	                 FROM REVIEW WHERE USER_ID = '${id}') rv
+	             ) a, BROWNIE_USER b
+	            WHERE a.inUserId = b.user_id
+			<if test='searchType.equals("writerId")'>
+				AND LOWER(b.nick_name) LIKE LOWER('%'||'${keyword}'||'%')
+			</if>
+			<if test='searchType.equals("writeDate")'>
+				AND inDate = '${keyword}'
+			</if>
+			) d
+			where rNum BETWEEN ${startPost} and ${endPost}
 	</select>
 
 	<select id="countAllReview" resultType="int">
