@@ -1,19 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../../layout/header.jsp"/>
-<script>
-    function search() {
-        const type = $(".board-search>select>option:selected").val();
-        const query = $(".board-search>input[name=query]").val();
-
-        location.href = "?"
-            <c:if test='${champion ne null and champion ne ""}'>
-            + "champion=${champion}&"
-            </c:if>
-            + "type=" + type + "&query=" + query;
-    }
-</script>
-
 <style>
     .tip-board-img-thumbnail {
         height: 116px;
@@ -218,7 +205,7 @@
                            style="width: 200px; border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
                            placeholder="search"
                            value="${query}"/>
-                    <input type="button" onclick="search()"
+                    <input type="button" onclick="searchList()"
                            style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
                            value="search"/>
                 </div>

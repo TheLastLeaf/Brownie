@@ -74,8 +74,7 @@
                                 <button type="button" onclick="location.href='/tip/modify/${boardSeq}'"
                                         class="skewXButton position-relative ml-3 mb-3"><span>Modify</span>
                                 </button>
-                                <button type="submit" onsubmit="return confirm('정말 삭제하시겠습니까?');"
-                                        class="skewXButton position-relative ml-3 mb-3"><span>Delete</span>
+                                <button type="submit" class="skewXButton position-relative ml-3 mb-3"><span>Delete</span>
                                 </button>
                             </form>
                         </div>
@@ -190,7 +189,7 @@
                         </c:forEach>
                         <c:if test="${replyPagingVO.endPageNumber < replyPagingVO.totalPageNumber}">
                             <a href="?pageNum=${replyPagingVO.endPageNumber + 1}"><span>Next</span></a>
-                        </c:if>
+                        </c:if>.
                     </div>
                 </div>
                 <c:if test="${sessionScope.id ne null}">

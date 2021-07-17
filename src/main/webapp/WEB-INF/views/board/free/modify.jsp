@@ -148,7 +148,7 @@
                                 <c:if test="${permit_level eq 9 }">
                                     <div class="noticeCheck">
                                         <label class="noticeYn"><input type="checkbox" name="noticeYn" value="y"
-                                                <c:if test="${freeVO.noticeYn eq 'y'}">
+                                                <c:if test="${boardVO.noticeYn eq 'y'}">
                                                     checked
                                                 </c:if>
                                         /> &nbsp;&nbsp;공지사항여부</label>
@@ -156,15 +156,16 @@
                                 </c:if>
                                 <div class="dt-quote input-list">
                                     <span>제목</span>&nbsp;
-                                    <input type="text" value="${freeVO.title}" class="title" id="title" name="title"
+                                    <input type="text" value="${boardVO.title}" class="title" id="title" name="title"
                                            required="required"/>
                                 </div>
                                 <div class="content">
                                     <textarea class="summernote" name="content" id="content"
-                                              required="required">${freeVO.content}</textarea>
+                                              required="required">${boardVO.content}</textarea>
                                 </div>
                                 <div class="tag-box">
-                                    <input type="text" value="${freeVO.tags}" class="tags" id="tags" name="tags"/>
+                                    <input type="text" value="${boardVO.boardCategory}" class="tags" id="tags"
+                                           name="boardCategory"/>
                                 </div>
                                 <div class="submit-box">
                                     <input type="submit" value="수정완료" class="submit"/>
