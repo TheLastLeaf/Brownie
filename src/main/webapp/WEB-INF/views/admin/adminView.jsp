@@ -23,7 +23,9 @@
     .adminMenu{
         cursor: pointer;
     }
-
+    .list{
+        width: 840px;
+    }
 
 
 </style>
@@ -62,18 +64,18 @@
                                         <div class="sidebar-option">
                                             <div class="social-media">
                                                 <ul>
-                                                    <li>
+                                                    <li class="list">
                                                         <div class="sm-icon"><i class="far fa-user"></i></div>
                                                         <span class="adminMenu" onclick="location.href='admin/adminMemberList'">멤버 관리</span>
                                                         <div class="follow">${UserCnt.allUserCnt }명</div>
                                                     </li>
-                                                    <li>
-                                                        <div class="sm-icon"><i class="fas fa-address-card"></i></div>
+                                                    <li class="list">
+                                                        <div class="sm-icon"><i class="fas fa-bomb"></i></div>
                                                         <span class="adminMenu" onclick="location.href='admin/adminReportList'">신고 내역</span>
                                                         <div class="follow">${reportCnt.reportUserCnt }건</div>
                                                     </li>
-                                                    <li>
-                                                        <div class="sm-icon"><i class="far fa-circle"></i></div>
+                                                    <li class="list">
+                                                        <div class="sm-icon"><i class="fas fa-user-lock"></i></div>
                                                         <span class="adminMenu" onclick="location.href='admin/adminBlackList'">블랙 리스트</span>
                                                         <div class="follow">${blackUserCnt.blackUserCnt}명</div>
                                                     </li>
@@ -84,26 +86,6 @@
                                 </div>
                             </div>
                             <div class="or-skill">
-                                <div class="skill-item">
-                                    <p>오늘의 방문자 수</p>
-                                    <div id="bar-1" class="barfiller">
-                                        <span class="fill" data-percentage="40"></span>
-                                        <div class="tipWrap" style="display: inline;">
-                                            <span class="tip"></span>
-                                            <span class="bar-point">43</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="skill-item">
-                                    <p>누적 방문자 수</p>
-                                    <div id="bar-2" class="barfiller">
-                                        <span class="fill" data-percentage="80"></span>
-                                        <div class="tipWrap" style="display: inline;">
-                                            <span class="tip"></span>
-                                            <span class="bar-point">12412</span>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="skill-item">
                                     <p>신규 가입자 수</p>
                                     <div id="bar-5" class="barfiller">
