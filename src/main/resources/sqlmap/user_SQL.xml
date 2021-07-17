@@ -124,7 +124,6 @@
         WHEN MATCHED THEN
             UPDATE
             SET USER_POSITION = '${positions}',
-                UP_DATE       = SYSDATE,
                 UP_USER_ID    = '${id}'
     </update>
 

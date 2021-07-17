@@ -151,6 +151,7 @@ public class UserController {
 		// 포지션 변경하는 서비스
 		if (!map.get("positions").toString().equals(userVO.getUserPosition())) {
 			userService.updatePosition(map);
+			System.out.println("포지변경확인");
 			changed.add("포지션");
 		}
 
@@ -166,6 +167,7 @@ public class UserController {
 		}
 		else if (dateChecking.equals("yes")) {
 			if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
+				System.out.println("닉 안바꿨는데 여기 들어오는지 확인");
 				userService.updateNick(map);
 				changed.add("닉네임");
 			}
