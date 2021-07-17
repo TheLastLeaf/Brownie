@@ -100,7 +100,7 @@
                ROUND,
                LOG_SEQ                                                        AS LOGSEQ,
                DICENUM,
-               (SELECT to_char(TIME, 'rr.mm.dd/HH24:MI') FROM dual),
+               (SELECT to_char(TIME, 'rr.mm.dd/HH24:MI') FROM dual) AS TIME,
                OBJECT,
                ACT,
                RESULT
@@ -109,15 +109,12 @@
           AND ROUND = #{round}
         ORDER BY LOG_SEQ DESC
     </select>
-
+    
     <insert id="insertLog" parameterType="hashMap">
         INSERT INTO BROWNIE_MARBLE_LOG(USER_ID, ROUND, LOG_SEQ, DICENUM, TIME, OBJECT, ACT, RESULT)
         VALUES ( #{userId}
                , (SELECT ROUND FROM BROWNIE_MARBLE WHERE USER_ID = #{userId})
-               , (SELECT NVL(MAX(LOG_SEQ), 0) + 1
-                  FROM BROWNIE_MARBLE_LOG
-                  WHERE USER_ID = #{userId}
-                    AND ROUND = #{round})
+               , (SELECT NVL(MAX(LOG_SEQ),0)+1 FROM BROWNIE_MARBLE_LOG WHERE USER_ID=#{userId})
                , #{dicenum}
                , SYSDATE
                , #{object}

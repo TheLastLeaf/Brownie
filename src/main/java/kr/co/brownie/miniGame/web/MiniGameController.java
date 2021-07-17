@@ -4,6 +4,8 @@ import kr.co.brownie.miniGame.service.BrownieMarbelInfoService;
 import kr.co.brownie.miniGame.service.BrownieMarbelInfoVO;
 import kr.co.brownie.miniGame.service.BrownieMarbelLogVO;
 import kr.co.brownie.miniGame.service.BrownieMarbelVO;
+import kr.co.brownie.user.service.UserService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -18,6 +22,9 @@ import java.util.*;
 public class MiniGameController {
     @Resource(name = "brownieMarbelInfoService")
     BrownieMarbelInfoService miniGameService;
+    
+    @Resource(name = "userService")
+    UserService userService;
 
 	/*@GetMapping(path={"", "/blueMarvel"})
 	public String brownieMain(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
@@ -274,22 +281,25 @@ public class MiniGameController {
 
     @ResponseBody
     @RequestMapping(value = "/ajax.effectact", method = RequestMethod.POST)
-    public int effectAct(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+    public Map<String, Object> effectAct(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
         System.out.println("!!!!효과재생");
         String id = "1797573825";
 
         int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
+        int diceNum = Integer.parseInt(servletRequest.getParameter("diceNum"));
         System.out.println("UserPosition" + UserPosition);
 
 
         int ObjPosition = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
         BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(ObjPosition);
-        String objName = obj.getImgName();
+        String objName = obj.getName();
         String objDegree = obj.getDegree();
         String objKind = obj.getKind();
         System.out.println("objNum : " + ObjPosition);
         System.out.println("obj : " + obj.getImgName());
-
+        
+        int round = this.miniGameService.selectPlayer(id).getRound();
+        
         //변수저장
         HashMap<String, Object> param = new HashMap<String, Object>();
 
@@ -304,7 +314,6 @@ public class MiniGameController {
         System.out.println(param);
 
         int cntSavePoint = 0;
-        System.out.println("여기니?1");
         if (objDegree.equals("point")) {
             if (objKind.equals("site")) {
                 //포인트 저장 쿼리
@@ -315,22 +324,41 @@ public class MiniGameController {
         }
 
         int cntSaveLog = 0;
-        System.out.println("여기니?2");
         if (cntSavePoint == 1) {
             param.put("object", objName);
             param.put("act", "습득");
             param.put("userId", id);
             param.put("result", str[1] + objName);
-            param.put("dicenum", 3);
-            param.put("round", 3);
+            param.put("dicenum", diceNum);
+            param.put("round", round);
             System.out.println("param : " + param);
 
             cntSaveLog = this.miniGameService.insertLog(param);
         }
-        System.out.println("여기니?3");
-        return cntSaveLog;
+        
+        List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
+        
+        String log = "";
+        
+        for (BrownieMarbelLogVO vo : logs) {
+        	log += "<p class='logWrite'><i class='far fa-clock'></i> "+vo.getTime() + "(주사위눈 : "+vo.getDicenum()+") ("+vo.getResult()+")<br>"+vo.getRound()+"-"+vo.getLogSeq()+". "+vo.getUserId()+"은(는) "+vo.getObject()+"을(를) "+vo.getAct()+"했다.</p>";
+		}
+        
+        
+        map.put("log",log);
+        map.put("player",this.miniGameService.selectPlayer(id)); 
+        
+        try {
+        	map.put("site",this.userService.userOneSelect(id)); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        
+        return map;
     }
 
+    
+    
     public String addMap() {
         int dbSize = 68;
         Set<Integer> set = new HashSet<Integer>();

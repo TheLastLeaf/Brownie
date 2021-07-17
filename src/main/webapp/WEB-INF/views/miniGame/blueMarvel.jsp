@@ -269,7 +269,7 @@
     //설정
     var playerImg = "<div class='player'><i style='color: red;' class='fas fa-chess-knight fa-8x'></i></div>";
     var diceSpeed = 450; // 주사위속도
-
+    var side1 = 0;
 
     /* 주사위 */
     window.onload = function () {
@@ -422,13 +422,28 @@
             type: "post",
             data: {
                 "UserPosition": playerPos,
-                "ObjPosition": objposition
+                "ObjPosition": objposition,
+                "diceNum" : side1
             },
             success: function (data) {
-                if (data == 1) {
-                    console.log("data 삽입성공!");
-                    autoRenew();
-                }
+                   console.log("data 삽입성공!");
+                   
+                   console.log("player");
+                   console.log(data.player);
+                   console.log("player.point");
+                   console.log(data.player.point);
+                   console.log("player.hp");
+                   console.log(data.player.hp);
+                   console.log("log");
+                   console.log(data.log);
+                   console.log("site");
+                   console.log(data.site);
+                   
+                   $(".bpoint").html("마블게임 포인트 : "+data.site.browniePoint);
+                   $(".mpoint").html("브라우니 포인트 : "+data.player.point);
+                   $("#logHome").html(data.log);
+                   
+                   autoRenew();
             },
             error: function () {
                 alert("효과 실패!");
@@ -443,7 +458,7 @@
         const diceSide1 = document.getElementById('dice-side-1');
         const status1 = document.getElementById('status');
 
-        const side1 = Math.floor(Math.random() * 6) + 1;
+        side1 = Math.floor(Math.random() * 6) + 1;
 
         var num = side1;
 
@@ -482,7 +497,7 @@
         const diceSide2 = document.getElementById('dice-side-2');
         const status1 = document.getElementById('status');
 
-        const side1 = Math.floor(Math.random() * 6) + 1;
+        side1 = Math.floor(Math.random() * 6) + 1;
         const side2 = Math.floor(Math.random() * 6) + 1;
 
         var num = [side1, side2];
@@ -540,7 +555,8 @@
                 rightMove();
                 ++playerPos;
             } else if (12 <= playerPos && playerPos <= 15) {
-                upMove();
+
+            	upMove();
                 ++playerPos;
             }
             if (playerPos == 16) {
@@ -548,7 +564,7 @@
                 rndMapCreate();
             }
         }
-        effectAct();
+        effectAct(side1);
 
         setTimeout('diceApper()', 1500);
     }
@@ -637,12 +653,14 @@
                         <div style="padding: 10px; margin-top:30px;   overflow: overlay;   width: 390px;    height: 400px;    background-color: lightcyan;">
                             <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;">
                                 <span>GAME LOG</span></div>
+                                <div id="logHome">
                             <c:forEach var="log" items="${ logs }" varStatus="status">
                                 <p class="logWrite"><i class="far fa-clock"></i> ${log.time} (주사위눈 : ${log.dicenum})
                                     (${log.result})<br>
                                         ${ log.round }-${ log.logSeq }. ${log.userId}은(는) ${log.object}을(를) ${log.act}했다.
                                 </p>
                             </c:forEach>
+                            	</div>
                         </div>
 
                         <div style="padding-top: 10px;">
