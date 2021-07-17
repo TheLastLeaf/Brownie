@@ -63,4 +63,29 @@
             WHERE IN_DATE = '${keyword}'
         </if>
     </select>
+    
+    <insert id="insertReview" parameterType="hashMap">
+    	INSERT INTO REVIEW
+		    (
+		        REVIEW_SEQ,
+		        USER_ID, 
+		        STAR_CNT,
+		        REPLY,
+		        IN_DATE,
+		        UP_DATE,
+		        IN_USER_ID,
+		        UP_USER_ID
+		    ) 
+		    VALUES
+		    (
+		        REVIEW_SEQ.NEXTVAL,
+		        '${user_id}',
+		        ${rating},
+		        '${text}',
+		        SYSDATE,
+		        SYSDATE,
+		        '${sessionId}',
+		        '${sessionId}'
+		    )
+    </insert>
 </mapper>

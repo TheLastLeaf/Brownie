@@ -468,7 +468,7 @@
                             <!-- 검색 end-->
 
                             <c:forEach var="reviewVO" items="${reviewVOs}" varStatus="status">
-                                <div class="review col-4" id="divReview_${status.index }">
+                                <div class="review col-4" id="divReview_${status.index}">
                                     <div class="reviewDay">${reviewVO.inUserId}&nbsp;<fmt:formatDate
                                             value="${reviewVO.inDate}"/>
                                     </div>
@@ -494,7 +494,7 @@
                             </c:forEach>
                             <!-- 후기글 end-->
 
-                                <%-- location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType=" + searchType + "&keyword=" + keyword; --%>
+                            <%-- location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType=" + searchType + "&keyword=" + keyword; --%>
                             <!-- 페이징처리 begin -->
                             <div class="paging col-12 pagination-item" style="position: relative;">
                                 <div class="col-12" style="display: flex; justify-content: center;">
@@ -517,7 +517,7 @@
                                 </div>
                                 <div class="writeReview">
                                     <button type="button" class="btn btn-secondary" style="margin: 0px;"
-                                            onclick="fn_review()">후기작성
+                                            onclick="fn_review('${userOneSelect.upUserId}')">후기작성
                                     </button>
                                 </div>
                             </div>
@@ -670,8 +670,8 @@
             "width=800, height=680, left=250,top=200");
     }
 
-    function fn_review() {
-        window.open("/user/userReview", "userReview",
+    function fn_review(user_Id) {
+        window.open("/user/userReview/"+ user_Id, "userReview",
             "width=870, height=500, left=400,top=200");
     }
 

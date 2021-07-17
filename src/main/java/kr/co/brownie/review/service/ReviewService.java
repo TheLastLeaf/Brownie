@@ -1,14 +1,16 @@
 package kr.co.brownie.review.service;
 
-import kr.co.brownie.review.service.impl.ReviewPagingVO;
-
 import java.util.List;
+import java.util.Map;
+
+import kr.co.brownie.review.service.impl.ReviewPagingVO;
 
 public interface ReviewService {
 
-    List<ReviewVO> selectReviewList(ReviewPagingVO page);
+	List<ReviewVO> selectReviewList(ReviewPagingVO page);
 
-    int countAllReview(ReviewPagingVO page);
+	int countAllReview(ReviewPagingVO page);
 
+	void insertReview(Map<String, Object> map);
 
 }
