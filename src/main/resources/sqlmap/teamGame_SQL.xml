@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.teamGame.service.impl.TeamGameMapper">
-    <insert id="makeTeamGameRoom">
+    <insert id="insertTeamGameRoom">
         INSERT ALL
             INTO TEAMGAME_POSITION ( POSITION_SEQ
                                    , TOP
@@ -24,23 +24,27 @@
                       , MESSAGE
                       , POSITION_SEQ
                       , STATUS
+                      , LEADER
+                      , USE_POINT
                       , IN_DATE
                       , IN_USER_ID
                       , UP_DATE
                       , UP_USER_ID)
         VALUES ( TEAMGAME_SEQ.NEXTVAL
-               , #{inUserId}
+               , #{userId}
                , #{title}
                , #{matchMode}
                , #{message}
                , POSITION_SEQ.CURRVAL
                , #{status}
+               , #{leader}
+               , #{usePoint}
                , SYSDATE
-               , #{inUserId}
+               , #{userId}
                , SYSDATE
-               , #{inUserId})
+               , #{userId})
         SELECT *
-        FROM DUAL;
+        FROM DUAL
     </insert>
 
 	
@@ -55,6 +59,7 @@
                      ,MESSAGE as message
                      ,POSITION_SEQ as positionSeq
                      ,STATUS as status
+                     ,LEADER as leader
                      ,USE_POINT as usePoint
                      ,IN_DATE as inDate
                      ,IN_USER_ID as inUserId
@@ -62,6 +67,7 @@
                      ,UP_USER_ID as upUserId
                 from teamgame
                 where USE_POINT = 'y'
+                and LEADER = 'y'
                 order by TEAMGAME_SEQ desc
             )
         union all
@@ -74,6 +80,7 @@
                      ,MESSAGE as message
                      ,POSITION_SEQ as positionSeq
                      ,STATUS as status
+                     ,LEADER as leader
                      ,USE_POINT as usePoint
                      ,IN_DATE as inDate
                      ,IN_USER_ID as inUserId
@@ -81,6 +88,7 @@
                      ,UP_USER_ID as upUserId
                 from teamgame
                 where USE_POINT = 'n'
+                and LEADER = 'y'
                 order by TEAMGAME_SEQ desc
             )
 

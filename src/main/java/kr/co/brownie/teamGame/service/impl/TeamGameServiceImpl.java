@@ -16,8 +16,9 @@ public class TeamGameServiceImpl implements TeamGameService {
     TeamGameMapper teamGameMapper;
 
     @Override
-    public void makeTeamGameRoom(Map<String, Object> map) {
-        teamGameMapper.makeTeamGameRoom(map);
+    public void insertTeamGameRoom(Map<String, Object> map) {
+        System.out.println("service map : "+map);
+        teamGameMapper.insertTeamGameRoom(map);
     }
 
     @Override

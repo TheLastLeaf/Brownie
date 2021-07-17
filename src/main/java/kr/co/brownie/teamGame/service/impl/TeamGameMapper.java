@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Repository("teamGameMapper")
 public interface TeamGameMapper {
-    void makeTeamGameRoom(Map<String, Object> map);
+    void insertTeamGameRoom(Map<String, Object> map);
 
     List<TeamGameVO> selectTeamGameList();
 

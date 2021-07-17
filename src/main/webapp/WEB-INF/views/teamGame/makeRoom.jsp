@@ -136,43 +136,70 @@
 	}
 </style>
 
+<body>
 <script type="text/javascript">
 	function fn_chatRoom() {
 
-		//여기서 아작스로 정보 넘겨줄거임
-		const inUserId = "1786827527";
+		// 뭔짓을해도 값이 안나와서 화가 나내요... 일단주석
+		// const inUserId = "1786827527";
+		// var title = document.getElementById('roomTitle').value;
+		// var message = document.getElementById('roomContent').value;
+		//
+		// if(title == null || message == null){
+		// 	alert("??");
+		// }
+		//
+		// var matchMode = "";
+		// var actives = document.getElementsByClassName('active');
+		// if(actives == null){
+		// 	alert("방을 생성하려면 매치 모드를 선택해주세요");
+		// 	return;
+		// } else if(actives != null) {
+		// 	matchMode = actives[0].innerText;
+		// }
+		//
+		// var positions = document.getElementsByClassName('position');
+		// if(positions == null || positions.length < 1){
+		// 	alert("방을 생성하려면 모집할 포지션을 선택해주세요");
+		// 	return;
+		// }
+		// for(i = 0 ; i < positions.length ; i++){
+		// 	if(positions[i].classList.length==4){
+		// 		positions[i].id;
+		// 	}
+		// }
 
-		var actives = document.getElementsByClassName('active');
+		$.ajax({
+			url : "./insert-room",
+			type : "POST",
+			data : {
+				"userId": "1786827527"
+				,"title" : "자바스크립트개어려워요"
+				,"message" : "진짜 열받아 잘하고 싶어"
+				,"matchMode": "칼바람"
+				,"leader":"y"
+				,"status":"y"
+				,"usePoint":"n"
+				,"top": "y"
+				,"mid": "n"
+				,"sup": "n"
+				,"jun": "y"
+				,"bot": "n"
+			},
+			success : function(data) {
+				alert(data);
+				makeRoom = window.open("chatRoom", "chatingRoom",
+						"width=1100, height=720, scroll=no, left=500, top=250");
+				opener = makeRoom;
+				window.close();
+			},
+			error : function() {
+				alert("에러나요");
+			}
+		})
 
-		console.log(actives);
-
-		var title = document.getElementById('roomTitle').value;
-		var matchMode = "";
-		var message = document.getElementById('roomContent').value;
-		var status = "";
-		var top = "";
-		var mid = "";
-		var jun = "";
-		var sup = "";
-		var bot = "";
-
-		console.log(title);
-		console.log(matchMode);
-		console.log(message);
-		console.log(status);
-		console.log(top);
-		console.log(mid);
-		console.log(jun);
-		console.log(sup);
-		console.log(bot);
-
-		// makeRoom = window.open("chatRoom", "chatingRoom",
-		// 		"width=1100, height=720, scroll=no, left=500, top=250");
-		// opener = makeRoom;
-		// window.close();
 	}
 </script>
-<body>
 
 <div id="preloder">
 	<div class="loader"></div>
@@ -218,27 +245,27 @@
 			<br />
 			<p class="font-family-maple-light">모집할 포지션을 선택하세요</p>
 			<div style="margin-bottom: 3px; margin-top: 3px;" class="font-family-maple-light btn-group btn-group-toggle" data-toggle="buttons">
-				<label class="btn btn-danger position">
+				<label class="btn btn-danger position" id="top">
 					<input type="checkbox" name="positions" value="top">
 					<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt="" />
 				</label>
 				&nbsp;
-				<label class="btn btn-danger position">
+				<label class="btn btn-danger position" id="jun">
 					<input type="checkbox" name="positions" value="jun">
 					<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" alt="" />
 				</label>
 				&nbsp;
-				<label class="btn btn-danger position">
+				<label class="btn btn-danger position" id="mid">
 					<input type="checkbox" name="positions" value="mid">
 					<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt="" />
 				</label>
 				&nbsp;
-				<label class="btn btn-danger position">
+				<label class="btn btn-danger position" id="bot">
 					<input type="checkbox" name="positions" value="bot">
 					<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt="" />
 				</label>
 				&nbsp;
-				<label class="btn btn-danger position">
+				<label class="btn btn-danger position" id="sup">
 					<input type="checkbox" name="positions" value="sup">
 					<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" alt="" />
 				</label>

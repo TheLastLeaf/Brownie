@@ -2,6 +2,7 @@ package kr.co.brownie.teamGame.web;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import kr.co.brownie.teamGame.service.TeamGameVO;
 import kr.co.brownie.user.service.UserService;
@@ -10,8 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import kr.co.brownie.teamGame.service.TeamGameService;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -46,11 +46,6 @@ public class TeamGameController {
         return "teamGame/teamGame";
     }
 
-    @GetMapping("/chatRoom")
-    public String chatRoom() {
-        return "teamGame/chatRoom";
-    }
-
     @GetMapping("/makeRoom")
     public String makeRoom(Model model, HttpServletRequest servletRequest) throws IOException {
         //로그인 안하면 터져서 잠깐 주석처리했음
@@ -66,4 +61,18 @@ public class TeamGameController {
         return "teamGame/makeRoom";
     }
 
+
+    @ResponseBody
+    @RequestMapping(value="/insert-room", method= {RequestMethod.POST})
+    public void ajaxDayCheck(@RequestParam HashMap<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+        System.out.println("map : " + map);
+        teamGameService.insertTeamGameRoom(map);
+        System.out.println("----------ajax 끝남");
+    }
+
+
+    @GetMapping("/chatRoom")
+    public String chatRoom() {
+        return "teamGame/chatRoom";
+    }
 }
