@@ -1,4 +1,3 @@
-
 /* Drop Tables */
 
 DROP TABLE black_userr CASCADE CONSTRAINTS;
@@ -19,454 +18,450 @@ DROP TABLE teamgame CASCADE CONSTRAINTS;
 DROP TABLE BROWNIE_USER CASCADE CONSTRAINTS;
 
 
-
-
 /* Create Tables */
 
 CREATE TABLE black_list
 (
-	-- 신고 순번
-	report_seq number NOT NULL,
-	-- 용의자
-	user_id varchar2(30) NOT NULL,
-	result varchar2(4000),
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	-- 제재 항목 순번
-	black_seq number NOT NULL UNIQUE,
-	PRIMARY KEY (report_seq, user_id)
+    -- 신고 순번
+    report_seq number       NOT NULL,
+    -- 용의자
+    user_id    varchar2(30) NOT NULL,
+    result     varchar2(4000),
+    -- 작성일
+    in_date    date,
+    -- 작성자
+    in_user_id varchar2(30),
+    -- 수정일
+    up_date    date,
+    -- 수정자
+    up_user_id varchar2(30),
+    -- 제재 항목 순번
+    black_seq  number       NOT NULL UNIQUE,
+    PRIMARY KEY (report_seq, user_id)
 );
 
 
 CREATE TABLE black_reason
 (
-	-- 제재 항목 순번
-	black_seq number NOT NULL,
-	-- 제재 분류
-	black_kind_1 varchar2(100),
-	-- 제재 종류
-	black_kind_2 varchar2(100),
-	-- 작성일
-	in_date date,
-	-- 수정일
-	up_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (black_seq)
+    -- 제재 항목 순번
+    black_seq    number NOT NULL,
+    -- 제재 분류
+    black_kind_1 varchar2(100),
+    -- 제재 종류
+    black_kind_2 varchar2(100),
+    -- 작성일
+    in_date      date,
+    -- 수정일
+    up_date      date,
+    -- 작성자
+    in_user_id   varchar2(30),
+    -- 수정자
+    up_user_id   varchar2(30),
+    PRIMARY KEY (black_seq)
 );
 
 
 CREATE TABLE black_userr
 (
-	-- 신고 순번
-	report_seq number NOT NULL UNIQUE,
-	-- 용의자
-	user_id varchar2(30) NOT NULL UNIQUE,
-	-- 정지 기한
-	end_date date,
-	-- 상태
-	status char,
-	-- 작성일
-	in_date date,
-	-- 수정일
-	up_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (report_seq, user_id)
+    -- 신고 순번
+    report_seq number       NOT NULL UNIQUE,
+    -- 용의자
+    user_id    varchar2(30) NOT NULL UNIQUE,
+    -- 정지 기한
+    end_date   date,
+    -- 상태
+    status     char,
+    -- 작성일
+    in_date    date,
+    -- 수정일
+    up_date    date,
+    -- 작성자
+    in_user_id varchar2(30),
+    -- 수정자
+    up_user_id varchar2(30),
+    PRIMARY KEY (report_seq, user_id)
 );
 
 
 CREATE TABLE bluemarble
 (
-	-- 회원 아이디
-	user_id varchar2(30) NOT NULL,
-	-- 말 위치
-	position number,
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (user_id)
+    -- 회원 아이디
+    user_id    varchar2(30) NOT NULL,
+    -- 말 위치
+    position   number,
+    -- 작성일
+    in_date    date,
+    -- 작성자
+    in_user_id varchar2(30),
+    -- 수정일
+    up_date    date,
+    -- 수정자
+    up_user_id varchar2(30),
+    PRIMARY KEY (user_id)
 );
 
 
 CREATE TABLE BROWNIE_BOARD
 (
-	-- 게시글 번호
-	board_seq number NOT NULL,
-	-- 게시판 종류
-	board_kind varchar2(30),
-	-- 제목
-	title varchar2(200),
-	-- 내용
-	content varchar2(4000),
-	-- 공지 여부
-	notice_yn varchar2(1),
-	-- 상태
-	status varchar2(1),
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	-- 파일 순번
-	file_seq number,
-	-- 보조 순번
-	-- 한 게시글에 여러개의 파일이 올라갈 경우 카운트 됨
-	sub_seq number,
-	PRIMARY KEY (board_seq)
+    -- 게시글 번호
+    board_seq  number NOT NULL,
+    -- 게시판 종류
+    board_kind varchar2(30),
+    -- 제목
+    title      varchar2(200),
+    -- 내용
+    content    varchar2(4000),
+    -- 공지 여부
+    notice_yn  varchar2(1),
+    -- 상태
+    status     varchar2(1),
+    -- 작성일
+    in_date    date,
+    -- 작성자
+    in_user_id varchar2(30),
+    -- 수정일
+    up_date    date,
+    -- 수정자
+    up_user_id varchar2(30),
+    -- 파일 순번
+    file_seq   number,
+    -- 보조 순번
+    -- 한 게시글에 여러개의 파일이 올라갈 경우 카운트 됨
+    sub_seq    number,
+    PRIMARY KEY (board_seq)
 );
 
 
 CREATE TABLE BROWNIE_FILE
 (
-	-- 파일 순번
-	file_seq number NOT NULL UNIQUE,
-	-- 보조 순번
-	-- 한 게시글에 여러개의 파일이 올라갈 경우 카운트 됨
-	sub_seq number NOT NULL,
-	-- 파일 경로
-	file_path varchar2(2000),
-	-- 원본 명
-	original_name varchar2(2000),
-	-- 저장 명
-	save_name varchar2(1000),
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (file_seq, sub_seq)
+    -- 파일 순번
+    file_seq      number NOT NULL UNIQUE,
+    -- 보조 순번
+    -- 한 게시글에 여러개의 파일이 올라갈 경우 카운트 됨
+    sub_seq       number NOT NULL,
+    -- 파일 경로
+    file_path     varchar2(2000),
+    -- 원본 명
+    original_name varchar2(2000),
+    -- 저장 명
+    save_name     varchar2(1000),
+    -- 작성일
+    in_date       date,
+    -- 작성자
+    in_user_id    varchar2(30),
+    -- 수정일
+    up_date       date,
+    -- 수정자
+    up_user_id    varchar2(30),
+    PRIMARY KEY (file_seq, sub_seq)
 );
 
 
 CREATE TABLE BROWNIE_USER
 (
-	-- 회원 아이디
-	user_id varchar2(30) NOT NULL,
-	-- lol_id
-	lol_id varchar2(50),
-	-- 닉네임
-	nick_name varchar2(30),
-	-- 경고 횟수
-	black_stack number,
-	-- 활성화 여부
-	status char DEFAULT 'Y',
-	-- 작성일
-	in_date date,
-	-- up_date
-	up_date date,
-	-- in_user_id
-	in_user_id varchar2(30),
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (user_id)
+    -- 회원 아이디
+    user_id     varchar2(30) NOT NULL,
+    -- lol_id
+    lol_id      varchar2(50),
+    -- 닉네임
+    nick_name   varchar2(30),
+    -- 경고 횟수
+    black_stack number,
+    -- 활성화 여부
+    status      char DEFAULT 'Y',
+    -- 작성일
+    in_date     date,
+    -- up_date
+    up_date     date,
+    -- in_user_id
+    in_user_id  varchar2(30),
+    -- 수정자
+    up_user_id  varchar2(30),
+    PRIMARY KEY (user_id)
 );
 
 
 CREATE TABLE chat
 (
-	-- 채팅 순번
-	chat_seq number NOT NULL,
-	-- 채팅 내역
-	content varchar2(4000),
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	-- 모집 순번
-	teamgame_sep number NOT NULL,
-	-- 회원 아이디
-	user_id varchar2(30) NOT NULL,
-	PRIMARY KEY (chat_seq)
+    -- 채팅 순번
+    chat_seq     number       NOT NULL,
+    -- 채팅 내역
+    content      varchar2(4000),
+    -- 작성일
+    in_date      date,
+    -- 작성자
+    in_user_id   varchar2(30),
+    -- 수정일
+    up_date      date,
+    -- 수정자
+    up_user_id   varchar2(30),
+    -- 모집 순번
+    teamgame_sep number       NOT NULL,
+    -- 회원 아이디
+    user_id      varchar2(30) NOT NULL,
+    PRIMARY KEY (chat_seq)
 );
 
 
 CREATE TABLE EXP
 (
-	-- 회원 아이디
-	user_id varchar2(30) NOT NULL,
-	-- 경험치
-	exp number DEFAULT 0,
-	-- 레벨
-	USER_LEVEL number DEFAULT 0,
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (user_id)
+    -- 회원 아이디
+    user_id    varchar2(30) NOT NULL,
+    -- 경험치
+    exp        number DEFAULT 0,
+    -- 레벨
+    USER_LEVEL number DEFAULT 0,
+    -- 작성일
+    in_date    date,
+    -- 작성자
+    in_user_id varchar2(30),
+    -- 수정일
+    up_date    date,
+    -- 수정자
+    up_user_id varchar2(30),
+    PRIMARY KEY (user_id)
 );
 
 
 CREATE TABLE like_board
 (
-	-- 게시글 번호
-	board_seq number NOT NULL,
-	-- 좋아요 0 싫어요 1
-	kind varchar2(1) DEFAULT '0' NOT NULL,
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (board_seq)
+    -- 게시글 번호
+    board_seq  number                  NOT NULL,
+    -- 좋아요 0 싫어요 1
+    kind       varchar2(1) DEFAULT '0' NOT NULL,
+    -- 작성일
+    in_date    date,
+    -- 작성자
+    in_user_id varchar2(30),
+    -- 수정일
+    up_date    date,
+    -- 수정자
+    up_user_id varchar2(30),
+    PRIMARY KEY (board_seq)
 );
 
 
 CREATE TABLE like_reply
 (
-	-- 댓글 번호
-	reply_seq number NOT NULL,
-	-- 좋아요 0 싫어요 1
-	kind varchar2(1) DEFAULT '0' NOT NULL,
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (reply_seq)
+    -- 댓글 번호
+    reply_seq  number                  NOT NULL,
+    -- 좋아요 0 싫어요 1
+    kind       varchar2(1) DEFAULT '0' NOT NULL,
+    -- 작성일
+    in_date    date,
+    -- 작성자
+    in_user_id varchar2(30),
+    -- 수정일
+    up_date    date,
+    -- 수정자
+    up_user_id varchar2(30),
+    PRIMARY KEY (reply_seq)
 );
 
 
 CREATE TABLE permit
 (
-	-- 회원 아이디
-	user_id varchar2(30) NOT NULL,
-	-- 권한 레벨
-	permit_level number,
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (user_id)
+    -- 회원 아이디
+    user_id      varchar2(30) NOT NULL,
+    -- 권한 레벨
+    permit_level number,
+    -- 작성일
+    in_date      date,
+    -- 작성자
+    in_user_id   varchar2(30),
+    -- 수정일
+    up_date      date,
+    -- 수정자
+    up_user_id   varchar2(30),
+    PRIMARY KEY (user_id)
 );
 
 
 CREATE TABLE reply
 (
-	-- 댓글 번호
-	reply_seq number NOT NULL,
-	-- 댓글 내용
-	reply_content varchar2(4000),
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	-- 게시글 번호
-	board_seq number,
-	-- 댓글 번호
-	head_reply_seq number,
-	PRIMARY KEY (reply_seq)
+    -- 댓글 번호
+    reply_seq      number NOT NULL,
+    -- 댓글 내용
+    reply_content  varchar2(4000),
+    -- 작성일
+    in_date        date,
+    -- 작성자
+    in_user_id     varchar2(30),
+    up_date        date,
+    -- 수정자
+    up_user_id     varchar2(30),
+    -- 게시글 번호
+    board_seq      number,
+    -- 댓글 번호
+    head_reply_seq number,
+    PRIMARY KEY (reply_seq)
 );
 
 
 CREATE TABLE report
 (
-	-- 신고 순번
-	report_seq number NOT NULL,
-	-- 신고 내용
-	content varchar2(4000),
-	-- 피의자 아이디
-	report_name varchar2(30),
-	-- 회원 아이디
-	user_id varchar2(30) NOT NULL,
-	-- 작성일
-	in_date date,
-	-- 수정일
-	up_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정자
-	-- 
-	up_user_id varchar2(30),
-	PRIMARY KEY (report_seq)
+    -- 신고 순번
+    report_seq  number       NOT NULL,
+    -- 신고 내용
+    content     varchar2(4000),
+    -- 피의자 아이디
+    report_name varchar2(30),
+    -- 회원 아이디
+    user_id     varchar2(30) NOT NULL,
+    -- 작성일
+    in_date     date,
+    -- 수정일
+    up_date     date,
+    -- 작성자
+    in_user_id  varchar2(30),
+    -- 수정자
+    --
+    up_user_id  varchar2(30),
+    PRIMARY KEY (report_seq)
 );
 
 
 CREATE TABLE REVIEW
 (
-	-- 리뷰_seq
-	review_seq number NOT NULL,
-	-- 회원 아이디
-	user_id varchar2(30) NOT NULL,
-	-- 별 0~5개 평점
-	star_cnt number,
-	-- 한줄코멘트
-	reply varchar2(200),
-	-- date
-	in_date date,
-	-- 수정일
-	-- 
-	up_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (review_seq)
+    -- 리뷰_seq
+    review_seq number       NOT NULL,
+    -- 회원 아이디
+    user_id    varchar2(30) NOT NULL,
+    -- 별 0~5개 평점
+    star_cnt   number,
+    -- 한줄코멘트
+    reply      varchar2(200),
+    -- date
+    in_date    date,
+    -- 수정일
+    --
+    up_date    date,
+    -- 작성자
+    in_user_id varchar2(30),
+    -- 수정자
+    up_user_id varchar2(30),
+    PRIMARY KEY (review_seq)
 );
 
 
 CREATE TABLE teamgame
 (
-	-- 모집 순번
-	teamgame_sep number NOT NULL,
-	-- 회원 아이디
-	user_id varchar2(30) NOT NULL,
-	-- 모집 제목
-	title varchar2(100),
-	-- 매치 모드
-	match_mode varchar2(10),
-	-- 메시지
-	message varchar2(1000),
-	-- 포지션
-	position char,
-	-- 접속 상태
-	status char,
-	-- 작성일
-	in_date date,
-	-- 작성자
-	in_user_id varchar2(30),
-	-- 수정일
-	up_date date,
-	-- 수정자
-	up_user_id varchar2(30),
-	PRIMARY KEY (teamgame_sep, user_id)
+    -- 모집 순번
+    teamgame_sep number       NOT NULL,
+    -- 회원 아이디
+    user_id      varchar2(30) NOT NULL,
+    -- 모집 제목
+    title        varchar2(100),
+    -- 매치 모드
+    match_mode   varchar2(10),
+    -- 메시지
+    message      varchar2(1000),
+    -- 포지션
+    position     char,
+    -- 접속 상태
+    status       char,
+    -- 작성일
+    in_date      date,
+    -- 작성자
+    in_user_id   varchar2(30),
+    -- 수정일
+    up_date      date,
+    -- 수정자
+    up_user_id   varchar2(30),
+    PRIMARY KEY (teamgame_sep, user_id)
 );
-
 
 
 /* Create Foreign Keys */
 
 ALTER TABLE black_userr
-	ADD FOREIGN KEY (report_seq, user_id)
-	REFERENCES black_list (report_seq, user_id)
+    ADD FOREIGN KEY (report_seq, user_id)
+        REFERENCES black_list (report_seq, user_id)
 ;
 
 
 ALTER TABLE black_list
-	ADD FOREIGN KEY (black_seq)
-	REFERENCES black_reason (black_seq)
+    ADD FOREIGN KEY (black_seq)
+        REFERENCES black_reason (black_seq)
 ;
 
 
 ALTER TABLE BROWNIE_BOARD_LIKE
-	ADD FOREIGN KEY (board_seq)
-	REFERENCES BROWNIE_BOARD (board_seq)
+    ADD FOREIGN KEY (board_seq)
+        REFERENCES BROWNIE_BOARD (board_seq)
 ;
 
 
 ALTER TABLE BROWNIE_BOARD_REPLY
-	ADD FOREIGN KEY (board_seq)
-	REFERENCES BROWNIE_BOARD (board_seq)
+    ADD FOREIGN KEY (board_seq)
+        REFERENCES BROWNIE_BOARD (board_seq)
 ;
 
 
 ALTER TABLE BROWNIE_BOARD
-	ADD FOREIGN KEY (file_seq, sub_seq)
-	REFERENCES BROWNIE_FILE (file_seq, sub_seq)
+    ADD FOREIGN KEY (file_seq, sub_seq)
+        REFERENCES BROWNIE_FILE (file_seq, sub_seq)
 ;
 
 
 ALTER TABLE black_list
-	ADD FOREIGN KEY (user_id)
-	REFERENCES BROWNIE_USER (user_id)
+    ADD FOREIGN KEY (user_id)
+        REFERENCES BROWNIE_USER (user_id)
 ;
 
 
 ALTER TABLE bluemarble
-	ADD FOREIGN KEY (user_id)
-	REFERENCES BROWNIE_USER (user_id)
+    ADD FOREIGN KEY (user_id)
+        REFERENCES BROWNIE_USER (user_id)
 ;
 
 
 ALTER TABLE EXP
-	ADD FOREIGN KEY (user_id)
-	REFERENCES BROWNIE_USER (user_id)
+    ADD FOREIGN KEY (user_id)
+        REFERENCES BROWNIE_USER (user_id)
 ;
 
 
 ALTER TABLE permit
-	ADD FOREIGN KEY (user_id)
-	REFERENCES BROWNIE_USER (user_id)
+    ADD FOREIGN KEY (user_id)
+        REFERENCES BROWNIE_USER (user_id)
 ;
 
 
 ALTER TABLE report
-	ADD FOREIGN KEY (user_id)
-	REFERENCES BROWNIE_USER (user_id)
+    ADD FOREIGN KEY (user_id)
+        REFERENCES BROWNIE_USER (user_id)
 ;
 
 
 ALTER TABLE REVIEW
-	ADD FOREIGN KEY (user_id)
-	REFERENCES BROWNIE_USER (user_id)
+    ADD FOREIGN KEY (user_id)
+        REFERENCES BROWNIE_USER (user_id)
 ;
 
 
 ALTER TABLE teamgame
-	ADD FOREIGN KEY (user_id)
-	REFERENCES BROWNIE_USER (user_id)
+    ADD FOREIGN KEY (user_id)
+        REFERENCES BROWNIE_USER (user_id)
 ;
 
 
 ALTER TABLE BROWNIE_BOARD_REPLY_LIKE
-	ADD FOREIGN KEY (reply_seq)
-	REFERENCES BROWNIE_BOARD_REPLY (reply_seq)
+    ADD FOREIGN KEY (reply_seq)
+        REFERENCES BROWNIE_BOARD_REPLY (reply_seq)
 ;
 
 
 ALTER TABLE BROWNIE_BOARD_REPLY
-	ADD FOREIGN KEY (head_reply_seq)
-	REFERENCES reply (reply_seq)
+    ADD FOREIGN KEY (head_reply_seq)
+        REFERENCES reply (reply_seq)
 ;
 
 
 ALTER TABLE chat
-	ADD FOREIGN KEY (teamgame_sep, user_id)
-	REFERENCES teamgame (teamgame_sep, user_id)
+    ADD FOREIGN KEY (teamgame_sep, user_id)
+        REFERENCES teamgame (teamgame_sep, user_id)
 ;
-
 
 
 /* Comments */

@@ -22,19 +22,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/gallery")
 public class GalleryController {
+    private final int size = 18;
     @Resource(name = "galleryService")
     GalleryService galleryService;
-
     @Resource(name = "boardService")
     BoardService boardService;
-
     @Resource(name = "replyService")
     ReplyService replyService;
-
     @Resource(name = "commonService")
     CommonService commonService;
-
-    private final int size = 18;
 
     @GetMapping({"", "/list"})
     public String galleryList(@RequestParam Map<String, Object> map, Model model, HttpSession session) {

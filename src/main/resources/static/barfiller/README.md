@@ -11,6 +11,7 @@ A simple jQuery plugin that gives you percentage-based animated bar filling...
 Set up some HTML like the following...
 
 ```html
+
 <div id="bar1" class="barfiller">
     <span class="tip"></span>
     <span class="fill" data-percentage="50"></span>
@@ -20,7 +21,7 @@ Set up some HTML like the following...
 And then call Barfiller on it...
 
 ```javascript
-$(document).ready(function(){
+$(document).ready(function () {
     $('#bar1').barfiller();
 });
 ```

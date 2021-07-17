@@ -37,6 +37,8 @@ public class ReviewPagingVO {
 
     // 내가 쓸 아이디
     private String id;
+    private String searchType = "";
+    private String keyword = "";
 
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
@@ -67,9 +69,6 @@ public class ReviewPagingVO {
             return "&searchType=" + searchType + "&keyword=" + keyword;
         }
     }
-
-    private String searchType = "";
-    private String keyword = "";
 
     public String getSearchType() {
         return searchType;
