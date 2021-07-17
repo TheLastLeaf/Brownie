@@ -189,7 +189,7 @@
                         </c:forEach>
                         <c:if test="${replyPagingVO.endPageNumber < replyPagingVO.totalPageNumber}">
                             <a href="?pageNum=${replyPagingVO.endPageNumber + 1}"><span>Next</span></a>
-                        </c:if>.
+                        </c:if>
                     </div>
                 </div>
                 <c:if test="${sessionScope.id ne null}">

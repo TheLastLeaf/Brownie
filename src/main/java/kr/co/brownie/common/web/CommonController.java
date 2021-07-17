@@ -2,12 +2,9 @@ package kr.co.brownie.common.web;
 
 import com.google.gson.JsonObject;
 import kr.co.brownie.board.service.BoardService;
-import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.common.service.CommonService;
 import kr.co.brownie.free.service.FreeService;
-import kr.co.brownie.free.service.FreeVO;
 import kr.co.brownie.youtube.service.YouTubeService;
-import kr.co.brownie.youtube.service.YouTubeVO;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -38,17 +37,19 @@ public class CommonController {
     BoardService boardService;
 
     @GetMapping(path = {"", "index"})
-    public String index(Model model) {
-        //main youtube list
-        List<YouTubeVO> youTubeVoList = youTubeService.selectList();
-        model.addAttribute("youTubeVoList", youTubeVoList);
+    public String index(HttpSession httpSession,
+                        Model model) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", httpSession.getAttribute("id"));
+        map.put("pageNum", 1);
+        map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
+        model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
 
-        List<BoardVO> boardList = boardService.boardList();
-        model.addAttribute("boardList",boardList);
+        //main youtube list
+        model.addAttribute("youTubeVoList", youTubeService.selectList());
 
 		//상단 메뉴바 자유게시판에 마우스 오버 시 드롭다운 최근 게시물 5개
-        List<FreeVO> recentList = freeService.selectRecentForMenu();
-        model.addAttribute("recentList", recentList);
+        model.addAttribute("recentList", freeService.selectRecentForMenu());
 
         return "common/index";
     }

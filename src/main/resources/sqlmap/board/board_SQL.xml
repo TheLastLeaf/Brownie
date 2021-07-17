@@ -431,22 +431,4 @@
         FROM BROWNIE_BOARD
         WHERE BOARD_SEQ = #{boardSeq}
     </delete>
-
-    <select id="boardList" resultType="kr.co.brownie.board.service.BoardVO">
-        SELECT A.BOARD_SEQ         AS BOARDSEQ,
-               LOWER(A.BOARD_KIND) AS BOARDKIND,
-               A.BOARD_CATEGORY    AS BOARDCATEGORY,
-               A.TITLE             AS TITLE,
-               A.CONTENT           AS CONTENT,
-               A.NOTICE_YN         AS NOTICEYN,
-               A.STATUS            AS STATUS,
-               A.IN_DATE           AS INDATE,
-               A.IN_USER_ID        AS INUSERID,
-               A.UP_DATE           AS BOARDUPDATE,
-               A.UP_USER_ID        AS UPUSERID,
-               B.NICK_NAME         AS NICKNAME
-        FROM BROWNIE_BOARD A,
-             BROWNIE_USER B
-        WHERE A.UP_USER_ID = B.USER_ID
-    </select>
 </mapper>
