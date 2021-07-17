@@ -2,12 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/nunu2.jpg">
+<section class="breadcrumb-section set-bg spad"
+         data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/nunu2.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
-                    <h3> </h3>
+                    <h3></h3>
                     <div>
                         <a href="#" style="color: #ffffff;"></a>
                     </div>
@@ -20,10 +21,11 @@
 
 <style>
 
-    .adminMenu{
+    .adminMenu {
         cursor: pointer;
     }
-    .list{
+
+    .list {
         width: 840px;
     }
 
@@ -60,23 +62,26 @@
                                     </div>
                                 </div>
                                 <div class="or-text">
-                                    <div class="" >
+                                    <div class="">
                                         <div class="sidebar-option">
                                             <div class="social-media">
                                                 <ul>
                                                     <li class="list">
                                                         <div class="sm-icon"><i class="far fa-user"></i></div>
-                                                        <span class="adminMenu" onclick="location.href='admin/adminMemberList'">멤버 관리</span>
+                                                        <span class="adminMenu"
+                                                              onclick="location.href='admin/adminMemberList'">멤버 관리</span>
                                                         <div class="follow">${UserCnt.allUserCnt }명</div>
                                                     </li>
                                                     <li class="list">
                                                         <div class="sm-icon"><i class="fas fa-bomb"></i></div>
-                                                        <span class="adminMenu" onclick="location.href='admin/adminReportList'">신고 내역</span>
+                                                        <span class="adminMenu"
+                                                              onclick="location.href='admin/adminReportList'">신고 내역</span>
                                                         <div class="follow">${reportCnt.reportUserCnt }건</div>
                                                     </li>
                                                     <li class="list">
                                                         <div class="sm-icon"><i class="fas fa-user-lock"></i></div>
-                                                        <span class="adminMenu" onclick="location.href='admin/adminBlackList'">블랙 리스트</span>
+                                                        <span class="adminMenu"
+                                                              onclick="location.href='admin/adminBlackList'">블랙 리스트</span>
                                                         <div class="follow">${blackUserCnt.blackUserCnt}명</div>
                                                     </li>
                                                 </ul>

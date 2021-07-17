@@ -3,35 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.attendance.service.impl.AttendanceMapper">
-	<select id="getCheckedDate" parameterType="String" resultType="kr.co.brownie.attendance.service.AttendanceVO">
-		SELECT ATTEND_SEQ 	AS ATTENDSEQ,
-			   CHECKED_DATE	AS CHECKEDDATE,
-			   IN_USER_ID		AS INUSER,
-			   IN_DATE		AS INDATE
-		FROM   ATTENDANCE
-		WHERE  IN_USER_ID		= #{userId}
-	</select>
+    <select id="getCheckedDate" parameterType="String" resultType="kr.co.brownie.attendance.service.AttendanceVO">
+        SELECT ATTEND_SEQ   AS ATTENDSEQ,
+               CHECKED_DATE AS CHECKEDDATE,
+               IN_USER_ID   AS INUSER,
+               IN_DATE      AS INDATE
+        FROM ATTENDANCE
+        WHERE IN_USER_ID = #{userId}
+    </select>
 
-	<insert id="insertOne" parameterType="String">
-		MERGE INTO ATTENDANCE
-		USING DUAL
-		ON
-			(IN_DATE = TO_CHAR(SYSDATE, 'yy/mm/dd') AND IN_USER_ID = #{userId})
-	    WHEN NOT MATCHED THEN
-	    INSERT
-			(
-			ATTEND_SEQ,
-			CHECKED_DATE,
-			IN_USER_ID,
-			IN_DATE
-			)
-		VALUES
-			(
-			ATTEND_SEQ.NEXTVAL,
-			'check',
-			#{userId},
-			SYSDATE
-			)
-	</insert>
+    <insert id="insertOne" parameterType="String">
+        MERGE INTO ATTENDANCE
+        USING DUAL
+        ON
+            (IN_DATE = TO_CHAR(SYSDATE, 'yy/mm/dd') AND IN_USER_ID = #{userId})
+        WHEN NOT MATCHED THEN
+            INSERT
+            (ATTEND_SEQ,
+             CHECKED_DATE,
+             IN_USER_ID,
+             IN_DATE)
+            VALUES (ATTEND_SEQ.NEXTVAL,
+                    'check',
+                    #{userId},
+                    SYSDATE)
+    </insert>
 
 </mapper>

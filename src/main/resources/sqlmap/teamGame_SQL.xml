@@ -47,65 +47,61 @@
         FROM DUAL
     </insert>
 
-	
 
     <select id="selectTeamGameList" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
-        select * from
-            (
-                select TEAMGAME_SEQ as teamGameSeq
-                     ,USER_ID as userId
-                     ,TITLE as title
-                     ,MATCH_MODE as matchMode
-                     ,MESSAGE as message
-                     ,POSITION_SEQ as positionSeq
-                     ,STATUS as status
-                     ,LEADER as leader
-                     ,USE_POINT as usePoint
-                     ,IN_DATE as inDate
-                     ,IN_USER_ID as inUserId
-                     ,UP_DATE as modDate
-                     ,UP_USER_ID as upUserId
-                from teamgame
-                where USE_POINT = 'y'
-                and LEADER = 'y'
-                order by TEAMGAME_SEQ desc
-            )
+        select *
+        from (
+                 select TEAMGAME_SEQ as teamGameSeq
+                      , USER_ID      as userId
+                      , TITLE        as title
+                      , MATCH_MODE   as matchMode
+                      , MESSAGE      as message
+                      , POSITION_SEQ as positionSeq
+                      , STATUS       as status
+                      , LEADER       as leader
+                      , USE_POINT    as usePoint
+                      , IN_DATE      as inDate
+                      , IN_USER_ID   as inUserId
+                      , UP_DATE      as modDate
+                      , UP_USER_ID   as upUserId
+                 from teamgame
+                 where USE_POINT = 'y'
+                   and LEADER = 'y'
+                 order by TEAMGAME_SEQ desc
+             )
         union all
-        select * from
-            (
-                select TEAMGAME_SEQ as teamgameSeq
-                     ,USER_ID as userId
-                     ,TITLE as title
-                     ,MATCH_MODE as matchMode
-                     ,MESSAGE as message
-                     ,POSITION_SEQ as positionSeq
-                     ,STATUS as status
-                     ,LEADER as leader
-                     ,USE_POINT as usePoint
-                     ,IN_DATE as inDate
-                     ,IN_USER_ID as inUserId
-                     ,UP_DATE as modDate
-                     ,UP_USER_ID as upUserId
-                from teamgame
-                where USE_POINT = 'n'
-                and LEADER = 'y'
-                order by TEAMGAME_SEQ desc
-            )
+        select *
+        from (
+                 select TEAMGAME_SEQ as teamgameSeq
+                      , USER_ID      as userId
+                      , TITLE        as title
+                      , MATCH_MODE   as matchMode
+                      , MESSAGE      as message
+                      , POSITION_SEQ as positionSeq
+                      , STATUS       as status
+                      , LEADER       as leader
+                      , USE_POINT    as usePoint
+                      , IN_DATE      as inDate
+                      , IN_USER_ID   as inUserId
+                      , UP_DATE      as modDate
+                      , UP_USER_ID   as upUserId
+                 from teamgame
+                 where USE_POINT = 'n'
+                   and LEADER = 'y'
+                 order by TEAMGAME_SEQ desc
+             )
 
     </select>
 
-	<select id="selectTeamGamePosition" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
-		SELECT
-			POSITION_SEQ as positionSeq
-			,TOP as top
-			,MID as mid
-			,JUN as jun
-			,BOT as bot
-			,SUP as sup
-		FROM 
-			TEAMGAME_POSITION
-        WHERE
-            POSITION_SEQ = #{positionSeq}
-	</select>
+    <select id="selectTeamGamePosition" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
+        SELECT POSITION_SEQ as positionSeq
+             , TOP          as top
+             , MID          as mid
+             , JUN          as jun
+             , BOT          as bot
+             , SUP          as sup
+        FROM TEAMGAME_POSITION
+        WHERE POSITION_SEQ = #{positionSeq}
+    </select>
 
 </mapper>

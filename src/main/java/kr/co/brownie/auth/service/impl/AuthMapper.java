@@ -1,20 +1,20 @@
 package kr.co.brownie.auth.service.impl;
 
+import org.springframework.stereotype.Repository;
+
 import java.io.IOException;
 import java.util.Map;
-
-import org.springframework.stereotype.Repository;
 
 @Repository("authMapper")
 public interface AuthMapper {
 
-	void insertUser(Map<String, Object> map);
+    void insertUser(Map<String, Object> map);
 
-	void insertPermitLevel(String userId) throws IOException;
+    void insertPermitLevel(String userId) throws IOException;
 
-	void insertExp(Map<String, Object> map);
+    void insertExp(Map<String, Object> map);
 
-	void insertReview(Map<String, Object> map);
+    void insertReview(Map<String, Object> map);
 
-	int permitlevel(String userId);
+    int permitlevel(String userId);
 }

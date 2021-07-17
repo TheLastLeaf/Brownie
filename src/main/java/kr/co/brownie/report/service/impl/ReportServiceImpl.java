@@ -38,9 +38,9 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public int update(int reportSeq, String id) {
-        Map<String,Object> map = new HashMap<>();
-        map.put("reportSeq",reportSeq);
-        map.put("id",id);
+        Map<String, Object> map = new HashMap<>();
+        map.put("reportSeq", reportSeq);
+        map.put("id", id);
         return reportMapper.update(map);
     }
 }

@@ -11,51 +11,46 @@ import java.util.Map;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
-	@Resource(name = "boardMapper")
-	BoardMapper boardMapper;
+    @Resource(name = "boardMapper")
+    BoardMapper boardMapper;
 
-	@Override
-	public int insert(Map<String, Object> map) {
-		return this.boardMapper.insert(map);
-	}
+    @Override
+    public int insert(Map<String, Object> map) {
+        return this.boardMapper.insert(map);
+    }
 
-	@Override
-	public BoardPagingVO selectPagingList(Map<String, Object> map) {
-		int pageNum = (int) map.get("pageNum");
-		int totalContent = this.boardMapper.count(map);
+    @Override
+    public BoardPagingVO selectPagingList(Map<String, Object> map) {
+        int pageNum = (int) map.get("pageNum");
+        int totalContent = this.boardMapper.count(map);
 
-		return BoardPagingVO.builder()
-				.boardVOList(this.boardMapper.selectList(map))
-				.contentPerPage(CONTENT_PER_PAGE)
-				.startPageNumber((pageNum - 1) / CONTENT_PER_PAGE + 1)
-				.currentPageNumber(pageNum)
-				.endPageNumber(Math.min((pageNum - 1) / CONTENT_PER_PAGE + 10,(totalContent - 1) / CONTENT_PER_PAGE + 1))
-				.totalPageNumber((totalContent - 1) / CONTENT_PER_PAGE + 1)
-				.build();
-	}
+        return BoardPagingVO.builder()
+                .boardVOList(this.boardMapper.selectList(map))
+                .contentPerPage(CONTENT_PER_PAGE)
+                .startPageNumber((pageNum - 1) / CONTENT_PER_PAGE + 1)
+                .currentPageNumber(pageNum)
+                .endPageNumber(Math.min((pageNum - 1) / CONTENT_PER_PAGE + 10, (totalContent - 1) / CONTENT_PER_PAGE + 1))
+                .totalPageNumber((totalContent - 1) / CONTENT_PER_PAGE + 1)
+                .build();
+    }
 
-	@Override
-	public List<BoardVO> selectList(Map<String, Object> map) {
-		return this.boardMapper.selectList(map);
-	}
+    @Override
+    public List<BoardVO> selectList(Map<String, Object> map) {
+        return this.boardMapper.selectList(map);
+    }
 
-	@Override
-	public BoardVO select(Map<String, Object> map) {
-		return this.boardMapper.select(map);
-	}
+    @Override
+    public BoardVO select(Map<String, Object> map) {
+        return this.boardMapper.select(map);
+    }
 
-	@Override
-	public int update(Map<String, Object> map) {
-		return this.boardMapper.update(map);
-	}
+    @Override
+    public int update(Map<String, Object> map) {
+        return this.boardMapper.update(map);
+    }
 
-	@Override
-	public int delete(Map<String, Object> map) {
-		return this.boardMapper.delete(map);
-	}
-
-	@Override
-	public List<BoardVO> boardList() { return this.boardMapper.boardList(); }
-
-
+    @Override
+    public int delete(Map<String, Object> map) {
+        return this.boardMapper.delete(map);
+    }
 }

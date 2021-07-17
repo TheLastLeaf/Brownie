@@ -1,12 +1,9 @@
 package kr.co.brownie.board.web;
 
 import kr.co.brownie.board.hit.service.BoardHitService;
+import kr.co.brownie.board.reply.service.ReplyService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
-import kr.co.brownie.free.service.FreeService;
-import kr.co.brownie.free.service.FreeVO;
-import kr.co.brownie.board.reply.service.ReplyService;
-import kr.co.brownie.report.service.ReportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -15,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/free")

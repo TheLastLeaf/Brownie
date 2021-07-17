@@ -1,14 +1,10 @@
 package kr.co.brownie.socket.service;
 
-import org.jsoup.internal.StringUtil;
-import org.springframework.util.StringUtils;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,14 +18,14 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.println("afterConnectionEstablished : "+session);
+        System.out.println("afterConnectionEstablished : " + session);
 
         //새로 들어온 세션의 방 번호 뽑아내기
         String roomNumber = session.getUri().getQuery().split("=")[1];
-        System.out.println("roomNumber : "+roomNumber);
+        System.out.println("roomNumber : " + roomNumber);
 
         //해당 방 번호를 키값으로 맵에 삽입해줌. 기존에 해당 키값이 존재한다면 세션에 이 세션을 추가해주면 될 듯 ?
-        if(userSessions.containsKey(roomNumber)) {
+        if (userSessions.containsKey(roomNumber)) {
             //기존 세션 방이 존재할 경우 value값인 세션리스트에 새로 들어온 세션을 추가해서 업데이트 해야함 세션탈트오겠네
             List<WebSocketSession> sessions = userSessions.get(roomNumber);
             sessions.add(session);
@@ -49,21 +45,21 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        System.out.println("handleTextMessage : "+ session + " / message : " + message);
-        System.out.println("아이디 : "+ session.getId() + " / 메시지 : " + message.getPayload());
-        System.out.println("방주소 : "+ session.getUri() + " / 글자수 : " + message.getPayloadLength());
+        System.out.println("handleTextMessage : " + session + " / message : " + message);
+        System.out.println("아이디 : " + session.getId() + " / 메시지 : " + message.getPayload());
+        System.out.println("방주소 : " + session.getUri() + " / 글자수 : " + message.getPayloadLength());
 
         //여기는 받아온 메시지를 전달해주는 구간! 해당하는 세션으로 보내주기 위해서 세션 판별이 필요함
 
         //세션이 들어가있는 방 번호 뽑아내기
         String roomNumber = session.getUri().getQuery().split("=")[1];
-        System.out.println("roomNumber : "+roomNumber);
+        System.out.println("roomNumber : " + roomNumber);
 
         //해당 방 번호를 가진 리스트 가져오기!
         List<WebSocketSession> sessions = userSessions.get(roomNumber);
 
         //리스트에 존재하는 세션을 뽑아서 메시지로 보내주기
-        for(WebSocketSession sess : sessions){
+        for (WebSocketSession sess : sessions) {
             TextMessage msg = new TextMessage(message.getPayload());
             sess.sendMessage(msg);
         }
@@ -71,7 +67,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        System.out.println("afterConnectionClosed session : " + session );
+        System.out.println("afterConnectionClosed session : " + session);
         System.out.println("status : " + status);
         //이거 세션 끝난것도 메시지에 보내줘야하나 ?
 
@@ -81,7 +77,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         List<WebSocketSession> sessions = userSessions.get(roomNumber);
         sessions.remove(session);
 
-        if(status.getCode() != 1000){
+        if (status.getCode() != 1000) {
             //afterConnectionEstablished(session);
         }
     }

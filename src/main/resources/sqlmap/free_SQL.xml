@@ -236,22 +236,22 @@
                      LOLID,
                      NICKNAME,
                      ROWNUM AS RN
-              FROM (SELECT LEVEL                  AS LV,
-                           BROWNIE_BOARD_REPLY.REPLY_SEQ        AS REPLYSEQ,
-                           BROWNIE_BOARD_REPLY.REPLY_CONTENT    AS REPLYCONTENT,
-                           BROWNIE_BOARD_REPLY.IN_DATE          AS INDATE,
-                           BROWNIE_BOARD_REPLY.IN_USER_ID       AS INUSERID,
-                           BROWNIE_BOARD_REPLY.UP_DATE          AS "UPDATE",
-                           BROWNIE_BOARD_REPLY.UP_USER_ID       AS UPUSERID,
-                           BROWNIE_BOARD_REPLY.BOARD_SEQ        AS BOARDSEQ,
-                           BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
-                           BROWNIE_BOARD_REPLY.STATUS           AS STATUS,
-                           BROWNIE_USER.LOL_ID    AS LOLID,
-                           BROWNIE_USER.NICK_NAME AS NICKNAME
+              FROM (SELECT LEVEL                              AS LV,
+                           BROWNIE_BOARD_REPLY.REPLY_SEQ      AS REPLYSEQ,
+                           BROWNIE_BOARD_REPLY.REPLY_CONTENT  AS REPLYCONTENT,
+                           BROWNIE_BOARD_REPLY.IN_DATE        AS INDATE,
+                           BROWNIE_BOARD_REPLY.IN_USER_ID     AS INUSERID,
+                           BROWNIE_BOARD_REPLY.UP_DATE        AS "UPDATE",
+                           BROWNIE_BOARD_REPLY.UP_USER_ID     AS UPUSERID,
+                           BROWNIE_BOARD_REPLY.BOARD_SEQ      AS BOARDSEQ,
+                           BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ AS HEADREPLYSEQ,
+                           BROWNIE_BOARD_REPLY.STATUS         AS STATUS,
+                           BROWNIE_USER.LOL_ID                AS LOLID,
+                           BROWNIE_USER.NICK_NAME             AS NICKNAME
                     FROM BROWNIE_BOARD_REPLY
                              LEFT OUTER JOIN BROWNIE_USER ON (BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
-                    WHERE BROWNIE_BOARD_REPLY.BOARD_SEQ = ${boardSeq} START
-                        WITH BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ IS NULL
+                    WHERE BROWNIE_BOARD_REPLY.BOARD_SEQ = ${boardSeq}
+                    START WITH BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ IS NULL
                     CONNECT BY PRIOR BROWNIE_BOARD_REPLY.REPLY_SEQ = BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ
                    )
              )
@@ -275,18 +275,18 @@
     </insert>
 
     <select id="selectReply" parameterType="hashMap" resultType="kr.co.brownie.free.service.FreeReplyVO">
-        SELECT '1'                    AS LV,
-               BROWNIE_BOARD_REPLY.REPLY_SEQ        AS REPLYSEQ,
-               BROWNIE_BOARD_REPLY.REPLY_CONTENT    AS REPLYCONTENT,
-               BROWNIE_BOARD_REPLY.IN_DATE          AS INDATE,
-               BROWNIE_BOARD_REPLY.IN_USER_ID       AS INUSERID,
-               BROWNIE_BOARD_REPLY.UP_DATE          AS "UPDATE",
-               BROWNIE_BOARD_REPLY.UP_USER_ID       AS UPUSERID,
-               BROWNIE_BOARD_REPLY.BOARD_SEQ        AS BOARDSEQ,
-               BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ   AS HEADREPLYSEQ,
-               BROWNIE_BOARD_REPLY.STATUS           AS STATUS,
-               BROWNIE_USER.LOL_ID    AS LOLID,
-               BROWNIE_USER.NICK_NAME AS NICKNAME
+        SELECT '1'                                AS LV,
+               BROWNIE_BOARD_REPLY.REPLY_SEQ      AS REPLYSEQ,
+               BROWNIE_BOARD_REPLY.REPLY_CONTENT  AS REPLYCONTENT,
+               BROWNIE_BOARD_REPLY.IN_DATE        AS INDATE,
+               BROWNIE_BOARD_REPLY.IN_USER_ID     AS INUSERID,
+               BROWNIE_BOARD_REPLY.UP_DATE        AS "UPDATE",
+               BROWNIE_BOARD_REPLY.UP_USER_ID     AS UPUSERID,
+               BROWNIE_BOARD_REPLY.BOARD_SEQ      AS BOARDSEQ,
+               BROWNIE_BOARD_REPLY.HEAD_REPLY_SEQ AS HEADREPLYSEQ,
+               BROWNIE_BOARD_REPLY.STATUS         AS STATUS,
+               BROWNIE_USER.LOL_ID                AS LOLID,
+               BROWNIE_USER.NICK_NAME             AS NICKNAME
         FROM BROWNIE_BOARD_REPLY
                  LEFT OUTER JOIN BROWNIE_USER ON (BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID)
         WHERE BOARD_SEQ = ${boardSeq}

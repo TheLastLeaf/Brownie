@@ -6,12 +6,13 @@
 <section class="details-post-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12"  style="justify-content: center; align-content: center; text-align: center; color:white;">
-				대충보드리스트
+            <div class="col-lg-12"
+                 style="justify-content: center; align-content: center; text-align: center; color:white;">
+                대충보드리스트
 
             </div>
-	    </div>
-	</div>
+        </div>
+    </div>
 </section>
- 
+
 <c:import url="../layout/footer.jsp"/>

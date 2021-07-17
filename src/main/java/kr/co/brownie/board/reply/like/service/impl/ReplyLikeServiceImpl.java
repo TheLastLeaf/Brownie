@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Service("replyLikeService")
 public class ReplyLikeServiceImpl implements ReplyLikeService {
-    @Resource(name="replyLikeMapper")
+    @Resource(name = "replyLikeMapper")
     ReplyLikeMapper replyLikeMapper;
 
     @Override

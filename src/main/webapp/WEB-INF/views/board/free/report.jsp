@@ -73,7 +73,7 @@
                 "userId": userId,
                 "reportName": reportName,
                 "content": content,
-                "log":log
+                "log": log
             },
             success: function (res) {
                 if (res === "success") {

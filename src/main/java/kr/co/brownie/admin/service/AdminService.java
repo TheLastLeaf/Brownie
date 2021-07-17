@@ -1,14 +1,14 @@
 package kr.co.brownie.admin.service;
 
 public interface AdminService {
-	AdminVO UserCnt();
+    AdminVO UserCnt();
 
-	AdminVO ReportCnt();
+    AdminVO ReportCnt();
 
-	AdminVO BoardCnt();
+    AdminVO BoardCnt();
 
-	AdminVO BlackUserCnt();
+    AdminVO BlackUserCnt();
 
-	AdminVO todayUser();
+    AdminVO todayUser();
 
 }

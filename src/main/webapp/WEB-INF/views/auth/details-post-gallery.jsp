@@ -7,8 +7,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="dg-slider owl-carousel">
-                    <div class="dg-item set-bg" data-setbg="${pageContext.request.contextPath}/img/details/gallery/gallery-1.jpg"></div>
-                    <div class="dg-item set-bg" data-setbg="${pageContext.request.contextPath}/img/details/gallery/gallery-1.jpg"></div>
+                    <div class="dg-item set-bg"
+                         data-setbg="${pageContext.request.contextPath}/img/details/gallery/gallery-1.jpg"></div>
+                    <div class="dg-item set-bg"
+                         data-setbg="${pageContext.request.contextPath}/img/details/gallery/gallery-1.jpg"></div>
                 </div>
             </div>
         </div>

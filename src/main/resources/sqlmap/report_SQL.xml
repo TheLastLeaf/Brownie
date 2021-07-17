@@ -55,16 +55,17 @@
 
     <insert id="insert" parameterType="hashMap">
         <![CDATA[
-        INSERT INTO REPORT(REPORT_SEQ, CONTENT, REPORT_NAME, USER_ID, IN_DATE, UP_DATE, IN_USER_ID, UP_USER_ID, STATUS,LOG)
-        VALUES (REPORT_SEQ.NEXTVAL, #{content}, #{reportName}, #{userId}, sysdate, sysdate, #{id}, #{id}, 'N',#{log})
+        INSERT INTO REPORT(REPORT_SEQ, CONTENT, REPORT_NAME, USER_ID, IN_DATE, UP_DATE, IN_USER_ID, UP_USER_ID, STATUS,
+                           LOG)
+        VALUES (REPORT_SEQ.NEXTVAL, #{content}, #{reportName}, #{userId}, sysdate, sysdate, #{id}, #{id}, 'N', #{log})
         ]]>
     </insert>
 
     <update id="update" parameterType="hashMap">
         UPDATE REPORT
         SET UP_USER_ID = #{id},
-            UP_DATE = SYSDATE,
-            STATUS = 'Y'
+            UP_DATE    = SYSDATE,
+            STATUS     = 'Y'
         WHERE REPORT_SEQ = #{reportSeq}
     </update>
 

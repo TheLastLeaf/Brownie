@@ -1,13 +1,13 @@
 package kr.co.brownie.gallery.service;
 
-import java.util.Date;
-
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class GalleryVO {
 
-	private int boardSeq;
+    private int boardSeq;
     private String boardKind;
     private String boardCategory;
     private String title;

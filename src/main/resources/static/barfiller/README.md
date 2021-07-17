@@ -3,9 +3,10 @@ Barfiller.js
 
 A simple jQuery plugin that gives you percentage-based animated bar filling...
 
-[View Demo](http://9bitstudios.github.com/barfiller/) | [Buy Author a Beer at the Bar](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NNCJ79B2W6MUL)
+[View Demo](http://9bitstudios.github.com/barfiller/)
+| [Buy Author a Beer at the Bar](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NNCJ79B2W6MUL)
 
-### How to Use 
+### How to Use
 
 Set up some HTML like the following...
 

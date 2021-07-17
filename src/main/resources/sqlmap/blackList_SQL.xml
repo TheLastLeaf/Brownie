@@ -5,33 +5,35 @@
 <mapper namespace="kr.co.brownie.blackList.service.impl.BlackListMapper">
 
     <select id="selectBlackList" resultType="kr.co.brownie.blackList.service.BlackListVO">
-        SELECT A.B_LIST_SEQ AS BLISTSEQ,
-               A.USER_ID    AS USERID,
-               A.RESULT     AS RESULT,
-               A.IN_DATE    AS INDATE,
-               A.IN_USER_ID AS INUSERID,
-               A.UP_DATE    AS "UPDATE",
-               A.UP_USER_ID AS UPUSERID,
-               A.REASON_SEQ AS REASONSEQ,
-               A.STATUS AS STATUS,
+        SELECT A.B_LIST_SEQ    AS BLISTSEQ,
+               A.USER_ID       AS USERID,
+               A.RESULT        AS RESULT,
+               A.IN_DATE       AS INDATE,
+               A.IN_USER_ID    AS INUSERID,
+               A.UP_DATE       AS "UPDATE",
+               A.UP_USER_ID    AS UPUSERID,
+               A.REASON_SEQ    AS REASONSEQ,
+               A.STATUS        AS STATUS,
                B.REASON_KIND_1 AS REASONKIND1
-        FROM BLACK_LIST A , BLACK_REASON B
+        FROM BLACK_LIST A,
+             BLACK_REASON B
         WHERE A.REASON_SEQ = B.REASON_SEQ
         ORDER BY A.B_LIST_SEQ DESC
     </select>
 
     <insert id="insert" parameterType="hashMap">
-        INSERT INTO BLACK_LIST( B_LIST_SEQ, USER_ID, RESULT, IN_DATE, IN_USER_ID, UP_DATE, UP_USER_ID, REASON_SEQ,STATUS)
-        VALUES ((SELECT NVL(MAX(B_LIST_SEQ), 0) + 1 FROM BLACK_LIST),#{userId},#{result},SYSDATE,#{id},SYSDATE,#{id},#{reasonSeq},'N')
+        INSERT INTO BLACK_LIST(B_LIST_SEQ, USER_ID, RESULT, IN_DATE, IN_USER_ID, UP_DATE, UP_USER_ID, REASON_SEQ,
+                               STATUS)
+        VALUES ((SELECT NVL(MAX(B_LIST_SEQ), 0) + 1 FROM BLACK_LIST), #{userId}, #{result}, SYSDATE, #{id}, SYSDATE,
+                #{id}, #{reasonSeq}, 'N')
     </insert>
 
     <update id="updateBlackUser" parameterType="hashMap">
         UPDATE BLACK_LIST
-        SET UP_DATE = SYSDATE,
+        SET UP_DATE    = SYSDATE,
             UP_USER_ID = #{id},
-            STATUS = 'Y'
-        WHERE
-            B_LIST_SEQ = #{bListSeq}
+            STATUS     = 'Y'
+        WHERE B_LIST_SEQ = #{bListSeq}
     </update>
 
 </mapper>

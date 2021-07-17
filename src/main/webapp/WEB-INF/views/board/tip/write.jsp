@@ -88,10 +88,11 @@
         color: #666666;
     }
 
-    .card{
+    .card {
         background-color: black;
     }
-    .card-header{
+
+    .card-header {
         border: 1px solid #666666;
     }
 

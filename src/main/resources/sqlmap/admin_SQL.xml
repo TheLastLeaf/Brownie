@@ -4,66 +4,46 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.admin.service.impl.AdminMapper">
 
-	<select id="UserCnt" resultType="kr.co.brownie.admin.service.AdminVO">
-		SELECT
-			AU.ALLUSER as ALLUSERCNT,
-			RU.RECENTUSER as RECENTUSERCNT
-		FROM
-			(SELECT
-				COUNT(AB.USER_ID) AS ALLUSER
-			FROM
-				BROWNIE_USER AB ) AU,
-			(SELECT
-				COUNT(RB.USER_ID) AS RECENTUSER
-			FROM
-				BROWNIE_USER RB
-			WHERE IN_DATE
-			BETWEEN SYSDATE-7 AND SYSDATE) RU
-	</select>
+    <select id="UserCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+        SELECT AU.ALLUSER    as ALLUSERCNT,
+               RU.RECENTUSER as RECENTUSERCNT
+        FROM (SELECT COUNT(AB.USER_ID) AS ALLUSER
+              FROM BROWNIE_USER AB) AU,
+             (SELECT COUNT(RB.USER_ID) AS RECENTUSER
+              FROM BROWNIE_USER RB
+              WHERE IN_DATE
+                        BETWEEN SYSDATE - 7 AND SYSDATE) RU
+    </select>
 
-	<select id="ReportCnt" resultType="kr.co.brownie.admin.service.AdminVO">
-		SELECT
-			COUNT(STATUS) AS REPORTUSERCNT
-		FROM
-			REPORT
-		WHERE
-			UPPER(STATUS)='N'
-	</select>
+    <select id="ReportCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+        SELECT COUNT(STATUS) AS REPORTUSERCNT
+        FROM REPORT
+        WHERE UPPER(STATUS) = 'N'
+    </select>
 
-	<select id="BoardCnt" resultType="kr.co.brownie.admin.service.AdminVO">
-	SELECT
-		AB.ALLCNT AS ALLBOARDCNT,
-		RB.RECENTCNT AS RECENTBOARDCNT
-	FROM
-		(SELECT
-			COUNT(NOTICE_YN) AS ALLCNT
-		FROM
-			BROWNIE_BOARD) AB,
-		(SELECT
-			COUNT(NOTICE_YN) AS RECENTCNT
-		FROM
-			BROWNIE_BOARD
-		WHERE
-			UPPER(NOTICE_YN)='N'
-		AND
-			IN_DATE
-		BETWEEN
-			SYSDATE-7 AND SYSDATE) RB
-	</select>
+    <select id="BoardCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+        SELECT AB.ALLCNT    AS ALLBOARDCNT,
+               RB.RECENTCNT AS RECENTBOARDCNT
+        FROM (SELECT COUNT(NOTICE_YN) AS ALLCNT
+              FROM BROWNIE_BOARD) AB,
+             (SELECT COUNT(NOTICE_YN) AS RECENTCNT
+              FROM BROWNIE_BOARD
+              WHERE UPPER(NOTICE_YN) = 'N'
+                AND IN_DATE
+                  BETWEEN
+                  SYSDATE - 7 AND SYSDATE) RB
+    </select>
 
-	<select id="BlackUserCnt" resultType="kr.co.brownie.admin.service.AdminVO">
-		SELECT
-			COUNT(STATUS) AS BLACKUSERCNT
-		FROM
-			BLACK_USER
-		WHERE
-			UPPER(STATUS)='Y'
-	</select>
+    <select id="BlackUserCnt" resultType="kr.co.brownie.admin.service.AdminVO">
+        SELECT COUNT(STATUS) AS BLACKUSERCNT
+        FROM BLACK_USER
+        WHERE UPPER(STATUS) = 'Y'
+    </select>
 
 
-	<select id="todayUser" resultType="kr.co.brownie.admin.service.AdminVO">
-		SELECT COUNT(*) as todayUser
-		FROM BROWNIE_USER
-		WHERE IN_DATE = SYSDATE
-	</select>
+    <select id="todayUser" resultType="kr.co.brownie.admin.service.AdminVO">
+        SELECT COUNT(*) as todayUser
+        FROM BROWNIE_USER
+        WHERE IN_DATE = SYSDATE
+    </select>
 </mapper>

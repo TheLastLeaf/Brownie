@@ -28,7 +28,7 @@ public class ReportController {
         String id = (String) session.getAttribute("id");
         model.addAttribute("id", id);
         String log = request.getParameter("log");
-        model.addAttribute("log",log);
+        model.addAttribute("log", log);
         return "board/free/report";
     }
 

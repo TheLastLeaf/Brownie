@@ -43,7 +43,7 @@ public class ReplyLikeController {
             jsonObject.addProperty("status", "ok");
             jsonObject.addProperty("message", map.get("kind").toString());
         } else {
-            if(!replyLikeVO.getKind().equals(map.get("kind").toString())) {
+            if (!replyLikeVO.getKind().equals(map.get("kind").toString())) {
                 jsonObject.addProperty("status", "ng");
                 jsonObject.addProperty("message", "추천 / 반대 중 하나만 할 수 있습니다.");
 

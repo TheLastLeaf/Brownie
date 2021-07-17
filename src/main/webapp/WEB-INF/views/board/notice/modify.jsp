@@ -65,51 +65,61 @@
     }
 </script>
 <style>
-    .spad{
+    .spad {
         padding-top: 150px;
         padding-bottom: 100px;
     }
-    .cont-spad{
+
+    .cont-spad {
         padding-top: 50px;
         padding-bottom: 50px;
     }
-    #content{
+
+    #content {
         color: #666666;
     }
 
-    #title{
+    #title {
         width: 100%;
         background-color: black;
         border: 1px solid #666666;
-        color:white;
+        color: white;
     }
-    .card{
+
+    .card {
         background-color: black;
     }
-    .card-header{
+
+    .card-header {
         border: 1px solid #666666;
     }
-    .content{
-        border:1px solid #666666;
+
+    .content {
+        border: 1px solid #666666;
     }
-    .sub{
+
+    .sub {
         padding-top: 10px;
     }
-    .submit{
+
+    .submit {
         width: 100%;
         background-color: black;
         color: white;
         border: 1px solid #666666;
     }
-    .input-list{
+
+    .input-list {
         padding-bottom: 10px;
     }
-    .home{
+
+    .home {
         color: black;
     }
 </style>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
+<section class="breadcrumb-section set-bg spad"
+         data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -136,13 +146,15 @@
                         <div class="contact-form">
                             <div class="dt-leave-comment">
                                 <div class="input-list">
-                                    <input type="text" id="title" name="title" value="${boardVO.title}" required="required">
+                                    <input type="text" id="title" name="title" value="${boardVO.title}"
+                                           required="required">
                                 </div>
                                 <div class="content">
-                                    <textarea class="summernote" id="content" name="content" required="required">${boardVO.content}</textarea>
+                                    <textarea class="summernote" id="content" name="content"
+                                              required="required">${boardVO.content}</textarea>
                                 </div>
                                 <div class="sub">
-                                    <input type="submit" value="수정" class="submit" >
+                                    <input type="submit" value="수정" class="submit">
                                 </div>
                             </div>
                         </div>

@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../../layout/header.jsp"/>
 
-<!--  -->
+<!-- -->
 <script>
     $(function () {
         const toolbar = [
@@ -68,45 +68,54 @@
 
 </script>
 <style>
-    .spad{
+    .spad {
         padding-top: 150px;
         padding-bottom: 100px;
     }
-    .cont-spad{
+
+    .cont-spad {
         padding-top: 50px;
         padding-bottom: 50px;
     }
-    .title{
+
+    .title {
         width: 100%;
         background-color: black;
         border: 1px solid #666666;
-        color:white;
+        color: white;
     }
-    .summernote{
+
+    .summernote {
         color: #666666;
     }
-    .card{
+
+    .card {
         background-color: black;
     }
-    .card-header{
+
+    .card-header {
         border: 1px solid #666666;
     }
-    .submit{
+
+    .submit {
         width: 100%;
         background-color: black;
         border: 1px solid #666666;
-        color:white;
+        color: white;
     }
-    .content{
-        border:1px solid #666666;
+
+    .content {
+        border: 1px solid #666666;
     }
-    .pad{
+
+    .pad {
         padding-top: 10px;
     }
 
 </style>
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-section set-bg spad" data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
+<section class="breadcrumb-section set-bg spad"
+         data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/Ari.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -133,10 +142,12 @@
                         <div class="contact-form">
                             <div class="dt-leave-comment">
                                 <div class="input-list" style="padding-bottom: 10px;">
-                                    <input type="text" placeholder="Title" class="title"  id="title" name="title" required="required">
+                                    <input type="text" placeholder="Title" class="title" id="title" name="title"
+                                           required="required">
                                 </div>
                                 <div class="content">
-                                    <textarea class="summernote" name="content" id="content" required="required"></textarea>
+                                    <textarea class="summernote" name="content" id="content"
+                                              required="required"></textarea>
                                 </div>
                                 <div class="pad">
                                     <input type="submit" value="등록" class="submit">

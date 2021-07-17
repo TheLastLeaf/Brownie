@@ -313,31 +313,31 @@
                             <h5>Best of Best</h5>
                         </div>
 
-<%--                        <c:forEach var="freeFamousList" items="${freeFamousList }" varStatus="status">--%>
+                        <%--                        <c:forEach var="freeFamousList" items="${freeFamousList }" varStatus="status">--%>
 
-<%--                            <div class="bp-item">--%>
-<%--                                <div class="bp-loader">--%>
-<%--                                    <div class="loader-circle-wrap">--%>
-<%--                                        <div class="loader-circle">--%>
-<%--	                                            <span class="circle-progress-1" data-cpid="id-1"--%>
-<%--                                                      data-cpvalue="${freeFamousList.likeCnt }"--%>
-<%--                                                      data-cpcolor="#c20000"></span>--%>
-<%--                                            <div class="review-point"--%>
-<%--                                                 style="text-align: center;">${freeFamousList.likeCnt }</div>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-<%--                                </div>--%>
-<%--                                <div class="bp-text">--%>
-<%--                                    <h6>--%>
-<%--                                        <a href="${pageContext.request.contextPath}/free/details/${freeFamousList.boardSeq}">${freeFamousList.title }</a>--%>
-<%--                                    </h6>--%>
-<%--                                    <ul>--%>
-<%--                                        <li><i class="far fa-clock"></i>${freeFamousList.inDate }</li>--%>
-<%--                                        <li><i class="far fa-comment"></i> 20</li>--%>
-<%--                                    </ul>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
-<%--                        </c:forEach>--%>
+                        <%--                            <div class="bp-item">--%>
+                        <%--                                <div class="bp-loader">--%>
+                        <%--                                    <div class="loader-circle-wrap">--%>
+                        <%--                                        <div class="loader-circle">--%>
+                        <%--	                                            <span class="circle-progress-1" data-cpid="id-1"--%>
+                        <%--                                                      data-cpvalue="${freeFamousList.likeCnt }"--%>
+                        <%--                                                      data-cpcolor="#c20000"></span>--%>
+                        <%--                                            <div class="review-point"--%>
+                        <%--                                                 style="text-align: center;">${freeFamousList.likeCnt }</div>--%>
+                        <%--                                        </div>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </div>--%>
+                        <%--                                <div class="bp-text">--%>
+                        <%--                                    <h6>--%>
+                        <%--                                        <a href="${pageContext.request.contextPath}/free/details/${freeFamousList.boardSeq}">${freeFamousList.title }</a>--%>
+                        <%--                                    </h6>--%>
+                        <%--                                    <ul>--%>
+                        <%--                                        <li><i class="far fa-clock"></i>${freeFamousList.inDate }</li>--%>
+                        <%--                                        <li><i class="far fa-comment"></i> 20</li>--%>
+                        <%--                                    </ul>--%>
+                        <%--                                </div>--%>
+                        <%--                            </div>--%>
+                        <%--                        </c:forEach>--%>
 
                     </div>
                 </div>

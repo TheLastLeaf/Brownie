@@ -1,47 +1,46 @@
 package kr.co.brownie.user.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
+import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Repository;
 
-import kr.co.brownie.user.service.UserVO;
+import java.util.List;
+import java.util.Map;
 
 @Repository("userMapper")
 public interface UserMapper {
 
-	UserVO userOneSelect(String id);
+    UserVO userOneSelect(String id);
 
-	int selectExp(String id);
+    int selectExp(String id);
 
-	float starCntSelect(String id);
+    float starCntSelect(String id);
 
-	int boardTotalCnt(String id);
+    int boardTotalCnt(String id);
 
-	int replyTotalCnt(String id);
+    int replyTotalCnt(String id);
 
-	int likeReplyCnt(String id);
+    int likeReplyCnt(String id);
 
-	int hateReplyCnt(String id);
+    int hateReplyCnt(String id);
 
-	List<String> recentBoard(String id);
+    List<String> recentBoard(String id);
 
-	String nickName(String id);
+    String nickName(String id);
 
-	List<UserVO> selectList();
+    List<UserVO> selectList();
 
-	String dateChecking(String id);
+    String dateChecking(String id);
 
-	void updateNick(Map<String, Object> map);
+    void updateNick(Map<String, Object> map);
 
-	void updatePosition(Map<String, Object> map);
+    void updatePosition(Map<String, Object> map);
 
-	int validating(String userNick);
+    int validating(String userNick);
 
-	int blackStack(String userId);
+    int blackStack(String userId);
 
-	int userCount();
+    int userCount();
 
-	List<UserVO> userList(Map<String,Object> map);
+    List<UserVO> userList(Map<String, Object> map);
 
 }

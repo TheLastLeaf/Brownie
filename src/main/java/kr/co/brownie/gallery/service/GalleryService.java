@@ -1,32 +1,32 @@
 package kr.co.brownie.gallery.service;
 
+import kr.co.brownie.board.reply.service.ReplyVO;
+
 import java.util.List;
 import java.util.Map;
 
-import kr.co.brownie.board.reply.service.ReplyVO;
-
 public interface GalleryService {
-	public int insertGallery(Map<String, Object> map);
+    int insertGallery(Map<String, Object> map);
 
-    public List<GalleryVO> getGalleryList(Map<String, Object> map);
-    
-    public List<GalleryVO> getNoticeList(Map<String, Object> map);
+    List<GalleryVO> getGalleryList(Map<String, Object> map);
 
-    public int deleteGallery(int boardSeq);
+    List<GalleryVO> getNoticeList(Map<String, Object> map);
 
-    public GalleryVO getGallery(int boardSeq);
+    int deleteGallery(int boardSeq);
 
-    public int updateGallery(Map<String,Object> map);
+    GalleryVO getGallery(int boardSeq);
 
-    public int selectCount();
-    
-    public List<FileVO> getFileList(int fileSeq);
-    
-    public int insertThumbnail(String fileName);
-    
-    public int selectFile(String fileName);
-    
-    public ReplyVO galleryAB(int boardSeq);
-    
+    int updateGallery(Map<String, Object> map);
+
+    int selectCount();
+
+    List<FileVO> getFileList(int fileSeq);
+
+    int insertThumbnail(String fileName);
+
+    int selectFile(String fileName);
+
+    ReplyVO galleryAB(int boardSeq);
+
     List<GalleryVO> selectAB(int boardSeq);
 }

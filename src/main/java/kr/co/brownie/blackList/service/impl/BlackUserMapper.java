@@ -1,6 +1,5 @@
 package kr.co.brownie.blackList.service.impl;
 
-import kr.co.brownie.blackList.service.BlackUserPagingVO;
 import kr.co.brownie.blackList.service.BlackUserVO;
 import org.springframework.stereotype.Repository;
 

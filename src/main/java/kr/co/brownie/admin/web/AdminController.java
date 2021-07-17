@@ -1,29 +1,22 @@
 package kr.co.brownie.admin.web;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import kr.co.brownie.blackList.service.BlackUserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-
 import kr.co.brownie.admin.service.AdminService;
 import kr.co.brownie.admin.service.AdminVO;
 import kr.co.brownie.blackList.service.BlackListService;
-import kr.co.brownie.blackList.service.BlackListVO;
+import kr.co.brownie.blackList.service.BlackUserService;
 import kr.co.brownie.report.service.ReportService;
-import kr.co.brownie.report.service.ReportVO;
 import kr.co.brownie.user.service.UserService;
-import kr.co.brownie.user.service.UserVO;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Calendar;
+import java.util.HashMap;
 
 
 @Controller
@@ -46,10 +39,10 @@ public class AdminController {
 
 
     @GetMapping(path = {"", "/adminView"})
-    public String adminView(Model model,HttpServletRequest httpServletRequest) {
-        int permitLevel = (int)(httpServletRequest.getSession().getAttribute("permit_level"));
-        if(httpServletRequest.getSession().getAttribute("id")==null || permitLevel!=9){
-            model.addAttribute("message","alert('권한이 없습니다.'); location.href='/'");
+    public String adminView(Model model, HttpServletRequest httpServletRequest) {
+        int permitLevel = (int) (httpServletRequest.getSession().getAttribute("permit_level"));
+        if (httpServletRequest.getSession().getAttribute("id") == null || permitLevel != 9) {
+            model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
         //이번달 표시
@@ -69,14 +62,14 @@ public class AdminController {
 
         //블랙유저 집계
         AdminVO blackUserCnt = adminService.BlackUserCnt();
-        model.addAttribute("blackUserCnt",blackUserCnt);
+        model.addAttribute("blackUserCnt", blackUserCnt);
 
         // 공지사항 포함 총 게시글 수 / (공지사항 제외한) 최근 일주일 간 신규 게시글 수 집계
         AdminVO boardCnt = adminService.BoardCnt();
         model.addAttribute("boardCnt", boardCnt);
 
         AdminVO todayUser = adminService.todayUser();
-        model.addAttribute("todayUser",todayUser);
+        model.addAttribute("todayUser", todayUser);
 
 
         return "admin/adminView"; //관리자 화면 기본
@@ -84,9 +77,9 @@ public class AdminController {
 
     @GetMapping("/adminMemberList")
     public String adminMemberList(Model model, HttpServletRequest httpServletRequest) {
-        int permitLevel = (int)(httpServletRequest.getSession().getAttribute("permit_level"));
-        if(httpServletRequest.getSession().getAttribute("id")==null || permitLevel!=9){
-            model.addAttribute("message","alert('권한이 없습니다.'); location.href='/'");
+        int permitLevel = (int) (httpServletRequest.getSession().getAttribute("permit_level"));
+        if (httpServletRequest.getSession().getAttribute("id") == null || permitLevel != 9) {
+            model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
         int currentPageNumber;
@@ -102,10 +95,10 @@ public class AdminController {
 
 
     @GetMapping("/adminBlackList")
-    public String adminBlackList(Model model,HttpServletRequest httpServletRequest) {
-        int permitLevel = (int)(httpServletRequest.getSession().getAttribute("permit_level"));
-        if(httpServletRequest.getSession().getAttribute("id")==null || permitLevel!=9){
-            model.addAttribute("message","alert('권한이 없습니다.'); location.href='/'");
+    public String adminBlackList(Model model, HttpServletRequest httpServletRequest) {
+        int permitLevel = (int) (httpServletRequest.getSession().getAttribute("permit_level"));
+        if (httpServletRequest.getSession().getAttribute("id") == null || permitLevel != 9) {
+            model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
         int currentPageNumber;
@@ -131,9 +124,9 @@ public class AdminController {
 
     @GetMapping("/adminReportList")
     public String adminReportList(Model model, HttpServletRequest httpServletRequest) {
-        int permitLevel = (int)(httpServletRequest.getSession().getAttribute("permit_level"));
-        if(httpServletRequest.getSession().getAttribute("id")==null || permitLevel!=9){
-            model.addAttribute("message","alert('권한이 없습니다.'); location.href='/'");
+        int permitLevel = (int) (httpServletRequest.getSession().getAttribute("permit_level"));
+        if (httpServletRequest.getSession().getAttribute("id") == null || permitLevel != 9) {
+            model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
         int currentPageNumber;

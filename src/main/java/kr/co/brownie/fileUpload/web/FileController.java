@@ -1,16 +1,15 @@
 package kr.co.brownie.fileUpload.web;
 
-import javax.annotation.Resource;
-
+import kr.co.brownie.fileUpload.service.FileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.brownie.fileUpload.service.FileService;
+import javax.annotation.Resource;
 
 @Controller
 @RequestMapping("/file")
 public class FileController {
-	@Resource(name = "fileService")
-	FileService fileService;
-	
+    @Resource(name = "fileService")
+    FileService fileService;
+
 }

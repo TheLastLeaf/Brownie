@@ -78,7 +78,8 @@
         margin-top: 5px;
         width: 30%;
     }
-    .content{
+
+    .content {
         background-color: black;
         color: white;
         width: 50%;
@@ -104,9 +105,9 @@
             type: "POST",
             data: {
                 "userId": userId,
-                "reportName":reportName,
-                "content":content,
-                "log":log
+                "reportName": reportName,
+                "content": content,
+                "log": log
             },
             success: function (data) {
                 console.log(data)
@@ -160,7 +161,8 @@
                     <label class="custom-control-label" for="jb-checkbox1" style="color: white;">맘에안듬</label>
                 </div>
                 <div class="comment label">
-                    <input type="text" placeholder="기타 사유를 적어주세요!" maxlength="1000" class="form-control-sm content" name="content">
+                    <input type="text" placeholder="기타 사유를 적어주세요!" maxlength="1000" class="form-control-sm content"
+                           name="content">
                 </div>
             </div>
             <button type="button" onclick="fn_submit()" class="btn btn-outline-danger btn-sm">

@@ -1,204 +1,200 @@
 h1 {
-	font-family: "strato-roman";
-	text-transform: uppercase;
-	font-size: 70px;
-	text-align: center;
-	vertical-align:middle;
-	font-weight: normal;
-	line-height: 1;
-	margin: 0;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	position: absolute;
-	color: #a2adff;
-	letter-spacing: 0.6rem;
-	width: 100%;
-	text-shadow: -1px -1px 0 #5a66c4, 1px -1px 0 #5a66c4, -1px 1px 0 #5a66c4,
-		1px 1px 0 #5a66c4;
+    font-family: "strato-roman";
+    text-transform: uppercase;
+    font-size: 70px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: normal;
+    line-height: 1;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    color: #a2adff;
+    letter-spacing: 0.6rem;
+    width: 100%;
+    text-shadow: -1px -1px 0 #5a66c4, 1px -1px 0 #5a66c4, -1px 1px 0 #5a66c4,
+    1px 1px 0 #5a66c4;
 }
 
 h1:after, h1:before, h1 span:before, h1 span:after {
-	content: attr(data-heading);
-	position: absolute;
-	overflow: hidden;
-	left: 0;
-	top: 0;
-	text-shadow: none;
-	width: 100%;
-	font-weight: normal;
+    content: attr(data-heading);
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    text-shadow: none;
+    width: 100%;
+    font-weight: normal;
 }
 
 h1:after {
-	font-family: "strato-tonale", sans-serif;
-	color: #5a66c4;
-	z-index: -1;
+    font-family: "strato-tonale", sans-serif;
+    color: #5a66c4;
+    z-index: -1;
 }
 
 h1:before {
-	color: #c9cfff;
-	font-family: "strato-cesello";
-	z-index: 3;
-	text-shadow: none;
+    color: #c9cfff;
+    font-family: "strato-cesello";
+    z-index: 3;
+    text-shadow: none;
 }
 
 h1 span:before {
-	color: #7c88e6;
-	font-family: "strato-eclisse";
-	text-shadow: none;
-	z-index: -1;
+    color: #7c88e6;
+    font-family: "strato-eclisse";
+    text-shadow: none;
+    z-index: -1;
 }
 
 h1 span:after {
-	font-family: "strato-inline";
-	color: #7d89e7;
-	z-index: 6;
-	text-shadow: none;
+    font-family: "strato-inline";
+    color: #7d89e7;
+    z-index: 6;
+    text-shadow: none;
 }
 
 @font-face {
-	font-family: "strato-tonale";
-	src:
-		url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_tonale-webfont.woff2")
-		format("woff2");
-	font-weight: 600;
-	font-style: normal;
+    font-family: "strato-tonale";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_tonale-webfont.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "strato-cesello";
-	src:
-		url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_cesello-webfont.woff2")
-		format("woff2");
-	font-weight: 600;
-	font-style: normal;
+    font-family: "strato-cesello";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_cesello-webfont.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "strato-roman";
-	src:
-		url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_roman-webfont.woff2")
-		format("woff2");
-	font-weight: 600;
-	font-style: normal;
+    font-family: "strato-roman";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_roman-webfont.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "strato-eclisse";
-	src:
-		url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_eclisse-webfont.woff2")
-		format("woff2");
-	font-weight: 600;
-	font-style: normal;
+    font-family: "strato-eclisse";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_eclisse-webfont.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: "strato-inline";
-	src:
-		url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_inline-webfont.woff2")
-		format("woff2");
-	font-weight: 600;
-	font-style: normal;
+    font-family: "strato-inline";
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/strato_inline-webfont.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
 }
 
 /* 주사위버튼  */
-@import
-   url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rubik:700&display=swap");
 
 .learn-more {
-   top:190px;
-   position: relative;
-   display: inline-block;
-   cursor: pointer;
-   outline: none;
-   border: 0;
-   vertical-align: bottom;
-   text-decoration: none;	
-  font-family: inherit;
-  display: inline-block;
-  font-size: 1.2em;
-  font-weight: 600;
-  margin-top:10px;
-  padding: 2em 2em;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #ff0081;
-  color: #fff;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+    top: 190px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: bottom;
+    text-decoration: none;
+    font-family: inherit;
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 10px;
+    padding: 2em 2em;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #ff0081;
+    color: #fff;
+    border-radius: 16px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
 }
+
 .learn-more:focus {
-  outline: 0;
+    outline: 0;
 }
 
 .learn-more:hover {
-   background: #ffe9e9;
-   transform: translate(0, 0.25em);
+    background: #ffe9e9;
+    transform: translate(0, 0.25em);
 }
 
 
 .learn-more:before, .learn-more:after {
-  position: absolute;
-  content: "";
-  display: block;
-  width: 140%;
-  height: 100%;
-  left: -20%;
-  z-index: -1000;
-  transition: all ease-in-out 0.5s;
-  background-repeat: no-repeat;
+    position: absolute;
+    content: "";
+    display: block;
+    width: 140%;
+    height: 100%;
+    left: -20%;
+    z-index: -1000;
+    transition: all ease-in-out 0.5s;
+    background-repeat: no-repeat;
 }
+
 .learn-more:before {
-  display: none;
-  top: -75%;
-  background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 20%, #ff0081 20%, transparent 30%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
-  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+    display: none;
+    top: -75%;
+    background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 20%, #ff0081 20%, transparent 30%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
+    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
 }
+
 .learn-more:after {
-  display: none;
-  bottom: -75%;
-  background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
-  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+    display: none;
+    bottom: -75%;
+    background-image: radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, transparent 10%, #ff0081 15%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%), radial-gradient(circle, #ff0081 20%, transparent 20%);
+    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
 }
+
 .learn-more:active {
-  transform: scale(0.8);
-  background-color: #e60074;
-  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+    transform: scale(0.8);
+    background-color: #e60074;
+    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
 }
+
 .learn-more.animate:before {
-  display: block;
-  animation: topBubbles ease-in-out 0.75s forwards;
+    display: block;
+    animation: topBubbles ease-in-out 0.75s forwards;
 }
+
 .learn-more.animate:after {
-  display: block;
-  animation: bottomBubbles ease-in-out 0.75s forwards;
+    display: block;
+    animation: bottomBubbles ease-in-out 0.75s forwards;
 }
 
 @keyframes topBubbles {
-  0% {
-    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
-  }
-  50% {
-    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
-  }
-  100% {
-    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
+    0% {
+        background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+    }
+    50% {
+        background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+    }
+    100% {
+        background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
 }
+
 @keyframes bottomBubbles {
-  0% {
-    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
-  }
-  50% {
-    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
-  }
-  100% {
-    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
-    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-  }
+    0% {
+        background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+    }
+    50% {
+        background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+    }
+    100% {
+        background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+        background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
 }

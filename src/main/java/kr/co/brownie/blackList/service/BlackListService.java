@@ -4,10 +4,10 @@ import java.util.List;
 
 public interface BlackListService {
 
-	List<BlackListVO> selectBlackList();
+    List<BlackListVO> selectBlackList();
 
-	int insert(String userId, String result, String id ,int reasonSeq);
+    int insert(String userId, String result, String id, int reasonSeq);
 
-	int update(String id, int bListSeq);
+    int update(String id, int bListSeq);
 
 }

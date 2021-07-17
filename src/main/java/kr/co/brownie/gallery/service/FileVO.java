@@ -1,12 +1,12 @@
 package kr.co.brownie.gallery.service;
 
-import java.util.Date;
-
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class FileVO {
-	private int fileSeq;
+    private int fileSeq;
     private int subSeq;
     private String filePath;
     private String originalName;

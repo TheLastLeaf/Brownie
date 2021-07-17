@@ -1,11 +1,10 @@
 package kr.co.brownie.report.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
+import kr.co.brownie.report.service.ReportVO;
 import org.springframework.stereotype.Repository;
 
-import kr.co.brownie.report.service.ReportVO;
+import java.util.List;
+import java.util.Map;
 
 @Repository("reportMapper")
 public interface ReportMapper {

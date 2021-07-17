@@ -2,7 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 <!-- Details Hero Section Begin -->
-<section class="details-hero-section set-bg" data-setbg="${pageContext.request.contextPath}/img/details/details-post-review.jpg">
+<section class="details-hero-section set-bg"
+         data-setbg="${pageContext.request.contextPath}/img/details/details-post-review.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-6">

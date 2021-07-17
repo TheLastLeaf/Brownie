@@ -2,175 +2,183 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../layout/header.jsp"/>
 
-<!--  -->
+<!-- -->
 
 <script src="${pageContext.request.contextPath}/js/marvel.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
 <script>
-var fileName = [];
-/*   $(function(){
-       $('.notice_content').html(
-           $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
-   });*/
-   
-   $(function () {
-       const toolbar = [
-           // 글꼴 설정
-           ['fontname', ['fontname']],
-           // 글자 크기 설정
-           ['fontsize', ['fontsize']],
-           // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-           ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
-           // 글자색
-           ['color', ['forecolor', 'color']],
-           // 표만들기
-           ['table', ['table']],
-           // 글머리 기호, 번호매기기, 문단정렬
-           ['para', ['ul', 'ol', 'paragraph']],
-           // 줄간격
-           ['height', ['height']],
-           // 그림첨부, 링크만들기, 동영상첨부
-           ['insert', ['picture', 'link', 'video']],
-           // 코드보기, 확대해서보기, 도움말
-           ['view', ['codeview', 'fullscreen', 'help']]
-       ];
+    var fileName = [];
+    /*   $(function(){
+           $('.notice_content').html(
+               $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
+       });*/
 
-       const setting = {
-           height: 300,
-           minHeight: null,
-           maxHeight: null,
-           focus: true,
-           lang: 'ko-KR',
-           toolbar: toolbar,
-           callbacks: { //여기 부분이 이미지를 첨부하는 부분
-               onImageUpload: function (files, editor, welEditable) {
-                   for (let i = files.length - 1; i >= 0; i--) {
-                       uploadSummernoteImageFile(files[i], this);
-                   }
-               }
-           }
-       };
+    $(function () {
+        const toolbar = [
+            // 글꼴 설정
+            ['fontname', ['fontname']],
+            // 글자 크기 설정
+            ['fontsize', ['fontsize']],
+            // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+            // 글자색
+            ['color', ['forecolor', 'color']],
+            // 표만들기
+            ['table', ['table']],
+            // 글머리 기호, 번호매기기, 문단정렬
+            ['para', ['ul', 'ol', 'paragraph']],
+            // 줄간격
+            ['height', ['height']],
+            // 그림첨부, 링크만들기, 동영상첨부
+            ['insert', ['picture', 'link', 'video']],
+            // 코드보기, 확대해서보기, 도움말
+            ['view', ['codeview', 'fullscreen', 'help']]
+        ];
 
-       $('.summernote').summernote(setting);
-   });
+        const setting = {
+            height: 300,
+            minHeight: null,
+            maxHeight: null,
+            focus: true,
+            lang: 'ko-KR',
+            toolbar: toolbar,
+            callbacks: { //여기 부분이 이미지를 첨부하는 부분
+                onImageUpload: function (files, editor, welEditable) {
+                    for (let i = files.length - 1; i >= 0; i--) {
+                        uploadSummernoteImageFile(files[i], this);
+                    }
+                }
+            }
+        };
 
-   function uploadSummernoteImageFile(file, el) {
-       const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
-       if (!file.type.match(reg)) {
-           alert("확장자는 이미지 확장자만 가능합니다.");
-           return;
-       }
-       const data = new FormData();
-       data.append("file", file);
-       $.ajax({
-           data: data,
-           type: "POST",
-           url: "${pageContext.request.contextPath}/uploadSummernoteImageFile",
-           contentType: false,
-           enctype: 'multipart/form-data',
-           processData: false,
-           success: function (data) {
-               $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
-               fileName.push(data.url);
-               alert
-           }
-       });
-   }
-       
-       function fn_update(){
-   		var title = $(".title").val();
-   		var summernote = $(".summernote").val();
-   		
-   		$.ajax({
-   			url : "./ajax.galleryupdate",
-   			type : "post",
-   			data : {
-   					"title" : title,
-   					"summernote" : summernote,
-   					"boardSeq" : ${galleryVO.boardSeq},
-   					"fileName" : fileName[0]
-   			},
-   			success : function(data) {
-   				if(data==1){
-   					location.href='detail?boardSeq=${galleryVO.boardSeq}'
-   				}
-   			},
-   			error : function() {
-   				alert("글이 등록되지 않았습니다.");
-   			}
-   		})
-   	}
+        $('.summernote').summernote(setting);
+    });
+
+    function uploadSummernoteImageFile(file, el) {
+        const reg = /(.*?)\/(tiff|pjp|jfif|bmp|gif|svg|png|xbm|dib|jxl|jpeg|svgz|jpg|webp|ico|tif|pjpeg|avif)$/;
+        if (!file.type.match(reg)) {
+            alert("확장자는 이미지 확장자만 가능합니다.");
+            return;
+        }
+        const data = new FormData();
+        data.append("file", file);
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: "${pageContext.request.contextPath}/uploadSummernoteImageFile",
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function (data) {
+                $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
+                fileName.push(data.url);
+                alert
+            }
+        });
+    }
+
+    function fn_update() {
+        var title = $(".title").val();
+        var summernote = $(".summernote").val();
+
+        $.ajax({
+            url: "./ajax.galleryupdate",
+            type: "post",
+            data: {
+                "title": title,
+                "summernote": summernote,
+                "boardSeq": ${galleryVO.boardSeq},
+                "fileName": fileName[0]
+            },
+            success: function (data) {
+                if (data == 1) {
+                    location.href = 'detail?boardSeq=${galleryVO.boardSeq}'
+                }
+            },
+            error: function () {
+                alert("글이 등록되지 않았습니다.");
+            }
+        })
+    }
 
 </script>
 <style>
-    .spad{
+    .spad {
         padding-top: 150px;
         padding-bottom: 100px;
     }
-    .cont-spad{
+
+    .cont-spad {
         padding-top: 50px;
         padding-bottom: 50px;
         height: 100%;
     }
-    .title{
+
+    .title {
         width: 100%;
         background-color: black;
         border: 1px solid #666666;
-        color:white;
+        color: white;
     }
-    .card-block{
-    	height: 840px !important;
+
+    .card-block {
+        height: 840px !important;
     }
-    .summernote{
+
+    .summernote {
         color: #666666;
     }
-    .card{
+
+    .card {
         background-color: black;
     }
-    .card-header{
+
+    .card-header {
         border: 1px solid #666666;
     }
-    .submit{
+
+    .submit {
         width: 100%;
         background-color: black;
         border: 1px solid #666666;
-        color:white;
+        color: white;
     }
-    .galleryCon{
-        border:1px solid #666666;
+
+    .galleryCon {
+        border: 1px solid #666666;
         height: 900px;
     }
-    
-    .pad{
+
+    .pad {
         padding-top: 10px;
     }
 
 </style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" style="height: 430px; padding-top:200px;"
-	data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${rnd}.jpg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
+         data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${rnd}.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
 
-				<div class="breadcrumb-text" style="text-align: center">
-					<h3>
-						<div class="breadcrumb-text">
-							<h3>
-								<h1 data-heading="Brownie  Gallery" style="z-index: 5">
+                <div class="breadcrumb-text" style="text-align: center">
+                    <h3>
+                        <div class="breadcrumb-text">
+                            <h3>
+                                <h1 data-heading="Brownie  Gallery" style="z-index: 5">
 									<span data-heading="Brownie  Gallery" contenteditable>
 										Brownie  Gallery </span>
-								</h1>
-							</h3>
-							<div class="bt-option"></div>
-						</div>
-					</h3>
-				</div>
-			</div>
-		</div>
-	</div>
+                                </h1>
+                            </h3>
+                            <div class="bt-option"></div>
+                        </div>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- Breadcrumb Section End -->
 
@@ -179,22 +187,24 @@ var fileName = [];
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                    <div class="contact-text">
-                        <div class="contact-form">
-                            <div class="dt-leave-comment">
-                                <input type="hidden" name="inUserId" value="${id}" id="inUserId">
-                                <div class="input-list" style="padding-bottom: 10px;">
-                                    <input type="text" placeholder="Title" class="title"  id="title" name="title" required="required" value="${ galleryVO.title }">
-                                </div>
-                                <div class="galleryCon">
-								    <textarea style="height: height: 100%;" class="summernote" name="summernote">${ galleryVO.content }</textarea>
-								</div>
-                                <div class="pad">
-                                    <input onclick="fn_update()" type="submit" value="등록"  class="submit">
-                                </div>
+                <div class="contact-text">
+                    <div class="contact-form">
+                        <div class="dt-leave-comment">
+                            <input type="hidden" name="inUserId" value="${id}" id="inUserId">
+                            <div class="input-list" style="padding-bottom: 10px;">
+                                <input type="text" placeholder="Title" class="title" id="title" name="title"
+                                       required="required" value="${ galleryVO.title }">
+                            </div>
+                            <div class="galleryCon">
+                                <textarea style="height: height: 100%;" class="summernote"
+                                          name="summernote">${ galleryVO.content }</textarea>
+                            </div>
+                            <div class="pad">
+                                <input onclick="fn_update()" type="submit" value="등록" class="submit">
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>

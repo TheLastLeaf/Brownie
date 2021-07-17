@@ -28,7 +28,8 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-1.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-1.jpg">
                                 <div class="label"><span>Reviews</span></div>
                             </div>
                             <div class="cg-text">
@@ -45,7 +46,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-2.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-2.jpg">
                                 <div class="label"><span>Windows</span></div>
                             </div>
                             <div class="cg-text">
@@ -62,7 +64,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-3.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-3.jpg">
                                 <div class="label"><span>Hardware</span></div>
                             </div>
                             <div class="cg-text">
@@ -79,7 +82,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-4.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-4.jpg">
                                 <div class="label"><span>Playstation</span></div>
                             </div>
                             <div class="cg-text">
@@ -96,7 +100,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-5.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-5.jpg">
                                 <div class="label"><span>Reviews</span></div>
                             </div>
                             <div class="cg-text">
@@ -113,7 +118,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-6.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-6.jpg">
                                 <div class="label"><span>Windows</span></div>
                             </div>
                             <div class="cg-text">
@@ -130,7 +136,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-7.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-7.jpg">
                                 <div class="label"><span>Hardware</span></div>
                             </div>
                             <div class="cg-text">
@@ -147,7 +154,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-8.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-8.jpg">
                                 <div class="label"><span>Playstation</span></div>
                             </div>
                             <div class="cg-text">
@@ -164,7 +172,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-9.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-9.jpg">
                                 <div class="label"><span>Hardware</span></div>
                             </div>
                             <div class="cg-text">
@@ -181,7 +190,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="cg-item">
-                            <div class="cg-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-10.jpg">
+                            <div class="cg-pic set-bg"
+                                 data-setbg="${pageContext.request.contextPath}/img/categories-grid/cg-10.jpg">
                                 <div class="label"><span>Playstation</span></div>
                             </div>
                             <div class="cg-text">

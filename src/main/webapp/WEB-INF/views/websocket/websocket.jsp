@@ -2,10 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 
-    $(document).ready(function (){
+    $(document).ready(function () {
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
         const username = [['익명이']];
 
@@ -27,11 +27,13 @@
         websocket.onopen = onOpen;
         websocket.onclose = onClose;
         websocket.onerror = function (err) {
-            console.log('Error:',err);
-            setTimeout( function(){ connect(); }, 1000); // retry connection!!
+            console.log('Error:', err);
+            setTimeout(function () {
+                connect();
+            }, 1000); // retry connection!!
         };
 
-        function send(){
+        function send() {
             let msg = document.getElementById("msg");
             console.log(username + ":" + msg.value);
             websocket.send(username + ":" + msg.value);
@@ -58,7 +60,7 @@
             var message = null;
             var arr = data.split(":");
 
-            for(var i=0; i<arr.length; i++){
+            for (var i = 0; i < arr.length; i++) {
                 console.log('arr[' + i + ']: ' + arr[i]);
             }
 
@@ -80,22 +82,23 @@
         }
     })
 </script>
-        <div class="container">
-            <div class="col-6">
-                <label><b>채팅방</b></label>
-            </div>
-            <div>
-                <div id="msgArea" class="col"></div>
-                <div class="col-6">
-                    <div class="input-group mb-3">
-                        <input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
-                            <button class="btn btn-outline-secondary" type="button" id="disconn">나가기</button>
-                            <button class="btn btn-outline-secondary" type="button" id="enter-chat">접속</button>
-                        </div>
-                    </div>
+<div class="container">
+    <div class="col-6">
+        <label><b>채팅방</b></label>
+    </div>
+    <div>
+        <div id="msgArea" class="col"></div>
+        <div class="col-6">
+            <div class="input-group mb-3">
+                <input type="text" id="msg" class="form-control" aria-label="Recipient's username"
+                       aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
+                    <button class="btn btn-outline-secondary" type="button" id="disconn">나가기</button>
+                    <button class="btn btn-outline-secondary" type="button" id="enter-chat">접속</button>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 </html>

@@ -1,18 +1,17 @@
 package kr.co.brownie.attendance.service.impl;
 
-import java.util.List;
-
+import kr.co.brownie.attendance.service.AttendanceVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import kr.co.brownie.attendance.service.AttendanceVO;
+import java.util.List;
 
 @Mapper
 @Repository("attendanceMapper")
 public interface AttendanceMapper {
 
-	List<AttendanceVO> getCheckedDate(String userId);
+    List<AttendanceVO> getCheckedDate(String userId);
 
-	int insertOne(String userId);
+    int insertOne(String userId);
 
 }

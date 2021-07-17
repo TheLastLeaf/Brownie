@@ -84,10 +84,11 @@
         color: white;
     }
 
-    .card{
+    .card {
         background-color: black;
     }
-    .card-header{
+
+    .card-header {
         border: 1px solid #666666;
     }
 
@@ -155,7 +156,8 @@
                                             <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
                                                 <c:choose>
                                                     <c:when test="${champion.id == boardVO.boardCategory}">
-                                                        <option value="${champion.id}" selected>${champion.name}</option>
+                                                        <option value="${champion.id}"
+                                                                selected>${champion.name}</option>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <option value="${champion.id}">${champion.name}</option>

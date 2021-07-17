@@ -1,13 +1,11 @@
 package kr.co.brownie.board.web;
 
-import javax.annotation.Resource;
-
 import kr.co.brownie.board.reply.service.ReplyService;
-import org.springframework.stereotype.Controller;
-
 import kr.co.brownie.board.service.BoardService;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.Resource;
 
 @Controller
 @RequestMapping("/board")

@@ -30,10 +30,10 @@
         <beans:property name="maxUploadSize" value="100000000"/>
     </beans:bean>
 
-    <beans:bean id="WebSocketHandler" class="kr.co.brownie.socket.service.WebSocketHandler" />
+    <beans:bean id="WebSocketHandler" class="kr.co.brownie.socket.service.WebSocketHandler"/>
 
     <websocket:handlers>
-        <websocket:mapping handler="WebSocketHandler" path="/WebEcho" />
+        <websocket:mapping handler="WebSocketHandler" path="/WebEcho"/>
         <websocket:handshake-interceptors>
             <beans:bean
                     class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>

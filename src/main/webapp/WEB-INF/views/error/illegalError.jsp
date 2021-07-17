@@ -36,7 +36,8 @@
             <div class="lp-slider owl-carousel">
                 <div class="col-lg-3">
                     <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-1.jpg">
+                        <div class="lp-pic set-bg"
+                             data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-1.jpg">
                             <div class="review-loader">
                                 <div class="loader-circle-wrap">
                                     <div class="loader-circle">
@@ -60,7 +61,8 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-2.jpg">
+                        <div class="lp-pic set-bg"
+                             data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-2.jpg">
                             <div class="review-loader">
                                 <div class="loader-circle-wrap">
                                     <div class="loader-circle">
@@ -84,7 +86,8 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-3.jpg">
+                        <div class="lp-pic set-bg"
+                             data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-3.jpg">
                             <div class="review-loader">
                                 <div class="loader-circle-wrap">
                                     <div class="loader-circle">
@@ -108,7 +111,8 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-4.jpg">
+                        <div class="lp-pic set-bg"
+                             data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-4.jpg">
                             <div class="review-loader">
                                 <div class="loader-circle-wrap">
                                     <div class="loader-circle">
@@ -132,7 +136,8 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-4.jpg">
+                        <div class="lp-pic set-bg"
+                             data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-4.jpg">
                             <div class="review-loader">
                                 <div class="loader-circle-wrap">
                                     <div class="loader-circle">
@@ -156,7 +161,8 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-4.jpg">
+                        <div class="lp-pic set-bg"
+                             data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-4.jpg">
                             <div class="review-loader">
                                 <div class="loader-circle-wrap">
                                     <div class="loader-circle">
@@ -180,7 +186,8 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="lp-item">
-                        <div class="lp-pic set-bg" data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-4.jpg">
+                        <div class="lp-pic set-bg"
+                             data-setbg="${pageContext.request.contextPath}/img/latest-preview/lp-4.jpg">
                             <div class="review-loader">
                                 <div class="loader-circle-wrap">
                                     <div class="loader-circle">

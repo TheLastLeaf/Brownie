@@ -25,7 +25,7 @@ public class TipController {
     @Resource(name = "replyService")
     ReplyService replyService;
 
-    @Resource(name="boardHitService")
+    @Resource(name = "boardHitService")
     BoardHitService boardHitService;
 
     @Resource(name = "leagueOfLegendsChampionsService")

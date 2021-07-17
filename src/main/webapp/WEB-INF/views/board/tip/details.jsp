@@ -28,8 +28,8 @@
 </style>
 
 <script>
-    function fn_report(userId,log){
-        window.open("/report/write?userId=" + userId +"&log="+log, "REPORT", "width=660, height=500, left=250,top=200");
+    function fn_report(userId, log) {
+        window.open("/report/write?userId=" + userId + "&log=" + log, "REPORT", "width=660, height=500, left=250,top=200");
     }
 </script>
 
@@ -74,7 +74,8 @@
                                 <button type="button" onclick="location.href='/tip/modify/${boardSeq}'"
                                         class="skewXButton position-relative ml-3 mb-3"><span>Modify</span>
                                 </button>
-                                <button type="submit" class="skewXButton position-relative ml-3 mb-3"><span>Delete</span>
+                                <button type="submit" class="skewXButton position-relative ml-3 mb-3">
+                                    <span>Delete</span>
                                 </button>
                             </form>
                         </div>
@@ -117,7 +118,9 @@
                     btn-lg ml-3" onclick="boardLike(${boardSeq}, 0)"><i
                             class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</button>
                     <c:if test="${sessionScope.id != null}">
-                        <button type="button" class="btn btn-outline-light btn-lg ml-5" onclick="fn_report('${boardVO.boardUpUserId}','${boardVO.content}')"><i class="fas fa-bomb"></i>
+                        <button type="button" class="btn btn-outline-light btn-lg ml-5"
+                                onclick="fn_report('${boardVO.boardUpUserId}','${boardVO.content}')"><i
+                                class="fas fa-bomb"></i>
                         </button>
                     </c:if>
                 </div>
@@ -157,12 +160,15 @@
                                     ml-3" onclick="replyLike(${replyVO.replySeq}, 0)"><i
                                             class="far fa-thumbs-up fa-flip-vertical"></i> ${replyVO.unlikeCnt}</button>
                                     <c:if test="${sessionScope.id != null}">
-                                        <button type="button" class="btn btn-outline-light ml-5" onclick="fn_report('${replyVO.replyUpUserId}','${replyVO.replyContent}')"><i
-                                                class="fas fa-bomb"></i></button>
+                                        <button type="button" class="btn btn-outline-light ml-5"
+                                                onclick="fn_report('${replyVO.replyUpUserId}','${replyVO.replyContent}')">
+                                            <i
+                                                    class="fas fa-bomb"></i></button>
                                     </c:if>
                                 </div>
                                 <p>${replyVO.replyContent}</p>
-                                <form action="${pageContext.request.contextPath}/tip/details/${boardSeq}/reply/delete" method="POST"
+                                <form action="${pageContext.request.contextPath}/tip/details/${boardSeq}/reply/delete"
+                                      method="POST"
                                       onsubmit="return confirm('정말 삭제하시겠습니까?');">
                                     <input type="hidden" name="replySeq" value="${replyVO.replySeq}"/>
                                     <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">

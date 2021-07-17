@@ -36,8 +36,9 @@
                               A.UP_DATE    AS "UPDATE",
                               A.IN_USER_ID AS INUSERID,
                               A.UP_USER_ID AS UPUSERID,
-                              B.NICK_NAME AS NICKNAME
-                       FROM BLACK_USER A LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.USER_ID)
+                              B.NICK_NAME  AS NICKNAME
+                       FROM BLACK_USER A
+                                LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.USER_ID)
                        ORDER BY B_USER_SEQ
                    )
              )
@@ -60,10 +61,8 @@
 
     <update id="update" parameterType="hashMap">
         UPDATE BLACK_USER
-        SET
-            STATUS = 'N',
+        SET STATUS  = 'N',
             UP_DATE = SYSDATE
-        WHERE
-            B_USER_SEQ = #{bUserSeq}
+        WHERE B_USER_SEQ = #{bUserSeq}
     </update>
 </mapper>

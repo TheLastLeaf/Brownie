@@ -82,7 +82,8 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
-        .admin{
+
+        .admin {
             height: 25px;
             font-size: small;
         }
@@ -501,20 +502,20 @@
                         <div class="megamenu-wrapper">
                             <div class="mw-post">
                                 <c:forEach var="recentList" items="${recentList }" varStatus="">
-	                                <div class="mw-post-item">
-	                                    <div class="mw-pic col-xl-">
-	                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
-	                                    </div>
-	                                    <div class="mw-text">
-	                                        <h6>
-	                                            <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${recentList.boardSeq}">${recentList.title }</a>
-	                                        </h6>
-	                                        <ul>
-	                                            <li><i class="far fa-clock"></i> ${recentList.inDate }</li>
-	                                            <li><i class="far fa-comment"></i>${recentList.replyCnt }</li>
-	                                        </ul>
-	                                    </div>
-	                                </div>
+                                    <div class="mw-post-item">
+                                        <div class="mw-pic col-xl-">
+                                            <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        </div>
+                                        <div class="mw-text">
+                                            <h6>
+                                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${recentList.boardSeq}">${recentList.title }</a>
+                                            </h6>
+                                            <ul>
+                                                <li><i class="far fa-clock"></i> ${recentList.inDate }</li>
+                                                <li><i class="far fa-comment"></i>${recentList.replyCnt }</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </c:forEach>
                             </div>
                         </div>

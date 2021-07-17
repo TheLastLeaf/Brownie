@@ -21,7 +21,7 @@
 <!-- Breadcrumb Section End -->
 
 <script>
-    function fn_submit(){
+    function fn_submit() {
         alert("블랙리스트로 추가하시겠습니까?")
         const userId = $(".userId").val();
         const log = $(".log").val();
@@ -37,10 +37,10 @@
             data: {
                 "userId": userId,
                 "log": log,
-                "reportSeq":reportSeq,
-                "reasonSeq":reasonSeq,
-                "bListSeq":bListSeq,
-                "endDate":endDate
+                "reportSeq": reportSeq,
+                "reasonSeq": reasonSeq,
+                "bListSeq": bListSeq,
+                "endDate": endDate
             },
             success: function (data) {
                 console.log(data)
@@ -88,10 +88,12 @@
     .reportPageBottom {
         padding-top: 50px;
     }
-    #but{
+
+    #but {
         cursor: pointer;
     }
-    #reason{
+
+    #reason {
         width: 100%;
         background-color: black;
         color: white;
@@ -137,32 +139,35 @@
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }">
                             <c:if test="${reportList.status eq 'N'}">
-                            <tr>
-                                <th class="reportListTd">${reportList.userId}</th>
-                                <th class="reportListTd">${reportList.reportName }</th>
-                                <c:choose>
-                                    <c:when test="${reportList.content ne null}">
-                                        <th class="reportContent">${reportList.content }</th>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <th>-신고내용 없음-</th>
-                                    </c:otherwise>
-                                </c:choose>
-                                <th class="reportListTd">${reportList.inUserId }</th>
-                                <th class="reportListTd">${reportList.inDate }</th>
-                                <th style="text-align: center">
-                                    <select id="reason">
-                                        <option class="reason" selected value="1">욕설</option>
-                                        <option class="reason" value="2">사칭</option>
-                                        <option class="reason" value="3">광고</option>
-                                        <option class="reason" value="4">그냥</option>
-                                    </select>
-                                </th>
-                                <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i></th>
-                                <input type="hidden" name="userId" value="${reportList.userId}" id="userId" class="userId">
-                                <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
-                                <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq" class="reportSeq">
-                            </tr>
+                                <tr>
+                                    <th class="reportListTd">${reportList.userId}</th>
+                                    <th class="reportListTd">${reportList.reportName }</th>
+                                    <c:choose>
+                                        <c:when test="${reportList.content ne null}">
+                                            <th class="reportContent">${reportList.content }</th>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <th>-신고내용 없음-</th>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <th class="reportListTd">${reportList.inUserId }</th>
+                                    <th class="reportListTd">${reportList.inDate }</th>
+                                    <th style="text-align: center">
+                                        <select id="reason">
+                                            <option class="reason" selected value="1">욕설</option>
+                                            <option class="reason" value="2">사칭</option>
+                                            <option class="reason" value="3">광고</option>
+                                            <option class="reason" value="4">그냥</option>
+                                        </select>
+                                    </th>
+                                    <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i>
+                                    </th>
+                                    <input type="hidden" name="userId" value="${reportList.userId}" id="userId"
+                                           class="userId">
+                                    <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
+                                    <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq"
+                                           class="reportSeq">
+                                </tr>
                             </c:if>
                         </c:forEach>
                     </table>

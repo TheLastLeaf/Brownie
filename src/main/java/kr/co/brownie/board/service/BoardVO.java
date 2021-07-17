@@ -1,10 +1,10 @@
 package kr.co.brownie.board.service;
 
-import java.util.Date;
-
 import lombok.Data;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
+import java.util.Date;
 
 @Data
 public class BoardVO {

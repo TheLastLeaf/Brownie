@@ -4,12 +4,12 @@ import lombok.Data;
 
 @Data
 public class BrownieMarbelLogVO {
-	private String userId;
-	private int round;
-	private int logSeq;
-	private int dicenum;
-	private String time;
-	private String object;
-	private String act;
-	private String result;
+    private String userId;
+    private int round;
+    private int logSeq;
+    private int dicenum;
+    private String time;
+    private String object;
+    private String act;
+    private String result;
 }
