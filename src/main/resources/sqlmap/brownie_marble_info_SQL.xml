@@ -58,6 +58,7 @@
 		        ITEM AS ITEM,
 		        POSITION,
 		        POINT,
+		        (SELECT BROWNIE_POINT FROM BROWNIE_USER WHERE USER_ID = #{userId}) AS BROWNIEPOINT,
 		        RECENT_MAP AS RECENTMAP,
 		        QUEST,
 		        DICETIMES
@@ -78,7 +79,6 @@
             HP  		= #{hp},
             ITEM 		= #{item},
             POSITION    = #{position},
-            POINT   	= #{point},
             RECENT_MAP 	= #{recentMap},
             QUEST   	= #{quest},
             DICETIMES	= #{dicetimes},
@@ -86,15 +86,29 @@
         WHERE USER_ID = #{userId}
     </update>
     
+    <update id="updateBPoint" parameterType="hashMap">
+        UPDATE BROWNIE_USER
+        SET
+           BROWNIE_POINT = BROWNIE_POINT + #{point}
+        WHERE USER_ID = #{userId}
+    </update>
+    
+    <update id="updateGamePoint" parameterType="hashMap">
+        UPDATE BROWNIE_MARBLE
+        SET
+           POINT = POINT + #{point}
+        WHERE USER_ID = #{userId}
+    </update>
+    
     <select id="selectLogs" resultType="kr.co.brownie.miniGame.service.BrownieMarbelLogVO">
-        SELECT USER_ID AS USERID,
-	        ROUND,
-	        LOG_SEQ AS LOGSEQ,
-	        DICENUM,
-	        TIME,
-	        OBJECT,
-	        ACT,
-	        RESULT
+        SELECT (SELECT NICK_NAME FROM BROWNIE_USER WHERE USER_ID = #{userId}) AS USERID,
+		        ROUND,
+		        LOG_SEQ AS LOGSEQ,
+		        DICENUM,
+		        (SELECT to_char(TIME,'rr.mm.dd/HH24:MI') FROM dual),
+		        OBJECT,
+		        ACT,
+		        RESULT
 		FROM BROWNIE_MARBLE_LOG
 		WHERE USER_ID = #{userId}
 		AND ROUND = #{round}
@@ -104,7 +118,14 @@
     <insert id="insertLog" parameterType="hashMap">
         INSERT INTO
         BROWNIE_MARBLE_LOG(USER_ID,ROUND,LOG_SEQ,DICENUM,TIME,OBJECT,ACT,RESULT)
-        VALUES (#{userId},(SELECT ROUND FROM BROWNIE_MARBLE WHERE USER_ID = #{userId}),(SELECT NVL(MAX(LOG_SEQ),0)+1 FROM BROWNIE_MARBLE_LOG WHERE USER_ID = #{userId} AND ROUND = #{round}),#{dicenum},SYSDATE,#{object},#{act},#{result})
+        VALUES (#{userId}
+        ,(SELECT ROUND FROM BROWNIE_MARBLE WHERE USER_ID = #{userId})
+        ,(SELECT NVL(MAX(LOG_SEQ),0)+1 FROM BROWNIE_MARBLE_LOG)
+        ,#{dicenum}
+        ,SYSDATE
+        ,#{object}
+        ,#{act}
+        ,#{result})
     </insert>
     
 </mapper>

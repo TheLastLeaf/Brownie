@@ -32,5 +32,9 @@ public interface BrownieMarbelInfoMapper {
 
     int insertLog(HashMap<String, Object> map);
     
+    int updateBPoint(HashMap<String, Object> map);
+    
+    int updateGamePoint(HashMap<String, Object> map);
+    
     BrownieMarbelInfoVO selectInfo(int seq);
 }

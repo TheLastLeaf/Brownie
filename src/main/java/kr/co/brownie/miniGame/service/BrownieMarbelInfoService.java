@@ -25,5 +25,9 @@ public interface BrownieMarbelInfoService {
 
     int insertLog(HashMap<String, Object> map);
     
+    int modifyBPoint(HashMap<String, Object> map);
+    
+    int modifyGamePoint(HashMap<String, Object> map);
+    
     BrownieMarbelInfoVO selectInfo(int seq);
 }

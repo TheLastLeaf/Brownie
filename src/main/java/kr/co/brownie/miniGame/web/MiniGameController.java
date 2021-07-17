@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,7 @@ public class MiniGameController {
 	@Resource(name = "brownieMarbelInfoService")
 	BrownieMarbelInfoService miniGameService;
 
-	@GetMapping(path={"", "/blueMarvel"})
+	/*@GetMapping(path={"", "/blueMarvel"})
 	public String brownieMain(@RequestParam Map<String, Object> map, Model model, HttpSession session) {
 		//정보 로드하기
 		String id = (String) session.getAttribute("id");
@@ -78,56 +79,71 @@ public class MiniGameController {
         //
         
 		return "miniGame/blueMarvel";
-	}
+	}*/
 
-	/*
-	 * @GetMapping(path={"", "/blueMarvel"}) public String brownieMain(@RequestParam
-	 * Map<String, Object> map, Model model, HttpSession session) { //정보 로드하기
-	 * //String id = (String) session.getAttribute("id"); String id = "1797573825";
-	 * BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
-	 * HashMap<String, Object> param = new HashMap<>();
-	 * 
-	 * //처음 생성할때 if (player==null) { System.out.println("플레이어 데이터 생성"); String quest
-	 * = "race[x],beginer[x],barter[x],riddle[x],tothemoon[x],bet[x],dice[x]";
-	 * String recentMap = addMap();
-	 * 
-	 * param.put("userId", id); param.put("recentMap", recentMap);
-	 * param.put("quest", quest);
-	 * 
-	 * //플레이어 정보삽입 int cnt = this.miniGameService.insertPlayer(param); if(cnt==1) {
-	 * System.out.println("데이터 삽입 성공"); player =
-	 * this.miniGameService.selectPlayer(id); } }
-	 * 
-	 * System.out.println("player:"+player); model.addAttribute("player",player);
-	 * 
-	 * int round = player.getRound(); param.put("round", round); param.put("userId",
-	 * id);
-	 * 
-	 * List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
-	 * System.out.println("logs:"+logs);
-	 * 
-	 * //DB에 있는 맵 가공 추출 String recentMap = player.getRecentMap(); recentMap =
-	 * recentMap.replace("[", ""); recentMap = recentMap.replace("]", ""); String[]
-	 * str = recentMap.split(", "); int[] a =
-	 * Arrays.asList(str).stream().mapToInt(Integer::parseInt).toArray();
-	 * List<Integer> list = new ArrayList<>();
-	 * 
-	 * for(int n : a) { list.add(n); }
-	 * 
-	 * 
-	 * List<BrownieMarbelInfoVO> brownieMarbelInfo = new
-	 * ArrayList<BrownieMarbelInfoVO>(); for (int n : list) {
-	 * brownieMarbelInfo.add(this.miniGameService.selectInfo(n)); }
-	 * 
-	 * //DB에 있는 랜드정보 가져오는것. //List<BrownieMarbelInfoVO> brownieMarbelInfo =
-	 * this.miniGameService.getBrownieMarbelList(passmap);
-	 * 
-	 * model.addAttribute("infoList",brownieMarbelInfo); //
-	 * 
-	 * return "miniGame/blueMarvel"; }
-	 */	
 	
-	/*@ResponseBody
+	@GetMapping(path={"", "/blueMarvel"}) 
+	public String brownieMain(@RequestParam Map<String, Object> map, Model model, HttpSession session) { 
+	//정보 로드하기
+	//String id = (String) session.getAttribute("id"); 
+		String id = "1797573825";
+		BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
+		HashMap<String, Object> param = new HashMap<>();
+	
+	//처음 생성할때 
+	if (player==null) { 
+		System.out.println("플레이어 데이터 생성"); 
+		String quest = "race[x],beginer[x],barter[x],riddle[x],tothemoon[x],bet[x],dice[x]";
+		String recentMap = addMap();
+	
+		param.put("userId", id); 
+		param.put("recentMap", recentMap);
+		param.put("quest", quest);
+		
+	//플레이어 정보삽입 
+		int cnt = this.miniGameService.insertPlayer(param);
+		if(cnt==1) {
+			System.out.println("데이터 삽입 성공"); 
+			player = this.miniGameService.selectPlayer(id); 
+		} 
+	}
+	
+	System.out.println("player:"+player); 
+	model.addAttribute("player",player);
+	
+	int round = player.getRound(); 
+	param.put("userId", id); 
+	param.put("round", round); 
+	
+	List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
+	System.out.println(logs);
+	model.addAttribute("logs",logs);
+	
+	//DB에 있는 맵 가공 추출 
+	String recentMap = player.getRecentMap(); 
+	recentMap = recentMap.replace("[", ""); 
+	recentMap = recentMap.replace("]", ""); 
+	String[] str = recentMap.split(", "); 
+	int[] a = Arrays.asList(str).stream().mapToInt(Integer::parseInt).toArray();
+	
+	List<Integer> list = new ArrayList<>();
+	
+	for(int n : a) { list.add(n); }
+	
+	
+	List<BrownieMarbelInfoVO> brownieMarbelInfo = new
+	ArrayList<BrownieMarbelInfoVO>(); for (int n : list) {
+	brownieMarbelInfo.add(this.miniGameService.selectInfo(n)); }
+	
+	//DB에 있는 랜드정보 가져오는것. 
+	//List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
+	
+	model.addAttribute("infoList",brownieMarbelInfo); //
+	
+	return "miniGame/blueMarvel"; }
+		
+	
+	@ResponseBody
     @RequestMapping(value="/ajax.rndmapcreate", method=RequestMethod.POST)
     public List<BrownieMarbelInfoVO> rndMapCreate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
 		System.out.println("!!!!맵만드는것");
@@ -180,10 +196,10 @@ public class MiniGameController {
 		System.out.println("맵만들기끝"+cnt);
 		System.out.println(brownieMarbelInfo);
 		return brownieMarbelInfo;
-	}*/
+	}
 	
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping(value="/ajax.rndmapcreate", method=RequestMethod.POST)
 	public List<BrownieMarbelInfoVO> rndMapCreate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
 		System.out.println("!!!!맵만드는것");
@@ -227,7 +243,7 @@ public class MiniGameController {
 		System.out.println("맵만들기끝"+cnt);
 		System.out.println(brownieMarbelInfo);
 		return brownieMarbelInfo;
-	}
+	}*/
 	
 	@ResponseBody
 	@RequestMapping(value="/ajax.autorenew", method=RequestMethod.POST)
@@ -240,7 +256,6 @@ public class MiniGameController {
 		int round = Integer.parseInt(servletRequest.getParameter("round"));
 		int hp = Integer.parseInt(servletRequest.getParameter("hp"));
 		String item	= servletRequest.getParameter("item");
-		int point = Integer.parseInt(servletRequest.getParameter("point"));
 		String recentMap = servletRequest.getParameter("recentMap");
 		String quest = servletRequest.getParameter("quest");
 		String dicetimes = servletRequest.getParameter("dicetimes");
@@ -251,7 +266,6 @@ public class MiniGameController {
 		param.put("round", round);
 		param.put("hp", hp);
 		param.put("item", item);
-		param.put("point", point);
 		param.put("recentMap", recentMap);
 		param.put("quest", quest);
 		param.put("dicetimes", dicetimes);
@@ -276,24 +290,54 @@ public class MiniGameController {
 		int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
 		System.out.println("UserPosition"+UserPosition);
 		
-		if(UserPosition==0) {
-			System.out.println("시작점 상점");
-			return 2;
-		}
-		if(UserPosition==0) {
-			System.out.println("시작점 상점");
-			return 2;
-		}
-		
-		
 		
 		int ObjPosition = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
 		BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(ObjPosition);
-		System.out.println("UserPosition"+UserPosition);
-		System.out.println("objNum"+ObjPosition);
-		System.out.println("obj"+obj.getImgName());
+		String objName = obj.getImgName();
+		String objDegree = obj.getDegree();
+		String objKind = obj.getKind();
+		System.out.println("objNum : "+ObjPosition);
+		System.out.println("obj : "+obj.getImgName());
 		
-		return 1;
+		//변수저장
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		
+		int pointNum = 0;
+		String str[] = (obj.getFunction()).split(",");
+		
+		pointNum = Integer.parseInt(str[0]);
+		
+		param.put("point", pointNum);
+		param.put("userId", id);
+		
+		System.out.println(param);
+		
+		int cntSavePoint = 0;
+		System.out.println("여기니?1");
+		if(objDegree.equals("point")) {
+			if(objKind.equals("site")) {
+				//포인트 저장 쿼리
+				cntSavePoint = this.miniGameService.modifyBPoint(param);
+			} else {
+				cntSavePoint = this.miniGameService.modifyGamePoint(param);
+			}
+		}
+		
+		int cntSaveLog = 0;
+		System.out.println("여기니?2");
+		if(cntSavePoint == 1) {
+			param.put("object", objName);
+			param.put("act", "습득");
+			param.put("userId", id);
+			param.put("result", str[1]+objName);
+			param.put("dicenum", 3);
+			param.put("round", 3);
+			System.out.println("param : "+param);
+			
+			cntSaveLog = this.miniGameService.insertLog(param);
+		}
+		System.out.println("여기니?3");
+		return cntSaveLog;
 	}
 	
 	public String addMap() {

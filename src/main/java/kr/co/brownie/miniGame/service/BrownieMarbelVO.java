@@ -13,6 +13,7 @@ public class BrownieMarbelVO {
 	private String item;
 	private int position;
 	private int point;
+	private int browniePoint;
 	private String recentMap;
 	private String quest;
     private int dicetimes;

@@ -7,6 +7,17 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
 <style>
+
+.point{
+	font-weight: bolder; color: black;
+	font-size :30px;
+}
+
+.logWrite{
+	font-weight: bold; color: black;
+	font-size :14px;
+}
+
 .sideKick{
 	display: inline-block; 
     float: left;
@@ -229,6 +240,7 @@
     var hp  		= ${player.hp};
     var item 		= '${player.item}';
     var point   	= ${player.point};
+    var browniePoint   	= ${player.browniePoint};
     var recentMap 	= '${player.recentMap}';
     recentMap = recentMap.replace("[", "");
 	recentMap = recentMap.replace("]", "");
@@ -390,8 +402,6 @@
 		var objposition = "start";
 		if (playerPos!=0) {
 			objposition = recentMap[playerPos-1];
-			console.log(recentMap[playerPos-1]);
-			console.log(objposition);
 		}
 		$.ajax({
 			url : "./ajax.effectact",
@@ -401,7 +411,10 @@
 					"ObjPosition" : objposition
 			},
 			success : function(data) {
-				autoRenew();
+				if(data==1){
+					console.log("data 삽입성공!");
+					autoRenew();
+				}
 			},
 			error : function() {
 				alert("효과 실패!");
@@ -444,7 +457,7 @@
 
 		status1.innerHTML = side1 + "!";
 
-		setTimeout('move(' + 12 + ')', 1900);
+		setTimeout('move(' + side1 + ')', 1900);
 	}
 	
 	//한번더! 주사위 더블이벤트
@@ -610,14 +623,26 @@
                         <div style="padding: 10px; margin-top:30px;   overflow: overlay;   width: 390px;    height: 400px;    background-color: lightcyan;">
 	                        <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;"><span>GAME LOG</span></div>
 	                        <c:forEach var="log" items="${ logs }" varStatus="status">
-	                        	<p><i class="far fa-clock"></i>${ log.logSeq }</p>
+	                        	<p class="logWrite"><i class="far fa-clock"></i> ${log.time} (주사위눈 : ${log.dicenum}) (${log.result})<br>
+	                        	${ log.round }-${ log.logSeq }. ${log.userId}은(는) ${log.object}을(를) ${log.act}했다.</p>
 			                </c:forEach>
                         </div>
                         
-                        <div class="hp">
-                        	hp : 
+                        <div style="padding-top: 10px;">
+                        
+                        <p class="point bpoint" >브라우니 포인트 : ${player.browniePoint}</p>
+                        
+                        <p class="point mpoint" >마블게임 포인트 : ${player.point}</p>
+                        
+                        </div>
+                        
+                        
+                        
+                        
+                        <div class="hp" style = "margin-top:20px;">
                         	<table class="" style = "width: 390px; background-color: floralwhite; border-radius: 1.3em;">
 								<tbody>
+								<!-- spring hp 데이타 -->
 									<tr>
 										<td class="hp"><img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png" /></td>
 										<td class="hp"><img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png" /></td>

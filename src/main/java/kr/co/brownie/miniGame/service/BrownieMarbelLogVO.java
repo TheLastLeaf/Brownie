@@ -2,8 +2,6 @@ package kr.co.brownie.miniGame.service;
 
 import lombok.Data;
 
-import java.util.Date;
-
 @Data
 public class BrownieMarbelLogVO {
 	private String userId;

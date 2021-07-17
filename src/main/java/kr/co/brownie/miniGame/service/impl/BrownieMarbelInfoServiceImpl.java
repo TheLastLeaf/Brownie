@@ -71,4 +71,14 @@ public class BrownieMarbelInfoServiceImpl implements BrownieMarbelInfoService {
 		return brownieMarbelMapper.selectListPoint(list);
 	}
 
+	@Override
+	public int modifyGamePoint(HashMap<String, Object> map) {
+		return brownieMarbelMapper.updateGamePoint(map);
+	}
+
+	@Override
+	public int modifyBPoint(HashMap<String, Object> map) {
+		return brownieMarbelMapper.updateBPoint(map);
+	}
+
 }
