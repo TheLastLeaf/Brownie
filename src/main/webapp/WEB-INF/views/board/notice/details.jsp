@@ -52,13 +52,14 @@
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                             <c:if test="${sessionScope.permit_level== 9}">
                                 <div class="innerBox text-right">
-                                    <input type="button" class="btn btn-outline-dark btn-sm text-white"
-                                           onclick="location.href='/notice/modify/${boardVO.boardSeq}'"
-                                           value="수정">
-                                    <form action="${pageContext.request.contextPath}/tip/delete" method="POST"
+                                    <form action="${pageContext.request.contextPath}/notice/delete" method="POST"
                                           class="d-inline">
-                                        <input type="submit" class="btn btn-outline-dark btn-sm text-danger" value="삭제"
-                                               onclick="return confirm('이 게시물을 삭제하시겠습니까?')">
+                                        <input type="button" class="btn btn-outline-dark btn-sm text-white"
+                                               onclick="location.href='/notice/modify/${boardVO.boardSeq}'"
+                                               value="수정"/>
+                                        <input type="hidden" name="boardSeq" value="${boardSeq}"/>
+                                        <input type="submit" class="btn btn-outline-dark btn-sm text-danger"
+                                               value="삭제"/>
                                     </form>
                                 </div>
                             </c:if>

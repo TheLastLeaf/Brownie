@@ -87,3 +87,10 @@ function replyLike(replySeq, kind) {
         }
     })
 }
+
+function searchList() {
+    const type = $(".board-search>select>option:selected").val();
+    const query = $(".board-search>input[name=query]").val();
+
+    location.href = "?type=" + type + "&query=" + query;
+}

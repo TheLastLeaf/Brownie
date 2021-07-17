@@ -174,7 +174,7 @@
                                               required="required">${boardVO.content}</textarea>
                                 </div>
                                 <div class="pad">
-                                    <input type="submit" value="등록" class="submit">
+                                    <input type="submit" value="수정" class="submit">
                                 </div>
                             </div>
                         </div>

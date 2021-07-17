@@ -1,14 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../../layout/header.jsp"/>
-<script>
-    function search() {
-        const type = $(".board-search>select>option:selected").val();
-        const query = $(".board-search>input[name=query]").val();
-
-        location.href = "?type=" + type + "&query=" + query;
-    }
-</script>
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
@@ -47,8 +39,11 @@
                             </h5>
                             <ul>
                                 <li>by <span>${boardVO.nickName}</span></li>
-                                <li><i class="far fa-clock"></i>${boardVO.boardInDate}</li>
-                                <li><i class="far fa-comment"></i> 20</li>
+                                <li><i class="far fa-clock"></i> ${boardVO.boardInDate}</li>
+                                <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
+                                <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
+                                <li><i class="far fa-thumbs-up"></i> ${boardVO.likeCnt}</li>
+                                <li><i class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</li>
                             </ul>
                         </div>
                     </div>
@@ -119,7 +114,7 @@
                            style="width: 200px; border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
                            placeholder="search"
                            value="${query}"/>
-                    <input type="button" onclick="search()"
+                    <input type="button" onclick="searchList()"
                            style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;"
                            value="search"/>
                 </div>

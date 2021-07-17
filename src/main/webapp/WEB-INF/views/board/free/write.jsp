@@ -145,7 +145,6 @@
                     <div class="contact-text">
                         <div class="contact-form">
                             <div class="dt-leave-comment">
-                                <input type="hidden" name="inUserId" value="${inUserId }" id="inUserId">
                                 <c:if test="${permit_level eq 9 }">
                                     <div class="noticeCheck">
                                         <label class="noticeYn"><input type="checkbox" name="noticeYn"
@@ -163,7 +162,7 @@
                                 </div>
                                 <div class="tag-box">
                                     <input type="text" placeholder="태그 작성 시 쉼표로 구분해 주세요. 예시) 롤,티모,웃는게,귀여워" class="tags"
-                                           id="tags" name="tags"/>
+                                           id="tags" name="boardCategory"/>
                                 </div>
                                 <div class="submit-box">
                                     <input type="submit" value="등록" class="submit"/>

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:import url="../layout/header.jsp"/>
 
 <!-- Hero Section Begin -->
@@ -89,13 +90,13 @@
 														<th style="width: 30%">작성일</th>
 														<th style="width: 20%">작성자</th>
 													</tr>
-											<c:forEach items="${boardList}" var="board" begin="0" end="10">
-												<fmt:formatDate value="${board.boardUpDate}" type="both" var="indate" pattern="yyyy-MM-dd hh:mm:ss" />
+											<c:forEach items="${boardPagingVO.boardVOList}" var="boardVO" begin="0" end="10">
+												<fmt:formatDate value="${boardVO.boardUpDate}" type="both" var="indate" pattern="yyyy-MM-dd hh:mm:ss" />
 													<tr>
-														<th><span onclick="location.href='${board.boardKind}/details/${board.boardSeq}'" style="cursor: pointer">${board.title}</span></th>
-														<th>${board.boardKind.toUpperCase()}</th>
+														<th><span onclick="location.href='${boardVO.boardKind}/details/${boardVO.boardSeq}'" style="cursor: pointer">${boardVO.title}</span></th>
+														<th>${fn:toUpperCase(boardVO.boardKind)}</th>
 														<th>${indate}</th>
-														<th>${board.nickName}</th>
+														<th>${boardVO.nickName}</th>
 													</tr>
 											</c:forEach>
 												</table>
