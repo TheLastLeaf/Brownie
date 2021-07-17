@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/teamGame")
@@ -28,9 +30,20 @@ public class TeamGameController {
 
     @GetMapping({"", "/teamGame"})
     public String teamMaker(Model model) {
-        List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList();
+    	List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList();
 
+    	Map<Integer, Object> teamPosition = new HashMap<>();
+        for(TeamGameVO tgvo : teamGameList) {
+            if(tgvo.getStatus().equals("y")){
+
+                int positionSeq = tgvo.getPositionSeq();
+                List<TeamGameVO> posiList = teamGameService.selectTeamGamePosition(positionSeq);
+                System.out.println("posiList : " + positionSeq + " : " + posiList);
+                teamPosition.put(positionSeq, posiList);
+            }
+        }
         model.addAttribute("teamGameList",teamGameList);
+        model.addAttribute("teamPosition", teamPosition);
 
         return "teamGame/teamGame";
     }

@@ -6,12 +6,12 @@ import java.util.Date;
 
 @Data
 public class TeamGameVO {
-    private int teamgameSep;
+    private int teamGameSeq;
     private String userId;
     private String title;
     private String matchMode;
     private String message;
-    private String positionSeq;
+    private int positionSeq;
     private String status;
     private String usePoint;
     private Date inDate;

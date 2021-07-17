@@ -12,4 +12,6 @@ public interface TeamGameMapper {
 
     List<TeamGameVO> selectTeamGameList();
 
+    List<TeamGameVO> selectTeamGamePosition(int positionSeq);
+
 }

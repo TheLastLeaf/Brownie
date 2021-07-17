@@ -39,31 +39,34 @@
 }
 
 .positionTop {
-	background: red;
 	color: white;
 	border-radius: 5px;
 }
 
-.positionJun {
+.blank-position {
 	background: white;
+}
+
+.checked-position {
+	background: red;
+}
+
+.positionJun {
 	color: black;
 	border-radius: 5px;
 }
 
 .positionMid {
-	background: white;
 	color: black;
 	border-radius: 5px;
 }
 
 .positionAd {
-	background: red;
 	color: white;
 	border-radius: 5px;
 }
 
 .positionSup {
-	background: white;
 	color: black;
 	border-radius: 5px;
 }
@@ -122,7 +125,7 @@ button>img {
 	}
 
 	function fn_blockRoom() {
-		alert("방이 꽉찼습니다! !");
+		alert("해당 포지션을 선택한 유저가 존재합니다. 다른 포지션을 선택해주세요.");
 		window.location.reload();
 	}
 </script>
@@ -217,29 +220,79 @@ button>img {
 										<img class="micPic" src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg" />
 									</p>
 								</div>
-								<div class="roomTitle">너는 뭘 공부한거니?~</div>
+								<div class="roomTitle">${teamGameList.title}</div>
 								<p style="margin: 10px 0px 3px;">
-									<button type="button" class="positionTop" onclick="fn_blockRoom()">
-										<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
-									</button>
-									<button type="button" class="positionJun" onclick="fn_chatRoom()">
-										<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
-									</button>
-									<button type="button" class="positionMid" onclick="fn_chatRoom()">
-										<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
-									</button>
-									<button type="button" class="positionAd" onclick="fn_blockRoom()">
-										<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
-									</button>
-									<button type="button" class="positionSup" onclick="fn_chatRoom()">
-										<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
-									</button>
+									<c:set var="posiSeq" value="${teamGameList.positionSeq}" />
+									<c:choose>
+										<c:when test="${teamPosition[posiSeq][0].top eq 'y'}">
+											<button type="button" class="positionTop checked-position" onclick="fn_blockRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="positionTop blank-position" onclick="fn_chatRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png" />
+											</button>
+										</c:otherwise>
+									</c:choose>
+
+									<c:choose>
+										<c:when test="${teamPosition[posiSeq][0].jun eq 'y'}">
+											<button type="button" class="positionJun checked-position" onclick="fn_blockRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="positionJun blank-position" onclick="fn_chatRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png" />
+											</button>
+										</c:otherwise>
+									</c:choose>
+
+									<c:choose>
+										<c:when test="${teamPosition[posiSeq][0].mid eq 'y'}">
+											<button type="button" class="positionMid checked-position" onclick="fn_blockRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="positionMid blank-position" onclick="fn_chatRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png" />
+											</button>
+										</c:otherwise>
+									</c:choose>
+
+									<c:choose>
+										<c:when test="${teamPosition[posiSeq][0].bot eq 'y'}">
+											<button type="button" class="positionAd checked-position" onclick="fn_blockRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="positionAd blank-position" onclick="fn_chatRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png" />
+											</button>
+										</c:otherwise>
+									</c:choose>
+
+									<c:choose>
+										<c:when test="${teamPosition[posiSeq][0].sup eq 'y'}">
+											<button type="button" class="positionSup checked-position" onclick="fn_blockRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
+											</button>
+										</c:when>
+										<c:otherwise>
+											<button type="button" class="positionSup blank-position" onclick="fn_chatRoom()">
+												<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png" />
+											</button>
+										</c:otherwise>
+									</c:choose>
 								</p>
 								<div class="" style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-									<p class="message">너와 함께 게임을 하고 싶어!</p>
+									<p class="message">${teamGameList.message}</p>
 								</div>
 								<div class="row text-white" style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-									<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">닉네임</div>
+									<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-end;">${teamGameList.inUserId}</div>
 									<div class="col-sm-6" style="margin: 0; display: flex; justify-content: flex-start;">
 										<img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png" />
 										[G·M]

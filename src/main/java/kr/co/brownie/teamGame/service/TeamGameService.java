@@ -7,4 +7,6 @@ public interface TeamGameService {
     void makeTeamGameRoom(Map<String, Object> map);
 
     List<TeamGameVO> selectTeamGameList();
+
+    List<TeamGameVO> selectTeamGamePosition(int positionSeq);
 }
