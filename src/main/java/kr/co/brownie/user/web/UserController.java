@@ -12,6 +12,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +36,9 @@ import kr.co.brownie.user.service.UserVO;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
 	@Resource(name = "userService")
 	UserService userService;
 
@@ -55,7 +60,11 @@ public class UserController {
 	 */
 	@GetMapping("/userInfo/{user_id}")
 	public String userInfo(Model model, HttpSession httpSession, ReviewPagingVO page, @PathVariable String user_id) throws Exception {
+
+		LOGGER.debug(" page {}", page);
+
 		UserVO userOneSelect = userService.userOneSelect(user_id);
+		
 		if (userOneSelect == null) {
 			model.addAttribute("message", "alert(\"등록되지 않은 유저입니다.\");history.go(-1);");
 			return "common/message";
@@ -88,6 +97,7 @@ public class UserController {
 		page.setId(user_id);
 		page.setTotalCount(reviewService.countAllReview(page));
 
+		
 		// 리뷰
 		List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
 
@@ -107,7 +117,7 @@ public class UserController {
 
 		model.addAttribute("reviewVOs", reviewVOs);
 		model.addAttribute("page", page);
-		
+
 		System.out.println("UserController 111줄 호출: userOneSelect: " + userOneSelect);
 		System.out.println("UserController 112줄 호출: reviewVOs" + reviewVOs);
 		System.out.println();
@@ -159,15 +169,14 @@ public class UserController {
 
 		// 동의항목 체크했을때 31일 이내에 바꾼건지 확인하는 메서드
 		String dateChecking = userService.dateChecking(id);
-		
+
 		// 닉네임 변경하는 서비스
 		if (dateChecking.equals("no")) {
 			if (map.get("nickNameBox").toString().equals(userVO.getNickName())) {
 				return "아이디는 변경되지 않았습니다";
 			}
 			changed.add("31이내에 변경한 아이디이므로 바꿀수 없습니다!");
-		}
-		else if (dateChecking.equals("yes")) {
+		} else if (dateChecking.equals("yes")) {
 			if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
 				userService.updateNick(map);
 				changed.add("닉네임");
@@ -219,7 +228,7 @@ public class UserController {
 			return msg;
 		}
 
-//		return "ok";
+		//		return "ok";
 	}
 
 	@GetMapping("/userDeclar")

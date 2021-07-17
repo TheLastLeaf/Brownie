@@ -483,21 +483,21 @@ h1 {
 							<!-- 페이징처리 begin -->
 							<div class="paging col-12 pagination-item" style="position: relative;">
 								<div class="col-12" style="display: flex; justify-content: center;">
-									<c:choose>
+									<%-- <c:choose>
 										<c:when test='${page.searchType eq null || page.keyword eq null || page.searchType eq "" || page.keyword eq ""}'>
 											<c:set var="pagination" value="?num=" />
 										</c:when>
 										<c:otherwise>
 											<c:set var="pagination" value="?searchType=${page.searchType}&keyword=${page.keyword}&num="/>
 										</c:otherwise>
-									</c:choose>
+									</c:choose> --%>
 									<c:if test="${page.prev}">
-										<a href="/user/userInfo/${userOneSelect.userId}${pagination}${page.startPageNum-1}">prev</a>
+										<a href="/user/userInfo/${userOneSelect.userId}?num=${page.startPageNum-1}">prev</a>
 									</c:if>
 									<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 										<c:choose>
 											<c:when test="${page.num != num}">
-												<a href="/user/userInfo/${userOneSelect.userId}${pagination}${num}">${num}</a>
+												<a href="/user/userInfo/${userOneSelect.userId}?num=${num}">${num}</a>
 											</c:when>
 											<c:otherwise>
 												<a href="#">${num}</a>
@@ -505,7 +505,7 @@ h1 {
 										</c:choose>
 									</c:forEach>
 									<c:if test="${page.next}">
-										<a href="/user/userInfo/${userOneSelect.userId}${pagination}${page.endPageNum+1}">next</a>
+										<a href="/user/userInfo/${userOneSelect.userId}?num=${page.endPageNum+1}">next</a>
 									</c:if>
 								</div>
 								<div class="writeReview">
@@ -720,17 +720,21 @@ h1 {
 		})
 	});
 
-	// search
+	
 	document.getElementById("searchBtn").onclick = function() {
 
 		let searchType = document.getElementsByName("searchType")[0].value;
 		let keyword = "";
 		if (searchType == "writerId") {
 			keyword = document.getElementsByName("keyword")[0].value;
+			console.log(keyword);
+			alert("멈춰!")
 			location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType="
 					+ searchType + "&keyword=" + keyword;
 		} else {
 			keyword = document.getElementsByName("keyword")[1].value;
+			console.log(keyword);
+			alert("멈춰!")
 			location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType="
 					+ searchType + "&keyword=" + keyword;
 		}
