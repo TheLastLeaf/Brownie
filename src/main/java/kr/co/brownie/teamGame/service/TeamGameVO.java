@@ -11,8 +11,9 @@ public class TeamGameVO {
     private String title;
     private String matchMode;
     private String message;
-    private String position;
+    private String positionSeq;
     private String status;
+    private String usePoint;
     private Date inDate;
     private String inUserId;
     private Date modDate;

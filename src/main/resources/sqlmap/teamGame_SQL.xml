@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.brownie.teamGame.service.impl.TeamGameMapper">
+    <insert id="makeTeamGameRoom">
+        INSERT ALL
+            INTO TEAMGAME_POSITION ( POSITION_SEQ
+                                   , TOP
+                                   , MID
+                                   , JUN
+                                   , BOT
+                                   , SUP)
+        VALUES ( POSITION_SEQ.NEXTVAL
+               , #{top}
+               , #{mid}
+               , #{jun}
+               , #{bot}
+               , #{sup})
+        INTO TEAMGAME ( TEAMGAME_SEQ
+                      , USER_ID
+                      , TITLE
+                      , MATCH_MODE
+                      , MESSAGE
+                      , POSITION_SEQ
+                      , STATUS
+                      , IN_DATE
+                      , IN_USER_ID
+                      , UP_DATE
+                      , UP_USER_ID)
+        VALUES ( TEAMGAME_SEQ.NEXTVAL
+               , #{inUserId}
+               , #{title}
+               , #{matchMode}
+               , #{message}
+               , POSITION_SEQ.CURRVAL
+               , #{status}
+               , SYSDATE
+               , #{inUserId}
+               , SYSDATE
+               , #{inUserId})
+        SELECT *
+        FROM DUAL;
+
+    </insert>
+
+    <select id="selectTeamGameList" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
+        select * from
+            (
+                select TEAMGAME_SEQ as teamgameSeq
+                     ,USER_ID as userId
+                     ,TITLE as title
+                     ,MATCH_MODE as matchMode
+                     ,MESSAGE as message
+                     ,POSITION_SEQ as positionSeq
+                     ,STATUS as status
+                     ,USE_POINT as usePoint
+                     ,IN_DATE as inDate
+                     ,IN_USER_ID as inUserId
+                     ,UP_DATE as modDate
+                     ,UP_USER_ID as upUserId
+                from teamgame
+                where usePoint = 'y'
+                order by teamgameSeq desc
+            )
+        union all
+        select * from
+            (
+                select TEAMGAME_SEQ as teamgameSeq
+                     ,USER_ID as userId
+                     ,TITLE as title
+                     ,MATCH_MODE as matchMode
+                     ,MESSAGE as message
+                     ,POSITION_SEQ as positionSeq
+                     ,STATUS as status
+                     ,USE_POINT as usePoint
+                     ,IN_DATE as inDate
+                     ,IN_USER_ID as inUserId
+                     ,UP_DATE as modDate
+                     ,UP_USER_ID as upUserId
+                from teamgame
+                where usePoint = 'n'
+                order by teamgameSeq desc
+            )
+
+    </select>
+
+</mapper>

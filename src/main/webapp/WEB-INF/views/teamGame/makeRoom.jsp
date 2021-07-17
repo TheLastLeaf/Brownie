@@ -137,6 +137,9 @@ input.apple-switch:checked:after {
 
 <script type="text/javascript">
 	function fn_chatRoom() {
+
+		//여기서 아작스로 정보 넘겨줄거임
+
 		makeRoom = window.open("chatRoom", "chatingRoom",
 				"width=1100, height=720, scroll=no, left=500, top=250");
 		opener = makeRoom;
@@ -154,7 +157,7 @@ input.apple-switch:checked:after {
 		<div class="row">
 			<div class="col text-center" style="border: 1px solid white;">
 				<p>
-				<h5 class="font-family-maple-bold">닉네임 : ${userInfo.nickName}</h5>
+				<h5 class="font-family-maple-bold">닉네임 : ${nickName}</h5>
 				</p>
 				<p id="title" class="botton" style="margin-bottom: 10px;">
 					<b class="font-family-maple-bold">제목 :&nbsp; <input type="text" maxlength='12' /></b>
