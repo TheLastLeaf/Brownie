@@ -480,24 +480,17 @@ h1 {
 							</c:forEach>
 							<!-- 후기글 end-->
 
+							<%-- location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType=" + searchType + "&keyword=" + keyword; --%>
 							<!-- 페이징처리 begin -->
 							<div class="paging col-12 pagination-item" style="position: relative;">
 								<div class="col-12" style="display: flex; justify-content: center;">
-									<%-- <c:choose>
-										<c:when test='${page.searchType eq null || page.keyword eq null || page.searchType eq "" || page.keyword eq ""}'>
-											<c:set var="pagination" value="?num=" />
-										</c:when>
-										<c:otherwise>
-											<c:set var="pagination" value="?searchType=${page.searchType}&keyword=${page.keyword}&num="/>
-										</c:otherwise>
-									</c:choose> --%>
 									<c:if test="${page.prev}">
-										<a href="/user/userInfo/${userOneSelect.userId}?num=${page.startPageNum-1}">prev</a>
+										<a href="/user/userInfo/${userOneSelect.userId}?num=${page.startPageNum-1}&searchType=${page.searchType}&keyword=${page.keyword}">prev</a>
 									</c:if>
 									<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 										<c:choose>
 											<c:when test="${page.num != num}">
-												<a href="/user/userInfo/${userOneSelect.userId}?num=${num}">${num}</a>
+												<a href="/user/userInfo/${userOneSelect.userId}?num=${num}&searchType=${page.searchType}&keyword=${page.keyword}">${num}</a>
 											</c:when>
 											<c:otherwise>
 												<a href="#">${num}</a>
@@ -505,7 +498,7 @@ h1 {
 										</c:choose>
 									</c:forEach>
 									<c:if test="${page.next}">
-										<a href="/user/userInfo/${userOneSelect.userId}?num=${page.endPageNum+1}">next</a>
+										<a href="/user/userInfo/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
 									</c:if>
 								</div>
 								<div class="writeReview">
@@ -648,7 +641,8 @@ h1 {
 	}
 
 	function fn_infoMod(userId) {
-		window.open("/user/userModify/"+ userId, "userModify", "width=800, height=680, left=250,top=200");
+		window.open("/user/userModify/" + userId, "userModify",
+				"width=800, height=680, left=250,top=200");
 	}
 
 	function fn_review() {
@@ -656,9 +650,9 @@ h1 {
 				"width=870, height=500, left=400,top=200");
 	}
 
-	function fn_declaration(userId,reply) {
-		window.open("/user/userDeclar?userId=" + userId+"&log="+reply, "userDeclar",
-				"width=980, height=500, left=400,top=200");
+	function fn_declaration(userId, reply) {
+		window.open("/user/userDeclar?userId=" + userId + "&log=" + reply,
+				"userDeclar", "width=980, height=500, left=400,top=200");
 	}
 
 	function fn_infoDel() {
@@ -669,8 +663,8 @@ h1 {
 	$(function() {
 		$(".review").contextmenu(
 				function(e) {
-					const idx = $(this)[0].id.replace('divReview_','');
-					
+					const idx = $(this)[0].id.replace('divReview_', '');
+
 					const winWidth = $(document).width();
 					const winHeight = $(document).height();
 					const posX = e.pageX;
@@ -720,7 +714,6 @@ h1 {
 		})
 	});
 
-	
 	document.getElementById("searchBtn").onclick = function() {
 
 		let searchType = document.getElementsByName("searchType")[0].value;
@@ -728,15 +721,13 @@ h1 {
 		if (searchType == "writerId") {
 			keyword = document.getElementsByName("keyword")[0].value;
 			console.log(keyword);
-			alert("멈춰!")
-			location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType="
-					+ searchType + "&keyword=" + keyword;
+			location.href = "/user/userInfo/${userOneSelect.userId}?num=1"
+					+ "&searchType=" + searchType + "&keyword=" + keyword;
 		} else {
 			keyword = document.getElementsByName("keyword")[1].value;
 			console.log(keyword);
-			alert("멈춰!")
-			location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType="
-					+ searchType + "&keyword=" + keyword;
+			location.href = "/user/userInfo/${userOneSelect.userId}?num=1"
+					+ "&searchType=" + searchType + "&keyword=" + keyword;
 		}
 		console.log("searchType: " + searchType)
 		console.log("keyword: " + keyword)

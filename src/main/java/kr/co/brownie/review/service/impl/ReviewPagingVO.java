@@ -23,7 +23,7 @@ public class ReviewPagingVO {
 	private int endPost;
 
 	// 한번에 표시할 페이징 번호의 갯수
-	private int pageNumCnt = 3;
+	private int pageNumCnt = 2;
 
 	// 표시되는 페이지 번호 중 마지막 번호
 	private int endPageNum;
