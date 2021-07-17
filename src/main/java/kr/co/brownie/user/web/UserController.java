@@ -90,7 +90,6 @@ public class UserController {
 
 		// 리뷰
 		List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
-		System.out.println("reviewVOs" + reviewVOs);
 
 		// model.addattribute
 		model.addAttribute("userOneSelect", userOneSelect);
@@ -108,6 +107,10 @@ public class UserController {
 
 		model.addAttribute("reviewVOs", reviewVOs);
 		model.addAttribute("page", page);
+		
+		System.out.println("UserController 111줄 호출: userOneSelect: " + userOneSelect);
+		System.out.println("UserController 112줄 호출: reviewVOs" + reviewVOs);
+		System.out.println();
 
 		return "user/userInfo";
 	}
@@ -151,7 +154,6 @@ public class UserController {
 		// 포지션 변경하는 서비스
 		if (!map.get("positions").toString().equals(userVO.getUserPosition())) {
 			userService.updatePosition(map);
-			System.out.println("포지변경확인");
 			changed.add("포지션");
 		}
 
@@ -167,7 +169,6 @@ public class UserController {
 		}
 		else if (dateChecking.equals("yes")) {
 			if (!map.get("nickNameBox").toString().equals(userVO.getNickName())) {
-				System.out.println("닉 안바꿨는데 여기 들어오는지 확인");
 				userService.updateNick(map);
 				changed.add("닉네임");
 			}
@@ -209,7 +210,6 @@ public class UserController {
 		System.out.println("기입한닉: " + userNick);
 		int checkValue = userService.validating(userNick);
 		String msg = "";
-		System.out.println("전달완료");
 		if (checkValue == 1) {
 			// 아이디 중복
 			msg = "ng";

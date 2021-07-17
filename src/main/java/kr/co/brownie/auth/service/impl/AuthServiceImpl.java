@@ -91,7 +91,7 @@ public class AuthServiceImpl implements AuthService {
 		map.put("tempLolNick", tempLolNick);
 		map.put("tempBrownieNick", tempBrownieNick);
 		map.put("position", position);
-		System.out.println("User map" + map);
+//		System.out.println("User map" + map); //세웅
 		authMapper.insertUser(map);
 	}
 
@@ -100,7 +100,7 @@ public class AuthServiceImpl implements AuthService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("exp", exp);
-		System.out.println("Exp map:" + map);
+//		System.out.println("Exp map:" + map); // 세웅
 		authMapper.insertExp(map);
 	}
 
@@ -112,7 +112,7 @@ public class AuthServiceImpl implements AuthService {
 		map.put("starCnt", starCnt);
 		map.put("reply", reply);
 		map.put("writeUserId", writeUserId);
-		System.out.println("Review map: " + map);
+//		System.out.println("Review map: " + map); // 세웅
 		authMapper.insertReview(map);
 	}
 

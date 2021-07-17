@@ -455,8 +455,8 @@ h1 {
 							</div>
 							<!-- 검색 end-->
 
-							<c:forEach var="reviewVO" items="${reviewVOs}">
-								<div class="review col-4">
+							<c:forEach var="reviewVO" items="${reviewVOs}" varStatus="status">
+								<div class="review col-4" id="divReview_${status.index }">
 									<div class="reviewDay">${reviewVO.inUserId}&nbsp;<fmt:formatDate value="${reviewVO.inDate}" />
 									</div>
 									<div class="rev font-family-maple-bold">
@@ -472,7 +472,7 @@ h1 {
 										</div>
 									</div>
 								</div>
-								<ul class="contextmenu">
+								<ul class="contextmenu" id="divContextmenu_${status.index }">
 									<li><a onclick="fn_declaration('${userOneSelect.upUserId}','${reviewVO.reply}')">신고하기</a></li>
 									<!-- 다른유저페이지로 이동->> -->
 									<li><a href="#">둘러보기</a></li>
@@ -484,12 +484,12 @@ h1 {
 							<div class="paging col-12 pagination-item" style="position: relative;">
 								<div class="col-12" style="display: flex; justify-content: center;">
 									<c:if test="${page.prev}">
-										<a href="/user/userInfo?num=${page.startPageNum-1}${page.searchType}">prev</a>
+										<a href="/user/userInfo/${userOneSelect.userId}?num=${page.startPageNum-1}${page.searchType}">prev</a>
 									</c:if>
 									<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
 										<c:choose>
 											<c:when test="${page.num != num}">
-												<a href="/user/userInfo?num=${num}${page.searchType}">${num}</a>
+												<a href="/user/userInfo/${userOneSelect.userId}?num=${num}${page.searchType}">${num}</a>
 											</c:when>
 											<c:otherwise>
 												<a href="#">${num}</a>
@@ -497,7 +497,7 @@ h1 {
 										</c:choose>
 									</c:forEach>
 									<c:if test="${page.next}">
-										<a href="/user/userInfo?num=${page.endPageNum+1}${page.searchType}">next</a>
+										<a href="/user/userInfo/${userOneSelect.userId}?num=${page.endPageNum+1}${page.searchType}">next</a>
 									</c:if>
 								</div>
 								<div class="writeReview">
@@ -661,11 +661,13 @@ h1 {
 	$(function() {
 		$(".review").contextmenu(
 				function(e) {
+					const idx = $(this)[0].id.replace('divReview_','');
+					
 					const winWidth = $(document).width();
 					const winHeight = $(document).height();
 					const posX = e.pageX;
 					const posY = e.pageY;
-					const contextmenu = $(".contextmenu");
+					const contextmenu = $($(".contextmenu")[idx]);
 					const menuWidth = contextmenu.width();
 					const menuHeight = contextmenu.height();
 					const secMargin = 10;
@@ -717,11 +719,11 @@ h1 {
 		let keyword = "";
 		if (searchType == "writerId") {
 			keyword = document.getElementsByName("keyword")[0].value;
-			location.href = "/user/userInfo?num=1" + "&searchType="
+			location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType="
 					+ searchType + "&keyword=" + keyword;
 		} else {
 			keyword = document.getElementsByName("keyword")[1].value;
-			location.href = "/user/userInfo?num=1" + "&searchType="
+			location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType="
 					+ searchType + "&keyword=" + keyword;
 		}
 		console.log("searchType: " + searchType)
