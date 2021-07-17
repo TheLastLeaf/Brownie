@@ -41,13 +41,14 @@
                , #{inUserId})
         SELECT *
         FROM DUAL;
-
     </insert>
+
+	
 
     <select id="selectTeamGameList" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
         select * from
             (
-                select TEAMGAME_SEQ as teamgameSeq
+                select TEAMGAME_SEQ as teamGameSeq
                      ,USER_ID as userId
                      ,TITLE as title
                      ,MATCH_MODE as matchMode
@@ -60,8 +61,8 @@
                      ,UP_DATE as modDate
                      ,UP_USER_ID as upUserId
                 from teamgame
-                where usePoint = 'y'
-                order by teamgameSeq desc
+                where USE_POINT = 'y'
+                order by TEAMGAME_SEQ desc
             )
         union all
         select * from
@@ -79,10 +80,24 @@
                      ,UP_DATE as modDate
                      ,UP_USER_ID as upUserId
                 from teamgame
-                where usePoint = 'n'
-                order by teamgameSeq desc
+                where USE_POINT = 'n'
+                order by TEAMGAME_SEQ desc
             )
 
     </select>
+
+	<select id="selectTeamGamePosition" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
+		SELECT
+			POSITION_SEQ as positionSeq
+			,TOP as top
+			,MID as mid
+			,JUN as jun
+			,BOT as bot
+			,SUP as sup
+		FROM 
+			TEAMGAME_POSITION
+        WHERE
+            POSITION_SEQ = #{positionSeq}
+	</select>
 
 </mapper>
