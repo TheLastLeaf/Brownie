@@ -29,8 +29,6 @@
         const reasonSeq = $("#reason option:selected").val();
         const bListSeq = $(".bListSeq").val();
         const endDate = $(".endDate").val();
-        console.log(bListSeq);
-        console.log(endDate);
 
 
         $.ajax({
@@ -93,12 +91,13 @@
     #but{
         cursor: pointer;
     }
-    .checkReason{
-        width: 90px;
-        height: 35px;
-    }
-    .reason{
-        text-align: center;
+    #reason{
+        width: 100%;
+        background-color: black;
+        color: white;
+        height: 43px;
+        vertical-align: center;
+        text-align-last: center;
     }
 
 </style>
@@ -112,13 +111,13 @@
                     <c:forEach var="blacklist" items="${blackList}">
                         <input type="hidden" value="${blacklist.BListSeq}" name="bListSeq" class="bListSeq">
                         <c:choose>
-                            <c:when test="${blacklist.reasonSeq == 1}">
+                            <c:when test="${blacklist.reasonSeq == '1' || blacklist.reasonSeq eq 1}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
-                            <c:when test="${blacklist.reasonSeq == 2}">
+                            <c:when test="${blacklist.reasonSeq == '2' || blacklist.reasonSeq eq 2}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
-                            <c:when test="${blacklist.reasonSeq == 3}">
+                            <c:when test="${blacklist.reasonSeq == '3' || blacklist.reasonSeq eq 3}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
                             <c:otherwise>
@@ -126,7 +125,7 @@
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
-                    <table class="reportListTable">
+                    <table class="reportListTable" border="1px solid grey" style="margin-bottom: auto">
                         <tr>
                             <th class="reportListTd">아이디</th>
                             <th class="reportListTd">신고분류</th>
@@ -151,8 +150,8 @@
                                 </c:choose>
                                 <th class="reportListTd">${reportList.inUserId }</th>
                                 <th class="reportListTd">${reportList.inDate }</th>
-                                <th>
-                                    <select class="form-control checkReason" id="reason">
+                                <th style="text-align: center">
+                                    <select id="reason">
                                         <option class="reason" selected value="1">욕설</option>
                                         <option class="reason" value="2">사칭</option>
                                         <option class="reason" value="3">광고</option>
