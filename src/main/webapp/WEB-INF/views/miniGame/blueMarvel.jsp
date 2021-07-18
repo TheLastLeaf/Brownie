@@ -231,7 +231,7 @@
     }
     
     .startLine {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/use/start.png");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/sudden/start.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -500,6 +500,7 @@
     }
 
     function rndMapCreate() {
+    	console.log("맵생성");
         $.ajax({
             url: "./ajax.rndmapcreate",
             type: "post",
@@ -516,8 +517,9 @@
             },
             success: function (data) {
                 recentMap = [];
-                for (var i = 0; i < data.length; i++) {
-                    recentMap.push(data[i].seq);
+                for (var i = 0; i < data.info.length; i++) {
+                    recentMap.push(data.info[i].seq);
+                    console.log(i+data.info[i].seq);
                 }
 
                 $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[0].kind + "/" + data.info[0].imgName);
@@ -563,6 +565,8 @@
         var objposition = "start";
         if (playerPos != 0) {
             objposition = recentMap[playerPos - 1];
+        } else {
+        	objposition = 0;
         }
         $.ajax({
             url: "./ajax.effectact",
@@ -575,21 +579,11 @@
             success: function (data) {
                    console.log("data 삽입성공!");
                    
-                  
-                   
-                   
-                   
-                   if(!data.player){
-                	   console.log("player");
-                       console.log(data.player);
-                       console.log("player.point");
-                       console.log(data.player.point);
-	                   $(".bpoint").html("마블게임 포인트 : "+data.site.browniePoint);
+                   if(!data.player==null){
+	                   $(".bpoint").html("브라우니 포인트 : "+data.player.point);
                    }
-                   if(!data.site){
-                	   console.log("site");
-                       console.log(data.site);
-	                   $(".mpoint").html("브라우니 포인트 : "+data.player.point);
+                   if(!data.site==null){
+	                   $(".mpoint").html("마블게임 포인트 : "+data.site.browniePoint);
                    }
                    
                    console.log("log");
@@ -640,7 +634,7 @@
 
         status1.innerHTML = side1 + "!";
 
-        setTimeout('move(' + side1 + ')', 1900);
+        setTimeout('move(' + 14 + ')', 1900);
     }
 
     //한번더! 주사위 더블이벤트
