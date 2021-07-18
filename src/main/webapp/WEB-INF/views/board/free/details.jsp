@@ -126,63 +126,6 @@
                         </c:forTokens>
                     </div>
 
-                    <c:forEach items="${prevNextBoardVO}" var="boardVO">
-                        <c:if test="${boardVO.boardSeq < boardSeq}">
-                            <c:set var="prevBoardVO" value="${boardVO}"/>
-                        </c:if>
-                        <c:if test="${boardSeq < boardVO.boardSeq}">
-                            <c:set var="nextBoardVO" value="${boardVO}"/>
-                        </c:if>
-                    </c:forEach>
-
-                    <div class="dt-related-post">
-                        <div class="row">
-
-                            <!-- 이전 게시글 안내 -->
-                            <div class="col-lg-6">
-                                <c:if test="${prevBoardVO ne null}">
-                                    <a href="${pageContext.request.contextPath}/free/details/${prevBoardVO.boardSeq}"
-                                       class="rp-prev">
-                                        <span>Prev</span>
-                                        <div class="rp-pic">
-                                            <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png"
-                                                 alt="">
-                                        </div>
-                                        <div class="rp-text">
-                                            <h6>${prevBoardVO.title }</h6>
-                                            <ul>
-                                                <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDate}</li>
-                                                <li><i class="far fa-comment"></i> ${prevBoardVO.replyCnt}
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </a>
-                                </c:if>
-                            </div>
-
-                            <!-- 다음 게시글 안내 -->
-                            <div class="col-lg-6">
-                                <c:if test="${nextBoardVO ne null}">
-                                    <a href="${pageContext.request.contextPath}/free/details/${nextBoardVO.boardSeq}"
-                                       class="rp-next">
-                                        <span>Next</span>
-                                        <div class="rp-pic">
-                                            <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png"
-                                                 alt="">
-                                        </div>
-                                        <div class="rp-text">
-                                            <h6>${nextBoardVO.title }</h6>
-                                            <ul>
-                                                <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDate}</li>
-                                                <li><i class="far fa-comment"></i> ${nextBoardVO.replyCnt}</li>
-                                            </ul>
-                                        </div>
-                                    </a>
-                                </c:if>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="dt-author">
                         <div class="da-pic">
                             <img src="/img/details/author-pic.jpg" alt="">
@@ -225,6 +168,63 @@
                                     class="fas fa-bomb"></i>
                             </button>
                         </c:if>
+                    </div>
+
+                    <c:forEach items="${prevNextBoardVO}" var="boardVO">
+                        <c:if test="${boardVO.boardSeq < boardSeq}">
+                            <c:set var="prevBoardVO" value="${boardVO}"/>
+                        </c:if>
+                        <c:if test="${boardSeq < boardVO.boardSeq}">
+                            <c:set var="nextBoardVO" value="${boardVO}"/>
+                        </c:if>
+                    </c:forEach>
+
+                    <div class="dt-related-post">
+                        <div class="row">
+
+                            <!-- 이전 게시글 안내 -->
+                            <div class="col-lg-6">
+                                <c:if test="${prevBoardVO ne null}">
+                                    <a href="./${prevBoardVO.boardSeq}"
+                                       class="rp-prev">
+                                        <span>Prev</span>
+                                        <div class="rp-pic">
+                                            <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png"
+                                                 alt="">
+                                        </div>
+                                        <div class="rp-text">
+                                            <h6>${prevBoardVO.title }</h6>
+                                            <ul>
+                                                <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDate}</li>
+                                                <li><i class="far fa-comment"></i> ${prevBoardVO.replyCnt}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </c:if>
+                            </div>
+
+                            <!-- 다음 게시글 안내 -->
+                            <div class="col-lg-6">
+                                <c:if test="${nextBoardVO ne null}">
+                                    <a href="./${nextBoardVO.boardSeq}"
+                                       class="rp-next">
+                                        <span>Next</span>
+                                        <div class="rp-pic">
+                                            <img src="${pageContext.request.contextPath}/img/mini_brownie_thumb.png"
+                                                 alt="">
+                                        </div>
+                                        <div class="rp-text">
+                                            <h6>${nextBoardVO.title }</h6>
+                                            <ul>
+                                                <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDate}</li>
+                                                <li><i class="far fa-comment"></i> ${nextBoardVO.replyCnt}</li>
+                                            </ul>
+                                        </div>
+                                    </a>
+                                </c:if>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="dt-comment">
@@ -289,7 +289,7 @@
                                 </div>
                             </div>
                         </c:forEach>
-                        <div class="pagination-item">
+                        <div class="pagination-item" style="justify-content: center; align-content: center; text-align: center;">
                             <c:if test="${1 < replyPagingVO.startPageNumber}">
                                 <a href="?pageNum=${replyPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                             </c:if>

@@ -108,7 +108,6 @@ public class FreeController {
         map.put("totalContent", totalContent);
 
         model.addAttribute("replyPagingVO", this.replyService.selectPagingList(map));
-        System.out.println(map);
         model.addAttribute("prevNextBoardVO", this.boardService.selectPrevNextList(map));
 
         return "board/free/details";

@@ -87,6 +87,7 @@ public class NoticeController {
         BoardVO boardVO = this.boardService.select(map);
         Assert.notNull(boardVO, "해당 글이 없습니다.");
         model.addAttribute("boardVO", boardVO);
+        model.addAttribute("prevNextBoardVO", this.boardService.selectPrevNextList(map));
 
         return "board/notice/details"; // 공지 디테일화면
     }
