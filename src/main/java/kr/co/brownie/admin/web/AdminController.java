@@ -40,8 +40,7 @@ public class AdminController {
 
     @GetMapping(path = {"", "/adminView"})
     public String adminView(Model model, HttpServletRequest httpServletRequest) {
-        int permitLevel = (int) (httpServletRequest.getSession().getAttribute("permit_level"));
-        if (httpServletRequest.getSession().getAttribute("id") == null || permitLevel != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -77,8 +76,7 @@ public class AdminController {
 
     @GetMapping("/adminMemberList")
     public String adminMemberList(Model model, HttpServletRequest httpServletRequest) {
-        int permitLevel = (int) (httpServletRequest.getSession().getAttribute("permit_level"));
-        if (httpServletRequest.getSession().getAttribute("id") == null || permitLevel != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -96,8 +94,7 @@ public class AdminController {
 
     @GetMapping("/adminBlackList")
     public String adminBlackList(Model model, HttpServletRequest httpServletRequest) {
-        int permitLevel = (int) (httpServletRequest.getSession().getAttribute("permit_level"));
-        if (httpServletRequest.getSession().getAttribute("id") == null || permitLevel != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -124,8 +121,7 @@ public class AdminController {
 
     @GetMapping("/adminReportList")
     public String adminReportList(Model model, HttpServletRequest httpServletRequest) {
-        int permitLevel = (int) (httpServletRequest.getSession().getAttribute("permit_level"));
-        if (httpServletRequest.getSession().getAttribute("id") == null || permitLevel != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
