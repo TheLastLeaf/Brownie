@@ -36,7 +36,6 @@
         display: inline-block;
         border-collapse: separate;
         border-spacing: 6px;
-        border: 3px solid black;
         vertical-align: middle;
         text-align: center;
     }
@@ -48,7 +47,6 @@
     }
 
     .td_tb {
-        border: 2px solid black;
         background: white;
     }
 
@@ -421,13 +419,14 @@
         $('#btnRoll')
             .mouseup(//클릭끝
                 function () {
+                	
                     $('.wrapper')
                         .css('background-image',
                             "url('${pageContext.request.contextPath}/img/miniGame/diceDrop.gif')")
                     setTimeout("reset()", 2000);
                     setTimeout("diceDis()", 250);
 
-                });
+                }).prop("disabled", false);
     }
 
 
@@ -438,7 +437,6 @@
 
         e.target.classList.add('animate');
         setTimeout(function () {
-            console.log(2);
             e.target.classList.remove('animate');
         }, 700);
     };
@@ -454,6 +452,7 @@
 
     function diceApper() {
         $('#btnRoll').css('visibility', 'visible')
+        $('#btnRoll').removeAttr("disabled");
     }
 
     function reset() {
@@ -519,7 +518,6 @@
                 recentMap = [];
                 for (var i = 0; i < data.info.length; i++) {
                     recentMap.push(data.info[i].seq);
-                    console.log(i+data.info[i].seq);
                 }
 
                 $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[0].kind + "/" + data.info[0].imgName);
@@ -586,9 +584,6 @@
 	                   $(".mpoint").html("마블게임 포인트 : "+data.site.browniePoint);
                    }
                    
-                   console.log("log");
-                   console.log(data.log);
-                   
                    $("#logHome").html(data.log);
                    
                    autoRenew();
@@ -634,7 +629,7 @@
 
         status1.innerHTML = side1 + "!";
 
-        setTimeout('move(' + 14 + ')', 1900);
+        setTimeout('move(' + side1 + ')', 1900);
     }
 
     //한번더! 주사위 더블이벤트
