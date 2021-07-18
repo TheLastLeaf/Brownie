@@ -160,6 +160,6 @@ public class AdminController {
             }
         }
         model.addAttribute("cnt", cnt);
-        return cnt;
+        return "ok";
     }
 }
