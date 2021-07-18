@@ -16,6 +16,8 @@ public interface BoardMapper {
 
     List<BoardVO> selectList(Map<String, Object> map);
 
+    List<BoardVO> selectPrevNextList(Map<String, Object> map);
+
     BoardVO select(Map<String, Object> map);
 
     int update(Map<String, Object> map);

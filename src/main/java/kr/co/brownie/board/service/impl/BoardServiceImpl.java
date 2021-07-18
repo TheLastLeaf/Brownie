@@ -40,6 +40,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<BoardVO> selectPrevNextList(Map<String, Object> map) {
+        return this.boardMapper.selectPrevNextList(map);
+    }
+
+    @Override
     public BoardVO select(Map<String, Object> map) {
         return this.boardMapper.select(map);
     }
