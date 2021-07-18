@@ -100,7 +100,8 @@ public class MiniGameController {
                 player = this.miniGameService.selectPlayer(id);
             }
         }
-
+        
+        
         System.out.println("player:" + player);
         model.addAttribute("player", player);
 
@@ -126,16 +127,25 @@ public class MiniGameController {
         }
 
 
-        List<BrownieMarbelInfoVO> brownieMarbelInfo = new
-                ArrayList<BrownieMarbelInfoVO>();
+        List<BrownieMarbelInfoVO> brownieMarbelInfo = new ArrayList<BrownieMarbelInfoVO>();
+        List<String> landColor = new ArrayList();
+        
+        
         for (int n : list) {
             brownieMarbelInfo.add(this.miniGameService.selectInfo(n));
         }
-
+        System.out.println(brownieMarbelInfo);
+        
+        for (BrownieMarbelInfoVO n : brownieMarbelInfo) {
+        	String[] temp = n.getFunction().split(",");
+        	landColor.add(temp[2]);
+        }
+        
         //DB에 있는 랜드정보 가져오는것.
         //List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
 
         model.addAttribute("infoList", brownieMarbelInfo); //
+        model.addAttribute("landColor", landColor); //
 
         return "miniGame/blueMarvel";
     }
@@ -143,7 +153,7 @@ public class MiniGameController {
 
     @ResponseBody
     @RequestMapping(value = "/ajax.rndmapcreate", method = RequestMethod.POST)
-    public List<BrownieMarbelInfoVO> rndMapCreate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+    public Map<String, Object> rndMapCreate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
         System.out.println("!!!!맵만드는것");
         //String id = (String) session.getAttribute("id");
         String id = "1797573825";
@@ -191,9 +201,20 @@ public class MiniGameController {
             brownieMarbelInfo.add(this.miniGameService.selectInfo(n));
         }
 
+        List<String> landColor = new ArrayList();
+        for (BrownieMarbelInfoVO n : brownieMarbelInfo) {
+        	String[] temp = n.getFunction().split(",");
+        	landColor.add(temp[2]);
+        }
+        
+        
         System.out.println("맵만들기끝" + cnt);
         System.out.println(brownieMarbelInfo);
-        return brownieMarbelInfo;
+        
+        map.put("landColor", landColor);
+        map.put("info", brownieMarbelInfo);
+        
+        return map;
     }
 	
 	

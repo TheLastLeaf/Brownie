@@ -115,6 +115,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        
     }
 
     .l1 {
@@ -122,6 +123,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[0]};
     }
 
     .l2 {
@@ -129,6 +131,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[1]};
     }
 
     .l3 {
@@ -136,6 +139,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[2]};
     }
 
     .l4 {
@@ -143,6 +147,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[3]};
     }
 
     .l5 {
@@ -150,6 +155,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[4]};
     }
 
     .l6 {
@@ -157,6 +163,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[5]};
     }
 
     .l7 {
@@ -164,6 +171,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[6]};
     }
 
     .l8 {
@@ -171,6 +179,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[7]};
     }
 
     .l9 {
@@ -178,6 +187,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[8]};
     }
 
     .l10 {
@@ -185,6 +195,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[9]};
     }
 
     .l11 {
@@ -192,6 +203,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[10]};
     }
 
     .l12 {
@@ -199,6 +211,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[11]};
     }
 
     .l13 {
@@ -206,6 +219,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[12]};
     }
 
     .l14 {
@@ -213,6 +227,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[13]};
     }
 
     .l15 {
@@ -220,6 +235,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[14]};
     }
 
 </style>
@@ -389,21 +405,37 @@
                     recentMap.push(data[i].seq);
                 }
 
-                $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[0].kind + "/" + data[0].imgName);
-                $('.l2').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[1].kind + "/" + data[1].imgName);
-                $('.l3').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[2].kind + "/" + data[2].imgName);
-                $('.l4').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[3].kind + "/" + data[3].imgName);
-                $('.l5').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[4].kind + "/" + data[4].imgName);
-                $('.l6').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[5].kind + "/" + data[5].imgName);
-                $('.l7').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[6].kind + "/" + data[6].imgName);
-                $('.l8').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[7].kind + "/" + data[7].imgName);
-                $('.l9').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[8].kind + "/" + data[8].imgName);
-                $('.l10').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[9].kind + "/" + data[9].imgName);
-                $('.l11').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[10].kind + "/" + data[10].imgName);
-                $('.l12').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[11].kind + "/" + data[11].imgName);
-                $('.l13').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[12].kind + "/" + data[12].imgName);
-                $('.l14').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[13].kind + "/" + data[13].imgName);
-                $('.l15').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[14].kind + "/" + data[14].imgName);
+                $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[0].kind + "/" + data.info[0].imgName);
+                $('.l2').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[1].kind + "/" + data.info[1].imgName);
+                $('.l3').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[2].kind + "/" + data.info[2].imgName);
+                $('.l4').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[3].kind + "/" + data.info[3].imgName);
+                $('.l5').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[4].kind + "/" + data.info[4].imgName);
+                $('.l6').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[5].kind + "/" + data.info[5].imgName);
+                $('.l7').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[6].kind + "/" + data.info[6].imgName);
+                $('.l8').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[7].kind + "/" + data.info[7].imgName);
+                $('.l9').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[8].kind + "/" + data.info[8].imgName);
+                $('.l10').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[9].kind + "/" + data.info[9].imgName);
+                $('.l11').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[10].kind + "/" + data.info[10].imgName);
+                $('.l12').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[11].kind + "/" + data.info[11].imgName);
+                $('.l13').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[12].kind + "/" + data.info[12].imgName);
+                $('.l14').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[13].kind + "/" + data.info[13].imgName);
+                $('.l15').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[14].kind + "/" + data.info[14].imgName);
+                
+                $('.l1').css('background-color', data.landColor[0]);
+                $('.l2').css('background-color', data.landColor[1]);
+                $('.l3').css('background-color', data.landColor[2]);
+                $('.l4').css('background-color', data.landColor[3]);
+                $('.l5').css('background-color', data.landColor[4]);
+                $('.l6').css('background-color', data.landColor[5]);
+                $('.l7').css('background-color', data.landColor[6]);
+                $('.l8').css('background-color', data.landColor[7]);
+                $('.l9').css('background-color', data.landColor[8]);
+                $('.l10').css('background-color', data.landColor[9]);
+                $('.l11').css('background-color', data.landColor[10]);
+                $('.l12').css('background-color', data.landColor[11]);
+                $('.l13').css('background-color', data.landColor[12]);
+                $('.l14').css('background-color', data.landColor[13]);
+                $('.l15').css('background-color', data.landColor[14]);
             },
             error: function () {
                 alert("맵생성 실패");
