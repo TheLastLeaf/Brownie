@@ -155,12 +155,9 @@ public class AdminController {
             int ucount = userService.blackstack(userId);
             model.addAttribute("ucount", ucount);
             if (ucount == 1) {
-                int count = blackListService.insert(userId, result, id, reasonSeq);
+                int count = blackListService.insert(userId, result, id, reasonSeq,bListSeq, endDate);
                 model.addAttribute("count", count);
-                if (count == 1) {
-                    int bcount = blackUserService.insert(bListSeq, userId, endDate, id);
-                    return bcount;
-                }
+                return count;
             }
         }
         model.addAttribute("cnt", cnt);

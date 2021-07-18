@@ -22,10 +22,16 @@
     </select>
 
     <insert id="insert" parameterType="hashMap">
-        INSERT INTO BLACK_LIST(B_LIST_SEQ, USER_ID, RESULT, IN_DATE, IN_USER_ID, UP_DATE, UP_USER_ID, REASON_SEQ,
+        INSERT ALL
+            INTO BLACK_LIST(B_LIST_SEQ, USER_ID, RESULT, IN_DATE, IN_USER_ID, UP_DATE, UP_USER_ID, REASON_SEQ,
                                STATUS)
         VALUES ((SELECT NVL(MAX(B_LIST_SEQ), 0) + 1 FROM BLACK_LIST), #{userId}, #{result}, SYSDATE, #{id}, SYSDATE,
                 #{id}, #{reasonSeq}, 'N')
+        INTO BLACK_USER(B_USER_SEQ, B_LIST_SEQ, USER_ID, END_DATE, STATUS, IN_DATE, UP_DATE, IN_USER_ID,
+                        UP_USER_ID)
+        VALUES ((SELECT NVL(MAX(B_USER_SEQ), 0) + 1 FROM BLACK_USER), #{bListSeq}, #{userId}, SYSDATE + #{endDate}, 'Y',
+                SYSDATE, SYSDATE, #{id}, #{id})
+        SELECT * FROM DUAL
     </insert>
 
     <update id="updateBlackUser" parameterType="hashMap">

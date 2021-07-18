@@ -47,13 +47,6 @@
         ]]>
     </select>
 
-    <insert id="insert" parameterType="hashMap">
-        INSERT INTO BLACK_USER(B_USER_SEQ, B_LIST_SEQ, USER_ID, END_DATE, STATUS, IN_DATE, UP_DATE, IN_USER_ID,
-                               UP_USER_ID)
-        VALUES ((SELECT NVL(MAX(B_USER_SEQ), 0) + 1 FROM BLACK_USER), #{bListSeq}, #{userId}, SYSDATE + #{endDate}, 'Y',
-                SYSDATE, SYSDATE, #{id}, #{id})
-    </insert>
-
     <select id="count" resultType="int">
         SELECT COUNT(*)
         FROM BLACK_USER
