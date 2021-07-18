@@ -23,20 +23,26 @@ public class BoardServiceImpl implements BoardService {
     public BoardPagingVO selectPagingList(Map<String, Object> map) {
         int pageNum = (int) map.get("pageNum");
         int totalContent = this.boardMapper.count(map);
+        int contentPerPage = (int) map.get("contentPerPage");
 
         return BoardPagingVO.builder()
                 .boardVOList(this.boardMapper.selectList(map))
-                .contentPerPage(CONTENT_PER_PAGE)
-                .startPageNumber((pageNum - 1) / CONTENT_PER_PAGE + 1)
+                .contentPerPage(contentPerPage)
+                .startPageNumber((pageNum - 1) / contentPerPage + 1)
                 .currentPageNumber(pageNum)
-                .endPageNumber(Math.min((pageNum - 1) / CONTENT_PER_PAGE + 10, (totalContent - 1) / CONTENT_PER_PAGE + 1))
-                .totalPageNumber((totalContent - 1) / CONTENT_PER_PAGE + 1)
+                .endPageNumber(Math.min((pageNum - 1) / contentPerPage + 10, (totalContent - 1) / contentPerPage + 1))
+                .totalPageNumber((totalContent - 1) / contentPerPage + 1)
                 .build();
     }
 
     @Override
     public List<BoardVO> selectList(Map<String, Object> map) {
         return this.boardMapper.selectList(map);
+    }
+
+    @Override
+    public List<BoardVO> selectListOrderByLike(Map<String, Object> map) {
+        return this.boardMapper.selectListOrderByLike(map);
     }
 
     @Override

@@ -72,6 +72,7 @@ public class FreeController {
         }
 
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
+        model.addAttribute("boardVOListOrderByLike", boardService.selectListOrderByLike(map));
 
         return "board/free/list";
     }
@@ -109,6 +110,7 @@ public class FreeController {
 
         model.addAttribute("replyPagingVO", this.replyService.selectPagingList(map));
         model.addAttribute("prevNextBoardVO", this.boardService.selectPrevNextList(map));
+        model.addAttribute("boardVOListOrderByLike", boardService.selectListOrderByLike(map));
 
         return "board/free/details";
     }

@@ -249,7 +249,7 @@
                                                      IN (1 AS LIKE_CNT,
                                                          0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE_CNT
                                                 ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE_CNT.BOARD_SEQ
-                       ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC
+                       ORDER BY BOARDSEQ DESC
                       ) BOARD
              )
         ]]>
@@ -259,6 +259,129 @@
         ]]>
         </if>
     </select>
+
+    <select id="selectListOrderByLike" parameterType="hashMap" resultType="kr.co.brownie.board.service.BoardVO">
+        <![CDATA[
+        SELECT BOARDSEQ,
+               BOARDKIND,
+               BOARDCATEGORY,
+               TITLE,
+               CONTENT,
+               NOTICEYN,
+               BOARDSTATUS,
+               BOARDINDATE,
+               BOARDINUSERID,
+               BOARDUPDATE,
+               BOARDUPUSERID,
+               FILESEQ,
+               SUBSEQ,
+               USERID,
+               LOLID,
+               NICKNAME,
+               BLACKSTACK,
+               USERSTATUS,
+               USERINDATE,
+               USERUPDATE,
+               USERINUSERID,
+               USERUPUSERID,
+               USERPOSITION,
+               BROWNIEPOINT,
+               REPLYCNT,
+               HITCNT,
+               LIKEKIND,
+               LIKECNT,
+               UNLIKECNT
+        FROM (SELECT ROWNUM AS RN,
+                     BOARD.*
+              FROM (SELECT BROWNIE_BOARD.BOARD_SEQ                   AS BOARDSEQ,
+                           BROWNIE_BOARD.BOARD_KIND                  AS BOARDKIND,
+                           BROWNIE_BOARD.BOARD_CATEGORY              AS BOARDCATEGORY,
+                           BROWNIE_BOARD.TITLE                       AS TITLE,
+                           BROWNIE_BOARD.CONTENT                     AS CONTENT,
+                           BROWNIE_BOARD.NOTICE_YN                   AS NOTICEYN,
+                           BROWNIE_BOARD.STATUS                      AS BOARDSTATUS,
+                           BROWNIE_BOARD.IN_DATE                     AS BOARDINDATE,
+                           BROWNIE_BOARD.IN_USER_ID                  AS BOARDINUSERID,
+                           BROWNIE_BOARD.UP_DATE                     AS BOARDUPDATE,
+                           BROWNIE_BOARD.UP_USER_ID                  AS BOARDUPUSERID,
+                           BROWNIE_BOARD.FILE_SEQ                    AS FILESEQ,
+                           BROWNIE_BOARD.SUB_SEQ                     AS SUBSEQ,
+                           BROWNIE_USER.USER_ID                      AS USERID,
+                           BROWNIE_USER.LOL_ID                       AS LOLID,
+                           BROWNIE_USER.NICK_NAME                    AS NICKNAME,
+                           BROWNIE_USER.BLACK_STACK                  AS BLACKSTACK,
+                           BROWNIE_USER.STATUS                       AS USERSTATUS,
+                           BROWNIE_USER.IN_DATE                      AS USERINDATE,
+                           BROWNIE_USER.UP_DATE                      AS USERUPDATE,
+                           BROWNIE_USER.IN_USER_ID                   AS USERINUSERID,
+                           BROWNIE_USER.UP_USER_ID                   AS USERUPUSERID,
+                           BROWNIE_USER.USER_POSITION                AS USERPOSITION,
+                           BROWNIE_USER.BROWNIE_POINT                AS BROWNIEPOINT,
+                           NVL(BROWNIE_BOARD_REPLY.REPLY_CNT, 0)     AS REPLYCNT,
+                           NVL(BROWNIE_BOARD_HIT.HIT_CNT, 0)         AS HITCNT,
+                           BROWNIE_BOARD_LIKE.KIND                   AS LIKEKIND,
+                           NVL(BROWNIE_BOARD_LIKE_CNT.LIKE_CNT, 0)   AS LIKECNT,
+                           NVL(BROWNIE_BOARD_LIKE_CNT.UNLIKE_CNT, 0) AS UNLIKECNT
+                    FROM (SELECT *
+                          FROM BROWNIE_BOARD
+                          WHERE UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
+                           ) BROWNIE_BOARD
+                                INNER JOIN (SELECT *
+                                            FROM BROWNIE_USER
+                                                ) BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
+                                LEFT OUTER JOIN (SELECT BOARD_SEQ,
+                                                        COUNT(*) AS REPLY_CNT
+                                                 FROM BROWNIE_BOARD_REPLY
+                                                     INNER JOIN BROWNIE_USER ON BROWNIE_BOARD_REPLY.IN_USER_ID = BROWNIE_USER.USER_ID
+                                                 GROUP BY BOARD_SEQ) BROWNIE_BOARD_REPLY ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_REPLY.BOARD_SEQ
+                                LEFT OUTER JOIN (
+                                    ]]>
+        <choose>
+            <when test='userId != null'>
+                SELECT BOARD_SEQ,
+                KIND,
+                IN_DATE,
+                IN_USER_ID,
+                UP_DATE,
+                UP_USER_ID
+                FROM BROWNIE_BOARD_LIKE
+                WHERE IN_USER_ID = #{userId}
+            </when>
+            <otherwise>
+                SELECT NULL AS BOARD_SEQ,
+                NULL AS KIND,
+                NULL AS IN_DATE,
+                NULL AS IN_USER_ID,
+                NULL AS UP_DATE,
+                NULL AS UP_USER_ID
+                FROM BROWNIE_BOARD_LIKE
+            </otherwise>
+        </choose>
+        <![CDATA[
+                                    ) BROWNIE_BOARD_LIKE ON BROWNIE_BOARD_LIKE.BOARD_SEQ = BROWNIE_BOARD.BOARD_SEQ
+                                LEFT OUTER JOIN (SELECT BOARD_SEQ,
+                                                        COUNT(*) AS HIT_CNT
+                                                 FROM BROWNIE_BOARD_HIT
+                                                 GROUP BY BOARD_SEQ) BROWNIE_BOARD_HIT ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_HIT.BOARD_SEQ
+                                LEFT OUTER JOIN (SELECT BOARD_SEQ,
+                                                        LIKE_CNT,
+                                                        UNLIKE_CNT
+                                                 FROM (SELECT BOARD_SEQ,
+                                                              KIND
+                                                 FROM BROWNIE_BOARD_LIKE) PIVOT (
+                                                     COUNT(*)
+                                                     FOR KIND
+                                                     IN (1 AS LIKE_CNT,
+                                                         0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE_CNT
+                                                ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE_CNT.BOARD_SEQ
+                       ORDER BY LIKECNT - UNLIKECNT DESC,
+                                BOARDSEQ DESC
+                      ) BOARD
+             )
+        WHERE RN <= 5
+        ]]>
+    </select>
+
 
     <select id="select" parameterType="hashMap" resultType="kr.co.brownie.board.service.BoardVO">
         <![CDATA[
@@ -444,7 +567,8 @@
                   UNION ALL
                   SELECT LAG_BOARD_SEQ
                   FROM BOARD
-              )) BROWNIE_BOARD
+              )
+            ) BROWNIE_BOARD
                  INNER JOIN BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
                  LEFT OUTER JOIN (SELECT BOARD_SEQ,
                                          COUNT(*) AS REPLY_CNT
@@ -457,28 +581,28 @@
                                   GROUP BY BOARD_SEQ) HIT ON BROWNIE_BOARD.BOARD_SEQ = HIT.BOARD_SEQ
                  LEFT OUTER JOIN (
                                                      ]]>
-                         <choose>
-                             <when test='userId != null'>
-                                 SELECT BOARD_SEQ,
-                                 KIND,
-                                 IN_DATE,
-                                 IN_USER_ID,
-                                 UP_DATE,
-                                 UP_USER_ID
-                                 FROM BROWNIE_BOARD_LIKE
-                                 WHERE IN_USER_ID = #{userId}
-                             </when>
-                             <otherwise>
-                                 SELECT NULL AS BOARD_SEQ,
-                                 NULL AS KIND,
-                                 NULL AS IN_DATE,
-                                 NULL AS IN_USER_ID,
-                                 NULL AS UP_DATE,
-                                 NULL AS UP_USER_ID
-                                 FROM BROWNIE_BOARD_LIKE
-                             </otherwise>
-                         </choose>
-                         <![CDATA[
+        <choose>
+            <when test='userId != null'>
+                SELECT BOARD_SEQ,
+                KIND,
+                IN_DATE,
+                IN_USER_ID,
+                UP_DATE,
+                UP_USER_ID
+                FROM BROWNIE_BOARD_LIKE
+                WHERE IN_USER_ID = #{userId}
+            </when>
+            <otherwise>
+                SELECT NULL AS BOARD_SEQ,
+                NULL AS KIND,
+                NULL AS IN_DATE,
+                NULL AS IN_USER_ID,
+                NULL AS UP_DATE,
+                NULL AS UP_USER_ID
+                FROM BROWNIE_BOARD_LIKE
+            </otherwise>
+        </choose>
+        <![CDATA[
                                                      ) BROWNIE_BOARD_LIKE ON BROWNIE_BOARD_LIKE.BOARD_SEQ = BROWNIE_BOARD.BOARD_SEQ
                  LEFT OUTER JOIN (SELECT BOARD_SEQ,
                                          LIKE_CNT,
@@ -490,7 +614,8 @@
                                             IN (1 AS LIKE_CNT,
                                                 0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE_CNT
                                  ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE_CNT.BOARD_SEQ
-    ]]></select>
+    ]]>
+    </select>
 
     <update id="update">
         UPDATE BROWNIE_BOARD

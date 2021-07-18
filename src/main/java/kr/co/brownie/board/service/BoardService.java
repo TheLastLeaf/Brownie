@@ -12,6 +12,8 @@ public interface BoardService {
 
     List<BoardVO> selectList(Map<String, Object> map);
 
+    List<BoardVO> selectListOrderByLike(Map<String, Object> map);
+
     List<BoardVO> selectPrevNextList(Map<String, Object> map);
 
     BoardVO select(Map<String, Object> map);

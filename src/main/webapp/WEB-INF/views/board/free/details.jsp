@@ -6,7 +6,7 @@
 <style>
     h5 {
         margin-top: 10px;
-    }
+   }
 
     .actForReply, .actForBoard {
         font-size: 10px;
@@ -14,7 +14,7 @@
         margin-bottom: 5px;
         justify-content: right;
         text-align: right;
-    }
+   }
 
     .replyHate {
         border: 1px solid #336666;
@@ -22,7 +22,7 @@
         cursor: pointer;
         margin: 3px;
         color: #336666;
-    }
+   }
 
     .replyLike {
         border: 1px solid #ffffcc;
@@ -30,7 +30,7 @@
         cursor: pointer;
         margin: 3px;
         color: #ffffcc;
-    }
+   }
 
     .reReply {
         border: 1px solid #007bff;
@@ -38,7 +38,7 @@
         cursor: pointer;
         margin: 3px;
         color: #007bff;
-    }
+   }
 
     .replyCall, #freeModify, #freeDelete {
         border: 1px solid #DC143C;
@@ -46,28 +46,28 @@
         cursor: pointer;
         margin: 3px;
         color: #DC143C;
-    }
+   }
 
     .blackReplys {
         height: 5px;
         color: #5d5d5d;
         font-size: 12px;
         visibility: hidden;
-    }
+   }
 
     .blackClick {
         font-size: 12px;
         color: #e57373;
-    }
+   }
 
     .userReplys {
         font-size: 12px;
         word-break: break-word;
-    }
+   }
 
     .blackReplysId {
         visibility: hidden;
-    }
+   }
 
 
     .replyMod, .reReplyToUser {
@@ -75,11 +75,11 @@
         background-color: black;
         font-size: 12px;
         color: #666666;
-    }
+   }
 
     .replyModArea, .reModComBut, .reReplyBox {
         display: none;
-    }
+   }
 
     .modReplyBut {
         border: 1px solid #ffffff;
@@ -87,11 +87,11 @@
         cursor: pointer;
         margin: 3px;
         color: #ffffff;
-    }
+   }
 
     .reReplyBox {
         margin-bottom: 20px;
-    }
+   }
 </style>
 
 <!-- Details Post Section Begin -->
@@ -99,7 +99,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 p-0">
-                <c:if test="${sessionScope.id eq boardVO.boardInUserId }">
+                <c:if test="${sessionScope.id eq boardVO.boardInUserId}">
                     <div class="actForBoard">
                         <form action="${pageContext.request.contextPath}/free/delete" method="POST"
                               class="d-inline">
@@ -114,15 +114,15 @@
                 </c:if>
                 <div class="details-text">
                     <div class="dt-quote">
-                        <p>${boardVO.title }</p>
+                        <p>${boardVO.title}</p>
                     </div>
                     <div class="dp-text">
-                        <p>${boardVO.content } </p>
+                        <p>${boardVO.content} </p>
                     </div>
                     <!-- 태그 -->
                     <div class="dt-tags">
-                        <c:forTokens items="${boardVO.boardCategory }" delims="," var="tag">
-                            <a href="#"><span>${tag }</span></a>
+                        <c:forTokens items="${boardVO.boardCategory}" delims="," var="tag">
+                            <a href="#"><span>${tag}</span></a>
                         </c:forTokens>
                     </div>
 
@@ -193,7 +193,7 @@
                                                  alt="">
                                         </div>
                                         <div class="rp-text">
-                                            <h6>${prevBoardVO.title }</h6>
+                                            <h6>${prevBoardVO.title}</h6>
                                             <ul>
                                                 <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDate}</li>
                                                 <li><i class="far fa-comment"></i> ${prevBoardVO.replyCnt}
@@ -215,7 +215,7 @@
                                                  alt="">
                                         </div>
                                         <div class="rp-text">
-                                            <h6>${nextBoardVO.title }</h6>
+                                            <h6>${nextBoardVO.title}</h6>
                                             <ul>
                                                 <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDate}</li>
                                                 <li><i class="far fa-comment"></i> ${nextBoardVO.replyCnt}</li>
@@ -289,7 +289,8 @@
                                 </div>
                             </div>
                         </c:forEach>
-                        <div class="pagination-item" style="justify-content: center; align-content: center; text-align: center;">
+                        <div class="pagination-item"
+                             style="justify-content: center; align-content: center; text-align: center;">
                             <c:if test="${1 < replyPagingVO.startPageNumber}">
                                 <a href="?pageNum=${replyPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                             </c:if>
@@ -322,31 +323,31 @@
                             <h5>Best of Best</h5>
                         </div>
 
-                        <%--                        <c:forEach var="freeFamousList" items="${freeFamousList }" varStatus="status">--%>
+                        <c:forEach var="boardVO" items="${boardVOListOrderByLike}" varStatus="status">
 
-                        <%--                            <div class="bp-item">--%>
-                        <%--                                <div class="bp-loader">--%>
-                        <%--                                    <div class="loader-circle-wrap">--%>
-                        <%--                                        <div class="loader-circle">--%>
-                        <%--	                                            <span class="circle-progress-1" data-cpid="id-1"--%>
-                        <%--                                                      data-cpvalue="${freeFamousList.likeCnt }"--%>
-                        <%--                                                      data-cpcolor="#c20000"></span>--%>
-                        <%--                                            <div class="review-point"--%>
-                        <%--                                                 style="text-align: center;">${freeFamousList.likeCnt }</div>--%>
-                        <%--                                        </div>--%>
-                        <%--                                    </div>--%>
-                        <%--                                </div>--%>
-                        <%--                                <div class="bp-text">--%>
-                        <%--                                    <h6>--%>
-                        <%--                                        <a href="${pageContext.request.contextPath}/free/details/${freeFamousList.boardSeq}">${freeFamousList.title }</a>--%>
-                        <%--                                    </h6>--%>
-                        <%--                                    <ul>--%>
-                        <%--                                        <li><i class="far fa-clock"></i>${freeFamousList.inDate }</li>--%>
-                        <%--                                        <li><i class="far fa-comment"></i> 20</li>--%>
-                        <%--                                    </ul>--%>
-                        <%--                                </div>--%>
-                        <%--                            </div>--%>
-                        <%--                        </c:forEach>--%>
+                            <div class="bp-item">
+                                <div class="bp-loader">
+                                    <div class="loader-circle-wrap">
+                                        <div class="loader-circle">
+                                            <span class="circle-progress-1" data-cpid="id-1"
+                                                  data-cpvalue="${boardVO.likeCnt}"
+                                                  data-cpcolor="#c20000"></span>
+                                            <div class="review-point"
+                                                 style="text-align: center;">${boardVO.likeCnt}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bp-text">
+                                    <h6>
+                                        <a href="${pageContext.request.contextPath}/free/details/${boardVO.boardSeq}">${boardVO.title}</a>
+                                    </h6>
+                                    <ul>
+                                        <li><i class="far fa-clock"></i>${boardVO.boardInDate}</li>
+                                        <li><i class="far fa-comment"></i> 20</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </c:forEach>
 
                     </div>
                 </div>
