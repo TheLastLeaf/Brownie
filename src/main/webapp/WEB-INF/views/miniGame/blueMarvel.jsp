@@ -110,14 +110,6 @@
         top: 160px;
     }
 
-    .startLine {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/use/start.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 128px;
-        
-    }
-
     .l1 {
         background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[0].kind}/${infoList[0].imgName}");
         background-repeat: no-repeat;
@@ -237,13 +229,24 @@
         background-size: 128px;
         background-color: ${landColor[14]};
     }
-
+    
+    .startLine {
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/use/start.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 128px;
+        background-color: ${landColor[14]};
+    }
+    
 </style>
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
          data-setbg="${pageContext.request.contextPath}/img/miniGame/banner3.jpg">
     <div class="container">
+    	
+    	
+    	
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
@@ -267,6 +270,79 @@
 <!-- Breadcrumb Section End -->
 
 <script type="text/javascript">
+	
+	
+	
+	
+	
+	//그라데이션 효과
+	function rainbow(){
+	var colors = new Array(
+	  [62,35,255],
+	  [60,255,60],
+	  [255,35,98],
+	  [45,175,230],
+	  [255,0,255],
+	  [255,128,0]);
+	
+	var step = 0;
+	//color table indices for: 
+	// current color left
+	// next color left
+	// current color right
+	// next color right
+	var colorIndices = [0,1,2,3];
+	
+	//transition speed
+	var gradientSpeed = 0.002;
+	
+	function updateGradient()
+	{
+	  
+	  if ( $===undefined ) return;
+	  
+	var c0_0 = colors[colorIndices[0]];
+	var c0_1 = colors[colorIndices[1]];
+	var c1_0 = colors[colorIndices[2]];
+	var c1_1 = colors[colorIndices[3]];
+	
+	var istep = 1 - step;
+	var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+	var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+	var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+	var color1 = "rgb("+r1+","+g1+","+b1+")";
+	
+	var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+	var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+	var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+	var color2 = "rgb("+r2+","+g2+","+b2+")";
+	
+	 $('.startLine').css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+	  
+	  step += gradientSpeed;
+	  if ( step >= 1 )
+	  {
+	    step %= 1;
+	    colorIndices[0] = colorIndices[1];
+	    colorIndices[2] = colorIndices[3];
+	    
+	    //pick two new target color indices
+	    //do not pick the same as the current one
+	    colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+	    colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+	    
+	  }
+	}
+	
+	setInterval(updateGradient,10);
+	}
+	//
+
+
+
+
     var playerPos = ${player.position};
     var round = ${player.round};
     var hp = ${player.hp};
@@ -289,6 +365,45 @@
 
     /* 주사위 */
     window.onload = function () {
+    	
+    	//무지개
+		
+    	var hue = 1,
+		button1 = document.getElementsByClassName('start');
+		function color() {
+			var alpha = 0,
+				  s = 1,
+				  v = 1,
+				  c, h, x, r1, g1, b1, m,
+				  red, blue, green;
+			hue %= 360;
+			h = hue / 60;
+			if (hue < 0) {
+			    hue += 360;
+			}
+			c = v * s;
+			h = hue / 60;
+			x = c * (1 - Math.abs(h % 2 - 1));
+			m = v - c;
+			switch (Math.floor(h)) {
+				case 0: r1 = c; g1 = x; b1 = 0; break;
+				case 1: r1 = x; g1 = c; b1 = 0; break;
+				case 2: r1 = 0; g1 = c; b1 = x; break;
+				case 3: r1 = 0; g1 = x; b1 = c; break;
+				case 4: r1 = x; g1 = 0; b1 = c; break;
+				case 5: r1 = c; g1 = 0; b1 = x; break;
+			}
+			red = Math.floor((r1 + m) * 255);
+			green = Math.floor((g1 + m) * 255);
+			blue = Math.floor((b1 + m) * 255);
+			button1[0].style.boxShadow = '0px 0px 30px -5px rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
+			button1[0].style.backgroundColor = 'rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
+		  hue++;
+		}
+		window.setInterval(color, 10);
+    	
+    	//
+		
         $(".l" + playerPos + "").append(playerImg);
 
         for (var i = 0; i < bubblyButtons.length; i++) {
@@ -460,19 +575,26 @@
             success: function (data) {
                    console.log("data 삽입성공!");
                    
-                   console.log("player");
-                   console.log(data.player);
-                   console.log("player.point");
-                   console.log(data.player.point);
-                   console.log("player.hp");
-                   console.log(data.player.hp);
+                  
+                   
+                   
+                   
+                   if(!data.player){
+                	   console.log("player");
+                       console.log(data.player);
+                       console.log("player.point");
+                       console.log(data.player.point);
+	                   $(".bpoint").html("마블게임 포인트 : "+data.site.browniePoint);
+                   }
+                   if(!data.site){
+                	   console.log("site");
+                       console.log(data.site);
+	                   $(".mpoint").html("브라우니 포인트 : "+data.player.point);
+                   }
+                   
                    console.log("log");
                    console.log(data.log);
-                   console.log("site");
-                   console.log(data.site);
                    
-                   $(".bpoint").html("마블게임 포인트 : "+data.site.browniePoint);
-                   $(".mpoint").html("브라우니 포인트 : "+data.player.point);
                    $("#logHome").html(data.log);
                    
                    autoRenew();
@@ -635,7 +757,7 @@
                 <table class="pan">
                     <tbody>
                     <tr>
-                        <td class="td_tb startLine corner l0"></td>
+                        <td class="td_tb startLine corner l0 start"></td>
                         <td class="td_tb l1"></td>
                         <td class="td_tb l2"></td>
                         <td class="td_tb l3"></td>
@@ -672,7 +794,7 @@
                     <tr style="margin-bottom: 30px">
                         <td class="td_tb leftDown corner l12"></td>
                         <td class="td_tb l11"></td>
-                        <td class="td_tb l10"></td>
+                        <td id="start" class="td_tb l10"></td>
                         <td class="td_tb l9"></td>
                         <td class="td_tb rightDown corner l8"></td>
                     </tr>
