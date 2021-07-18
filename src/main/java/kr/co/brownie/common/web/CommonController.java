@@ -36,7 +36,7 @@ public class CommonController {
     @Resource(name = "boardService")
     BoardService boardService;
 
-    @GetMapping(path = {"", "index"})
+    @GetMapping(path = {"", "index", "home"})
     public String index(HttpSession httpSession,
                         Model model) {
         Map<String, Object> map = new HashMap<>();
