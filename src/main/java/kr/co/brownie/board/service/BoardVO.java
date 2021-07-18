@@ -48,14 +48,13 @@ public class BoardVO {
     private Integer unlikeCnt;
 
     public String getImgSrc() {
-        if (content == null) return "/img/categories-list/cl-1.jpg";
-
-        Document document = Jsoup.parse(content);
-        String src = document.select("img").attr("src");
-        if ("".equals(src)) {
-            src = "/img/categories-list/cl-1.jpg";
+        if (content == null || "".equals(Jsoup.parse(content).select("img").attr("src"))) {
+            if (boardKind.equalsIgnoreCase("TIP")) {
+                return "https://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/" + Character.toUpperCase(boardCategory.charAt(0)) + boardCategory.substring(1) + ".png";
+            }
+            return "/img/categories-list/cl-1.jpg";
         }
-        return src;
+        return Jsoup.parse(content).select("img").attr("src");
     }
 
     public String getPreview() {

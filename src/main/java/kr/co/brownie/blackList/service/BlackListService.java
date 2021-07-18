@@ -6,7 +6,7 @@ public interface BlackListService {
 
     List<BlackListVO> selectBlackList();
 
-    int insert(String userId, String result, String id, int reasonSeq);
+    int insert(String userId, String result, String id, int reasonSeq,int bListSeq, int endDate);
 
     int update(String id, int bListSeq);
 

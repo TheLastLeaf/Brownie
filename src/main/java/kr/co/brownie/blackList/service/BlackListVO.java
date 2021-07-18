@@ -2,6 +2,8 @@ package kr.co.brownie.blackList.service;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class BlackListVO {
     private String bListSeq;
@@ -14,5 +16,7 @@ public class BlackListVO {
     private String reasonSeq;
     private String reasonKind1;
     private String status;
+    private Integer bUserSeq;
+    private Date endDate;
 
 }

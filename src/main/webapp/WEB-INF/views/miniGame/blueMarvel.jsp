@@ -110,18 +110,12 @@
         top: 160px;
     }
 
-    .startLine {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/use/start.png");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 128px;
-    }
-
     .l1 {
         background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[0].kind}/${infoList[0].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[0]};
     }
 
     .l2 {
@@ -129,6 +123,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[1]};
     }
 
     .l3 {
@@ -136,6 +131,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[2]};
     }
 
     .l4 {
@@ -143,6 +139,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[3]};
     }
 
     .l5 {
@@ -150,6 +147,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[4]};
     }
 
     .l6 {
@@ -157,6 +155,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[5]};
     }
 
     .l7 {
@@ -164,6 +163,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[6]};
     }
 
     .l8 {
@@ -171,6 +171,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[7]};
     }
 
     .l9 {
@@ -178,6 +179,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[8]};
     }
 
     .l10 {
@@ -185,6 +187,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[9]};
     }
 
     .l11 {
@@ -192,6 +195,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[10]};
     }
 
     .l12 {
@@ -199,6 +203,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[11]};
     }
 
     .l13 {
@@ -206,6 +211,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[12]};
     }
 
     .l14 {
@@ -213,6 +219,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[13]};
     }
 
     .l15 {
@@ -220,14 +227,26 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
+        background-color: ${landColor[14]};
     }
-
+    
+    .startLine {
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/sudden/start.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 128px;
+        background-color: ${landColor[14]};
+    }
+    
 </style>
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
          data-setbg="${pageContext.request.contextPath}/img/miniGame/banner3.jpg">
     <div class="container">
+    	
+    	
+    	
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="breadcrumb-text">
@@ -251,6 +270,79 @@
 <!-- Breadcrumb Section End -->
 
 <script type="text/javascript">
+	
+	
+	
+	
+	
+	//그라데이션 효과
+	function rainbow(){
+	var colors = new Array(
+	  [62,35,255],
+	  [60,255,60],
+	  [255,35,98],
+	  [45,175,230],
+	  [255,0,255],
+	  [255,128,0]);
+	
+	var step = 0;
+	//color table indices for: 
+	// current color left
+	// next color left
+	// current color right
+	// next color right
+	var colorIndices = [0,1,2,3];
+	
+	//transition speed
+	var gradientSpeed = 0.002;
+	
+	function updateGradient()
+	{
+	  
+	  if ( $===undefined ) return;
+	  
+	var c0_0 = colors[colorIndices[0]];
+	var c0_1 = colors[colorIndices[1]];
+	var c1_0 = colors[colorIndices[2]];
+	var c1_1 = colors[colorIndices[3]];
+	
+	var istep = 1 - step;
+	var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+	var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+	var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+	var color1 = "rgb("+r1+","+g1+","+b1+")";
+	
+	var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+	var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+	var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+	var color2 = "rgb("+r2+","+g2+","+b2+")";
+	
+	 $('.startLine').css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+	  
+	  step += gradientSpeed;
+	  if ( step >= 1 )
+	  {
+	    step %= 1;
+	    colorIndices[0] = colorIndices[1];
+	    colorIndices[2] = colorIndices[3];
+	    
+	    //pick two new target color indices
+	    //do not pick the same as the current one
+	    colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+	    colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+	    
+	  }
+	}
+	
+	setInterval(updateGradient,10);
+	}
+	//
+
+
+
+
     var playerPos = ${player.position};
     var round = ${player.round};
     var hp = ${player.hp};
@@ -273,6 +365,45 @@
 
     /* 주사위 */
     window.onload = function () {
+    	
+    	//무지개
+		
+    	var hue = 1,
+		button1 = document.getElementsByClassName('start');
+		function color() {
+			var alpha = 0,
+				  s = 1,
+				  v = 1,
+				  c, h, x, r1, g1, b1, m,
+				  red, blue, green;
+			hue %= 360;
+			h = hue / 60;
+			if (hue < 0) {
+			    hue += 360;
+			}
+			c = v * s;
+			h = hue / 60;
+			x = c * (1 - Math.abs(h % 2 - 1));
+			m = v - c;
+			switch (Math.floor(h)) {
+				case 0: r1 = c; g1 = x; b1 = 0; break;
+				case 1: r1 = x; g1 = c; b1 = 0; break;
+				case 2: r1 = 0; g1 = c; b1 = x; break;
+				case 3: r1 = 0; g1 = x; b1 = c; break;
+				case 4: r1 = x; g1 = 0; b1 = c; break;
+				case 5: r1 = c; g1 = 0; b1 = x; break;
+			}
+			red = Math.floor((r1 + m) * 255);
+			green = Math.floor((g1 + m) * 255);
+			blue = Math.floor((b1 + m) * 255);
+			button1[0].style.boxShadow = '0px 0px 30px -5px rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
+			button1[0].style.backgroundColor = 'rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
+		  hue++;
+		}
+		window.setInterval(color, 10);
+    	
+    	//
+		
         $(".l" + playerPos + "").append(playerImg);
 
         for (var i = 0; i < bubblyButtons.length; i++) {
@@ -369,6 +500,7 @@
     }
 
     function rndMapCreate() {
+    	console.log("맵생성");
         $.ajax({
             url: "./ajax.rndmapcreate",
             type: "post",
@@ -385,25 +517,42 @@
             },
             success: function (data) {
                 recentMap = [];
-                for (var i = 0; i < data.length; i++) {
-                    recentMap.push(data[i].seq);
+                for (var i = 0; i < data.info.length; i++) {
+                    recentMap.push(data.info[i].seq);
+                    console.log(i+data.info[i].seq);
                 }
 
-                $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[0].kind + "/" + data[0].imgName);
-                $('.l2').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[1].kind + "/" + data[1].imgName);
-                $('.l3').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[2].kind + "/" + data[2].imgName);
-                $('.l4').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[3].kind + "/" + data[3].imgName);
-                $('.l5').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[4].kind + "/" + data[4].imgName);
-                $('.l6').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[5].kind + "/" + data[5].imgName);
-                $('.l7').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[6].kind + "/" + data[6].imgName);
-                $('.l8').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[7].kind + "/" + data[7].imgName);
-                $('.l9').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[8].kind + "/" + data[8].imgName);
-                $('.l10').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[9].kind + "/" + data[9].imgName);
-                $('.l11').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[10].kind + "/" + data[10].imgName);
-                $('.l12').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[11].kind + "/" + data[11].imgName);
-                $('.l13').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[12].kind + "/" + data[12].imgName);
-                $('.l14').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[13].kind + "/" + data[13].imgName);
-                $('.l15').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data[14].kind + "/" + data[14].imgName);
+                $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[0].kind + "/" + data.info[0].imgName);
+                $('.l2').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[1].kind + "/" + data.info[1].imgName);
+                $('.l3').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[2].kind + "/" + data.info[2].imgName);
+                $('.l4').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[3].kind + "/" + data.info[3].imgName);
+                $('.l5').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[4].kind + "/" + data.info[4].imgName);
+                $('.l6').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[5].kind + "/" + data.info[5].imgName);
+                $('.l7').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[6].kind + "/" + data.info[6].imgName);
+                $('.l8').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[7].kind + "/" + data.info[7].imgName);
+                $('.l9').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[8].kind + "/" + data.info[8].imgName);
+                $('.l10').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[9].kind + "/" + data.info[9].imgName);
+                $('.l11').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[10].kind + "/" + data.info[10].imgName);
+                $('.l12').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[11].kind + "/" + data.info[11].imgName);
+                $('.l13').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[12].kind + "/" + data.info[12].imgName);
+                $('.l14').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[13].kind + "/" + data.info[13].imgName);
+                $('.l15').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[14].kind + "/" + data.info[14].imgName);
+                
+                $('.l1').css('background-color', data.landColor[0]);
+                $('.l2').css('background-color', data.landColor[1]);
+                $('.l3').css('background-color', data.landColor[2]);
+                $('.l4').css('background-color', data.landColor[3]);
+                $('.l5').css('background-color', data.landColor[4]);
+                $('.l6').css('background-color', data.landColor[5]);
+                $('.l7').css('background-color', data.landColor[6]);
+                $('.l8').css('background-color', data.landColor[7]);
+                $('.l9').css('background-color', data.landColor[8]);
+                $('.l10').css('background-color', data.landColor[9]);
+                $('.l11').css('background-color', data.landColor[10]);
+                $('.l12').css('background-color', data.landColor[11]);
+                $('.l13').css('background-color', data.landColor[12]);
+                $('.l14').css('background-color', data.landColor[13]);
+                $('.l15').css('background-color', data.landColor[14]);
             },
             error: function () {
                 alert("맵생성 실패");
@@ -416,6 +565,8 @@
         var objposition = "start";
         if (playerPos != 0) {
             objposition = recentMap[playerPos - 1];
+        } else {
+        	objposition = 0;
         }
         $.ajax({
             url: "./ajax.effectact",
@@ -428,19 +579,16 @@
             success: function (data) {
                    console.log("data 삽입성공!");
                    
-                   console.log("player");
-                   console.log(data.player);
-                   console.log("player.point");
-                   console.log(data.player.point);
-                   console.log("player.hp");
-                   console.log(data.player.hp);
+                   if(!data.player==null){
+	                   $(".bpoint").html("브라우니 포인트 : "+data.player.point);
+                   }
+                   if(!data.site==null){
+	                   $(".mpoint").html("마블게임 포인트 : "+data.site.browniePoint);
+                   }
+                   
                    console.log("log");
                    console.log(data.log);
-                   console.log("site");
-                   console.log(data.site);
                    
-                   $(".bpoint").html("마블게임 포인트 : "+data.site.browniePoint);
-                   $(".mpoint").html("브라우니 포인트 : "+data.player.point);
                    $("#logHome").html(data.log);
                    
                    autoRenew();
@@ -486,7 +634,7 @@
 
         status1.innerHTML = side1 + "!";
 
-        setTimeout('move(' + side1 + ')', 1900);
+        setTimeout('move(' + 14 + ')', 1900);
     }
 
     //한번더! 주사위 더블이벤트
@@ -603,7 +751,7 @@
                 <table class="pan">
                     <tbody>
                     <tr>
-                        <td class="td_tb startLine corner l0"></td>
+                        <td class="td_tb startLine corner l0 start"></td>
                         <td class="td_tb l1"></td>
                         <td class="td_tb l2"></td>
                         <td class="td_tb l3"></td>
@@ -640,7 +788,7 @@
                     <tr style="margin-bottom: 30px">
                         <td class="td_tb leftDown corner l12"></td>
                         <td class="td_tb l11"></td>
-                        <td class="td_tb l10"></td>
+                        <td id="start" class="td_tb l10"></td>
                         <td class="td_tb l9"></td>
                         <td class="td_tb rightDown corner l8"></td>
                     </tr>
