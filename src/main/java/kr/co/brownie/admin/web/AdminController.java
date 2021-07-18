@@ -153,11 +153,10 @@ public class AdminController {
         int cnt = reportService.update(reportSeq, id);
         if (cnt == 1) {
             int ucount = userService.blackstack(userId);
-            model.addAttribute("ucount", ucount);
             if (ucount == 1) {
                 int count = blackListService.insert(userId, result, id, reasonSeq,bListSeq, endDate);
                 model.addAttribute("count", count);
-                return count;
+                return "ok";
             }
         }
         model.addAttribute("cnt", cnt);

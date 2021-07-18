@@ -44,7 +44,7 @@
             },
             success: function (data) {
                 console.log(data)
-                if (data === 1) {
+                if (data == "ok") {
                     alert("블랙리스트 추가 완료.")
                     location.reload();
                 }

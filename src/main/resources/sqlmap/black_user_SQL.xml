@@ -50,6 +50,7 @@
     <select id="count" resultType="int">
         SELECT COUNT(*)
         FROM BLACK_USER
+        WHERE STATUS = 'Y'
     </select>
 
     <update id="update" parameterType="hashMap">
