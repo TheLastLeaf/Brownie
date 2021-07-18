@@ -1,5 +1,6 @@
 package kr.co.brownie.board.like.web;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import kr.co.brownie.board.like.service.BoardLikeCountVO;
 import kr.co.brownie.board.like.service.BoardLikeService;
@@ -61,15 +62,15 @@ public class BoardLikeController {
         }
 
         BoardLikeCountVO boardLikeCountVO = this.boardLikeService.count(map);
-        JsonObject boardLikeCountVoObject = new JsonObject();
+        JsonObject boardLikeCountVoObject;
         if (boardLikeCountVO == null) {
+            boardLikeCountVoObject = new JsonObject();
             boardLikeCountVoObject.addProperty("boardSeq", map.get("boardSeq").toString());
             boardLikeCountVoObject.addProperty("likeCnt", 0);
             boardLikeCountVoObject.addProperty("unlikeCnt", 0);
         } else {
-            boardLikeCountVoObject.addProperty("boardSeq", boardLikeCountVO.getBoardSeq());
-            boardLikeCountVoObject.addProperty("likeCnt", boardLikeCountVO.getLikeCnt());
-            boardLikeCountVoObject.addProperty("unlikeCnt", boardLikeCountVO.getUnlikeCnt());
+            Gson gson = new Gson();
+            boardLikeCountVoObject = gson.fromJson(gson.toJson(boardLikeCountVO), JsonObject.class);
         }
         jsonObject.add("boardLikeCount", boardLikeCountVoObject);
 
