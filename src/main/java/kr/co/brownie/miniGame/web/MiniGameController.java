@@ -202,6 +202,7 @@ public class MiniGameController {
         }
 
         List<String> landColor = new ArrayList();
+        
         for (BrownieMarbelInfoVO n : brownieMarbelInfo) {
         	String[] temp = n.getFunction().split(",");
         	landColor.add(temp[2]);
@@ -291,7 +292,6 @@ public class MiniGameController {
         param.put("recentHp", recentHp);
         param.put("userId", id);
 
-        System.out.println("paramrecent1 : " + param.get("recentMap"));
         System.out.println("paramrecent2 : " + recentMap);
 
         int cnt = this.miniGameService.updatePlayer(param);
@@ -305,13 +305,14 @@ public class MiniGameController {
     public Map<String, Object> effectAct(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
         System.out.println("!!!!효과재생");
         String id = "1797573825";
-
+        
         int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
         int diceNum = Integer.parseInt(servletRequest.getParameter("diceNum"));
         System.out.println("UserPosition" + UserPosition);
 
 
         int ObjPosition = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
+        System.out.println("ObjPosition:"+ObjPosition);
         BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(ObjPosition);
         String objName = obj.getName();
         String objDegree = obj.getDegree();
@@ -345,6 +346,7 @@ public class MiniGameController {
         }
 
         int cntSaveLog = 0;
+        
         if (cntSavePoint == 1) {
             param.put("object", objName);
             param.put("act", "습득");
@@ -352,8 +354,8 @@ public class MiniGameController {
             param.put("result", str[1] + objName);
             param.put("dicenum", diceNum);
             param.put("round", round);
+            
             System.out.println("param : " + param);
-
             cntSaveLog = this.miniGameService.insertLog(param);
         }
         
@@ -369,11 +371,15 @@ public class MiniGameController {
         map.put("log",log);
         map.put("player",this.miniGameService.selectPlayer(id)); 
         
+        System.out.println("player"+this.miniGameService.selectPlayer(id));
+        
         try {
         	map.put("site",this.userService.userOneSelect(id)); 
+        	System.out.println(this.userService.userOneSelect(id));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+        
         
         return map;
     }
