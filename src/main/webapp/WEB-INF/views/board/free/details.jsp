@@ -323,27 +323,27 @@
                             <h5>Best of Best</h5>
                         </div>
 
-                        <c:forEach var="boardVO" items="${boardVOListOrderByLike}" varStatus="status">
+                        <c:forEach var="boardVOOrderByLike" items="${boardVOListOrderByLike}" varStatus="status">
 
                             <div class="bp-item">
                                 <div class="bp-loader">
                                     <div class="loader-circle-wrap">
                                         <div class="loader-circle">
                                             <span class="circle-progress-1" data-cpid="id-1"
-                                                  data-cpvalue="${boardVO.likeCnt}"
+                                                  data-cpvalue="${boardVOOrderByLike.likeCnt}"
                                                   data-cpcolor="#c20000"></span>
                                             <div class="review-point"
-                                                 style="text-align: center;">${boardVO.likeCnt}</div>
+                                                 style="text-align: center;">${boardVOOrderByLike.likeCnt}</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="bp-text">
                                     <h6>
-                                        <a href="${pageContext.request.contextPath}/free/details/${boardVO.boardSeq}">${boardVO.title}</a>
+                                        <a href="${pageContext.request.contextPath}/free/details/${boardVOOrderByLike.boardSeq}">${boardVOOrderByLike.title}</a>
                                     </h6>
                                     <ul>
-                                        <li><i class="far fa-clock"></i>${boardVO.boardInDate}</li>
-                                        <li><i class="far fa-comment"></i> 20</li>
+                                        <li><i class="far fa-clock"></i>${boardVOOrderByLike.boardInDate}</li>
+                                        <li><i class="far fa-comment"></i> ${boardVOOrderByLike.replyCnt}</li>
                                     </ul>
                                 </div>
                             </div>
