@@ -97,19 +97,4 @@ public class NoticeController {
 
         return "board/notice/modify";
     }
-
-    @PostMapping("/delete")
-    public String delete(HttpSession httpSession,
-                         @RequestParam int boardSeq) {
-        Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
-        String userId = httpSession.getAttribute("id").toString();
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("boardSeq", boardSeq);
-
-        Assert.state(userId.equals(this.boardService.select(map).getBoardInUserId()), "작성자만 게시글을 삭제할 수 있습니다.");
-        Assert.state(this.boardService.delete(map) == 1, "삭제에 실패했습니다.");
-
-        return "redirect:/notice/list";
-    }
 }

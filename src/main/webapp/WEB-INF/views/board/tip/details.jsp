@@ -224,25 +224,21 @@
                                     </c:if>
                                 </div>
                                 <p>${replyVO.replyContent}</p>
-                                <form action="${pageContext.request.contextPath}/tip/details/${boardSeq}/reply/delete"
-                                      method="POST"
-                                      onsubmit="return confirm('정말 삭제하시겠습니까?');">
-                                    <input type="hidden" name="replySeq" value="${replyVO.replySeq}"/>
-                                    <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
-                                        <button type="button" onclick="commentReplyButton(${replyVO.replySeq})"
-                                                class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
-                                        </button>
-                                    </c:if>
-                                    <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
-                                        <button type="submit"
-                                                class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
-                                        </button>
-                                    </c:if>
-                                </form>
+                                <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
+                                    <button type="button" onclick="commentReplyButton(${replyVO.replySeq})"
+                                            class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
+                                    </button>
+                                </c:if>
+                                <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
+                                    <button type="button" onclick='if(confirm("삭제하시겠습니까?"))boardDelete(${boardSeq})'
+                                            class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
+                                    </button>
+                                </c:if>
                             </div>
                         </div>
                     </c:forEach>
-                    <div class="pagination-item" style="justify-content: center; align-content: center; text-align: center;">
+                    <div class="pagination-item"
+                         style="justify-content: center; align-content: center; text-align: center;">
                         <c:if test="${1 < replyPagingVO.startPageNumber}">
                             <a href="?pageNum=${replyPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                         </c:if>

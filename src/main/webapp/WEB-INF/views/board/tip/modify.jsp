@@ -175,7 +175,7 @@
                                               required="required">${boardVO.content}</textarea>
                             </div>
                             <div class="pad">
-                                <input type="button" onclick="boarModify(${boardSeq})" value="수정" class="submit">
+                                <input type="button" onclick="boardModify(${boardSeq})" value="수정" class="submit">
                             </div>
                         </div>
                     </div>

@@ -114,10 +114,8 @@ function boardWrite() {
         success: function (data) {
             if (data.status === "ng") {
                 alert(data.message);
-
                 return;
             }
-
             location.href = "./list";
         },
         error: function () {
@@ -126,7 +124,7 @@ function boardWrite() {
     })
 }
 
-function boarModify(boardSeq) {
+function boardModify(boardSeq) {
     const noticeYn = $("input[name=noticeYn]:checked");
     const SelectBoardCategory = $("select[name=boardCategory] option:selected");
     const boardCategory = $("input[name=boardCategory]");
@@ -153,10 +151,31 @@ function boarModify(boardSeq) {
         success: function (data) {
             if (data.status === "ng") {
                 alert(data.message);
-
                 return;
             }
+            location.href = "../list";
+        },
+        error: function () {
+            alert("문제가 발생하였습니다.");
+        }
+    })
+}
 
+function boardDelete(boardSeq) {
+    const data = {
+        boardSeq: boardSeq
+    }
+
+    $.ajax({
+        url: "/board/delete.ajax",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            alert(data.message);
+            if (data.status === "ng") {
+                return;
+            }
             location.href = "../list";
         },
         error: function () {

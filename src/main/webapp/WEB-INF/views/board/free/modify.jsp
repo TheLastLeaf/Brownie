@@ -168,7 +168,7 @@
                                        name="boardCategory"/>
                             </div>
                             <div class="submit-box">
-                                <input type="button" onclick="boarModify(${boardSeq})" value="수정완료" class="submit"/>
+                                <input type="button" onclick="boardModify(${boardSeq})" value="수정완료" class="submit"/>
                             </div>
                         </div>
                     </div>

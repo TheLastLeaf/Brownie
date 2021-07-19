@@ -101,4 +101,34 @@ public class BoardController {
         }
         return jsonObject.toString();
     }
+
+    @PostMapping(path = "/delete.ajax", produces = "application/text;charset=UTF-8")
+    public String delete(HttpSession httpSession,
+                         @RequestParam Map<String, Object> map) {
+        JsonObject jsonObject = new JsonObject();
+        String userId = httpSession.getAttribute("id").toString();
+
+        if (userId == null) {
+            jsonObject.addProperty("status", "ng");
+            jsonObject.addProperty("message", "로그인 후 이용하세요.");
+        } else {
+            BoardVO boardVO = this.boardService.select(map);
+            if (boardVO == null) {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("message", "해당 글이 없습니다.");
+            } else if (!userId.equals(boardVO.getBoardInUserId())) {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("message", "작성자만 게시글을 삭제할 수 있습니다..");
+            } else {
+                if (this.boardService.delete(map) != 1) {
+                    jsonObject.addProperty("status", "ng");
+                    jsonObject.addProperty("message", "삭제에 실패하였습니다.");
+                } else {
+                    jsonObject.addProperty("status", "ok");
+                    jsonObject.addProperty("message", "삭제하였습니다.");
+                }
+            }
+        }
+        return jsonObject.toString();
+    }
 }
