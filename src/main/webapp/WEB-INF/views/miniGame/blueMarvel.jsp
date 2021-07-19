@@ -275,7 +275,6 @@
 
 <script type="text/javascript">
 	//그라데이션 효과
-	function asd() {
 	var colors = new Array(
 	  [62,35,255],
 	  [60,255,60],
@@ -316,7 +315,11 @@
 	var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
 	var color2 = "rgb("+r2+","+g2+","+b2+")";
 	
-	 $('.startLine').css({
+	 $('#btnRoll').css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+	 
+	 $('#testz').css({
 	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
 	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
 	  
@@ -336,7 +339,6 @@
 	}
 	
 	setInterval(updateGradient,10);
-	};
 	//////////////
 	//랜드 무지개 효과
 		var hue = 1,
@@ -877,7 +879,7 @@
                         </div>
                         
                         
-                        <button onclick="changImg()" >이미지 변경</button>
+                        <button id="testz" onclick="changImg()" >이미지 변경</button>
 
 
                         <div class="hp" style="margin-top:20px;">
