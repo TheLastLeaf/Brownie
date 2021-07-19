@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.Date" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -192,7 +193,7 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="ht-widget">
                         <ul>
-                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-clock"></i> <%=new Date()%></li>
                             <li class="signup-switch signup-open">
                                 <c:choose>
                                     <c:when test="${id != null}">
@@ -225,14 +226,6 @@
                                 </c:choose>
                             </li>
                         </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-4">
-                    <div class="ht-social nav-search ">
-                        <input type="text"
-                               style="width: 150px; border:1px solid black; font-size: 11px; color: #ffffff; background-color: #222222;"
-                               placeholder="search"/>&nbsp;
-                        &nbsp;<i class="fas fa-search"></i>
                     </div>
                 </div>
             </div>
