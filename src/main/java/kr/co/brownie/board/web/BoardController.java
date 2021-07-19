@@ -20,9 +20,6 @@ public class BoardController {
     @Resource(name = "boardService")
     BoardService boardService;
 
-    @Resource(name = "replyService")
-    ReplyService replyService;
-
     @PostMapping(path = "/write.ajax", produces = "application/text;charset=UTF-8")
     public String write(HttpSession httpSession,
                         HttpServletRequest httpServletRequest,
@@ -39,7 +36,6 @@ public class BoardController {
                             referer.indexOf("/write")
                     )
             );
-
             if (httpSession.getAttribute("id") == null) {
                 jsonObject.addProperty("status", "ng");
                 jsonObject.addProperty("message", "로그인 후 이용하세요.");
@@ -75,13 +71,11 @@ public class BoardController {
                     )
             );
             String userId = httpSession.getAttribute("id").toString();
-
             if (userId == null) {
                 jsonObject.addProperty("status", "ng");
                 jsonObject.addProperty("message", "로그인 후 이용하세요.");
             } else {
                 map.put("userId", httpSession.getAttribute("id"));
-
                 BoardVO boardVO = this.boardService.select(map);
                 if (boardVO == null) {
                     jsonObject.addProperty("status", "ng");

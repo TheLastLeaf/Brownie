@@ -55,7 +55,7 @@
                                     <input type="button" class="btn btn-outline-dark btn-sm text-white"
                                            onclick="location.href='/notice/modify/${boardVO.boardSeq}'"
                                            value="수정"/>
-                                    <input type="button" onclick='if(confirm("삭제하시겠습니까?"))boardDelete(${boardSeq})'
+                                    <input type="button" onclick='if(confirm("정말 삭제하시겠습니까?"))boardDelete(${boardSeq})'
                                            class="btn btn-outline-dark btn-sm text-danger" value="삭제"/>
                                 </div>
                             </c:if>
@@ -87,7 +87,6 @@
                                             <h6>${prevBoardVO.title }</h6>
                                             <ul>
                                                 <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDate}</li>
-                                                <li><i class="far fa-comment"></i> ${prevBoardVO.replyCnt}
                                                 </li>
                                             </ul>
                                         </div>
@@ -109,7 +108,6 @@
                                             <h6>${nextBoardVO.title }</h6>
                                             <ul>
                                                 <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDate}</li>
-                                                <li><i class="far fa-comment"></i> ${nextBoardVO.replyCnt}</li>
                                             </ul>
                                         </div>
                                     </a>

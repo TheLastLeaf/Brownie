@@ -1,12 +1,12 @@
-function commentReplyButton(replySeq) {
+function commentReplyButton(boardSeq, replySeq) {
     $(".sub_reply_form").remove();
 
     const form =
         "<div class=\"dt-leave-comment sub_reply_form\">"
-        + "<form method=\"POST\">"
+        + "<form>"
         + "<input type=\"hidden\" name=\"headReplySeq\" value=\"" + replySeq + "\"/>"
-        + "<textarea name=\"message\" placeholder=\"Message\" required></textarea>"
-        + "<button type=\"submit\">Submit</button>"
+        + "<textarea name=\"replyContent\" placeholder=\"Message\" required></textarea>"
+        + "<button type=\"button\" onclick=\"subReplyWrite(" + boardSeq + ")\">Submit</button>"
         + "</form>"
         + "</div>"
     $("#" + replySeq).append(form);
@@ -134,14 +134,9 @@ function boardModify(boardSeq) {
         content: $("textarea[name=content]").val(),
         boardSeq: boardSeq
     }
-    if (noticeYn.length) {
-        data.noticeYn = noticeYn.val();
-    }
-    if (SelectBoardCategory.length) {
-        data.boardCategory = SelectBoardCategory.val();
-    } else if (boardCategory.length) {
-        data.boardCategory = boardCategory.val();
-    }
+    if (noticeYn.length) data.noticeYn = noticeYn.val();
+    if (SelectBoardCategory.length) data.boardCategory = SelectBoardCategory.val();
+    if (boardCategory.length) data.boardCategory = boardCategory.val();
 
     $.ajax({
         url: "/board/modify.ajax",
@@ -177,6 +172,79 @@ function boardDelete(boardSeq) {
                 return;
             }
             location.href = "../list";
+        },
+        error: function () {
+            alert("문제가 발생하였습니다.");
+        }
+    })
+}
+
+function replyWrite(boardSeq) {
+    const data = {
+        boardSeq: boardSeq,
+        replyContent: $.trim($(".main_reply_form textarea[name=replyContent]").val())
+    }
+
+    $.ajax({
+        url: "/board/reply/write.ajax",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            if (data.status === "ng") {
+                alert(data.message);
+                return;
+            }
+            location.reload();
+        },
+        error: function () {
+            alert("문제가 발생하였습니다.");
+        }
+    })
+}
+
+function subReplyWrite(boardSeq) {
+    const data = {
+        boardSeq: boardSeq,
+        replyContent: $.trim($(".sub_reply_form textarea[name=replyContent]").val()),
+        headReplySeq: $(".sub_reply_form input[name=headReplySeq]").val()
+    }
+
+    $.ajax({
+        url: "/board/reply/write.ajax",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            if (data.status === "ng") {
+                alert(data.message);
+                return;
+            }
+            location.reload();
+        },
+        error: function () {
+            alert("문제가 발생하였습니다.");
+        }
+    })
+}
+
+function replyDelete(boardSeq, replySeq) {
+    const data = {
+        boardSeq: boardSeq,
+        replySeq: replySeq
+    }
+
+    $.ajax({
+        url: "/board/reply/delete.ajax",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            if (data.status === "ng") {
+                alert(data.message);
+                return;
+            }
+            location.reload();
         },
         error: function () {
             alert("문제가 발생하였습니다.");
