@@ -107,7 +107,7 @@
                             + "</div>"
                             + "<div class=\"mw-text\">"
                             + "<h6>"
-                            + "<a href=\"/notice/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "<a href=\"${pageContext.request.contextPath}/notice/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
                             + "</h6>"
                             + "<ul>"
                             + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
@@ -122,7 +122,7 @@
                             + "</div>"
                             + "<div class=\"mw-text\">"
                             + "<h6>"
-                            + "<a href=\"/tip/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "<a href=\"${pageContext.request.contextPath}/tip/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
                             + "</h6>"
                             + "<ul>"
                             + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
@@ -138,7 +138,7 @@
                             + "</div>"
                             + "<div class=\"mw-text\">"
                             + "<h6>"
-                            + "<a href=\"/free/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "<a href=\"${pageContext.request.contextPath}/free/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
                             + "</h6>"
                             + "<ul>"
                             + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
@@ -196,10 +196,10 @@
                             <li><i class="far fa-clock"></i> <%=new Date()%></li>
                             <li class="signup-switch signup-open">
                                 <c:choose>
-                                    <c:when test="${id != null}">
+                                    <c:when test="${sessionScope.id != null}">
                                         <span style="margin-left:4px;">
                                             <a onclick="location.href='/user/userInfo/${sessionScope.id}'"
-                                               style="text-decoration: underline;">${id}</a>
+                                               style="text-decoration: underline;">${sessionScope.id}</a>
                                             <span style="cursor:text">님 환영합니다</span>
                                         </span>
                                         <span style="margin-left:4px; cursor:text;">LV.${sessionScope.permit_level}</span>
