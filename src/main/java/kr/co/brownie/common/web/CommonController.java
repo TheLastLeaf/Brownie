@@ -3,7 +3,6 @@ package kr.co.brownie.common.web;
 import com.google.gson.JsonObject;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.common.service.CommonService;
-import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.youtube.service.YouTubeService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -29,9 +28,6 @@ public class CommonController {
 
     @Resource(name = "youTubeService")
     YouTubeService youTubeService;
-
-    @Resource(name = "freeService")
-    FreeService freeService;
 
     @Resource(name = "boardService")
     BoardService boardService;
