@@ -322,6 +322,10 @@
 	 $('#testz').css({
 	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
 	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+	 
+	 $('#gameAlert1').css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color2+"), to("+color1+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color2+" 0%, "+color1+" 100%)"});
 	  
 	  step += gradientSpeed;
 	  if ( step >= 1 )
