@@ -48,9 +48,6 @@ public class CommonController {
         //main youtube list
         model.addAttribute("youTubeVoList", youTubeService.selectList());
 
-        //상단 메뉴바 자유게시판에 마우스 오버 시 드롭다운 최근 게시물 5개
-        model.addAttribute("recentList", freeService.selectRecentForMenu());
-
         return "common/index";
     }
 

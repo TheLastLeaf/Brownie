@@ -1,7 +1,6 @@
 package kr.co.brownie.board.web;
 
 import com.google.gson.JsonObject;
-import kr.co.brownie.board.reply.service.ReplyService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
 import org.springframework.web.bind.annotation.PostMapping;
