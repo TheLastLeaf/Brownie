@@ -222,7 +222,8 @@
     }
 
     .l15 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[14].kind}/${infoList[14].imgName}");
+
+        background: url("${pageContext.request.contextPath}/img/miniGame/${infoList[14].kind}/${infoList[14].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -316,7 +317,7 @@
 	var color2 = "rgb("+r2+","+g2+","+b2+")";
 	
 	 $('#btnRoll').css({
-	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color2+"), to("+color1+"))"}).css({
 	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
 	 
 	 $('#testz').css({
@@ -324,8 +325,8 @@
 	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
 	 
 	 $('#gameAlert1').css({
-	   background: "-webkit-gradient(linear, left top, right top, from("+color2+"), to("+color1+"))"}).css({
-	    background: "-moz-linear-gradient(left, "+color2+" 0%, "+color1+" 100%)"});
+	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
 	  
 	  step += gradientSpeed;
 	  if ( step >= 1 )
