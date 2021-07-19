@@ -39,6 +39,7 @@
                               B.NICK_NAME  AS NICKNAME
                        FROM BLACK_USER A
                                 LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.USER_ID)
+                       WHERE A.STATUS = 'Y'
                        ORDER BY B_USER_SEQ
                    )
              )

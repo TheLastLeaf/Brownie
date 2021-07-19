@@ -72,7 +72,7 @@
                             <th>관리</th>
                         </tr>
                         <c:forEach var="blackUser" items="${BlackUserPagingVO.blackUserVO}">
-                            <c:if test="${blackUser.status eq 'Y'}">
+                            <c:if test="${blackUser.status eq 'Y' || blackUser.status == 'Y'}">
                                 <tr>
                                     <th>${blackUser.BUserSeq}</th>
                                     <th>${blackUser.nickName}</th>
