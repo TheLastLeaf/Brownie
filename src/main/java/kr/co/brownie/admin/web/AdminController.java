@@ -153,6 +153,7 @@ public class AdminController {
         int cnt = reportService.update(reportSeq, id);
         if (cnt == 1) {
             int ucount = userService.blackstack(userId);
+            //블랙 카운트 update 시 블랙 스택 확인 후 활동상태 변경하기
             if (ucount == 1) {
                 int count = blackListService.insert(userId, result, id, reasonSeq,bListSeq, endDate);
                 model.addAttribute("count", count);

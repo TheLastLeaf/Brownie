@@ -88,9 +88,87 @@ function replyLike(replySeq, kind) {
     })
 }
 
+function boardWrite() {
+    const noticeYn = $("input[name=noticeYn]:checked");
+    const SelectBoardCategory = $("select[name=boardCategory] option:selected");
+    const boardCategory = $("input[name=boardCategory]");
+
+    const data = {
+        title: $("input[name=title]").val(),
+        content: $("textarea[name=content]").val()
+    }
+    if (noticeYn.length) {
+        data.noticeYn = noticeYn.val();
+    }
+    if (SelectBoardCategory.length) {
+        data.boardCategory = SelectBoardCategory.val();
+    } else if (boardCategory.length) {
+        data.boardCategory = boardCategory.val();
+    }
+
+    $.ajax({
+        url: "/board/write.ajax",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            if (data.status === "ng") {
+                alert(data.message);
+
+                return;
+            }
+
+            location.href = "./list";
+        },
+        error: function () {
+            alert("문제가 발생하였습니다.");
+        }
+    })
+}
+
+function boarModify(boardSeq) {
+    const noticeYn = $("input[name=noticeYn]:checked");
+    const SelectBoardCategory = $("select[name=boardCategory] option:selected");
+    const boardCategory = $("input[name=boardCategory]");
+
+    const data = {
+        title: $("input[name=title]").val(),
+        content: $("textarea[name=content]").val(),
+        boardSeq: boardSeq
+    }
+    if (noticeYn.length) {
+        data.noticeYn = noticeYn.val();
+    }
+    if (SelectBoardCategory.length) {
+        data.boardCategory = SelectBoardCategory.val();
+    } else if (boardCategory.length) {
+        data.boardCategory = boardCategory.val();
+    }
+
+    $.ajax({
+        url: "/board/modify.ajax",
+        type: "POST",
+        data: data,
+        dataType: "json",
+        success: function (data) {
+            if (data.status === "ng") {
+                alert(data.message);
+
+                return;
+            }
+
+            location.href = "../list";
+        },
+        error: function () {
+            alert("문제가 발생하였습니다.");
+        }
+    })
+}
+
 function searchList() {
     const type = $(".board-search>select>option:selected").val();
     const query = $(".board-search>input[name=query]").val();
 
     location.href = "?type=" + type + "&query=" + query;
 }
+
