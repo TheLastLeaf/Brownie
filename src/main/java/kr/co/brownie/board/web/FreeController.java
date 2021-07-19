@@ -50,6 +50,8 @@ public class FreeController {
         map.put("boardKind", "free");
         map.put("pageNum", pageNum);
         map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
+        map.put("days", 30);
+        map.put("limit", 5);
 
         if (type != null && !"".equals(type) && query != null && !"".equals(query)) {
             map.put(type, query);

@@ -253,7 +253,7 @@
                       ) BOARD
              )
         ]]>
-        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+        <if test='contentPerPage != null and !contentPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
             <![CDATA[
         WHERE #{contentPerPage} * (#{pageNum} - 1) < RN AND RN <= #{contentPerPage} * #{pageNum}
         ]]>
@@ -374,11 +374,18 @@
                                                      IN (1 AS LIKE_CNT,
                                                          0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE_CNT
                                                 ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE_CNT.BOARD_SEQ
+                                                       ]]>
+        <if test='days != null and days != ""'>
+            <![CDATA[
+                       WHERE SYSDATE - ${days} < BROWNIE_BOARD.IN_DATE
+              ]]>
+        </if>
+        <![CDATA[
                        ORDER BY LIKECNT - UNLIKECNT DESC,
                                 BOARDSEQ DESC
                       ) BOARD
              )
-        WHERE RN <= 5
+        WHERE RN <= ${limit}
         ]]>
     </select>
 
@@ -509,7 +516,7 @@
                       ) BOARD
              )
         ]]>
-        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+        <if test='contentPerPage != null and !contentPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
             <![CDATA[
         WHERE #{contentPerPage} * (#{pageNum} - 1) < RN AND RN <= #{contentPerPage} * #{pageNum}
         ]]>

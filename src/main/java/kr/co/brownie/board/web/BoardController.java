@@ -1,5 +1,7 @@
 package kr.co.brownie.board.web;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -122,6 +125,62 @@ public class BoardController {
                 }
             }
         }
+        return jsonObject.toString();
+    }
+
+    @PostMapping(path = "/list.ajax", produces = "application/text;charset=UTF-8")
+    public String list() {
+        JsonObject jsonObject = new JsonObject();
+        Gson gson = new Gson();
+
+        {
+            JsonArray jsonArray = new JsonArray();
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("pageNum", 1);
+            map.put("contentPerPage", 5);
+            map.put("boardKind", "notice");
+            for (BoardVO boardVO : this.boardService.selectList(map)) {
+                JsonObject subJsonObject = gson.fromJson(gson.toJson(boardVO), JsonObject.class);
+                subJsonObject.addProperty("imgSrc", boardVO.getImgSrc());
+                jsonArray.add(subJsonObject);
+            }
+
+            jsonObject.add("noticeVOList", jsonArray);
+        }
+
+        {
+            JsonArray jsonArray = new JsonArray();
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("boardKind", "tip");
+            map.put("days", 30);
+            map.put("limit", 5);
+
+            for (BoardVO boardVO : this.boardService.selectListOrderByLike(map)) {
+                JsonObject subJsonObject = gson.fromJson(gson.toJson(boardVO), JsonObject.class);
+                subJsonObject.addProperty("imgSrc", boardVO.getImgSrc());
+                jsonArray.add(subJsonObject);
+            }
+            jsonObject.add("tipVOList", jsonArray);
+        }
+
+        {
+            JsonArray jsonArray = new JsonArray();
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("boardKind", "free");
+            map.put("days", 30);
+            map.put("limit", 5);
+
+            for (BoardVO boardVO : this.boardService.selectListOrderByLike(map)) {
+                JsonObject subJsonObject = gson.fromJson(gson.toJson(boardVO), JsonObject.class);
+                subJsonObject.addProperty("imgSrc", boardVO.getImgSrc());
+                jsonArray.add(subJsonObject);
+            }
+            jsonObject.add("freeVOList", jsonArray);
+        }
+
         return jsonObject.toString();
     }
 }

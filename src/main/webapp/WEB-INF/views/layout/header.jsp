@@ -89,6 +89,74 @@
         }
     </style>
 
+    <script>
+        $(function () {
+            $.ajax({
+                url: "/board/list.ajax",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    let headerNoticeSection = "";
+                    let headerTipSection = "";
+                    let headerFreeSection = "";
+                    $.each(data.noticeVOList, function (index, jsonArr) {
+                        headerNoticeSection += "<div class=\"mw-post-item\">"
+                            + "<div class=\"mw-pic col-xl-\">"
+                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "</div>"
+                            + "<div class=\"mw-text\">"
+                            + "<h6>"
+                            + "<a href=\"#\">" + jsonArr.title + "</a>"
+                            + "</h6>"
+                            + "<ul>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "</ul>"
+                            + "</div>"
+                            + "</div>"
+                    });
+                    $.each(data.tipVOList, function (index, jsonArr) {
+                        headerTipSection += "<div class=\"mw-post-item\">"
+                            + "<div class=\"mw-pic col-xl-\">"
+                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "</div>"
+                            + "<div class=\"mw-text\">"
+                            + "<h6>"
+                            + "<a href=\"#\">" + jsonArr.title + "</a>"
+                            + "</h6>"
+                            + "<ul>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "<li><i class=\"far fa-comment\"></i> " + jsonArr.replyCnt + "</li>"
+                            + "</ul>"
+                            + "</div>"
+                            + "</div>"
+                    });
+                    $.each(data.freeVOList, function (index, jsonArr) {
+                        headerFreeSection += "<div class=\"mw-post-item\">"
+                            + "<div class=\"mw-pic col-xl-\">"
+                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "</div>"
+                            + "<div class=\"mw-text\">"
+                            + "<h6>"
+                            + "<a href=\"#\">" + jsonArr.title + "</a>"
+                            + "</h6>"
+                            + "<ul>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "<li><i class=\"far fa-comment\"></i> " + jsonArr.replyCnt + "</li>"
+                            + "</ul>"
+                            + "</div>"
+                            + "</div>"
+                    });
+
+                    $("#header-notice-section").html(headerNoticeSection);
+                    $("#header-tip-section").html(headerTipSection);
+                    $("#header-free-section").html(headerFreeSection);
+                },
+                error: function () {
+                    alert("문제가 발생하였습니다.");
+                }
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -192,7 +260,7 @@
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/notice"><span>NOTICE
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
-                            <div class="mw-post">
+                            <div id="header-notice-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
                                         <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
@@ -346,7 +414,7 @@
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/tip"><span>CHAMPIONS TIP
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
-                            <div class="mw-post">
+                            <div id="header-tip-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
                                         <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
@@ -500,23 +568,7 @@
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/free"><span>LOUNGE
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
-                            <div class="mw-post">
-                                <c:forEach var="recentList" items="${recentList }" varStatus="">
-                                    <div class="mw-post-item">
-                                        <div class="mw-pic col-xl-">
-                                            <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
-                                        </div>
-                                        <div class="mw-text">
-                                            <h6>
-                                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${recentList.boardSeq}">${recentList.title }</a>
-                                            </h6>
-                                            <ul>
-                                                <li><i class="far fa-clock"></i> ${recentList.inDate }</li>
-                                                <li><i class="far fa-comment"></i>${recentList.replyCnt }</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                            <div id="header-free-section" class="mw-post">
                             </div>
                         </div>
                     </li>
