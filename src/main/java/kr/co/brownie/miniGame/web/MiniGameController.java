@@ -336,12 +336,14 @@ public class MiniGameController {
         System.out.println(param);
 
         int cntSavePoint = 0;
-        if (objDegree.equals("point")) {
+        if (objDegree.equals("point")||objDegree.equals("item")) {
             if (objKind.equals("site")) {
                 //포인트 저장 쿼리
                 cntSavePoint = this.miniGameService.modifyBPoint(param);
-            } else {
+            } else if (objKind.equals("game")) {
                 cntSavePoint = this.miniGameService.modifyGamePoint(param);
+            } else {
+            	cntSavePoint = this.miniGameService.modifyGamePoint(param);
             }
         }
 
