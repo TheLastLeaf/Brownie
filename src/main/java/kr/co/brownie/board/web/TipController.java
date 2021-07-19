@@ -36,25 +36,9 @@ public class TipController {
                         Model model) {
         Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
         model.addAttribute("leagueOfLegendsChampionsVOList", this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
+        model.addAttribute("boardKind", "tip");
 
         return "board/tip/write";
-    }
-
-    @PostMapping("/write")
-    public String create(HttpSession httpSession,
-                         @RequestParam String champion,
-                         @RequestParam String title,
-                         @RequestParam String content) {
-        Map<String, Object> map = new HashMap<>();
-        Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
-        map.put("userId", httpSession.getAttribute("id").toString());
-        map.put("title", title);
-        map.put("content", content);
-        map.put("boardKind", "tip");
-        map.put("boardCategory", champion);
-        Assert.state(this.boardService.insert(map) == 1, "글 작성에 실패하였습니다.");
-
-        return "redirect:/tip/list";
     }
 
     @GetMapping({"", "/list"})
@@ -142,24 +126,6 @@ public class TipController {
                 this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
         return "board/tip/modify";
-    }
-
-    @PostMapping("/modify/{boardSeq}")
-    public String update(@PathVariable int boardSeq,
-                         HttpSession httpSession,
-                         @RequestParam Map<String, Object> map) {
-        Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
-        String userId = httpSession.getAttribute("id").toString();
-        map.put("boardSeq", boardSeq);
-        map.put("boardKind", "tip");
-        map.put("userId", userId);
-
-        BoardVO boardVO = this.boardService.select(map);
-        Assert.notNull(boardVO, "해당 글이 없습니다.");
-        Assert.state(userId.equals(boardVO.getBoardInUserId()), "작성자만 게시글을 수정할 수 있습니다.");
-        Assert.state(this.boardService.update(map) == 1, "수정에 실패했습니다.");
-
-        return "redirect:/tip/list";
     }
 
     @PostMapping("/delete")

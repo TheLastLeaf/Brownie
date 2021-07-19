@@ -28,28 +28,12 @@ public class FreeController {
     BoardHitService boardHitService;
 
     @GetMapping("/write")
-    public String write(HttpSession httpSession) {
+    public String write(HttpSession httpSession,
+                        Model model) {
         Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
+        model.addAttribute("boardKind", "free");
 
         return "board/free/write";
-    }
-
-    @PostMapping("/write")
-    public String create(HttpSession httpSession,
-                         @RequestParam String title,
-                         @RequestParam String content,
-                         @RequestParam(defaultValue = "n", required = false) String noticeYn) {
-        Map<String, Object> map = new HashMap<>();
-        Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
-        map.put("userId", httpSession.getAttribute("id"));
-        map.put("title", title);
-        map.put("content", content);
-        map.put("boardKind", "free");
-        map.put("noticeYn", noticeYn);
-
-        Assert.state(this.boardService.insert(map) == 1, "글 작성에 실패하였습니다.");
-
-        return "redirect:/free/list";
     }
 
     @GetMapping(path = {"", "/list"})
@@ -133,26 +117,6 @@ public class FreeController {
         model.addAttribute("boardVO", boardVO);
 
         return "board/free/modify";
-    }
-
-    @PostMapping("/modify/{boardSeq}")
-    public String update(@PathVariable int boardSeq,
-                         HttpSession httpSession,
-                         @RequestParam Map<String, Object> map,
-                         @RequestParam(defaultValue = "n", required = false) String noticeYn) {
-        Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
-        String userId = httpSession.getAttribute("id").toString();
-        map.put("boardSeq", boardSeq);
-        map.put("boardKind", "free");
-        map.put("noticeYn", noticeYn);
-        map.put("userId", userId);
-
-        BoardVO boardVO = this.boardService.select(map);
-        Assert.notNull(boardVO, "해당 글이 없습니다.");
-        Assert.state(userId.equals(boardVO.getBoardInUserId()), "작성자만 게시글을 수정할 수 있습니다.");
-        Assert.state(this.boardService.update(map) == 1, "수정에 실패했습니다.");
-
-        return "redirect:/free/list";
     }
 
     @PostMapping("/delete")

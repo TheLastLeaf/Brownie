@@ -24,26 +24,12 @@ public class NoticeController {
     BoardHitService boardHitService;
 
     @GetMapping("/write")
-    public String write(HttpSession httpSession) {
+    public String write(HttpSession httpSession,
+                        Model model) {
         Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
+        model.addAttribute("boardKind", "notice");
 
         return "board/notice/write"; // 공지 글쓰기
-    }
-
-    @PostMapping("/write")
-    public String create(HttpSession httpSession,
-                         @RequestParam String title,
-                         @RequestParam String content) {
-        Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("userId", httpSession.getAttribute("id"));
-        map.put("title", title);
-        map.put("content", content);
-        map.put("boardKind", "notice");
-        Assert.state(this.boardService.insert(map) == 1, "글 작성에 실패하였습니다.");
-
-        return "redirect:/notice/list";
     }
 
     @GetMapping(path = {"", "/list"})
@@ -110,25 +96,6 @@ public class NoticeController {
         model.addAttribute("boardVO", boardVO);
 
         return "board/notice/modify";
-    }
-
-    @PostMapping("/modify/{boardSeq}")
-    public String update(@PathVariable int boardSeq,
-                         HttpSession httpSession,
-                         @RequestParam Map<String, Object> map) {
-        Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
-        String userId = httpSession.getAttribute("id").toString();
-
-        map.put("userId", userId);
-        map.put("boardSeq", boardSeq);
-        map.put("boardKind", "notice");
-
-        BoardVO boardVO = this.boardService.select(map);
-        Assert.notNull(boardVO, "해당 글이 없습니다.");
-        Assert.state(userId.equals(boardVO.getBoardInUserId()), "작성자만 게시글을 수정할 수 있습니다.");
-        Assert.state(this.boardService.update(map) == 1, "수정에 실패했습니다.");
-
-        return "redirect:/notice/list";
     }
 
     @PostMapping("/delete")
