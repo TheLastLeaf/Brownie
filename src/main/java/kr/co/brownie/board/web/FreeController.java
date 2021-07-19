@@ -75,6 +75,8 @@ public class FreeController {
         map.put("boardKind", "free");
         map.put("boardSeq", boardSeq);
         map.put("ip", httpServletRequest.getRemoteAddr());
+        map.put("days", 30);
+        map.put("limit", 5);
 
         this.boardHitService.merge(map);
 
@@ -99,7 +101,10 @@ public class FreeController {
 
         model.addAttribute("replyPagingVO", this.replyService.selectPagingList(map));
         model.addAttribute("prevNextBoardVO", this.boardService.selectPrevNextList(map));
-        model.addAttribute("boardVOListOrderByLike", boardService.selectListOrderByLike(map));
+
+        System.out.println(map);
+
+        model.addAttribute("boardVOListOrderByLike", this.boardService.selectListOrderByLike(map));
 
         return "board/free/details";
     }

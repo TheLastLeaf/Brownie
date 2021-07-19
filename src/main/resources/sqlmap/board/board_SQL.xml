@@ -377,7 +377,7 @@
                                                        ]]>
         <if test='days != null and days != ""'>
             <![CDATA[
-                       WHERE SYSDATE - ${days} < BROWNIE_BOARD.IN_DATE
+                       WHERE SYSDATE - #{days} < BROWNIE_BOARD.IN_DATE
               ]]>
         </if>
         <![CDATA[
@@ -385,7 +385,7 @@
                                 BOARDSEQ DESC
                       ) BOARD
              )
-        WHERE RN <= ${limit}
+        WHERE RN <= #{limit}
         ]]>
     </select>
 
@@ -516,7 +516,7 @@
                       ) BOARD
              )
         ]]>
-        <if test='contentPerPage != null and !contentPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+        <if test='contentPerPage != null and contentPerPage != "" and pageNum != null and pageNum != ""'>
             <![CDATA[
         WHERE #{contentPerPage} * (#{pageNum} - 1) < RN AND RN <= #{contentPerPage} * #{pageNum}
         ]]>
