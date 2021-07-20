@@ -79,4 +79,9 @@ public class BrownieMarbelInfoServiceImpl implements BrownieMarbelInfoService {
         return brownieMarbelMapper.updateBPoint(map);
     }
 
+	@Override
+	public int deleteLog(String userId) {
+		return brownieMarbelMapper.deleteLog(userId);
+	}
+
 }

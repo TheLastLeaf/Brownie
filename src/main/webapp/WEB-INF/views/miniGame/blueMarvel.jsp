@@ -22,29 +22,45 @@
     }
 
     .sideKick {
+    	margin-top: 0px;
         display: inline-block;
-        float: left;
-        position: absolute;
-        background-color: cornflowerblue;
         width: 450px;
-        height: 920px;
-        top: 700px;
+        height: 928px;
+        top: 695px;
         border-radius: 10px;
     }
-
-
+    
+    .side1{
+    	float: left;
+	    background-color: seagreen;
+    }
+    
+    .side2{
+    	float: left;
+    	background-color: cornflowerblue;
+    }
+	
+	.middle{
+		background-color: white;
+		float:left;
+		display: inline-block;
+        position: relative;
+        border-radius: 10px;
+        margin: 0 10px 0 10px;
+	}
+	
     .pan {
         display: inline-block;
         border-collapse: separate;
-        border-spacing: 6px;
+        border-spacing: 13px;
         vertical-align: middle;
         text-align: center;
     }
 
     .pan td {
-        border-radius: 14px;
-        width: 180px;
-        height: 180px;
+        border-radius: 15px;
+        width: 170px;
+        height: 170px;
     }
 
     .td_tb {
@@ -52,7 +68,6 @@
     }
 
     .td_rl {
-        border: 2px solid black;
         background: white;
     }
 
@@ -107,6 +122,23 @@
         height: 200px;
         position: relative;
         top: 160px;
+        margin-bottom: -25px;
+    }
+
+	
+	 #btnRoll:hover {
+	  box-shadow: inset 0 28px 56px rgba(0,0,0,0.25), inset 0 10px 10px rgba(0,0,0,0.22);
+	}
+
+    
+    td:hover:not(.center) {
+	  box-shadow: inset 0 28px 56px rgba(0,0,0,0.25), inset 0 10px 10px rgba(0,0,0,0.22);
+	}
+    
+    td {
+    	-moz-box-shadow: 0 0 4px 4px #888;
+		-webkit-box-shadow: 0 0 4px 7px#888;
+		box-shadow: 0 0 4px 4px #888;
     }
 
     .l1 {
@@ -116,7 +148,6 @@
         background-size: 128px;
         background-color: ${landColor[0]};
     }
-
     .l2 {
         background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[1].kind}/${infoList[1].imgName}");
         background-repeat: no-repeat;
@@ -242,6 +273,60 @@
     	width:128px;
     }
     
+	.flipped {
+		    transform:rotate(90deg);
+	   -moz-transform: scaleX(-1); 
+	     -o-transform: scaleX(-1); 
+	-webkit-transform: scaleX(-1); 
+	        transform: scaleX(-1);   
+	       filter: FlipH;
+	  -ms-filter: "FlipH";
+	}
+    
+    #gameInfoImg{
+    	text-align: center;
+    }
+    
+    #infoImg{
+    	width: 200px;
+    }
+    
+    #gameInfoText{
+    	padding: 10px;
+    	text-align: left;
+    	font-size: 25px;
+    	font-weight:bold;
+    }
+    
+    #gameInfoTitle{
+    	font-size: 40px;
+    	font-weight:bolder;
+    	text-align: center;
+    }
+    
+    .innerText{
+    	font-size: 30px;
+    	font-weight:bolder;
+    
+    }
+    
+    .modal{ 
+	  position:absolute; 
+	  background: rgba(0,0,0,0.5);
+	  display:none;
+	  height: 225%;
+	}
+	
+	.modal_content{
+	  width:500px; height:500px;
+	  background:#fff; border-radius:10px;
+	  position:relative; top:50%; left:50%;
+      margin-top: -155px;
+ 	  margin-left: -250px;
+	  text-align:center;
+	  box-sizing:border-box; padding:74px 0;
+	  line-height:23px; cursor:pointer;
+	}	
     
 </style>
 
@@ -284,6 +369,14 @@
 	  [255,0,255],
 	  [255,128,0]);
 	
+	var colors1 = new Array(
+			  [62+20,35+20,255],
+			  [60+20,255,60+20],
+			  [255,35+20,98+20],
+			  [45+20,175+20,230],
+			  [255,0+20,255],
+			  [255,128+20,0+20]);
+	
 	var step = 0;
 	//color table indices for: 
 	// current color left
@@ -293,7 +386,7 @@
 	var colorIndices = [0,1,2,3];
 	
 	//transition speed
-	var gradientSpeed = 0.002;
+	var gradientSpeed = 0.0005;
 	
 	function updateGradient()
 	{
@@ -317,10 +410,6 @@
 	var color2 = "rgb("+r2+","+g2+","+b2+")";
 	
 	 $('#btnRoll').css({
-	   background: "-webkit-gradient(linear, left top, right top, from("+color2+"), to("+color1+"))"}).css({
-	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-	 
-	 $('#testz').css({
 	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
 	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
 	 
@@ -343,7 +432,52 @@
 	  }
 	}
 	
+	function updateGradient2()
+	{
+	  
+	  if ( $===undefined ) return;
+	  
+	var c0_0 = colors[colorIndices[0]];
+	var c0_1 = colors[colorIndices[1]];
+	var c1_0 = colors[colorIndices[2]];
+	var c1_1 = colors[colorIndices[3]];
+	
+	var istep = 1 - step;
+	var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+	var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+	var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+	var color1 = "rgb("+r1+","+g1+","+b1+")";
+	
+	var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+	var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+	var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+	var color2 = "rgb("+r2+","+g2+","+b2+")";
+	
+	 $('.side1').css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color1+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color1+" 100%)"});
+	 
+	 $('.side2').css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color2+"), to("+color2+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color2+" 0%, "+color2+" 100%)"});
+	  
+	  step += gradientSpeed;
+	  if ( step >= 1 )
+	  {
+	    step %= 1;
+	    colorIndices[0] = colorIndices[1];
+	    colorIndices[2] = colorIndices[3];
+	    
+	    //pick two new target color indices
+	    //do not pick the same as the current one
+	    colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+	    colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+	    
+	  }
+	}
+	
 	setInterval(updateGradient,10);
+	setInterval(updateGradient2,10);
 	//////////////
 	//랜드 무지개 효과
 		var hue = 1,
@@ -474,8 +608,8 @@
                             "url('${pageContext.request.contextPath}/img/miniGame/diceDrop.gif')")
                     setTimeout("reset()", 2000);
                     setTimeout("diceDis()", 250);
-
-                }).prop("disabled", false);
+                })
+                
     }
 
 
@@ -485,8 +619,10 @@
         } else if(4 <= playerPos && playerPos <= 7){
     		gsap.to('.player', {rotate: 90});
         } else if(8 <= playerPos && playerPos <= 11){
-    		gsap.to('.player', {rotate: 180});
+        	$(".playerImg").addClass('flipped');
+        	gsap.to('.player', {rotate: 360});
         } else if(12 <= playerPos && playerPos <= 15){
+        	$(".playerImg").removeClass('flipped');
     		gsap.to('.player', {rotate: 270});
         }
     	
@@ -510,8 +646,8 @@
     }
 
     function diceApper() {
-        $('#btnRoll').css('visibility', 'visible')
-        $('#btnRoll').removeAttr("disabled");
+        $('#btnRoll').css('visibility', 'visible');
+        $('#btnRoll').attr("disabled", false);
     }
 
     function reset() {
@@ -638,12 +774,14 @@
             success: function (data) {
                    console.log("data 삽입성공!");
                    
-                   if(!data.player==null){
-	                   $(".bpoint").html("브라우니 포인트 : "+data.player.point);
-                   }
-                   if(!data.site==null){
-	                   $(".mpoint").html("마블게임 포인트 : "+data.site.browniePoint);
-                   }
+                   $("#gameInfoImg").html("<img id='infoImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.obj.kind + "/" + data.obj.imgName+"'/>");
+                   
+                   $("#gameInfoTitle").html(data.obj.name);
+                   
+                   $("#gameInfoText").html(data.obj.detailedExpl);
+                   
+                   $(".bpoint").html("브라우니 포인트 : "+data.player.point);
+                   $(".mpoint").html("마블게임 포인트 : "+data.site.browniePoint);
                    
                    $("#logHome").html(data.log);
                    
@@ -654,9 +792,54 @@
             }
         })
     }
+    
+    function deleteLog() {
+    	if(!confirm("로그를 삭제하시겠습니까?")){
+    		return;
+    	}
+        $.ajax({
+            url: "./ajax.deletelog",
+            type: "post",
+            data: {
+            },
+            success: function (data) {
+            	if(data!=0){
+            		alert("로그 삭제 성공!");
+            		$("#logHome").html("");
+            		$("#logHome").html();
+            	}
+            },
+            error: function () {
+                alert("로그 삭제 실패!");
+            }
+        })
+    }
+    
+    function selectmarbelInfo(landNum) {
+    	var number = 0;
+    	if(landNum!=0){
+	    	number = recentMap[Number(landNum)-1];
+    	}
+    	
+        $.ajax({
+            url: "./ajax.selectmarbelinfo",
+            type: "post",
+            data: {
+            	"landNum": number,
+            },
+            success: function (data) {
+           		$("#modalTitle").html(data.name);
+           		$("#modalCon").html(data.detailedExpl);
+            },
+            error: function () {
+                alert("랜드정보 불러오기 실패ㅡ!");
+            }
+        })
+    }
 
     //디폴트주사위
     function dice() {
+    	$('#btnRoll').attr("disabled", true);
         const buttonRoolDice = document.querySelector('.learn-more');
 
         const diceSide1 = document.getElementById('dice-side-1');
@@ -758,10 +941,12 @@
                 downMove();
                 ++playerPos;
             } else if (8 <= playerPos && playerPos <= 11) {
-            	gsap.to('.player', {rotate: 180});
+            	$(".playerImg").addClass('flipped');
+            	gsap.to('.player', {rotate: 360});
                 rightMove();
                 ++playerPos;
             } else if (12 <= playerPos && playerPos <= 15) {
+            	$(".playerImg").removeClass('flipped');
             	gsap.to('.player', {rotate: 270});
             	upMove();
                 ++playerPos;
@@ -805,76 +990,66 @@
             top: "-=186"
         }, diceSpeed);
     }
+    
+$(function(){ 
+	$(".landI").click(function(){
+		$(".modal").fadeIn();
+		var landNum = $(this).attr('id');
+		selectmarbelInfo(landNum);
+	});
+	
+	$(".modal_content").click(function(){
+		$(".modal").fadeOut();
+	});
+	
+	$(".modal").click(function(){
+		$(".modal").fadeOut();
+	});
+});
 </script>
+
+<!-- 모달 -->
+<div class="modal">
+	<div class="modal_content">
+	
+		<p><div id="modalTitle"></div></p>
+		
+		<p><div id="modalCon"></div></p>
+		
+	</div>
+</div>
 
 <!-- Categories Grid Section Begin -->
 <section class="categories-grid-section spad">
     <div class="container">
-        <div class="row">
+        <div class="row" style="width: 1900px; margin-left: -380px;">
             <div style="margin-left: auto; margin-right: auto;">
-                <table class="pan">
-                    <tbody>
-                    <tr>
-                        <td class="td_tb startLine corner l0 start"></td>
-                        <td class="td_tb l1"></td>
-                        <td class="td_tb l2"></td>
-                        <td class="td_tb l3"></td>
-                        <td class="td_tb rightUp corner l4"></td>
-                    </tr>
-                    <!-- 세로축 -->
-                    <tr class="verti">
-                        <td class="td_rl l15"></td>
-                        <td class="center" id="gameAlert1" colspan="3" rowspan="3">
-                            <div class="wrapper">
-                                <div class="tamin">
-                                    <div id="dice-side-1" class="dicePic"></div>
-                                    <div id="dice-side-2" class="dicePic"></div>
-                                    <h2 id="status"></h2>
-                                </div>
-                                <button id="btnRoll" onclick="dice()" class="learn-more">
-                                    LET'S<br>ROLL
-                                </button>
-                            </div>
-                        </td>
-                        <td class="td_rl l5"></td>
-                    </tr>
-                    <tr class="verti">
-                        <td class="td_rl l14"></td>
-
-                        <td class="td_rl l6"></td>
-                    </tr>
-                    <tr class="verti">
-                        <td class="td_rl l13"></td>
-
-                        <td class="td_rl l7"></td>
-                    </tr>
-                    <!-- 세로축 -->
-                    <tr style="margin-bottom: 30px">
-                        <td class="td_tb leftDown corner l12"></td>
-                        <td class="td_tb l11"></td>
-                        <td id="start" class="td_tb l10"></td>
-                        <td class="td_tb l9"></td>
-                        <td class="td_tb rightDown corner l8"></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!-- 보드 끝 -->
-
-                <div class="sidebar-option sideKick">
+            
+            	<div class="sidebar-option sideKick side1">
                     <div class="best-of-post">
-                        <div style="padding: 10px; margin-top:30px;   overflow: overlay;   width: 390px;    height: 400px;    background-color: lightcyan;">
+                        <div style="padding: 10px; margin-top:30px;  width: 390px;    height: 600px;    background-color: lightcyan;">
                             <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;">
-                                <span>GAME LOG</span></div>
-                                <div id="logHome">
-                            <c:forEach var="log" items="${ logs }" varStatus="status">
-                                <p class="logWrite"><i class="far fa-clock"></i> ${log.time} (주사위눈 : ${log.dicenum})
-                                    (${log.result})<br>
-                                        ${ log.round }-${ log.logSeq }. ${log.userId}은(는) ${log.object}을(를) ${log.act}했다.
-                                </p>
-                            </c:forEach>
-                            	</div>
+                                <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;">
+                                	<span class="innerText">GAME INFO</span>
+                                </div>
+                            </div>
+                                
+                            <p><div id="gameInfoImg">
+                            	
+                        	</div></p>
+                        	
+                            <p><div id="gameInfoTitle">
+                            	
+                        	</div></p>
+                        	
+                            <div id="gameInfoText">
+                            	
+                        	</div>
+                        	
                         </div>
-
+				
+						<br/><br/>
+						
                         <div style="padding-top: 10px;">
 
                             <p class="point bpoint">브라우니 포인트 : ${player.browniePoint}</p>
@@ -911,6 +1086,76 @@
                         </div>
                         <!-- 시간나면 -->
 
+                    </div>
+                </div>
+            
+            
+            	<div class="middle">
+                <table class="pan">
+                    <tbody>
+                    <tr>
+                        <td id="0" class="landI td_tb startLine corner l0 start"></td>
+                        <td id="1" class="landI td_tb l1"></td>
+                        <td id="2" class="landI td_tb l2"></td>
+                        <td id="3" class="landI td_tb l3"></td>
+                        <td id="4" class="landI td_tb rightUp corner l4"></td>
+                    </tr>
+                    <!-- 세로축 -->
+                    <tr class="verti">
+                        <td id="15" class="landI td_rl l15"></td>
+                        <td class="center" id="gameAlert1" colspan="3" rowspan="3">
+                            <div class="wrapper">
+                                <div class="tamin">
+                                    <div id="dice-side-1" class="dicePic"></div>
+                                    <div id="dice-side-2" class="dicePic"></div>
+                                    <h2 id="status"></h2>
+                                </div>
+                                <button id="btnRoll" onclick="dice()" class="learn-more">
+                                    LET'S<br>ROLL
+                                </button>
+                            </div>
+                        </td>
+                        <td id="5" class="landI td_rl l5"></td>
+                    </tr>
+                    <tr class="verti">
+                        <td id="14" class="landI td_rl l14"></td>
+
+                        <td id="6" class="landI td_rl l6"></td>
+                    </tr>
+                    <tr class="verti">
+                        <td id="13" class="landI td_rl l13"></td>
+
+                        <td id="7" class="landI td_rl l7"></td>
+                    </tr>
+                    <!-- 세로축 -->
+                    <tr style="margin-bottom: 30px">
+                        <td id="12" class="landI td_tb leftDown corner l12"></td>
+                        <td id="11" class="landI td_tb l11"></td>
+                        <td id="10" class="landI td_tb l10"></td>
+                        <td id="9" class="landI td_tb l9"></td>
+                        <td id="8" class="landI td_tb rightDown corner l8"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+                <!-- 보드 끝 -->
+
+                <div class="sidebar-option sideKick side2">
+                    <div class="best-of-post">
+                        <div style="padding: 10px; margin-top:30px;   overflow: overlay;   width: 390px;    height: 840px;    background-color: lightcyan;">
+                            <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;">
+                                <span class="innerText">GAME LOG</span></div>
+                                <div id="logHome">
+                            <c:forEach var="log" items="${ logs }" varStatus="status">
+                                <p class="logWrite"><i class="far fa-clock"></i> ${log.time} (주사위눈 : ${log.dicenum})
+                                    (${log.result})<br>
+                                        ${ log.round }-${ log.logSeq }. ${log.userId}은(는) ${log.object}을(를) ${log.act}했다.
+                                </p>
+                            </c:forEach>
+                            	</div>
+                        </div>
+                        <br>
+                        <input type="button" onclick="deleteLog()" value="로그 청소" />
                     </div>
                 </div>
             </div>

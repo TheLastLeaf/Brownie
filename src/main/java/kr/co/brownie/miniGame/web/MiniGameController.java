@@ -301,8 +301,33 @@ public class MiniGameController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/ajax.effectact", method = RequestMethod.POST)
-    public Map<String, Object> effectAct(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+    @RequestMapping(value = "/ajax.deletelog", method = RequestMethod.POST)
+    public int deleteLog(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+        //String id = (String) session.getAttribute("id");
+    	String id = "1797573825";
+    	int cnt = 0;
+    	cnt = this.miniGameService.deleteLog(id);
+    	System.out.println("deleteCnt : "+cnt);
+    	return cnt;
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "/ajax.selectmarbelinfo", method = RequestMethod.POST)
+    public BrownieMarbelInfoVO selectMarbelInfo(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+    	
+    	int seq = Integer.parseInt(servletRequest.getParameter("landNum"));
+    	
+    	System.out.println("seq : "+seq);
+    	
+    	BrownieMarbelInfoVO info = this.miniGameService.selectInfo(seq);
+    	System.out.println("seq2 : "+info);
+    	
+    	return info;
+    }
+    
+	@ResponseBody
+	@RequestMapping(value = "/ajax.effectact", method = RequestMethod.POST)
+	public Map<String, Object> effectAct(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
         System.out.println("!!!!효과재생");
         String id = "1797573825";
         
@@ -318,10 +343,10 @@ public class MiniGameController {
         String objDegree = obj.getDegree();
         String objKind = obj.getKind();
         System.out.println("objNum : " + ObjPosition);
-        System.out.println("obj : " + obj.getImgName());
+        System.out.println("obj : " + obj);
         
         int round = this.miniGameService.selectPlayer(id).getRound();
-        
+        map.put("obj",obj);
         //변수저장
         HashMap<String, Object> param = new HashMap<String, Object>();
 

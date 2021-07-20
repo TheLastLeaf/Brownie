@@ -30,4 +30,6 @@ public interface BrownieMarbelInfoService {
     int modifyGamePoint(HashMap<String, Object> map);
 
     BrownieMarbelInfoVO selectInfo(int seq);
+    
+    int deleteLog(String userId);
 }
