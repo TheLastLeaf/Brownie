@@ -30,7 +30,7 @@ public class TeamGameServiceImpl implements TeamGameService {
     }
 
     @Override
-    public void insertTeamGamePosition(HashMap<String, Object> map) {
-        teamGameMapper.insertTeamGamePosition(map);
+    public void updateTeamGamePosition(Map<String, Object> map) {
+        teamGameMapper.updateTeamGamePosition(map);
     }
 }

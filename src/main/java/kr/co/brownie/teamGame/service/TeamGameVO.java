@@ -23,6 +23,7 @@ public class TeamGameVO {
     private String leader;
 
     //position
+    private String position;
     private String top;
     private String mid;
     private String jun;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,6 @@ public class TeamGameController {
 
     @Resource(name = "userService")
     UserService userService;
-
 
     @GetMapping({"", "/teamGame"})
     public String teamMaker(Model model) {
@@ -39,8 +39,6 @@ public class TeamGameController {
         }
         model.addAttribute("teamGameList", teamGameList);
         model.addAttribute("teamPosition", teamPosition);
-
-        System.out.println("teamGameList : " + teamGameList);
 
         return "teamGame/teamGame";
     }
@@ -66,8 +64,6 @@ public class TeamGameController {
     public String ajaxInsertRoom(@RequestParam Map<String, Object> map) {
         //방 개설
         teamGameService.insertTeamGameRoom(map);
-        System.out.println("map? : " + map);
-        System.out.println("TEAMGAME_SEQ : " + map.get("TEAMGAME_SEQ"));
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("TEAMGAME_SEQ", map.get("TEAMGAME_SEQ").toString());
@@ -77,18 +73,54 @@ public class TeamGameController {
 
 
     @ResponseBody
-    @PostMapping(path = "/insert-position")
-    public String ajaxInsertPosition(@RequestParam Map<String, Object> map) {
+    @PostMapping(path = "/update-position")
+    public String ajaxUpdatePosition(@RequestParam Map<String, Object> map) {
+
+        String positionSeq = map.get("positionSeq").toString();
+        String selectedPosition = map.get("position").toString();
+
         JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("roomNumber", positionSeq);
+        jsonObject.addProperty("position", selectedPosition);
 
-        //들어온 값 이미 포지션 존재하는지 판별해야함
-        System.out.println("map? : " + map);
-        //있으면 출입불가리턴
-
-        //없으면 인서트해줌
-        //teamGameService.insertTeamGamePosition(map);
-        jsonObject.addProperty("asd", "222222222222222222222222");
-
+        //들어온 값 이미 포지션 존재하는지 판별해야함  와  코드 진심 개못생겼네
+        String exsitedPosi = "";
+        List<TeamGameVO> teamPosition = teamGameService.selectTeamGamePosition(Integer.parseInt(positionSeq));
+        if (selectedPosition.equals("top")) {
+            exsitedPosi = teamPosition.get(0).getTop();
+            if(exsitedPosi.equals("n")){
+            } else {
+                return jsonObject.toString();
+            }
+        } else if (selectedPosition.equals("jun")) {
+            exsitedPosi = teamPosition.get(0).getJun();
+            if(exsitedPosi.equals("n")){
+                teamGameService.updateTeamGamePosition(map);
+            } else {
+                return jsonObject.toString();
+            }
+        } else if (selectedPosition.equals("mid")) {
+            exsitedPosi = teamPosition.get(0).getMid();
+            if(exsitedPosi.equals("n")){
+                teamGameService.updateTeamGamePosition(map);
+            } else {
+                return jsonObject.toString();
+            }
+        } else if (selectedPosition.equals("bot")) {
+            exsitedPosi = teamPosition.get(0).getBot();
+            if(exsitedPosi.equals("n")){
+                teamGameService.updateTeamGamePosition(map);
+            } else {
+                return jsonObject.toString();
+            }
+        } else if (selectedPosition.equals("sup")) {
+            exsitedPosi = teamPosition.get(0).getSup();
+            if(exsitedPosi.equals("n")){
+                teamGameService.updateTeamGamePosition(map);
+            } else {
+                return jsonObject.toString();
+            }
+        }
         return jsonObject.toString();
     }
 

@@ -242,10 +242,10 @@
     function openRoom(roomNumber){
         var chatPop= document.roomInfo;
         var url = 'http://192.168.41.27/websocket/chat2';
-        window.open('','chatingRoom','width=1100, height=720, scroll=no, left=500, top=250');
+        window.open('','chatingRoom' + roomNumber,'width=1100, height=720, scroll=no, left=500, top=250');
 
         chatPop.action = url;
-        chatPop.target = 'chatingRoom';
+        chatPop.target = 'chatingRoom' + roomNumber;
         chatPop.roomNumber.value = roomNumber;
         chatPop.submit();
     }

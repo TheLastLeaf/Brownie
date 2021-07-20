@@ -11,5 +11,5 @@ public interface TeamGameService {
 
     List<TeamGameVO> selectTeamGamePosition(int positionSeq);
 
-    void insertTeamGamePosition(HashMap<String, Object> map);
+    void updateTeamGamePosition(Map<String, Object> map);
 }

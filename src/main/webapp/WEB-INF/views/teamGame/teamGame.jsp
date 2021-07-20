@@ -132,19 +132,19 @@
 
         const data = {
             "userId": "1786827527",
-            "roomNumber": roomNumber,
+            "positionSeq": roomNumber,
             "position": selectPosi
         }
 
         $.ajax({
-            url: "./teamGame/insert-position",
+            url: "./teamGame/update-position",
             type: "POST",
             data: data,
             dataType: "json",
             success: function (data) {
-                alert("귀여운 우디 ");
-                console.log(data);
-                //openRoom("7286");
+                console.log(data.roomNumber);
+                openRoom(data.roomNumber, data.position);
+                location.reload();
             },
             error: function () {
                 alert("에러나요");
@@ -158,7 +158,7 @@
         window.location.reload();
     }
 
-    function openRoom(roomNumber) {
+    function openRoom(roomNumber, position) {
         console.log('방 번호 : ', roomNumber);
         var chatPop = document.roomInfo;
         var url = 'http://192.168.41.27/websocket/chat2';
@@ -167,6 +167,7 @@
         chatPop.action = url;
         chatPop.target = 'chatingRoom' + roomNumber;
         chatPop.roomNumber.value = roomNumber;
+        chatPop.position.value = position;
         chatPop.submit();
     }
 </script>
@@ -237,6 +238,7 @@
                 <form name="roomInfo">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="hidden" name="roomNumber">
+                    <input type="hidden" name="position">
                 </form>
                 <!------------------------------------------------------------------->
                 <div class="dt-desc" style="display: block;">
@@ -262,7 +264,7 @@
                                              src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg"/>
                                     </p>
                                 </div>
-                                <div class="roomTitle">${teamGameList.teamGameSeq} ${teamGameList.title}</div>
+                                <div class="roomTitle">[${teamGameList.teamGameSeq}] ${teamGameList.title}</div>
                                 <p style="margin: 10px 0px 3px;">
                                     <c:set var="posiSeq" value="${teamGameList.positionSeq}"/>
                                     <c:choose>
