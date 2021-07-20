@@ -260,8 +260,10 @@
                                         <b>${teamGameList.matchMode}</b>
                                     </p>
                                     <p class="col-sm" style="margin: 0; text-align: right;">
-                                        <img class="micPic"
-                                             src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg"/>
+                                        <c:if test="${teamGameList.mike eq 'y'}">
+                                            <img class="micPic"
+                                                 src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg"/>
+                                        </c:if>
                                     </p>
                                 </div>
                                 <div class="roomTitle">[${teamGameList.teamGameSeq}] ${teamGameList.title}</div>

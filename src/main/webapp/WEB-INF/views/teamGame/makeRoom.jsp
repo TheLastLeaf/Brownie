@@ -144,6 +144,14 @@
     .submit {
         margin: 15px;
     }
+
+    .appleSwitchDiv , .chooseModeDiv, .choosePositionDiv{
+        margin-top: 40px;
+    }
+
+    .appleSwitch{
+        margin: 15px;
+    }
 </style>
 
 <body>
@@ -206,10 +214,15 @@
             bot = 'y';
         }
 
-        console.log("title : ", title);
-        console.log("message : ", message);
-        console.log("matchMode : ", matchMode);
-        console.log("positions : ", positions);
+        var mike = 'n';
+        if($('#flexSwitchCheck:checked').length == 1){
+            mike = 'y';
+        }
+
+        var usePoint = 'n';
+        if($('#usePointCheck:checked').length == 1){
+            usePoint = 'y';
+        }
 
         $.ajax({
             url: "./insert-room",
@@ -227,7 +240,8 @@
                 , "sup": sup
                 , "jun": jun
                 , "bot": bot
-                , "mike": ""
+                , "mike": mike
+                , "usePoint": usePoint
             },
             success: function (data) {
                 var responseData = JSON.parse(data);
@@ -260,7 +274,7 @@
     <div class="row">
         <div class="col text-center" style="border: 1px solid white;">
             <p>
-            <h5 class="font-family-maple-light">닉네임 : ${nickName}</h5>
+            <h5 class="font-family-maple-light">방장 : ${nickName}</h5>
             </p>
             <!------------------------------------------------------------------->
             <form name="roomInfo">
@@ -270,11 +284,11 @@
             <p id="title" class="botton" style="margin-bottom: 10px;">
                 <b class="font-family-maple-light">제목 :&nbsp; <input id="roomTitle" type="text" maxlength='12'/></b>
             </p>
-            <p id="message" style="margin-top: 10px; margin-bottom: 15px;">
+            <p id="message" style="margin-top: 10px; margin-bottom: 20px;">
                 <b class="font-family-maple-light">내용 :&nbsp; <input id="roomContent" type="text" maxlength='30'/></b>
             </p>
 
-            <div style="margin-bottom: 3px;" id="chooseMode" class="btn-group btn-group-toggle font-family-maple-light"
+            <div id="chooseMode" class="chooseModeDiv btn-group btn-group-toggle font-family-maple-light"
                  data-toggle="buttons">
                 <label class="btn btn-danger btn-gmode Gmode" id="normal-game">
                     <input type="radio" name="jb-radio" class="jb-radio-1 gameMode" value="normal-game">
@@ -298,63 +312,55 @@
                 &nbsp;
             </div>
 
-            <br/>
-            <p class="font-family-maple-light">모집할 포지션을 선택하세요</p>
-            <div style="margin-bottom: 3px; margin-top: 3px;" class="font-family-maple-light btn-group btn-group-toggle" id="choosePosition"
-                 data-toggle="buttons">
-                <label class="btn btn-danger position" id="top">
-                    <input type="checkbox" name="positions" value="top">
-                    <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt=""/>
-                </label>
-                &nbsp;
-                <label class="btn btn-danger position" id="jun">
-                    <input type="checkbox" name="positions" value="jun">
-                    <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png"
-                         alt=""/>
-                </label>
-                &nbsp;
-                <label class="btn btn-danger position" id="mid">
-                    <input type="checkbox" name="positions" value="mid">
-                    <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt=""/>
-                </label>
-                &nbsp;
-                <label class="btn btn-danger position" id="bot">
-                    <input type="checkbox" name="positions" value="bot">
-                    <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt=""/>
-                </label>
-                &nbsp;
-                <label class="btn btn-danger position" id="sup">
-                    <input type="checkbox" name="positions" value="sup">
-                    <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png"
-                         alt=""/>
-                </label>
-                &nbsp;
+            <div class="choosePositionDiv">
+                <p class="font-family-maple-light">모집할 포지션을 선택하세요</p>
+                <div class="font-family-maple-light btn-group btn-group-toggle" id="choosePosition"
+                     data-toggle="buttons">
+                    <label class="btn btn-danger position" id="top">
+                        <input type="checkbox" name="positions" value="top">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt=""/>
+                    </label>
+                    &nbsp;
+                    <label class="btn btn-danger position" id="jun">
+                        <input type="checkbox" name="positions" value="jun">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png"
+                             alt=""/>
+                    </label>
+                    &nbsp;
+                    <label class="btn btn-danger position" id="mid">
+                        <input type="checkbox" name="positions" value="mid">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt=""/>
+                    </label>
+                    &nbsp;
+                    <label class="btn btn-danger position" id="bot">
+                        <input type="checkbox" name="positions" value="bot">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt=""/>
+                    </label>
+                    &nbsp;
+                    <label class="btn btn-danger position" id="sup">
+                        <input type="checkbox" name="positions" value="sup">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png"
+                             alt=""/>
+                    </label>
+                    &nbsp;
+                </div>
             </div>
 
             <br/>
 
-            <div class="container">
-                <p class="font-family-maple-light" style="margin-bottom: 3px;">1000포인트를 사용해 10분간 상단에 띄워주기</p>
-                <div style="margin-bottom: 3px;" class="btn-group btn-group-toggle font-family-maple-light"
-                     data-toggle="buttons">
-                    <label class="btn btn-danger btn-usepoint roomOn">
-                        <input type="radio" name="jb-radio" class="jb-radio-1" value="top">
-                        <img style="width: 20px; height: 20px;"
-                             src="${pageContext.request.contextPath}/img/teamGame/check_o.png" alt=""/>
+            <div class="container appleSwitchDiv">
+                <div class="appleSwitch">
+                    <label class="form-check-label font-family-maple-light" for="usePointCheck">
+                        <input class="apple-switch" type="checkbox" id="usePointCheck">
+                        <br/>1000포인트를 사용해 10분간 상단에 띄워주기
                     </label>
-                    &nbsp;
-                    <label class="btn btn-danger btn-usepoint roomOn">
-                        <input type="radio" name="jb-radio" class="jb-radio-2" value="jun">
-                        <img style="width: 20px; height: 20px;"
-                             src="${pageContext.request.contextPath}/img/teamGame/check_x.png" alt=""/>
+                </div>
+                <div class="appleSwitch">
+                    <label class="form-check-label font-family-maple-light" for="flexSwitchCheck">
+                        <input class="apple-switch" type="checkbox" id="flexSwitchCheck">
+                        <br/>인게임 마이크 사용
                     </label>
-                    &nbsp;
                 </div>
-                <div style="margin-top: 10px; margin-bottom: 3px;">
-                    <label class="form-check-label font-family-maple-light" for="flexSwitchCheckChecked">인게임 마이크
-                        사용</label>
-                </div>
-                <input class="apple-switch" type="checkbox" id="flexSwitchCheckChecked" checked>
             </div>
             <br/>
             <div class="submit font-family-maple-light">

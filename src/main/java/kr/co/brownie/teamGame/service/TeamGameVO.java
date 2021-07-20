@@ -19,8 +19,9 @@ public class TeamGameVO {
     private Date modDate;
     private String upUserId;
 
-    //방장여부
+    //방장, 마이크 여부
     private String leader;
+    private String mike;
 
     //position
     private String position;

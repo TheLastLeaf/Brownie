@@ -25,6 +25,7 @@
                       , POSITION_SEQ
                       , STATUS
                       , LEADER
+                      , MIKE
                       , USE_POINT
                       , IN_DATE
                       , IN_USER_ID
@@ -38,6 +39,7 @@
                , POSITION_SEQ.CURRVAL
                , #{status}
                , #{leader}
+               , #{mike}
                , #{usePoint}
                , SYSDATE
                , #{userId}
@@ -62,6 +64,7 @@
                       , POSITION_SEQ as positionSeq
                       , STATUS       as status
                       , LEADER       as leader
+                      , MIKE         as mike
                       , USE_POINT    as usePoint
                       , IN_DATE      as inDate
                       , IN_USER_ID   as inUserId
@@ -83,6 +86,7 @@
                       , POSITION_SEQ as positionSeq
                       , STATUS       as status
                       , LEADER       as leader
+                      , MIKE         as mike
                       , USE_POINT    as usePoint
                       , IN_DATE      as inDate
                       , IN_USER_ID   as inUserId
