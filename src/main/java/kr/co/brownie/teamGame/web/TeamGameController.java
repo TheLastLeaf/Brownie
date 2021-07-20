@@ -61,10 +61,11 @@ public class TeamGameController {
 
     @ResponseBody
     @RequestMapping(value = "/insert-room", method = {RequestMethod.POST})
-    public void ajaxDayCheck(@RequestParam HashMap<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
+    public void ajaxDayCheck(@RequestParam HashMap<String, Object> map, Model model, HttpServletRequest response) {
         //방 개설
         teamGameService.insertTeamGameRoom(map);
-        System.out.println(response.getQueryString());
+        System.out.println("map : "+map);
+        model.addAttribute("들어옴","ㅇㅇ");
     }
 
 

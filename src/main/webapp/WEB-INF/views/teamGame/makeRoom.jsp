@@ -149,65 +149,107 @@
 <body>
 <script type="text/javascript">
     function fn_chatRoom() {
+        const IN_USER_ID = "1786827527";
 
-        // 뭔짓을해도 값이 안나와서 화가 나내요... 일단주석
-        // const inUserId = "1786827527";
-        // var title = document.getElementById('roomTitle').value;
-        // var message = document.getElementById('roomContent').value;
-        //
-        // if(title == null || message == null){
-        // 	alert("??");
-        // }
-        //
-        // var matchMode = "";
-        // var actives = document.getElementsByClassName('active');
-        // if(actives == null){
-        // 	alert("방을 생성하려면 매치 모드를 선택해주세요");
-        // 	return;
-        // } else if(actives != null) {
-        // 	matchMode = actives[0].innerText;
-        // }
-        //
-        // var positions = document.getElementsByClassName('position');
-        // if(positions == null || positions.length < 1){
-        // 	alert("방을 생성하려면 모집할 포지션을 선택해주세요");
-        // 	return;
-        // }
-        // for(i = 0 ; i < positions.length ; i++){
-        // 	if(positions[i].classList.length==4){
-        // 		positions[i].id;
-        // 	}
-        // }
+        var title = document.getElementById('roomTitle').value;
+        var message = document.getElementById('roomContent').value;
+        if(title == "" || message == ""){
+        	alert("빈 칸을 입력해주세요.");
+        	return;
+        }
+
+        var matchMode = $('#chooseMode').children('.active').get();
+        if(matchMode.length < 1) {
+            alert("게임 모드를 선택해주세요.");
+            return;
+        } else if (matchMode.length == 1) {
+            matchMode = matchMode[0].id;
+            if (matchMode == "normal-game") {
+                matchMode = "일반게임";
+            } else if (matchMode == "rank-game") {
+                matchMode = "랭크게임";
+            } else if (matchMode == "free-game") {
+                matchMode = "자유랭크";
+            } else if (matchMode == "howling-abyss") {
+                matchMode = "칼바람";
+            }
+        }
+        var top = 'n';
+        var mid = 'n';
+        var sup = 'n';
+        var jun = 'n';
+        var bot = 'n';
+        var positions = [];
+        var selectPositions = $('#choosePosition').children('.active').get()
+        if(selectPositions == null || selectPositions.length < 1){
+        	alert("방을 생성하려면 모집할 포지션을 선택해주세요");
+        	return;
+        } else if (selectPositions.length > 0) {
+            for(i = 0 ; i < selectPositions.length ; i++){
+                positions.push(selectPositions[i].id);
+                console.log(selectPositions[i].id);
+            }
+        }
+        if(positions.includes('top')){
+            top = 'y';
+        }
+        if(positions.includes('mid')){
+            mid = 'y';
+        }
+        if(positions.includes('sup')){
+            sup = 'y';
+        }
+        if(positions.includes('jun')){
+            jun = 'y';
+        }
+        if(positions.includes('bot')){
+            bot = 'y';
+        }
+
+        console.log("title : ", title);
+        console.log("message : ", message);
+        console.log("matchMode : ", matchMode);
+        console.log("positions : ", positions);
 
         $.ajax({
             url: "./insert-room",
             type: "POST",
             data: {
-                "userId": "1786827527"
-                , "title": "자바스크립트개어려워요"
-                , "message": "진짜 열받아 잘하고 싶어"
-                , "matchMode": "칼바람"
+                "userId": IN_USER_ID
+                , "title": title
+                , "message": message
+                , "matchMode": matchMode
                 , "leader": "y"
                 , "status": "y"
                 , "usePoint": "n"
-                , "top": "y"
-                , "mid": "n"
-                , "sup": "n"
-                , "jun": "y"
-                , "bot": "n"
+                , "top": top
+                , "mid": mid
+                , "sup": sup
+                , "jun": jun
+                , "bot": bot
+                , "mike": ""
             },
             success: function (data) {
-                alert(data);
-                makeRoom = window.open("chatRoom", "chatingRoom",
-                    "width=1100, height=720, scroll=no, left=500, top=250");
-                opener = makeRoom;
-                window.close();
+                alert("들어온 값 꺼내야 하는데 어떻게 꺼내는지 잠깐 고민좀 "+data);
+
+                //여기로 방 번호 보내주면 됨
+                //openRoom("7286");
+                //window.close();
             },
             error: function () {
                 alert("에러나요");
             }
         })
+    }
+    function openRoom(roomNumber){
+        var chatPop= document.roomInfo;
+        var url = 'http://192.168.41.27/websocket/chat2';
+        window.open('','chatingRoom','width=1100, height=720, scroll=no, left=500, top=250');
 
+        chatPop.action = url;
+        chatPop.target = 'chatingRoom';
+        chatPop.roomNumber.value = roomNumber;
+        chatPop.submit();
     }
 </script>
 
@@ -222,6 +264,11 @@
             <p>
             <h5 class="font-family-maple-light">닉네임 : ${nickName}</h5>
             </p>
+            <!------------------------------------------------------------------->
+            <form name="roomInfo">
+                <input type="hidden" name="roomNumber">
+            </form>
+            <!------------------------------------------------------------------->
             <p id="title" class="botton" style="margin-bottom: 10px;">
                 <b class="font-family-maple-light">제목 :&nbsp; <input id="roomTitle" type="text" maxlength='12'/></b>
             </p>
@@ -229,25 +276,25 @@
                 <b class="font-family-maple-light">내용 :&nbsp; <input id="roomContent" type="text" maxlength='30'/></b>
             </p>
 
-            <div style="margin-bottom: 3px;" class="btn-group btn-group-toggle font-family-maple-light"
+            <div style="margin-bottom: 3px;" id="chooseMode" class="btn-group btn-group-toggle font-family-maple-light"
                  data-toggle="buttons">
-                <label class="btn btn-danger btn-gmode Gmode">
-                    <input type="radio" name="jb-radio" class="jb-radio-1" value="normal-game">
+                <label class="btn btn-danger btn-gmode Gmode" id="normal-game">
+                    <input type="radio" name="jb-radio" class="jb-radio-1 gameMode" value="normal-game">
                     일반게임
                 </label>
                 &nbsp;
-                <label class="btn btn-danger btn-gmode Gmode">
-                    <input type="radio" name="jb-radio" class="jb-radio-2" value="rank-game">
+                <label class="btn btn-danger btn-gmode Gmode" id="rank-game">
+                    <input type="radio" name="jb-radio" class="jb-radio-2 gameMode" value="rank-game">
                     랭크게임
                 </label>
                 &nbsp;
-                <label class="btn btn-danger btn-gmode Gmode">
-                    <input type="radio" name="jb-radio" class="jb-radio-3" value="free-rank">
+                <label class="btn btn-danger btn-gmode Gmode" id="free-game">
+                    <input type="radio" name="jb-radio" class="jb-radio-3 gameMode" value="free-rank">
                     자유랭크
                 </label>
                 &nbsp;
-                <label class="btn btn-danger btn-gmode Gmode">
-                    <input type="radio" name="jb-radio" class="jb-radio-4" value="howling-abyss">
+                <label class="btn btn-danger btn-gmode Gmode" id="howling-abyss">
+                    <input type="radio" name="jb-radio" class="jb-radio-4 gameMode" value="howling-abyss">
                     칼바람
                 </label>
                 &nbsp;
@@ -255,7 +302,7 @@
 
             <br/>
             <p class="font-family-maple-light">모집할 포지션을 선택하세요</p>
-            <div style="margin-bottom: 3px; margin-top: 3px;" class="font-family-maple-light btn-group btn-group-toggle"
+            <div style="margin-bottom: 3px; margin-top: 3px;" class="font-family-maple-light btn-group btn-group-toggle" id="choosePosition"
                  data-toggle="buttons">
                 <label class="btn btn-danger position" id="top">
                     <input type="checkbox" name="positions" value="top">
