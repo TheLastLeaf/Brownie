@@ -26,8 +26,8 @@
         const userId = $("#" + reportSeq + " .userId").val();
         const log = $("#" + reportSeq + " .log").val();
         const reasonSeq = $("#" + reportSeq + " #reason option:selected").val();
-        const bListSeq = $("#" + reportSeq + " .bListSeq").val();
-        const endDate = $("#" + reportSeq + " .endDate").val();
+        const bListSeq = $(".bListSeq").val();
+        const endDate = $(".endDate").val();
 
         $.ajax({
             url: "./addblacklist",
@@ -109,13 +109,13 @@
                     <c:forEach var="blacklist" items="${blackList}">
                         <input type="hidden" value="${blacklist.BListSeq}" name="bListSeq" class="bListSeq">
                         <c:choose>
-                            <c:when test="${blacklist.reasonSeq == '1' || blacklist.reasonSeq eq 1}">
+                            <c:when test="${blacklist.reasonSeq == 1 || blacklist.reasonSeq eq 1}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
-                            <c:when test="${blacklist.reasonSeq == '2' || blacklist.reasonSeq eq 2}">
+                            <c:when test="${blacklist.reasonSeq == 2 || blacklist.reasonSeq eq 2}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
-                            <c:when test="${blacklist.reasonSeq == '3' || blacklist.reasonSeq eq 3}">
+                            <c:when test="${blacklist.reasonSeq == 3 || blacklist.reasonSeq eq 3}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
                             <c:otherwise>

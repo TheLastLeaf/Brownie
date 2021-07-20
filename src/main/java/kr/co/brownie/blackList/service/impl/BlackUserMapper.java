@@ -11,7 +11,7 @@ public interface BlackUserMapper {
 
     List<BlackUserVO> blackUserList(Map<String, Object> map);
 
-    int insert(Map<String, Object> map);
+    int merge(Map<String, Object> map);
 
     int count();
 
