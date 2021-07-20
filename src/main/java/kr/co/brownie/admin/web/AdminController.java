@@ -139,30 +139,34 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "/addblacklist", method = {RequestMethod.GET, RequestMethod.POST})
     public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
-        String id = httpServletRequest.getSession().getAttribute("id").toString();
-        String Seq = httpServletRequest.getParameter("reportSeq");
-        int reportSeq = Integer.parseInt(Seq);
-        String userId = httpServletRequest.getParameter("userId");
-        String result = httpServletRequest.getParameter("log");
-        String rSeq = httpServletRequest.getParameter("reasonSeq");
-        int reasonSeq = Integer.parseInt(rSeq);
-        String bSeq = httpServletRequest.getParameter("bListSeq");
-        int bListSeq = Integer.parseInt(bSeq);
-        String endD = httpServletRequest.getParameter("endDate");
-        int endDate = Integer.parseInt(endD);
-        int cnt = reportService.update(reportSeq, id);
-        if (cnt == 1) {
-            System.out.println("userId" + userId);
-            int ucount = userService.blackstack(userId);
-            userService.updateStatus(userId);
-            //블랙 카운트 update 시 블랙 스택 확인 후 활동상태 변경하기
-            if (ucount == 1) {
-                int count = blackListService.insert(userId, result, id, reasonSeq,bListSeq, endDate);
-                model.addAttribute("count", count);
-                return "ok";
+        try{
+            String id = httpServletRequest.getSession().getAttribute("id").toString();
+            String Seq = httpServletRequest.getParameter("reportSeq");
+            int reportSeq = Integer.parseInt(Seq);
+            String userId = httpServletRequest.getParameter("userId");
+            String result = httpServletRequest.getParameter("log");
+            String rSeq = httpServletRequest.getParameter("reasonSeq");
+            int reasonSeq = Integer.parseInt(rSeq);
+            String bSeq = httpServletRequest.getParameter("bListSeq");
+            int bListSeq = Integer.parseInt(bSeq);
+            String endD = httpServletRequest.getParameter("endDate");
+            int endDate = Integer.parseInt(endD);
+            int cnt = reportService.update(reportSeq, id);
+            if (cnt == 1) {
+                int ucount = userService.blackstack(userId);
+                userService.updateStatus(userId);
+                //블랙 카운트 update 시 블랙 스택 확인 후 활동상태 변경하기
+                if (ucount == 1) {
+                    int count = blackListService.insert(userId, result, id, reasonSeq,bListSeq, endDate);
+                    model.addAttribute("count", count);
+                    return "ok";
+                }
             }
+            model.addAttribute("cnt", cnt);
+            return "ok";
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        model.addAttribute("cnt", cnt);
         return "ok";
     }
 }

@@ -26,8 +26,8 @@
         const userId = $("#" + reportSeq + " .userId").val();
         const log = $("#" + reportSeq + " .log").val();
         const reasonSeq = $("#" + reportSeq + " #reason option:selected").val();
-        const bListSeq = $("#" + reportSeq + " .bListSeq").val();
-        const endDate = $("#" + reportSeq + " .endDate").val();
+        const bListSeq = $(".bListSeq").val();
+        const endDate = $(".endDate").val();
 
         $.ajax({
             url: "./addblacklist",
