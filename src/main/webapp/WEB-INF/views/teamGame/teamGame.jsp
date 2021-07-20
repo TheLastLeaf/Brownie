@@ -355,14 +355,18 @@
                                 </div>
                                 <div class="row text-white"
                                      style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
-                                    <div class="col-sm-6"
-                                         style="margin: 0; display: flex; justify-content: flex-end;">${teamGameList.inUserId}</div>
-                                    <div class="col-sm-6"
-                                         style="margin: 0; display: flex; justify-content: flex-start;">
-                                        <img class="tierImg"
-                                             src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png"/>
-                                        [G·M]
+                                    <div class="col-sm-8"
+                                         style=" white-space: nowrap; margin: 0; display: flex;">
+                                        <img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png"/>
+                                        <span style="text-overflow: ellipsis; overflow: hidden; width: 100px; white-space: nowrap;">
+                                                ${teamGameList.lolId}
+                                        </span>
                                     </div>
+
+                                    <div class="col-sm-4"
+                                         style=" white-space: nowrap; margin: 0; display: flex; justify-content: flex-end;">${teamGameList.nickName}
+                                    </div>
+
                                 </div>
                             </div>
                         </c:forEach>

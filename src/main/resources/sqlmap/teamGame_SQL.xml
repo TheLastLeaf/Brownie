@@ -56,44 +56,50 @@
     <select id="selectTeamGameList" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
         select *
         from (
-                 select TEAMGAME_SEQ as teamGameSeq
-                      , USER_ID      as userId
-                      , TITLE        as title
-                      , MATCH_MODE   as matchMode
-                      , MESSAGE      as message
-                      , POSITION_SEQ as positionSeq
-                      , STATUS       as status
-                      , LEADER       as leader
-                      , MIKE         as mike
-                      , USE_POINT    as usePoint
-                      , IN_DATE      as inDate
-                      , IN_USER_ID   as inUserId
-                      , UP_DATE      as modDate
-                      , UP_USER_ID   as upUserId
-                 from teamgame
-                 where USE_POINT = 'y'
+                 select BU.LOL_ID as lolId
+                      , BU.NICK_NAME as nickName
+                      , TG.TEAMGAME_SEQ as teamGameSeq
+                      , TG.USER_ID      as userId
+                      , TG.TITLE        as title
+                      , TG.MATCH_MODE   as matchMode
+                      , TG.MESSAGE      as message
+                      , TG.POSITION_SEQ as positionSeq
+                      , TG.STATUS       as status
+                      , TG.LEADER       as leader
+                      , TG.MIKE         as mike
+                      , TG.USE_POINT    as usePoint
+                      , TG.IN_DATE      as inDate
+                      , TG.IN_USER_ID   as inUserId
+                      , TG.UP_DATE      as modDate
+                      , TG.UP_USER_ID   as upUserId
+                 from TEAMGAME TG, BROWNIE_USER BU
+                 where TG.USER_ID = BU.USER_ID
+                   and USE_POINT = 'y'
                    and LEADER = 'y'
                  order by TEAMGAME_SEQ desc
              )
         union all
         select *
         from (
-                 select TEAMGAME_SEQ as teamgameSeq
-                      , USER_ID      as userId
-                      , TITLE        as title
-                      , MATCH_MODE   as matchMode
-                      , MESSAGE      as message
-                      , POSITION_SEQ as positionSeq
-                      , STATUS       as status
-                      , LEADER       as leader
-                      , MIKE         as mike
-                      , USE_POINT    as usePoint
-                      , IN_DATE      as inDate
-                      , IN_USER_ID   as inUserId
-                      , UP_DATE      as modDate
-                      , UP_USER_ID   as upUserId
-                 from teamgame
-                 where USE_POINT = 'n'
+                 select BU.LOL_ID as lolId
+                      , BU.NICK_NAME as nickName
+                      , TG.TEAMGAME_SEQ as teamgameSeq
+                      , TG.USER_ID      as userId
+                      , TG.TITLE        as title
+                      , TG.MATCH_MODE   as matchMode
+                      , TG.MESSAGE      as message
+                      , TG.POSITION_SEQ as positionSeq
+                      , TG.STATUS       as status
+                      , TG.LEADER       as leader
+                      , TG.MIKE         as mike
+                      , TG.USE_POINT    as usePoint
+                      , TG.IN_DATE      as inDate
+                      , TG.IN_USER_ID   as inUserId
+                      , TG.UP_DATE      as modDate
+                      , TG.UP_USER_ID   as upUserId
+                 from teamgame TG, BROWNIE_USER BU
+                 where TG.USER_ID = BU.USER_ID
+                   and USE_POINT = 'n'
                    and LEADER = 'y'
                  order by TEAMGAME_SEQ desc
              )

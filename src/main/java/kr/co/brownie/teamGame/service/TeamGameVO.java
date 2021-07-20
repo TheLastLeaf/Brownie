@@ -8,6 +8,8 @@ import java.util.Date;
 public class TeamGameVO {
     private int teamGameSeq;
     private String userId;
+    private String lolId;
+    private String nickName;
     private String title;
     private String matchMode;
     private String message;
