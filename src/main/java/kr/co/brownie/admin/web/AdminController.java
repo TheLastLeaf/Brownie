@@ -161,7 +161,6 @@ public class AdminController {
                     int count = blackListService.insert(userId, result, id, reasonSeq);
                     model.addAttribute("count", count);
                     if(count == 1){
-                        System.out.println("aaaaa");
                         UserVO user = userService.userOneSelect(userId);
                         int stack = user.getBlackStack();
                         switch (stack) {
@@ -181,7 +180,6 @@ public class AdminController {
                                 endDate = endDate + 30;
                                 break;
                              }
-                         System.out.println("bListSeq"+bListSeq);
                          blackUserService.merge(bListSeq , userId, endDate, id);
                          return "ok";
                          }
