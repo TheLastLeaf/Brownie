@@ -5,6 +5,7 @@ import kr.co.brownie.teamGame.service.TeamGameVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,5 +27,10 @@ public class TeamGameServiceImpl implements TeamGameService {
     @Override
     public List<TeamGameVO> selectTeamGamePosition(int positionSeq) {
         return teamGameMapper.selectTeamGamePosition(positionSeq);
+    }
+
+    @Override
+    public void insertTeamGamePosition(HashMap<String, Object> map) {
+        teamGameMapper.insertTeamGamePosition(map);
     }
 }

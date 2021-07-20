@@ -7,8 +7,10 @@
 <script>
     $(document).ready(function () {
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
-        const username = [['${sessionScope.sessionId}']];
-        const roomNumber = 2;
+        const USER_NAME = [['${sessionScope.sessionId}']];
+        const ROOM_NUMBER = "${param.roomNumber}";
+
+        console.log("ROOM_NUMBER : " + ROOM_NUMBER);
 
         $("#disconn").on("click", (e) => {
             websocket.close();
@@ -23,7 +25,7 @@
         });
 
         //이게 방 주소
-        const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=" + roomNumber);
+        const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=" + ROOM_NUMBER);
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
         websocket.onclose = function (event) {
@@ -47,14 +49,14 @@
 
         function send() {
             let msg = document.getElementById("msg");
-            console.log(username + ":" + msg.value);
-            websocket.send(username + ":" + msg.value);
+            console.log(USER_NAME + ":" + msg.value);
+            websocket.send(USER_NAME + ":" + msg.value);
             msg.value = '';
         }
 
         //채팅창에 들어왔을 때 이건 잘 됨
         function onOpen(evt) {
-            var str = username + ": 님이 입장하셨습니다.";
+            var str = USER_NAME + ": 님이 입장하셨습니다.";
             websocket.send(str);
         }
 
@@ -69,7 +71,7 @@
                 console.log('arr[' + i + ']: ' + arr[i]);
             }
 
-            var cur_session = username;
+            var cur_session = USER_NAME;
 
             //현재 세션에 로그인 한 사람
             console.log("cur_session : " + cur_session);

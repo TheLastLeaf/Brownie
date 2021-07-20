@@ -45,6 +45,9 @@
                , #{userId})
         SELECT *
         FROM DUAL
+        <selectKey keyProperty="TEAMGAME_SEQ" resultType="integer"  order="AFTER">
+            SELECT TEAMGAME_SEQ.CURRVAL from dual
+        </selectKey>
     </insert>
 
 
@@ -103,5 +106,24 @@
         FROM TEAMGAME_POSITION
         WHERE POSITION_SEQ = #{positionSeq}
     </select>
+
+    <insert id="insertTeamGamePosition" >
+        INSERT ALL
+        INTO TEAMGAME_POSITION  ( POSITION_SEQ
+                                , TOP
+                                , MID
+                                , JUN
+                                , BOT
+                                , SUP )
+        VALUES  ( #{positionSeq}
+                , #{top}
+                , #{mid}
+                , #{jun}
+                , #{bot}
+                , #{sup} )
+        <selectKey keyProperty="POSITION_SEQ" resultType="integer"  order="AFTER">
+            SELECT POSITION_SEQ.CURRVAL from dual
+        </selectKey>
+    </insert>
 
 </mapper>

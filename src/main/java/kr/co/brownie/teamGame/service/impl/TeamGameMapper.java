@@ -3,6 +3,7 @@ package kr.co.brownie.teamGame.service.impl;
 import kr.co.brownie.teamGame.service.TeamGameVO;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,4 +15,5 @@ public interface TeamGameMapper {
 
     List<TeamGameVO> selectTeamGamePosition(int positionSeq);
 
+    void insertTeamGamePosition(HashMap<String, Object> map);
 }

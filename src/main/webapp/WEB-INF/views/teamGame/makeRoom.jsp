@@ -230,11 +230,9 @@
                 , "mike": ""
             },
             success: function (data) {
-                alert("들어온 값 꺼내야 하는데 어떻게 꺼내는지 잠깐 고민좀 "+data);
-
-                //여기로 방 번호 보내주면 됨
-                //openRoom("7286");
-                //window.close();
+                var responseData = JSON.parse(data);
+                openRoom(responseData.TEAMGAME_SEQ);
+                window.close();
             },
             error: function () {
                 alert("에러나요");

@@ -1,10 +1,12 @@
 package kr.co.brownie.teamGame.web;
 
+import com.google.gson.JsonObject;
 import kr.co.brownie.teamGame.service.TeamGameService;
 import kr.co.brownie.teamGame.service.TeamGameVO;
 import kr.co.brownie.user.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -40,6 +42,8 @@ public class TeamGameController {
         model.addAttribute("teamGameList", teamGameList);
         model.addAttribute("teamPosition", teamPosition);
 
+        System.out.println("teamGameList : "+teamGameList);
+
         return "teamGame/teamGame";
     }
 
@@ -61,11 +65,34 @@ public class TeamGameController {
 
     @ResponseBody
     @RequestMapping(value = "/insert-room", method = {RequestMethod.POST})
-    public void ajaxDayCheck(@RequestParam HashMap<String, Object> map, Model model, HttpServletRequest response) {
+    public String ajaxInsertRoom(@RequestParam HashMap<String, Object> map, Model model) {
         //방 개설
         teamGameService.insertTeamGameRoom(map);
-        System.out.println("map : "+map);
-        model.addAttribute("들어옴","ㅇㅇ");
+        System.out.println("map? : "+map);
+        System.out.println("TEAMGAME_SEQ : " + map.get("TEAMGAME_SEQ") );
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("TEAMGAME_SEQ",map.get("TEAMGAME_SEQ").toString());
+
+        return jsonObject.toString();
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/insert-position", method = {RequestMethod.POST})
+    public String ajaxInsertPosition(@RequestParam Map<String, Object> map, Model model) {
+        JsonObject jsonObject = new JsonObject();
+
+        //들어온 값 이미 포지션 존재하는지 판별해야함
+        System.out.println("map? : "+map);
+        //있으면 출입불가리턴
+
+        //없으면 인서트해줌
+        //teamGameService.insertTeamGamePosition(map);
+        jsonObject.addProperty("asd", "222222222222222222222222");
+
+        return jsonObject.toString();
+
     }
 
 

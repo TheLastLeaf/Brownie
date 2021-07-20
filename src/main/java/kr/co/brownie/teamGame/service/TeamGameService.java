@@ -1,5 +1,6 @@
 package kr.co.brownie.teamGame.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,4 +10,6 @@ public interface TeamGameService {
     List<TeamGameVO> selectTeamGameList();
 
     List<TeamGameVO> selectTeamGamePosition(int positionSeq);
+
+    void insertTeamGamePosition(HashMap<String, Object> map);
 }
