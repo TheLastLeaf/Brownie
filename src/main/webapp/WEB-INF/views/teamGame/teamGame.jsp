@@ -130,16 +130,20 @@
         var selectPosi = selectObject.id;
         var roomNumber = selectObject.className.split(" ")[2];
 
+        const data = {
+            "userId": "1786827527",
+            "roomNumber": roomNumber,
+            "position": selectPosi
+        }
+
         $.ajax({
-            url: "./insert-position",
-            type: "post",
-            data: {
-                "userId": "1786827527"
-                , "roomNumber" : roomNumber
-                , "position": selectPosi
-            },
+            url: "./teamGame/insert-position",
+            type: "POST",
+            data: data,
+            dataType: "json",
             success: function (data) {
-                alert("귀여운 우디 "+data);
+                alert("귀여운 우디 ");
+                console.log(data);
                 //openRoom("7286");
             },
             error: function () {
@@ -153,14 +157,15 @@
         alert("해당 포지션을 선택한 유저가 존재합니다. 다른 포지션을 선택해주세요.");
         window.location.reload();
     }
-    function openRoom(roomNumber){
+
+    function openRoom(roomNumber) {
         console.log('방 번호 : ', roomNumber);
-        var chatPop= document.roomInfo;
+        var chatPop = document.roomInfo;
         var url = 'http://192.168.41.27/websocket/chat2';
-        window.open('','chatingRoom'+roomNumber,'width=1100, height=720, scroll=no, left=500, top=250');
+        window.open('', 'chatingRoom' + roomNumber, 'width=1100, height=720, scroll=no, left=500, top=250');
 
         chatPop.action = url;
-        chatPop.target = 'chatingRoom'+roomNumber;
+        chatPop.target = 'chatingRoom' + roomNumber;
         chatPop.roomNumber.value = roomNumber;
         chatPop.submit();
     }
@@ -230,7 +235,7 @@
                 <!-- 검색 box end -->
                 <!------------------------------------------------------------------->
                 <form name="roomInfo">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="hidden" name="roomNumber">
                 </form>
                 <!------------------------------------------------------------------->
@@ -268,7 +273,8 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button type="button" class="positionTop blank-position ${teamGameList.teamGameSeq}"
+                                            <button type="button"
+                                                    class="positionTop blank-position ${teamGameList.teamGameSeq}"
                                                     onclick="fn_chatRoom(this)" id="top">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png"/>
                                             </button>
@@ -283,7 +289,8 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button type="button" class="positionJun blank-position ${teamGameList.teamGameSeq}"
+                                            <button type="button"
+                                                    class="positionJun blank-position ${teamGameList.teamGameSeq}"
                                                     onclick="fn_chatRoom(this)" id="jun">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png"/>
                                             </button>
@@ -298,7 +305,8 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button type="button" class="positionMid blank-position ${teamGameList.teamGameSeq}"
+                                            <button type="button"
+                                                    class="positionMid blank-position ${teamGameList.teamGameSeq}"
                                                     onclick="fn_chatRoom(this)" id="mid">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png"/>
                                             </button>
@@ -313,7 +321,8 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button type="button" class="positionAd blank-position ${teamGameList.teamGameSeq}"
+                                            <button type="button"
+                                                    class="positionAd blank-position ${teamGameList.teamGameSeq}"
                                                     onclick="fn_chatRoom(this)" id="bot">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png"/>
                                             </button>
@@ -328,7 +337,8 @@
                                             </button>
                                         </c:when>
                                         <c:otherwise>
-                                            <button type="button" class="positionSup blank-position ${teamGameList.teamGameSeq}"
+                                            <button type="button"
+                                                    class="positionSup blank-position ${teamGameList.teamGameSeq}"
                                                     onclick="fn_chatRoom(this)" id="sup">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png"/>
                                             </button>
