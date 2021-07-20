@@ -377,12 +377,14 @@
                                         </h3>
                                     </div>
                                 </div>
+                                <c:if test="${userOneSelect.upUserId == sessionScope.id}">
                                 <div class="modInfo col-3">
                                     <button type="button" class="btn btn-dark"
                                             onclick="fn_infoMod('${userOneSelect.upUserId}')">정보수정
                                     </button>
                                     <button type="button" class="btn btn-danger" onclick="fn_infoDel()">탈퇴</button>
                                 </div>
+                                </c:if>
                             </div>
                         </div>
                         <!-- 연동/게시글/같이플레이한놈 begin -->
@@ -489,7 +491,7 @@
                                     <li><a onclick="fn_declaration('${reviewVO.upUserId}','${reviewVO.reply}')">신고하기</a>
                                     </li>
                                     <!-- 다른유저페이지로 이동->> -->
-                                    <li><a href="#">둘러보기</a></li>
+                                    <li><a href="/user/userInfo/${reviewVO.upUserId}">둘러보기</a></li>
                                 </ul>
                             </c:forEach>
                             <!-- 후기글 end-->
@@ -555,10 +557,12 @@
                                         </h3>
                                     </div>
                                 </div>
+                                <c:if test="${sessionScope.id eq userOneSelect.upUserId}">
                                 <div class="modInfo col-3">
                                     <button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
                                     <button type="button" class="btn btn-dark" onclick="fn_infoDel()">탈퇴</button>
                                 </div>
+                                </c:if>
                             </div>
                         </div>
                         <!-- 연동/게시글/같이플레이한놈 begin -->
