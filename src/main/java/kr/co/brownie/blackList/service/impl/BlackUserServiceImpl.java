@@ -33,13 +33,13 @@ public class BlackUserServiceImpl implements BlackUserService {
     }
 
     @Override
-    public int insert(int bListSeq, String userId, int endDate, String id) {
+    public int merge(int bListSeq, String userId, int endDate, String id) {
         Map<String, Object> map = new HashMap<>();
         map.put("bListSeq", bListSeq);
         map.put("userId", userId);
         map.put("endDate", endDate);
         map.put("id", id);
-        return blackUserMapper.insert(map);
+        return blackUserMapper.merge(map);
     }
 
     @Override

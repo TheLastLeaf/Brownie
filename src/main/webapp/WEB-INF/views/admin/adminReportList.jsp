@@ -109,13 +109,13 @@
                     <c:forEach var="blacklist" items="${blackList}">
                         <input type="hidden" value="${blacklist.BListSeq}" name="bListSeq" class="bListSeq">
                         <c:choose>
-                            <c:when test="${blacklist.reasonSeq == '1' || blacklist.reasonSeq eq 1}">
+                            <c:when test="${blacklist.reasonSeq == 1 || blacklist.reasonSeq eq 1}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
-                            <c:when test="${blacklist.reasonSeq == '2' || blacklist.reasonSeq eq 2}">
+                            <c:when test="${blacklist.reasonSeq == 2 || blacklist.reasonSeq eq 2}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
-                            <c:when test="${blacklist.reasonSeq == '3' || blacklist.reasonSeq eq 3}">
+                            <c:when test="${blacklist.reasonSeq == 3 || blacklist.reasonSeq eq 3}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
                             <c:otherwise>

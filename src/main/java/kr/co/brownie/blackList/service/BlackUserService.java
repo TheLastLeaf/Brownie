@@ -6,7 +6,7 @@ public interface BlackUserService {
 
     BlackUserPagingVO blackUserList(int currentPageNumber);
 
-    int insert(int bListSeq, String userId, int endDate, String id);
+    int merge(int bListSeq, String userId, int endDate, String id);
 
     int update(int bUserSeq);
 }
