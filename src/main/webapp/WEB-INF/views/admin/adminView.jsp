@@ -23,11 +23,11 @@
 
     .adminMenu {
         cursor: pointer;
-    }
+   }
 
     .list {
         width: 840px;
-    }
+   }
 
 
 </style>
@@ -47,14 +47,14 @@
                                  <span class="circle-progress-2" data-cpid="id-5" data-cpvalue="60"
                                        data-cpcolor="#c20000"></span>
                                             <c:choose>
-                                                <c:when test="${dayMap.get('month') lt 10}">
+                                                <c:when test="${dayMap.month lt 10}">
                                                     <div class="review-point" style="top:55px;">
-                                                        <div style="top: 60px;">${dayMap.get("month")}월</div>
+                                                        <div style="top: 60px;">${dayMap.month}월</div>
                                                     </div>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <div class="review-point" style="top:55px; left: 25px;">
-                                                        <div style="top: 60px;">${dayMap.get("month")}월</div>
+                                                        <div style="top: 60px;">${dayMap.month}월</div>
                                                     </div>
                                                 </c:otherwise>
                                             </c:choose>
@@ -70,13 +70,13 @@
                                                         <div class="sm-icon"><i class="far fa-user"></i></div>
                                                         <span class="adminMenu"
                                                               onclick="location.href='admin/adminMemberList'">멤버 관리</span>
-                                                        <div class="follow">${UserCnt.allUserCnt }명</div>
+                                                        <div class="follow">${UserCnt.allUserCnt}명</div>
                                                     </li>
                                                     <li class="list">
                                                         <div class="sm-icon"><i class="fas fa-bomb"></i></div>
                                                         <span class="adminMenu"
                                                               onclick="location.href='admin/adminReportList'">신고 내역</span>
-                                                        <div class="follow">${reportCnt.reportUserCnt }건</div>
+                                                        <div class="follow">${reportCnt.reportUserCnt}건</div>
                                                     </li>
                                                     <li class="list">
                                                         <div class="sm-icon"><i class="fas fa-user-lock"></i></div>
@@ -97,37 +97,37 @@
                                         <span class="fill" data-percentage="${todayUser.todayUser}"></span>
                                         <div class="tipWrap" style="display: inline;">
                                             <span class="tip"></span>
-                                            <span class="bar-point"> ${todayUser.todayUser }</span>
+                                            <span class="bar-point"> ${todayUser.todayUser}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
                                     <p>누적 가입자 수</p>
                                     <div id="bar-6" class="barfiller">
-                                        <span class="fill" data-percentage="${UserCnt.allUserCnt }"></span>
+                                        <span class="fill" data-percentage="${UserCnt.allUserCnt}"></span>
                                         <div class="tipWrap" style="display: inline;">
                                             <span class="tip"></span>
-                                            <span class="bar-point">${UserCnt.allUserCnt }</span>
+                                            <span class="bar-point">${UserCnt.allUserCnt}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
                                     <p>신규 게시글 수</p>
                                     <div id="bar-3" class="barfiller">
-                                        <span class="fill" data-percentage="${boardCnt.recentBoardCnt }"></span>
+                                        <span class="fill" data-percentage="${boardCnt.recentBoardCnt}"></span>
                                         <div class="tipWrap" style="display: inline;">
                                             <span class="tip"></span>
-                                            <span class="bar-point">${boardCnt.recentBoardCnt }</span>
+                                            <span class="bar-point">${boardCnt.recentBoardCnt}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="skill-item">
                                     <p>누적 게시글 수</p>
                                     <div id="bar-4" class="barfiller">
-                                        <span class="fill" data-percentage="${boardCnt.allBoardCnt }"></span>
+                                        <span class="fill" data-percentage="${boardCnt.allBoardCnt}"></span>
                                         <div class="tipWrap" style="display: inline;">
                                             <span class="tip"></span>
-                                            <span class="bar-point">${boardCnt.allBoardCnt }</span>
+                                            <span class="bar-point">${boardCnt.allBoardCnt}</span>
                                         </div>
                                     </div>
                                 </div>
