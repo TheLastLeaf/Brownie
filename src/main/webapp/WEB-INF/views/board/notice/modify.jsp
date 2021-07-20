@@ -141,25 +141,23 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="post">
-                    <div class="contact-text">
-                        <div class="contact-form">
-                            <div class="dt-leave-comment">
-                                <div class="input-list">
-                                    <input type="text" id="title" name="title" value="${boardVO.title}"
-                                           required="required">
-                                </div>
-                                <div class="content">
+                <div class="contact-text">
+                    <div class="contact-form">
+                        <div class="dt-leave-comment">
+                            <div class="input-list">
+                                <input type="text" id="title" name="title" value="${boardVO.title}"
+                                       required="required">
+                            </div>
+                            <div class="content">
                                     <textarea class="summernote" id="content" name="content"
                                               required="required">${boardVO.content}</textarea>
-                                </div>
-                                <div class="sub">
-                                    <input type="submit" value="수정" class="submit">
-                                </div>
+                            </div>
+                            <div class="sub">
+                                <input type="button" onclick="boardModify(${boardSeq})" value="수정" class="submit">
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

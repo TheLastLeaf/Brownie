@@ -141,39 +141,38 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 p-0">
-                <form method="post">
-                    <div class="contact-text">
-                        <div class="contact-form">
-                            <div class="dt-leave-comment">
-                                <c:if test="${permit_level eq 9 }">
-                                    <div class="noticeCheck">
-                                        <label class="noticeYn"><input type="checkbox" name="noticeYn" value="y"
-                                                <c:if test="${boardVO.noticeYn eq 'y'}">
-                                                    checked
-                                                </c:if>
-                                        /> &nbsp;&nbsp;공지사항여부</label>
-                                    </div>
-                                </c:if>
-                                <div class="dt-quote input-list">
-                                    <span>제목</span>&nbsp;
-                                    <input type="text" value="${boardVO.title}" class="title" id="title" name="title"
-                                           required="required"/>
+                <div class="contact-text">
+                    <div class="contact-form">
+                        <div class="dt-leave-comment">
+                            <c:if test="${sessionScope.permit_level eq 9 }">
+                                <div class="noticeCheck">
+                                    <label class="noticeYn"><input type="checkbox" name="noticeYn" value="y"
+                                            <c:if test="${boardVO.noticeYn eq 'y'}">
+                                                checked
+                                            </c:if>
+                                    /> &nbsp;&nbsp;공지사항여부</label>
                                 </div>
-                                <div class="content">
+                            </c:if>
+                            <div class="dt-quote input-list">
+                                <span>제목</span>&nbsp;
+                                <input type="text" value="${boardVO.title}" class="title" id="title" name="title"
+                                       required="required"/>
+                            </div>
+                            <div class="content">
                                     <textarea class="summernote" name="content" id="content"
                                               required="required">${boardVO.content}</textarea>
-                                </div>
-                                <div class="tag-box">
-                                    <input type="text" value="${boardVO.boardCategory}" class="tags" id="tags"
-                                           name="boardCategory"/>
-                                </div>
-                                <div class="submit-box">
-                                    <input type="submit" value="수정완료" class="submit"/>
-                                </div>
+                            </div>
+                            <div class="tag-box">
+                                <input type="text" placeholder="태그 작성 시 쉼표로 구분해 주세요. 예시) 롤,티모,웃는게,귀여워"
+                                       value="${boardVO.boardCategory}" class="tags" id="tags"
+                                       name="boardCategory"/>
+                            </div>
+                            <div class="submit-box">
+                                <input type="button" onclick="boardModify(${boardSeq})" value="수정완료" class="submit"/>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

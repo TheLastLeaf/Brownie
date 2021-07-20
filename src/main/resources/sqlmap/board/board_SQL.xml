@@ -253,9 +253,9 @@
                       ) BOARD
              )
         ]]>
-        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+        <if test='contentPerPage != null and !contentPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
             <![CDATA[
-        WHERE ${contentPerPage} * (${pageNum} - 1) < RN AND RN <= ${contentPerPage} * ${pageNum}
+        WHERE #{contentPerPage} * (#{pageNum} - 1) < RN AND RN <= #{contentPerPage} * #{pageNum}
         ]]>
         </if>
     </select>
@@ -374,11 +374,18 @@
                                                      IN (1 AS LIKE_CNT,
                                                          0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE_CNT
                                                 ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE_CNT.BOARD_SEQ
+                                                       ]]>
+        <if test='days != null and days != ""'>
+            <![CDATA[
+                       WHERE SYSDATE - #{days} < BROWNIE_BOARD.IN_DATE
+              ]]>
+        </if>
+        <![CDATA[
                        ORDER BY LIKECNT - UNLIKECNT DESC,
                                 BOARDSEQ DESC
                       ) BOARD
              )
-        WHERE RN <= 5
+        WHERE RN <= #{limit}
         ]]>
     </select>
 
@@ -509,9 +516,9 @@
                       ) BOARD
              )
         ]]>
-        <if test='replyPerPage != null and !replyPerPage.equals("") and pageNum != null and !pageNum.equals("")'>
+        <if test='contentPerPage != null and contentPerPage != "" and pageNum != null and pageNum != ""'>
             <![CDATA[
-        WHERE ${contentPerPage} * (${pageNum} - 1) < RN AND RN <= ${contentPerPage} * ${pageNum}
+        WHERE #{contentPerPage} * (#{pageNum} - 1) < RN AND RN <= #{contentPerPage} * #{pageNum}
         ]]>
         </if>
     </select>
@@ -617,13 +624,13 @@
     ]]>
     </select>
 
-    <update id="update">
+    <update id="update" parameterType="hashMap">
         UPDATE BROWNIE_BOARD
         <set>
             <if test='boardKind != null and boardKind != ""'>
                 BOARD_KIND = #{boardKind},
             </if>
-            <if test='boardCategory != null and boardCategory != ""'>
+            <if test='boardCategory != null'>
                 BOARD_CATEGORY = #{boardCategory},
             </if>
             <if test='title != null and title != ""'>
@@ -647,6 +654,7 @@
                 SUB_SEQ = #{subSeq}
             </if>
         </set>
+        WHERE BOARD_SEQ = #{boardSeq}
     </update>
 
     <delete id="delete">

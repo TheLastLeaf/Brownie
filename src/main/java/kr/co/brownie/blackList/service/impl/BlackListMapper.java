@@ -8,7 +8,6 @@ import java.util.Map;
 
 @Repository("blackListMapper")
 public interface BlackListMapper {
-
     List<BlackListVO> selectBlackList();
 
     int insert(Map<String, Object> map);

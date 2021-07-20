@@ -68,13 +68,13 @@
                     ${boardVO.content}
                     <c:if test="${sessionScope.id != null and sessionScope.id == boardVO.boardInUserId}">
                         <div class="d-flex flex-row-reverse">
-                            <form action="${pageContext.request.contextPath}/tip/delete" method="POST"
-                                  onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                            <form>
                                 <input type="hidden" name="boardSeq" value="${boardSeq}"/>
                                 <button type="button" onclick="location.href='/tip/modify/${boardSeq}'"
                                         class="skewXButton position-relative ml-3 mb-3"><span>Modify</span>
                                 </button>
-                                <button type="submit" class="skewXButton position-relative ml-3 mb-3">
+                                <button type="button" class="skewXButton position-relative ml-3 mb-3"
+                                        onclick='if(confirm("정말 삭제하시겠습니까?"))boardDelete(${boardSeq})'>
                                     <span>Delete</span>
                                 </button>
                             </form>
@@ -224,25 +224,21 @@
                                     </c:if>
                                 </div>
                                 <p>${replyVO.replyContent}</p>
-                                <form action="${pageContext.request.contextPath}/tip/details/${boardSeq}/reply/delete"
-                                      method="POST"
-                                      onsubmit="return confirm('정말 삭제하시겠습니까?');">
-                                    <input type="hidden" name="replySeq" value="${replyVO.replySeq}"/>
-                                    <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
-                                        <button type="button" onclick="commentReplyButton(${replyVO.replySeq})"
-                                                class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
-                                        </button>
-                                    </c:if>
-                                    <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
-                                        <button type="submit"
-                                                class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
-                                        </button>
-                                    </c:if>
-                                </form>
+                                <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
+                                    <button type="button" onclick="commentReplyButton(${boardSeq}, ${replyVO.replySeq})"
+                                            class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
+                                    </button>
+                                </c:if>
+                                <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
+                                    <button type="button" onclick='if(confirm("정말 삭제하시겠습니까?"))replyDelete(${boardSeq}, ${replyVO.replySeq})'
+                                            class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
+                                    </button>
+                                </c:if>
                             </div>
                         </div>
                     </c:forEach>
-                    <div class="pagination-item" style="justify-content: center; align-content: center; text-align: center;">
+                    <div class="pagination-item"
+                         style="justify-content: center; align-content: center; text-align: center;">
                         <c:if test="${1 < replyPagingVO.startPageNumber}">
                             <a href="?pageNum=${replyPagingVO.startPageNumber - 1}"><span>Prev</span></a>
                         </c:if>
@@ -256,11 +252,11 @@
                     </div>
                 </div>
                 <c:if test="${sessionScope.id ne null}">
-                    <div class="dt-leave-comment">
+                    <div class="dt-leave-comment main_reply_form">
                         <h4>Leave a comment</h4>
-                        <form method="POST">
-                            <textarea name="message" placeholder="Message" required></textarea>
-                            <button type="submit">Submit</button>
+                        <form>
+                            <textarea name="replyContent" placeholder="Message" required></textarea>
+                            <button type="button" onclick="replyWrite(${boardSeq})">Submit</button>
                         </form>
                     </div>
                 </c:if>

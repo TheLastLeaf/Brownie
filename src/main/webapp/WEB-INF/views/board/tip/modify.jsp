@@ -146,42 +146,40 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="POST">
-                    <div class="contact-text">
-                        <div class="contact-form">
-                            <div class="dt-leave-comment">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <select class="w-100" name="champion">
-                                            <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
-                                                <c:choose>
-                                                    <c:when test="${champion.id == boardVO.boardCategory}">
-                                                        <option value="${champion.id}"
-                                                                selected>${champion.name}</option>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <option value="${champion.id}">${champion.name}</option>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="input-list col-9" style="padding-bottom: 10px;">
-                                        <input type="text" placeholder="Title" class="title" id="title" name="title"
-                                               value="${boardVO.title}" required="required">
-                                    </div>
+                <div class="contact-text">
+                    <div class="contact-form">
+                        <div class="dt-leave-comment">
+                            <div class="row">
+                                <div class="col-3">
+                                    <select class="w-100" name="champion">
+                                        <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
+                                            <c:choose>
+                                                <c:when test="${champion.id == boardVO.boardCategory}">
+                                                    <option value="${champion.id}"
+                                                            selected>${champion.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${champion.id}">${champion.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
                                 </div>
-                                <div class="content">
+                                <div class="input-list col-9" style="padding-bottom: 10px;">
+                                    <input type="text" placeholder="Title" class="title" id="title" name="title"
+                                           value="${boardVO.title}" required="required">
+                                </div>
+                            </div>
+                            <div class="content">
                                     <textarea class="summernote" name="content" id="content"
                                               required="required">${boardVO.content}</textarea>
-                                </div>
-                                <div class="pad">
-                                    <input type="submit" value="수정" class="submit">
-                                </div>
+                            </div>
+                            <div class="pad">
+                                <input type="button" onclick="boardModify(${boardSeq})" value="수정" class="submit">
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

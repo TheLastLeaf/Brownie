@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.Date" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -87,8 +88,82 @@
             height: 25px;
             font-size: small;
         }
+
+        .mw-post-item img {
+            height: 132px;
+            width: auto;
+        }
     </style>
 
+    <script>
+        $(function () {
+            $.ajax({
+                url: "/board/list.ajax",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    let headerNoticeSection = "";
+                    let headerTipSection = "";
+                    let headerFreeSection = "";
+                    $.each(data.noticeVOList, function (index, jsonArr) {
+                        headerNoticeSection += "<div class=\"mw-post-item\">"
+                            + "<div class=\"mw-pic col-xl-\">"
+                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "</div>"
+                            + "<div class=\"mw-text\">"
+                            + "<h6>"
+                            + "<a href=\"${pageContext.request.contextPath}/notice/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "</h6>"
+                            + "<ul>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "</ul>"
+                            + "</div>"
+                            + "</div>"
+                    });
+                    $.each(data.tipVOList, function (index, jsonArr) {
+                        headerTipSection += "<div class=\"mw-post-item\">"
+                            + "<div class=\"mw-pic col-xl-\">"
+                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "</div>"
+                            + "<div class=\"mw-text\">"
+                            + "<h6>"
+                            + "<a href=\"${pageContext.request.contextPath}/tip/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "</h6>"
+                            + "<ul>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "<li><i class=\"far fa-comment\"></i> " + jsonArr.replyCnt + "</li>"
+                            + "</ul>"
+                            + "</div>"
+                            + "</div>"
+                    });
+                    $.each(data.freeVOList, function (index, jsonArr) {
+                        headerFreeSection += "<div class=\"mw-post-item\">"
+                            + "<div class=\"mw-pic col-xl-\">"
+                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "</div>"
+                            + "<div class=\"mw-text\">"
+                            + "<h6>"
+                            + "<a href=\"${pageContext.request.contextPath}/free/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "</h6>"
+                            + "<ul>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "<li><i class=\"far fa-comment\"></i> " + jsonArr.replyCnt + "</li>"
+                            + "</ul>"
+                            + "</div>"
+                            + "</div>"
+                    });
+
+                    $("#header-notice-section").html(headerNoticeSection);
+                    $("#header-tip-section").html(headerTipSection);
+                    $("#header-free-section").html(headerFreeSection);
+                },
+                error: function () {
+                    alert("문제가 발생하였습니다.");
+                }
+            })
+        })
+    </script>
 </head>
 
 <body>
@@ -124,13 +199,13 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="ht-widget">
                         <ul>
-                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
+                            <li><i class="far fa-clock"></i> <%=new Date()%></li>
                             <li class="signup-switch signup-open">
                                 <c:choose>
-                                    <c:when test="${id != null}">
+                                    <c:when test="${sessionScope.id != null}">
                                         <span style="margin-left:4px;">
                                             <a onclick="location.href='/user/userInfo/${sessionScope.id}'"
-                                               style="text-decoration: underline;">${id}</a>
+                                               style="text-decoration: underline;">${sessionScope.id}</a>
                                             <span style="cursor:text">님 환영합니다</span>
                                         </span>
                                         <span style="margin-left:4px; cursor:text;">LV.${sessionScope.permit_level}</span>
@@ -159,14 +234,6 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-4">
-                    <div class="ht-social nav-search ">
-                        <input type="text"
-                               style="width: 150px; border:1px solid black; font-size: 11px; color: #ffffff; background-color: #222222;"
-                               placeholder="search"/>&nbsp;
-                        &nbsp;<i class="fas fa-search"></i>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -192,10 +259,10 @@
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/notice"><span>NOTICE
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
-                            <div class="mw-post">
+                            <div id="header-notice-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -209,7 +276,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -223,7 +290,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -237,7 +304,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -251,7 +318,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -272,7 +339,7 @@
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -286,7 +353,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -300,7 +367,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -314,7 +381,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -328,7 +395,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -346,10 +413,10 @@
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/tip"><span>CHAMPIONS TIP
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
-                            <div class="mw-post">
+                            <div id="header-tip-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -363,7 +430,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -377,7 +444,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -391,7 +458,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -405,7 +472,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -426,7 +493,7 @@
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -440,7 +507,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -454,7 +521,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -468,7 +535,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -482,7 +549,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -500,23 +567,7 @@
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/free"><span>LOUNGE
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
-                            <div class="mw-post">
-                                <c:forEach var="recentList" items="${recentList }" varStatus="">
-                                    <div class="mw-post-item">
-                                        <div class="mw-pic col-xl-">
-                                            <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
-                                        </div>
-                                        <div class="mw-text">
-                                            <h6>
-                                                <a href="${pageContext.request.contextPath}/free/freeBoardDetail?boardSeq=${recentList.boardSeq}">${recentList.title }</a>
-                                            </h6>
-                                            <ul>
-                                                <li><i class="far fa-clock"></i> ${recentList.inDate }</li>
-                                                <li><i class="far fa-comment"></i>${recentList.replyCnt }</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                            <div id="header-free-section" class="mw-post">
                             </div>
                         </div>
                     </li>

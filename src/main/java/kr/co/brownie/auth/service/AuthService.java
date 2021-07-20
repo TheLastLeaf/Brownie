@@ -23,5 +23,4 @@ public interface AuthService {
     void insertReview(int reviewSeq, String id, int starCnt, String reply, String writeUserId) throws IOException;
 
     int permitLevel(String userId);
-
 }

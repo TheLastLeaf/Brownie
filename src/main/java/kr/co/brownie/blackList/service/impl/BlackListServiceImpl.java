@@ -11,7 +11,6 @@ import java.util.Map;
 
 @Service("blackListService")
 public class BlackListServiceImpl implements BlackListService {
-
     @Resource(name = "blackListMapper")
     BlackListMapper blackListMapper;
 
@@ -22,14 +21,12 @@ public class BlackListServiceImpl implements BlackListService {
     }
 
     @Override
-    public int insert(String userId, String result, String id, int reasonSeq,int bListSeq,int endDate) {
+    public int insert(String userId, String result, String id, int reasonSeq) {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", userId);
         map.put("result", result);
         map.put("id", id);
         map.put("reasonSeq", reasonSeq);
-        map.put("bListSeq", bListSeq);
-        map.put("endDate", endDate);
         return blackListMapper.insert(map);
     }
 
@@ -40,5 +37,4 @@ public class BlackListServiceImpl implements BlackListService {
         map.put("bListSeq", bListSeq);
         return blackListMapper.updateBlackUser(map);
     }
-
 }

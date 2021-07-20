@@ -6,7 +6,7 @@
 <style>
     h5 {
         margin-top: 10px;
-   }
+    }
 
     .actForReply, .actForBoard {
         font-size: 10px;
@@ -14,7 +14,7 @@
         margin-bottom: 5px;
         justify-content: right;
         text-align: right;
-   }
+    }
 
     .replyHate {
         border: 1px solid #336666;
@@ -22,7 +22,7 @@
         cursor: pointer;
         margin: 3px;
         color: #336666;
-   }
+    }
 
     .replyLike {
         border: 1px solid #ffffcc;
@@ -30,7 +30,7 @@
         cursor: pointer;
         margin: 3px;
         color: #ffffcc;
-   }
+    }
 
     .reReply {
         border: 1px solid #007bff;
@@ -38,7 +38,7 @@
         cursor: pointer;
         margin: 3px;
         color: #007bff;
-   }
+    }
 
     .replyCall, #freeModify, #freeDelete {
         border: 1px solid #DC143C;
@@ -46,28 +46,28 @@
         cursor: pointer;
         margin: 3px;
         color: #DC143C;
-   }
+    }
 
     .blackReplys {
         height: 5px;
         color: #5d5d5d;
         font-size: 12px;
         visibility: hidden;
-   }
+    }
 
     .blackClick {
         font-size: 12px;
         color: #e57373;
-   }
+    }
 
     .userReplys {
         font-size: 12px;
         word-break: break-word;
-   }
+    }
 
     .blackReplysId {
         visibility: hidden;
-   }
+    }
 
 
     .replyMod, .reReplyToUser {
@@ -75,11 +75,11 @@
         background-color: black;
         font-size: 12px;
         color: #666666;
-   }
+    }
 
     .replyModArea, .reModComBut, .reReplyBox {
         display: none;
-   }
+    }
 
     .modReplyBut {
         border: 1px solid #ffffff;
@@ -87,11 +87,11 @@
         cursor: pointer;
         margin: 3px;
         color: #ffffff;
-   }
+    }
 
     .reReplyBox {
         margin-bottom: 20px;
-   }
+    }
 </style>
 
 <!-- Details Post Section Begin -->
@@ -101,15 +101,11 @@
             <div class="col-lg-8 p-0">
                 <c:if test="${sessionScope.id eq boardVO.boardInUserId}">
                     <div class="actForBoard">
-                        <form action="${pageContext.request.contextPath}/free/delete" method="POST"
-                              class="d-inline">
-                            <input type="button" class="btn btn-outline-dark btn-sm text-white"
-                                   onclick="location.href='/free/modify/${boardVO.boardSeq}'"
-                                   value="수정"/>
-                            <input type="hidden" name="boardSeq" value="${boardSeq}"/>
-                            <input type="submit" class="btn btn-outline-dark btn-sm text-danger"
-                                   value="삭제"/>
-                        </form>
+                        <input type="button" class="btn btn-outline-dark btn-sm text-white"
+                               onclick="location.href='/free/modify/${boardVO.boardSeq}'"
+                               value="수정"/>
+                        <input type="button" onclick='if(confirm("정말 삭제하시겠습니까?"))boardDelete(${boardSeq})'
+                               class="btn btn-outline-dark btn-sm text-danger" value="삭제"/>
                     </div>
                 </c:if>
                 <div class="details-text">
@@ -271,17 +267,16 @@
                                         </c:if>
                                     </div>
                                     <p>${replyVO.replyContent}</p>
-                                    <form action="${pageContext.request.contextPath}/tip/details/${boardSeq}/reply/delete"
-                                          method="POST"
-                                          onsubmit="return confirm('정말 삭제하시겠습니까?');">
-                                        <input type="hidden" name="replySeq" value="${replyVO.replySeq}"/>
+                                    <form>
                                         <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
-                                            <button type="button" onclick="commentReplyButton(${replyVO.replySeq})"
+                                            <button type="button"
+                                                    onclick="commentReplyButton(${boardSeq}, ${replyVO.replySeq})"
                                                     class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
                                             </button>
                                         </c:if>
                                         <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
-                                            <button type="submit"
+                                            <button type="button"
+                                                    onclick='if(confirm("정말 삭제하시겠습니까?"))replyDelete(${boardSeq}, ${replyVO.replySeq})'
                                                     class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
                                             </button>
                                         </c:if>
@@ -304,11 +299,11 @@
                         </div>
                     </div>
                     <c:if test="${sessionScope.id ne null}">
-                        <div class="dt-leave-comment">
+                        <div class="dt-leave-comment main_reply_form">
                             <h4>Leave a comment</h4>
-                            <form method="POST">
-                                <textarea name="message" placeholder="Message" required></textarea>
-                                <button type="submit">Submit</button>
+                            <form>
+                                <textarea name="replyContent" placeholder="Message" required></textarea>
+                                <button type="button" onclick="replyWrite(${boardSeq})">Submit</button>
                             </form>
                         </div>
                     </c:if>
@@ -322,9 +317,7 @@
                         <div class="section-title">
                             <h5>Best of Best</h5>
                         </div>
-
                         <c:forEach var="boardVOOrderByLike" items="${boardVOListOrderByLike}" varStatus="status">
-
                             <div class="bp-item">
                                 <div class="bp-loader">
                                     <div class="loader-circle-wrap">
@@ -348,12 +341,10 @@
                                 </div>
                             </div>
                         </c:forEach>
-
                     </div>
                 </div>
             </div>
             <!-- 사이드바 끝 -->
-
         </div>
     </div>
 </section>

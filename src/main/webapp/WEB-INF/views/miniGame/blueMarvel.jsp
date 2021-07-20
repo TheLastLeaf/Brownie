@@ -4,10 +4,11 @@
 
 <script src="${pageContext.request.contextPath}/js/marvel.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
 <style>
-
     .point {
         font-weight: bolder;
         color: black;
@@ -36,7 +37,6 @@
         display: inline-block;
         border-collapse: separate;
         border-spacing: 6px;
-        border: 3px solid black;
         vertical-align: middle;
         text-align: center;
     }
@@ -48,7 +48,6 @@
     }
 
     .td_tb {
-        border: 2px solid black;
         background: white;
     }
 
@@ -223,7 +222,8 @@
     }
 
     .l15 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[14].kind}/${infoList[14].imgName}");
+
+        background: url("${pageContext.request.contextPath}/img/miniGame/${infoList[14].kind}/${infoList[14].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -237,6 +237,11 @@
         background-size: 128px;
         background-color: ${landColor[14]};
     }
+    .playerImg{
+    	filter: drop-shadow(0 0 0 white);
+    	width:128px;
+    }
+    
     
 </style>
 
@@ -270,13 +275,7 @@
 <!-- Breadcrumb Section End -->
 
 <script type="text/javascript">
-	
-	
-	
-	
-	
 	//그라데이션 효과
-	function rainbow(){
 	var colors = new Array(
 	  [62,35,255],
 	  [60,255,60],
@@ -317,7 +316,15 @@
 	var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
 	var color2 = "rgb("+r2+","+g2+","+b2+")";
 	
-	 $('.startLine').css({
+	 $('#btnRoll').css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color2+"), to("+color1+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+	 
+	 $('#testz').css({
+	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+	 
+	 $('#gameAlert1').css({
 	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
 	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
 	  
@@ -337,38 +344,9 @@
 	}
 	
 	setInterval(updateGradient,10);
-	}
-	//
-
-
-
-
-    var playerPos = ${player.position};
-    var round = ${player.round};
-    var hp = ${player.hp};
-    var item = '${player.item}';
-    var point = ${player.point};
-    var browniePoint = ${player.browniePoint};
-    var recentMap = '${player.recentMap}';
-    recentMap = recentMap.replace("[", "");
-    recentMap = recentMap.replace("]", "");
-    recentMap = recentMap.split(", ");
-    console.log("first" + recentMap);
-    var quest = '${player.quest}';
-    var dicetimes = ${player.dicetimes};
-    var recentHp = ${player.recentHp};
-
-    //설정
-    var playerImg = "<div class='player'><i style='color: red;' class='fas fa-chess-knight fa-8x'></i></div>";
-    var diceSpeed = 450; // 주사위속도
-    var side1 = 0;
-
-    /* 주사위 */
-    window.onload = function () {
-    	
-    	//무지개
-		
-    	var hue = 1,
+	//////////////
+	//랜드 무지개 효과
+		var hue = 1,
 		button1 = document.getElementsByClassName('start');
 		function color() {
 			var alpha = 0,
@@ -400,8 +378,77 @@
 			button1[0].style.backgroundColor = 'rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
 		  hue++;
 		}
-		window.setInterval(color, 10);
+	////////////
+	var cnt1 = 0;
+	function changImg(){
+		if(cnt1==0){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit.png' /></div>";
+			cnt1++;
+		} else if(cnt1==1){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/animal-rabbit-moon.png' /></div>";
+			cnt1++;
+		} else if(cnt1==2){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/bear.png' /></div>";
+			cnt1++;
+		} else if(cnt1==3){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/chr-android.png' /></div>";
+			cnt1++;
+		} else if(cnt1==4){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/man-robot.png' /></div>";
+			cnt1++;
+		} else if(cnt1==5){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/man-universe.png' /></div>";
+			cnt1++;
+		} else if(cnt1==6){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/man-wizard.png' /></div>";
+			cnt1++;
+		} else if(cnt1==7){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/pngwing.com.png' /></div>";
+			cnt1++;
+		} else if(cnt1==8){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit(2).png' /></div>";
+			cnt1++;
+		} else if(cnt1==9){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit(3).png' /></div>";
+			cnt1++;
+		} else if(cnt1==10){
+			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/rion.png' /></div>";
+			cnt1=0;
+		}
+		$(".l" + playerPos + "").html(playerImg);
+	}
+	
+	
+    var playerPos = ${player.position};	//플레이어 위치
+    var round = ${player.round};		//회차 
+    var hp = ${player.hp};				//HP
+    var item = '${player.item}';		//item
+    var point = ${player.point};
+    var browniePoint = ${player.browniePoint};
+    var recentMap = '${player.recentMap}';
+    recentMap = recentMap.replace("[", "");
+    recentMap = recentMap.replace("]", "");
+    recentMap = recentMap.split(", ");
+    console.log("first" + recentMap);
+    var quest = '${player.quest}';
+    var dicetimes = ${player.dicetimes};
+    var recentHp = ${player.recentHp};
+
+    //설정
+    var playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/pngwing.com.png' /></div>";
+    //var playerImg = "<div class='player'><i style='color: red;' class='fas fa-chess-knight fa-8x'></i></div>";
+    var diceSpeed = 450; // 주사위속도
+    var side1 = 0;
+    
+
+	
+
+    /* 주사위 */
+    window.onload = function () {
+    	playerPos = ${player.position};	//플레이어 위치
     	
+    	//무지개 효과
+		window.setInterval(color, 10);
     	//
 		
         $(".l" + playerPos + "").append(playerImg);
@@ -421,24 +468,34 @@
         $('#btnRoll')
             .mouseup(//클릭끝
                 function () {
+                	
                     $('.wrapper')
                         .css('background-image',
                             "url('${pageContext.request.contextPath}/img/miniGame/diceDrop.gif')")
                     setTimeout("reset()", 2000);
                     setTimeout("diceDis()", 250);
 
-                });
+                }).prop("disabled", false);
     }
 
 
     var animateButton = function (e) {
+    	if(0 <= playerPos && playerPos <= 3){
+    		gsap.to('.player', {rotate: 360});
+        } else if(4 <= playerPos && playerPos <= 7){
+    		gsap.to('.player', {rotate: 90});
+        } else if(8 <= playerPos && playerPos <= 11){
+    		gsap.to('.player', {rotate: 180});
+        } else if(12 <= playerPos && playerPos <= 15){
+    		gsap.to('.player', {rotate: 270});
+        }
+    	
         e.preventDefault;
         //reset animation
         e.target.classList.remove('animate');
 
         e.target.classList.add('animate');
         setTimeout(function () {
-            console.log(2);
             e.target.classList.remove('animate');
         }, 700);
     };
@@ -454,6 +511,7 @@
 
     function diceApper() {
         $('#btnRoll').css('visibility', 'visible')
+        $('#btnRoll').removeAttr("disabled");
     }
 
     function reset() {
@@ -463,6 +521,7 @@
 
     //반환점 돌면 맵랜덤리셋하기(ajax)
     function autoRenew() {
+    	
         temp = "[";
         for (var i = 0; i < 15; i++) {
             if (i != 0) {
@@ -519,7 +578,6 @@
                 recentMap = [];
                 for (var i = 0; i < data.info.length; i++) {
                     recentMap.push(data.info[i].seq);
-                    console.log(i+data.info[i].seq);
                 }
 
                 $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[0].kind + "/" + data.info[0].imgName);
@@ -562,6 +620,7 @@
 
     //랜드효과발동
     function effectAct() {
+    	
         var objposition = "start";
         if (playerPos != 0) {
             objposition = recentMap[playerPos - 1];
@@ -585,9 +644,6 @@
                    if(!data.site==null){
 	                   $(".mpoint").html("마블게임 포인트 : "+data.site.browniePoint);
                    }
-                   
-                   console.log("log");
-                   console.log(data.log);
                    
                    $("#logHome").html(data.log);
                    
@@ -634,7 +690,7 @@
 
         status1.innerHTML = side1 + "!";
 
-        setTimeout('move(' + 14 + ')', 1900);
+        setTimeout('move(' + side1 + ')', 1900);
     }
 
     //한번더! 주사위 더블이벤트
@@ -694,20 +750,24 @@
     function move(diceTotal) {
         for (var i = 0; i < diceTotal; i++) {
             if (0 <= playerPos && playerPos <= 3) {
+            	gsap.to('.player', {rotate: 360});
                 leftMove();
                 ++playerPos;
             } else if (4 <= playerPos && playerPos <= 7) {
+            	gsap.to('.player', {rotate: 90});
                 downMove();
                 ++playerPos;
             } else if (8 <= playerPos && playerPos <= 11) {
+            	gsap.to('.player', {rotate: 180});
                 rightMove();
                 ++playerPos;
             } else if (12 <= playerPos && playerPos <= 15) {
-
+            	gsap.to('.player', {rotate: 270});
             	upMove();
                 ++playerPos;
             }
             if (playerPos == 16) {
+            	gsap.to('.player', {rotate: 360});
                 playerPos = 0;
                 rndMapCreate();
             }
@@ -719,24 +779,28 @@
 
     //시각적 이동
     function leftMove() {
+    	
         $(".player").animate({
             left: "+=186"
         }, diceSpeed);
     }
 
     function rightMove() {
+    	
         $(".player").animate({
             left: "-=186"
         }, diceSpeed);
     }
 
     function downMove() {
+    	
         $(".player").animate({
             top: "+=186"
         }, diceSpeed);
     }
 
     function upMove() {
+    	
         $(".player").animate({
             top: "-=186"
         }, diceSpeed);
@@ -818,6 +882,9 @@
                             <p class="point mpoint">마블게임 포인트 : ${player.point}</p>
 
                         </div>
+                        
+                        
+                        <button id="testz" onclick="changImg()" >이미지 변경</button>
 
 
                         <div class="hp" style="margin-top:20px;">

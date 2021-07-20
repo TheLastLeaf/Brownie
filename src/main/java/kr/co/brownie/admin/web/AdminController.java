@@ -6,6 +6,7 @@ import kr.co.brownie.blackList.service.BlackListService;
 import kr.co.brownie.blackList.service.BlackUserService;
 import kr.co.brownie.report.service.ReportService;
 import kr.co.brownie.user.service.UserService;
+import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,7 @@ public class AdminController {
 
     @GetMapping(path = {"", "/adminView"})
     public String adminView(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -76,7 +77,7 @@ public class AdminController {
 
     @GetMapping("/adminMemberList")
     public String adminMemberList(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -94,7 +95,7 @@ public class AdminController {
 
     @GetMapping("/adminBlackList")
     public String adminBlackList(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -121,7 +122,7 @@ public class AdminController {
 
     @GetMapping("/adminReportList")
     public String adminReportList(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -139,27 +140,56 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "/addblacklist", method = {RequestMethod.GET, RequestMethod.POST})
     public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
-        String id = httpServletRequest.getSession().getAttribute("id").toString();
-        String Seq = httpServletRequest.getParameter("reportSeq");
-        int reportSeq = Integer.parseInt(Seq);
-        String userId = httpServletRequest.getParameter("userId");
-        String result = httpServletRequest.getParameter("log");
-        String rSeq = httpServletRequest.getParameter("reasonSeq");
-        int reasonSeq = Integer.parseInt(rSeq);
-        String bSeq = httpServletRequest.getParameter("bListSeq");
-        int bListSeq = Integer.parseInt(bSeq);
-        String endD = httpServletRequest.getParameter("endDate");
-        int endDate = Integer.parseInt(endD);
-        int cnt = reportService.update(reportSeq, id);
-        if (cnt == 1) {
-            int ucount = userService.blackstack(userId);
-            if (ucount == 1) {
-                int count = blackListService.insert(userId, result, id, reasonSeq,bListSeq, endDate);
-                model.addAttribute("count", count);
-                return "ok";
+        try {
+            String id = httpServletRequest.getSession().getAttribute("id").toString();
+            String Seq = httpServletRequest.getParameter("reportSeq");
+            int reportSeq = Integer.parseInt(Seq);
+            String userId = httpServletRequest.getParameter("userId");
+            String result = httpServletRequest.getParameter("log");
+            String rSeq = httpServletRequest.getParameter("reasonSeq");
+            int reasonSeq = Integer.parseInt(rSeq);
+            String bSeq = httpServletRequest.getParameter("bListSeq");
+            int bListSeq = Integer.parseInt(bSeq);
+            String endD = httpServletRequest.getParameter("endDate");
+            int endDate = Integer.parseInt(endD);
+            int cnt = reportService.update(reportSeq, id);
+            if (cnt == 1) {
+                int ucount = userService.blackstack(userId);
+                userService.updateStatus(userId);
+                //블랙 카운트 update 시 블랙 스택 확인 후 활동상태 변경하기
+                if (ucount == 1) {
+                    int count = blackListService.insert(userId, result, id, reasonSeq);
+                    model.addAttribute("count", count);
+                    if (count == 1) {
+                        UserVO user = userService.userOneSelect(userId);
+                        int stack = user.getBlackStack();
+                        switch (stack) {
+                            case 0:
+                                endDate = endDate + 1;
+                                break;
+                            case 1:
+                                endDate = endDate + 3;
+                                break;
+                            case 2:
+                                endDate = endDate + 7;
+                                break;
+                            case 3:
+                                endDate = endDate + 30;
+                                break;
+                            default:
+                                endDate = endDate + 30;
+                                break;
+                        }
+                        blackUserService.merge(bListSeq, userId, endDate, id);
+                        return "ok";
+                    }
+                }
             }
+            model.addAttribute("cnt", cnt);
+            return "ok";
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        model.addAttribute("cnt", cnt);
         return "ok";
     }
 }

@@ -20,5 +20,4 @@ public class AdminVO {
 
     //오늘 신규 가입한 회원
     private int todayUser;
-
 }

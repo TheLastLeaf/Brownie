@@ -134,4 +134,9 @@ public class UserServiceImpl implements UserService {
                 .build();
     }
 
+    @Override
+    public void updateStatus(String userId) {
+        userMapper.updateStatus(userId);
+    }
+
 }

@@ -10,5 +10,4 @@ public interface AdminService {
     AdminVO BlackUserCnt();
 
     AdminVO todayUser();
-
 }

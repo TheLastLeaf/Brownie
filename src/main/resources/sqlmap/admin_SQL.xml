@@ -44,6 +44,7 @@
     <select id="todayUser" resultType="kr.co.brownie.admin.service.AdminVO">
         SELECT COUNT(*) as todayUser
         FROM BROWNIE_USER
-        WHERE IN_DATE = SYSDATE
+        WHERE IN_DATE
+                  BETWEEN SYSDATE - 7 AND SYSDATE
     </select>
 </mapper>

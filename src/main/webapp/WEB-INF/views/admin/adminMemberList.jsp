@@ -45,7 +45,7 @@
                         <c:forEach var="userList" items="${UserPagingVO.userVOList}" varStatus="status">
                             <tr>
                                 <th>${status.index }</th>
-                                <th>${userList.userId }</th>
+                                <th onclick="location.href='/user/userInfo/${userList.userId}'" style="cursor: pointer">${userList.userId }</th>
                                 <th>${userList.lolId }</th>
                                 <th>${userList.nickName }</th>
                                 <th>Lv. ${userList.userLevel }</th>

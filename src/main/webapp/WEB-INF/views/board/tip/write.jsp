@@ -146,34 +146,32 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form method="POST">
-                    <div class="contact-text">
-                        <div class="contact-form">
-                            <div class="dt-leave-comment">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <select class="w-100" name="champion">
-                                            <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
-                                                <option value="${champion.id}">${champion.name}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                    <div class="input-list col-9" style="padding-bottom: 10px;">
-                                        <input type="text" placeholder="Title" class="title" id="title" name="title"
-                                               required="required">
-                                    </div>
+                <div class="contact-text">
+                    <div class="contact-form">
+                        <div class="dt-leave-comment">
+                            <div class="row">
+                                <div class="col-3">
+                                    <select class="w-100" name="boardCategory">
+                                        <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
+                                            <option value="${champion.id}">${champion.name}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
-                                <div class="content">
+                                <div class="input-list col-9" style="padding-bottom: 10px;">
+                                    <input type="text" placeholder="Title" class="title" id="title" name="title"
+                                           required="required">
+                                </div>
+                            </div>
+                            <div class="content">
                                     <textarea class="summernote" name="content" id="content"
                                               required="required"></textarea>
-                                </div>
-                                <div class="pad">
-                                    <input type="submit" value="등록" class="submit">
-                                </div>
+                            </div>
+                            <div class="pad">
+                                <input type="button" onclick="boardWrite()" value="등록" class="submit">
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

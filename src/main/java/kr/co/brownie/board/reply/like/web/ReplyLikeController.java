@@ -1,5 +1,6 @@
 package kr.co.brownie.board.reply.like.web;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import kr.co.brownie.board.reply.like.service.ReplyLikeCountVO;
 import kr.co.brownie.board.reply.like.service.ReplyLikeService;
@@ -61,15 +62,15 @@ public class ReplyLikeController {
         }
 
         ReplyLikeCountVO replyLikeCountVO = this.replyLikeService.count(map);
-        JsonObject replyLikeCountVOObject = new JsonObject();
+        JsonObject replyLikeCountVOObject;
         if (replyLikeCountVO == null) {
+            replyLikeCountVOObject = new JsonObject();
             replyLikeCountVOObject.addProperty("replySeq", map.get("replySeq").toString());
             replyLikeCountVOObject.addProperty("likeCnt", 0);
             replyLikeCountVOObject.addProperty("unlikeCnt", 0);
         } else {
-            replyLikeCountVOObject.addProperty("replySeq", replyLikeCountVO.getReplySeq());
-            replyLikeCountVOObject.addProperty("likeCnt", replyLikeCountVO.getLikeCnt());
-            replyLikeCountVOObject.addProperty("unlikeCnt", replyLikeCountVO.getUnlikeCnt());
+            Gson gson = new Gson();
+            replyLikeCountVOObject = gson.fromJson(gson.toJson(replyLikeCountVO), JsonObject.class);
         }
         jsonObject.add("replyLikeCount", replyLikeCountVOObject);
 

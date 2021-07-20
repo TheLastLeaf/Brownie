@@ -39,6 +39,7 @@
                               B.NICK_NAME  AS NICKNAME
                        FROM BLACK_USER A
                                 LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.USER_ID)
+                       WHERE A.STATUS = 'Y'
                        ORDER BY B_USER_SEQ
                    )
              )
@@ -46,6 +47,23 @@
           AND RN <= ${contentPerPage} * ${currentPageNumber}
         ]]>
     </select>
+
+    <update id="merge" parameterType="hashMap">
+        MERGE INTO BLACK_USER
+        USING DUAL
+        ON (USER_ID = #{userId})
+        WHEN MATCHED THEN
+            UPDATE SET
+                       B_LIST_SEQ = #{bListSeq},
+                       END_DATE = END_DATE + #{endDate},
+                       UP_DATE = SYSDATE,
+                       UP_USER_ID = #{userId}
+        WHEN NOT MATCHED THEN
+            INSERT (B_USER_SEQ, B_LIST_SEQ, USER_ID, END_DATE, STATUS, IN_DATE, UP_DATE, IN_USER_ID,
+                    UP_USER_ID)
+            VALUES ((SELECT NVL(MAX(B_USER_SEQ), 0) + 1 FROM BLACK_USER), #{bListSeq}, #{userId}, SYSDATE + #{endDate}, 'Y',
+                    SYSDATE, SYSDATE, #{id}, #{id})
+    </update>
 
     <select id="count" resultType="int">
         SELECT COUNT(*)

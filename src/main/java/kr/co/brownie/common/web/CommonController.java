@@ -3,7 +3,6 @@ package kr.co.brownie.common.web;
 import com.google.gson.JsonObject;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.common.service.CommonService;
-import kr.co.brownie.free.service.FreeService;
 import kr.co.brownie.youtube.service.YouTubeService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -30,9 +29,6 @@ public class CommonController {
     @Resource(name = "youTubeService")
     YouTubeService youTubeService;
 
-    @Resource(name = "freeService")
-    FreeService freeService;
-
     @Resource(name = "boardService")
     BoardService boardService;
 
@@ -47,9 +43,6 @@ public class CommonController {
 
         //main youtube list
         model.addAttribute("youTubeVoList", youTubeService.selectList());
-
-        //상단 메뉴바 자유게시판에 마우스 오버 시 드롭다운 최근 게시물 5개
-        model.addAttribute("recentList", freeService.selectRecentForMenu());
 
         return "common/index";
     }

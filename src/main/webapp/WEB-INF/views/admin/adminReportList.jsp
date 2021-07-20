@@ -21,15 +21,13 @@
 <!-- Breadcrumb Section End -->
 
 <script>
-    function fn_submit() {
+    function fn_submit(reportSeq) {
         alert("블랙리스트로 추가하시겠습니까?")
-        const userId = $(".userId").val();
-        const log = $(".log").val();
-        const reportSeq = $(".reportSeq").val();
-        const reasonSeq = $("#reason option:selected").val();
+        const userId = $("#" + reportSeq + " .userId").val();
+        const log = $("#" + reportSeq + " .log").val();
+        const reasonSeq = $("#" + reportSeq + " #reason option:selected").val();
         const bListSeq = $(".bListSeq").val();
         const endDate = $(".endDate").val();
-
 
         $.ajax({
             url: "./addblacklist",
@@ -44,7 +42,7 @@
             },
             success: function (data) {
                 console.log(data)
-                if (data == "ok") {
+                if (data === "ok") {
                     alert("블랙리스트 추가 완료.")
                     location.reload();
                 }
@@ -54,8 +52,6 @@
             }
         })
     }
-
-
 </script>
 
 <style>
@@ -113,13 +109,13 @@
                     <c:forEach var="blacklist" items="${blackList}">
                         <input type="hidden" value="${blacklist.BListSeq}" name="bListSeq" class="bListSeq">
                         <c:choose>
-                            <c:when test="${blacklist.reasonSeq == '1' || blacklist.reasonSeq eq 1}">
+                            <c:when test="${blacklist.reasonSeq == 1 || blacklist.reasonSeq eq 1}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
-                            <c:when test="${blacklist.reasonSeq == '2' || blacklist.reasonSeq eq 2}">
+                            <c:when test="${blacklist.reasonSeq == 2 || blacklist.reasonSeq eq 2}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
-                            <c:when test="${blacklist.reasonSeq == '3' || blacklist.reasonSeq eq 3}">
+                            <c:when test="${blacklist.reasonSeq == 3 || blacklist.reasonSeq eq 3}">
                                 <input type="hidden" value="7" name="endDate" class="endDate">
                             </c:when>
                             <c:otherwise>
@@ -139,7 +135,7 @@
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }">
                             <c:if test="${reportList.status eq 'N'}">
-                                <tr>
+                                <tr id="${reportList.reportSeq}">
                                     <th class="reportListTd">${reportList.userId}</th>
                                     <th class="reportListTd">${reportList.reportName }</th>
                                     <c:choose>
@@ -160,13 +156,15 @@
                                             <option class="reason" value="4">그냥</option>
                                         </select>
                                     </th>
-                                    <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i>
-                                    </th>
                                     <input type="hidden" name="userId" value="${reportList.userId}" id="userId"
                                            class="userId">
                                     <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
                                     <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq"
                                            class="reportSeq">
+                                    <th class="reportListTd"><i class="fas fa-times"
+                                                                onclick="fn_submit(${reportList.reportSeq})"
+                                                                id="but"></i>
+                                    </th>
                                 </tr>
                             </c:if>
                         </c:forEach>

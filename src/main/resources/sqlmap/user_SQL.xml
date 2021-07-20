@@ -195,4 +195,11 @@
         SELECT COUNT(*)
         FROM BROWNIE_USER
     </select>
+
+    <update id="updateStatus" parameterType="String">
+        UPDATE BROWNIE_USER
+        SET STATUS = 'B'
+        WHERE USER_ID = #{userId}
+          AND BLACK_STACK >= 3
+    </update>
 </mapper>
