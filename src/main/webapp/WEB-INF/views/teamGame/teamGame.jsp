@@ -117,18 +117,25 @@
     function fn_makeRoom() {
         window.open("teamGame/makeRoom", "makeTeam",
             "width=660, height=570, left=250,top=200");
-        // 		fn_newRoom();
     }
 
-    function fn_chatRoom() {
-        makeRoom = window.open("teamGame/chatRoom", "chatingRoom",
-            "width=1100, height=720, scroll=no, left=450, top=150");
+    function fn_chatRoom(roomNumber) {
+        console.log('방 번호 : ', roomNumber);
+        var chatPop= document.roomInfo;
+        var url = 'http://192.168.41.27/websocket/chat2';
+        window.open('','chatingRoom','width=1100, height=720, scroll=no, left=500, top=250');
+
+        chatPop.action = url;
+        chatPop.target = 'chatingRoom';
+        chatPop.roomNumber.value = roomNumber;
+        chatPop.submit();
     }
 
     function fn_blockRoom() {
         alert("해당 포지션을 선택한 유저가 존재합니다. 다른 포지션을 선택해주세요.");
         window.location.reload();
     }
+
 </script>
 <!-- Main Content Post Section Begin -->
 
@@ -193,8 +200,11 @@
                     </table>
                 </div>
                 <!-- 검색 box end -->
-
-
+                <!------------------------------------------------------------------->
+                <form name="roomInfo">
+                    <input type="hidden" name="roomNumber">
+                </form>
+                <!------------------------------------------------------------------->
                 <div class="dt-desc" style="display: block;">
                     <div class="row outBox" style="margin: auto;">
                         <!-- 방만들기 begin -->
@@ -205,17 +215,9 @@
                                 &nbsp; 방만들기
                             </label>
                         </div>
-                        <!-- 방만들기 end -->
-
-                        <!-- 						<div> -->
-                        <!-- 							<input type="button" onclick="fn_newRoom()" /> -->
-                        <!-- 						</div> -->
-
-
-                        <!-- 만들어진 방 begin -->
-                        <!-- <div class="innerBox" style="text-align: center"> -->
 
                         <c:forEach var="teamGameList" items="${teamGameList }">
+
                             <div class="innerBox text-center" id="roomBox">
                                 <div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
                                     <p class="col-sm gmode" style="text-align: left;">
@@ -226,7 +228,7 @@
                                              src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg"/>
                                     </p>
                                 </div>
-                                <div class="roomTitle">${teamGameList.title}</div>
+                                <div class="roomTitle">${teamGameList.teamGameSeq} ${teamGameList.title}</div>
                                 <p style="margin: 10px 0px 3px;">
                                     <c:set var="posiSeq" value="${teamGameList.positionSeq}"/>
                                     <c:choose>
@@ -238,7 +240,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button" class="positionTop blank-position"
-                                                    onclick="fn_chatRoom()">
+                                                    onclick="fn_chatRoom(this.id)" id="${teamGameList.teamGameSeq}">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png"/>
                                             </button>
                                         </c:otherwise>
@@ -253,7 +255,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button" class="positionJun blank-position"
-                                                    onclick="fn_chatRoom()">
+                                                    onclick="fn_chatRoom(this.id)" id="${teamGameList.teamGameSeq}">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png"/>
                                             </button>
                                         </c:otherwise>
@@ -268,7 +270,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button" class="positionMid blank-position"
-                                                    onclick="fn_chatRoom()">
+                                                    onclick="fn_chatRoom(this.id)" id="${teamGameList.teamGameSeq}">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png"/>
                                             </button>
                                         </c:otherwise>
@@ -283,7 +285,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button" class="positionAd blank-position"
-                                                    onclick="fn_chatRoom()">
+                                                    onclick="fn_chatRoom(this.id)" id="${teamGameList.teamGameSeq}">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png"/>
                                             </button>
                                         </c:otherwise>
@@ -298,7 +300,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button" class="positionSup blank-position"
-                                                    onclick="fn_chatRoom()">
+                                                    onclick="fn_chatRoom(this.id)" id="${teamGameList.teamGameSeq}">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png"/>
                                             </button>
                                         </c:otherwise>
