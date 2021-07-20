@@ -52,7 +52,7 @@ public class BoardVO {
             if (boardKind.equalsIgnoreCase("TIP")) {
                 return "https://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/" + Character.toUpperCase(boardCategory.charAt(0)) + boardCategory.substring(1) + ".png";
             }
-            return "/img/categories-list/cl-1.jpg";
+            return "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
         }
         return Jsoup.parse(content).select("img").attr("src");
     }
