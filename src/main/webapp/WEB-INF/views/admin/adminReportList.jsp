@@ -21,15 +21,13 @@
 <!-- Breadcrumb Section End -->
 
 <script>
-    function fn_submit() {
+    function fn_submit(reportSeq) {
         alert("블랙리스트로 추가하시겠습니까?")
-        const userId = $(".userId").val();
-        const log = $(".log").val();
-        const reportSeq = $(".reportSeq").val();
-        const reasonSeq = $("#reason option:selected").val();
-        const bListSeq = $(".bListSeq").val();
-        const endDate = $(".endDate").val();
-
+        const userId = $("#" + reportSeq + " .userId").val();
+        const log = $("#" + reportSeq + " .log").val();
+        const reasonSeq = $("#" + reportSeq + " #reason option:selected").val();
+        const bListSeq = $("#" + reportSeq + " .bListSeq").val();
+        const endDate = $("#" + reportSeq + " .endDate").val();
 
         $.ajax({
             url: "./addblacklist",
@@ -44,7 +42,7 @@
             },
             success: function (data) {
                 console.log(data)
-                if (data == "ok") {
+                if (data === "ok") {
                     alert("블랙리스트 추가 완료.")
                     location.reload();
                 }
@@ -54,8 +52,6 @@
             }
         })
     }
-
-
 </script>
 
 <style>
@@ -139,7 +135,7 @@
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }">
                             <c:if test="${reportList.status eq 'N'}">
-                                <tr>
+                                <tr id="${reportList.reportSeq}">
                                     <th class="reportListTd">${reportList.userId}</th>
                                     <th class="reportListTd">${reportList.reportName }</th>
                                     <c:choose>
@@ -165,7 +161,9 @@
                                     <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
                                     <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq"
                                            class="reportSeq">
-                                    <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i>
+                                    <th class="reportListTd"><i class="fas fa-times"
+                                                                onclick="fn_submit(${reportList.reportSeq})"
+                                                                id="but"></i>
                                     </th>
                                 </tr>
                             </c:if>
