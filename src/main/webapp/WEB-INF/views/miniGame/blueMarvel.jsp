@@ -262,7 +262,7 @@
     }
     
     .startLine {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/sudden/start.png");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/mer/chr-merchant.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -327,6 +327,23 @@
 	  box-sizing:border-box; padding:74px 0;
 	  line-height:23px; cursor:pointer;
 	}	
+	
+	#modalImg{
+		width: 200px;
+	}
+	
+	#modalTitle{
+		font-size: 40px;
+    	font-weight:bolder;
+    	text-align: center;
+	}
+	
+	#modalCon{
+		padding: 10px;
+    	text-align: center;
+    	font-size: 25px;
+    	font-weight:bold;
+	}
     
 </style>
 
@@ -386,7 +403,7 @@
 	var colorIndices = [0,1,2,3];
 	
 	//transition speed
-	var gradientSpeed = 0.0005;
+	var gradientSpeed = 0.001;
 	
 	function updateGradient()
 	{
@@ -481,7 +498,7 @@
 	//////////////
 	//랜드 무지개 효과
 		var hue = 1,
-		button1 = document.getElementsByClassName('start');
+		button1 = document.getElementsByClassName('rainbowEffect');
 		function color() {
 			var alpha = 0,
 				  s = 1,
@@ -513,44 +530,7 @@
 		  hue++;
 		}
 	////////////
-	var cnt1 = 0;
-	function changImg(){
-		if(cnt1==0){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit.png' /></div>";
-			cnt1++;
-		} else if(cnt1==1){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/animal-rabbit-moon.png' /></div>";
-			cnt1++;
-		} else if(cnt1==2){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/bear.png' /></div>";
-			cnt1++;
-		} else if(cnt1==3){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/chr-android.png' /></div>";
-			cnt1++;
-		} else if(cnt1==4){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/man-robot.png' /></div>";
-			cnt1++;
-		} else if(cnt1==5){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/man-universe.png' /></div>";
-			cnt1++;
-		} else if(cnt1==6){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/man-wizard.png' /></div>";
-			cnt1++;
-		} else if(cnt1==7){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/pngwing.com.png' /></div>";
-			cnt1++;
-		} else if(cnt1==8){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit(2).png' /></div>";
-			cnt1++;
-		} else if(cnt1==9){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit(3).png' /></div>";
-			cnt1++;
-		} else if(cnt1==10){
-			playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/rion.png' /></div>";
-			cnt1=0;
-		}
-		$(".l" + playerPos + "").html(playerImg);
-	}
+	
 	
 	
     var playerPos = ${player.position};	//플레이어 위치
@@ -569,7 +549,7 @@
     var recentHp = ${player.recentHp};
 
     //설정
-    var playerImg = "<div class='player'><img class='playerImg' src='${pageContext.request.contextPath}/img/miniGame/chr/pngwing.com.png' /></div>";
+    var playerImg = "<div class='player'><img id='self' class='playerImg landI' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit.png' /></div>";
     //var playerImg = "<div class='player'><i style='color: red;' class='fas fa-chess-knight fa-8x'></i></div>";
     var diceSpeed = 450; // 주사위속도
     var side1 = 0;
@@ -615,15 +595,15 @@
 
     var animateButton = function (e) {
     	if(0 <= playerPos && playerPos <= 3){
+        	$(".playerImg").removeClass('flipped');
     		gsap.to('.player', {rotate: 360});
         } else if(4 <= playerPos && playerPos <= 7){
-    		gsap.to('.player', {rotate: 90});
+        	gsap.to('.player', {rotate: 0});
         } else if(8 <= playerPos && playerPos <= 11){
         	$(".playerImg").addClass('flipped');
         	gsap.to('.player', {rotate: 360});
         } else if(12 <= playerPos && playerPos <= 15){
-        	$(".playerImg").removeClass('flipped');
-    		gsap.to('.player', {rotate: 270});
+        	gsap.to('.player', {rotate: 0});
         }
     	
         e.preventDefault;
@@ -817,7 +797,11 @@
     
     function selectmarbelInfo(landNum) {
     	var number = 0;
-    	if(landNum!=0){
+    	if(landNum==0){
+    		number = 0;
+    	} else if(landNum==="self") {
+    		number=10;	
+    	} else {
 	    	number = recentMap[Number(landNum)-1];
     	}
     	
@@ -830,6 +814,7 @@
             success: function (data) {
            		$("#modalTitle").html(data.name);
            		$("#modalCon").html(data.detailedExpl);
+           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.kind + "/" + data.imgName+"'/>");
             },
             error: function () {
                 alert("랜드정보 불러오기 실패ㅡ!");
@@ -937,21 +922,19 @@
                 leftMove();
                 ++playerPos;
             } else if (4 <= playerPos && playerPos <= 7) {
-            	gsap.to('.player', {rotate: 90});
                 downMove();
                 ++playerPos;
             } else if (8 <= playerPos && playerPos <= 11) {
             	$(".playerImg").addClass('flipped');
-            	gsap.to('.player', {rotate: 360});
+            	gsap.to('.player', {rotate: 0});
                 rightMove();
                 ++playerPos;
             } else if (12 <= playerPos && playerPos <= 15) {
-            	$(".playerImg").removeClass('flipped');
-            	gsap.to('.player', {rotate: 270});
             	upMove();
                 ++playerPos;
             }
             if (playerPos == 16) {
+            	$(".playerImg").removeClass('flipped');
             	gsap.to('.player', {rotate: 360});
                 playerPos = 0;
                 rndMapCreate();
@@ -995,6 +978,7 @@ $(function(){
 	$(".landI").click(function(){
 		$(".modal").fadeIn();
 		var landNum = $(this).attr('id');
+		alert(landNum)
 		selectmarbelInfo(landNum);
 	});
 	
@@ -1011,6 +995,8 @@ $(function(){
 <!-- 모달 -->
 <div class="modal">
 	<div class="modal_content">
+		
+		<p><div id="modalImgD"></div></p>
 	
 		<p><div id="modalTitle"></div></p>
 		
@@ -1027,7 +1013,7 @@ $(function(){
             
             	<div class="sidebar-option sideKick side1">
                     <div class="best-of-post">
-                        <div style="padding: 10px; margin-top:30px;  width: 390px;    height: 600px;    background-color: lightcyan;">
+                        <div style="padding: 10px; margin-top:30px;  width: 390px;    height: 500px;    background-color: lightcyan;">
                             <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;">
                                 <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;">
                                 	<span class="innerText">GAME INFO</span>
@@ -1048,7 +1034,7 @@ $(function(){
                         	
                         </div>
 				
-						<br/><br/>
+						<br/>
 						
                         <div style="padding-top: 10px;">
 
@@ -1058,28 +1044,21 @@ $(function(){
 
                         </div>
                         
+                        <br/>
                         
-                        <button id="testz" onclick="changImg()" >이미지 변경</button>
-
-
                         <div class="hp" style="margin-top:20px;">
-                            <table class="" style="width: 390px; background-color: floralwhite; border-radius: 1.3em;">
-                                <tbody>
-                                <!-- spring hp 데이타 -->
-                                <tr>
-                                    <td class="hp"><img
-                                            src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/></td>
-                                    <td class="hp"><img
-                                            src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/></td>
-                                    <td class="hp"><img
-                                            src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/></td>
-                                    <td class="hp"><img
-                                            src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/></td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        	<div class="hp"></div>
+                        	<div class="hp"></div>
+                        	<div class="hp"></div>
+                        	<div class="hp"></div>
+							<img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/>
+							<img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/>
+							<img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/>
+							<img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/>
                         </div>
-
+						
+						<br/>
+						
                         <!-- 시간나면 -->
                         <div class="itemList">
 
@@ -1142,7 +1121,7 @@ $(function(){
 
                 <div class="sidebar-option sideKick side2">
                     <div class="best-of-post">
-                        <div style="padding: 10px; margin-top:30px;   overflow: overlay;   width: 390px;    height: 840px;    background-color: lightcyan;">
+                        <div style="padding: 10px; margin-top:30px;   overflow: overlay;   width: 390px;    height: 500px;    background-color: lightcyan;">
                             <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;">
                                 <span class="innerText">GAME LOG</span></div>
                                 <div id="logHome">
@@ -1155,7 +1134,7 @@ $(function(){
                             	</div>
                         </div>
                         <br>
-                        <input type="button" onclick="deleteLog()" value="로그 청소" />
+                        <button style="width:55px;" onclick="deleteLog()" >로그청소</button>
                     </div>
                 </div>
             </div>
