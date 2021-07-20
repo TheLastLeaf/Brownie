@@ -18,5 +18,4 @@ public class BlackListVO {
     private String status;
     private Integer bUserSeq;
     private Date endDate;
-
 }

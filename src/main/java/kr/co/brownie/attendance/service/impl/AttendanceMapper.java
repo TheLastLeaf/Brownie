@@ -9,9 +9,7 @@ import java.util.List;
 @Mapper
 @Repository("attendanceMapper")
 public interface AttendanceMapper {
-
     List<AttendanceVO> getCheckedDate(String userId);
 
     int insertOne(String userId);
-
 }

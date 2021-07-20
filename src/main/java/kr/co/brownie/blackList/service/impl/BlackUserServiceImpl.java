@@ -10,7 +10,6 @@ import java.util.Map;
 
 @Service("blackUserService")
 public class BlackUserServiceImpl implements BlackUserService {
-
     @Resource(name = "blackUserMapper")
     BlackUserMapper blackUserMapper;
 
@@ -46,5 +45,4 @@ public class BlackUserServiceImpl implements BlackUserService {
     public int update(int bUserSeq) {
         return blackUserMapper.update(bUserSeq);
     }
-
 }

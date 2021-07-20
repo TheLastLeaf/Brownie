@@ -11,7 +11,6 @@ import java.util.Map;
 
 @Service("blackListService")
 public class BlackListServiceImpl implements BlackListService {
-
     @Resource(name = "blackListMapper")
     BlackListMapper blackListMapper;
 
@@ -38,5 +37,4 @@ public class BlackListServiceImpl implements BlackListService {
         map.put("bListSeq", bListSeq);
         return blackListMapper.updateBlackUser(map);
     }
-
 }

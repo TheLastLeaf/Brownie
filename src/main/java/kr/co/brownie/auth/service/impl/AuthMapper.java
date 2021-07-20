@@ -7,7 +7,6 @@ import java.util.Map;
 
 @Repository("authMapper")
 public interface AuthMapper {
-
     void insertUser(Map<String, Object> map);
 
     void insertPermitLevel(String userId) throws IOException;

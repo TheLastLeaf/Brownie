@@ -41,7 +41,7 @@ public class AdminController {
 
     @GetMapping(path = {"", "/adminView"})
     public String adminView(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -77,7 +77,7 @@ public class AdminController {
 
     @GetMapping("/adminMemberList")
     public String adminMemberList(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -95,7 +95,7 @@ public class AdminController {
 
     @GetMapping("/adminBlackList")
     public String adminBlackList(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -122,7 +122,7 @@ public class AdminController {
 
     @GetMapping("/adminReportList")
     public String adminReportList(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int)httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -140,7 +140,7 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "/addblacklist", method = {RequestMethod.GET, RequestMethod.POST})
     public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
-        try{
+        try {
             String id = httpServletRequest.getSession().getAttribute("id").toString();
             String Seq = httpServletRequest.getParameter("reportSeq");
             int reportSeq = Integer.parseInt(Seq);
@@ -160,7 +160,7 @@ public class AdminController {
                 if (ucount == 1) {
                     int count = blackListService.insert(userId, result, id, reasonSeq);
                     model.addAttribute("count", count);
-                    if(count == 1){
+                    if (count == 1) {
                         UserVO user = userService.userOneSelect(userId);
                         int stack = user.getBlackStack();
                         switch (stack) {
@@ -179,15 +179,15 @@ public class AdminController {
                             default:
                                 endDate = endDate + 30;
                                 break;
-                             }
-                         blackUserService.merge(bListSeq , userId, endDate, id);
-                         return "ok";
-                         }
+                        }
+                        blackUserService.merge(bListSeq, userId, endDate, id);
+                        return "ok";
                     }
                 }
+            }
             model.addAttribute("cnt", cnt);
             return "ok";
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return "ok";

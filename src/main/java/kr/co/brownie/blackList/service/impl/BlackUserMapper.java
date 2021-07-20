@@ -8,7 +8,6 @@ import java.util.Map;
 
 @Repository("blackUserMapper")
 public interface BlackUserMapper {
-
     List<BlackUserVO> blackUserList(Map<String, Object> map);
 
     int merge(Map<String, Object> map);
