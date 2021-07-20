@@ -88,6 +88,11 @@
             height: 25px;
             font-size: small;
         }
+
+        .mw-post-item img {
+            height: 132px;
+            width: auto;
+        }
     </style>
 
     <script>
@@ -97,6 +102,7 @@
                 type: "POST",
                 dataType: "json",
                 success: function (data) {
+                    console.log(data)
                     let headerNoticeSection = "";
                     let headerTipSection = "";
                     let headerFreeSection = "";
@@ -256,7 +262,7 @@
                             <div id="header-notice-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -270,7 +276,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -284,7 +290,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -298,7 +304,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -312,7 +318,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -333,7 +339,7 @@
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -347,7 +353,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -361,7 +367,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -375,7 +381,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -389,7 +395,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -410,7 +416,7 @@
                             <div id="header-tip-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -424,7 +430,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -438,7 +444,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -452,7 +458,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -466,7 +472,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -487,7 +493,7 @@
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-1.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -501,7 +507,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-2.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -515,7 +521,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-3.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -529,7 +535,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-4.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -543,7 +549,7 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="${pageContext.request.contextPath}/img/megamenu/mm-5.jpg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
