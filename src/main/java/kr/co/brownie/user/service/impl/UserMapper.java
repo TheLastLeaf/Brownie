@@ -43,4 +43,5 @@ public interface UserMapper {
 
     List<UserVO> userList(Map<String, Object> map);
 
+    void updateStatus(String userId);
 }

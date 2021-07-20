@@ -160,13 +160,13 @@
                                             <option class="reason" value="4">그냥</option>
                                         </select>
                                     </th>
-                                    <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i>
-                                    </th>
                                     <input type="hidden" name="userId" value="${reportList.userId}" id="userId"
                                            class="userId">
                                     <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
                                     <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq"
                                            class="reportSeq">
+                                    <th class="reportListTd"><i class="fas fa-times" onclick="fn_submit()" id="but"></i>
+                                    </th>
                                 </tr>
                             </c:if>
                         </c:forEach>

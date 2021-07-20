@@ -41,4 +41,7 @@ public interface UserService {
     int blackstack(String userId);
 
     UserPagingVO userList(int currentPageNumber);
+
+    //blackstack 3이상 상태변경
+    void updateStatus(String userId);
 }
