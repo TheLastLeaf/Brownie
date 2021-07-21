@@ -301,18 +301,18 @@
                                      data-setbg="${pageContext.request.contextPath}${galleryVO.fileSeq}"
                                      onclick="location.href='${pageContext.request.contextPath}/gallery/detail?boardSeq=${galleryVO.boardSeq}'">
                                     <div class="label">
-                                        <span>${ galleryVO.boardCategory }</span>
+                                        <span>${galleryVO.boardCategory}</span>
                                     </div>
                                 </div>
                                 <div class="cg-text">
                                     <h5>
-                                        <a href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${galleryVO.boardSeq}">${ galleryVO.title }</a>
+                                        <a href="${pageContext.request.contextPath}/gallery/detail?boardSeq=${galleryVO.boardSeq}">${galleryVO.title}</a>
                                     </h5>
                                     <ul>
-                                        <li><span>${ galleryVO.inUserId }</span></li>
-                                        <li><i class="far fa-clock"></i> ${ galleryVO.inDate } </li>
-                                        <li><i class="far fa-comment">조회</i> ${ galleryVO.subSeq }</li>
-                                        <li><i class="far fa-comment">추천</i> ${ galleryVO.love }</li>
+                                        <li><span>${galleryVO.inUserId}</span></li>
+                                        <li><i class="far fa-clock"></i> ${galleryVO.inDate} </li>
+                                        <li><i class="far fa-comment">조회</i> ${galleryVO.subSeq}</li>
+                                        <li><i class="far fa-comment">추천</i> ${galleryVO.love}</li>
                                     </ul>
                                 </div>
                             </div>

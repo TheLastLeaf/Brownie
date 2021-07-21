@@ -1125,10 +1125,10 @@ $(function(){
                             <div style="text-align: center; font-weight: bolder; color: black; padding-top: 10px;">
                                 <span class="innerText">GAME LOG</span></div>
                                 <div id="logHome">
-                            <c:forEach var="log" items="${ logs }" varStatus="status">
+                            <c:forEach var="log" items="${logs}" varStatus="status">
                                 <p class="logWrite"><i class="far fa-clock"></i> ${log.time} (주사위눈 : ${log.dicenum})
                                     (${log.result})<br>
-                                        ${ log.round }-${ log.logSeq }. ${log.userId}은(는) ${log.object}을(를) ${log.act}했다.
+                                        ${log.round}-${log.logSeq}. ${log.userId}은(는) ${log.object}을(를) ${log.act}했다.
                                 </p>
                             </c:forEach>
                             	</div>

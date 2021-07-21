@@ -16,14 +16,14 @@
 
 <script>
     function likeHateCheck(kind) {
-        console.log(${ galleryVO.boardSeq })
+        console.log(${galleryVO.boardSeq})
         console.log(kind)
 
         $.ajax({
             url: "./ajax.gallerylikeHate",
             type: "get",
             data: {
-                "boardSeq": ${ galleryVO.boardSeq },
+                "boardSeq": ${galleryVO.boardSeq},
                 "inUserId": '1786827',
                 "kind": kind
             },
