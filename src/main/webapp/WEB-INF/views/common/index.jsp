@@ -40,7 +40,7 @@
             </c:choose>
             행위로 타인에게 신고되어</p>
         <p class="bcontent">이는 관리자 판단 후 계정이 정지기간 동안 정지되었음을 알려드립니다</p>
-        <p class="bcontent">정지기간동안 게시글과 댓글 작성이 불가능합니다.</p>
+        <p class="bcontent">정지기간동안 로그인이 불가능합니다.</p>
         <p class="endDate">정지기간 : ${startDate} ~ ${endDate}</p>
     </div>
 </c:if>
