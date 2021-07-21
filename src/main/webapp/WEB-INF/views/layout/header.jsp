@@ -106,7 +106,6 @@
                     $("#clock").html("<i class=\"far fa-clock\"></i>" + data);
                 },
                 error: function () {
-                    alert("문제가 발생하였습니다.");
                 }
             })
 
@@ -180,7 +179,7 @@
                 }
             })
 
-            // setInterval("setClock()", 1000);
+            setInterval("setClock()", 1000);
         })
     </script>
 </head>
