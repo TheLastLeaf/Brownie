@@ -180,10 +180,6 @@
             send();
         });
 
-        input.addEventListener('click',function(){
-            alert('you clicked me!');
-        });
-
         $("#enter-chat").on("click", (e) => {
             onOpen();
         });
@@ -258,8 +254,6 @@
             str += "<b>" + sessionId + " : " + message + "</b>";
             str += "</div></div>";
             $("#chatBox").append(str);
-
-
 
             $('#chatBox').animate({
                 scrollTop: chatBox.scrollHeight - chatBox.clientHeight

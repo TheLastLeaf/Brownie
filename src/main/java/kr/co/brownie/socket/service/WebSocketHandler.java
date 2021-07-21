@@ -68,17 +68,32 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         System.out.println("afterConnectionClosed session : " + session);
+        //afterConnectionClosed session : StandardWebSocketSession[id=11, uri=ws://1.245.30.134/WebEcho?roomNumber=284]
+        //session.getAttributes() : {HTTP.SESSION.ID=496834BDBAC682608FBF3B7D9759E2ED, permit_level=9, id=1786827527}
         System.out.println("status : " + status);
-        //이거 세션 끝난것도 메시지에 보내줘야하나 ?
+        //status : CloseStatus[code=1001, reason=null]
+        //session.getAttributes().get("id") 이 유저의 닉네임을 골라와서 WebSocketSession .sendMessage(msg)
 
         //종료된 세션의 방 번호 뽑아내기
         String roomNumber = session.getUri().getQuery().split("=")[1];
         //해당 방 번호를 가진 리스트 가져와서 나간 친구만 제거해주는 메서드 와 드디어
         List<WebSocketSession> sessions = userSessions.get(roomNumber);
-        sessions.remove(session);
+        sessions.remove(session); //처음 들어온 세션만 추방했는데 왜 새 세션으로 들어오지 못하는지 찾아봐야함
+        //sessions.get(0).getAttributes() : {HTTP.SESSION.ID=437649508DF2FF3CC7C3E4266F3A90CD, permit_level=9, id=1786827527}
+        //해당 아이디가 가진 포지션 n으로 바꿔줘야함 / 해당 아이디의 status n으로 바꿔줘야함 > 이거 존재하는애들 삽입 안되는거라서 업뎃이나 머지문으로 바꿔줘야할듯
+                                                                                    //그러면 이제 기존에 값 삽입할 때  teamgame_position에서 해당 포지션이 n이면 진행하고
+                                                                                    // teamgame에서 해당 포지션이 y인지 n인지 판단해서 y일땐 안들어가고 n일땐 들어가게해야할듯
+                                                                                    //정리다시해야함
+        //sessions : [StandardWebSocketSession[id=19, uri=ws://1.245.30.134/WebEcho?roomNumber=292], StandardWebSocketSession[id=1a, uri=ws://1.245.30.134/WebEcho?roomNumber=292]]
+        //sessions 22 : [StandardWebSocketSession[id=19, uri=ws://1.245.30.134/WebEcho?roomNumber=292]]
 
-        if (status.getCode() != 1000) {
+        //서버종료 또는 브라우저 종료가 아닌 경우
+        if (status.getCode() != 1001 || status.getCode() != 1000 ) {
             //afterConnectionEstablished(session);
         }
+
+
     }
+
+
 }

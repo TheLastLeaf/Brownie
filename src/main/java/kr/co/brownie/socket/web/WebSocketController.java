@@ -34,9 +34,8 @@ public class WebSocketController {
 
     @PostMapping (value="/chat2", produces="application/text;charset=utf-8")
     public String websocket2(@RequestParam Map<String, Object> map, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
-        //map : {roomNumber=239, position=mid, lolId=betternine, nickName=????}
         //httpSession.getId() : 585B494F93981E7A684E5E02C6DE7CB8
-
+        System.out.println("websocket Map : "+map);
         List<TeamGameVO> roomInfo = teamGameService.selectOne(Integer.parseInt(map.get("roomNumber").toString()));
         System.out.println("roooooooooooo : " + roomInfo.get(0));
         model.addAttribute("userInfo", map);
