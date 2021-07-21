@@ -100,15 +100,13 @@
             $.ajax({
                 url: "/time.ajax",
                 type: "POST",
-                dataType: "json",
                 async: false,
                 success: function (data) {
                     $("#clock").html("<i class=\"far fa-clock\"></i>" + data);
                 },
-                error: function () {
+                error: function (e) {
                 }
             })
-
         }
 
         $(function () {
