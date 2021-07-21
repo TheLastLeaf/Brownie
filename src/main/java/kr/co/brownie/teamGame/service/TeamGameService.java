@@ -12,4 +12,6 @@ public interface TeamGameService {
     List<TeamGameVO> selectTeamGamePosition(int positionSeq);
 
     void updateTeamGamePosition(Map<String, Object> map);
+
+    void insertMemberPosi(Map<String, Object> map);
 }

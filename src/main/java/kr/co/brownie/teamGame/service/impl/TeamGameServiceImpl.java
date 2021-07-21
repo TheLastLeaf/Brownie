@@ -33,4 +33,9 @@ public class TeamGameServiceImpl implements TeamGameService {
     public void updateTeamGamePosition(Map<String, Object> map) {
         teamGameMapper.updateTeamGamePosition(map);
     }
+
+    @Override
+    public void insertMemberPosi(Map<String, Object> map) {
+        teamGameMapper.insertMemberPosi(map);
+    }
 }

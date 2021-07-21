@@ -62,12 +62,9 @@ public class TeamGameController {
     @ResponseBody
     @PostMapping(path = "/insert-room")
     public String ajaxInsertRoom(@RequestParam Map<String, Object> map) {
-        //방 개설
         teamGameService.insertTeamGameRoom(map);
-
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("TEAMGAME_SEQ", map.get("TEAMGAME_SEQ").toString());
-
         return jsonObject.toString();
     }
 
@@ -75,6 +72,8 @@ public class TeamGameController {
     @ResponseBody
     @PostMapping(path = "/update-position")
     public String ajaxUpdatePosition(@RequestParam Map<String, Object> map) {
+
+        System.out.printf("map : " + map);
 
         String positionSeq = map.get("positionSeq").toString();
         String selectedPosition = map.get("position").toString();
@@ -89,6 +88,10 @@ public class TeamGameController {
         if (selectedPosition.equals("top")) {
             exsitedPosi = teamPosition.get(0).getTop();
             if(exsitedPosi.equals("n")){
+                teamGameService.updateTeamGamePosition(map);
+
+                //새 포지션 들어갈때 삽입해주는거
+                teamGameService.insertMemberPosi(map);
             } else {
                 return jsonObject.toString();
             }
@@ -96,6 +99,9 @@ public class TeamGameController {
             exsitedPosi = teamPosition.get(0).getJun();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
+
+                //새 포지션 들어갈때 삽입해주는거
+                teamGameService.insertMemberPosi(map);
             } else {
                 return jsonObject.toString();
             }
@@ -103,6 +109,9 @@ public class TeamGameController {
             exsitedPosi = teamPosition.get(0).getMid();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
+
+                //새 포지션 들어갈때 삽입해주는거
+                teamGameService.insertMemberPosi(map);
             } else {
                 return jsonObject.toString();
             }
@@ -110,6 +119,9 @@ public class TeamGameController {
             exsitedPosi = teamPosition.get(0).getBot();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
+
+                //새 포지션 들어갈때 삽입해주는거
+                teamGameService.insertMemberPosi(map);
             } else {
                 return jsonObject.toString();
             }
@@ -117,6 +129,9 @@ public class TeamGameController {
             exsitedPosi = teamPosition.get(0).getSup();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
+
+                //새 포지션 들어갈때 삽입해주는거
+                teamGameService.insertMemberPosi(map);
             } else {
                 return jsonObject.toString();
             }

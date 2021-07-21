@@ -119,6 +119,28 @@
         WHERE POSITION_SEQ = #{positionSeq}
     </select>
 
+    <insert id="insertMemberPosi">
+        INSERT INTO TEAMGAME ( TEAMGAME_SEQ
+                             , USER_ID
+                             , POSITION_SEQ
+                             , POSITION
+                             , STATUS
+                             , IN_DATE
+                             , IN_USER_ID
+                             , UP_DATE
+                             , UP_USER_ID)
+        VALUES ( #{positionSeq}
+               , #{userId}
+               , #{positionSeq}
+               , #{position}
+               , 'y'
+               , SYSDATE
+               , #{userId}
+               , SYSDATE
+               , #{userId})
+
+    </insert>
+
     <update id="updateTeamGamePosition">
         UPDATE TEAMGAME_POSITION
         SET ${position} = 'y'
