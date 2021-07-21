@@ -16,6 +16,9 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -82,5 +85,11 @@ public class CommonController {
         }
         System.out.println(1);
         return jsonObject.toString();
+    }
+
+    @PostMapping("/time.ajax")
+    @ResponseBody
+    public String time() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 }

@@ -96,59 +96,20 @@
     </style>
 
     <script>
-        function getServerTime() {
-            let xmlHttp;
-            try {
-                xmlHttp = new XMLHttpRequest();
-            } catch (err1) {
-                //IE
-                try {
-                    xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
-                } catch (err2) {
-                    try {
-                        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
-                    } catch (err3) {
-                        return new Date();
-                    }
-                }
-            }
-            xmlHttp.open('HEAD', window.location.href.toString(), false);
-            xmlHttp.setRequestHeader("Content-Type", "text/html");
-            xmlHttp.send('');
-            return xmlHttp.getResponseHeader("Date");
-        }
-
         function setClock() {
-            const serverTime = getServerTime();
-            const now = new Date(serverTime);
-            const week = ['일', '월', '화', '수', '목', '금', '토'];
-            const year = now.getFullYear();
-            let month = now.getMonth() + 1;
-            let date = now.getDate();
-            let hours = now.getHours();
-            let minutes = now.getMinutes();
-            let seconds = now.getSeconds();
+            $.ajax({
+                url: "/time.ajax",
+                type: "POST",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    $("#clock").html("<i class=\"far fa-clock\"></i>" + data);
+                },
+                error: function () {
+                    alert("문제가 발생하였습니다.");
+                }
+            })
 
-            if (month < 10){
-                month = "0" + month;
-            }
-            if (date < 10){
-                date = "0" + date;
-            }
-            if (hours < 10){
-                hours = "0" + hours;
-            }
-            if (minutes < 10){
-                minutes = "0" + minutes;
-            }
-            if (seconds < 10){
-                seconds = "0" + seconds;
-            }
-
-            const time = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
-
-
-            $("#clock").html("<i class=\"far fa-clock\"></i>" + time);
         }
 
         $(function () {
