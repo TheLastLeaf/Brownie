@@ -15,4 +15,6 @@ public interface BlackUserMapper {
     int count();
 
     int update(int bUserSeq);
+
+    BlackUserVO oneBlackUser(String userId);
 }

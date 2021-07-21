@@ -2,6 +2,7 @@ package kr.co.brownie.blackList.service.impl;
 
 import kr.co.brownie.blackList.service.BlackUserPagingVO;
 import kr.co.brownie.blackList.service.BlackUserService;
+import kr.co.brownie.blackList.service.BlackUserVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -45,4 +46,7 @@ public class BlackUserServiceImpl implements BlackUserService {
     public int update(int bUserSeq) {
         return blackUserMapper.update(bUserSeq);
     }
+
+    @Override
+    public BlackUserVO oneBlackUser(String userId) { return blackUserMapper.oneBlackUser(userId); }
 }

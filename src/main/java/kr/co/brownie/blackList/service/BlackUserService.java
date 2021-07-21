@@ -9,4 +9,6 @@ public interface BlackUserService {
     int merge(int bListSeq, String userId, int endDate, String id);
 
     int update(int bUserSeq);
+
+    BlackUserVO oneBlackUser(String userId);
 }

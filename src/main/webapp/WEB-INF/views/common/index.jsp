@@ -18,17 +18,56 @@
 </section>
 <!-- Hero Section End -->
 
-<%--<div id=”banner” style="position: absolute; left: 100px;top: 300px; z-index: 99999; width:500px; height:300px; background: #000000; color: white;"> 님 정지됨ㅅㄱ </div>--%>
+<c:if test="${sessionScope.id ne null and sessionScope.id eq sessionScope.blackUserVO.userId}">
+<div id="banner">
+    <span class="deletepop" onclick="fn_out()"><i class="fas fa-times"></i></span>
+    <p><h4 class="head"><b>홈페이지 사용 일시 중지</b></h4></p>
+    <p class="bcontent">${sessionScope.blackUserVO.nickName}님은 타인에게 불쾌감을 주는 행동으로 신고되어</p>
+    <p class="bcontent">이는 관리자 판단 후 계정이 정지기간 동안 정지되었음을 알려드립니다</p>
+    <p class="bcontent">정지기간동안 게시글과 댓글 작성이 불가능합니다.</p>
+    <p class="endDate">정지기간 : ${sessionScope.blackUserVO.endDate}</p>
+</div>
+</c:if>
 
 <!-- 유튜브 영상 스크립트 시작 -->
 <style>
     #youtube_video {
         height: 350px;
     }
+    #banner{
+        position: absolute;
+        left: 600px;
+        top: 300px;
+        z-index: 99999;
+        width:500px;
+        height:300px;
+        background: #000000;
+        color: white;
+        border: 1px solid #c4c4c4;
+    }
+
+    .endDate{
+        margin-top: 20px;
+        text-align: center;
+    }
+    .head{
+        color: #c4c4c4;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .bcontent{
+        text-align: center;
+    }
+    .deletepop{
+        margin-left: 3px;
+    }
 </style>
 <script>
     function show_video(video_id) {
         $("#youtube_video").attr("src", "https://www.youtube.com/embed/" + video_id);
+    }
+    function fn_out(){
+        $("#banner").hide();
     }
 </script>
 <!-- 유튜브 영상 스크립트 끝 -->

@@ -1,6 +1,8 @@
 package kr.co.brownie.auth.web;
 
 import kr.co.brownie.auth.service.AuthService;
+import kr.co.brownie.blackList.service.BlackUserService;
+import kr.co.brownie.blackList.service.BlackUserVO;
 import kr.co.brownie.fileUpload.service.FileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +21,9 @@ public class AuthController {
 
     @Resource(name = "fileService")
     FileService fileService;
+
+    @Resource(name= "blackUserService")
+    BlackUserService blackUserService;
 
     @GetMapping("login")
     public String login() {
@@ -62,6 +67,11 @@ public class AuthController {
             /* 로그인 할 때 권한 레벨 세션에 넣어줘야 게시글 조회 시 사용 */
             int permitlevel = authService.permitLevel(id);
             httpSession.setAttribute("permit_level", permitlevel);
+
+            /*로그인 시 회원의 아이디가 블랙유저인지 확인*/
+            BlackUserVO blackUserVO = blackUserService.oneBlackUser(id);
+            System.out.println(blackUserVO);
+            httpSession.setAttribute("blackUserVO", blackUserVO);
 
         } catch (IOException e) {
             e.printStackTrace();
