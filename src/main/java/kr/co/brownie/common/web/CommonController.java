@@ -165,7 +165,7 @@ public class CommonController {
         return "redirect:/";
     }
 
-    @PostMapping("/time.ajax")
+    @PostMapping(path = "/time.ajax", produces = "application/text;charset=UTF-8")
     @ResponseBody
     public String time() {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());

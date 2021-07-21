@@ -18,7 +18,6 @@
 <!-- Hero Section End -->
 
 <c:if test="${blackUserVO != null}">
-    <fmt:formatDate value="${blackUserVO.inDate}" var="startDate" pattern="yyyy-MM-dd hh:mm:ss" type="both"/>
     <fmt:formatDate value="${blackUserVO.endDate}" var="endDate" pattern="yyyy-MM-dd hh:mm:ss" type="both"/>
     <div id="banner">
         <span class="deletepop" onclick="fn_out()"><i class="fas fa-times"></i></span>
@@ -39,9 +38,10 @@
                 </c:otherwise>
             </c:choose>
             행위로 타인에게 신고되어</p>
-        <p class="bcontent">이는 관리자 판단 후 계정이 정지기간 동안 정지되었음을 알려드립니다</p>
+        <p class="bcontent">계정이 정지기간 동안 정지되었음을 알려드립니다</p>
+        <p></p>
         <p class="bcontent">정지기간동안 로그인이 불가능합니다.</p>
-        <p class="endDate">정지기간 : ${startDate} ~ ${endDate}</p>
+        <p class="endDate">정지기간 : ~ ${endDate}</p>
     </div>
 </c:if>
 

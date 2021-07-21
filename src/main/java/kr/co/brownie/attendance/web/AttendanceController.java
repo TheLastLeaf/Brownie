@@ -1,5 +1,6 @@
 package kr.co.brownie.attendance.web;
 
+import com.google.gson.JsonObject;
 import kr.co.brownie.attendance.service.AttendanceService;
 import kr.co.brownie.attendance.service.AttendanceVO;
 import org.springframework.stereotype.Controller;
@@ -48,10 +49,22 @@ public class AttendanceController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/ajax.dayCheck", method = RequestMethod.GET)
-    public void ajaxDayCheck(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session) {
-        String userId = map.get("inUserId").toString();
-        attendanceService.insertOne(userId);
+    @PostMapping(path = "/ajax.dayCheck", produces = "application/text;charset=UTF-8")
+    public String ajaxDayCheck(HttpSession session) {
+        JsonObject jsonObject = new JsonObject();
+        if (session.getAttribute("id") == null) {
+            jsonObject.addProperty("status", "ng");
+            jsonObject.addProperty("message", "로그인이 필요합니다.");
+        } else {
+            if (attendanceService.insertOne(session.getAttribute("id").toString()) == 1) {
+                jsonObject.addProperty("status", "ok");
+            } else {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("message", "출석체크 중 문제가 발생했습니다.");
+            }
+        }
+
+        return jsonObject.toString();
     }
 
     public HashMap<String, Integer> dateForDayMethod() {

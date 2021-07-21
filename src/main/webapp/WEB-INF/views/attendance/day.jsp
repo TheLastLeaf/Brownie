@@ -21,79 +21,76 @@
 
 <!-- 달력 스크립트 시작 -->
 <script>
-    const inUserId = '${sessionScope.id}';
-
-    const year = ${dateForCheck.get('year')};			//올해
-    const month = ${dateForCheck.get('month')};			//이번달
-    const day = ${dateForCheck.get('day')};				//오늘날짜
-    const lastDate = ${dateForCheck.get('lastDate')};	//마지막날짜
-    const weekNum = ${dateForCheck.get('firstDay')};    //1일 2월 3화 4수 5목 6금 7토
-    const UserCheckeddates = ${dateList};				//유저가 출석 체크한 날짜
+    const year = ${dateForCheck.year};			//올해
+    const month = ${dateForCheck.month};		//이번달
+    const day = ${dateForCheck.day};			//오늘날짜
+    const lastDate = ${dateForCheck.lastDate};	//마지막날짜
+    const weekNum = ${dateForCheck.firstDay};   //1일 2월 3화 4수 5목 6금 7토
+    const UserCheckedDates = ${dateList};		//유저가 출석 체크한 날짜
 
     window.onload = function () {
-        var tbcal = document.getElementById("calendar"); // 달력 테이블
-        while (tbcal.rows.length > 2) {
-            tbcal.deleteRow(tbcal.rows.length - 1);
+        const calendarTable = document.getElementById("calendar"); // 달력 테이블
+        while (calendarTable.rows.length > 2) {
+            calendarTable.deleteRow(calendarTable.rows.length - 1);
         }
-        var row = null;
-        row = tbcal.insertRow();
-        var cnt = 0;
+        let row = calendarTable.insertRow();
+        let cnt = 0;
+        let cell;
 
         // 1일 시작칸 찾기
-        for (i = 0; i < weekNum - 1; i++) {
+        for (let i = 0; i < weekNum - 1; i++) {
             cell = row.insertCell();
             cnt = cnt + 1;
         }
 
         // 달력 출력
-        for (i = 1; i <= lastDate; i++) // 1일부터 마지막 일까지
+        for (let i = 1; i <= lastDate; i++) // 1일부터 마지막 일까지
         {
             cell = row.insertCell();
             cell.innerHTML = "<span id='" + i + "' style='font-size:70px; cursor:default;'>" + i + "</span>";
             cnt = cnt + 1;
-            if (cnt % 7 == 1) {//일요일
+            if (cnt % 7 === 1) {//일요일
                 cell.innerHTML = "<span id='" + i + "' style='font-size:70px; color:#FF9090; cursor:default;'>" + i + "</span>";
             }
-            if (cnt % 7 == 0) { //토요일
+            if (cnt % 7 === 0) { //토요일
                 cell.innerHTML = "<span id='" + i + "' style='font-size:70px; color:#7ED5E4; cursor:default;'>" + i + "</span>";
-                row = calendar.insertRow();// 줄 추가
+                row = calendarTable.insertRow();// 줄 추가
             }
+
+            const today = $("#" + i);
 
             //이미 체크된 날짜 마우스 커서 바꿔주기
-            if (UserCheckeddates.indexOf(i) > -1) {
-                document.getElementById(i).innerHTML = "<i class='fa fa-cloud'></i>";
-            }
-            //오늘 날짜일 경우 출석체크 함수 이벤트 추가
-            if (i == day) {
-                document.getElementById(i).addEventListener("click", dateCheck);
-                document.getElementById(i).style.cursor = 'pointer';
+            if (UserCheckedDates.indexOf(i) !== -1) {
+                today.html("<i class='fa fa-cloud'></i>");
+                if (i === day) {
+                    today.on('click', function () {
+                        alert("이미 출석하였습니다.");
+                    }).css({
+                        cursor: 'pointer'
+                    });
+                }
+            } else if (i === day) {
+                today.on('click', function () {
+                    $.ajax({
+                        url: "../attendance/ajax.dayCheck",
+                        type: "POST",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.status === "ng") {
+                                alert(data.message);
+                            }
+                            location.reload();
+                        },
+                        error: function () {
+                            alert("에러나요");
+                        }
+                    })
+                }).css({
+                    cursor: 'pointer'
+                });
             }
         }
     }
-
-    let checkedFlag = false;	//디비 연결되면 지울 것
-
-    //사용자가 출석체크 할 때 작동하는 함수
-    function dateCheck() {
-        if (inUserId == '') {
-            alert("로그인이 필요합니다.");
-            return;
-        }
-        $.ajax({
-            url: "../attendance/ajax.dayCheck",
-            type: "get",
-            data: {
-                "inUserId": inUserId
-            },
-            success: function (data) {
-                location.reload();
-            },
-            error: function () {
-                alert("에러나요");
-            }
-        })
-    }
-
 </script>
 <!-- 달력 스크립트 끝 -->
 
