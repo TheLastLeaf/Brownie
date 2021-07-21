@@ -28,7 +28,7 @@ public class TeamGameController {
     UserService userService;
 
     @GetMapping({"", "/teamGame"})
-    public String teamMaker(Model model) {
+    public String teamMaker(Model model, HttpServletRequest servletRequest) throws IOException {
         List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList();
 
         Map<Integer, Object> teamPosition = new HashMap<>();
@@ -38,6 +38,15 @@ public class TeamGameController {
                 List<TeamGameVO> posiList = teamGameService.selectTeamGamePosition(positionSeq);
                 teamPosition.put(positionSeq, posiList);
             }
+        }
+
+        //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
+        //이거 임시로 걍 길이넣어놨는데 나중에 바꾸긴해야함 ㅠ ㅠ ㅠ ㅠ
+        String userId = servletRequest.getSession().getId();
+        System.out.println("userId : " + servletRequest.getSession().getId().length());
+        if(userId.length() < 15){
+            UserVO userInfo = userService.userOneSelect(userId);
+            model.addAttribute("userInfo", userInfo);
         }
         model.addAttribute("teamGameList", teamGameList);
         model.addAttribute("teamPosition", teamPosition);

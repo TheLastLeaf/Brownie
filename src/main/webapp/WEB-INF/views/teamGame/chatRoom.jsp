@@ -162,6 +162,8 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+
     $(document).ready(function () {
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
         const LOL_NICK = [['${userInfo.lolId}']];
@@ -176,6 +178,10 @@
 
         $("#button-send").on("click", (e) => {
             send();
+        });
+
+        input.addEventListener('click',function(){
+            alert('you clicked me!');
         });
 
         $("#enter-chat").on("click", (e) => {
@@ -216,6 +222,14 @@
         function onOpen(evt) {
             var str = USER_NAME + ": 님이 입장하셨습니다.";
             websocket.send(str);
+
+            var userListStr ="<div class='user'>"
+            userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
+            //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
+            userListStr += "<div class='userInfo'>"+USER_NAME+ "[" + LOL_NICK + "]"+"</div>"
+            userListStr += "</div>"
+            $("#chatUserList").append(userListStr);
+
         }
 
         function onMessage(msg) {
@@ -245,13 +259,6 @@
             str += "</div></div>";
             $("#chatBox").append(str);
 
-
-            var userListStr ="<div class='user'>"
-            userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
-            //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
-            userListStr += "<div class='userInfo'>"+USER_NAME+ "[" + LOL_NICK + "]"+"</div>"
-            userListStr += "</div>"
-            $("#chatUserList").append(userListStr);
 
 
             $('#chatBox').animate({

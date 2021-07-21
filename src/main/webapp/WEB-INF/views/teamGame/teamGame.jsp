@@ -171,12 +171,15 @@
         console.log('방 번호 : ', roomNumber);
         var chatPop = document.roomInfo;
         var url = 'http://192.168.41.27/websocket/chat2';
-        window.open('', 'chatingRoom' + roomNumber, 'width=1100, height=720, scroll=no, left=500, top=250');
+        window.open('', 'chatingRoom' + roomNumber, 'width=1000, height=700, scroll=no, left=500, top=250');
 
         chatPop.action = url;
+        chatPop.method = 'post';
         chatPop.target = 'chatingRoom' + roomNumber;
         chatPop.roomNumber.value = roomNumber;
         chatPop.position.value = position;
+        chatPop.nickName.value = '${userInfo.nickName}';
+        chatPop.lolId.value = '${userInfo.lolId}';
         chatPop.submit();
     }
 </script>
@@ -248,6 +251,8 @@
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="hidden" name="roomNumber">
                     <input type="hidden" name="position">
+                    <input type="hidden" name="lolId">
+                    <input type="hidden" name="nickName">
                 </form>
                 <!------------------------------------------------------------------->
                 <div class="dt-desc" style="display: block;">
