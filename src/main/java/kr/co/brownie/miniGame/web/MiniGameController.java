@@ -234,19 +234,18 @@ public class MiniGameController {
         System.out.println("!!!!효과재생");
         String id = (String) session.getAttribute("id");
         
+        //유저의 위치정보
         int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
+        //유저의 주사위 숫자
         int diceNum = Integer.parseInt(servletRequest.getParameter("diceNum"));
-        System.out.println("UserPosition" + UserPosition);
 
-
+        //밟은 땅의 seq 및 오브젝트 정보
         int ObjPosition = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
-        System.out.println("ObjPosition:"+ObjPosition);
         BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(ObjPosition);
         String objName = obj.getName();
         String objDegree = obj.getDegree();
         String objKind = obj.getKind();
-        System.out.println("objNum : " + ObjPosition);
-        System.out.println("obj : " + obj);
+        
         
         int round = this.miniGameService.selectPlayer(id).getRound();
         map.put("obj",obj);
@@ -256,7 +255,6 @@ public class MiniGameController {
 
         //밟은랜드가 point 일 경우
         int cntSavePoint = 0;
-        int cntSaveHP = 0;
         
         if (objDegree.equals("point")||objDegree.equals("item")) {
         	int pointNum = 0;
@@ -275,6 +273,8 @@ public class MiniGameController {
             }
         }
 
+        
+        //로그 저장
         int cntSaveLog = 0;
         
         if (cntSavePoint == 1) {
@@ -317,13 +317,16 @@ public class MiniGameController {
     
     
     public String addMap() {
+    	int[] food = {52,53,54,55,56,57};
+    	int[] luxury = {61,62,63,64,65,66,67,68};
+    	
+    	
         int dbSize = 68;
         Set<Integer> set = new HashSet<Integer>();
         while (set.size() < 15) {
             Double d = Math.random() * dbSize + 1;
             set.add(d.intValue());
         }
-
         List<Integer> randomNum = new ArrayList<>(set);
 
         Collections.shuffle(randomNum);
@@ -334,6 +337,7 @@ public class MiniGameController {
         return array;
     }
 
+    //포인트맵
     public List<Integer> addMapPoint() {
         List<Integer> list = new ArrayList<Integer>();
         for (int i = 0; i < 15; i++) {
@@ -422,9 +426,9 @@ public class MiniGameController {
         return passmap;
     }
 
+    //포인트맵 list를 map형태로 변환
     public HashMap<String, Object> transMapPoint(List<Integer> list) {
-        //DB에 있는 맵 가공 추출
-
+    	
         HashMap<String, Object> passmap = new HashMap<String, Object>();
         passmap.put("randomNum", list);
 
