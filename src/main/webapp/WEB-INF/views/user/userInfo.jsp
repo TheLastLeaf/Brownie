@@ -517,11 +517,13 @@
                                         <a href="/user/userInfo/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
                                     </c:if>
                                 </div>
+                                <c:if test="${sessionScope.id ne userOneSelect.userId}">
                                 <div class="writeReview">
                                     <button type="button" class="btn btn-secondary" style="margin: 0px;"
                                             onclick="fn_review('${userOneSelect.upUserId}')">후기작성
                                     </button>
                                 </div>
+                                </c:if>
                             </div>
                             <!-- 페이징처리 end -->
 
