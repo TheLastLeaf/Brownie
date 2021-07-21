@@ -70,7 +70,6 @@ public class AuthController {
 
             /*로그인 시 회원의 아이디가 블랙유저인지 확인*/
             BlackUserVO blackUserVO = blackUserService.oneBlackUser(id);
-            System.out.println(blackUserVO);
             httpSession.setAttribute("blackUserVO", blackUserVO);
 
         } catch (IOException e) {

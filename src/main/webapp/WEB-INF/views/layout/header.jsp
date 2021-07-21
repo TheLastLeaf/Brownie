@@ -219,7 +219,7 @@
                 }
             })
 
-            setInterval("setClock()", 1000);
+            // setInterval("setClock()", 1000);
         })
     </script>
 </head>

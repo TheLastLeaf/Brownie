@@ -16,4 +16,5 @@ public class BlackUserVO {
     private String inUserId;
     private String upUserId;
     private String nickName;
+    private String reasonkind;
 }

@@ -3,7 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:import url="../layout/header.jsp"/>
-
+<fmt:formatDate value="${sessionScope.blackUserVO.inDate}" var="startDate" pattern="yyyy-MM-dd hh:mm:ss" type="both"/>
+<fmt:formatDate value="${sessionScope.blackUserVO.endDate}" var="endDate" pattern="yyyy-MM-dd hh:mm:ss" type="both"/>
 <!-- Hero Section Begin -->
 <section class="hero-section">
     <div class="container">
@@ -22,10 +23,25 @@
 <div id="banner">
     <span class="deletepop" onclick="fn_out()"><i class="fas fa-times"></i></span>
     <p><h4 class="head"><b>홈페이지 사용 일시 중지</b></h4></p>
-    <p class="bcontent">${sessionScope.blackUserVO.nickName}님은 타인에게 불쾌감을 주는 행동으로 신고되어</p>
+    <p class="bcontent">${sessionScope.blackUserVO.nickName}님은
+        <c:choose>
+            <c:when test="${sessionScope.blackUserVO.reasonkind eq '광고'}">
+                <b>[불법 광고 도배]</b>
+            </c:when>
+            <c:when test="${sessionScope.blackUserVO.reasonkind eq '사칭'}">
+                <b>[타인을 사칭]</b>
+            </c:when>
+            <c:when test="${sessionScope.blackUserVO.reasonkind eq '욕설'}">
+                <b>[공격적인 언어 사용]</b>
+            </c:when>
+            <c:otherwise>
+                <b>[타인에게 불쾌감을 주거나 부적절한 이름 사용]</b>
+            </c:otherwise>
+        </c:choose>
+        행위로 타인에게 신고되어</p>
     <p class="bcontent">이는 관리자 판단 후 계정이 정지기간 동안 정지되었음을 알려드립니다</p>
     <p class="bcontent">정지기간동안 게시글과 댓글 작성이 불가능합니다.</p>
-    <p class="endDate">정지기간 : ${sessionScope.blackUserVO.endDate}</p>
+    <p class="endDate">정지기간 : ${startDate} ~ ${endDate}</p>
 </div>
 </c:if>
 
