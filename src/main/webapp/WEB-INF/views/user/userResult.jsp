@@ -34,12 +34,23 @@
 /* 바디 백그라운드 */
 body {
 	background: black;
+	overflow: hidden;
 }
+
 .content {
 	background-color: black;
 	color: white;
 	width: 50%;
 	border-radius: 10px;
+}
+
+#mainBox {
+	background-color: #FFFFFF;
+	position: relative;
+	margin-top: 70px;
+	width: 700px;
+	padding-top: 30px !important;
+	padding-bottom: 20px !important;
 }
 
 input[type="text"] {
@@ -48,17 +59,61 @@ input[type="text"] {
 	text-align: center;
 	width: 250px;
 }
+
 .bg-dark {
 	color: white;
 	position: absolute;
 	left: 0;
 	bottom: 0;
 }
+
+h2, h3, h5 {
+	color: white;
+	font-family: maplelight;
+}
+
+.profile {
+	position: absolute;
+	left: 90px !important;
+	top: -50px !important;
+	width: 180px;
+	height: 180px;
+}
+
+.icon {
+	max-width: 60%;
+	/* 	border-radius: 20px; */
+	position: absolute;
+	left: 22px;
+	top: 7px;
+}
+
+.col-sm {
+	display: flex;
+	justify-content: center;
+	padding-left: 80px;
+}
+
+.mainInfo {
+	border: 1px solid #FF0000;
+	margin: 4px;
+	background: #2E2E2E;
+	border-radius: 20px;
+}
+
+input[type=submit] {
+	border: 1px solid indianred;
+	font-family: maplebold; text-align : center;
+	background: white; width : 100px;
+	position: relative;
+	left: 715px;
+	bottom: 30px;
+	width: 100px;
+	text-align: center; background : white; width : 100px; position : relative; left : 715px; bottom : 30px;
+	color: indianred;
+}
 </style>
 
-<script type="text/javascript">
-	
-</script>
 <body>
 	<div id="preloder">
 		<div class="loader"></div>
@@ -74,74 +129,107 @@ input[type="text"] {
 				</div>
 			</form>
 		</nav>
-		<div class="container p-5 shadow-lg p-3 mb-5 rounded" style="background-color: #F2F2F2;">
-			<div class="row h-100 justify-content-center align-items-center">
-				<div class="col-sm-4">
-					<img alt="아이콘" src=${profileImgURL} class="rounded-llg mx-auto d-block" style="max-width: 70%;">
+
+		<!-- var inputString = prompt('문자열을 입력하세요', '기본 값 문자열'); -->
+		<form action="" method="post" onsubmit="return fn_check()">
+			<div class="container p-5 shadow-lg mb-5 rounded" id="mainBox">
+				<div class="row h-100">
+					<div class="col-sm-3 profile">
+						<img alt="아이콘" src=${profileImgURL } class="rounded-llg mx-auto d-block icon">
+						<%-- ${leagueInfo[0].getTier()} --%>
+						<c:set var="leagueInfo" value="${leagueInfo}" />
+						<c:choose>
+							<c:when test="${leagueInfo[0].getTier() ne null}">
+								<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_${leagueInfo[0].getTier()}_frame.png" /> class="mx-auto d-block" style="max-width: 75%; position: absolute;">
+							</c:when>
+							<c:otherwise>
+								<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_CHALLENGER_frame.png" /> class="mx-auto d-block" style="max-width: 75%; position: absolute;">
+							</c:otherwise>
+
+						</c:choose>
+					</div>
+
+					<!-- 				<div class="col-sm-1"></div> -->
+					<div class="col-sm">
+						<span style="padding-top: 10px;">ID:&nbsp;&nbsp;</span>
+						<h3 style="color: black;">${summoner.name}&nbsp;</h3>
+						<span style="padding-top: 10px; font-family: maplelight">Lv. ${summoner.getSummonerLevel()}</span>
+					</div>
 				</div>
-				<div class="col-sm-1"></div>
-				<div class="col-sm-7" id="idLevel">
-					<h3>${summoner.name}</h3>
-					<p>Lv. ${summoner.summonerLevel}</p>
+				<div style="margin-top: 20px;">
+					<c:forEach var="leagueInfo" items="${leagueInfo}" varStatus="s">
+						<div class="row mainInfo">
+							<!-- 				h-100 justify-content-center align-items-center -->
+							<div class="col-md-5" style="position: relative;">
+								<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_${leagueInfo.getTier()}.png" /> class="mx-auto d-block" style="max-width: 70%;">
+							</div>
+							<div class="col-md-7" style="text-align: center; padding-top: 20px;">
+								<c:choose>
+									<c:when test="${leagueInfo.getQueueType() == 'RANKED_FLEX_SR'}">
+										<h2>자유 랭크</h2>
+									</c:when>
+									<c:when test="${leagueInfo.getQueueType() ==  'RANKED_TFT'}">
+										<h2>전략적 팀전투</h2>
+									</c:when>
+									<c:when test="${leagueInfo.getQueueType()== 'RANKED_SOLO_5x5'}">
+										<h2>솔로 랭크</h2>
+									</c:when>
+								</c:choose>
+								<p style="display: inline">승/패&nbsp;</p>
+								<p style="color: #007bff; font-size: 24px; display: inline">${leagueInfo.getWins()}</p>
+								<p style="font-size: 24px; display: inline">/</p>
+								<p style="color: #dc3545; font-size: 24px; display: inline">${leagueInfo.getLosses()}</p>
+								<fmt:formatNumber var="percent" value="${leagueInfo.getWins()/(leagueInfo.getWins()+leagueInfo.getLosses())}" pattern="0.00%" />
+								<span style="color: #6c757d; font-size: 18px;"> (승률 : ${percent}) </span>
+								<h5>당신의 티어는?</h5>
+								<p>
+									당신의 리그는 ${leagueName[s.index]},
+									<br />
+									${leagueInfo.getTier()} ${leagueInfo.getRank()} 단계 입니다.
+								</p>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
-			<div class="col-12" style="height: 100px"></div>
-			<c:forEach var="leagueInfo" items="${leagueInfo}" varStatus="s">
-				<div class="row h-100 justify-content-center align-items-center">
-					<div class="col-md-5">
-						<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_${leagueInfo.tier}.png" /> class="mx-auto d-block" style="max-width: 75%;">
-					</div>
-					<div class="col-md-1"></div>
-					<div class="col-md-6" style="text-align: center;">
-						<c:choose>
-							<c:when test="${leagueInfo.queueType == 'RANKED_FLEX_SR'}">
-								<h2>자유 랭크</h2>
-							</c:when>
-							<c:when test="${leagueInfo.queueType ==  'RANKED_TFT'}">
-								<h2>전략적 팀전투</h2>
-							</c:when>
-							<c:when test="${leagueInfo.queueType == 'RANKED_SOLO_5x5'}">
-								<h2>솔로 랭크</h2>
-							</c:when>
-						</c:choose>
-						<h3>승리/패배</h3>
-						<p style="color: #007bff; font-size: 24px; display: inline">${leagueInfo.wins}</p>
-						<p style="font-size: 24px; display: inline">/</p>
-						<p style="color: #dc3545; font-size: 24px; display: inline">${leagueInfo.losses}</p>
-						<fmt:formatNumber var="percent" value="${leagueInfo.wins/(leagueInfo.wins+leagueInfo.losses)}" pattern="0.00%" />
-						<span style="color: #6c757d; font-size: 18px;"> (${percent}) </span>
-						<h3>당신의 티어는?</h3>
-						<p>당신의 리그는 ${leagueName[s.index]}, ${leagueInfo.tier} ${leagueInfo.rank} 단계 입니다.</p>
-					</div>
-				</div>
-			</c:forEach>
-		</div>
-	</div>
+			<input type="submit" class="btn btn-outline-light btn-sm" value="연동하기" />
+		</form>
 
+	</div>
 	<!-- Footer -->
 	<footer class="bg-dark" style="color: white; position: absolute; bottom: 0; width: 100%;">
 		<div class="container">
 			<div class="row">
 				<!-- Copyright -->
-				<div class="col-sm-12" style="text-align: center; padding: 10px;">
-					© 2021 Copyright:
-					<a href="/noxikaGG"> BROWNIE.GG</a>
-				</div>
+				<div class="col-sm-12" style="text-align: center; padding: 10px;">© 2021 Copyright: BROWNIE.GG</div>
 			</div>
 		</div>
 	</footer>
 
-
-
-	<!-- Js Plugins -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js" integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://raw.githubusercontent.com/9bitStudios/barfiller/master/js/jquery.barfiller.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.js" integrity="sha512-AmJ0T6lpw/ZQtCleMyfbraDy8AGQ9tWaB/PmRkXdKxH9Kvo0oTuW6+2hTEQ89mHkFIO/LpColEe3+QE+FJtgIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="${pageContext.request.contextPath}/js/main.js"></script>
-
 </body>
+
+<!-- Js Plugins -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js" integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js" integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://raw.githubusercontent.com/9bitStudios/barfiller/master/js/jquery.barfiller.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.js" integrity="sha512-AmJ0T6lpw/ZQtCleMyfbraDy8AGQ9tWaB/PmRkXdKxH9Kvo0oTuW6+2hTEQ89mHkFIO/LpColEe3+QE+FJtgIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script>
+	function fn_sync() {
+		confirm("연동하시겠습니까?");
+
+	}
+	
+	function fn_check(){
+		if(confirm('실제 LoL로그인 후 [안뇽하세욤] 친추 후 난수 6자리를 받으세요!')){
+			var inputString = prompt('문자열을 입력하세요', '기본 값 문자열');
+			return true;
+		}
+		return false;
+	}
+	
+</script>
 </html>
