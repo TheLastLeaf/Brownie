@@ -52,6 +52,12 @@ public class TeamGameController {
 
         //model.addAttribute("userInfo",userInfo);
         //model.addAttribute("userExp",userExp);
+
+
+        //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
+
+
+
         model.addAttribute("userInfo", "경험치~");
         model.addAttribute("nickName", "닉네임~");
 
@@ -62,6 +68,10 @@ public class TeamGameController {
     @ResponseBody
     @PostMapping(path = "/insert-room")
     public String ajaxInsertRoom(@RequestParam Map<String, Object> map) {
+
+        //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
+
+
         teamGameService.insertTeamGameRoom(map);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("TEAMGAME_SEQ", map.get("TEAMGAME_SEQ").toString());
@@ -72,6 +82,8 @@ public class TeamGameController {
     @ResponseBody
     @PostMapping(path = "/update-position")
     public String ajaxUpdatePosition(@RequestParam Map<String, Object> map) {
+
+        //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
 
         System.out.printf("map : " + map);
 
@@ -88,11 +100,14 @@ public class TeamGameController {
         if (selectedPosition.equals("top")) {
             exsitedPosi = teamPosition.get(0).getTop();
             if(exsitedPosi.equals("n")){
+
                 teamGameService.updateTeamGamePosition(map);
 
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);
+                jsonObject.addProperty("info", "good");
             } else {
+                jsonObject.addProperty("info", "exist");
                 return jsonObject.toString();
             }
         } else if (selectedPosition.equals("jun")) {
@@ -102,7 +117,9 @@ public class TeamGameController {
 
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);
+                jsonObject.addProperty("info", "good");
             } else {
+                jsonObject.addProperty("info", "exist");
                 return jsonObject.toString();
             }
         } else if (selectedPosition.equals("mid")) {
@@ -112,7 +129,9 @@ public class TeamGameController {
 
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);
+                jsonObject.addProperty("info", "good");
             } else {
+                jsonObject.addProperty("info", "exist");
                 return jsonObject.toString();
             }
         } else if (selectedPosition.equals("bot")) {
@@ -122,7 +141,9 @@ public class TeamGameController {
 
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);
+                jsonObject.addProperty("info", "good");
             } else {
+                jsonObject.addProperty("info", "exist");
                 return jsonObject.toString();
             }
         } else if (selectedPosition.equals("sup")) {
@@ -132,7 +153,9 @@ public class TeamGameController {
 
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);
+                jsonObject.addProperty("info", "good");
             } else {
+                jsonObject.addProperty("info", "exist");
                 return jsonObject.toString();
             }
         }

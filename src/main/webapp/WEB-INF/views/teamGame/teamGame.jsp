@@ -127,8 +127,8 @@
         var jun = 'n';
         var bot = 'n';
 
-        var userId = "1786827527";
-        //var userId = "1786941837";
+        //var userId = "1786827527";
+        var userId = "1786941837";
         var selectPosi = selectObject.id;
         var roomNumber = selectObject.className.split(" ")[2];
 
@@ -144,9 +144,18 @@
             data: data,
             dataType: "json",
             success: function (data) {
-                console.log(data.roomNumber);
-                openRoom(data.roomNumber, data.position);
-                location.reload();
+                //다른 사람이 선택했는데 중복해서 진입할 경우
+                if(data.info=="exist"){
+                    alert("이미 선택된 포지션입니다.");
+                    location.reload();
+                } else if(data.info=="good") {
+                    console.log(data.roomNumber);
+                    openRoom(data.roomNumber, data.position);
+                    location.reload();
+                } else {
+                    alert(" 관리자에게 문의해주세요 ! ");
+                    location.reload();
+                }
             },
             error: function () {
                 alert("에러나요");
