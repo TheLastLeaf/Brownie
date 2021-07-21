@@ -143,6 +143,7 @@ public class BoardController {
             for (BoardVO boardVO : this.boardService.selectList(map)) {
                 JsonObject subJsonObject = gson.fromJson(gson.toJson(boardVO), JsonObject.class);
                 subJsonObject.addProperty("imgSrc", boardVO.getImgSrc());
+                subJsonObject.addProperty("boardInDateToString", boardVO.getBoardInDateToString());
                 jsonArray.add(subJsonObject);
             }
 
@@ -160,6 +161,7 @@ public class BoardController {
             for (BoardVO boardVO : this.boardService.selectListOrderByLike(map)) {
                 JsonObject subJsonObject = gson.fromJson(gson.toJson(boardVO), JsonObject.class);
                 subJsonObject.addProperty("imgSrc", boardVO.getImgSrc());
+                subJsonObject.addProperty("boardInDateToString", boardVO.getBoardInDateToString());
                 jsonArray.add(subJsonObject);
             }
             jsonObject.add("tipVOList", jsonArray);
@@ -176,6 +178,7 @@ public class BoardController {
             for (BoardVO boardVO : this.boardService.selectListOrderByLike(map)) {
                 JsonObject subJsonObject = gson.fromJson(gson.toJson(boardVO), JsonObject.class);
                 subJsonObject.addProperty("imgSrc", boardVO.getImgSrc());
+                subJsonObject.addProperty("boardInDateToString", boardVO.getBoardInDateToString());
                 jsonArray.add(subJsonObject);
             }
             jsonObject.add("freeVOList", jsonArray);

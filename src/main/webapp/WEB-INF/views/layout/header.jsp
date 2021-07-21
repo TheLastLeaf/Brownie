@@ -171,11 +171,13 @@
                             + "<a href=\"${pageContext.request.contextPath}/notice/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
                             + "</h6>"
                             + "<ul>"
-                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDateToString + "</li>"
                             + "</ul>"
                             + "</div>"
                             + "</div>"
                     });
+                    $("#header-notice-section").html(headerNoticeSection);
+
                     $.each(data.tipVOList, function (index, jsonArr) {
                         headerTipSection += "<div class=\"mw-post-item\">"
                             + "<div class=\"mw-pic col-xl-\">"
@@ -186,12 +188,14 @@
                             + "<a href=\"${pageContext.request.contextPath}/tip/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
                             + "</h6>"
                             + "<ul>"
-                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDateToString + "</li>"
                             + "<li><i class=\"far fa-comment\"></i> " + jsonArr.replyCnt + "</li>"
                             + "</ul>"
                             + "</div>"
                             + "</div>"
                     });
+                    $("#header-tip-section").html(headerTipSection);
+
                     $.each(data.freeVOList, function (index, jsonArr) {
                         headerFreeSection += "<div class=\"mw-post-item\">"
                             + "<div class=\"mw-pic col-xl-\">"
@@ -202,15 +206,12 @@
                             + "<a href=\"${pageContext.request.contextPath}/free/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
                             + "</h6>"
                             + "<ul>"
-                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDate + "</li>"
+                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDateToString + "</li>"
                             + "<li><i class=\"far fa-comment\"></i> " + jsonArr.replyCnt + "</li>"
                             + "</ul>"
                             + "</div>"
                             + "</div>"
                     });
-
-                    $("#header-notice-section").html(headerNoticeSection);
-                    $("#header-tip-section").html(headerTipSection);
                     $("#header-free-section").html(headerFreeSection);
                 },
                 error: function () {
