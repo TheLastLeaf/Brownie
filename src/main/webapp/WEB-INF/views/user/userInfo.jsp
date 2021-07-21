@@ -666,7 +666,7 @@
 <script>
     function fn_sync() {
         window.open("/user/userSync", "userSync",
-            "width=800, height=680, left=250,top=200");
+            "width=1000, height=550, left=450,top=200");
     }
 
     function fn_infoMod(userId) {
