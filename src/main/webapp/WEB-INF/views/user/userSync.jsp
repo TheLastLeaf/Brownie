@@ -77,7 +77,7 @@ input[type="text"] {
 		<div class="container-fluid">
 			<!-- style="height: 100vh;" -->
 			<!-- logo -->
-			<div style="display: flex; justify-content: center; margin-top: 100px;">
+			<div style="display: flex; justify-content: center; margin-top: 170px;">
 				<img id="logo" src="${pageContext.request.contextPath}/img/logo.png">
 			</div>
 			<div class="">
