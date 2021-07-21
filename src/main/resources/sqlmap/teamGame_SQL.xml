@@ -23,6 +23,7 @@
                       , MATCH_MODE
                       , MESSAGE
                       , POSITION_SEQ
+                      , POSITION
                       , STATUS
                       , LEADER
                       , MIKE
@@ -37,6 +38,7 @@
                , #{matchMode}
                , #{message}
                , POSITION_SEQ.CURRVAL
+               , #{position}
                , #{status}
                , #{leader}
                , #{mike}

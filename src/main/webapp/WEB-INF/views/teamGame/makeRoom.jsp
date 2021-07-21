@@ -145,8 +145,8 @@
         margin: 15px;
     }
 
-    .appleSwitchDiv , .chooseModeDiv, .choosePositionDiv{
-        margin-top: 40px;
+    .appleSwitchDiv , .chooseModeDiv, .choosePositionDiv {
+        margin-top: 20px;
     }
 
     .appleSwitch{
@@ -182,13 +182,25 @@
                 matchMode = "칼바람";
             }
         }
-        var top = 'n';
-        var mid = 'n';
-        var sup = 'n';
-        var jun = 'n';
-        var bot = 'n';
+
+        var myPosition = $('#chooseMyPosition').children('.active').get();
+        console.log("myPosition : "+myPosition)
+        if(myPosition == null || myPosition.length < 1){
+            alert("방을 생성하려면 본인의 포지션을 선택해주세요");
+            return;
+        } else if (myPosition.length > 0) {
+            myPosition = myPosition[0].id.substring(1, 4);
+        }
+
+        var top = 'y';
+        var mid = 'y';
+        var sup = 'y';
+        var jun = 'y';
+        var bot = 'y';
         var positions = [];
         var selectPositions = $('#choosePosition').children('.active').get()
+
+        console.log("selectPositions : "+selectPositions)
         if(selectPositions == null || selectPositions.length < 1){
         	alert("방을 생성하려면 모집할 포지션을 선택해주세요");
         	return;
@@ -199,19 +211,19 @@
             }
         }
         if(positions.includes('top')){
-            top = 'y';
+            top = 'n';
         }
         if(positions.includes('mid')){
-            mid = 'y';
+            mid = 'n';
         }
         if(positions.includes('sup')){
-            sup = 'y';
+            sup = 'n';
         }
         if(positions.includes('jun')){
-            jun = 'y';
+            jun = 'n';
         }
         if(positions.includes('bot')){
-            bot = 'y';
+            bot = 'n';
         }
 
         var mike = 'n';
@@ -234,14 +246,14 @@
                 , "matchMode": matchMode
                 , "leader": "y"
                 , "status": "y"
-                , "usePoint": "n"
+                , "usePoint": usePoint
                 , "top": top
                 , "mid": mid
                 , "sup": sup
                 , "jun": jun
                 , "bot": bot
                 , "mike": mike
-                , "usePoint": usePoint
+                , "position": myPosition
             },
             success: function (data) {
                 var responseData = JSON.parse(data);
@@ -263,6 +275,23 @@
         chatPop.roomNumber.value = roomNumber;
         chatPop.submit();
     }
+
+    $(document).ready(function() {
+        //팀원 모집 포지션으로 선택한거 방장포지션 선택 불가능하게 하기
+
+
+
+        //방장이 선택한 포지션 선택불가능으로 지정하기
+        $('input[type="radio"][name="myPosi"]').click(function(){
+            if($(this).prop('checked')){
+                $('input[type="checkbox"][name="positions"]').prop('disabled',false);
+                var chp = $('#'+this.value).children('.tp').get()[0].id;
+                console.log(chp);
+                $('#'+chp).prop('disabled',true);
+            }
+        });
+    });
+
 </script>
 
 <div id="preloder">
@@ -313,32 +342,66 @@
             </div>
 
             <div class="choosePositionDiv">
+                <p class="font-family-maple-light">내가 참여할 포지션을 선택하세요</p>
+                <div class="font-family-maple-light btn-group btn-group-toggle" id="chooseMyPosition"
+                     data-toggle="buttons">
+                    <label class="btn btn-danger position" id="mtop">
+                        <input type="radio" name="myPosi" value="top">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt=""/>
+                    </label>
+                    &nbsp;
+                    <label class="btn btn-danger position" id="mjun">
+                        <input type="radio" name="myPosi" value="jun">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png"
+                             alt=""/>
+                    </label>
+                    &nbsp;
+                    <label class="btn btn-danger position" id="mmid">
+                        <input type="radio" name="myPosi" value="mid">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt=""/>
+                    </label>
+                    &nbsp;
+                    <label class="btn btn-danger position" id="mbot">
+                        <input type="radio" name="myPosi" value="bot">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt=""/>
+                    </label>
+                    &nbsp;
+                    <label class="btn btn-danger position" id="msup">
+                        <input type="radio" name="myPosi" value="sup">
+                        <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png"
+                             alt=""/>
+                    </label>
+                    &nbsp;
+                </div>
+            </div>
+
+            <div class="choosePositionDiv">
                 <p class="font-family-maple-light">모집할 포지션을 선택하세요</p>
                 <div class="font-family-maple-light btn-group btn-group-toggle" id="choosePosition"
                      data-toggle="buttons">
                     <label class="btn btn-danger position" id="top">
-                        <input type="checkbox" name="positions" value="top">
+                        <input type="checkbox" name="positions" value="top" class="tp" id="otop">
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt=""/>
                     </label>
                     &nbsp;
                     <label class="btn btn-danger position" id="jun">
-                        <input type="checkbox" name="positions" value="jun">
+                        <input type="checkbox" name="positions" value="jun" class="tp" id="ojun">
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png"
                              alt=""/>
                     </label>
                     &nbsp;
                     <label class="btn btn-danger position" id="mid">
-                        <input type="checkbox" name="positions" value="mid">
+                        <input type="checkbox" name="positions" value="mid" class="tp" id="omid">
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt=""/>
                     </label>
                     &nbsp;
                     <label class="btn btn-danger position" id="bot">
-                        <input type="checkbox" name="positions" value="bot">
+                        <input type="checkbox" name="positions" value="bot" class="tp" id="obot">
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt=""/>
                     </label>
                     &nbsp;
                     <label class="btn btn-danger position" id="sup">
-                        <input type="checkbox" name="positions" value="sup">
+                        <input type="checkbox" name="positions" value="sup" class="tp" id="osup">
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png"
                              alt=""/>
                     </label>

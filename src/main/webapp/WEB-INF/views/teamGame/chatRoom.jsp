@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -80,9 +81,10 @@
         border-radius: 10px;
     }
 
-    .chatBox {
-        margin: 10px 25px 55px;
-        word-break: break-all;
+    #chatBox {
+        padding: 0px;
+        height: 520px;
+        overflow: auto;
     }
 
     .user {
@@ -105,6 +107,7 @@
     }
 
     .caution {
+        font-size: 10px;
         margin: 5px;
         text-align: right;
         text-decoration: underline;
@@ -112,10 +115,11 @@
     }
 
     input[type="text"] {
-        margin-top: 2px;
+        margin-top: 1px;
+        margin-left: 4px;
         width: 530px;
         height: 40px;
-        width: 530px;
+        width: 650px;
     }
 
     .filebox label {
@@ -133,17 +137,6 @@
         margin: 3px 0px 0px 0px;
     }
 
-    .filebox input[type="file"] { /* 파일 필드 숨기기 */
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        border: 0;
-    }
-
     .siteLv {
         width: 30px;
         height: 30px;
@@ -157,9 +150,107 @@
 
     button[type="button"] {
         margin: 2px;
+        background-color: maroon;
+    }
+
+    .alert-warning {
+        word-break: break-all;
+        height: auto;
+        width: 500px;
     }
 </style>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
+        const USER_NAME = [['${sessionScope.sessionId}']];
+        const ROOM_NUMBER = "${param.roomNumber}";
+
+        console.log("ROOM_NUMBER : " + ROOM_NUMBER);
+
+        $("#disconn").on("click", (e) => {
+            websocket.close();
+        })
+
+        $("#button-send").on("click", (e) => {
+            send();
+        });
+
+        $("#enter-chat").on("click", (e) => {
+            onOpen();
+        });
+
+        //이게 방 주소
+        const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=" + ROOM_NUMBER);
+        websocket.onmessage = onMessage;
+        websocket.onopen = onOpen;
+        websocket.onclose = function (event) {
+            if (event.wasClean) {
+                alert("[close] 커넥션이 정상적으로 종료되었습니다(code=" + event.code + " reason=" + event.reason + ")");
+            } else {
+                // https://ko.javascript.info/websocket#ref-1158 여기에 오류 코드별 설명이 있음
+                // 1000 : 일반폐쇄
+                alert('[close] 커넥션이 죽었습니다.');
+            }
+            setTimeout(function () {
+                connect();
+            }, 1000); // retry connection!!
+        };
+        websocket.onerror = function (err) {
+            console.log('Error:', err);
+            setTimeout(function () {
+                connect();
+            }, 1000); // retry connection!!
+        };
+
+        function send() {
+            let msg = document.getElementById("msg");
+            console.log(USER_NAME + ":" + msg.value);
+            websocket.send(USER_NAME + ":" + msg.value);
+            msg.value = '';
+        }
+
+        //채팅창에 들어왔을 때 이건 잘 됨
+        function onOpen(evt) {
+            var str = USER_NAME + ": 님이 입장하셨습니다.";
+            websocket.send(str);
+        }
+
+        function onMessage(msg) {
+            var data = msg.data;
+            var sessionId = null;
+            //데이터를 보낸 사람
+            var message = null;
+            var arr = data.split(":");
+
+            for (var i = 0; i < arr.length; i++) {
+                console.log('arr[' + i + ']: ' + arr[i]);
+            }
+
+            var cur_session = USER_NAME;
+
+            //현재 세션에 로그인 한 사람
+            console.log("cur_session : " + cur_session);
+            sessionId = arr[0];
+            message = arr[1];
+
+            console.log("sessionID : " + sessionId);
+            console.log("cur_session : " + cur_session);
+
+            var str = "<div class='col-6'>";
+            str += "<div class='alert alert-warning'>";
+            str += "<b>" + sessionId + " : " + message + "</b>";
+            str += "</div></div>";
+
+            $("#chatBox").append(str);
+
+            $('#chatBox').animate({
+                scrollTop: chatBox.scrollHeight - chatBox.clientHeight
+            }, 100);
+        }
+    })
+</script>
 
 <body>
 <div id="preloder">
@@ -170,37 +261,14 @@
     <div id="cr_title" class="row">&nbsp;Faker | 그마이상구함!</div>
     <div id="containBox" class="row">
         <div id="includeBox" class="col-sm-9">
-            <div class="caution">상처가 되는 말은 하지 말아주세요!</div>
-            <div class="chatBox" style="font-size: 14px;">
-                박세웅: 오호오호!
-                <br/>
-                박세웅: 채팅은 조금 많이 어려울거 같습니다.
-                <br/>
-                박세웅: 소켓에 대한 이해가 많이 필요한 기능같습니다.
-                <br/>
-                <br/>
-                박세웅: 다음주 주간목표가 난이도로 따지면 최고일 수도...아님말고..
-                <br/>
-                박세웅: 다음주도 열심히 달려봅시다..
-                <br/>
-                <br/>
-                박세웅: 이모티콘 관련해서는 api가 따로 없네요...
-                <br/>
-                박세웅: 아쉽지만 아쉬운대로 파일첨부로 대신해야할거 같습니다만?...
 
-            </div>
+            <div class="caution">상처가 되는 말은 하지 말아주세요!</div>
+            <div id="chatBox" class="col"></div>
+
             <div class="enterBox row">
-                <div>
-                    &nbsp;&nbsp;&nbsp; 채팅: &nbsp;
-                    <input type="text"/>
-                </div>
-                <div class="filebox">
-                    <label for="file">임티</label>
-                    <input type="file" id="file"/>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-success">전송</button>
-                </div>
+                <input type="text" id="msg" class="form-control" aria-label="Recipient's username"
+                       aria-describedby="button-addon2">
+                <button type="button" class="btn btn-success btn-outline-secondary" id="button-send">전송</button>
             </div>
         </div>
 

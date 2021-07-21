@@ -39,6 +39,6 @@ public class WebSocketController {
         httpSession.setAttribute("sessionId", inUserId);
 
         //model.addAttribute("inUserId", inUserId);
-        return "websocket/websocket2";
+        return "teamGame/chatRoom";
     }
 }
