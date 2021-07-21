@@ -344,6 +344,11 @@
     	font-size: 25px;
     	font-weight:bold;
 	}
+	
+	.hp{
+		width:90px;
+		margin:4px; 	
+	}
     
 </style>
 
@@ -531,11 +536,26 @@
 		}
 	////////////
 	
-	
+	 function viewHp(recentHp,hp) {
+		 var voidHp = hp-recentHp;
+		 temp = "";
+		 for (var i = 0; i < recentHp; i++) {
+		 	temp += "<img class='hp' src='${pageContext.request.contextPath}/img/miniGame/use/heart.png'/>";
+		}
+		 
+		 for (var i = 0; i < voidHp; i++) {
+		 	temp += "<img class='hp' src='${pageContext.request.contextPath}/img/miniGame/use/heart-void.png'/>";
+		}
+		 
+		 console.log(temp);
+		 
+		 $('.hps').html(temp);
+		 
+	}
 	
     var playerPos = ${player.position};	//플레이어 위치
     var round = ${player.round};		//회차 
-    var hp = ${player.hp};				//HP
+    var hp = Number(${player.hp});				//HP
     var item = '${player.item}';		//item
     var point = ${player.point};
     var browniePoint = ${player.browniePoint};
@@ -546,19 +566,22 @@
     console.log("first" + recentMap);
     var quest = '${player.quest}';
     var dicetimes = ${player.dicetimes};
-    var recentHp = ${player.recentHp};
+    var recentHp = Number(${player.recentHp});
+    
+    var voidHp = hp-recentHp;
+    
+    var view = "<div class='hp'><img id='self' class='playerImg landI' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit.png' /></div>"
+    
 
     //설정
     var playerImg = "<div class='player'><img id='self' class='playerImg landI' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit.png' /></div>";
     //var playerImg = "<div class='player'><i style='color: red;' class='fas fa-chess-knight fa-8x'></i></div>";
     var diceSpeed = 450; // 주사위속도
     var side1 = 0;
-    
-
-	
 
     /* 주사위 */
     window.onload = function () {
+    	viewHp(recentHp,hp);
     	playerPos = ${player.position};	//플레이어 위치
     	
     	//무지개 효과
@@ -736,7 +759,6 @@
 
     //랜드효과발동
     function effectAct() {
-    	
         var objposition = "start";
         if (playerPos != 0) {
             objposition = recentMap[playerPos - 1];
@@ -826,7 +848,6 @@
     function dice() {
     	$('#btnRoll').attr("disabled", true);
         const buttonRoolDice = document.querySelector('.learn-more');
-
         const diceSide1 = document.getElementById('dice-side-1');
         const status1 = document.getElementById('status');
 
@@ -947,28 +968,24 @@
 
     //시각적 이동
     function leftMove() {
-    	
         $(".player").animate({
             left: "+=186"
         }, diceSpeed);
     }
 
     function rightMove() {
-    	
         $(".player").animate({
             left: "-=186"
         }, diceSpeed);
     }
 
     function downMove() {
-    	
         $(".player").animate({
             top: "+=186"
         }, diceSpeed);
     }
 
     function upMove() {
-    	
         $(".player").animate({
             top: "-=186"
         }, diceSpeed);
@@ -978,7 +995,6 @@ $(function(){
 	$(".landI").click(function(){
 		$(".modal").fadeIn();
 		var landNum = $(this).attr('id');
-		alert(landNum)
 		selectmarbelInfo(landNum);
 	});
 	
@@ -1046,15 +1062,7 @@ $(function(){
                         
                         <br/>
                         
-                        <div class="hp" style="margin-top:20px;">
-                        	<div class="hp"></div>
-                        	<div class="hp"></div>
-                        	<div class="hp"></div>
-                        	<div class="hp"></div>
-							<img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/>
-							<img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/>
-							<img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/>
-							<img src="${pageContext.request.contextPath}/img/miniGame/use/heart.png"/>
+                        <div class="hps" style="margin-top:20px;">
                         </div>
 						
 						<br/>
@@ -1112,7 +1120,7 @@ $(function(){
                         <td id="11" class="landI td_tb l11"></td>
                         <td id="10" class="landI td_tb l10"></td>
                         <td id="9" class="landI td_tb l9"></td>
-                        <td id="8" class="landI td_tb rightDown corner l8"></td>
+                        <td id="8" class="landI td_tb rightDown corner l8 rainbowEffect"></td>
                     </tr>
                     </tbody>
                 </table>
