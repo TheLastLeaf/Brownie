@@ -18,12 +18,12 @@ public class AuthServiceImpl implements AuthService {
     AuthMapper authMapper;
 
     @Override
-    public String getAuthorize() {
-        return "redirect:" + K_AUTH_URL + "/oauth/authorize" + "?client_id=" + REST_API_KEY + "&redirect_uri=" + REDIRECT_URI + "&response_type=code";
+    public String getAuthorize(String redirectUrl) {
+        return "redirect:" + K_AUTH_URL + "/oauth/authorize" + "?client_id=" + REST_API_KEY + "&redirect_uri=" + redirectUrl + "&response_type=code";
     }
 
     @Override
-    public String getToken(String code) throws IOException {
+    public String getToken(String code, String redirectUrl) throws IOException {
         String access_token;
 
         URL url = new URL(K_AUTH_URL + "/oauth/token");
@@ -33,7 +33,7 @@ public class AuthServiceImpl implements AuthService {
         httpURLConnection.setDoOutput(true);
 
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(httpURLConnection.getOutputStream()));
-        String s = "grant_type=authorization_code" + "&client_id=" + REST_API_KEY + "&redirect_uri=" + REDIRECT_URI + "&code=" + code;
+        String s = "grant_type=authorization_code" + "&client_id=" + REST_API_KEY + "&redirect_uri=" + redirectUrl + "&code=" + code;
         bufferedWriter.write(s);
         bufferedWriter.flush();
 

@@ -102,8 +102,9 @@ public class CommonController {
     }
 
     @GetMapping("/login")
-    public String login() {
-        return authService.getAuthorize();
+    public String login(HttpServletRequest httpServletRequest) {
+        String redirectUrl = httpServletRequest.getScheme() + "://" + httpServletRequest.getServerName() + ":" + httpServletRequest.getServerPort() + "/oauth";
+        return authService.getAuthorize(redirectUrl);
     }
 
     @GetMapping("/logout")
@@ -113,9 +114,13 @@ public class CommonController {
     }
 
     @GetMapping("oauth")
-    public String oauth(@RequestParam String code, HttpSession httpSession, RedirectAttributes redirectAttributes) {
+    public String oauth(@RequestParam String code,
+                        HttpSession httpSession,
+                        RedirectAttributes redirectAttributes,
+                        HttpServletRequest httpServletRequest) {
         try {
-            String access_token = authService.getToken(code);
+            String redirectUrl = httpServletRequest.getScheme() + "://" + httpServletRequest.getServerName() + ":" + httpServletRequest.getServerPort() + "/oauth";
+            String access_token = authService.getToken(code, redirectUrl);
             String id = authService.getUserInfoByToken(access_token);
 
             /*로그인 시 회원의 아이디가 블랙유저인지 확인*/
