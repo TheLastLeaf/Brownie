@@ -147,4 +147,26 @@
         WHERE POSITION_SEQ = #{positionSeq}
     </update>
 
+    <select id="selectOne" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
+        select TEAMGAME_SEQ as teamGameSeq
+             , USER_ID as userId
+             , TITLE as title
+             , MATCH_MODE as matchMode
+             , MESSAGE as message
+             , POSITION_SEQ as positionSeq
+             , STATUS as status
+             , IN_DATE as inDate
+             , IN_USER_ID as inUserId
+             , UP_DATE as modDate
+             , UP_USER_ID as upUserId
+             , USE_POINT as usePoint
+             , LEADER as leader
+             , MIKE as mike
+             , POSITION as position
+        from TEAMGAME
+        where TEAMGAME_SEQ = #{teamGameSeq}
+        and LEADER = 'y'
+
+    </select>
+
 </mapper>

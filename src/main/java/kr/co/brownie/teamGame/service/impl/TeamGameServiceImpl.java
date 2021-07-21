@@ -38,4 +38,9 @@ public class TeamGameServiceImpl implements TeamGameService {
     public void insertMemberPosi(Map<String, Object> map) {
         teamGameMapper.insertMemberPosi(map);
     }
+
+    @Override
+    public List<TeamGameVO> selectOne(int teamGameSeq) {
+        return teamGameMapper.selectOne(teamGameSeq);
+    }
 }

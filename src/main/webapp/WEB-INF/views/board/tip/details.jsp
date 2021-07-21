@@ -29,6 +29,10 @@
 
 <script>
     function fn_report(userId, log) {
+        if(userId == ${sessionScope.id}){
+            alert("본인이 작성한 글은 신고할 수 없습니다.")
+            return false;
+        }
         window.open("/report/write?userId=" + userId + "&log=" + log, "REPORT", "width=660, height=500, left=250,top=200");
     }
 </script>

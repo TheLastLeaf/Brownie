@@ -4,12 +4,14 @@ import com.google.gson.JsonObject;
 import kr.co.brownie.teamGame.service.TeamGameService;
 import kr.co.brownie.teamGame.service.TeamGameVO;
 import kr.co.brownie.user.service.UserService;
+import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,21 +68,25 @@ public class TeamGameController {
 
 
     @ResponseBody
-    @PostMapping(path = "/insert-room")
-    public String ajaxInsertRoom(@RequestParam Map<String, Object> map) {
+    @PostMapping(path = "/insert-room", produces="application/text;charset=utf-8")
+    public String ajaxInsertRoom(@RequestParam Map<String, Object> map, HttpSession httpSession) throws IOException {
 
         //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
-
+        String userId = httpSession.getAttribute("id").toString();
+        UserVO userInfo = userService.userOneSelect(userId);
 
         teamGameService.insertTeamGameRoom(map);
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("TEAMGAME_SEQ", map.get("TEAMGAME_SEQ").toString());
+        jsonObject.addProperty("nickName", userInfo.getNickName());
+        jsonObject.addProperty("lolId", userInfo.getLolId());
+        //세션에서 아이디 가져와서 유저 정보 조회한거 같이 보내줘야함 / 닉네임 / 티어 / 롤닉네임
         return jsonObject.toString();
     }
 
 
     @ResponseBody
-    @PostMapping(path = "/update-position")
+    @PostMapping(path = "/update-position", produces="application/text;charset=utf-8")
     public String ajaxUpdatePosition(@RequestParam Map<String, Object> map) {
 
         //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기

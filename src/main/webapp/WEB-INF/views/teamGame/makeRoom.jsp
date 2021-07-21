@@ -261,7 +261,7 @@
             },
             success: function (data) {
                 var responseData = JSON.parse(data);
-                openRoom(responseData.TEAMGAME_SEQ);
+                openRoom(responseData.TEAMGAME_SEQ, responseData.nickName, responseData.lolId, myPosition);
                 window.close();
             },
             error: function () {
@@ -269,14 +269,18 @@
             }
         })
     }
-    function openRoom(roomNumber){
+    function openRoom(roomNumber, nickName, lolId, position){
         var chatPop= document.roomInfo;
         var url = 'http://192.168.41.27/websocket/chat2';
         window.open('','chatingRoom' + roomNumber,'width=1100, height=720, scroll=no, left=500, top=250');
 
+        chatPop.method = 'post';
         chatPop.action = url;
         chatPop.target = 'chatingRoom' + roomNumber;
         chatPop.roomNumber.value = roomNumber;
+        chatPop.nickName.value = nickName;
+        chatPop.lolId.value = lolId;
+        chatPop.position.value = position;
         chatPop.submit();
     }
 
@@ -312,6 +316,9 @@
             <!------------------------------------------------------------------->
             <form name="roomInfo">
                 <input type="hidden" name="roomNumber">
+                <input type="hidden" name="position">
+                <input type="hidden" name="lolId">
+                <input type="hidden" name="nickName">
             </form>
             <!------------------------------------------------------------------->
             <p id="title" class="botton" style="margin-bottom: 10px;">

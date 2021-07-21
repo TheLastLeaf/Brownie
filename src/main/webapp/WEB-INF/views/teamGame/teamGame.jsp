@@ -136,9 +136,6 @@
             "position": selectPosi
         }
 
-        alert(userId)
-        alert(selectPosi)
-        alert(roomNumber)
         $.ajax({
             url: "./teamGame/update-position",
             type: "POST",
