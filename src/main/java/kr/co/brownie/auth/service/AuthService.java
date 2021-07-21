@@ -7,6 +7,8 @@ public interface AuthService {
     String K_AUTH_URL = "https://kauth.kakao.com";
     String K_API_URL = "https://kapi.kakao.com";
     String REDIRECT_URI = "http://localhost/oauth";
+    //채팅방테스트용주석 지우지마세용 
+    //String REDIRECT_URI = "http://192.168.41.27/oauth";
 
     String getAuthorize();
 
