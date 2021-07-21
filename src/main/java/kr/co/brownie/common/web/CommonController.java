@@ -1,14 +1,19 @@
 package kr.co.brownie.common.web;
 
 import com.google.gson.JsonObject;
+import kr.co.brownie.auth.service.AuthService;
+import kr.co.brownie.blackList.service.BlackUserService;
+import kr.co.brownie.blackList.service.BlackUserVO;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.common.service.CommonService;
+import kr.co.brownie.fileUpload.service.FileService;
 import kr.co.brownie.youtube.service.YouTubeService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +21,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -29,11 +33,20 @@ public class CommonController {
     @Resource(name = "commonService")
     CommonService commonService;
 
+    @Resource(name = "authService")
+    AuthService authService;
+
     @Resource(name = "youTubeService")
     YouTubeService youTubeService;
 
     @Resource(name = "boardService")
     BoardService boardService;
+
+    @Resource(name = "fileService")
+    FileService fileService;
+
+    @Resource(name = "blackUserService")
+    BlackUserService blackUserService;
 
     @GetMapping(path = {"", "index", "home"})
     public String index(HttpSession httpSession,
@@ -42,6 +55,7 @@ public class CommonController {
         map.put("userId", httpSession.getAttribute("id"));
         map.put("pageNum", 1);
         map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
+
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
 
         //main youtube list
@@ -85,6 +99,70 @@ public class CommonController {
         }
         System.out.println(1);
         return jsonObject.toString();
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return authService.getAuthorize();
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return "redirect:/";
+    }
+
+    @GetMapping("oauth")
+    public String oauth(@RequestParam String code, HttpSession httpSession, RedirectAttributes redirectAttributes) {
+        try {
+            String access_token = authService.getToken(code);
+            String id = authService.getUserInfoByToken(access_token);
+
+            /*로그인 시 회원의 아이디가 블랙유저인지 확인*/
+            BlackUserVO blackUserVO = blackUserService.oneBlackUser(id);
+
+            if (blackUserVO != null) {
+                redirectAttributes.addFlashAttribute("blackUserVO", blackUserVO);
+                return "redirect:/";
+            }
+
+            httpSession.setAttribute("id", id);
+
+            /* 첫 로그인 세웅 */
+            // 소환사명 및 세팅
+            String tempLolNick = "익명의소환사_" + (int) (Math.random() * 100 + 1);
+            String tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 100 + 1);
+            String position = "[empty]";
+            // 경험치 테이블 세팅
+            int exp = 0;
+            // REVIEW 테이블 세팅
+            int reviewSeq = 1;
+            int starCnt = 0;
+            String reply = "empty";
+            String writeUserId = "admin";
+
+            // 초기 프로필사진 설정
+            fileService.defaultProfile(id);
+
+            // 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
+
+
+            /* service 호출해서 집어넣기 */
+            authService.insertUser(id, tempLolNick, tempBrownieNick, position);
+            authService.insertReview(reviewSeq, id, starCnt, reply, writeUserId);
+
+            /* 첫 로그인일 경우 권한 레벨 및 사이트 레벨 지정, 유저가 존재해야 삽입가능*/
+            authService.insertPermitLevel(id);
+            authService.insertExp(id, exp);
+
+            /* 로그인 할 때 권한 레벨 세션에 넣어줘야 게시글 조회 시 사용 */
+            int permitlevel = authService.permitLevel(id);
+            httpSession.setAttribute("permit_level", permitlevel);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/";
     }
 
     @PostMapping("/time.ajax")

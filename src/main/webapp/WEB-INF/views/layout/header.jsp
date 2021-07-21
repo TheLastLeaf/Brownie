@@ -216,7 +216,7 @@
                     <div class="ht-widget">
                         <ul>
                             <li id="clock">
-                                <i class="far fa-clock"></i>
+                                <i class="far fa-clock"></i> 0000-00-00 00:00:00
                             </li>
                             <li class="signup-switch signup-open">
                                 <c:choose>
