@@ -93,6 +93,10 @@
             height: 132px;
             width: auto;
         }
+
+        #clock {
+            width: 140px;
+        }
     </style>
 
     <script>
@@ -215,8 +219,8 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="ht-widget">
                         <ul>
-                            <li id="clock">
-                                <i class="far fa-clock"></i> 0000-00-00 00:00:00
+                            <li id="clock"><i class="far fa-clock"></i>7777777777777777777777777777770900p0000-00-00
+                                00:00:00
                             </li>
                             <li class="signup-switch signup-open">
                                 <c:choose>
