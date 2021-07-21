@@ -96,6 +96,61 @@
     </style>
 
     <script>
+        function getServerTime() {
+            let xmlHttp;
+            try {
+                xmlHttp = new XMLHttpRequest();
+            } catch (err1) {
+                //IE
+                try {
+                    xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+                } catch (err2) {
+                    try {
+                        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+                    } catch (err3) {
+                        return new Date();
+                    }
+                }
+            }
+            xmlHttp.open('HEAD', window.location.href.toString(), false);
+            xmlHttp.setRequestHeader("Content-Type", "text/html");
+            xmlHttp.send('');
+            return xmlHttp.getResponseHeader("Date");
+        }
+
+        function setClock() {
+            const serverTime = getServerTime();
+            const now = new Date(serverTime);
+            const week = ['일', '월', '화', '수', '목', '금', '토'];
+            const year = now.getFullYear();
+            let month = now.getMonth() + 1;
+            let date = now.getDate();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            if (month < 10){
+                month = "0" + month;
+            }
+            if (date < 10){
+                date = "0" + date;
+            }
+            if (hours < 10){
+                hours = "0" + hours;
+            }
+            if (minutes < 10){
+                minutes = "0" + minutes;
+            }
+            if (seconds < 10){
+                seconds = "0" + seconds;
+            }
+
+            const time = year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+
+
+            $("#clock").html("<i class=\"far fa-clock\"></i>" + time);
+        }
+
         $(function () {
             $.ajax({
                 url: "/board/list.ajax",
@@ -162,6 +217,8 @@
                     alert("문제가 발생하였습니다.");
                 }
             })
+
+            // setInterval("setClock()", 1000);
         })
     </script>
 </head>
@@ -199,7 +256,9 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="ht-widget">
                         <ul>
-                            <li><i class="far fa-clock"></i> <%=new Date()%></li>
+                            <li id="clock">
+                                <i class="far fa-clock"></i>
+                            </li>
                             <li class="signup-switch signup-open">
                                 <c:choose>
                                     <c:when test="${sessionScope.id != null}">
@@ -262,7 +321,8 @@
                             <div id="header-notice-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -276,7 +336,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -290,7 +351,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -304,7 +366,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -318,7 +381,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -339,7 +403,8 @@
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -353,7 +418,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -367,7 +433,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -381,7 +448,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -395,7 +463,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -416,7 +485,8 @@
                             <div id="header-tip-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -430,7 +500,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -444,7 +515,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -458,7 +530,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -472,7 +545,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -493,7 +567,8 @@
                             <div class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -507,7 +582,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -521,7 +597,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -535,7 +612,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
@@ -549,7 +627,8 @@
                                 </div>
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="">
+                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+                                             alt="">
                                     </div>
                                     <div class="mw-text">
                                         <h6>
