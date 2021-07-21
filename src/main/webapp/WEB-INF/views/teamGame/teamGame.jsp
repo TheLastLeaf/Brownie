@@ -127,8 +127,7 @@
         var jun = 'n';
         var bot = 'n';
 
-        //var userId = "1786827527";
-        var userId = "1786941837";
+        var userId = '${sessionScope.id}';
         var selectPosi = selectObject.id;
         var roomNumber = selectObject.className.split(" ")[2];
 
