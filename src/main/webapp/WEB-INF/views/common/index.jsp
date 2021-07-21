@@ -98,14 +98,12 @@
                                         </tr>
                                         <c:forEach items="${boardPagingVO.boardVOList}" var="boardVO" begin="0"
                                                    end="10">
-                                            <fmt:formatDate value="${boardVO.boardUpDate}" type="both" var="indate"
-                                                            pattern="yyyy-MM-dd hh:mm:ss"/>
                                             <tr>
                                                 <th><span
                                                         onclick="location.href='${boardVO.boardKind}/details/${boardVO.boardSeq}'"
                                                         style="cursor: pointer">${boardVO.title}</span></th>
                                                 <th>${fn:toUpperCase(boardVO.boardKind)}</th>
-                                                <th>${indate}</th>
+                                                <th>${boardVO.boardInDateToString}</th>
                                                 <th>${boardVO.nickName}</th>
                                             </tr>
                                         </c:forEach>

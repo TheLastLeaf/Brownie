@@ -191,7 +191,7 @@
                                         <div class="rp-text">
                                             <h6>${prevBoardVO.title}</h6>
                                             <ul>
-                                                <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDate}</li>
+                                                <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDateToString}</li>
                                                 <li><i class="far fa-comment"></i> ${prevBoardVO.replyCnt}
                                                 </li>
                                             </ul>
@@ -213,7 +213,7 @@
                                         <div class="rp-text">
                                             <h6>${nextBoardVO.title}</h6>
                                             <ul>
-                                                <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDate}</li>
+                                                <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDateToString}</li>
                                                 <li><i class="far fa-comment"></i> ${nextBoardVO.replyCnt}</li>
                                             </ul>
                                         </div>
@@ -335,7 +335,7 @@
                                         <a href="${pageContext.request.contextPath}/free/details/${boardVOOrderByLike.boardSeq}">${boardVOOrderByLike.title}</a>
                                     </h6>
                                     <ul>
-                                        <li><i class="far fa-clock"></i>${boardVOOrderByLike.boardInDate}</li>
+                                        <li><i class="far fa-clock"></i>${boardVOOrderByLike.boardInDateToString}</li>
                                         <li><i class="far fa-comment"></i> ${boardVOOrderByLike.replyCnt}</li>
                                     </ul>
                                 </div>

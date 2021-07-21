@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../../layout/header.jsp"/>
-<fmt:formatDate value="${boardVO.boardInDate}" type="both" var="indate" pattern="yyyy-MM-dd hh:mm:ss"/>
 <style>
     .dt-desc {
         color: #666666;
@@ -23,7 +22,7 @@
                             <div class="details-hero-text">
                                 <ul>
                                     <li>by <span>${boardVO.nickName}</span></li>
-                                    <li>${indate}</li>
+                                    <li>${boardVO.boardInDateToString}</li>
                                     <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
                                     <li class="text-secondary cursor-pointer" onclick="location.href='/notice/list'">
                                         목록
@@ -86,7 +85,7 @@
                                         <div class="rp-text">
                                             <h6>${prevBoardVO.title }</h6>
                                             <ul>
-                                                <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDate}</li>
+                                                <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDateToString}</li>
                                                 </li>
                                             </ul>
                                         </div>
@@ -107,7 +106,7 @@
                                         <div class="rp-text">
                                             <h6>${nextBoardVO.title }</h6>
                                             <ul>
-                                                <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDate}</li>
+                                                <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDateToString}</li>
                                             </ul>
                                         </div>
                                     </a>

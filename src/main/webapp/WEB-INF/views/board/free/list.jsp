@@ -39,7 +39,7 @@
                             </h5>
                             <ul>
                                 <li>by <span>${boardVO.nickName}</span></li>
-                                <li><i class="far fa-clock"></i> ${boardVO.boardInDate}</li>
+                                <li><i class="far fa-clock"></i> ${boardVO.boardInDateToString}</li>
                                 <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
                                 <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
                                 <li><i class="far fa-thumbs-up"></i> ${boardVO.likeCnt}</li>
@@ -75,7 +75,7 @@
                                         <a href="${pageContext.request.contextPath}/free/details/${boardVOOrderByLike.boardSeq}">${boardVOOrderByLike.title}</a>
                                     </h6>
                                     <ul>
-                                        <li><i class="far fa-clock"></i>${boardVOOrderByLike.boardInDate}</li>
+                                        <li><i class="far fa-clock"></i>${boardVOOrderByLike.boardInDateToString}</li>
                                         <li><i class="far fa-comment"></i> ${boardVOOrderByLike.replyCnt}</li>
                                     </ul>
                                 </div>

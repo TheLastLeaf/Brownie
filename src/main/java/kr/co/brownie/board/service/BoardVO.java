@@ -4,6 +4,8 @@ import lombok.Data;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Data
@@ -62,5 +64,10 @@ public class BoardVO {
 
         Document document = Jsoup.parse(content);
         return document.text();
+    }
+
+    public String getBoardInDateToString() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(this.boardInDate);
     }
 }

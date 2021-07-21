@@ -46,8 +46,7 @@
                         <li>by <span>${boardVO.nickName}</span></li>
                         <li>
                             <i class="far fa-clock"></i>
-                            <fmt:formatDate value="${boardVO.boardInDate}" pattern="yyyy-MM-dd HH:mm:ss" var="date"/>
-                            ${date}
+                            ${boardVO.boardInDateToString}
                         </li>
                         <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
                         <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
@@ -150,7 +149,7 @@
                                     <div class="rp-text">
                                         <h6>${prevBoardVO.title }</h6>
                                         <ul>
-                                            <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDate}</li>
+                                            <li><i class="far fa-clock"></i> ${prevBoardVO.boardInDateToString}</li>
                                             <li><i class="far fa-comment"></i> ${prevBoardVO.replyCnt}
                                             </li>
                                         </ul>
@@ -172,7 +171,7 @@
                                     <div class="rp-text">
                                         <h6>${nextBoardVO.title }</h6>
                                         <ul>
-                                            <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDate}</li>
+                                            <li><i class="far fa-clock"></i> ${nextBoardVO.boardInDateToString}</li>
                                             <li><i class="far fa-comment"></i> ${nextBoardVO.replyCnt}</li>
                                         </ul>
                                     </div>
