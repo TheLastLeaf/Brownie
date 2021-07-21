@@ -157,7 +157,11 @@
 <body>
 <script type="text/javascript">
     function fn_chatRoom() {
-        const IN_USER_ID = "1786827527";
+        const IN_USER_ID = '${sessionScope.id}';
+        if(IN_USER_ID==''){
+            alert("로그인 후 이용 가능합니다.");
+            return;
+        }
 
         var title = document.getElementById('roomTitle').value;
         var message = document.getElementById('roomContent').value;

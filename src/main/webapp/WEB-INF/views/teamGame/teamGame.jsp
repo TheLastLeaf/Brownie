@@ -120,14 +120,13 @@
     }
 
     function fn_chatRoom(selectObject) {
-        console.log(selectObject)
-        var top = 'n';
-        var mid = 'n';
-        var sup = 'n';
-        var jun = 'n';
-        var bot = 'n';
-
         var userId = '${sessionScope.id}';
+
+        if(userId==''){
+            alert("로그인 후 이용 가능합니다.");
+            return;
+        }
+
         var selectPosi = selectObject.id;
         var roomNumber = selectObject.className.split(" ")[2];
 
@@ -137,6 +136,9 @@
             "position": selectPosi
         }
 
+        alert(userId)
+        alert(selectPosi)
+        alert(roomNumber)
         $.ajax({
             url: "./teamGame/update-position",
             type: "POST",
