@@ -92,6 +92,9 @@
     .reReplyBox {
         margin-bottom: 20px;
     }
+    .reply{
+        color: #c4c4c4 !important;
+    }
 </style>
 
 <!-- Details Post Section Begin -->
@@ -302,7 +305,7 @@
                         <div class="dt-leave-comment main_reply_form">
                             <h4>Leave a comment</h4>
                             <form>
-                                <textarea name="replyContent" placeholder="Message" required></textarea>
+                                <textarea name="replyContent" placeholder="Message" required class="reply"></textarea>
                                 <button type="button" onclick="replyWrite(${boardSeq})">Submit</button>
                             </form>
                         </div>

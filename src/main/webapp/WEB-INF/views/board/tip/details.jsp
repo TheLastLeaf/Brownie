@@ -25,6 +25,9 @@
         font-weight: 500;
         text-transform: uppercase;
     }
+    .reply{
+        color: #c4c4c4 !important;
+    }
 </style>
 
 <script>
@@ -258,7 +261,7 @@
                     <div class="dt-leave-comment main_reply_form">
                         <h4>Leave a comment</h4>
                         <form>
-                            <textarea name="replyContent" placeholder="Message" required></textarea>
+                            <textarea name="replyContent" placeholder="Message" required class="reply"></textarea>
                             <button type="button" onclick="replyWrite(${boardSeq})">Submit</button>
                         </form>
                     </div>
