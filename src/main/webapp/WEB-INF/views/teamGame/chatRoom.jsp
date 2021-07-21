@@ -164,8 +164,9 @@
 <script>
     $(document).ready(function () {
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
-        const USER_NAME = [['${sessionScope.sessionId}']];
-        const ROOM_NUMBER = "${param.roomNumber}";
+        const LOL_NICK = [['${userInfo.lolId}']];
+        const USER_NAME = [['${userInfo.nickName}']];
+        const ROOM_NUMBER = "${userInfo.roomNumber}";
 
         console.log("ROOM_NUMBER : " + ROOM_NUMBER);
 
@@ -242,8 +243,16 @@
             str += "<div class='alert alert-warning'>";
             str += "<b>" + sessionId + " : " + message + "</b>";
             str += "</div></div>";
-
             $("#chatBox").append(str);
+
+
+            var userListStr ="<div class='user'>"
+            userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
+            //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
+            userListStr += "<div class='userInfo'>"+USER_NAME+ "[" + LOL_NICK + "]"+"</div>"
+            userListStr += "</div>"
+            $("#chatUserList").append(userListStr);
+
 
             $('#chatBox').animate({
                 scrollTop: chatBox.scrollHeight - chatBox.clientHeight
@@ -258,10 +267,9 @@
 </div>
 
 <div class="container">
-    <div id="cr_title" class="row">&nbsp;Faker | 그마이상구함!</div>
+    <div id="cr_title" class="row">&nbsp;${roomInfo.teamGameSeq} | ${roomInfo.title}</div>
     <div id="containBox" class="row">
         <div id="includeBox" class="col-sm-9">
-
             <div class="caution">상처가 되는 말은 하지 말아주세요!</div>
             <div id="chatBox" class="col"></div>
 
@@ -272,32 +280,8 @@
             </div>
         </div>
 
-        <div class="userBox col-sm-3">
-            <div class="user">
-                <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
-                <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
-                <div class="userInfo">사용자1</div>
-            </div>
-            <div class="user">
-                <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
-                <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
-                <div class="userInfo">사용자2</div>
-            </div>
-            <div class="user">
-                <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
-                <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
-                <div class="userInfo">사용자3</div>
-            </div>
-            <div class="user">
-                <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
-                <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
-                <div class="userInfo">사용자4</div>
-            </div>
-            <div class="user">
-                <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
-                <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
-                <div class="userInfo">사용자5</div>
-            </div>
+        <div class="userBox col-sm-3" id="chatUserList">
+
         </div>
 
     </div>
