@@ -37,6 +37,7 @@ public class BoardVO {
     private String userUpUserId;
     private String userPosition;
     private Integer browniePoint;
+    private String image;
 
     //BROWNIE_BOARD_REPLY
     private Integer replyCnt;

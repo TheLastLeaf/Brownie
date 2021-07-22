@@ -163,10 +163,9 @@ public class UserController {
                 try {
                     InputStream fileStream = uploadFile.getInputStream();
                     FileUtils.copyInputStreamToFile(fileStream, targetFile);    //파일 저장
-                    map.put("profilePath", profilePath);
-                    map.put("originFileName", originalFileName);
-                    map.put("saveFileName", savedFileName);
-                    fileService.updateProfile(map);
+                    map.put("userId", id);
+                    map.put("image", profilePath + savedFileName);
+                    userService.updateImage(map);
                     changed.add("사진");
                 } catch (IOException e) {
                     FileUtils.deleteQuietly(targetFile);    //저장된 파일 삭제

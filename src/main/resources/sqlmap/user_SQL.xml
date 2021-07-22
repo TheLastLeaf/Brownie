@@ -14,6 +14,7 @@
                BU.IN_USER_ID    AS INUSERID,
                BU.UP_USER_ID    AS UPUSERID,
                BU.USER_POSITION AS USERPOSITION,
+               BU.IMAGE         AS IMAGE,
                PM.PERMIT_LEVEL  AS PERMITLEVEL,
                BE.USER_LEVEL    AS USERLEVEL
         FROM BROWNIE_USER BU,
@@ -36,7 +37,8 @@
                IN_USER_ID    AS INUSERID,
                UP_USER_ID    AS UPUSERID,
                USER_POSITION AS USERPOSITION,
-               BROWNIE_POINT AS BROWNIEPOINT
+               BROWNIE_POINT AS BROWNIEPOINT,
+               IMAGE         AS IMAGE
         FROM BROWNIE_USER
         WHERE USER_ID = #{id}
     </select>
@@ -140,6 +142,12 @@
         WHERE USER_ID = #{userId}
     </update>
 
+    <update id="updateImage" parameterType="hashMap">
+        UPDATE BROWNIE_USER
+        SET IMAGE = #{image}
+        WHERE USER_ID = #{userId}
+    </update>
+
     <select id="userList" parameterType="hashMap" resultType="kr.co.brownie.user.service.UserVO">
         <![CDATA[
         SELECT USERID,
@@ -152,6 +160,7 @@
                INUSERID,
                UPUSERID,
                USERPOSITION,
+               IMAGE,
                PERMITLEVEL,
                USERLEVEL
         FROM (SELECT ROWNUM AS RN,
@@ -165,6 +174,7 @@
                      INUSERID,
                      UPUSERID,
                      USERPOSITION,
+                     IMAGE,
                      PERMITLEVEL,
                      USERLEVEL
               FROM (
@@ -178,6 +188,7 @@
                               BU.IN_USER_ID    AS INUSERID,
                               BU.UP_USER_ID    AS UPUSERID,
                               BU.USER_POSITION AS USERPOSITION,
+                              BU.IMAGE         AS IMAGE,
                               PM.PERMIT_LEVEL  AS PERMITLEVEL,
                               BE.USER_LEVEL    AS USERLEVEL
                        FROM BROWNIE_USER BU,

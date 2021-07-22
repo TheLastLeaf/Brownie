@@ -48,6 +48,7 @@
                USERUPUSERID,
                USERPOSITION,
                BROWNIEPOINT,
+               IMAGE,
                LIKEKIND,
                LIKECNT,
                UNLIKECNT
@@ -74,6 +75,7 @@
                            BROWNIE_USER.UP_USER_ID                         AS USERUPUSERID,
                            BROWNIE_USER.USER_POSITION                      AS USERPOSITION,
                            BROWNIE_USER.BROWNIE_POINT                      AS BROWNIEPOINT,
+                           BROWNIE_USER.IMAGE                              AS IMAGE,
                            BROWNIE_BOARD_REPLY_LIKE.KIND                   AS LIKEKIND,
                            NVL(BROWNIE_BOARD_REPLY_LIKE_CNT.LIKE_CNT, 0)   AS LIKECNT,
                            NVL(BROWNIE_BOARD_REPLY_LIKE_CNT.UNLIKE_CNT, 0) AS UNLIKECNT
@@ -151,6 +153,7 @@
                USERUPUSERID,
                USERPOSITION,
                BROWNIEPOINT,
+               IMAGE,
                LIKEKIND,
                LIKECNT,
                UNLIKECNT
@@ -175,6 +178,7 @@
                      BROWNIE_USER.UP_USER_ID                         AS USERUPUSERID,
                      BROWNIE_USER.USER_POSITION                      AS USERPOSITION,
                      BROWNIE_USER.BROWNIE_POINT                      AS BROWNIEPOINT,
+                     BROWNIE_USER.IMAGE                              AS IMAGE,
                      BROWNIE_BOARD_REPLY_LIKE.KIND                   AS LIKEKIND,
                      NVL(BROWNIE_BOARD_REPLY_LIKE_CNT.LIKE_CNT, 0)   AS LIKECNT,
                      NVL(BROWNIE_BOARD_REPLY_LIKE_CNT.UNLIKE_CNT, 0) AS UNLIKECNT

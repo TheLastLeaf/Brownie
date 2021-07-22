@@ -23,6 +23,8 @@ public interface UserMapper {
 
     int hateReplyCnt(String id);
 
+    int updateImage(Map<String, Object> map);
+
     List<String> recentBoard(String id);
 
     String nickName(String id);

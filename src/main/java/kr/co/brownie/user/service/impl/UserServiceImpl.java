@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int updateImage(Map<String, Object> map) {
+        return this.userMapper.updateImage(map);
+    }
+
+    @Override
     public List<String> recentBoard(String id) {
         List<String> list = userMapper.recentBoard(id);
         if (list.size() == 0) {
