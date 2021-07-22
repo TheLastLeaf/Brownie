@@ -65,6 +65,13 @@
         formData.append("content", $(".content").val());
         formData.append("log",$(".log").val());
 
+        if(!confirm("정말 신고하시겠습니까?")){
+            alert("신고 접수가 취소되었습니다")
+            window.close();
+            return false;
+        }
+
+
         $.ajax({
             url: "./reportReply",
             type: "POST",
