@@ -45,8 +45,6 @@ public class WebSocketController {
         model.addAttribute("roomInfo", roomInfo.get(0));
 
         //해당 방 번호를 가진 유저 닉네임과 롤 닉네임, 티어 목록이 필요함
-
-
         return "teamGame/chatRoom";
     }
 }
