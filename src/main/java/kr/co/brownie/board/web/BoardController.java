@@ -42,14 +42,24 @@ public class BoardController {
                 jsonObject.addProperty("status", "ng");
                 jsonObject.addProperty("message", "로그인 후 이용하세요.");
             } else {
-                map.put("userId", httpSession.getAttribute("id"));
-
-                if (this.boardService.insert(map) != 1) {
+                if (map.get("title").toString().trim().length() == 0) {
                     jsonObject.addProperty("status", "ng");
-                    jsonObject.addProperty("message", "작성에 실패하였습니다.");
+                    jsonObject.addProperty("message", "제목을 입력하세요.");
+                } else if (map.get("content").toString().trim().length() == 0) {
+                    jsonObject.addProperty("status", "ng");
+                    jsonObject.addProperty("message", "내용을 입력하세요.");
                 } else {
-                    jsonObject.addProperty("status", "ok");
+                    map.put("userId", httpSession.getAttribute("id"));
+
+                    if (this.boardService.insert(map) != 1) {
+                        jsonObject.addProperty("status", "ng");
+                        jsonObject.addProperty("message", "작성에 실패하였습니다.");
+                    } else {
+                        jsonObject.addProperty("status", "ok");
+                    }
+
                 }
+
             }
         }
         return jsonObject.toString();

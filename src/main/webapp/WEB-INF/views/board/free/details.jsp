@@ -92,7 +92,8 @@
     .reReplyBox {
         margin-bottom: 20px;
     }
-    .reply{
+
+    .reply {
         color: #c4c4c4 !important;
     }
 </style>
@@ -159,8 +160,9 @@
                             btn-outline-danger
                         </c:otherwise>
                     </c:choose>
-                    btn-lg ml-3" onclick="boardLike(${boardSeq}, 0)"><i
-                                class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</button>
+                    btn-lg ml-3" onclick="boardLike(${boardSeq}, 0)">
+                            <i class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}
+                        </button>
                         <c:if test="${sessionScope.id != null}">
                             <button type="button" class="btn btn-outline-light btn-lg ml-5"
                                     onclick="fn_report('${boardVO.boardUpUserId}','${boardVO.content}')"><i
@@ -232,7 +234,8 @@
                             <div id="${replyVO.replySeq}" class="dc-item"
                                  style="margin-left: ${(replyVO.lv - 1) * 100}px;">
                                 <div class="dc-pic">
-                                    <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
+                                    <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg"
+                                         alt="">
                                 </div>
                                 <div class="dc-text">
                                     <h5>${replyVO.nickName}</h5>
@@ -264,8 +267,8 @@
                                         <c:if test="${sessionScope.id != null}">
                                             <button type="button" class="btn btn-outline-light ml-5"
                                                     onclick="fn_report('${replyVO.replyUpUserId}','${replyVO.replyContent}')">
-                                                <i
-                                                        class="fas fa-bomb"></i></button>
+                                                <i class="fas fa-bomb"></i>
+                                            </button>
                                         </c:if>
                                     </div>
                                     <p>${replyVO.replyContent}</p>

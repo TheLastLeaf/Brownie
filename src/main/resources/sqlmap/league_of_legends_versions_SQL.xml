@@ -8,16 +8,14 @@
         <![CDATA[
         SELECT SEQ,
                VERSION
-        FROM (
-                 SELECT SEQ,
-                        VERSION,
-                        ROWNUM AS RN
-                 FROM (
-                          SELECT SEQ,
-                                 VERSION
-                          FROM LEAGUE_OF_LEGENDS_VERSIONS
-                          ORDER BY SEQ DESC
-                      )
+        FROM (SELECT SEQ,
+                     VERSION,
+                     ROWNUM AS RN
+              FROM (SELECT SEQ,
+                           VERSION
+                    FROM LEAGUE_OF_LEGENDS_VERSIONS
+                    ORDER BY SEQ DESC
+                   )
              )
         WHERE RN <= 1
         ]]>

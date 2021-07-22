@@ -288,346 +288,234 @@
                     </div>
                 </div>
                 <br/>
-                <c:choose>
-                    <c:when test="${sessionScope.id ne null}">
-                        <!-- 로그인상태에서 정보화면 -->
-                        <c:set var="nick" value="${userOneSelect.nickName}"/>
-                        <div class="dt-desc" style="display: block;">
-                            <div class="row outBox" style="margin-left: 5px;">
-                                <div class="profileBox text-center justify-content-center align-items-center d-flex"
-                                     style="position: relative;">
-                                    <!-- 프로필사진 + exp 툴팁 -->
-                                    <div class="profilePic">
-                                        <!-- ${pageContext.request.contextPath} 경로:  -->
-                                        <!-- ${selectProfile} 경로: /img/user/lux.gif -->
-                                        <!-- 바꿧을때 -->
-                                        <img src="${pageContext.request.contextPath}${selectProfile}">
-                                    </div>
+                <!-- 로그인상태에서 정보화면 -->
+                <c:set var="nick" value="${userOneSelect.nickName}"/>
+                <div class="dt-desc" style="display: block;">
+                    <div class="row outBox" style="margin-left: 5px;">
+                        <div class="profileBox text-center justify-content-center align-items-center d-flex"
+                             style="position: relative;">
+                            <!-- 프로필사진 + exp 툴팁 -->
+                            <div class="profilePic">
+                                <!-- ${pageContext.request.contextPath} 경로:  -->
+                                <!-- ${selectProfile} 경로: /img/user/lux.gif -->
+                                <!-- 바꿧을때 -->
+                                <img src="${pageContext.request.contextPath}${selectProfile}">
+                            </div>
 
-                                    <!-- 프로필 프레임 -->
-                                    <div class="profileFrame">
-                                        <c:choose>
-                                            <c:when test="${exp > 40}">
-                                                <img src="${pageContext.request.contextPath}/img/frame/final.png"
-                                                     title="MAX">
-                                            </c:when>
-                                            <c:when test="${exp > 30}">
-                                                <img src="${pageContext.request.contextPath}/img/frame/purple.png"
-                                                     title="경험치: ${exp}/40">
-                                            </c:when>
-                                            <c:when test="${exp > 20}">
-                                                <img src="${pageContext.request.contextPath}/img/frame/blue.png"
-                                                     title="경험치: ${exp}/30">
-                                            </c:when>
-                                            <c:when test="${exp > 10}">
-                                                <img src="${pageContext.request.contextPath}/img/frame/red.png"
-                                                     title="경험치: ${exp}/20">
-                                            </c:when>
-                                            <c:otherwise>
-                                                <img src="${pageContext.request.contextPath}/img/frame/green.png"
-                                                     title="경험치: ${exp}/10">
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <div class="profileFrameLv">
-                                            <c:choose>
-                                                <c:when test="${exp > 40}">
-                                                    4
-                                                </c:when>
-                                                <c:when test="${exp > 30}">
-                                                    3
-                                                </c:when>
-                                                <c:when test="${exp > 20}">
-                                                    2
-                                                </c:when>
-                                                <c:when test="${exp > 10}">
-                                                    1
-                                                </c:when>
-                                                <c:otherwise>
-                                                    0
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </div>
-                                    </div>
+                            <!-- 프로필 프레임 -->
+                            <div class="profileFrame">
+                                <c:choose>
+                                    <c:when test="${exp > 40}">
+                                        <img src="${pageContext.request.contextPath}/img/frame/final.png"
+                                             title="MAX">
+                                    </c:when>
+                                    <c:when test="${exp > 30}">
+                                        <img src="${pageContext.request.contextPath}/img/frame/purple.png"
+                                             title="경험치: ${exp}/40">
+                                    </c:when>
+                                    <c:when test="${exp > 20}">
+                                        <img src="${pageContext.request.contextPath}/img/frame/blue.png"
+                                             title="경험치: ${exp}/30">
+                                    </c:when>
+                                    <c:when test="${exp > 10}">
+                                        <img src="${pageContext.request.contextPath}/img/frame/red.png"
+                                             title="경험치: ${exp}/20">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${pageContext.request.contextPath}/img/frame/green.png"
+                                             title="경험치: ${exp}/10">
+                                    </c:otherwise>
+                                </c:choose>
+                                <div class="profileFrameLv">
+                                    <c:choose>
+                                        <c:when test="${exp > 40}">
+                                            4
+                                        </c:when>
+                                        <c:when test="${exp > 30}">
+                                            3
+                                        </c:when>
+                                        <c:when test="${exp > 20}">
+                                            2
+                                        </c:when>
+                                        <c:when test="${exp > 10}">
+                                            1
+                                        </c:when>
+                                        <c:otherwise>
+                                            0
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
-                                <div class="col-7" style="color: white;">
-                                    <div class="Hierarchy font-family-maple-bold">
-                                        <i>일반회원</i>
-                                    </div>
-                                    <div class="nameLv">
-                                        <h3 class="font-family-maple-bold text-white">
-                                            <c:out value="${nick}"/>
-                                            &nbsp;|&nbsp; ${userOneSelect.browniePoint} .BP &nbsp;|&nbsp; <span
-                                                class="rating-star"> <c:forEach begin="1" end="${fullStar}">
-                                            <i class="fas fa-star"></i>
-                                        </c:forEach> <c:forEach begin="1" end="${halfStar}">
-                                            <i class="fas fa-star-half-alt"></i>
-                                        </c:forEach> <c:forEach begin="1" end="${5-fullStar-halfStar}">
-                                            <i class="far fa-star"></i>
-                                        </c:forEach>
-											</span>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <c:if test="${userOneSelect.upUserId == sessionScope.id}">
-                                <div class="modInfo col-3">
-                                    <button type="button" class="btn btn-dark"
-                                            onclick="fn_infoMod('${userOneSelect.upUserId}')">정보수정
-                                    </button>
-                                    <button type="button" class="btn btn-danger" onclick="fn_infoDel()">탈퇴</button>
-                                </div>
-                                </c:if>
                             </div>
                         </div>
-                        <!-- 연동/게시글/같이플레이한놈 begin -->
-                        <div class="row" style="color: white;">
-                            <!-- 뭉태기1 -->
-                            <div class="userInfoBox col-sm-4">
-                                <div class="sync">
-                                    <button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
-                                </div>
-                                <div class="sync">
-                                    <!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
-                                        ${userOneSelect.lolId} | 롤Lv. | 롤Tier
-                                </div>
-                                <div class="sync">[메인포지션] : ${userOneSelect.userPosition}</div>
+                        <div class="col-7" style="color: white;">
+                            <div class="Hierarchy font-family-maple-bold">
+                                <i>일반회원</i>
                             </div>
-                            <!-- 뭉태기2 -->
-                            <div class="userInfoBox col-sm-4">
-                                <div>
-                                    <div class="infoDetail">게시글 갯수: ${boardTotalCnt}</div>
-                                    <div class="infoDetail">댓글 갯수: ${replyTotalCnt}</div>
-                                    <div class="infoDetail">좋아요: ${likeReplyCnt}</div>
-                                    <div class="infoDetail">싫어요: ${hateReplyCnt}</div>
-                                </div>
-                                <hr/>
-                                <div class="infoDetail">【 최근 게시글 내역 】</div>
-                                <c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
-                                    <div class="upload">
-                                            ${vs.index+1}.
-                                        <a href="">${recentBoard}</a>
-                                    </div>
+                            <div class="nameLv">
+                                <h3 class="font-family-maple-bold text-white">
+                                    <c:out value="${nick}"/>
+                                    &nbsp;|&nbsp; ${userOneSelect.browniePoint} .BP &nbsp;|&nbsp; <span
+                                        class="rating-star"> <c:forEach begin="1" end="${fullStar}">
+                                    <i class="fas fa-star"></i>
+                                </c:forEach> <c:forEach begin="1" end="${halfStar}">
+                                    <i class="fas fa-star-half-alt"></i>
+                                </c:forEach> <c:forEach begin="1" end="${5-fullStar-halfStar}">
+                                    <i class="far fa-star"></i>
                                 </c:forEach>
-                            </div>
-                            <!-- 뭉태기3 -->
-                            <div class="userInfoBox col-sm-4">
-                                <div class="col playWith">최근 채팅한 플레이어</div>
-                                <div class="col">
-                                    <div class="nickBox">
-                                        <b>[이동해서 댓글·별점주세요!]</b>
-                                    </div>
-                                    <div class="nickName">
-                                        <a class="col" href="#">[???]</a>
-                                    </div>
-                                    <div class="nickName">
-                                        <a class="col" href="#">[???]</a>
-                                    </div>
-                                    <div class="nickName">
-                                        <a class="col" href="#">[???]</a>
-                                    </div>
-                                    <div class="nickName">
-                                        <a class="col" href="#">[???]</a>
-                                    </div>
-                                    <div class="nickName">
-                                        <a class="col" href="#">[???]</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 연동/게시글/같이플레이한놈 end -->
-                        <br/>
-
-                        <!-- 후기글 begin -->
-                        <div class="reputation row">
-                            <div class="col-sm-4"
-                                 style="display: flex; justify-content: flex-start; align-items: center;">
-                                후기를 써서 테러하세요!
-                                <h6>&nbsp;[우클릭하여 신고]</h6>
-                            </div>
-
-                            <!-- 검색 begin -->
-                            <div class="col-sm-8" style="display: flex; justify-content: flex-end;">
-                                <div class="searchBox">
-                                    <select name="searchType" id="searchType" class="input-value selectOption">
-                                        <option class="optionBox" value="writerId">작성자</option>
-                                        <option class="optionBox" value="writeDate">날짜</option>
-                                    </select>
-                                    <input type="text" class="input-value" id="writeUser" name="keyword"
-                                           style="display: block;" placeholder="작성자입력">
-                                    <input type="date" class="input-value" id="dateSelect" name="keyword"
-                                           style="display: none; width: 45%; background: gray;">
-                                    <button type="button" id="searchBtn" class="btn btn-primary">검색</button>
-                                </div>
-                            </div>
-                            <!-- 검색 end-->
-
-                            <c:forEach var="reviewVO" items="${reviewVOs}" varStatus="status">
-                                <div class="review col-4" id="divReview_${status.index}">
-                                    <div class="reviewDay">${reviewVO.inUserId}&nbsp;<fmt:formatDate
-                                            value="${reviewVO.inDate}"/>
-                                    </div>
-                                    <div class="rev font-family-maple-bold">
-                                            ${reviewVO.reply}
-                                        <!-- hover 별 -->
-                                        <div class="caption">
-                                            <c:forEach begin="1" end="${reviewVO.starCnt}">
-                                                <i class="fas fa-star"></i>
-                                            </c:forEach>
-                                            <c:forEach begin="1" end="${5-reviewVO.starCnt}">
-                                                <i class="far fa-star"></i>
-                                            </c:forEach>
-                                        </div>
-                                    </div>
-                                </div>
-                                <ul class="contextmenu" id="divContextmenu_${status.index }">
-                                    <li><a onclick="fn_declaration('${reviewVO.upUserId}','${reviewVO.reply}')">신고하기</a>
-                                    </li>
-                                    <!-- 다른유저페이지로 이동->> -->
-                                    <li><a href="/user/info/${reviewVO.upUserId}">둘러보기</a></li>
-                                </ul>
-                            </c:forEach>
-                            <!-- 후기글 end-->
-
-                            <%-- location.href = "/user/info/${userOneSelect.userId}?num=1" + "&searchType=" + searchType + "&keyword=" + keyword; --%>
-                            <!-- 페이징처리 begin -->
-                            <div class="paging col-12 pagination-item" style="position: relative;">
-                                <div class="col-12" style="display: flex; justify-content: center;">
-                                    <c:if test="${page.prev}">
-                                        <a href="/user/info/${userOneSelect.userId}?num=${page.startPageNum-1}&searchType=${page.searchType}&keyword=${page.keyword}">prev</a>
-                                    </c:if>
-                                    <c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
-                                        <c:choose>
-                                            <c:when test="${page.num != num}">
-                                                <a href="/user/info/${userOneSelect.userId}?num=${num}&searchType=${page.searchType}&keyword=${page.keyword}">${num}</a>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <a href="#">${num}</a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
-                                    <c:if test="${page.next}">
-                                        <a href="/user/info/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
-                                    </c:if>
-                                </div>
-                                <c:if test="${sessionScope.id ne userOneSelect.userId}">
-                                <div class="writeReview">
-                                    <button type="button" class="btn btn-secondary" style="margin: 0px;"
-                                            onclick="fn_review('${userOneSelect.upUserId}')">후기작성
-                                    </button>
-                                </div>
-                                </c:if>
-                            </div>
-                            <!-- 페이징처리 end -->
-                        </div>
-                    </c:when>
-
-                    <c:otherwise>
-                        <!-- 비로그인or 로그인처음 상태에서 user화면 -->
-                        <div class="dt-desc" style="display: block;">
-                            <div class="row outBox" style="margin-left: 5px;">
-                                <div class="profileBox text-center justify-content-center align-items-center d-flex"
-                                     style="position: relative;">
-                                    <!-- 프로필사진 -->
-                                    <div class="profilePic">
-                                        <img src="${pageContext.request.contextPath}/img/user/whiteSpace.png">
-                                    </div>
-                                    <!-- 프로필 프레임(테두리) -->
-                                    <div class="profileFrame">
-                                        <img src="${pageContext.request.contextPath}/img/frame/final.png">
-                                        <div class="profileFrameLv">99</div>
-                                    </div>
-                                </div>
-                                <div class="col-7" style="color: white;">
-                                    <div class="Hierarchy font-family-maple-bold">
-                                        <i>회원등급</i>
-                                    </div>
-                                    <div class="nameLv">
-                                        <h3 class="font-family-maple-bold text-white">
-                                            ??? | Lv. ??? | <span class="rating-star"> <i class="far fa-star"></i> <i
-                                                class="far fa-star"></i> <i class="far fa-star"></i> <i
-                                                class="far fa-star"></i> <i class="far fa-star"></i>
 											</span>
-                                        </h3>
-                                    </div>
-                                </div>
-                                <c:if test="${sessionScope.id eq userOneSelect.upUserId}">
-                                <div class="modInfo col-3">
-                                    <button type="button" class="btn btn-dark" onclick="fn_infoMod()">정보수정</button>
-                                    <button type="button" class="btn btn-dark" onclick="fn_infoDel()">탈퇴</button>
-                                </div>
-                                </c:if>
+                                </h3>
                             </div>
                         </div>
-                        <!-- 연동/게시글/같이플레이한놈 begin -->
-                        <div class="row" style="color: white;">
-                            <!-- 뭉태기1 -->
-                            <div class="userInfoBox col-sm-4">
-                                <div class="sync">
-                                    <button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
-                                </div>
-                                <div class="sync">
-                                    <!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
-                                    ??? | ??? | ???
-                                </div>
-                                <div class="sync">[메인포지션] : ???</div>
+                        <c:if test="${userOneSelect.upUserId == sessionScope.id}">
+                            <div class="modInfo col-3">
+                                <button type="button" class="btn btn-dark"
+                                        onclick="fn_infoMod('${userOneSelect.upUserId}')">정보수정
+                                </button>
+                                <button type="button" class="btn btn-danger" onclick="fn_infoDel()">탈퇴</button>
                             </div>
-                            <!-- 뭉태기2 -->
-                            <div class="userInfoBox col-sm-4">
-                                <div>
-                                    <div class="infoDetail">게시글 갯수: ???</div>
-                                    <div class="infoDetail">댓글 갯수: ???</div>
-                                    <div class="infoDetail">좋아요: ???</div>
-                                    <div class="infoDetail">싫어요: ???</div>
-                                </div>
-                                <hr/>
-                                <div class="infoDetail">최근 게시글 내역</div>
-                                <div class="upload">???</div>
-                                <div class="upload">???</div>
-                                <div class="upload">???</div>
+                        </c:if>
+                    </div>
+                </div>
+                <!-- 연동/게시글/같이플레이한놈 begin -->
+                <div class="row" style="color: white;">
+                    <!-- 뭉태기1 -->
+                    <div class="userInfoBox col-sm-4">
+                        <div class="sync">
+                            <button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
+                        </div>
+                        <div class="sync">
+                            <!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
+                            ${userOneSelect.lolId} | 롤Lv. | 롤Tier
+                        </div>
+                        <div class="sync">[메인포지션] : ${userOneSelect.userPosition}</div>
+                    </div>
+                    <!-- 뭉태기2 -->
+                    <div class="userInfoBox col-sm-4">
+                        <div>
+                            <div class="infoDetail">게시글 갯수: ${boardTotalCnt}</div>
+                            <div class="infoDetail">댓글 갯수: ${replyTotalCnt}</div>
+                            <div class="infoDetail">좋아요: ${likeReplyCnt}</div>
+                            <div class="infoDetail">싫어요: ${hateReplyCnt}</div>
+                        </div>
+                        <hr/>
+                        <div class="infoDetail">【 최근 게시글 내역 】</div>
+                        <c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
+                            <div class="upload">
+                                    ${vs.index+1}.
+                                <a href="">${recentBoard}</a>
                             </div>
-                            <!-- 뭉태기3 -->
-                            <div class="userInfoBox col-sm-4">
-                                <div class="col playWith">최근 채팅한 플레이어</div>
-                                <div class="col">
-                                    <div class="nickBox">
-                                        <b>[이동해서 댓글·별점주세요!]</b>
-                                    </div>
-                                    <c:forEach begin="0" end="4">
-                                        <div class="nickName">
-                                            <a class="col" href="#">[???]</a>
-                                        </div>
+                        </c:forEach>
+                    </div>
+                    <!-- 뭉태기3 -->
+                    <div class="userInfoBox col-sm-4">
+                        <div class="col playWith">최근 채팅한 플레이어</div>
+                        <div class="col">
+                            <div class="nickBox">
+                                <b>[이동해서 댓글·별점주세요!]</b>
+                            </div>
+                            <div class="nickName">
+                                <a class="col" href="#">[???]</a>
+                            </div>
+                            <div class="nickName">
+                                <a class="col" href="#">[???]</a>
+                            </div>
+                            <div class="nickName">
+                                <a class="col" href="#">[???]</a>
+                            </div>
+                            <div class="nickName">
+                                <a class="col" href="#">[???]</a>
+                            </div>
+                            <div class="nickName">
+                                <a class="col" href="#">[???]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 연동/게시글/같이플레이한놈 end -->
+                <br/>
+
+                <!-- 후기글 begin -->
+                <div class="reputation row">
+                    <div class="col-sm-4"
+                         style="display: flex; justify-content: flex-start; align-items: center;">
+                        후기를 써서 테러하세요!
+                        <h6>&nbsp;[우클릭하여 신고]</h6>
+                    </div>
+
+                    <!-- 검색 begin -->
+                    <div class="col-sm-8" style="display: flex; justify-content: flex-end;">
+                        <div class="searchBox">
+                            <select name="searchType" id="searchType" class="input-value selectOption">
+                                <option class="optionBox" value="writerId">작성자</option>
+                                <option class="optionBox" value="writeDate">날짜</option>
+                            </select>
+                            <input type="text" class="input-value" id="writeUser" name="keyword"
+                                   style="display: block;" placeholder="작성자입력">
+                            <input type="date" class="input-value" id="dateSelect" name="keyword"
+                                   style="display: none; width: 45%; background: gray;">
+                            <button type="button" id="searchBtn" class="btn btn-primary">검색</button>
+                        </div>
+                    </div>
+                    <!-- 검색 end-->
+
+                    <c:forEach var="reviewVO" items="${reviewVOs}" varStatus="status">
+                        <div class="review col-4" id="divReview_${status.index}">
+                            <div class="reviewDay">${reviewVO.inUserId}&nbsp;<fmt:formatDate
+                                    value="${reviewVO.inDate}"/>
+                            </div>
+                            <div class="rev font-family-maple-bold">
+                                    ${reviewVO.reply}
+                                <!-- hover 별 -->
+                                <div class="caption">
+                                    <c:forEach begin="1" end="${reviewVO.starCnt}">
+                                        <i class="fas fa-star"></i>
+                                    </c:forEach>
+                                    <c:forEach begin="1" end="${5-reviewVO.starCnt}">
+                                        <i class="far fa-star"></i>
                                     </c:forEach>
                                 </div>
                             </div>
                         </div>
-                        <!-- 연동/게시글/같이플레이한놈 end -->
-                        <br/>
-                        <div class="reputation row">
-                            <div class="col-sm-10"
-                                 style="display: flex; justify-content: flex-start; align-items: center;">
-                                후기를 써서 테러하세요!
-                                <h6>&nbsp;[우클릭하여 신고]</h6>
-                            </div>
-                            <div class="col-sm-2" style="display: flex; justify-content: flex-end;">
-                                <button type="button" class="btn btn-info" onclick="fn_review()">후기작성</button>
-                            </div>
-                            <!-- 다른사람이 쓴 후기 -->
-                            <div class="review col-4">
-                                <div class="reviewDay">작성자&nbsp;??/??/??</div>
-                                <div class="rev font-family-maple-bold">
-                                    비로그인 상태
-                                    <!-- 상세내용담는공간 -->
-                                    <div class="caption">☆☆☆☆☆</div>
-                                </div>
-                            </div>
+                        <ul class="contextmenu" id="divContextmenu_${status.index }">
+                            <li><a onclick="fn_declaration('${reviewVO.upUserId}','${reviewVO.reply}')">신고하기</a>
+                            </li>
+                            <!-- 다른유저페이지로 이동->> -->
+                            <li><a href="/user/info/${reviewVO.upUserId}">둘러보기</a></li>
+                        </ul>
+                    </c:forEach>
+                    <!-- 후기글 end-->
 
-                            <!-- 페이징처리 -->
-                            <div class="paging col-12">
-                                <a href="#">[1]</a>
-                            </div>
+                    <%-- location.href = "/user/info/${userOneSelect.userId}?num=1" + "&searchType=" + searchType + "&keyword=" + keyword; --%>
+                    <!-- 페이징처리 begin -->
+                    <div class="paging col-12 pagination-item" style="position: relative;">
+                        <div class="col-12" style="display: flex; justify-content: center;">
+                            <c:if test="${page.prev}">
+                                <a href="/user/info/${userOneSelect.userId}?num=${page.startPageNum-1}&searchType=${page.searchType}&keyword=${page.keyword}">prev</a>
+                            </c:if>
+                            <c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+                                <c:choose>
+                                    <c:when test="${page.num != num}">
+                                        <a href="/user/info/${userOneSelect.userId}?num=${num}&searchType=${page.searchType}&keyword=${page.keyword}">${num}</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="#">${num}</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                            <c:if test="${page.next}">
+                                <a href="/user/info/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
+                            </c:if>
                         </div>
-
-                    </c:otherwise>
-                </c:choose>
+                        <c:if test="${sessionScope.id ne userOneSelect.userId}">
+                            <div class="writeReview">
+                                <button type="button" class="btn btn-secondary" style="margin: 0px;"
+                                        onclick="fn_review('${userOneSelect.upUserId}')">후기작성
+                                </button>
+                            </div>
+                        </c:if>
+                    </div>
+                    <!-- 페이징처리 end -->
+                </div>
 
                 <!-- 마우스 우클릭 (숨김처리됨li태그들) -->
                 <!-- 그냥 밑에서 한칸 띄워 놓고 싶어서 만듬 share box begin  -->
@@ -667,7 +555,7 @@
     }
 
     function fn_review(user_Id) {
-        window.open("/user/review/"+ user_Id, "userReview",
+        window.open("/user/review/" + user_Id, "userReview",
             "width=870, height=500, left=400,top=200");
     }
 
