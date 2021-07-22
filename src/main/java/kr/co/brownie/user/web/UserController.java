@@ -252,7 +252,7 @@ public class UserController {
         return cnt;
     }
 
-    @GetMapping("/userReview/{user_id}")
+    @GetMapping("/review/{user_id}")
     public String userReview(Model model,
                              @RequestParam Map<String, Object> map,
                              HttpSession httpsession,
@@ -263,10 +263,10 @@ public class UserController {
 
         model.addAttribute("userVO", userVO);
 
-        return "user/userReview";
+        return "user/review";
     }
 
-    @PostMapping("/userReview")
+    @PostMapping("/review")
     @ResponseBody
     public String userPostReview(@RequestParam Map<String, Object> map,
                                  HttpSession httpsession) {

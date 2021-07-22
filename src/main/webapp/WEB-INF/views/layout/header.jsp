@@ -222,13 +222,13 @@
                         <c:choose>
                             <c:when test="${sessionScope.id != null}">
                                         <span style="margin-left:4px;">
-                                            <a onclick="location.href='/user/userInfo/${sessionScope.id}'"
+                                            <a onclick="location.href='/user/info/${sessionScope.id}'"
                                                style="text-decoration: underline;">${sessionScope.id}</a>
                                             <span style="cursor:text">님 환영합니다</span>
                                         </span>
                                 <span style="margin-left:4px; cursor:text;">LV.${sessionScope.permit_level}</span>
                                 <span style="margin-left:4px;">
-                                            <a onclick="location.href='/user/userInfo/${sessionScope.id}'">
+                                            <a onclick="location.href='/user/info/${sessionScope.id}'">
                                                 <i class="far fa-address-book" aria-hidden="true"></i>
                                             </a>
                                         </span>

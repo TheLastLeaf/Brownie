@@ -41,7 +41,7 @@
                             <img src="${pageContext.request.contextPath}${selectProfile}">
                         </div>
                         <div class="da-text">
-                            <a href="/user/userInfo/${boardVO.boardUpUserId}">
+                            <a href="/user/info/${boardVO.boardUpUserId}">
                                 <h5>
                                     ${boardVO.nickName}
                                 </h5>

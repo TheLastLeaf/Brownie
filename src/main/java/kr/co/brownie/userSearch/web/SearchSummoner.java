@@ -112,6 +112,6 @@ public class SearchSummoner {
 				"http://ddragon.leagueoflegends.com/cdn/" + VersionCheck.profileiconVersion + "/img/profileicon/" + temp.getProfileIconId() + ".png");
 		model.addAttribute("summoner", temp);
 		model.addAttribute("leagueName", leagueName);
-		return "user/userResult";
+		return "user/result";
 	}
 }

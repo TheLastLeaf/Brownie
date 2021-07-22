@@ -12,7 +12,7 @@ public class ExpController {
     @Resource(name = "expService")
     ExpService expService;
 
-//	@GetMapping("/user/userInfo")
+//	@GetMapping("/user/info")
 //	public String selectExp(Map<String,Object> map, HttpSession httpSession) {
 //		String id = (String)httpSession.getAttribute("id");
 //		int exp = expService.selectExp(id);

@@ -114,7 +114,7 @@ hr {
 
 	<div class="signup-text">
 		<div class="container">
-			<form action="/user/userReview" class="signup-form" method="post" onsubmit="return fn_check()">
+			<form action="${pageContext.request.contextPath}/user/review" class="signup-form" method="post" onsubmit="return fn_check()">
 				<input type="hidden" name="user_id" value="${user_id}" />
 				<div class="signup-title" style="margin: 10px;">
 					<div class="row">

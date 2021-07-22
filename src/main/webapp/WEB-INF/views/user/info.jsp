@@ -482,22 +482,22 @@
                                     <li><a onclick="fn_declaration('${reviewVO.upUserId}','${reviewVO.reply}')">신고하기</a>
                                     </li>
                                     <!-- 다른유저페이지로 이동->> -->
-                                    <li><a href="/user/userInfo/${reviewVO.upUserId}">둘러보기</a></li>
+                                    <li><a href="/user/info/${reviewVO.upUserId}">둘러보기</a></li>
                                 </ul>
                             </c:forEach>
                             <!-- 후기글 end-->
 
-                            <%-- location.href = "/user/userInfo/${userOneSelect.userId}?num=1" + "&searchType=" + searchType + "&keyword=" + keyword; --%>
+                            <%-- location.href = "/user/info/${userOneSelect.userId}?num=1" + "&searchType=" + searchType + "&keyword=" + keyword; --%>
                             <!-- 페이징처리 begin -->
                             <div class="paging col-12 pagination-item" style="position: relative;">
                                 <div class="col-12" style="display: flex; justify-content: center;">
                                     <c:if test="${page.prev}">
-                                        <a href="/user/userInfo/${userOneSelect.userId}?num=${page.startPageNum-1}&searchType=${page.searchType}&keyword=${page.keyword}">prev</a>
+                                        <a href="/user/info/${userOneSelect.userId}?num=${page.startPageNum-1}&searchType=${page.searchType}&keyword=${page.keyword}">prev</a>
                                     </c:if>
                                     <c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
                                         <c:choose>
                                             <c:when test="${page.num != num}">
-                                                <a href="/user/userInfo/${userOneSelect.userId}?num=${num}&searchType=${page.searchType}&keyword=${page.keyword}">${num}</a>
+                                                <a href="/user/info/${userOneSelect.userId}?num=${num}&searchType=${page.searchType}&keyword=${page.keyword}">${num}</a>
                                             </c:when>
                                             <c:otherwise>
                                                 <a href="#">${num}</a>
@@ -505,7 +505,7 @@
                                         </c:choose>
                                     </c:forEach>
                                     <c:if test="${page.next}">
-                                        <a href="/user/userInfo/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
+                                        <a href="/user/info/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
                                     </c:if>
                                 </div>
                                 <c:if test="${sessionScope.id ne userOneSelect.userId}">
@@ -742,12 +742,12 @@
         if (searchType === "writerId") {
             keyword = document.getElementsByName("keyword")[0].value;
             console.log(keyword);
-            location.href = "/user/userInfo/${userOneSelect.userId}?num=1"
+            location.href = "/user/info/${userOneSelect.userId}?num=1"
                 + "&searchType=" + searchType + "&keyword=" + keyword;
         } else {
             keyword = document.getElementsByName("keyword")[1].value;
             console.log(keyword);
-            location.href = "/user/userInfo/${userOneSelect.userId}?num=1"
+            location.href = "/user/info/${userOneSelect.userId}?num=1"
                 + "&searchType=" + searchType + "&keyword=" + keyword;
         }
         console.log("searchType: " + searchType)
