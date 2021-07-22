@@ -11,8 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonObject;
 import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +52,7 @@ public class UserController {
      * @return String
      * @author 박세웅
      */
-    @GetMapping("/userInfo/{user_id}")
+    @GetMapping("/info/{user_id}")
     public String userInfo(@PathVariable String user_id,
                            Model model,
                            ReviewPagingVO page) {
@@ -119,10 +117,10 @@ public class UserController {
         System.out.println("UserController 112줄 호출: reviewVOs" + reviewVOs);
         System.out.println();
 
-        return "user/userInfo";
+        return "user/info";
     }
 
-    @PostMapping(path = "/userInfo", produces = "application/text;charset=UTF-8")
+    @PostMapping(path = "/info", produces = "application/text;charset=UTF-8")
     @ResponseBody // AJAX 사용시 써야함
     public String userName(HttpSession httpSession,
                            @RequestParam(required = false) MultipartFile uploadFile,
@@ -194,14 +192,14 @@ public class UserController {
         return jsonObject.toString();
     }
 
-    @GetMapping("/userModify/{user_id}")
+    @GetMapping("/modify/{user_id}")
     public String userModify(Model model, @PathVariable String user_id) throws IOException {
         System.out.println("get");
         String selectProfile = fileService.selectProfile(user_id);
         UserVO userVO = userService.userOneSelect(user_id);
         model.addAttribute("userOneSelect", userVO);
         model.addAttribute("selectProfile", selectProfile);
-        return "user/userModify";
+        return "user/modify";
     }
 
     @PostMapping("/idCheck.ajax")
@@ -219,19 +217,21 @@ public class UserController {
         return msg;
     }
 
-    @GetMapping("/userDeclar")
+    @GetMapping("/declare")
     public String userDeclar(HttpServletRequest request, Model model) {
         String userId = request.getParameter("userId");
         String nickName = userService.nickName(userId);
         String log = request.getParameter("log");
+
         model.addAttribute("userId", userId);
         model.addAttribute("log", log);
         model.addAttribute("nickName", nickName);
-        return "user/userDeclar";
+
+        return "user/declare";
     }
 
     @ResponseBody
-    @RequestMapping(value = "/userReport", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/report", method = {RequestMethod.GET, RequestMethod.POST})
     public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
         Map<String, Object> map = new HashMap<>();
         String id = httpServletRequest.getSession().getAttribute("id").toString();
@@ -239,19 +239,24 @@ public class UserController {
         String userId = httpServletRequest.getParameter("userId");
         String[] reportNameList = httpServletRequest.getParameterValues("reportName[]");
         String log = httpServletRequest.getParameter("log");
+
         map.put("id", id);
         map.put("content", content);
         map.put("userId", userId);
         map.put("reportName", Arrays.toString(reportNameList));
         map.put("log", log);
+
         int cnt = reportService.insert(map);
         model.addAttribute("cnt", cnt);
+
         return cnt;
     }
 
     @GetMapping("/userReview/{user_id}")
-    public String userReview(Model model, @RequestParam Map<String, Object> map, HttpSession httpsession, @PathVariable String user_id)
-            throws IOException {
+    public String userReview(Model model,
+                             @RequestParam Map<String, Object> map,
+                             HttpSession httpsession,
+                             @PathVariable String user_id) {
         String sessionId = (String) httpsession.getAttribute("id");
         // 현재 접속한 세션 아이디의 VO
         UserVO userVO = userService.userOneSelect(sessionId);
@@ -263,8 +268,8 @@ public class UserController {
 
     @PostMapping("/userReview")
     @ResponseBody
-    public String userPostReview(Model model, @RequestParam Map<String, Object> map, HttpSession httpsession, HttpServletRequest httpServletRequest)
-            throws IOException {
+    public String userPostReview(@RequestParam Map<String, Object> map,
+                                 HttpSession httpsession) {
         String sessionId = (String) httpsession.getAttribute("id");
         map.put("sessionId", sessionId);
         reviewService.insertReview(map);
@@ -272,9 +277,8 @@ public class UserController {
         return "<script>window.close();</script>";
     }
 
-    @GetMapping("/userSync")
+    @GetMapping("/sync")
     public String userSync() {
-        return "user/userSync";
+        return "user/sync";
     }
-
 }

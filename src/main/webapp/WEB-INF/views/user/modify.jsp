@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
           integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="https://raw.githubusercontent.com/9bitStudios/barfiller/master/css/style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css"
           integrity="sha512-WEQNv9d3+sqyHjrqUZobDhFARZDko2wpWdfcpv44lsypsSuMO0kHGd3MQ8rrsBn/Qa39VojphdU6CMkpJUmDVw=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -164,7 +163,7 @@
                 <p class="advice">사진을 눌러서 프로필을 바꿔보세요!</p>
             </div>
             <!-- form태그 begin -->
-            <form action="${pageContext.request.contextPath}/user/userInfo" name="frm" class="signup-form" id="form"
+            <form action="${pageContext.request.contextPath}/user/info" name="frm" class="signup-form" id="form"
                   method="POST"
                   enctype="multipart/form-data">
                 <div class="sf-input-list ">
@@ -265,7 +264,7 @@
 
     $("#user_nick").change(function () {
         $(".box button").attr("disabled", true);
-        var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
+        const chk = $('input:checkbox[id="rc-agree"]').is(":checked");
         if (chk === true && $('#user_nick').hasClass("check_success")) {
             $(".box button").removeAttr('disabled');
             $(".box").removeClass("on");
@@ -274,15 +273,15 @@
             $(".box").addClass("on");
         }
     });
-    var sel_file;
+    let sel_file;
 
     $(function () {
         $("#file").on("change", handleImgFileSelect);
     });
 
     function handleImgFileSelect(e) {
-        var files = e.target.files;
-        var filesArr = Array.prototype.slice.call(files);
+        const files = e.target.files;
+        const filesArr = Array.prototype.slice.call(files);
 
         filesArr.forEach(function (f) {
             if (!f.type.match("image.*")) {
@@ -358,7 +357,7 @@
         formData.append("uploadFile", files[0]);
 
         $.ajax({
-            url: "/user/userInfo",
+            url: "/user/info",
             type: "POST",
             data: formData,
             processData: false,
@@ -393,7 +392,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"
         integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://raw.githubusercontent.com/9bitStudios/barfiller/master/js/jquery.barfiller.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.js"
         integrity="sha512-AmJ0T6lpw/ZQtCleMyfbraDy8AGQ9tWaB/PmRkXdKxH9Kvo0oTuW6+2hTEQ89mHkFIO/LpColEe3+QE+FJtgIg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -95,13 +95,13 @@
         $("input[name='reportName']:checked").each(function (i) {
             reportName.push($(this).val())
         })
-        if (reportName.length == 0) {
+        if (reportName.length === 0) {
             alert("신고 사유를 체크해주세요!")
             return false;
         }
 
         $.ajax({
-            url: "./userReport",
+            url: "./report",
             type: "POST",
             data: {
                 "userId": userId,
@@ -183,7 +183,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-circle-progress/1.2.2/circle-progress.min.js"
         integrity="sha512-6kvhZ/39gRVLmoM/6JxbbJVTYzL/gnbDVsHACLx/31IREU4l3sI7yeO0d4gw8xU5Mpmm/17LMaDHOCf+TvuC2Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://raw.githubusercontent.com/9bitStudios/barfiller/master/js/jquery.barfiller.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.js"
         integrity="sha512-AmJ0T6lpw/ZQtCleMyfbraDy8AGQ9tWaB/PmRkXdKxH9Kvo0oTuW6+2hTEQ89mHkFIO/LpColEe3+QE+FJtgIg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>

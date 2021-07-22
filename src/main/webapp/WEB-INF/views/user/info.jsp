@@ -22,7 +22,7 @@
 
     .profilePic {
         position: relative;
-        margin: 0px 0PX 0PX 1px;
+        margin: 0 0 0 1px;
     }
 
     .profilePic img {
@@ -32,9 +32,6 @@
     }
 
     .profileFrame {
-/*         width: 100%; */
-/*         height: 100%; */
-/*         object-fit: 120px; */
         position: absolute;
         width: 150px;
         height: 150px;
@@ -59,7 +56,7 @@
     .nameLv {
         display: flex;
         align-items: flex-end;
-        margin: 25px 0px 0px 14px;;
+        margin: 25px 0 0 14px;;
     }
 
     .userInfoBox {
@@ -77,7 +74,7 @@
     .sync {
         display: flex;
         justify-content: center;
-        margin: 20px 0px 10px;
+        margin: 20px 0 10px;
     }
 
     .noticeCount {
@@ -87,8 +84,7 @@
     .infoDetail {
         display: flex;
         justify-content: center;
-        margin: 3px;
-        margin-bottom: 8px;
+        margin: 3px 3px 8px;
     }
 
     hr {
@@ -97,7 +93,7 @@
     }
 
     .upload {
-        margin: 1px 0px 4px;
+        margin: 1px 0 4px;
     }
 
     .reputation {
@@ -107,7 +103,7 @@
     }
 
     .review {
-        margin: 8px 0px 12px;
+        margin: 8px 0 12px;
         width: 100%;
         text-align: center;
     }
@@ -116,7 +112,6 @@
         width: 100%;
         border-radius: 5px;
         border: 1px solid gray;
-        display: flex;
         justify-content: center;
         font-size: 16px;
         position: relative;
@@ -127,7 +122,6 @@
 
     .reviewDay {
         font-size: 13px;
-        color: white;
         display: flex;
         justify-content: flex-end;
         color: #A4A4A4;
@@ -142,9 +136,8 @@
         top: 0;
         left: 0;
         color: #fff;
-        padding: 3px;
         box-sizing: border-box; /* 300x300 안에 padding이 적용되도록 함 */
-        padding-top: 0px;
+        padding: 0px 3px 3px;
         opacity: 0; /* 투명도가 처음에는 0이었지만 어떤 이벤트가 발생하면 0.5초뒤에 발생함*/
         transition: 0.5s; /*caption에 이벤트가 발생하여 0.5초 딜레이 후 발생시킴*/
     }
@@ -154,11 +147,11 @@
     }
 
     .playWith {
-        margin: 8px 0px 3px;
+        margin: 8px 0 3px;
     }
 
     .nickName {
-        margin: 4px 0px 6px;
+        margin: 4px 0 6px;
         text-align: center;
     }
 
@@ -205,7 +198,6 @@
         box-shadow: 0 15px 35px rgba(50, 50, 90, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
         overflow: hidden;
         z-index: 999999;
-        margin: 0;
     }
 
     .contextmenu li {
@@ -234,7 +226,7 @@
     .paging {
         display: flex;
         justify-content: center;
-        margin: 8px 0px 8px;
+        margin: 8px 0 8px;
     }
 
     .modInfo {
@@ -260,7 +252,6 @@
         transform: skewX(-15deg);
         background: transparent;
         border: 1px solid #363636;
-        /* 	margin-bottom: 20px; */
         -webkit-transition: all 0.3s;
         -o-transition: all 0.3s;
         transition: all 0.3s;
@@ -666,23 +657,23 @@
 
 <script>
     function fn_sync() {
-        window.open("/user/userSync", "userSync",
+        window.open("/user/sync", "userSync",
             "width=1100, height=730, left=450,top=120");
     }
 
     function fn_infoMod(userId) {
-        window.open("/user/userModify/" + userId, "userModify",
+        window.open("/user/modify/" + userId, "userModify",
             "width=800, height=680, left=250,top=200");
     }
 
     function fn_review(user_Id) {
-        window.open("/user/userReview/"+ user_Id, "userReview",
+        window.open("/user/review/"+ user_Id, "userReview",
             "width=870, height=500, left=400,top=200");
     }
 
     function fn_declaration(userId, reply) {
-        window.open("/user/userDeclar?userId=" + userId + "&log=" + reply,
-            "userDeclar", "width=980, height=500, left=400,top=200");
+        window.open("/user/declare?userId=" + userId + "&log=" + reply,
+            "userDeclare", "width=980, height=500, left=400,top=200");
     }
 
     function fn_infoDel() {
@@ -734,7 +725,7 @@
     // 작성자와 날짜 스위칭 display block과 none을 잘 활용
     $(function () {
         $('#searchType').click(function () {
-            if (this.value == 'writerId') {
+            if (this.value === 'writerId') {
                 $('#writeUser').css('display', 'block');
                 $('#dateSelect').css('display', 'none');
             } else {
@@ -748,7 +739,7 @@
 
         let searchType = document.getElementsByName("searchType")[0].value;
         let keyword = "";
-        if (searchType == "writerId") {
+        if (searchType === "writerId") {
             keyword = document.getElementsByName("keyword")[0].value;
             console.log(keyword);
             location.href = "/user/userInfo/${userOneSelect.userId}?num=1"
