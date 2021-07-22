@@ -40,12 +40,32 @@ public class TeamGameServiceImpl implements TeamGameService {
     }
 
     @Override
-    public List<TeamGameVO> selectOne(int teamGameSeq) {
-        return teamGameMapper.selectOne(teamGameSeq);
+    public List<TeamGameVO> selectLeader(int teamGameSeq) {
+        return teamGameMapper.selectLeader(teamGameSeq);
     }
 
     @Override
     public List<TeamGameVO> selectRoomMember(int teamGameSeq) {
         return teamGameMapper.selectRoomMember(teamGameSeq);
+    }
+
+    @Override
+    public void deleteTeamGamePosition(Map<String, Object> map) {
+        teamGameMapper.deleteTeamGamePosition(map);
+    }
+
+    @Override
+    public TeamGameVO checkStatus(Map<String, Object> map) {
+        return teamGameMapper.checkStatus(map);
+    }
+
+    @Override
+    public void updateStatus(Map<String, Object> map) {
+
+    }
+
+    @Override
+    public TeamGameVO selectOne(Map<String, Object> map) {
+        return teamGameMapper.selectOne(map);
     }
 }

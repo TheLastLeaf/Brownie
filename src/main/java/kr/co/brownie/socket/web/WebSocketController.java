@@ -36,7 +36,7 @@ public class WebSocketController {
     public String websocket2(@RequestParam Map<String, Object> map, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
         //httpSession.getId() : 585B494F93981E7A684E5E02C6DE7CB8
         System.out.println("websocket Map : "+map);
-        List<TeamGameVO> roomInfo = teamGameService.selectOne(Integer.parseInt(map.get("roomNumber").toString()));
+        List<TeamGameVO> roomInfo = teamGameService.selectLeader(Integer.parseInt(map.get("roomNumber").toString()));
         List<TeamGameVO> memList = teamGameService.selectRoomMember(Integer.parseInt(map.get("roomNumber").toString()));
 
         System.out.println("roooooooooooo : " + roomInfo.get(0));

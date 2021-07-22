@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.EOFException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,14 +95,29 @@ public class TeamGameController {
         return jsonObject.toString();
     }
 
+    private void statusTest(String teamgameSeq, String userId){
+        //기존에 회원이 있는 경우 status만 업데이트
+        //merge into와 insert all을 동시에 사용할 수 없어서 따로 적음
+        Map<String, Object> statusMap = new HashMap<>();
+        statusMap.put("teamgameSeq", teamgameSeq);
+        statusMap.put("userId", userId);
+        TeamGameVO checkStatus = teamGameService.checkStatus(statusMap);
+        //값이 있는 경우
+        if(checkStatus.getStatus().equals("n")){
+            statusMap.put("status", "y");
+        } else if (checkStatus.getStatus().equals("y")){
+            statusMap.put("status", "n");
+        }
+        teamGameService.updateStatus(statusMap);
+    }
 
     @ResponseBody
     @PostMapping(path = "/update-position", produces="application/text;charset=utf-8")
     public String ajaxUpdatePosition(@RequestParam Map<String, Object> map) {
-
+        // map {userId=1786827527, positionSeq=346, position=sup}
         //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
 
-        System.out.printf("map : " + map);
+        System.out.printf("update posi map : " + map);
 
         String positionSeq = map.get("positionSeq").toString();
         String selectedPosition = map.get("position").toString();
@@ -119,12 +132,12 @@ public class TeamGameController {
         if (selectedPosition.equals("top")) {
             exsitedPosi = teamPosition.get(0).getTop();
             if(exsitedPosi.equals("n")){
-
                 teamGameService.updateTeamGamePosition(map);
 
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);
                 jsonObject.addProperty("info", "good");
+
             } else {
                 jsonObject.addProperty("info", "exist");
                 return jsonObject.toString();
