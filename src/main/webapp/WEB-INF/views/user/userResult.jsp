@@ -104,7 +104,19 @@ h2, h3, h5 {
 input[type=submit] {
 	border: 1px solid indianred;
 	font-family: maplebold;
-	text-align: center; background : white; width : 100px; position : relative; left : 715px; bottom : 30px; width : 100px; text-align : center; background : white; width : 100px; position : relative; left : 715px; bottom : 30px;
+	text-align: center;
+	background: white;
+	width: 100px;
+	position: relative;
+	left: 715px;
+	bottom: 30px;
+	width: 100px;
+	text-align: center;
+	background: white;
+	width: 100px;
+	position: relative;
+	left: 715px;
+	bottom: 30px;
 	color: indianred;
 	background: white;
 	width: 100px;
@@ -126,98 +138,90 @@ input[type=submit] {
 		<div class="loader"></div>
 	</div>
 
-<%-- 	<c:choose> --%>
-<%-- 		<c:when test="${leagueInfo ne null }"> --%>
+	<div class="container">
+		<nav class="navbar sticky-top navbar-dark" style="background: indianred;">
+			<a class="navbar-brand" href="#">BROWNIE.GG</a>
+			<form action="/search" method="GET">
+				<div class="nav-embed-submit-field">
+					<input type="text" placeholder="당신의 아이디를 검색하세요!" name="title" class="content">
+					<button type="submit" class="btn btn-outline-light btn-sm">검색!</button>
+				</div>
+			</form>
+		</nav>
 
-			<div class="container">
-				<nav class="navbar sticky-top navbar-dark" style="background: indianred;">
-					<a class="navbar-brand" href="#">BROWNIE.GG</a>
-					<form action="/search" method="GET">
-						<div class="nav-embed-submit-field">
-							<input type="text" placeholder="당신의 아이디를 검색하세요!" name="title" class="content">
-							<button type="submit" class="btn btn-outline-light btn-sm">검색!</button>
-						</div>
-					</form>
-				</nav>
-
-				<form action="" method="post" onsubmit="return fn_check()">
-					<div class="container p-5 shadow-lg mb-5 rounded" id="mainBox">
-						<div class="row h-100">
-							<div class="col-sm-3 profile">
-								<img alt="아이콘" src=${profileImgURL } class="rounded-llg mx-auto d-block icon">
-								<%-- ${leagueInfo[0].getTier()} --%>
-								<c:set var="leagueInfo" value="${leagueInfo}" />
-								<c:choose>
-									<c:when test="${leagueInfo[0].getTier() ne null}">
-										<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_${leagueInfo[0].getTier()}_frame.png" /> class="mx-auto d-block" style="max-width: 75%; position: absolute;">
-									</c:when>
-									<c:otherwise>
-										<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_CHALLENGER_frame.png" /> class="mx-auto d-block" style="max-width: 75%; position: absolute;">
-									</c:otherwise>
-								</c:choose>
-							</div>
-
-							<!-- 				<div class="col-sm-1"></div> -->
-							<div class="col-sm">
-								<span style="padding-top: 10px;">ID:&nbsp;&nbsp;</span>
-								<h3 style="color: black;">${summoner.name}&nbsp;</h3>
-								<span style="padding-top: 10px; font-family: maplelight">Lv. ${summoner.getSummonerLevel()}</span>
-							</div>
-						</div>
-						<div style="margin-top: 20px;">
-							<c:forEach var="leagueInfo" items="${leagueInfo}" varStatus="s">
-								<div class="row mainInfo">
-									<!-- 				h-100 justify-content-center align-items-center -->
-									<div class="col-md-5" style="position: relative;">
-										<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_${leagueInfo.getTier()}.png" /> class="mx-auto d-block" style="max-width: 70%;">
-									</div>
-									<div class="col-md-7" style="text-align: center; padding-top: 20px;">
-										<c:choose>
-											<c:when test="${leagueInfo.getQueueType() == 'RANKED_FLEX_SR'}">
-												<h2>자유 랭크</h2>
-											</c:when>
-											<c:when test="${leagueInfo.getQueueType() ==  'RANKED_TFT'}">
-												<h2>전략적 팀전투</h2>
-											</c:when>
-											<c:when test="${leagueInfo.getQueueType()== 'RANKED_SOLO_5x5'}">
-												<h2>솔로 랭크</h2>
-											</c:when>
-										</c:choose>
-										<p style="display: inline">승/패&nbsp;</p>
-										<p style="color: #007bff; font-size: 24px; display: inline">${leagueInfo.getWins()}</p>
-										<p style="font-size: 24px; display: inline">/</p>
-										<p style="color: #dc3545; font-size: 24px; display: inline">${leagueInfo.getLosses()}</p>
-										<fmt:formatNumber var="percent" value="${leagueInfo.getWins()/(leagueInfo.getWins()+leagueInfo.getLosses())}" pattern="0.00%" />
-										<span style="color: #6c757d; font-size: 18px;"> (승률 : ${percent}) </span>
-										<h5>당신의 티어는?</h5>
-										<p>
-											당신의 리그는 ${leagueName[s.index]}, <br /> ${leagueInfo.getTier()} ${leagueInfo.getRank()} 단계 입니다.
-										</p>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
+		<form action="" method="post" onsubmit="return fn_check()">
+			<div class="container p-5 shadow-lg mb-5 rounded" id="mainBox">
+				<div class="row h-100">
+					<div class="col-sm-3 profile">
+						<img alt="아이콘" src=${profileImgURL } class="rounded-llg mx-auto d-block icon">
+						<%-- ${leagueInfo[0].getTier()} --%>
+						<c:set var="leagueInfo" value="${leagueInfo}" />
+						<c:choose>
+							<c:when test="${leagueInfo[0].getTier() ne null}">
+								<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_${leagueInfo[0].getTier()}_frame.png" /> class="mx-auto d-block" style="max-width: 75%; position: absolute;">
+							</c:when>
+							<c:otherwise>
+								<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_CHALLENGER_frame.png" /> class="mx-auto d-block" style="max-width: 75%; position: absolute;">
+							</c:otherwise>
+						</c:choose>
 					</div>
-					<input type="submit" class="btn btn-outline-light btn-sm" value="연동하기" />
-				</form>
 
-			</div>
-			<!-- Footer -->
-			<footer class="bg-dark" style="color: white; position: absolute; bottom: 0; width: 100%;">
-				<div class="container">
-					<div class="row">
-						<!-- Copyright -->
-						<div class="col-sm-12" style="text-align: center; padding: 10px;">© 2021 Copyright: BROWNIE.GG</div>
+					<!-- 				<div class="col-sm-1"></div> -->
+					<div class="col-sm">
+						<span style="padding-top: 10px;">ID:&nbsp;&nbsp;</span>
+						<h3 style="color: black;">${summoner.name}&nbsp;</h3>
+						<span style="padding-top: 10px; font-family: maplelight">Lv. ${summoner.getSummonerLevel()}</span>
 					</div>
 				</div>
-			</footer>
-<%-- 		</c:when> --%>
-<%-- 		<c:otherwise> --%>
+				<div style="margin-top: 20px;">
+					<c:forEach var="leagueInfo" items="${leagueInfo}" varStatus="s">
+						<div class="row mainInfo">
+							<!-- 				h-100 justify-content-center align-items-center -->
+							<div class="col-md-5" style="position: relative;">
+								<img alt="랭크 엠블램" src=<c:out value="img/emblems/Emblem_${leagueInfo.getTier()}.png" /> class="mx-auto d-block" style="max-width: 70%;">
+							</div>
+							<div class="col-md-7" style="text-align: center; padding-top: 20px;">
+								<c:choose>
+									<c:when test="${leagueInfo.getQueueType() == 'RANKED_FLEX_SR'}">
+										<h2>자유 랭크</h2>
+									</c:when>
+									<c:when test="${leagueInfo.getQueueType() ==  'RANKED_TFT'}">
+										<h2>전략적 팀전투</h2>
+									</c:when>
+									<c:when test="${leagueInfo.getQueueType()== 'RANKED_SOLO_5x5'}">
+										<h2>솔로 랭크</h2>
+									</c:when>
+								</c:choose>
+								<p style="display: inline">승/패&nbsp;</p>
+								<p style="color: #007bff; font-size: 24px; display: inline">${leagueInfo.getWins()}</p>
+								<p style="font-size: 24px; display: inline">/</p>
+								<p style="color: #dc3545; font-size: 24px; display: inline">${leagueInfo.getLosses()}</p>
+								<fmt:formatNumber var="percent" value="${leagueInfo.getWins()/(leagueInfo.getWins()+leagueInfo.getLosses())}" pattern="0.00%" />
+								<span style="color: #6c757d; font-size: 18px;"> (승률 : ${percent}) </span>
+								<h5>당신의 티어는?</h5>
+								<p>
+									당신의 리그는 ${leagueName[s.index]},
+									<br />
+									${leagueInfo.getTier()} ${leagueInfo.getRank()} 단계 입니다.
+								</p>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<input type="submit" class="btn btn-outline-light btn-sm" value="연동하기" />
+		</form>
 
-<!-- 			<div>예외 처리가 왜 안될까용</div> -->
-
-<%-- 		</c:otherwise> --%>
-<%-- 	</c:choose> --%>
+	</div>
+	<!-- Footer -->
+	<footer class="bg-dark" style="color: white; position: absolute; bottom: 0; width: 100%;">
+		<div class="container">
+			<div class="row">
+				<!-- Copyright -->
+				<div class="col-sm-12" style="text-align: center; padding: 10px;">© 2021 Copyright: BROWNIE.GG</div>
+			</div>
+		</div>
+	</footer>
 </body>
 
 <!-- Js Plugins -->
@@ -228,7 +232,7 @@ input[type=submit] {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SlickNav/1.0.10/jquery.slicknav.js" integrity="sha512-AmJ0T6lpw/ZQtCleMyfbraDy8AGQ9tWaB/PmRkXdKxH9Kvo0oTuW6+2hTEQ89mHkFIO/LpColEe3+QE+FJtgIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="${pageContext.request.contextPath}/js/ma0in.js"></script>
+<script src="${pageContext.request.contextPath}/js/main.js"></script>
 <script>
 	function fn_check() {
 		if (confirm('자신의 lol 아이디로 인증해야합니다!')) {

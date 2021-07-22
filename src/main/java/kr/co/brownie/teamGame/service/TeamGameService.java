@@ -17,4 +17,6 @@ public interface TeamGameService {
 
     List<TeamGameVO> selectOne(int teamGameSeq);
 
+    List<TeamGameVO> selectRoomMember(int teamGameSeq);
+
 }

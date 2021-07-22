@@ -181,6 +181,23 @@ public class TeamGameController {
         return jsonObject.toString();
     }
 
+    @ResponseBody
+    @PostMapping(path = "/select-member", produces="application/text;charset=utf-8")
+    public String ajaxselectRoomMember(@RequestParam Map<String, Object> map) {
+        JsonObject jsonObject = new JsonObject();
+
+        List<TeamGameVO> memList = teamGameService.selectRoomMember(Integer.parseInt(map.get("TEAMGAME_SEQ").toString()));
+        for(TeamGameVO tgm : memList) {
+            System.out.println("mmmmmmmmm  : " + map);
+            System.out.println("memList  : " + tgm.getUserId());
+            if(tgm.getUserId().equals(map.get("userId").toString())){
+                jsonObject.addProperty("nickName", tgm.getNickName());
+                jsonObject.addProperty("lolId", tgm.getLolId());
+            }
+        }
+        jsonObject.addProperty("TEAMGAME_SEQ", map.get("TEAMGAME_SEQ").toString());
+        return jsonObject.toString();
+    }
 
     @GetMapping("/chatRoom")
     public String chatRoom() {
