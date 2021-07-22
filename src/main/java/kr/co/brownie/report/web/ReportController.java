@@ -45,7 +45,6 @@ public class ReportController {
         map.put("id", id);
         map.put("userId", userId);
         map.put("log", log);
-        System.out.println(map);
         if (id == null) {
             return "loginCheck";
         } else {

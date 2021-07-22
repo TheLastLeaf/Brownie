@@ -126,18 +126,18 @@
                     <table class="reportListTable" border="1px solid grey" style="margin-bottom: auto">
                         <tr>
                             <th class="reportListTd">아이디</th>
-                            <th class="reportListTd">신고분류</th>
+                            <th class="reportListTd" style="width: 30%">신고분류</th>
                             <th class="reportListTd">신고내용</th>
                             <th class="reportListTd">신고자</th>
-                            <th class="reportListTd" style="width: 180px">신고일자</th>
-                            <th class="reportListTd">재재 항목</th>
+                            <th class="reportListTd" style="width: 20%">신고일자</th>
+                            <th class="reportListTd" style="width: 10%">재재 항목</th>
                             <th class="reportListTd">처리상태</th>
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }">
                             <c:if test="${reportList.status eq 'N'}">
                                 <tr id="${reportList.reportSeq}">
                                     <th class="reportListTd">${reportList.userId}</th>
-                                    <th class="reportListTd">${reportList.reportName }</th>
+                                    <th class="reportListTd">${reportList.reportName.substring(1,reportList.reportName.length()-1) }</th>
                                     <c:choose>
                                         <c:when test="${reportList.content ne null}">
                                             <th class="reportContent">${reportList.content }</th>
