@@ -87,10 +87,7 @@
 </style>
 <script>
     function fn_submit() {
-        const userId = $(".userId").val();
         const reportName = []
-        const content = $(".content").val();
-        const log = $(".log").val();
 
         $("input[name='reportName']:checked").each(function (i) {
             reportName.push($(this).val())
@@ -100,19 +97,27 @@
             return false;
         }
 
+        const formData = new FormData();
+        formData.append("userId",$(".userId").val());
+        formData.append("reportName", reportName);
+        formData.append("content", $(".content").val());
+        formData.append("log",$(".log").val());
+
         $.ajax({
             url: "./report",
             type: "POST",
-            data: {
-                "userId": userId,
-                "reportName": reportName,
-                "content": content,
-                "log": log
-            },
+            data: formData,
+            processData: false,
+            enctype: 'multipart/form-data',
+            contentType: false,
+            dataType: "json",
             success: function (data) {
                 console.log(data)
-                if (data === 1) {
+                if (data.message === "success") {
                     alert("신고가 접수되었습니다.")
+                    window.close();
+                }else if (data.message === "fail") {
+                    alert("신고 접수 실패! 다시 시도해주세요");
                     window.close();
                 }
             },

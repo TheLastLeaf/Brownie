@@ -1,12 +1,10 @@
 package kr.co.brownie.report.web;
 
+import com.google.gson.JsonObject;
 import kr.co.brownie.report.service.ReportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -33,27 +31,20 @@ public class ReportController {
     }
 
     @ResponseBody
-    @PostMapping("/reportBoard")
-    public Object reportPost(Map<String, Object> map, HttpSession session, HttpServletRequest servletRequest) {
+    @PostMapping(path = "/reportBoard" , produces = "application/text;charset=UTF-8")
+    public Object reportPost(@RequestParam Map<String, Object> map, HttpSession session, HttpServletRequest servletRequest) {
         String id = (String) session.getAttribute("id");
-        String content = servletRequest.getParameter("content");
-        String[] reportNameList = servletRequest.getParameterValues("reportName[]");
-        String userId = servletRequest.getParameter("userId");
-        String log = servletRequest.getParameter("log");
-        map.put("content", content);
-        map.put("reportName", Arrays.toString(reportNameList));
+        JsonObject jsonObject = new JsonObject();
         map.put("id", id);
-        map.put("userId", userId);
-        map.put("log", log);
-        System.out.println(map);
         if (id == null) {
             return "loginCheck";
         } else {
             if (reportService.insert(map) == 1) {
-                return "success";
+                jsonObject.addProperty("message","success");
+                return jsonObject.toString();
             } else {
-                System.out.println(reportService.insert(map));
-                return "fail";
+                jsonObject.addProperty("message","fail");
+                return jsonObject.toString();
             }
         }
     }

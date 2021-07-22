@@ -231,25 +231,19 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/report", method = {RequestMethod.GET, RequestMethod.POST})
-    public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
-        Map<String, Object> map = new HashMap<>();
+    @PostMapping(path = "/report", produces = "application/text;charset=UTF-8")
+    public Object reportPost(@RequestParam Map<String,Object> map,Model model, HttpServletRequest httpServletRequest) {
         String id = httpServletRequest.getSession().getAttribute("id").toString();
-        String content = httpServletRequest.getParameter("content");
-        String userId = httpServletRequest.getParameter("userId");
-        String[] reportNameList = httpServletRequest.getParameterValues("reportName[]");
-        String log = httpServletRequest.getParameter("log");
-
+        JsonObject jsonObject = new JsonObject();
         map.put("id", id);
-        map.put("content", content);
-        map.put("userId", userId);
-        map.put("reportName", Arrays.toString(reportNameList));
-        map.put("log", log);
-
         int cnt = reportService.insert(map);
-        model.addAttribute("cnt", cnt);
-
-        return cnt;
+        if(cnt == 1){
+            jsonObject.addProperty("message","success");
+            return jsonObject.toString();
+        }else{
+            jsonObject.addProperty("message","fail");
+            return jsonObject.toString();
+        }
     }
 
     @GetMapping("/review/{user_id}")
