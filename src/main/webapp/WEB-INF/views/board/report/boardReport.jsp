@@ -128,10 +128,10 @@
 <div class="container" style="border: 1px solid white;">
     <div class="row">
         <div class="col text-center">
-            <input type="hidden" name="userId" value="${userId}" class="userId">
-            <input type="hidden" name="log" value="${log}" class="log">
+            <input type="hidden" name="userId" value="${boardVO.userId}" class="userId">
+            <input type="hidden" name="log" value="${boardVO.content}" class="log">
             <p>
-            <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${userId}</h5>
+            <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${boardVO.nickName}</h5>
             </p>
             <div class="form-check">
                 <input class="form-check-input reportName" type="checkbox" value="욕설" name="reportName" id="abuse">

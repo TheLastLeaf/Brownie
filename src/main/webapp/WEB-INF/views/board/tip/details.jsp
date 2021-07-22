@@ -31,12 +31,15 @@
 </style>
 
 <script>
-    function fn_report(userId, log) {
-        if(userId == ${sessionScope.id}){
+    function fn_report(Seq) {
+        if(${boardVO.userId} == ${sessionScope.id}){
             alert("본인이 작성한 글은 신고할 수 없습니다.")
             return false;
         }
-        window.open("/report/write?userId=" + userId + "&log=" + log, "REPORT", "width=660, height=500, left=250,top=200");
+        window.open("/report/write?Seq=" + Seq , "REPORT", "width=660, height=500, left=250,top=200");
+    }
+    function fn_replyReport(Seq,boardSeq) {
+        window.open("/replyReport/write?Seq=" + Seq + "&boardSeq=" + boardSeq , "REPORT", "width=660, height=500, left=250,top=200");
     }
 </script>
 
@@ -125,7 +128,7 @@
                             class="far fa-thumbs-up fa-flip-vertical"></i> ${boardVO.unlikeCnt}</button>
                     <c:if test="${sessionScope.id != null}">
                         <button type="button" class="btn btn-outline-light btn-lg ml-5"
-                                onclick="fn_report('${boardVO.boardUpUserId}','${boardVO.content}')"><i
+                                onclick="fn_report(${boardVO.boardSeq})"><i
                                 class="fas fa-bomb"></i>
                         </button>
                     </c:if>
@@ -224,7 +227,7 @@
                                             class="far fa-thumbs-up fa-flip-vertical"></i> ${replyVO.unlikeCnt}</button>
                                     <c:if test="${sessionScope.id != null}">
                                         <button type="button" class="btn btn-outline-light ml-5"
-                                                onclick="fn_report('${replyVO.replyUpUserId}','${replyVO.replyContent}')">
+                                                onclick="fn_replyReport(${replyVO.replySeq},${boardVO.boardSeq})">
                                             <i
                                                     class="fas fa-bomb"></i></button>
                                     </c:if>
