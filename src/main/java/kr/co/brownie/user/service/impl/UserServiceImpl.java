@@ -17,12 +17,12 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public UserVO userOneSelect(String id) throws IOException {
+    public UserVO userOneSelect(String id) {
         return userMapper.userOneSelect(id);
     }
 
     @Override
-    public int selectExp(String id) throws IOException {
+    public int selectExp(String id) {
         return userMapper.selectExp(id);
     }
 

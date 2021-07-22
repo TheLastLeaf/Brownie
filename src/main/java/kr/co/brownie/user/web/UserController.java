@@ -35,9 +35,6 @@ import kr.co.brownie.user.service.UserVO;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-
     @Resource(name = "userService")
     UserService userService;
 
@@ -51,14 +48,16 @@ public class UserController {
     ReportService reportService;
 
     /**
-     * @param model
-     * @param httpSession
-     * @return
-     * @throws Exception
+     * @param user_id: String
+     * @param model:   Model
+     * @param page:    ReviewPagingVO
+     * @return String
      * @author 박세웅
      */
     @GetMapping("/userInfo/{user_id}")
-    public String userInfo(Model model, HttpSession httpSession, ReviewPagingVO page, @PathVariable String user_id) throws Exception {
+    public String userInfo(@PathVariable String user_id,
+                           Model model,
+                           ReviewPagingVO page) {
 
         // LOGGER.debug(" page {}", page);
 
@@ -262,16 +261,16 @@ public class UserController {
         return "user/userReview";
     }
 
-	@PostMapping("/userReview")
-	@ResponseBody
-	public String userPostReview(Model model, @RequestParam Map<String, Object> map, HttpSession httpsession, HttpServletRequest httpServletRequest)
-			throws IOException {
-		String sessionId = (String) httpsession.getAttribute("id");
-		map.put("sessionId", sessionId);
-		reviewService.insertReview(map);
+    @PostMapping("/userReview")
+    @ResponseBody
+    public String userPostReview(Model model, @RequestParam Map<String, Object> map, HttpSession httpsession, HttpServletRequest httpServletRequest)
+            throws IOException {
+        String sessionId = (String) httpsession.getAttribute("id");
+        map.put("sessionId", sessionId);
+        reviewService.insertReview(map);
 
-		return "<script>window.close();</script>";
-	}
+        return "<script>window.close();</script>";
+    }
 
     @GetMapping("/userSync")
     public String userSync() {

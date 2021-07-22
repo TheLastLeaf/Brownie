@@ -7,9 +7,9 @@ import java.util.Map;
 public interface UserService {
     int CONTENT_PER_PAGE = 10;
 
-    UserVO userOneSelect(String id) throws IOException;
+    UserVO userOneSelect(String id);
 
-    int selectExp(String id) throws IOException;
+    int selectExp(String id);
 
     float starCntSelect(String id);
 

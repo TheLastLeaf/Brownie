@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -184,31 +185,46 @@
                     <div style="margin-bottom: 3px; margin-top: 3px;" class="btn-group btn-group-toggle"
                          data-toggle="buttons">
                         <label class="btn btn-danger position">
-                            <input type="checkbox" name="positions" value="top">
+                            <input type="checkbox" name="positions" value="top"
+                            <c:if test='${fn:containsIgnoreCase(userOneSelect.userPosition, "top")}'>
+                                   checked
+                            </c:if>>
                             <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png"
                                  alt=""/>
                         </label>
                         &nbsp;
                         <label class="btn btn-danger position">
-                            <input type="checkbox" name="positions" value="jun">
+                            <input type="checkbox" name="positions" value="jun"
+                            <c:if test='${fn:containsIgnoreCase(userOneSelect.userPosition, "jun")}'>
+                                   checked
+                            </c:if>>
                             <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png"
                                  alt=""/>
                         </label>
                         &nbsp;
                         <label class="btn btn-danger position">
-                            <input type="checkbox" name="positions" value="mid">
+                            <input type="checkbox" name="positions" value="mid"
+                            <c:if test='${fn:containsIgnoreCase(userOneSelect.userPosition, "mid")}'>
+                                   checked
+                            </c:if>>
                             <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png"
                                  alt=""/>
                         </label>
                         &nbsp;
                         <label class="btn btn-danger position">
-                            <input type="checkbox" name="positions" value="bot">
+                            <input type="checkbox" name="positions" value="bot"
+                            <c:if test='${fn:containsIgnoreCase(userOneSelect.userPosition, "bot")}'>
+                                   checked
+                            </c:if>>
                             <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png"
                                  alt=""/>
                         </label>
                         &nbsp;
                         <label class="btn btn-danger position">
-                            <input type="checkbox" name="positions" value="sup">
+                            <input type="checkbox" name="positions" value="sup"
+                            <c:if test='${fn:containsIgnoreCase(userOneSelect.userPosition, "sup")}'>
+                                   checked
+                            </c:if>>
                             <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png"
                                  alt=""/>
                         </label>

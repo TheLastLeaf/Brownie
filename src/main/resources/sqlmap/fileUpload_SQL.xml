@@ -2,23 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-        namespace="kr.co.brownie.fileUpload.service.impl.FileMapper">
+<mapper namespace="kr.co.brownie.fileUpload.service.impl.FileMapper">
     <update id="defaultProfile">
-        MERGE
-            INTO BROWNIE_FILE
-                USING DUAL
-                ON
-                    (BROWNIE_FILE.IN_USER_ID = #{id})
-                WHEN NOT MATCHED THEN
-                    INSERT (FILE_SEQ, SUB_SEQ,
-                            FILE_PATH, ORIGINAL_NAME, SAVE_NAME,
-                            IN_DATE, IN_USER_ID,
-                            UP_DATE, UP_USER_ID)
-                        VALUES (FILE_SEQ.NEXTVAL, 0,
-                                '/upload/profile/images/', 'lux.gif', 'lux.gif',
-                                SYSDATE, '${id}',
-                                SYSDATE, '${id}')
+        MERGE INTO BROWNIE_FILE
+            USING DUAL ON (BROWNIE_FILE.IN_USER_ID = #{id})
+            WHEN NOT MATCHED THEN
+                INSERT (FILE_SEQ, SUB_SEQ,
+                        FILE_PATH, ORIGINAL_NAME, SAVE_NAME,
+                        IN_DATE, IN_USER_ID,
+                        UP_DATE, UP_USER_ID)
+                    VALUES (FILE_SEQ.NEXTVAL, 0,
+                            '/upload/profile/images/', 'lux.gif', 'lux.gif',
+                            SYSDATE, #{id},
+                            SYSDATE, #{id})
     </update>
 
     <update id="updateProfile">
@@ -35,6 +31,6 @@
     <select id="selectProfile" resultType="String">
         SELECT FILE_PATH || SAVE_NAME
         FROM BROWNIE_FILE
-        WHERE IN_USER_ID = '${id}'
+        WHERE IN_USER_ID = #{id}
     </select>
 </mapper>
