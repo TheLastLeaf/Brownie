@@ -50,11 +50,7 @@
     });
 
     function fn_submit() {
-        const userId = $(".userId").val();
         const reportName = []
-        const content = $(".content").val();
-        const log = $(".log").val();
-
         $("input[name='reportName']:checked").each(function (i) {
             reportName.push($(this).val())
         })
@@ -62,26 +58,28 @@
             alert("신고 사유를 체크해주세요!")
             return false;
         }
-        console.log(userId)
-        console.log(reportName)
-        console.log(content)
+
+        const formData = new FormData();
+        formData.append("userId",$(".userId").val());
+        formData.append("reportName", reportName);
+        formData.append("content", $(".content").val());
+        formData.append("log",$(".log").val());
 
         $.ajax({
             url: "./reportBoard",
             type: "POST",
-            data: {
-                "userId": userId,
-                "reportName": reportName,
-                "content": content,
-                "log": log
-            },
+            data: formData,
+            processData: false,
+            enctype: 'multipart/form-data',
+            contentType: false,
+            dataType: "json",
             success: function (res) {
-                if (res === "success") {
+                if (res.message === "success") {
                     alert("신고 접수 성공");
                     window.close();
-                } else if (res === "fail") {
+                } else if (res.message === "fail") {
                     alert("신고 접수 실패");
-                } else if (res === "loginCheck") {
+                } else if (res.message === "loginCheck") {
                     alert("로그인 후 이용 가능한 서비스입니다.");
                     window.close();
                 }
