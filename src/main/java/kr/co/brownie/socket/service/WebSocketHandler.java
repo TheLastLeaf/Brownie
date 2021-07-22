@@ -38,9 +38,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
             userSessions.put(roomNumber, sessions);
             System.out.println("크아악!! 방이 존재하지 않아!!");
         }
-        //방 번호가 같은 쪽으로만 해당 값을 보내야 함. 올라온 세션들을 저장할 리스트를 방 번호마다 생성해주면 될 듯?
-        //sessions.add(session);
-        //userSessions.put("testId", session);
+
+        //접속 할 때 마다 웹소켓쪽으로 메시지 보내주는걸 고려해보기
+
+
     }
 
     @Override

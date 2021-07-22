@@ -171,40 +171,10 @@
         const ROOM_NUMBER = '${userInfo.roomNumber}';
 
         console.log("IN_USER_ID : "+IN_USER_ID);
-
         console.log("ROOM_NUMBER : " + ROOM_NUMBER);
 
         $("#button-send").on("click", (e) => {
             send();
-
-            //이게 동작할 때 마다 해당 섹션을 지우고 새 리스트를 받아와서 삽입이 가능한가?
-            //시도해보자
-            $.ajax({
-                url: "../teamGame/select-member",
-                type: "POST",
-                data: {
-                    "userId": IN_USER_ID
-                    , "TEAMGAME_SEQ": ROOM_NUMBER
-                },
-                success: function (data) {
-                    alert("ttt")
-                    // $("#chatUserList").load(window.location.href + "#chatUserList");
-                    // $("#chatUserList").load(location.href + "#chatUserList");
-                    var responseData = JSON.parse(data);
-
-                    var userListStr ="<div class='user'>"
-                    userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
-                    //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
-                    userListStr += "<div class='userInfo'>"+responseData.nickName+ "[" + responseData.lolId + "]"+"</div>"
-                    userListStr += "</div>"
-                    $("#chatUserList").append(userListStr);
-
-                },
-                error: function () {
-                    alert("에러나요");
-                }
-            })
-
         });
         $(document).bind('keypress',pressed);
         function pressed(e) {
@@ -249,7 +219,6 @@
             websocket.send(str);
         }
 
-
         function onMessage(msg) {
             var data = msg.data;
             var sessionId = null;
@@ -270,16 +239,56 @@
 
             console.log("sessionID : " + sessionId);
             console.log("cur_session : " + cur_session);
-
+            console.log("type of message : ", typeof message);
             var str = "<div class='col-6'>";
             str += "<div class='alert alert-warning'>";
             str += "<b>" + sessionId + " : " + message + "</b>";
             str += "</div></div>";
             $("#chatBox").append(str);
 
+            if(message === " 님이 입장하셨습니다."){
+                console.log("입장했댄다")
+                //포지션 받아서 div 아이디로 줄 건지 아닌지 고민
+                var newUser ="<div class='user'>"
+                newUser += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
+                newUser += "<div class='userInfo'>"+ sessionId+ "[" +  "롤닉" + "]"+"</div>"
+                newUser += "</div>"
+                $("#chatUserList").append(newUser);
+            }
+
             $('#chatBox').animate({
                 scrollTop: chatBox.scrollHeight - chatBox.clientHeight
             }, 100);
+        }
+
+        function addMemName(){
+            //이게 동작할 때 마다 해당 섹션을 지우고 새 리스트를 받아와서 삽입이 가능한가?
+            //시도해보자
+            $.ajax({
+                url: "../teamGame/select-member",
+                type: "POST",
+                data: {
+                    "userId": IN_USER_ID
+                    ,"TEAMGAME_SEQ": ROOM_NUMBER
+                },
+                success: function (data) {
+                    console.log("ajax Success")
+                    // $("#chatUserList").load(window.location.href + "#chatUserList");
+                    // $("#chatUserList").load(location.href + "#chatUserList");
+                    var responseData = JSON.parse(data);
+
+                    var userListStr ="<div class='user'>"
+                    userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
+                    //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
+                    userListStr += "<div class='userInfo'>"+responseData.nickName+ "[" + responseData.lolId + "]"+"</div>"
+                    userListStr += "</div>"
+                    $("#chatUserList").empty();
+                    $("#chatUserList").append(userListStr);
+                },
+                error: function () {
+                    alert("에러나요");
+                }
+            })
         }
     })
 </script>
@@ -305,13 +314,13 @@
         </div>
 
         <div class="userBox col-sm-3" id="chatUserList">
-            <c:forEach var="memList" items="${memList}">
-                <div class="user">
-                    <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
-                    <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
-                    <div class="userInfo">${memList.nickName} [${memList.lolId}]</div>
-                </div>
-            </c:forEach>
+<%--            <c:forEach var="memList" items="${memList}">--%>
+<%--                <div class="user">--%>
+<%--                    <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>--%>
+<%--                    <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>--%>
+<%--                    <div class="userInfo">${memList.nickName} [${memList.lolId}]</div>--%>
+<%--                </div>--%>
+<%--            </c:forEach>--%>
         </div>
 
     </div>
