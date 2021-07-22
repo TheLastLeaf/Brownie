@@ -4,7 +4,10 @@ import kr.co.brownie.board.hit.service.BoardHitService;
 import kr.co.brownie.board.reply.service.ReplyService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
+import kr.co.brownie.fileUpload.service.FileService;
 import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
+import kr.co.brownie.user.service.UserService;
+import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -30,6 +33,9 @@ public class TipController {
 
     @Resource(name = "leagueOfLegendsChampionsService")
     LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
+
+    @Resource(name = "fileService")
+    FileService fileService;
 
     @GetMapping("/write")
     public String write(HttpSession httpSession,
@@ -102,6 +108,9 @@ public class TipController {
 
         model.addAttribute("replyPagingVO", this.replyService.selectPagingList(map));
         model.addAttribute("prevNextBoardVO", this.boardService.selectPrevNextList(map));
+
+        String selectProfile = fileService.selectProfile(boardVO.getBoardInUserId());
+        model.addAttribute("selectProfile", selectProfile);
 
         return "board/tip/details";
     }

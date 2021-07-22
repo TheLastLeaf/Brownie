@@ -127,7 +127,7 @@
 
                     <div class="dt-author">
                         <div class="da-pic">
-                            <img src="/img/details/author-pic.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}${selectProfile}">
                         </div>
                         <div class="da-text">
                             <h5>${boardVO.nickName}</h5>
@@ -232,8 +232,7 @@
                             <div id="${replyVO.replySeq}" class="dc-item"
                                  style="margin-left: ${(replyVO.lv - 1) * 100}px;">
                                 <div class="dc-pic">
-                                    <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg"
-                                         alt="">
+                                    <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg" alt="">
                                 </div>
                                 <div class="dc-text">
                                     <h5>${replyVO.nickName}</h5>

@@ -3,6 +3,8 @@ package kr.co.brownie.board.web;
 import kr.co.brownie.board.hit.service.BoardHitService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
+import kr.co.brownie.fileUpload.service.FileService;
+import kr.co.brownie.user.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
@@ -22,6 +24,9 @@ public class NoticeController {
 
     @Resource(name = "boardHitService")
     BoardHitService boardHitService;
+
+    @Resource(name = "fileService")
+    FileService fileService;
 
     @GetMapping("/write")
     public String write(HttpSession httpSession,
@@ -74,6 +79,9 @@ public class NoticeController {
         Assert.notNull(boardVO, "해당 글이 없습니다.");
         model.addAttribute("boardVO", boardVO);
         model.addAttribute("prevNextBoardVO", this.boardService.selectPrevNextList(map));
+
+        String selectProfile = fileService.selectProfile(boardVO.getBoardInUserId());
+        model.addAttribute("selectProfile", selectProfile);
 
         return "board/notice/details"; // 공지 디테일화면
     }
