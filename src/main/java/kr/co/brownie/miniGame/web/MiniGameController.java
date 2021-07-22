@@ -6,6 +6,7 @@ import kr.co.brownie.miniGame.service.BrownieMarbelLogVO;
 import kr.co.brownie.miniGame.service.BrownieMarbelVO;
 import kr.co.brownie.user.service.UserService;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -242,6 +243,30 @@ public class MiniGameController {
         String id = (String) session.getAttribute("id");
         BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
         
+        //sql에 넣을 변수 저장
+        HashMap<String, Object> param = new HashMap<String, Object>();
+        
+        //DB 유저 마블정보
+        int hp = player.getHp();
+        int recentHp = player.getRecentHp();
+        int round = player.getRound();
+        String item = player.getItem();
+        int position = player.getPosition();
+        String recentMap = player.getRecentMap();
+        String quest = player.getQuest();
+        int dicetimes = player.getDicetimes();
+        int pointG = player.getPoint();
+        int pointB = player.getBrowniePoint();
+        
+        param.put("userId", id);
+        param.put("hp", hp);
+        param.put("recentHp", recentHp);
+        param.put("round", round);
+        param.put("item", item);
+        param.put("position", position);
+        param.put("recentMap", recentMap);
+        param.put("quest", quest);
+        param.put("dicetimes", dicetimes);
         
         //유저의 위치정보
         int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
@@ -249,22 +274,38 @@ public class MiniGameController {
         int diceNum = Integer.parseInt(servletRequest.getParameter("diceNum"));
 
         //밟은 땅의 seq 및 오브젝트 정보
-        int ObjPosition = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
-        BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(ObjPosition);
+        int ObjSeq = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
+        BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(ObjSeq);
         String objName = obj.getName();
         String objDegree = obj.getDegree();
         String objKind = obj.getKind();
-        
-        //아이템목록
-        String[] items = player.getItem().split(",");
-        model.addAttribute("items", items);
-        
-        int round = this.miniGameService.selectPlayer(id).getRound();
         map.put("obj",obj);
+        System.out.println("obj : "+obj);
+        //아이템목록
+        
+        System.out.println(item);
+        item = item.replace("[", "");
+        System.out.println(item);
+        item = item.replace("]", "");
+        System.out.println(item);
+        String[] items = item.split(", ");
+        
+        for (String n : items) {
+        	System.out.println(n);
+        }
+        
+        List<Integer> itemList = new ArrayList<>();
+        
+        for (String n : items) {
+        	itemList.add(Integer.parseInt(n));
+        }
+        System.out.println("itemList : "+itemList);
+        
+        model.addAttribute("items", itemList.toString());
+        
         //변수저장
-        HashMap<String, Object> param = new HashMap<String, Object>();
+        
         String[] str = (obj.getFunction()).split(",");
-
         
         String act = "";
         //밟은랜드가 good 일 경우
@@ -280,19 +321,35 @@ public class MiniGameController {
         	int pointNum = 0;
         	pointNum = Integer.parseInt(str[0]);
         	param.put("point", pointNum);
-        	param.put("userId", id);
         	act = "습득";
+        	
             if (objKind.equals("site")) {
             	saveCnt = this.miniGameService.modifyBPoint(param);
+            	
             } else if (objKind.equals("game")) {
             	saveCnt = this.miniGameService.modifyGamePoint(param);
-            } else if (objKind.equals("luxury")){
-            	saveCnt = this.miniGameService.modifyGamePoint(param);
-            } else if (objKind.equals("food")){
             	
+            } else if (objKind.equals("luxury")){
+            	if (itemList.size()<=8) {
+            		itemList.add(ObjSeq);
+            	}
+            	System.out.println("itemList : "+itemList);
+            	param.put("item", itemList.toString());
+            	saveCnt = this.miniGameService.updatePlayer(param);
+            } else if (objKind.equals("food")){
+            	if (24<=ObjSeq&&ObjSeq<=27) {
+            		recentHp += Integer.parseInt(str[0]);
+            	} else if (ObjSeq==28) {
+            		recentHp = hp;
+            	} else if (ObjSeq==23) {
+            		hp += 1;
+            		recentHp = hp;
+            	}
+            	param.put("hp", hp);
+                param.put("recentHp", recentHp);
+                saveCnt = this.miniGameService.updatePlayer(param);
             }
         }
-
         
         //로그 저장
         int cntSaveLog = 0;
@@ -317,15 +374,12 @@ public class MiniGameController {
         	log += "<p class='logWrite'><i class='far fa-clock'></i> "+vo.getTime() + "(주사위눈 : "+vo.getDicenum()+") ("+vo.getResult()+")<br>"+vo.getRound()+"-"+vo.getLogSeq()+". "+vo.getUserId()+"은(는) "+vo.getObject()+"을(를) "+vo.getAct()+"했다.</p>";
 		}
         
-        
         map.put("log",log);
         map.put("player",this.miniGameService.selectPlayer(id)); 
         
-        System.out.println("player"+this.miniGameService.selectPlayer(id));
-        
     	map.put("site",this.userService.userOneSelect(id)); 
-    	System.out.println(this.userService.userOneSelect(id));
         
+    	System.out.println("성공");
         return map;
     }
 
