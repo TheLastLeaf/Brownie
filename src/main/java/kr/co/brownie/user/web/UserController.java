@@ -262,16 +262,16 @@ public class UserController {
         return "user/userReview";
     }
 
-    @PostMapping("/userReview")
-    @ResponseBody
-    public String userPostReview(Model model, @RequestParam Map<String, Object> map, HttpSession httpsession, HttpServletRequest httpServletRequest)
-            throws IOException {
-        String sessionId = (String) httpsession.getAttribute("id");
-        map.put("sessionId", sessionId);
-        reviewService.insertReview(map);
+	@PostMapping("/userReview")
+	@ResponseBody
+	public String userPostReview(Model model, @RequestParam Map<String, Object> map, HttpSession httpsession, HttpServletRequest httpServletRequest)
+			throws IOException {
+		String sessionId = (String) httpsession.getAttribute("id");
+		map.put("sessionId", sessionId);
+		reviewService.insertReview(map);
 
-        return "user/userReview";
-    }
+		return "<script>window.close();</script>";
+	}
 
     @GetMapping("/userSync")
     public String userSync() {
