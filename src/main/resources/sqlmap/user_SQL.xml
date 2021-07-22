@@ -24,6 +24,7 @@
     </select>
 
     <select id="userOneSelect"
+            parameterType="String"
             resultType="kr.co.brownie.user.service.UserVO">
         SELECT USER_ID       AS USERID,
                LOL_ID        AS LOLID,

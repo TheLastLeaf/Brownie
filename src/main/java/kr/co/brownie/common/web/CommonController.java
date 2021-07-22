@@ -74,11 +74,7 @@ public class CommonController {
     public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
         JsonObject jsonObject = new JsonObject();
 
-        String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-
-        // 내부경로로 저장
-//        String contextRoot = new HttpServletRequestWrapper(request).getRealPath("/");
-//        String fileRoot = contextRoot + "resources/fileupload/";
+        String fileRoot = "C:\\upload\\summernote\\images\\"; // 외부경로로 저장을 희망할때.
 
         String originalFileName = multipartFile.getOriginalFilename();    //오리지날 파일명
         assert originalFileName != null;
@@ -89,15 +85,13 @@ public class CommonController {
         try {
             InputStream fileStream = multipartFile.getInputStream();
             FileUtils.copyInputStreamToFile(fileStream, targetFile);    //파일 저장
-//            jsonObject.addProperty("url", "/resources/fileupload/" + savedFileName); // contextroot + resources + 저장할 내부 폴더명
-            jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
+            jsonObject.addProperty("url", "/upload/summernote/images/" + savedFileName);
             jsonObject.addProperty("responseCode", "success");
         } catch (IOException e) {
             FileUtils.deleteQuietly(targetFile);    //저장된 파일 삭제
             jsonObject.addProperty("responseCode", "error");
             e.printStackTrace();
         }
-        System.out.println(1);
         return jsonObject.toString();
     }
 

@@ -23,8 +23,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int selectExp(String id) throws IOException {
-        int exp = userMapper.selectExp(id);
-        return exp;
+        return userMapper.selectExp(id);
     }
 
     @Override
@@ -34,38 +33,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int boardTotalCnt(String id) {
-        int boardTotalCnt = userMapper.boardTotalCnt(id);
-        if (boardTotalCnt == 0) {
-            return boardTotalCnt = 0;
-        }
-        return boardTotalCnt;
+        return userMapper.boardTotalCnt(id);
     }
 
     @Override
     public int replyTotalCnt(String id) {
-        int replyTotalCnt = userMapper.replyTotalCnt(id);
-        if (replyTotalCnt == 0) {
-            return replyTotalCnt = 0;
-        }
-        return replyTotalCnt;
+        return userMapper.replyTotalCnt(id);
     }
 
     @Override
     public int likeReplyCnt(String id) {
-        int likeReplyCnt = userMapper.likeReplyCnt(id);
-        if (likeReplyCnt == 0) {
-            return likeReplyCnt = 0;
-        }
-        return likeReplyCnt;
+        return userMapper.likeReplyCnt(id);
     }
 
     @Override
     public int hateReplyCnt(String id) {
-        int hateReplyCnt = userMapper.hateReplyCnt(id);
-        if (hateReplyCnt == 0) {
-            return hateReplyCnt = 0;
-        }
-        return hateReplyCnt;
+        return userMapper.hateReplyCnt(id);
     }
 
     @Override

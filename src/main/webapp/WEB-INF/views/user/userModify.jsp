@@ -237,11 +237,11 @@
     $(".box button").attr("disabled", true);
     $("#rc-agree").on('click', function () {
         var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
-        if (chk == true && $('#user_nick').hasClass("check_success")) {
+        if (chk === true && $('#user_nick').hasClass("check_success")) {
             $(".box button").removeAttr('disabled');
             $(".box").removeClass("on");
 
-        } else if (chk == false || $('#user_nick').hasClass("check_fail")) {
+        } else if (chk === false || $('#user_nick').hasClass("check_fail")) {
             $(".box button").attr("disabled", true);
             $(".box").addClass("on");
         }
@@ -250,10 +250,10 @@
     $("#user_nick").change(function () {
         $(".box button").attr("disabled", true);
         var chk = $('input:checkbox[id="rc-agree"]').is(":checked");
-        if (chk == true && $('#user_nick').hasClass("check_success")) {
+        if (chk === true && $('#user_nick').hasClass("check_success")) {
             $(".box button").removeAttr('disabled');
             $(".box").removeClass("on");
-        } else if (chk == false || $('#user_nick').hasClass("check_fail")) {
+        } else if (chk === false || $('#user_nick').hasClass("check_fail")) {
             $(".box button").attr("disabled", true);
             $(".box").addClass("on");
         }
@@ -285,87 +285,74 @@
     //엔터치면 문제발생함
     //영문, 숫자, 특수문자를 10자리 이상 포함하는 정규표현식
     var nickRegcheck = /[0-9]|[a-z]|[A-Z]|[가-힣]/;
-    $("#user_nick").keyup(
+    const userNick = $('#user_nick');
+    userNick.keyup(
         function () {
-            $('#user_nick').removeClass('check_success');
-            $('#user_nick').removeClass('check_fail');
-            var user_nick = $('#user_nick').val();
-            var formData = new FormData();
-            formData.append("user_nick", user_nick);
-            if (user_nick == $('input[name=nickNameHidden]').val()) {
+            userNick.removeClass('check_success');
+            userNick.removeClass('check_fail');
+            if (userNick.val() === $('input[name=nickNameHidden]').val()) {
                 $('#user_nick').addClass('check_success');
             } else {
                 $.ajax({
-                    url: "/user/userModify",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        if (data == "ng") { // 아이디가 중복됨
-                            $('#user_nick').addClass('check_fail');
-                        } else { // 아이디 중복은 회피함, 빈칸체킹
-                            if ($('#user_nick').val() == ""
-                                || $('#user_nick').val() == null) {
+                        url: "/user/idCheck.ajax",
+                        type: "POST",
+                        data: {userNickname: userNick.val()},
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            if (userNick.val() === "" || userNick.val() == null || data === "ng") { // 아이디가 중복됨
                                 $('#user_nick').addClass('check_fail');
                             } else { // 아이디가 실제로 올바른 값인지 체킹
-                                if (nickRegcheck.test(user_nick)) {
+                                if (nickRegcheck.test(userNick.val())) {
                                     $('#user_nick').addClass(
                                         'check_success');
-
-                                    // 									if($('input:checkbox[id="rc-agree"]').is(":checked")){
-                                    // 										console.log("성공");
-                                    // 										$(".box button").removeAttr('disabled');
-                                    // 									}
-
                                 } else {
-                                    //									$('#regCheckMsg').text();
-                                    // 									$('#user_nick').val('');
                                     $('#user_nick').addClass(
                                         'check_fail');
                                 }
                             }
+                        },
+                        error: function (e) {
+                            alert("실패ㅜㅜ err");
+                            console.log(e);
                         }
-                    },
-                    error: function (e) {
-                        alert("실패ㅜㅜ err");
-                        console.log(e);
                     }
-                });
+                );
             }
         });
 
     function fn_submit() {
         //파일처리 시작 ----------
-        var formData = new FormData();
-        var inputFile = $("input[name='file']");
-        var files = inputFile[0].files;
-        // 		console.log(files[0]);
-        formData.append("uploadFile", files[0]);
         //파일처리 끝 -----------
-        var nickNameBox = $("input[name=nickNameBox]").val();
-        var positions = []
-        $('input[name="positions"]:checked').each(function () {
-            positions.push($(this).val())
+        const positions = []
+        $('input[name=positions]:checked').each(function () {
+            positions.push($(this).val());
         });
-        if (positions == null || positions.length < 1) {
+        if (positions.length === 0) {
             positions.push("empty");
         }
-        var agree = $("#rc-agree").val();
-        formData.append("nickNameBox", nickNameBox);
+
+        const inputFile = $("input[name='file']");
+        const files = inputFile[0].files;
+
+        const formData = new FormData();
+        formData.append("nickNameBox", $("input[name=nickNameBox]").val());
         formData.append("positions", positions);
-        formData.append("agree", agree);
+        formData.append("agree", $("#rc-agree").val());
+        formData.append("uploadFile", files[0]);
 
         $.ajax({
             url: "/user/userInfo",
             type: "POST",
             data: formData,
             processData: false,
+            enctype: 'multipart/form-data',
             contentType: false,
-            success: function (message) {
-                alert(message);
-                window.close();
+            dataType: "json",
+            success: function (data) {
+                alert(data.message);
                 opener.parent.location.reload();
+                location.reload();
             },
             error: function (e) {
                 alert("실패ㅜㅜ err");

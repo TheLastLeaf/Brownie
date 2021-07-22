@@ -12,6 +12,4 @@ public interface FileMapper {
     void updateProfile(Map<String, Object> map);
 
     String selectProfile(String id);
-
-
 }
