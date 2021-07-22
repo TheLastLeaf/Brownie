@@ -149,6 +149,7 @@
     }
 
     #button-send {
+        width: 58px;
         margin: 2px;
         background-color: maroon;
     }
@@ -166,12 +167,44 @@
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
         const LOL_NICK = [['${userInfo.lolId}']];
         const USER_NAME = [['${userInfo.nickName}']];
-        const ROOM_NUMBER = "${userInfo.roomNumber}";
+        const IN_USER_ID = '${userInfo.userId}';
+        const ROOM_NUMBER = '${userInfo.roomNumber}';
+
+        console.log("IN_USER_ID : "+IN_USER_ID);
 
         console.log("ROOM_NUMBER : " + ROOM_NUMBER);
 
         $("#button-send").on("click", (e) => {
             send();
+
+            //이게 동작할 때 마다 해당 섹션을 지우고 새 리스트를 받아와서 삽입이 가능한가?
+            //시도해보자
+            $.ajax({
+                url: "../teamGame/select-member",
+                type: "POST",
+                data: {
+                    "userId": IN_USER_ID
+                    , "TEAMGAME_SEQ": ROOM_NUMBER
+                },
+                success: function (data) {
+                    alert("ttt")
+                    // $("#chatUserList").load(window.location.href + "#chatUserList");
+                    // $("#chatUserList").load(location.href + "#chatUserList");
+                    var responseData = JSON.parse(data);
+
+                    var userListStr ="<div class='user'>"
+                    userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
+                    //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
+                    userListStr += "<div class='userInfo'>"+responseData.nickName+ "[" + responseData.lolId + "]"+"</div>"
+                    userListStr += "</div>"
+                    $("#chatUserList").append(userListStr);
+
+                },
+                error: function () {
+                    alert("에러나요");
+                }
+            })
+
         });
         $(document).bind('keypress',pressed);
         function pressed(e) {
@@ -214,20 +247,8 @@
         function onOpen(evt) {
             var str = USER_NAME + ": 님이 입장하셨습니다.";
             websocket.send(str);
-
-            var userListStr ="<div class='user'>"
-            userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
-            //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
-            userListStr += "<div class='userInfo'>"+USER_NAME+ "[" + LOL_NICK + "]"+"</div>"
-            userListStr += "</div>"
-            $("#chatUserList").append(userListStr);
-
-            //이게 동작할 때 마다 해당 섹션을 지우고 새 리스트를 받아와서 삽입이 가능한가?
-            //시도해보자
-
-
-
         }
+
 
         function onMessage(msg) {
             var data = msg.data;
@@ -284,7 +305,13 @@
         </div>
 
         <div class="userBox col-sm-3" id="chatUserList">
-
+            <c:forEach var="memList" items="${memList}">
+                <div class="user">
+                    <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
+                    <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
+                    <div class="userInfo">${memList.nickName} [${memList.lolId}]</div>
+                </div>
+            </c:forEach>
         </div>
 
     </div>

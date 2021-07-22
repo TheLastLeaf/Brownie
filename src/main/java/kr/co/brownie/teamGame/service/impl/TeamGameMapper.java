@@ -20,4 +20,6 @@ public interface TeamGameMapper {
     void insertMemberPosi(Map<String, Object> map);
 
     List<TeamGameVO> selectOne(int teamGameSeq);
+
+    List<TeamGameVO> selectRoomMember(int teamGameSeq);
 }

@@ -37,9 +37,16 @@ public class WebSocketController {
         //httpSession.getId() : 585B494F93981E7A684E5E02C6DE7CB8
         System.out.println("websocket Map : "+map);
         List<TeamGameVO> roomInfo = teamGameService.selectOne(Integer.parseInt(map.get("roomNumber").toString()));
+        List<TeamGameVO> memList = teamGameService.selectRoomMember(Integer.parseInt(map.get("roomNumber").toString()));
+
         System.out.println("roooooooooooo : " + roomInfo.get(0));
         model.addAttribute("userInfo", map);
+        model.addAttribute("memList", memList);
         model.addAttribute("roomInfo", roomInfo.get(0));
+
+        //해당 방 번호를 가진 유저 닉네임과 롤 닉네임, 티어 목록이 필요함
+
+
         return "teamGame/chatRoom";
     }
 }

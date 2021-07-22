@@ -43,4 +43,9 @@ public class TeamGameServiceImpl implements TeamGameService {
     public List<TeamGameVO> selectOne(int teamGameSeq) {
         return teamGameMapper.selectOne(teamGameSeq);
     }
+
+    @Override
+    public List<TeamGameVO> selectRoomMember(int teamGameSeq) {
+        return teamGameMapper.selectRoomMember(teamGameSeq);
+    }
 }

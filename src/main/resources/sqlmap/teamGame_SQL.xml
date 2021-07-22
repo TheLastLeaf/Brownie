@@ -166,7 +166,20 @@
         from TEAMGAME
         where TEAMGAME_SEQ = #{teamGameSeq}
         and LEADER = 'y'
+    </select>
 
+    <select id="selectRoomMember" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
+        SELECT TG.TEAMGAME_SEQ AS teamGameSeq
+              ,TG.USER_ID AS userId
+              ,BU.LOL_ID AS lolId
+              ,BU.NICK_NAME AS nickName
+              ,TG.STATUS AS status
+              ,TG.LEADER AS leader
+              ,TG.MIKE AS mike
+              ,TG.POSITION AS position
+        FROM BROWNIE_USER BU, TEAMGAME TG
+        WHERE BU.USER_ID = TG.USER_ID
+          AND TG.TEAMGAME_SEQ = #{teamGameSeq}
     </select>
 
 </mapper>

@@ -178,6 +178,7 @@
         chatPop.target = 'chatingRoom' + roomNumber;
         chatPop.roomNumber.value = roomNumber;
         chatPop.position.value = position;
+        chatPop.userId.value = '${userInfo.userId}';
         chatPop.nickName.value = '${userInfo.nickName}';
         chatPop.lolId.value = '${userInfo.lolId}';
         chatPop.submit();
@@ -252,6 +253,7 @@
                     <input type="hidden" name="roomNumber">
                     <input type="hidden" name="position">
                     <input type="hidden" name="lolId">
+                    <input type="hidden" name="userId">
                     <input type="hidden" name="nickName">
                 </form>
                 <!------------------------------------------------------------------->

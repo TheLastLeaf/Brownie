@@ -280,6 +280,7 @@
         chatPop.roomNumber.value = roomNumber;
         chatPop.nickName.value = nickName;
         chatPop.lolId.value = lolId;
+        chatPop.userId.value = '${sessionScope.id}';
         chatPop.position.value = position;
         chatPop.submit();
     }
@@ -318,6 +319,7 @@
                 <input type="hidden" name="roomNumber">
                 <input type="hidden" name="position">
                 <input type="hidden" name="lolId">
+                <input type="hidden" name="userId">
                 <input type="hidden" name="nickName">
             </form>
             <!------------------------------------------------------------------->
