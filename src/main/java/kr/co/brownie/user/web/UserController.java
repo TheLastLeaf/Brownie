@@ -260,6 +260,7 @@ public class UserController {
 	}
 
 	@PostMapping("/userReview")
+	@ResponseBody
 	public String userPostReview(Model model, @RequestParam Map<String, Object> map, HttpSession httpsession, HttpServletRequest httpServletRequest)
 			throws IOException {
 		String sessionId = (String) httpsession.getAttribute("id");

@@ -105,20 +105,7 @@ hr {
 	z-index: 0;
 	padding: 0;
 }
-
-/* 별배경 */
 </style>
-
-<script>
-	function ratingToPercent() {
-		const score = +this.restaurant.averageScore * 20;
-		return score + 1.5;
-	}
-	function fn_check(){
-		var result = confirm("글쓰겠습니까?");
-		return result;
-	}
-</script>
 
 <body>
 	<div id="preloder">
@@ -127,8 +114,8 @@ hr {
 
 	<div class="signup-text">
 		<div class="container">
-			<form action="/user/userReview" class="signup-form" method="post" onsubmit="fn_check()">
-				<input type="hidden" name="user_id" value="${user_id}"/>
+			<form action="/user/userReview" class="signup-form" method="post" onsubmit="return fn_check()">
+				<input type="hidden" name="user_id" value="${user_id}" />
 				<div class="signup-title" style="margin: 10px;">
 					<div class="row">
 						<h3 class="title" style="color: white;">후기작성</h3>
@@ -149,26 +136,35 @@ hr {
 					<!-- 별 hover 효과 -->
 					<div class="star-rating space-x-4 mx-auto">
 						<input type="radio" id="5-stars" name="rating" value="5" />
-						<label for="5-stars" class="star pr-4"> <i class="fas fa-star"></i>
-						</label> &nbsp;
+						<label for="5-stars" class="star pr-4">
+							<i class="fas fa-star"></i>
+						</label>
+						&nbsp;
 						<input type="radio" id="4-stars" name="rating" value="4" />
-						<label for="4-stars" class="star"> <i class="fas fa-star"></i>
-						</label> &nbsp;
+						<label for="4-stars" class="star">
+							<i class="fas fa-star"></i>
+						</label>
+						&nbsp;
 						<input type="radio" id="3-stars" name="rating" value="3" />
-						<label for="3-stars" class="star"> <i class="fas fa-star"></i>
-						</label> &nbsp;
+						<label for="3-stars" class="star">
+							<i class="fas fa-star"></i>
+						</label>
+						&nbsp;
 						<input type="radio" id="2-stars" name="rating" value="2" />
-						<label for="2-stars" class="star"> <i class="fas fa-star"></i>
-						</label> &nbsp;
+						<label for="2-stars" class="star">
+							<i class="fas fa-star"></i>
+						</label>
+						&nbsp;
 						<input type="radio" id="1-star" name="rating" value="1" />
-						<label for="1-star" class="star"> <i class="fas fa-star"></i>
+						<label for="1-star" class="star">
+							<i class="fas fa-star"></i>
 						</label>
 					</div>
 
 					<!-- 별 hover 효과 -->
 				</div>
 				<div class="comment sf-input-list">
-					<input type="text" name="text" placeholder="수정이 안되오니 신중하게 작성해주세요!">
+					<input type="text" name="text" id="textBox" placeholder="수정이 안되오니 신중하게 작성해주세요!">
 				</div>
 
 				<div>
@@ -189,6 +185,39 @@ hr {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="${pageContext.request.contextPath}/js/main.js"></script>
-
+	<script>
+		function ratingToPercent() {
+			const score = +this.restaurant.averageScore * 20;
+			return score + 1.5;
+		}
+		function fn_check() {
+			var result = confirm("글쓰겠습니까?");
+			if(result){
+				var textBox = $('#textBox').val();
+				alert("textbox: "+ textBox);
+				
+				var formData = new formData();
+				formData.append("textBox", textBox);
+				
+				$.ajax({
+					url : "/user/userReview",
+					type : "POST",
+					data : formData,
+					processData : false,
+					contentType : false,
+					success : function(message) {
+						window.close();
+						opener.parent.location.reload();
+					},
+					error : function(e) {
+						alert("실패ㅜㅜ err");
+						console.log(e);
+					}
+				});
+				return true;
+			}
+			return false;
+		}
+	</script>
 </body>
 </html>
