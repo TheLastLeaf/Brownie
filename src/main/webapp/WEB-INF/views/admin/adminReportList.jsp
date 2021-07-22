@@ -137,7 +137,7 @@
                             <c:if test="${reportList.status eq 'N'}">
                                 <tr id="${reportList.reportSeq}">
                                     <th class="reportListTd">${reportList.userId}</th>
-                                    <th class="reportListTd">${reportList.reportName.substring(1,reportList.reportName.length()-1) }</th>
+                                    <th class="reportListTd">${reportList.reportName }</th>
                                     <c:choose>
                                         <c:when test="${reportList.content ne null}">
                                             <th class="reportContent">${reportList.content }</th>
