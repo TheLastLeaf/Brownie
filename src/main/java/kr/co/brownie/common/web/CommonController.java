@@ -74,7 +74,7 @@ public class CommonController {
     public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) {
         JsonObject jsonObject = new JsonObject();
 
-        String fileRoot = "C:\\upload\\summernote\\images\\"; // 외부경로로 저장을 희망할때.
+        String fileRoot = "Z:\\upload\\summernote\\images\\"; // 외부경로로 저장을 희망할때.
 
         String originalFileName = multipartFile.getOriginalFilename();    //오리지날 파일명
         assert originalFileName != null;

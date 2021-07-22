@@ -154,7 +154,7 @@ public class UserController {
 
             if (uploadFile != null) {
                 // 파일 저장되는 경로
-                String fileRoot = "C:\\upload\\profile\\images\\"; // 외부경로로 저장을 희망할때.
+                String fileRoot = "Z:\\upload\\profile\\images\\"; // 외부경로로 저장을 희망할때.
                 String profilePath = "/upload/profile/images/";
 
                 String originalFileName = uploadFile.getOriginalFilename();    //오리지날 파일명

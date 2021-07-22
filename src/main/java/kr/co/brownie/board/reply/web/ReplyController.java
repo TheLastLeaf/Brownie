@@ -31,22 +31,30 @@ public class ReplyController {
             jsonObject.addProperty("status", "ng");
             jsonObject.addProperty("message", "로그인 후 이용하세요.");
         } else {
-            map.put("userId", httpSession.getAttribute("id"));
-            BoardVO boardVO = this.boardService.select(map);
-            if (boardVO == null) {
+            if (map.get("title").toString().trim().length() == 0) {
                 jsonObject.addProperty("status", "ng");
-                jsonObject.addProperty("message", "해당 글이 없습니다.");
+                jsonObject.addProperty("message", "제목을 입력하세요.");
+            } else if (map.get("content").toString().trim().length() == 0) {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("message", "내용을 입력하세요.");
             } else {
-                if (map.get("replyContent").toString().length() == 0) {
+                map.put("userId", httpSession.getAttribute("id"));
+                BoardVO boardVO = this.boardService.select(map);
+                if (boardVO == null) {
                     jsonObject.addProperty("status", "ng");
-                    jsonObject.addProperty("message", "내용이 없습니다.");
-                } else if (this.replyService.insert(map) != 1) {
-                    jsonObject.addProperty("status", "ng");
-                    jsonObject.addProperty("message", "작성에 실패하였습니다.");
+                    jsonObject.addProperty("message", "해당 글이 없습니다.");
                 } else {
-                    jsonObject.addProperty("status", "ok");
+                    if (map.get("replyContent").toString().length() == 0) {
+                        jsonObject.addProperty("status", "ng");
+                        jsonObject.addProperty("message", "내용이 없습니다.");
+                    } else if (this.replyService.insert(map) != 1) {
+                        jsonObject.addProperty("status", "ng");
+                        jsonObject.addProperty("message", "작성에 실패하였습니다.");
+                    } else {
+                        jsonObject.addProperty("status", "ok");
+                    }
                 }
-            } 
+            }
         }
         return jsonObject.toString();
     }
