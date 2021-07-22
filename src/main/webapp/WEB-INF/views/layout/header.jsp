@@ -215,45 +215,41 @@
 <header class="header-section">
     <div class="ht-options">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-8">
-                    <div class="ht-widget">
-                        <ul>
-                            <li id="clock"><i class="far fa-clock"></i></li>
-                            <li class="signup-switch signup-open">
-                                <c:choose>
-                                    <c:when test="${sessionScope.id != null}">
+            <div class="ht-widget">
+                <ul>
+                    <li id="clock"><i class="far fa-clock"></i></li>
+                    <li class="signup-switch signup-open">
+                        <c:choose>
+                            <c:when test="${sessionScope.id != null}">
                                         <span style="margin-left:4px;">
                                             <a onclick="location.href='/user/userInfo/${sessionScope.id}'"
                                                style="text-decoration: underline;">${sessionScope.id}</a>
                                             <span style="cursor:text">님 환영합니다</span>
                                         </span>
-                                        <span style="margin-left:4px; cursor:text;">LV.${sessionScope.permit_level}</span>
-                                        <span style="margin-left:4px;">
+                                <span style="margin-left:4px; cursor:text;">LV.${sessionScope.permit_level}</span>
+                                <span style="margin-left:4px;">
                                             <a onclick="location.href='/user/userInfo/${sessionScope.id}'">
                                                 <i class="far fa-address-book" aria-hidden="true"></i>
                                             </a>
                                         </span>
-                                        <span>
+                                <span>
                                             <a onclick="location.href='/logout'">
                                                 <i class="fas fa-sign-out-alt"></i>
                                             </a>
                                         </span>
-                                        <c:if test="${sessionScope.id ne null and sessionScope.permit_level eq 9}">
-                                            <i class="far fa-address-card" onclick="location.href='/admin'"></i>
-                                        </c:if>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a onclick="location.href = '/login'">
-                                            <img src="${pageContext.request.contextPath}/img/common/kakao_login_small.png"
-                                                 alt=""/>
-                                        </a>
-                                    </c:otherwise>
-                                </c:choose>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                                <c:if test="${sessionScope.id ne null and sessionScope.permit_level eq 9}">
+                                    <i class="far fa-address-card" onclick="location.href='/admin'"></i>
+                                </c:if>
+                            </c:when>
+                            <c:otherwise>
+                                <a onclick="location.href = '/login'">
+                                    <img src="${pageContext.request.contextPath}/img/common/kakao_login_small.png"
+                                         alt=""/>
+                                </a>
+                            </c:otherwise>
+                        </c:choose>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
