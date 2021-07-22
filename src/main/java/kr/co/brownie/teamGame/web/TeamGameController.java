@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class TeamGameController {
     UserService userService;
 
     @GetMapping({"", "/teamGame"})
-    public String teamMaker(Model model, HttpServletRequest servletRequest) throws IOException {
+    public String teamMaker(Model model, HttpSession httpSession) throws IOException {
         List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList();
 
         Map<Integer, Object> teamPosition = new HashMap<>();
@@ -40,14 +41,17 @@ public class TeamGameController {
             }
         }
 
-        //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
-        //이거 임시로 걍 길이넣어놨는데 나중에 바꾸긴해야함 ㅠ ㅠ ㅠ ㅠ
-        String userId = servletRequest.getSession().getId();
-        System.out.println("userId : " + servletRequest.getSession().getId().length());
-        if(userId.length() < 15){
-            UserVO userInfo = userService.userOneSelect(userId);
-            model.addAttribute("userInfo", userInfo);
+        //블랙회원인 경우 진입이 불가능해야함 권한 if문 돌리기
+
+        //로그인 안 했을 경우
+        UserVO userInfo = new UserVO();
+        try{
+            String userId = httpSession.getAttribute("id").toString();
+            userInfo = userService.userOneSelect(userId);
+        } catch (NullPointerException e){
+            System.out.println("userId null 들어왔을때임");
         }
+        model.addAttribute("userInfo", userInfo);
         model.addAttribute("teamGameList", teamGameList);
         model.addAttribute("teamPosition", teamPosition);
 
