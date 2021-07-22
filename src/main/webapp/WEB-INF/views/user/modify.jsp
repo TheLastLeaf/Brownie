@@ -169,7 +169,7 @@
                 <div class="sf-input-list ">
                     <div class="profileBox" style="border: none;">
                         <label for="file">
-                            <img class="profile" id="img" src="${pageContext.request.contextPath}${selectProfile}">
+                            <img class="profile" id="img" src="${pageContext.request.contextPath}${userOneSelect.image}">
                             <input type="file" id="file" name="file"/>
                         </label>
                     </div>

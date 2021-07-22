@@ -296,10 +296,7 @@
                              style="position: relative;">
                             <!-- 프로필사진 + exp 툴팁 -->
                             <div class="profilePic">
-                                <!-- ${pageContext.request.contextPath} 경로:  -->
-                                <!-- ${selectProfile} 경로: /img/user/lux.gif -->
-                                <!-- 바꿧을때 -->
-                                <img src="${pageContext.request.contextPath}${selectProfile}">
+                                <img src="${pageContext.request.contextPath}${userOneSelect.image}">
                             </div>
 
                             <!-- 프로필 프레임 -->

@@ -66,9 +66,6 @@ public class UserController {
             return "common/message";
         }
 
-        // 프로필 사진들고오기
-        String selectProfile = fileService.selectProfile(user_id);
-
         // 경험치 select
         int exp = userService.selectExp(user_id);
 
@@ -98,7 +95,6 @@ public class UserController {
 
         // model.addattribute
         model.addAttribute("userOneSelect", userOneSelect);
-        model.addAttribute("selectProfile", selectProfile);
         model.addAttribute("exp", exp);
         model.addAttribute("fullStar", fullStar);
         if (halfStar == 1) {
@@ -194,10 +190,8 @@ public class UserController {
     @GetMapping("/modify/{user_id}")
     public String userModify(Model model, @PathVariable String user_id) throws IOException {
         System.out.println("get");
-        String selectProfile = fileService.selectProfile(user_id);
         UserVO userVO = userService.userOneSelect(user_id);
         model.addAttribute("userOneSelect", userVO);
-        model.addAttribute("selectProfile", selectProfile);
         return "user/modify";
     }
 
