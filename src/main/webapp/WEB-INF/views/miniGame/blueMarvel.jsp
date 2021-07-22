@@ -142,14 +142,14 @@
     }
 
     .l1 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[0].kind}/${infoList[0].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[0].degree}/${infoList[0].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
         background-color: ${landColor[0]};
     }
     .l2 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[1].kind}/${infoList[1].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[1].degree}/${infoList[1].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -157,7 +157,7 @@
     }
 
     .l3 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[2].kind}/${infoList[2].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[2].degree}/${infoList[2].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -165,7 +165,7 @@
     }
 
     .l4 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[3].kind}/${infoList[3].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[3].degree}/${infoList[3].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -173,7 +173,7 @@
     }
 
     .l5 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[4].kind}/${infoList[4].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[4].degree}/${infoList[4].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -181,7 +181,7 @@
     }
 
     .l6 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[5].kind}/${infoList[5].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[5].degree}/${infoList[5].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -189,7 +189,7 @@
     }
 
     .l7 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[6].kind}/${infoList[6].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[6].degree}/${infoList[6].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -197,7 +197,7 @@
     }
 
     .l8 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[7].kind}/${infoList[7].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[7].degree}/${infoList[7].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -205,7 +205,7 @@
     }
 
     .l9 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[8].kind}/${infoList[8].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[8].degree}/${infoList[8].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -213,7 +213,7 @@
     }
 
     .l10 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[9].kind}/${infoList[9].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[9].degree}/${infoList[9].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -221,7 +221,7 @@
     }
 
     .l11 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[10].kind}/${infoList[10].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[10].degree}/${infoList[10].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -229,7 +229,7 @@
     }
 
     .l12 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[11].kind}/${infoList[11].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[11].degree}/${infoList[11].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -237,7 +237,7 @@
     }
 
     .l13 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[12].kind}/${infoList[12].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[12].degree}/${infoList[12].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -245,7 +245,7 @@
     }
 
     .l14 {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[13].kind}/${infoList[13].imgName}");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/${infoList[13].degree}/${infoList[13].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -254,7 +254,7 @@
 
     .l15 {
 
-        background: url("${pageContext.request.contextPath}/img/miniGame/${infoList[14].kind}/${infoList[14].imgName}");
+        background: url("${pageContext.request.contextPath}/img/miniGame/${infoList[14].degree}/${infoList[14].imgName}");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -262,7 +262,7 @@
     }
     
     .startLine {
-        background-image: url("${pageContext.request.contextPath}/img/miniGame/mer/chr-merchant.png");
+        background-image: url("${pageContext.request.contextPath}/img/miniGame/start/chr-merchant.png");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
@@ -719,21 +719,21 @@
                     recentMap.push(data.info[i].seq);
                 }
 
-                $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[0].kind + "/" + data.info[0].imgName);
-                $('.l2').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[1].kind + "/" + data.info[1].imgName);
-                $('.l3').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[2].kind + "/" + data.info[2].imgName);
-                $('.l4').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[3].kind + "/" + data.info[3].imgName);
-                $('.l5').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[4].kind + "/" + data.info[4].imgName);
-                $('.l6').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[5].kind + "/" + data.info[5].imgName);
-                $('.l7').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[6].kind + "/" + data.info[6].imgName);
-                $('.l8').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[7].kind + "/" + data.info[7].imgName);
-                $('.l9').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[8].kind + "/" + data.info[8].imgName);
-                $('.l10').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[9].kind + "/" + data.info[9].imgName);
-                $('.l11').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[10].kind + "/" + data.info[10].imgName);
-                $('.l12').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[11].kind + "/" + data.info[11].imgName);
-                $('.l13').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[12].kind + "/" + data.info[12].imgName);
-                $('.l14').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[13].kind + "/" + data.info[13].imgName);
-                $('.l15').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[14].kind + "/" + data.info[14].imgName);
+                $('.l1').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[0].degree + "/" + data.info[0].imgName);
+                $('.l2').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[1].degree + "/" + data.info[1].imgName);
+                $('.l3').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[2].degree + "/" + data.info[2].imgName);
+                $('.l4').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[3].degree + "/" + data.info[3].imgName);
+                $('.l5').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[4].degree + "/" + data.info[4].imgName);
+                $('.l6').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[5].degree + "/" + data.info[5].imgName);
+                $('.l7').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[6].degree + "/" + data.info[6].imgName);
+                $('.l8').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[7].degree + "/" + data.info[7].imgName);
+                $('.l9').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[8].degree + "/" + data.info[8].imgName);
+                $('.l10').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[9].degree + "/" + data.info[9].imgName);
+                $('.l11').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[10].degree + "/" + data.info[10].imgName);
+                $('.l12').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[11].degree + "/" + data.info[11].imgName);
+                $('.l13').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[12].degree + "/" + data.info[12].imgName);
+                $('.l14').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[13].degree + "/" + data.info[13].imgName);
+                $('.l15').css('background-image', "url('${pageContext.request.contextPath}/img/miniGame/" + data.info[14].degree + "/" + data.info[14].imgName);
                 
                 $('.l1').css('background-color', data.landColor[0]);
                 $('.l2').css('background-color', data.landColor[1]);
@@ -776,7 +776,7 @@
             success: function (data) {
                    console.log("data 삽입성공!");
                    
-                   $("#gameInfoImg").html("<img id='infoImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.obj.kind + "/" + data.obj.imgName+"'/>");
+                   $("#gameInfoImg").html("<img id='infoImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.obj.degree + "/" + data.obj.imgName+"'/>");
                    
                    $("#gameInfoTitle").html(data.obj.name);
                    
@@ -836,7 +836,7 @@
             success: function (data) {
            		$("#modalTitle").html(data.name);
            		$("#modalCon").html(data.detailedExpl);
-           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.kind + "/" + data.imgName+"'/>");
+           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.degree + "/" + data.imgName+"'/>");
             },
             error: function () {
                 alert("랜드정보 불러오기 실패ㅡ!");
