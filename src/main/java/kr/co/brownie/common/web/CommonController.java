@@ -6,7 +6,6 @@ import kr.co.brownie.blackList.service.BlackUserService;
 import kr.co.brownie.blackList.service.BlackUserVO;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.common.service.CommonService;
-import kr.co.brownie.fileUpload.service.FileService;
 import kr.co.brownie.youtube.service.YouTubeService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -41,9 +40,6 @@ public class CommonController {
 
     @Resource(name = "boardService")
     BoardService boardService;
-
-    @Resource(name = "fileService")
-    FileService fileService;
 
     @Resource(name = "blackUserService")
     BlackUserService blackUserService;
@@ -139,9 +135,6 @@ public class CommonController {
             int starCnt = 0;
             String reply = "empty";
             String writeUserId = "admin";
-
-            // 초기 프로필사진 설정
-            fileService.defaultProfile(id);
 
             // 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
 

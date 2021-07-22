@@ -367,7 +367,7 @@
             success: function (data) {
                 alert(data.message);
                 opener.parent.location.reload();
-                location.reload();
+                window.close();
             },
             error: function (e) {
                 alert("실패ㅜㅜ err");

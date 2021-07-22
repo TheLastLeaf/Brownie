@@ -1,34 +1,25 @@
 package kr.co.brownie.user.web;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import com.google.gson.JsonObject;
-import org.apache.commons.io.FileUtils;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import kr.co.brownie.fileUpload.service.FileService;
 import kr.co.brownie.report.service.ReportService;
 import kr.co.brownie.review.service.ReviewService;
 import kr.co.brownie.review.service.ReviewVO;
 import kr.co.brownie.review.service.impl.ReviewPagingVO;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
+import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -38,9 +29,6 @@ public class UserController {
 
     @Resource(name = "reviewService")
     ReviewService reviewService;
-
-    @Resource(name = "fileService")
-    FileService fileService;
 
     @Resource(name = "reportService")
     ReportService reportService;
