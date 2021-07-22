@@ -148,7 +148,7 @@
         margin: 4px;
     }
 
-    button[type="button"] {
+    #button-send {
         margin: 2px;
         background-color: maroon;
     }
@@ -162,8 +162,6 @@
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-
-
     $(document).ready(function () {
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
         const LOL_NICK = [['${userInfo.lolId}']];
@@ -172,17 +170,15 @@
 
         console.log("ROOM_NUMBER : " + ROOM_NUMBER);
 
-        $("#disconn").on("click", (e) => {
-            websocket.close();
-        })
-
         $("#button-send").on("click", (e) => {
             send();
         });
-
-        $("#enter-chat").on("click", (e) => {
-            onOpen();
-        });
+        $(document).bind('keypress',pressed);
+        function pressed(e) {
+            if(e.keyCode === 13) {
+                send();
+            }
+        }
 
         //이게 방 주소
         const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=" + ROOM_NUMBER);
@@ -225,6 +221,11 @@
             userListStr += "<div class='userInfo'>"+USER_NAME+ "[" + LOL_NICK + "]"+"</div>"
             userListStr += "</div>"
             $("#chatUserList").append(userListStr);
+
+            //이게 동작할 때 마다 해당 섹션을 지우고 새 리스트를 받아와서 삽입이 가능한가?
+            //시도해보자
+
+
 
         }
 
@@ -277,7 +278,8 @@
             <div class="enterBox row">
                 <input type="text" id="msg" class="form-control" aria-label="Recipient's username"
                        aria-describedby="button-addon2">
-                <button type="button" class="btn btn-success btn-outline-secondary" id="button-send">전송</button>
+<%--                <button type="button" class="btn btn-success btn-outline-secondary" id="button-send2">전송</button>--%>
+                <input type="sumbit" value="전송" class="btn btn-success btn-outline-secondary" id="button-send" />
             </div>
         </div>
 
