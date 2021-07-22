@@ -90,7 +90,7 @@
 
                 <div class="dt-author">
                     <div class="da-pic">
-                        <img src="/img/details/author-pic.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}${selectProfile}">
                     </div>
                     <div class="da-text">
                         <h5>${boardVO.nickName}</h5>

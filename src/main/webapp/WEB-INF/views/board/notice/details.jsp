@@ -38,7 +38,7 @@
                     </div>
                     <div class="dt-author border">
                         <div class="da-pic">
-                            <img src="${pageContext.request.contextPath}/img/details/author-pic.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}${selectProfile}">
                         </div>
                         <div class="da-text">
                             <a href="/user/userInfo/${boardVO.boardUpUserId}">
