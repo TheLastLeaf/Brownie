@@ -22,7 +22,7 @@ import java.util.*;
 public class MiniGameController {
     @Resource(name = "brownieMarbelInfoService")
     BrownieMarbelInfoService miniGameService;
-
+    
     @Resource(name = "userService")
     UserService userService;
 
@@ -56,16 +56,11 @@ public class MiniGameController {
                 player = this.miniGameService.selectPlayer(id);
             }
         }
-<<<<<<< Updated upstream
-
-
-=======
         
         //아이템목록
         String[] items = player.getItem().split(",");
         model.addAttribute("items", items);
         
->>>>>>> Stashed changes
         System.out.println("player:" + player);
         model.addAttribute("player", player);
 
@@ -93,27 +88,21 @@ public class MiniGameController {
 
         List<BrownieMarbelInfoVO> brownieMarbelInfo = new ArrayList<BrownieMarbelInfoVO>();
         List<String> landColor = new ArrayList();
-<<<<<<< Updated upstream
-
-
-        for (int n : list) {
-=======
         
         
         for (int n : colorList) {
->>>>>>> Stashed changes
             brownieMarbelInfo.add(this.miniGameService.selectInfo(n));
         }
         System.out.println(brownieMarbelInfo);
-
+        
         for (BrownieMarbelInfoVO n : brownieMarbelInfo) {
-            String[] temp = n.getFunction().split(",");
-            landColor.add(temp[2]);
+        	String[] temp = n.getFunction().split(",");
+        	landColor.add(temp[2]);
         }
-
+        
         //DB에 있는 랜드정보 가져오는것.
         //List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
-
+        
         model.addAttribute("infoList", brownieMarbelInfo); //
         model.addAttribute("landColor", landColor); //
 
@@ -135,14 +124,9 @@ public class MiniGameController {
         String quest = servletRequest.getParameter("quest");
         String dicetimes = servletRequest.getParameter("dicetimes");
         int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
-<<<<<<< Updated upstream
-
-        List<Integer> list = addMapPoint();
-=======
         
         List<Integer> list = new ArrayList<>();
         list = addMap(list, true);
->>>>>>> Stashed changes
         String recentMap = list.toString();
 
         System.out.println("recentMap : " + recentMap);
@@ -159,10 +143,6 @@ public class MiniGameController {
         param.put("dicetimes", dicetimes);
         param.put("recentHp", recentHp);
         param.put("userId", id);
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 
         int cnt = this.miniGameService.updatePlayer(param);
         BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
@@ -178,20 +158,20 @@ public class MiniGameController {
         }
 
         List<String> landColor = new ArrayList();
-
+        
         for (BrownieMarbelInfoVO n : brownieMarbelInfo) {
-            String[] temp = n.getFunction().split(",");
-            landColor.add(temp[2]);
+        	String[] temp = n.getFunction().split(",");
+        	landColor.add(temp[2]);
         }
-
-
+        
+        
         System.out.println("맵만들기끝" + cnt);
         System.out.println(brownieMarbelInfo);
-
+        
         map.put("landColor", landColor);
         map.put("info", brownieMarbelInfo);
-
-
+        
+        
         return map;
     }
 
@@ -233,29 +213,16 @@ public class MiniGameController {
     @RequestMapping(value = "/ajax.deletelog", method = RequestMethod.POST)
     public int deleteLog(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
         String id = (String) session.getAttribute("id");
-
-        int cnt = 0;
-        cnt = this.miniGameService.deleteLog(id);
-        System.out.println("deleteCnt : " + cnt);
-        return cnt;
+        
+    	int cnt = 0;
+    	cnt = this.miniGameService.deleteLog(id);
+    	System.out.println("deleteCnt : "+cnt);
+    	return cnt;
     }
-
+    
     @ResponseBody
     @RequestMapping(value = "/ajax.selectmarbelinfo", method = RequestMethod.POST)
     public BrownieMarbelInfoVO selectMarbelInfo(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
-<<<<<<< Updated upstream
-        String id = (String) session.getAttribute("id");
-
-
-        int seq = Integer.parseInt(servletRequest.getParameter("landNum"));
-
-        System.out.println("seq : " + seq);
-
-        BrownieMarbelInfoVO info = this.miniGameService.selectInfo(seq);
-        System.out.println("seq2 : " + info);
-
-        return info;
-=======
     	String id = (String) session.getAttribute("id");
     	
     	int seq = Integer.parseInt(servletRequest.getParameter("landNum"));
@@ -266,21 +233,16 @@ public class MiniGameController {
     	System.out.println("seq2 : "+info);
     	
     	return info;
->>>>>>> Stashed changes
     }
-
-    @ResponseBody
-    @RequestMapping(value = "/ajax.effectact", method = RequestMethod.POST)
-    public Map<String, Object> effectAct(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
+    
+	@ResponseBody
+	@RequestMapping(value = "/ajax.effectact", method = RequestMethod.POST)
+	public Map<String, Object> effectAct(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
         System.out.println("!!!!효과재생");
         String id = (String) session.getAttribute("id");
-<<<<<<< Updated upstream
-
-=======
         BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
         
         
->>>>>>> Stashed changes
         //유저의 위치정보
         int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
         //유저의 주사위 숫자
@@ -292,34 +254,17 @@ public class MiniGameController {
         String objName = obj.getName();
         String objDegree = obj.getDegree();
         String objKind = obj.getKind();
-<<<<<<< Updated upstream
-
-
-=======
         
         //아이템목록
         String[] items = player.getItem().split(",");
         model.addAttribute("items", items);
         
->>>>>>> Stashed changes
         int round = this.miniGameService.selectPlayer(id).getRound();
-        map.put("obj", obj);
+        map.put("obj",obj);
         //변수저장
         HashMap<String, Object> param = new HashMap<String, Object>();
         String[] str = (obj.getFunction()).split(",");
 
-<<<<<<< Updated upstream
-        //밟은랜드가 point 일 경우
-        int cntSavePoint = 0;
-
-        if (objDegree.equals("point") || objDegree.equals("item")) {
-            int pointNum = 0;
-
-            pointNum = Integer.parseInt(str[0]);
-
-            param.put("point", pointNum);
-            param.put("userId", id);
-=======
         
         String act = "";
         //밟은랜드가 good 일 경우
@@ -337,94 +282,38 @@ public class MiniGameController {
         	param.put("point", pointNum);
         	param.put("userId", id);
         	act = "습득";
->>>>>>> Stashed changes
             if (objKind.equals("site")) {
             	saveCnt = this.miniGameService.modifyBPoint(param);
             } else if (objKind.equals("game")) {
-<<<<<<< Updated upstream
-                cntSavePoint = this.miniGameService.modifyGamePoint(param);
-            } else {
-                cntSavePoint = this.miniGameService.modifyGamePoint(param);
-=======
             	saveCnt = this.miniGameService.modifyGamePoint(param);
             } else if (objKind.equals("luxury")){
             	saveCnt = this.miniGameService.modifyGamePoint(param);
             } else if (objKind.equals("food")){
             	
->>>>>>> Stashed changes
             }
         }
 
-
+        
         //로그 저장
         int cntSaveLog = 0;
-<<<<<<< Updated upstream
-
-        if (cntSavePoint == 1) {
-=======
         
         if (saveCnt == 1) {
->>>>>>> Stashed changes
             param.put("object", objName);
             param.put("act", act);
             param.put("userId", id);
             param.put("result", str[1] + objName);
             param.put("dicenum", diceNum);
             param.put("round", round);
-
+            
             System.out.println("param : " + param);
             cntSaveLog = this.miniGameService.insertLog(param);
         }
-
+        
         List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
-
+        
         String log = "";
-
+        
         for (BrownieMarbelLogVO vo : logs) {
-<<<<<<< Updated upstream
-            log += "<p class='logWrite'><i class='far fa-clock'></i> " + vo.getTime() + "(주사위눈 : " + vo.getDicenum() + ") (" + vo.getResult() + ")<br>" + vo.getRound() + "-" + vo.getLogSeq() + ". " + vo.getUserId() + "은(는) " + vo.getObject() + "을(를) " + vo.getAct() + "했다.</p>";
-        }
-
-
-        map.put("log", log);
-        map.put("player", this.miniGameService.selectPlayer(id));
-
-        System.out.println("player" + this.miniGameService.selectPlayer(id));
-
-        map.put("site", this.userService.userOneSelect(id));
-        System.out.println(this.userService.userOneSelect(id));
-
-
-        return map;
-    }
-
-
-    public String addMap() {
-        int[] food = {52, 53, 54, 55, 56, 57};
-        int[] luxury = {61, 62, 63, 64, 65, 66, 67, 68};
-
-
-        int dbSize = 68;
-        Set<Integer> set = new HashSet<Integer>();
-        while (set.size() < 15) {
-            Double d = Math.random() * dbSize + 1;
-            set.add(d.intValue());
-        }
-        List<Integer> randomNum = new ArrayList<>(set);
-
-        Collections.shuffle(randomNum);
-        Collections.shuffle(randomNum);
-
-        String array = randomNum.toString();
-
-        return array;
-    }
-
-    //포인트맵
-    public List<Integer> addMapPoint() {
-        List<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 15; i++) {
-=======
         	log += "<p class='logWrite'><i class='far fa-clock'></i> "+vo.getTime() + "(주사위눈 : "+vo.getDicenum()+") ("+vo.getResult()+")<br>"+vo.getRound()+"-"+vo.getLogSeq()+". "+vo.getUserId()+"은(는) "+vo.getObject()+"을(를) "+vo.getAct()+"했다.</p>";
 		}
         
@@ -434,12 +323,8 @@ public class MiniGameController {
         
         System.out.println("player"+this.miniGameService.selectPlayer(id));
         
-        try {
-        	map.put("site",this.userService.userOneSelect(id)); 
-        	System.out.println(this.userService.userOneSelect(id));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    	map.put("site",this.userService.userOneSelect(id)); 
+    	System.out.println(this.userService.userOneSelect(id));
         
         return map;
     }
@@ -448,7 +333,6 @@ public class MiniGameController {
     
     public List<Integer> addMap(List<Integer> list,boolean bool) {
     	for (int i = 0; i < 15; i++) {
->>>>>>> Stashed changes
             int ins = 0;
             int d = (int) (Math.random() * 101);
             if (0 <= d && d <= 64) {
@@ -676,7 +560,7 @@ public class MiniGameController {
 
     //포인트맵 list를 map형태로 변환
     public HashMap<String, Object> transMapPoint(List<Integer> list) {
-
+    	
         HashMap<String, Object> passmap = new HashMap<String, Object>();
         passmap.put("randomNum", list);
 
