@@ -148,10 +148,6 @@ public class AdminController {
             String result = httpServletRequest.getParameter("log");
             String rSeq = httpServletRequest.getParameter("reasonSeq");
             int reasonSeq = Integer.parseInt(rSeq);
-            String bSeq = httpServletRequest.getParameter("bListSeq");
-            int bListSeq = Integer.parseInt(bSeq);
-            String endD = httpServletRequest.getParameter("endDate");
-            int endDate = Integer.parseInt(endD);
             int cnt = reportService.update(reportSeq, id);
             if (cnt == 1) {
                 int ucount = userService.blackstack(userId);
@@ -161,6 +157,10 @@ public class AdminController {
                     int count = blackListService.insert(userId, result, id, reasonSeq);
                     model.addAttribute("count", count);
                     if (count == 1) {
+                        String bSeq = httpServletRequest.getParameter("bListSeq");
+                        int bListSeq = Integer.parseInt(bSeq);
+                        String endD = httpServletRequest.getParameter("endDate");
+                        int endDate = Integer.parseInt(endD);
                         UserVO user = userService.userOneSelect(userId);
                         int stack = user.getBlackStack();
                         switch (stack) {

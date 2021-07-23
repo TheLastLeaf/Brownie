@@ -55,6 +55,7 @@
         WHEN MATCHED THEN
             UPDATE
             SET B_LIST_SEQ = #{bListSeq},
+                STATUS =  'Y',
                 END_DATE   = END_DATE + #{endDate},
                 UP_DATE    = SYSDATE,
                 UP_USER_ID = #{userId}
