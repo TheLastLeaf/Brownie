@@ -23,33 +23,24 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="editor-choice">
-                    <div class="section-title">
-                        <h5>여기다 게임배너 넣을거임</h5>
-                    </div>
                     <div class="ec-item">
                         <div class="ec-pic">
                             <img src="${pageContext.request.contextPath}/img/trending/editor-1.jpg" alt="">
                         </div>
-                        <div class="ec-text">
+                        <div class="ec-text" style="margin-top: 2%; font-size: large">
                             <h6>
-                                <a href="${pageContext.request.contextPath}/miniGame/blueMarvel">부루마블</a>
+                                <a href="${pageContext.request.contextPath}/miniGame/blueMarvel" style="font-size: medium">부루마블</a>
                             </h6>
-                            <ul>
-                                <li><i class="far fa-clock"></i>잔여시간</li>
-                            </ul>
                         </div>
                     </div>
                     <div class="ec-item">
                         <div class="ec-pic">
                             <img src="img/trending/editor-2.jpg" alt="">
                         </div>
-                        <div class="ec-text">
+                        <div class="ec-text" style="margin-top: 2%; font-size: large">
                             <h6>
-                                <a href="${pageContext.request.contextPath}/attendance">출석체크</a>
+                                <a href="${pageContext.request.contextPath}/attendance" style="font-size: medium">출석체크</a>
                             </h6>
-                            <ul>
-                                <li><i class="far fa-clock"></i>잔여시간</li>
-                            </ul>
                         </div>
                     </div>
                 </div>
