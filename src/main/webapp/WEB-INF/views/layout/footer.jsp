@@ -23,6 +23,9 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="editor-choice">
+                    <div class="section-title">
+                        <h5 >BROWNIE CONTENTS</h5>
+                    </div>
                     <div class="ec-item">
                         <div class="ec-pic">
                             <img src="${pageContext.request.contextPath}/img/trending/editor-1.jpg" alt="">
