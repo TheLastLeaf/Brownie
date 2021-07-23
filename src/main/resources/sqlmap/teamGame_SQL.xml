@@ -214,6 +214,7 @@
               ,TG.POSITION AS position
         FROM BROWNIE_USER BU, TEAMGAME TG
         WHERE BU.USER_ID = TG.USER_ID
+          AND TG.STATUS = 'y'
           AND TG.TEAMGAME_SEQ = #{teamGameSeq}
     </select>
 

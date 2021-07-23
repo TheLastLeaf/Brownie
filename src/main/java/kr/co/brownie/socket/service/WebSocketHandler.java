@@ -38,6 +38,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             //기존 세션 방이 존재할 경우 value값인 세션리스트에 새로 들어온 세션을 추가해서 업데이트 해야함 세션탈트오겠네
             List<WebSocketSession> sessions = userSessions.get(roomNumber);
             sessions.add(session);
+
             userSessions.replace(roomNumber, sessions);
             System.out.println("여기는 방이 존재하는 경우에 출력됩니다.");
         } else if (!userSessions.containsKey(roomNumber)) {
@@ -89,13 +90,23 @@ public class WebSocketHandler extends TextWebSocketHandler {
         //해당 방 번호를 가진 리스트 가져와서 나간 친구만 제거해주는 메서드 와 드디어
         List<WebSocketSession> sessions = userSessions.get(roomNumber);
 
+        System.out.println("ssessionsssss : "+sessions);
         //유저아이디로 유저가 해당 방에서 어떤 포지션인지 알아야 함
-        String userId = sessions.get(0).getAttributes().get("id").toString();
+
+        String userId = "";
+        //이게 세션에 들어온 유저의 정보를 가지고 있음 이 아이디가 일치하는 사람의 어트리뷰트를 뽑아서 아이디 가져오면 도미
+        for(WebSocketSession wsId : sessions){
+            if(wsId.getId().equals(session.getId())){
+                userId = wsId.getAttributes().get("id").toString();
+            }
+        }
         System.out.println("session get att : "+ userId);
 
         Map<String, Object> map = new HashMap<>();
-        map.put("userId",userId);
-        map.put("teamGameSeq",roomNumber);
+        map.put("userId", userId);
+        map.put("teamGameSeq", roomNumber);
+
+        //여기서 계속 값 멈춰서 서버오류남
         TeamGameVO tgvo = teamGameService.selectOne(map);
         System.out.println("tgvo : "+ tgvo);
 

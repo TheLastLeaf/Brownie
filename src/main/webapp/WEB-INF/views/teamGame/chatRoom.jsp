@@ -208,14 +208,14 @@
 
         function send() {
             let msg = document.getElementById("msg");
-            console.log(USER_NAME + ":" + msg.value);
-            websocket.send(USER_NAME + ":" + msg.value);
+            console.log(USER_NAME + ":" + msg.value + ":" + IN_USER_ID);
+            websocket.send(USER_NAME + ":" + msg.value + ":" + IN_USER_ID);
             msg.value = '';
         }
 
         //채팅창에 들어왔을 때 이건 잘 됨
         function onOpen(evt) {
-            var str = USER_NAME + ": 님이 입장하셨습니다.";
+            var str = USER_NAME + ": 님이 입장하셨습니다.:"+IN_USER_ID;
             websocket.send(str);
         }
 
@@ -236,8 +236,11 @@
             console.log("cur_session : " + cur_session);
             sessionId = arr[0];
             message = arr[1];
+            speakerId = arr[2];
 
-            console.log("sessionID : " + sessionId);
+            console.log($('#'+speakerId)===null)
+
+            console.log("sessionID : " + sessionId + " / speakerId : " + speakerId);
             console.log("cur_session : " + cur_session);
             console.log("type of message : ", typeof message);
             var str = "<div class='col-6'>";
@@ -249,11 +252,15 @@
             if(message === " 님이 입장하셨습니다."){
                 console.log("입장했댄다")
                 //포지션 받아서 div 아이디로 줄 건지 아닌지 고민
-                var newUser ="<div class='user'>"
-                newUser += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
-                newUser += "<div class='userInfo'>"+ sessionId+ "[" +  "롤닉" + "]"+"</div>"
-                newUser += "</div>"
-                $("#chatUserList").append(newUser);
+
+                //유저아이디를 가진 div가 있을 경우 추가하지않음 없을경우 추가해줌
+                if($('#'+speakerId).length == 0){
+                    var newUser ="<div class='user' id="+speakerId+">"
+                    newUser += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
+                    newUser += "<div class='userInfo'>"+ sessionId+ "[" +  "롤닉만가져오면됨" + "]"+"</div>"
+                    newUser += "</div>"
+                    $("#chatUserList").append(newUser);
+                }
             }
 
             $('#chatBox').animate({
@@ -314,13 +321,13 @@
         </div>
 
         <div class="userBox col-sm-3" id="chatUserList">
-<%--            <c:forEach var="memList" items="${memList}">--%>
-<%--                <div class="user">--%>
-<%--                    <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>--%>
-<%--                    <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>--%>
-<%--                    <div class="userInfo">${memList.nickName} [${memList.lolId}]</div>--%>
-<%--                </div>--%>
-<%--            </c:forEach>--%>
+            <c:forEach var="memList" items="${memList}">
+                <div class="user" id="${memList.userId}">
+                    <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
+                    <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
+                    <div class="userInfo"><span class="memNick">${memList.nickName}</span> [${memList.lolId}]</div>
+                </div>
+            </c:forEach>
         </div>
 
     </div>
