@@ -46,4 +46,8 @@ public interface UserService {
 
     //blackstack 3이상 상태변경
     void updateStatus(String userId);
+
+    int saveToken(Map<String, Object>map);
+
+    int saveLolId(Map<String, Object> map);
 }

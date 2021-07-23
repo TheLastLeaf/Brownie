@@ -127,4 +127,13 @@ public class UserServiceImpl implements UserService {
         userMapper.updateStatus(userId);
     }
 
+    @Override
+    public int saveToken(Map<String, Object> map) {
+        return this.userMapper.saveToken(map);
+    }
+
+    @Override
+    public int saveLolId(Map<String, Object> map) {
+        return this.userMapper.saveLolId(map);
+    }
 }

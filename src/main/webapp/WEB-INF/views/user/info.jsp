@@ -543,7 +543,7 @@
 <script>
     function fn_sync() {
         window.open("/user/sync", "userSync",
-            "width=1100, height=730, left=450,top=120");
+            "width=768, height=367, left=450,top=120");
     }
 
     function fn_infoMod(userId) {

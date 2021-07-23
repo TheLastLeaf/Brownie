@@ -213,16 +213,16 @@ public class UserController {
 
     @ResponseBody
     @PostMapping(path = "/report", produces = "application/text;charset=UTF-8")
-    public Object reportPost(@RequestParam Map<String,Object> map,Model model, HttpServletRequest httpServletRequest) {
+    public Object reportPost(@RequestParam Map<String, Object> map, Model model, HttpServletRequest httpServletRequest) {
         String id = httpServletRequest.getSession().getAttribute("id").toString();
         JsonObject jsonObject = new JsonObject();
         map.put("id", id);
         int cnt = reportService.insert(map);
-        if(cnt == 1){
-            jsonObject.addProperty("message","success");
+        if (cnt == 1) {
+            jsonObject.addProperty("message", "success");
             return jsonObject.toString();
-        }else{
-            jsonObject.addProperty("message","fail");
+        } else {
+            jsonObject.addProperty("message", "fail");
             return jsonObject.toString();
         }
     }
@@ -252,8 +252,22 @@ public class UserController {
         return "<script>window.close();</script>";
     }
 
-    @GetMapping("/sync")
-    public String userSync() {
+    @GetMapping(path = "/sync", produces = "application/text;charset=UTF-8")
+    public String userSync(HttpSession httpSession,
+                           Model model) {
+        UserVO userVO = userService.userOneSelect(httpSession.getAttribute("id").toString());
+        if (userVO.getLolId() == null || "".equalsIgnoreCase(userVO.getLolId())) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("userId", httpSession.getAttribute("id").toString());
+
+            String token = String.valueOf(UUID.randomUUID());
+            map.put("token", token);
+            this.userService.saveToken(map);
+
+            userVO = userService.userOneSelect(httpSession.getAttribute("id").toString());
+        }
+        model.addAttribute("userVO", userVO);
+
         return "user/sync";
     }
 }

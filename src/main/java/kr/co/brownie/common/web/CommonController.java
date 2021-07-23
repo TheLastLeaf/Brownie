@@ -6,6 +6,7 @@ import kr.co.brownie.blackList.service.BlackUserService;
 import kr.co.brownie.blackList.service.BlackUserVO;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.common.service.CommonService;
+import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.youtube.service.YouTubeService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,9 @@ public class CommonController {
 
     @Resource(name = "blackUserService")
     BlackUserService blackUserService;
+
+    @Resource(name = "userService")
+    UserService userService;
 
     @GetMapping(path = {"", "index", "home"})
     public String index(HttpSession httpSession,
@@ -155,6 +159,30 @@ public class CommonController {
             e.printStackTrace();
         }
         return "redirect:/";
+    }
+
+    @PostMapping(path = "/auth", produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String oauth(@RequestParam Map<String, Object> map) {
+        JsonObject jsonObject = new JsonObject();
+
+        try {
+            if (!"KR".equalsIgnoreCase(map.get("region").toString())) {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("message", "BROWNIE는 현재 KR 서버만 지원합니다.");
+            } else if (this.userService.saveLolId(map) == 1) {
+                jsonObject.addProperty("status", "ok");
+            } else {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("message", "token을 다시 확인해주세요.");
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsonObject.addProperty("status", "ng");
+            jsonObject.addProperty("message", "오류가 발생했습니다. 잠시 뒤 시도해주세요.");
+        }
+
+        return jsonObject.toString();
     }
 
     @PostMapping(path = "/time.ajax", produces = "application/text;charset=UTF-8")

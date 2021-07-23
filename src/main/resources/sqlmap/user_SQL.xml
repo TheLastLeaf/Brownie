@@ -15,6 +15,7 @@
                BU.UP_USER_ID    AS UPUSERID,
                BU.USER_POSITION AS USERPOSITION,
                BU.IMAGE         AS IMAGE,
+               BU.TOKEN         AS TOKEN,
                PM.PERMIT_LEVEL  AS PERMITLEVEL,
                BE.USER_LEVEL    AS USERLEVEL
         FROM BROWNIE_USER BU,
@@ -38,7 +39,8 @@
                UP_USER_ID    AS UPUSERID,
                USER_POSITION AS USERPOSITION,
                BROWNIE_POINT AS BROWNIEPOINT,
-               IMAGE         AS IMAGE
+               IMAGE         AS IMAGE,
+               TOKEN         AS TOKEN
         FROM BROWNIE_USER
         WHERE USER_ID = #{id}
     </select>
@@ -161,6 +163,7 @@
                UPUSERID,
                USERPOSITION,
                IMAGE,
+               TOKEN,
                PERMITLEVEL,
                USERLEVEL
         FROM (SELECT ROWNUM AS RN,
@@ -175,6 +178,7 @@
                      UPUSERID,
                      USERPOSITION,
                      IMAGE,
+                     TOKEN,
                      PERMITLEVEL,
                      USERLEVEL
               FROM (
@@ -189,6 +193,7 @@
                               BU.UP_USER_ID    AS UPUSERID,
                               BU.USER_POSITION AS USERPOSITION,
                               BU.IMAGE         AS IMAGE,
+                              BU.TOKEN         AS TOKEN,
                               PM.PERMIT_LEVEL  AS PERMITLEVEL,
                               BE.USER_LEVEL    AS USERLEVEL
                        FROM BROWNIE_USER BU,
@@ -213,5 +218,17 @@
         SET STATUS = 'B'
         WHERE USER_ID = #{userId}
           AND BLACK_STACK >= 3
+    </update>
+
+    <update id="saveToken" parameterType="hashMap">
+        UPDATE BROWNIE_USER
+        SET TOKEN = #{token}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <update id="saveLolId" parameterType="hashMap">
+        UPDATE BROWNIE_USER
+        SET LOL_ID = #{lolId}
+        WHERE TOKEN = #{token}
     </update>
 </mapper>

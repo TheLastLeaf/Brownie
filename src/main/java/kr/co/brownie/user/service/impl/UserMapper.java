@@ -46,4 +46,8 @@ public interface UserMapper {
     List<UserVO> userList(Map<String, Object> map);
 
     void updateStatus(String userId);
+
+    int saveToken(Map<String, Object> map);
+
+    int saveLolId(Map<String, Object> map);
 }
