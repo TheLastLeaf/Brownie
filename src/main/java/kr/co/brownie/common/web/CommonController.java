@@ -7,6 +7,7 @@ import kr.co.brownie.blackList.service.BlackUserVO;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.common.service.CommonService;
 import kr.co.brownie.user.service.UserService;
+import kr.co.brownie.user.service.UserVO;
 import kr.co.brownie.youtube.service.YouTubeService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -117,6 +118,8 @@ public class CommonController {
             String access_token = authService.getToken(code, redirectUrl);
             String id = authService.getUserInfoByToken(access_token);
 
+            UserVO userVO = userService.userOneSelect(id);
+            httpSession.setAttribute("nickname" , userVO.getNickName());
             /*로그인 시 회원의 아이디가 블랙유저인지 확인*/
             BlackUserVO blackUserVO = blackUserService.oneBlackUser(id);
 

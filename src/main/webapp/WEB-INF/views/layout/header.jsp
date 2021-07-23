@@ -223,7 +223,7 @@
                             <c:when test="${sessionScope.id != null}">
                                         <span style="margin-left:4px;">
                                             <a onclick="location.href='/user/info/${sessionScope.id}'"
-                                               style="text-decoration: underline;">${sessionScope.id}</a>
+                                               style="text-decoration: underline;">${sessionScope.nickname  }</a>
                                             <span style="cursor:text">님 환영합니다</span>
                                         </span>
                                 <span style="margin-left:4px; cursor:text;">LV.${sessionScope.permit_level}</span>
