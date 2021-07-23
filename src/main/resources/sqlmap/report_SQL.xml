@@ -15,7 +15,9 @@
                "UPDATE",
                INUSERID,
                UPUSERID,
-               LOG
+               LOG,
+               TARGETNICKNAME,
+               INUSERNICKNAME
         FROM (SELECT ROWNUM AS RN,
                      REPORTSEQ,
                      CONTENT,
@@ -26,19 +28,26 @@
                      "UPDATE",
                      INUSERID,
                      UPUSERID,
-                     LOG
-              FROM (SELECT REPORT_SEQ  as REPORTSEQ,
-                           CONTENT     as CONTENT,
-                           STATUS      as STATUS,
-                           REPORT_NAME as REPORTNAME,
-                           USER_ID     as USERID,
-                           IN_DATE     as INDATE,
-                           UP_DATE     as "UPDATE",
-                           IN_USER_ID  as INUSERID,
-                           UP_USER_ID  as UPUSERID,
-                           LOG         as "LOG"
+                     LOG,
+                     TARGETNICKNAME,
+                     INUSERNICKNAME
+              FROM (SELECT REPORT.REPORT_SEQ      AS REPORTSEQ,
+                           REPORT.CONTENT         AS CONTENT,
+                           REPORT.STATUS          AS STATUS,
+                           REPORT.REPORT_NAME     AS REPORTNAME,
+                           REPORT.USER_ID         AS USERID,
+                           REPORT.IN_DATE         AS INDATE,
+                           REPORT.UP_DATE         AS "UPDATE",
+                           REPORT.IN_USER_ID      AS INUSERID,
+                           REPORT.UP_USER_ID      AS UPUSERID,
+                           REPORT.LOG             AS "LOG",
+                           TARGET_USER.NICK_NAME  AS TARGETNICKNAME,
+                           BROWNIE_USER.NICK_NAME AS INUSERNICKNAME
                     FROM REPORT
-                    ORDER BY STATUS, IN_DATE DESC
+                             INNER JOIN BROWNIE_USER TARGET_USER ON REPORT.USER_ID = TARGET_USER.USER_ID
+                             INNER JOIN BROWNIE_USER on BROWNIE_USER.USER_ID = REPORT.IN_USER_ID
+                    ORDER BY REPORT.STATUS,
+                             REPORT.IN_DATE DESC
                    )
              )
         WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN

@@ -31,8 +31,6 @@ public class FreeController {
     @Resource(name = "boardHitService")
     BoardHitService boardHitService;
 
-    @Resource(name = "fileService")
-    FileService fileService;
 
     @GetMapping("/write")
     public String write(HttpSession httpSession,
@@ -109,9 +107,6 @@ public class FreeController {
         System.out.println(map);
 
         model.addAttribute("boardVOListOrderByLike", this.boardService.selectListOrderByLike(map));
-
-        String selectProfile = fileService.selectProfile(boardVO.getBoardInUserId());
-        model.addAttribute("selectProfile", selectProfile);
 
         return "board/free/details";
     }

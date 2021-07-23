@@ -120,30 +120,42 @@
     </select>
 
     <insert id="insertMemberPosi">
-        INSERT INTO TEAMGAME ( TEAMGAME_SEQ
-                             , USER_ID
-                             , POSITION_SEQ
-                             , POSITION
-                             , STATUS
-                             , IN_DATE
-                             , IN_USER_ID
-                             , UP_DATE
-                             , UP_USER_ID)
-        VALUES ( #{positionSeq}
-               , #{userId}
-               , #{positionSeq}
-               , #{position}
-               , 'y'
-               , SYSDATE
-               , #{userId}
-               , SYSDATE
-               , #{userId})
+        MERGE INTO TEAMGAME
+        USING DUAL
+        ON(TEAMGAME_SEQ = #{positionSeq} AND USER_ID = #{userId} )
+        WHEN MATCHED THEN
+            UPDATE SET STATUS = 'y'
+        WHEN NOT MATCHED THEN
+            INSERT ( TEAMGAME_SEQ
+                   , USER_ID
+                   , POSITION_SEQ
+                   , POSITION
+                   , STATUS
+                   , IN_DATE
+                   , IN_USER_ID
+                   , UP_DATE
+                   , UP_USER_ID)
+            VALUES ( #{positionSeq}
+                   , #{userId}
+                   , #{positionSeq}
+                   , #{position}
+                   , 'y'
+                   , SYSDATE
+                   , #{userId}
+                   , SYSDATE
+                   , #{userId})
 
     </insert>
 
     <update id="updateTeamGamePosition">
         UPDATE TEAMGAME_POSITION
         SET ${position} = 'y'
+        WHERE POSITION_SEQ = #{positionSeq}
+    </update>
+
+    <update id="deleteTeamGamePosition">
+        UPDATE TEAMGAME_POSITION
+        SET ${position} = 'n'
         WHERE POSITION_SEQ = #{positionSeq}
     </update>
 
@@ -165,8 +177,31 @@
              , POSITION as position
         from TEAMGAME
         where TEAMGAME_SEQ = #{teamGameSeq}
-        and LEADER = 'y'
+        and USER_ID = #{userId}
     </select>
+
+
+    <select id="selectLeader" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
+        select TEAMGAME_SEQ as teamGameSeq
+             , USER_ID as userId
+             , TITLE as title
+             , MATCH_MODE as matchMode
+             , MESSAGE as message
+             , POSITION_SEQ as positionSeq
+             , STATUS as status
+             , IN_DATE as inDate
+             , IN_USER_ID as inUserId
+             , UP_DATE as modDate
+             , UP_USER_ID as upUserId
+             , USE_POINT as usePoint
+             , LEADER as leader
+             , MIKE as mike
+             , POSITION as position
+        from TEAMGAME
+        where TEAMGAME_SEQ = #{teamGameSeq}
+          and LEADER = 'y'
+    </select>
+
 
     <select id="selectRoomMember" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
         SELECT TG.TEAMGAME_SEQ AS teamGameSeq
@@ -181,5 +216,22 @@
         WHERE BU.USER_ID = TG.USER_ID
           AND TG.TEAMGAME_SEQ = #{teamGameSeq}
     </select>
+
+    <select id="checkStatus" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
+        select TEAMGAME_SEQ as teamGameSeq
+              ,STATUS as status
+              ,USER_ID as userId
+        from TEAMGAME
+        where TEAMGAME_SEQ = #{teamgameSeq}
+        and USER_ID = #{userId}
+    </select>
+
+    <update id="updateStatus">
+        update TEAMGAME
+            set STATUS = #{status}
+        where TEAMGAME_SEQ = #{teamgameSeq}
+          and USER_ID = #{userId}
+    </update>
+
 
 </mapper>

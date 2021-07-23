@@ -2,6 +2,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:import url="../../layout/header.jsp"/>
+<script>
+    function fn_report(Seq) {
+        if(${boardVO.userId} == ${sessionScope.id}){
+            alert("본인이 작성한 글은 신고할 수 없습니다.")
+            return false;
+        }
+        window.open("/report/write?Seq=" + Seq , "REPORT", "width=660, height=500, left=250,top=200");
+    }
+    function fn_replyReport(Seq,boardSeq,userId) {
+        if(userId == ${sessionScope.id}){
+            alert("본인이 작성한 댓글은 신고할 수 없습니다.")
+            return false;
+        }
+        window.open("/replyReport/write?Seq=" + Seq + "&boardSeq=" + boardSeq , "REPORT", "width=660, height=500, left=250,top=200");
+    }
+</script>
 
 <style>
     h5 {
@@ -128,7 +144,7 @@
 
                     <div class="dt-author">
                         <div class="da-pic">
-                            <img src="${pageContext.request.contextPath}${selectProfile}">
+                            <img src="${pageContext.request.contextPath}${boardVO.image}">
                         </div>
                         <div class="da-text">
                             <h5>${boardVO.nickName}</h5>
@@ -165,7 +181,7 @@
                         </button>
                         <c:if test="${sessionScope.id != null}">
                             <button type="button" class="btn btn-outline-light btn-lg ml-5"
-                                    onclick="fn_report('${boardVO.boardUpUserId}','${boardVO.content}')"><i
+                                    onclick="fn_report(${boardVO.boardSeq})"><i
                                     class="fas fa-bomb"></i>
                             </button>
                         </c:if>
@@ -234,7 +250,7 @@
                             <div id="${replyVO.replySeq}" class="dc-item"
                                  style="margin-left: ${(replyVO.lv - 1) * 100}px;">
                                 <div class="dc-pic">
-                                    <img src="${pageContext.request.contextPath}/img/details/comment/comment-1.jpg"
+                                    <img src="${pageContext.request.contextPath}${replyVO.image}"
                                          alt="">
                                 </div>
                                 <div class="dc-text">
@@ -266,7 +282,7 @@
                                         </button>
                                         <c:if test="${sessionScope.id != null}">
                                             <button type="button" class="btn btn-outline-light ml-5"
-                                                    onclick="fn_report('${replyVO.replyUpUserId}','${replyVO.replyContent}')">
+                                                    onclick="fn_replyReport(${replyVO.replySeq},${boardVO.boardSeq},'${replyVO.userId}')">
                                                 <i class="fas fa-bomb"></i>
                                             </button>
                                         </c:if>

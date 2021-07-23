@@ -38,7 +38,7 @@
                     </div>
                     <div class="dt-author border">
                         <div class="da-pic">
-                            <img src="${pageContext.request.contextPath}${selectProfile}">
+                            <img src="${pageContext.request.contextPath}${boardVO.image}">
                         </div>
                         <div class="da-text">
                             <a href="/user/info/${boardVO.boardUpUserId}">
@@ -49,7 +49,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <c:if test="${sessionScope.permit_level== 9}">
+                            <c:if test="${sessionScope.id == boardVO.userId}">
                                 <div class="innerBox text-right">
                                     <input type="button" class="btn btn-outline-dark btn-sm text-white"
                                            onclick="location.href='/notice/modify/${boardVO.boardSeq}'"

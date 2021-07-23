@@ -5,7 +5,7 @@ function commentReplyButton(boardSeq, replySeq) {
         "<div class=\"dt-leave-comment sub_reply_form\">"
         + "<form>"
         + "<input type=\"hidden\" name=\"headReplySeq\" value=\"" + replySeq + "\"/>"
-        + "<textarea name=\"replyContent\" placeholder=\"Message\" required></textarea>"
+        + "<textarea name=\"replyContent\" placeholder=\"Message\" style=\"color: #c4c4c4 !important;\" class=\"reply\" required></textarea>"
         + "<button type=\"button\" onclick=\"subReplyWrite(" + boardSeq + ")\">Submit</button>"
         + "</form>"
         + "</div>"

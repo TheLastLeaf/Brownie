@@ -25,9 +25,6 @@ public class NoticeController {
     @Resource(name = "boardHitService")
     BoardHitService boardHitService;
 
-    @Resource(name = "fileService")
-    FileService fileService;
-
     @GetMapping("/write")
     public String write(HttpSession httpSession,
                         Model model) {
@@ -79,9 +76,6 @@ public class NoticeController {
         Assert.notNull(boardVO, "해당 글이 없습니다.");
         model.addAttribute("boardVO", boardVO);
         model.addAttribute("prevNextBoardVO", this.boardService.selectPrevNextList(map));
-
-        String selectProfile = fileService.selectProfile(boardVO.getBoardInUserId());
-        model.addAttribute("selectProfile", selectProfile);
 
         return "board/notice/details"; // 공지 디테일화면
     }

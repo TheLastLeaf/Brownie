@@ -1,16 +1,25 @@
 package kr.co.brownie.socket.service;
 
+import kr.co.brownie.teamGame.service.TeamGameService;
+import kr.co.brownie.teamGame.service.TeamGameVO;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class WebSocketHandler extends TextWebSocketHandler {
+
+    @Resource(name = "teamGameService")
+    TeamGameService teamGameService;
+
+
+
     //소켓 세션 관리를 위한 맵 : Map <"방번호", 세션리스트>
     //방 번호 : uri=ws://192.168.41.27/WebEcho?roomNumber=1 에서 roomNumber에 해당함
     //세션리스트 : 같은 페이지를 공유하고 있는 사람들의 세션이 들어감
@@ -79,6 +88,29 @@ public class WebSocketHandler extends TextWebSocketHandler {
         String roomNumber = session.getUri().getQuery().split("=")[1];
         //해당 방 번호를 가진 리스트 가져와서 나간 친구만 제거해주는 메서드 와 드디어
         List<WebSocketSession> sessions = userSessions.get(roomNumber);
+
+        //유저아이디로 유저가 해당 방에서 어떤 포지션인지 알아야 함
+        String userId = sessions.get(0).getAttributes().get("id").toString();
+        System.out.println("session get att : "+ userId);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId",userId);
+        map.put("teamGameSeq",roomNumber);
+        TeamGameVO tgvo = teamGameService.selectOne(map);
+        System.out.println("tgvo : "+ tgvo);
+
+        if(tgvo.getUserId().equals(userId)){
+            System.out.println("tgvo.getUserId() : "+ tgvo.getUserId());
+            String delPosi = tgvo.getPosition();
+            map.put("position", delPosi);
+            map.put("positionSeq", roomNumber);
+            System.out.println("delPosi : "+ delPosi + "map : " + map);
+            teamGameService.deleteTeamGamePosition(map);
+            System.out.println("성공 ?");
+        }
+        //팀게임 방번호 . 해당 유저 아이디 스테이터스 n으로 바꿔서 화면에 출력 안 되게 하기
+
+
         sessions.remove(session); //처음 들어온 세션만 추방했는데 왜 새 세션으로 들어오지 못하는지 찾아봐야함
         //sessions.get(0).getAttributes() : {HTTP.SESSION.ID=437649508DF2FF3CC7C3E4266F3A90CD, permit_level=9, id=1786827527}
         //해당 아이디가 가진 포지션 n으로 바꿔줘야함 / 해당 아이디의 status n으로 바꿔줘야함 > 이거 존재하는애들 삽입 안되는거라서 업뎃이나 머지문으로 바꿔줘야할듯
