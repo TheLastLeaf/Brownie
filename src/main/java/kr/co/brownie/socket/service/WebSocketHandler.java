@@ -106,7 +106,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
             map.put("positionSeq", roomNumber);
             System.out.println("delPosi : "+ delPosi + "map : " + map);
             teamGameService.deleteTeamGamePosition(map);
-            System.out.printf("성공 ?");
+            System.out.println("성공 ?");
         }
         //팀게임 방번호 . 해당 유저 아이디 스테이터스 n으로 바꿔서 화면에 출력 안 되게 하기
 

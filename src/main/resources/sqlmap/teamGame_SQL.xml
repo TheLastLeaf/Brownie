@@ -120,24 +120,30 @@
     </select>
 
     <insert id="insertMemberPosi">
-        INSERT INTO TEAMGAME ( TEAMGAME_SEQ
-                             , USER_ID
-                             , POSITION_SEQ
-                             , POSITION
-                             , STATUS
-                             , IN_DATE
-                             , IN_USER_ID
-                             , UP_DATE
-                             , UP_USER_ID)
-        VALUES ( #{positionSeq}
-               , #{userId}
-               , #{positionSeq}
-               , #{position}
-               , 'y'
-               , SYSDATE
-               , #{userId}
-               , SYSDATE
-               , #{userId})
+        MERGE INTO TEAMGAME
+        USING DUAL
+        ON(TEAMGAME_SEQ = #{positionSeq} AND USER_ID = #{userId} )
+        WHEN MATCHED THEN
+            UPDATE SET STATUS = 'y'
+        WHEN NOT MATCHED THEN
+            INSERT ( TEAMGAME_SEQ
+                   , USER_ID
+                   , POSITION_SEQ
+                   , POSITION
+                   , STATUS
+                   , IN_DATE
+                   , IN_USER_ID
+                   , UP_DATE
+                   , UP_USER_ID)
+            VALUES ( #{positionSeq}
+                   , #{userId}
+                   , #{positionSeq}
+                   , #{position}
+                   , 'y'
+                   , SYSDATE
+                   , #{userId}
+                   , SYSDATE
+                   , #{userId})
 
     </insert>
 
