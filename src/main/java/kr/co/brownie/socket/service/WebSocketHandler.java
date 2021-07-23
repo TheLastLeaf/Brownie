@@ -122,7 +122,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         //팀게임 방번호 . 해당 유저 아이디 스테이터스 n으로 바꿔서 화면에 출력 안 되게 하기
 
 
-        sessions.remove(session); //처음 들어온 세션만 추방했는데 왜 새 세션으로 들어오지 못하는지 찾아봐야함
+        sessions.remove(session);
         //sessions.get(0).getAttributes() : {HTTP.SESSION.ID=437649508DF2FF3CC7C3E4266F3A90CD, permit_level=9, id=1786827527}
         //해당 아이디가 가진 포지션 n으로 바꿔줘야함 / 해당 아이디의 status n으로 바꿔줘야함 > 이거 존재하는애들 삽입 안되는거라서 업뎃이나 머지문으로 바꿔줘야할듯
                                                                                     //그러면 이제 기존에 값 삽입할 때  teamgame_position에서 해당 포지션이 n이면 진행하고
