@@ -45,7 +45,6 @@ public class MiniGameController {
             String quest = "beginer[x]";
             list = addMap(list,true);
             String recentMap = list.toString();
-
             param.put("userId", id);
             param.put("recentMap", recentMap);
             param.put("quest", quest);
@@ -59,16 +58,30 @@ public class MiniGameController {
         }
         
         //아이템목록
-        String[] items = player.getItem().split(",");
-        model.addAttribute("items", items);
+        List<BrownieMarbelInfoVO> playerItem = new ArrayList<BrownieMarbelInfoVO>();
+        
+        String items = player.getItem();
+        items = items.replace("[", "");
+        items = items.replace("]", "");
+        if(items!="") {
+        	String[] item = items.split(", ");
+	        int[] itemInt = Arrays.asList(item).stream().mapToInt(Integer::parseInt).toArray();
+	        
+	        for (int n : itemInt) {
+	        	playerItem.add(this.miniGameService.selectInfo(n));
+	        }
+	        model.addAttribute("playerItem", playerItem);
+        }
+        
         
         System.out.println("player:" + player);
         model.addAttribute("player", player);
 
+        //로그목록
         int round = player.getRound();
         param.put("userId", id);
         param.put("round", round);
-
+        
         List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
         System.out.println(logs);
         model.addAttribute("logs", logs);
@@ -85,7 +98,7 @@ public class MiniGameController {
         for (int n : a) {
         	colorList.add(n);
         }
-
+        System.out.println("야 씨발");
 
         List<BrownieMarbelInfoVO> brownieMarbelInfo = new ArrayList<BrownieMarbelInfoVO>();
         List<String> landColor = new ArrayList();
@@ -94,6 +107,7 @@ public class MiniGameController {
         for (int n : colorList) {
             brownieMarbelInfo.add(this.miniGameService.selectInfo(n));
         }
+        
         System.out.println(brownieMarbelInfo);
         
         for (BrownieMarbelInfoVO n : brownieMarbelInfo) {
@@ -102,7 +116,6 @@ public class MiniGameController {
         }
         
         //DB에 있는 랜드정보 가져오는것.
-        //List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
         
         model.addAttribute("infoList", brownieMarbelInfo); //
         model.addAttribute("landColor", landColor); //
@@ -247,14 +260,14 @@ public class MiniGameController {
         HashMap<String, Object> param = new HashMap<String, Object>();
         
         //DB 유저 마블정보
-        int hp = player.getHp();
-        int recentHp = player.getRecentHp();
-        int round = player.getRound();
-        String item = player.getItem();
-        int position = player.getPosition();
-        String recentMap = player.getRecentMap();
-        String quest = player.getQuest();
-        int dicetimes = player.getDicetimes();
+        int position = Integer.parseInt(servletRequest.getParameter("position"));
+        int round = Integer.parseInt(servletRequest.getParameter("round"));
+        int hp = Integer.parseInt(servletRequest.getParameter("hp"));
+        String item = servletRequest.getParameter("item");
+        String recentMap = servletRequest.getParameter("recentMap");
+        String quest = servletRequest.getParameter("quest");
+        String dicetimes = servletRequest.getParameter("dicetimes");
+        int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
         int pointG = player.getPoint();
         int pointB = player.getBrowniePoint();
         
@@ -283,28 +296,31 @@ public class MiniGameController {
         System.out.println("obj : "+obj);
         //아이템목록
         
-        System.out.println(item);
         item = item.replace("[", "");
-        System.out.println(item);
         item = item.replace("]", "");
-        System.out.println(item);
-        String[] items = item.split(", ");
-        
-        for (String n : items) {
-        	System.out.println(n);
-        }
         
         List<Integer> itemList = new ArrayList<>();
+        if(item!="") {
+        	String[] items = item.split(", ");
         
-        for (String n : items) {
-        	itemList.add(Integer.parseInt(n));
+	        for (String n : items) {
+	        	System.out.println(n);
+	        }
+	        
+	        
+	        for (String n : items) {
+	        	itemList.add(Integer.parseInt(n));
+	        }
+	        
+	        List<BrownieMarbelInfoVO> itemInfo = new ArrayList<BrownieMarbelInfoVO>();
+	
+	        for (int n : itemList) {
+	        	itemInfo.add(this.miniGameService.selectInfo(n));
+	        }
+	        
+	        map.put("items", itemInfo);
         }
-        System.out.println("itemList : "+itemList);
-        
-        model.addAttribute("items", itemList.toString());
-        
         //변수저장
-        
         String[] str = (obj.getFunction()).split(",");
         
         String act = "";
@@ -312,10 +328,86 @@ public class MiniGameController {
         int saveCnt = 0;
         
         if(objDegree.equals("start")) {
-        	
+        	act = "시작점";
+    		int sum = 0;
+    		if(item!="") {
+				for (int n : itemList) {
+					sum += Integer.parseInt(this.miniGameService.selectInfo(n).getFunction().split(",")[0]);
+				}
+    		}
+			objName = ""+sum + " POINT";
+			pointG += sum;
+			param.put("point", pointG);
+			param.put("item", "[]");
+			this.miniGameService.updatePlayer(param);
+        	saveCnt = this.miniGameService.modifyGamePoint(param);
+        	act = "조우";
         } else if (objDegree.equals("bad")) {
-        	
+        	if (objKind.equals("attack")) {
+        		if(ObjSeq==4) {
+        			hp -= 1;
+        			recentHp += Integer.parseInt(str[0]);
+        		} else {
+        			recentHp += Integer.parseInt(str[0]);
+        		}
+        		param.put("hp", hp);
+        		param.put("recentHp", recentHp);
+            	saveCnt = this.miniGameService.updatePlayer(param);
+            	
+            } else if (objKind.equals("theif")) {
+            	if(ObjSeq==5) {
+        			pointG /= 2;
+        			
+        		} else {
+        			pointG += Integer.parseInt(str[0]);
+        		}
+            	if(pointG<0) {
+            		pointG = 0;
+            	}
+            	param.put("point", pointG);
+            	saveCnt = this.miniGameService.modifyGamePoint(param);
+            	
+            } else if (objKind.equals("both")){
+            	if (ObjSeq==1) {
+        			recentHp += Integer.parseInt(str[0]);
+        			pointG= -100;
+        		} else if (ObjSeq==6) {
+        			recentHp += Integer.parseInt(str[0]);
+        			pointG = 300;
+        		} else {
+        			recentHp += Integer.parseInt(str[0]);
+        			pointG = -200;
+        		}
+            	
+            	if(recentHp>=hp) {
+            		recentHp=hp;
+            	}
+            	
+            	if(pointG<0) {
+            		pointG = 0;
+            	}
+            	
+            	param.put("point", pointG);
+            	this.miniGameService.modifyGamePoint(param);
+            	
+            	param.put("hp", hp);
+        		param.put("recentHp", recentHp);
+            	saveCnt = this.miniGameService.updatePlayer(param);
+            } 
+        	act = "조우";
         } else if (objDegree.equals("ne")) {
+        	if (ObjSeq==12) {
+        		pointB += pointG;
+        		pointG = 0; 
+        		param.put("point", pointB);
+        		saveCnt = this.miniGameService.modifyBPoint(param);
+        		param.put("point", 0);
+        		this.miniGameService.modifyGamePoint(param);
+        		act = "조우";
+        	} else if (ObjSeq==13) {
+        	} else if (ObjSeq==14) {
+        	} else if (ObjSeq==15) {
+        	}
         	
         } else if (objDegree.equals("good")) {
         	int pointNum = 0;
@@ -337,17 +429,23 @@ public class MiniGameController {
             	param.put("item", itemList.toString());
             	saveCnt = this.miniGameService.updatePlayer(param);
             } else if (objKind.equals("food")){
-            	if (24<=ObjSeq&&ObjSeq<=27) {
-            		recentHp += Integer.parseInt(str[0]);
-            	} else if (ObjSeq==28) {
+            	 if (ObjSeq==28) {
             		recentHp = hp;
             	} else if (ObjSeq==23) {
             		hp += 1;
             		recentHp = hp;
+            	} else {
+            		recentHp += Integer.parseInt(str[0]);
             	}
+            	 
+            	if(recentHp>=hp) {
+             		recentHp=hp;
+             	}
+            	 
             	param.put("hp", hp);
                 param.put("recentHp", recentHp);
                 saveCnt = this.miniGameService.updatePlayer(param);
+                act = "냠냠";
             }
         }
         
@@ -391,9 +489,9 @@ public class MiniGameController {
             int d = (int) (Math.random() * 101);
             if (0 <= d && d <= 64) {
             	goodMap(list, bool);
-            } else if (65 <= d && d <= 79) {
+            } else if (65 <= d && d <= 77) {
                 neMap(list);
-            } else if (80 <= d && d <= 97) {
+            } else if (78 <= d && d <= 97) {
             	badMap(list);
             } else if (98 <= d && d <= 99) {
             	ins = 30;
@@ -427,7 +525,8 @@ public class MiniGameController {
         } else if (55 <= d && d <= 74) {
         	ins = 14;
         } else if (70 <= d && d <= 100) {
-        	ins = (int) (Math.random() * 8 + 15);
+        	//ins = (int) (Math.random() * 8 + 15);
+        	ins = 15;
         } 
     	list.add(ins);
     	return list;

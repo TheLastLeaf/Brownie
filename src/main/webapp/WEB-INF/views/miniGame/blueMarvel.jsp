@@ -349,6 +349,11 @@
 		width:90px;
 		margin:4px; 	
 	}
+	
+	.item{
+		width:90px;
+		margin:4px; 	
+	}
     
 </style>
 
@@ -503,7 +508,7 @@
 	//////////////
 	//랜드 무지개 효과
 		var hue = 1,
-		button1 = document.getElementsByClassName('rainbowEffect');
+		button1 = document.getElementsByClassName('rainbow');
 		function color() {
 			var alpha = 0,
 				  s = 1,
@@ -530,8 +535,10 @@
 			red = Math.floor((r1 + m) * 255);
 			green = Math.floor((g1 + m) * 255);
 			blue = Math.floor((b1 + m) * 255);
-			button1[0].style.boxShadow = '0px 0px 30px -5px rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
-			button1[0].style.backgroundColor = 'rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
+			for (var i = 0; i < button1.length; i++) {
+				button1[i].style.boxShadow = '0px 0px 30px -5px rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
+				button1[i].style.backgroundColor = 'rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
+			}
 		  hue++;
 		}
 	////////////
@@ -539,6 +546,7 @@
 	 function viewHp(recentHp,hp) {
 		 var voidHp = hp-recentHp;
 		 temp = "";
+		 
 		 for (var i = 0; i < recentHp; i++) {
 		 	temp += "<img class='hp' src='${pageContext.request.contextPath}/img/miniGame/use/heart.png'/>";
 		}
@@ -553,6 +561,18 @@
 		 
 	}
 	
+	 function viewItem(data) {
+		temp="";
+		for (var i = 0; i < (data.items).length; i++) {
+		 	temp += "<img class='item' src='${pageContext.request.contextPath}/img/miniGame/"+data.items[i].degree+"/"+data.items[i].imgName+"'/>";
+		}
+		
+		console.log(temp);
+		
+		$('.itemList').html(temp);
+		 
+	}
+	
     var playerPos = ${player.position};	//플레이어 위치
     var round = ${player.round};		//회차 
     var hp = Number(${player.hp});				//HP
@@ -563,7 +583,6 @@
     recentMap = recentMap.replace("[", "");
     recentMap = recentMap.replace("]", "");
     recentMap = recentMap.split(", ");
-    console.log("first" + recentMap);
     var quest = '${player.quest}';
     var dicetimes = ${player.dicetimes};
     var recentHp = Number(${player.recentHp});
@@ -750,6 +769,16 @@
                 $('.l13').css('background-color', data.landColor[12]);
                 $('.l14').css('background-color', data.landColor[13]);
                 $('.l15').css('background-color', data.landColor[14]);
+                
+                for (var i = 0; i < 15; i++) {
+                	name = ".l"+(i+1)+"";
+					if(data.landColor[i]=="rainbow"){
+						$(name).addClass('rainbow');						
+					} else {
+						$(name).removeClass('rainbow');
+					}
+				}
+                
             },
             error: function () {
                 alert("맵생성 실패");
@@ -765,13 +794,34 @@
         } else {
         	objposition = 0;
         }
+        temp2 = "[";
+        for (var i = 0; i < 15; i++) {
+            if (i != 0) {
+                temp2 += ", "
+            }
+            temp2 += recentMap[i]
+            if (i == 14) {
+                temp2 += "]"
+            }
+        }
+        
+        
         $.ajax({
             url: "./ajax.effectact",
             type: "post",
             data: {
                 "UserPosition": playerPos,
                 "ObjPosition": objposition,
-                "diceNum" : side1
+                "diceNum" : side1,
+                "position": playerPos,
+                "round": round,
+                "hp": hp,
+                "item": item,
+                "point": point,
+                "recentMap": temp2,
+                "quest": quest,
+                "dicetimes": dicetimes,
+                "recentHp": recentHp
             },
             success: function (data) {
                    console.log("data 삽입성공!");
@@ -782,12 +832,17 @@
                    
                    $("#gameInfoText").html(data.obj.detailedExpl);
                    
-                   $(".bpoint").html("브라우니 포인트 : "+data.player.point);
-                   $(".mpoint").html("마블게임 포인트 : "+data.site.browniePoint);
+                   $(".bpoint").html("브라우니 포인트 : "+data.site.browniePoint);
+                   $(".mpoint").html("마블게임 포인트 : "+data.player.point);
                    
                    $("#logHome").html(data.log);
                    
-                   autoRenew();
+                   dicetimes=data.player.dicetimes;
+				   hp=data.player.hp;
+                   recentHp=data.player.recentHp;
+                   
+                   viewItem(data);
+                   viewHp(recentHp,hp);
             },
             error: function () {
                 alert("효과 실패!");
@@ -1067,12 +1122,6 @@ $(function(){
 						
 						<br/>
 						
-                        <!-- 시간나면 -->
-                        <div class="itemList">
-
-                        </div>
-                        <!-- 시간나면 -->
-
                     </div>
                 </div>
             
@@ -1120,7 +1169,7 @@ $(function(){
                         <td id="11" class="landI td_tb l11"></td>
                         <td id="10" class="landI td_tb l10"></td>
                         <td id="9" class="landI td_tb l9"></td>
-                        <td id="8" class="landI td_tb rightDown corner l8 rainbowEffect"></td>
+                        <td id="8" class="landI td_tb rightDown corner l8"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -1140,9 +1189,18 @@ $(function(){
                                 </p>
                             </c:forEach>
                             	</div>
+                            	
                         </div>
                         <br>
                         <button style="width:55px;" onclick="deleteLog()" >로그청소</button>
+                        <br><br><br>
+						<!-- 시간나면 -->
+						<div class="itemList" style="margin-top:20px;">
+							<c:forEach var="item" items="${playerItem}" varStatus="status">
+							<img class='item' src='${pageContext.request.contextPath}/img/miniGame/${item.degree}/${item.imgName}'/>
+							</c:forEach>
+						</div>
+						<!-- 시간나면 -->
                     </div>
                 </div>
             </div>
