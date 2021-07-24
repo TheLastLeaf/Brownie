@@ -147,7 +147,6 @@
                    , #{userId}
                    , SYSDATE
                    , #{userId})
-
     </insert>
 
     <update id="updateTeamGamePosition">
