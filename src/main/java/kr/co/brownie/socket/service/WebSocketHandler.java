@@ -122,10 +122,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if(tgvo.getUserId().equals(userId)){
                 System.out.println("tgvo.getUserId() : "+ tgvo.getUserId());
 
-                String delPosi = tgvo.getPosition();
-                map.put("position", delPosi);
-                map.put("positionSeq", roomNumber);
-                System.out.println("delPosi : "+ delPosi + "map : " + map);
+                map.put("position", tgvo.getPosition());
+                map.put("positionSeq", tgvo.getPositionSeq());
+
+                System.out.println("websocketHandler 128line map : " + map);
 
                 //TEAMGAME_POSITION update 'y' to 'n'
                 teamGameService.deleteTeamGamePosition(map);
