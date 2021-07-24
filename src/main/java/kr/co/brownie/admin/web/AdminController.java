@@ -1,5 +1,6 @@
 package kr.co.brownie.admin.web;
 
+import com.google.gson.JsonObject;
 import kr.co.brownie.admin.service.AdminService;
 import kr.co.brownie.admin.service.AdminVO;
 import kr.co.brownie.blackList.service.BlackListService;
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 
 @Controller
@@ -199,16 +201,13 @@ public class AdminController {
 
     @GetMapping("/chatList")
     public String chatList(HttpServletRequest httpServletRequest, Model model){
+
         return "admin/adminChatList";
     }
 
     @ResponseBody
-    @PostMapping("/chatlog.ajax")
+    @PostMapping(path = "/chatlog.ajax" , produces = "application/text;charset=UTF-8")
     public Object chatlog(HttpServletRequest httpServletRequest, Model model){
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
-        model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
-        return "common/message";
-    }
         int currentPageNumber;
         String writer = null;
         try {
@@ -217,8 +216,15 @@ public class AdminController {
         } catch (NullPointerException | NumberFormatException e) {
             currentPageNumber = 1;
         }
-        model.addAttribute("ChatPagingVO",chatService.selectChatting(currentPageNumber, writer));
+        JsonObject jsonObject = new JsonObject();
+        if(writer == null){
+            model.addAttribute("message","alert('검색결과가 없습니다'); location.reload();");
+            return "common/message";
+        }
+        model.addAttribute("ChatPagingVO",chatService.selectChatting(currentPageNumber,writer));
+        System.out.println(chatService.selectChatting(currentPageNumber,writer));
+        jsonObject.addProperty("message","success");
         //유저 리스트 셀렉트
-        return "ok";
+        return jsonObject.toString();
     }
 }

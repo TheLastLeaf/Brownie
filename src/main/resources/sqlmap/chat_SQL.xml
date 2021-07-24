@@ -32,7 +32,7 @@
                               A.TEAMGAME_SEP AS TEAMGAMESEP,
                               B.NICK_NAME AS NICKNAME
                        FROM CHAT A LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID= A.IN_USER_ID)
-                       WHERE A.IN_USER_ID LIKE '%' || #{writer} || '%'
+                       WHERE B.NICK_NAME LIKE '%' || #{writer} || '%'
                        ORDER BY TEAMGAME_SEP
                    )
              )

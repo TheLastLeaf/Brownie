@@ -4,21 +4,32 @@
 <c:import url="../layout/header.jsp"/>
 <script>
     function fn_log(){
-        const writer = $(".writer").val();
 
-
+        const formData = new FormData();
+        formData.append("writer",$(".writer").val());
         $.ajax({
             url: "./chatlog.ajax",
             type: "POST",
-            data: {
-                "writer": writer
-            },
+            data: formData,
+            processData: false,
+            enctype: 'multipart/form-data',
+            contentType: false,
+            dataType: "json",
             success: function (data) {
                 console.log(data)
-                if (data === "ok") {
-                    var log = "<c:forEach items='${ChatPagingVO.chatVO}' var='log'>"
-                        log += ""
-                    $(".chatlog").append()
+                if (data.message === "success") {
+                    var log =  "<c:forEach items='${ChatPagingVO.chatVO}' var='log'>"
+                        log += "<fmt:formatDate value='${log.upDate}' type='both' pattern='yyyy-MM-dd hh:mm:ss' var='update'/>"
+                        log += "<tr>"
+                        log += "<th>${log.teamGameSep}</th>"
+                        log += "<th>${log.content}</th>"
+                        log += "<th>${log.nickName}</th>"
+                        log += "<th>${update}</th>"
+                        log += "</tr>"
+                        log += "</c:forEach>"
+                    $(".chatlog").append(log)
+                }else{
+                    alert("에러")
                 }
             },
             error: function () {
@@ -67,7 +78,8 @@
             <div class="col-lg-12"
                  style="justify-content: center; align-content: center; text-align: center; color:white;">
                 <div class="innerBox text-right">
-                    <input type="text" class="writer" name="writer" id="writer" style="background-color: black; border:1px solid #666666">&nbsp;<button type="button" class="btn btn-outline-light" onclick="fn_log()">검색</button>
+                    <input type="text" class="writer" name="writer" id="writer" style="background-color: black; border:1px solid #666666; color: white;">
+                    <button type="button" class="btn btn-outline-light" onclick="fn_log()">검색</button>
                 </div>
                 <div class="">
                     <table border="1px solid grey" style="margin: auto;">
@@ -77,24 +89,24 @@
                             <th>작성자</th>
                             <th>날짜</th>
                         </tr>
-                            <tr class="chatlog">
+                        <tr class="chatlog">
 
-                            </tr>
+                        </tr>
                     </table>
-                    <div class="chatLogPageBottom">
-                        <div class="pagination-item">
-                            <c:if test="${1 < ChatPagingVO.startPageNumber}">
-                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${ChatPagingVO.startPageNumber - 1}"><span>Prev</span></a>
-                            </c:if>
-                            <c:forEach var="pageNumber" begin="${ChatPagingVO.startPageNumber}"
-                                       end="${ChatPagingVO.endPageNumber}">
-                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${pageNumber}"><span>${pageNumber}</span></a>
-                            </c:forEach>
-                            <c:if test="${ChatPagingVO.endPageNumber < ChatPagingVO.totalPageNumber}">
-                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${ChatPagingVO.endPageNumber + 1}"><span>Next</span></a>
-                            </c:if>
-                        </div>
-                    </div>
+<%--                    <div class="chatLogPageBottom">--%>
+<%--                        <div class="pagination-item">--%>
+<%--                            <c:if test="${1 < ChatPagingVO.startPageNumber}">--%>
+<%--                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${ChatPagingVO.startPageNumber - 1}"><span>Prev</span></a>--%>
+<%--                            </c:if>--%>
+<%--                            <c:forEach var="pageNumber" begin="${ChatPagingVO.startPageNumber}"--%>
+<%--                                       end="${ChatPagingVO.endPageNumber}">--%>
+<%--                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${pageNumber}"><span>${pageNumber}</span></a>--%>
+<%--                            </c:forEach>--%>
+<%--                            <c:if test="${ChatPagingVO.endPageNumber < ChatPagingVO.totalPageNumber}">--%>
+<%--                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${ChatPagingVO.endPageNumber + 1}"><span>Next</span></a>--%>
+<%--                            </c:if>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
 
                 </div>
             </div>
