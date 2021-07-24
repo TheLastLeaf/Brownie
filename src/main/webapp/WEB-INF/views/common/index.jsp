@@ -280,7 +280,7 @@
                                 }
                                 for (let i = 1; i <= lastDay.getDate(); i++) {
                                     data += "<td id='" + (today.getMonth() + 1) + "-" + i + "'>";
-                                    data += "<span class=\"badge badge-dark\">" + i + "</span>";
+                                    data += i;
                                     data += "</td>";
 
                                     const date = new Date(today.getFullYear(), today.getMonth(), i);
@@ -297,7 +297,7 @@
                                 <c:forEach var="leagueCalendar" items="${leagueCalendarList}">
                                 <fmt:formatDate var="date" type="date" value="${leagueCalendar.date}" pattern="M-d"/>
                                 <fmt:formatDate var="time" type="time" value="${leagueCalendar.date}" pattern="hh:mm"/>
-                                data = "<p>${time} ${leagueCalendar.ATeam} vs ${leagueCalendar.BTeam}</p>";
+                                data = "<span class=\"badge badge-dark\">${time} ${leagueCalendar.ATeam} vs ${leagueCalendar.BTeam}</span>";
 
                                 $("#${date}").append(data);
                                 console.log("#${date}")
