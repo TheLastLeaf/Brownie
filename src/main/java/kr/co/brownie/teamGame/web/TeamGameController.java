@@ -3,6 +3,7 @@ package kr.co.brownie.teamGame.web;
 import com.google.gson.JsonObject;
 import kr.co.brownie.teamGame.service.TeamGameService;
 import kr.co.brownie.teamGame.service.TeamGameVO;
+import kr.co.brownie.teamGame.service.impl.TeamGamePagingVO;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Controller;
@@ -27,11 +28,22 @@ public class TeamGameController {
     UserService userService;
 
     @GetMapping({"", "/teamGame"})
-    public String teamMaker(Model model, HttpSession httpSession) throws IOException {
+    public String teamMaker(Model model, HttpSession httpSession, TeamGamePagingVO page, @RequestParam Map<String, Object> map) throws IOException {
         //팀게임 리스트
-        List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList();
+		// 나은이 커밋후 35, 39줄 추가함
+		System.out.println("searchPositions: " + page.getSearchPositions());
+		System.out.println("searchGameType: " + page.getSearchGameType());
+		page.setTotalCount(teamGameService.countAllRoom(page));
+		System.out.println("map: " + map);
+		page.setSearchRoomTitle(map.get("searchRoomTitle") == null ? "" : map.get("searchRoomTitle").toString().trim());
+		page.setSearchGameType(map.get("searchGameType") == null ? "" : map.get("searchGameType").toString());
+		page.setSearchPositions(map.get("searchPositions") == null ? "" : map.get("searchPositions").toString());
 
+		List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList(page);
 
+		System.out.println("teamGameVO: " + teamGameList);
+		System.out.println("방 총 갯수 : " + page.getTotalCount());
+		System.out.println("page: " + page);
         Map<Integer, Object> teamPosition = new HashMap<>();
         for (TeamGameVO tgvo : teamGameList) {
 
@@ -60,6 +72,7 @@ public class TeamGameController {
         }
         model.addAttribute("userInfo", userInfo);
         model.addAttribute("teamGameList", teamGameList);
+        model.addAttribute("page", page);
         model.addAttribute("teamPosition", teamPosition);
 
         System.out.println("teamgame page httpSession.getAttribute() : "+httpSession.getAttribute("id"));
@@ -112,7 +125,7 @@ public class TeamGameController {
         System.out.println("update posi map : " + map);
         //{userId=1786827527, roomNumber=480, positionSeq=480, position=top}
 
-        String teamGameSeq = map.get("teamGameSeq").toString();
+        String teamGameSeq = map.get("roomNumber").toString();
         String positionSeq = map.get("positionSeq").toString();
         String selectedPosition = map.get("position").toString();
 
@@ -138,7 +151,7 @@ public class TeamGameController {
         if (selectedPosition.equals("top")) {
             exsitedPosi = teamPosition.getTop();
             if(exsitedPosi.equals("n")){
-                System.out.println("exsitedPosi.equals(nnnnnnnnnn-----------------" + map);
+                System.out.println("exsitedPosi.equals(nnnnnnnnnn-----------------");
                 teamGameService.updateTeamGamePosition(map);
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);
