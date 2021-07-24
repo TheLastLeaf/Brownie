@@ -62,7 +62,8 @@ public class TeamGameController {
         model.addAttribute("teamGameList", teamGameList);
         model.addAttribute("teamPosition", teamPosition);
 
-        System.out.println("teamgame page httpSession.getAttribute() : "+httpSession.getAttribute("id"));
+        System.out.println(model.getAttribute("teamGameList"));
+        System.out.println(model.getAttribute("teamPosition"));
 
         return "teamGame/teamGame";
     }

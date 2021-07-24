@@ -61,6 +61,11 @@ public class CommonController {
 
         //main youtube list
         model.addAttribute("youTubeVoList", youTubeService.selectList());
+        try {
+            model.addAttribute("leagueCalendarList", this.commonService.leagueCalendarList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return "common/index";
     }

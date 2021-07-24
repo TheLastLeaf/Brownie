@@ -1,11 +1,9 @@
 package kr.co.brownie.common.service;
 
-import java.util.Map;
+import java.util.List;
 
 public interface CommonService {
-    int insertMember(Map<String, Object> map);
+    String USER_AGENT = "Mozilla/5.0";
 
-    int insertNoMem(Map<String, Object> map);
-
-    int checkHit(int boardSeq);
+    public List<LeagueCalendar> leagueCalendarList();
 }

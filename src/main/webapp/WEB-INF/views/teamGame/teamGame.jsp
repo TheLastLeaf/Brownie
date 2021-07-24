@@ -277,23 +277,23 @@
                             </label>
                         </div>
 
-                        <c:forEach var="teamGameList" items="${teamGameList }">
+                        <c:forEach var="teamGame" items="${teamGameList }">
 
                             <div class="innerBox text-center" id="roomBox">
                                 <div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
                                     <p class="col-sm gmode" style="text-align: left;">
-                                        <b>${teamGameList.matchMode}</b>
+                                        <b>${teamGame.matchMode}</b>
                                     </p>
                                     <p class="col-sm" style="margin: 0; text-align: right;">
-                                        <c:if test="${teamGameList.mike eq 'y'}">
+                                        <c:if test="${teamGame.mike eq 'y'}">
                                             <img class="micPic"
                                                  src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg"/>
                                         </c:if>
                                     </p>
                                 </div>
-                                <div class="roomTitle">[${teamGameList.teamGameSeq}/${teamGameList.positionSeq}] ${teamGameList.title}</div>
+                                <div class="roomTitle">[${teamGame.teamGameSeq}/${teamGame.positionSeq}] ${teamGame.title}</div>
                                 <p style="margin: 10px 0px 3px;">
-                                    <c:set var="posiSeq" value="${teamGameList.positionSeq}"/>
+                                    <c:set var="posiSeq" value="${teamGame.positionSeq}"/>
                                     <c:choose>
                                         <c:when test="${teamPosition[posiSeq].top eq 'y'}">
                                             <button type="button" class="positionTop checked-position"
@@ -303,7 +303,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionTop blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
+                                                    class="positionTop blank-position ${teamGame.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="top">${teamPosition[posiSeq].top}
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png"/>
                                             </button>
@@ -319,7 +319,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionJun blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
+                                                    class="positionJun blank-position ${teamGame.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="jun">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png"/>
                                             </button>
@@ -335,7 +335,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionMid blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
+                                                    class="positionMid blank-position ${teamGame.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="mid">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png"/>
                                             </button>
@@ -351,7 +351,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionAd blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
+                                                    class="positionAd blank-position ${teamGame.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="bot">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png"/>
                                             </button>
@@ -367,7 +367,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionSup blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
+                                                    class="positionSup blank-position ${teamGame.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="sup">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png"/>
                                             </button>
@@ -376,7 +376,7 @@
                                 </p>
                                 <div class=""
                                      style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-                                    <p class="message">${teamGameList.message}</p>
+                                    <p class="message">${teamGame.message}</p>
                                 </div>
                                 <div class="row text-white"
                                      style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
@@ -384,12 +384,12 @@
                                          style=" white-space: nowrap; margin: 0; display: flex;">
                                         <img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png"/>
                                         <span style="text-overflow: ellipsis; overflow: hidden; width: 100px; white-space: nowrap;">
-                                                ${teamGameList.lolId}
+                                                ${teamGame.lolId}
                                         </span>
                                     </div>
 
                                     <div class="col-sm-4"
-                                         style=" white-space: nowrap; margin: 0; display: flex; justify-content: flex-end;">${teamGameList.nickName}
+                                         style=" white-space: nowrap; margin: 0; display: flex; justify-content: flex-end;">${teamGame.nickName}
                                     </div>
 
                                 </div>

@@ -123,17 +123,13 @@ public class GalleryController {
         int cnt = 0;
         if (id != null) {
             map.put("userId", id);
-            cnt = this.commonService.insertMember(map);
             System.out.println("mem");
             System.out.println(cnt);
         } else {
-            cnt = this.commonService.insertNoMem(map);
             System.out.println("nomem");
             System.out.println(cnt);
         }
 
-        int hit = this.commonService.checkHit(boardSeq);
-        model.addAttribute("hit", hit);
         //조회수증가
 
 

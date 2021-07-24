@@ -258,36 +258,50 @@
                     <!-- https://esports.inven.co.kr/schedule/ 여기서 긁어오면 될 듯 -->
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="row">
-                                <table border="1" style="width: 100%; color: white; text-align: center;">
-                                    <tr>
-                                        <th>날짜</th>
-                                        <th style="width: 25%;">대회명</th>
-                                        <th>시간</th>
-                                        <th>경기 일정 및 결과</th>
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="4">2021.06.25.<br/>금</td>
-                                        <td rowspan="4">2021 LoL 챔피언스 코리아 챌린저스 리그 서머</td>
-                                        <td>17:00</td>
-                                        <td>Fredit BRION <b>VS</b> Afreeca Freecs</td>
-                                    </tr>
-                                    <tr>
-                                        <td>18:00</td>
-                                        <td>NS Red Force <b>VS</b> Liiv Sandbox</td>
-                                    </tr>
-                                    <tr>
-                                        <td>19:00</td>
-                                        <td>kt Rolster <b>VS</b> Gen.G Esports</td>
-                                    </tr>
-                                    <tr>
-                                        <td>20:00</td>
-                                        <td>T1 VS <b>VS</b> DWG KIA</td>
-                                    </tr>
+                            <table id="leagueCalendar" class="w-100 text-white" border="1">
+                                <tr>
+                                    <td>SUN</td>
+                                    <td>MON</td>
+                                    <td>TUE</td>
+                                    <td>WED</td>
+                                    <td>THU</td>
+                                    <td>FRI</td>
+                                    <td>SAT</td>
+                                </tr>
+                            </table>
+                            <script>
+                                const today = new Date();
+                                const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+                                let data = "<tr>";
+                                for (let i = 0; i < new Date(today.getFullYear(), today.getMonth(), 1).getDay(); i++) {
+                                    data += "<td></td>";
+                                }
+                                for (let i = 1; i <= lastDay.getDate(); i++) {
+                                    data += "<td id='" + (today.getMonth() + 1) + "-" + i + "'>";
+                                    data += "<span class=\"badge badge-dark\">" + i + "</span>";
+                                    data += "</td>";
 
+                                    const date = new Date(today.getFullYear(), today.getMonth(), i);
+                                    if (date.getDay() === 6) {
+                                        if (i === lastDay.getDate()) {
+                                            data += "</tr>";
+                                        } else {
+                                            data += "</tr>";
+                                            data += "<tr>";
+                                        }
+                                    }
+                                }
+                                $("#leagueCalendar").append(data);
+                                <c:forEach var="leagueCalendar" items="${leagueCalendarList}">
+                                <fmt:formatDate var="date" type="date" value="${leagueCalendar.date}" pattern="M-d"/>
+                                <fmt:formatDate var="time" type="time" value="${leagueCalendar.date}" pattern="hh:mm"/>
+                                data = "<p>${time} ${leagueCalendar.ATeam} vs ${leagueCalendar.BTeam}</p>";
 
-                                </table>
-                            </div>
+                                $("#${date}").append(data);
+                                console.log("#${date}")
+                                console.log(data)
+                                </c:forEach>
+                            </script>
                         </div>
                     </div>
                 </div>
