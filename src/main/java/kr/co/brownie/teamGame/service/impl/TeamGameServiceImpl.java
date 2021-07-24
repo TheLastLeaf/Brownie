@@ -25,7 +25,7 @@ public class TeamGameServiceImpl implements TeamGameService {
     }
 
     @Override
-    public List<TeamGameVO> selectTeamGamePosition(int positionSeq) {
+    public TeamGameVO selectTeamGamePosition(int positionSeq) {
         return teamGameMapper.selectTeamGamePosition(positionSeq);
     }
 

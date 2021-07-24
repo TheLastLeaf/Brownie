@@ -109,20 +109,23 @@
     </select>
 
     <select id="selectTeamGamePosition" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
-        SELECT POSITION_SEQ as positionSeq
-             , TOP          as top
-             , MID          as mid
-             , JUN          as jun
-             , BOT          as bot
-             , SUP          as sup
-        FROM TEAMGAME_POSITION
-        WHERE POSITION_SEQ = #{positionSeq}
+        SELECT TG.TEAMGAME_SEQ as teamGameSeq
+             , TP.POSITION_SEQ as positionSeq
+             , TP.TOP          as top
+             , TP.MID          as mid
+             , TP.JUN          as jun
+             , TP.BOT          as bot
+             , TP.SUP          as sup
+        FROM TEAMGAME_POSITION TP, TEAMGAME TG
+        WHERE TG.POSITION_SEQ = TP.POSITION_SEQ
+          and TP.POSITION_SEQ = #{positionSeq}
+          and rownum = 1
     </select>
 
     <insert id="insertMemberPosi">
         MERGE INTO TEAMGAME
         USING DUAL
-        ON(TEAMGAME_SEQ = #{positionSeq} AND USER_ID = #{userId} )
+        ON( TEAMGAME_SEQ = #{positionSeq} AND USER_ID = #{userId} )
         WHEN MATCHED THEN
             UPDATE SET STATUS = 'y'
         WHEN NOT MATCHED THEN
@@ -160,24 +163,27 @@
     </update>
 
     <select id="selectOne" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
-        select TEAMGAME_SEQ as teamGameSeq
-             , USER_ID as userId
-             , TITLE as title
-             , MATCH_MODE as matchMode
-             , MESSAGE as message
-             , POSITION_SEQ as positionSeq
-             , STATUS as status
-             , IN_DATE as inDate
-             , IN_USER_ID as inUserId
-             , UP_DATE as modDate
-             , UP_USER_ID as upUserId
-             , USE_POINT as usePoint
-             , LEADER as leader
-             , MIKE as mike
-             , POSITION as position
-        from TEAMGAME
-        where TEAMGAME_SEQ = #{teamGameSeq}
-        and USER_ID = #{userId}
+        SELECT TG.TEAMGAME_SEQ as teamGameSeq
+             , TG.USER_ID as userId
+             , BU.lol_id as lolId
+             , BU.nick_name as nickName
+             , TG.TITLE as title
+             , TG.MATCH_MODE as matchMode
+             , TG.MESSAGE as message
+             , TG.POSITION_SEQ as positionSeq
+             , TG.STATUS as status
+             , TG.IN_DATE as inDate
+             , TG.IN_USER_ID as inUserId
+             , TG.UP_DATE as modDate
+             , TG.UP_USER_ID as upUserId
+             , TG.USE_POINT as usePoint
+             , TG.LEADER as leader
+             , TG.MIKE as mike
+             , TG.POSITION as position
+        FROM TEAMGAME tg, brownie_user bu
+        WHERE TG.user_id = BU.user_id
+          AND TG.TEAMGAME_SEQ = #{teamGameSeq}
+          AND TG.USER_ID = #{userId}
     </select>
 
 

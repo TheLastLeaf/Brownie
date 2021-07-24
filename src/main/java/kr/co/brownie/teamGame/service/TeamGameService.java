@@ -9,7 +9,7 @@ public interface TeamGameService {
 
     List<TeamGameVO> selectTeamGameList();
 
-    List<TeamGameVO> selectTeamGamePosition(int positionSeq);
+    TeamGameVO selectTeamGamePosition(int positionSeq);
 
     void updateTeamGamePosition(Map<String, Object> map);
 

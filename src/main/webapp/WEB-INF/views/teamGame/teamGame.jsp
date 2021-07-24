@@ -129,10 +129,12 @@
 
         var selectPosi = selectObject.id;
         var roomNumber = selectObject.className.split(" ")[2];
+        var positionSeq = selectObject.className.split(" ")[3];
 
         const data = {
             "userId": userId,
-            "positionSeq": roomNumber,
+            "roomNumber" : roomNumber,
+            "positionSeq": positionSeq,
             "position": selectPosi
         }
 
@@ -148,7 +150,12 @@
                     location.reload();
                 } else if(data.info=="good") {
                     console.log(data.roomNumber);
-                    openRoom(data.roomNumber, data.position);
+                    openRoom(data.roomNumber, data.position, data.positionSeq);
+                    location.reload();
+                } else if(data.info=="nobody") {
+                    alert(" 방에 참여자 없는 경우임 ");
+                    console.log(data.roomNumber);
+                    openRoom(data.roomNumber, data.position, data.positionSeq);
                     location.reload();
                 } else {
                     alert(" 관리자에게 문의해주세요 ! ");
@@ -167,7 +174,7 @@
         window.location.reload();
     }
 
-    function openRoom(roomNumber, position) {
+    function openRoom(roomNumber, position, positionSeq) {
         console.log('방 번호 : ', roomNumber);
         var chatPop = document.roomInfo;
         var url = 'http://192.168.41.27/websocket/chat2';
@@ -177,6 +184,7 @@
         chatPop.method = 'post';
         chatPop.target = 'chatingRoom' + roomNumber;
         chatPop.roomNumber.value = roomNumber;
+        chatPop.positionSeq.value = positionSeq;
         chatPop.position.value = position;
         chatPop.userId.value = '${userInfo.userId}';
         chatPop.nickName.value = '${userInfo.nickName}';
@@ -251,6 +259,7 @@
                 <form name="roomInfo">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <input type="hidden" name="roomNumber">
+                    <input type="hidden" name="positionSeq">
                     <input type="hidden" name="position">
                     <input type="hidden" name="lolId">
                     <input type="hidden" name="userId">
@@ -282,27 +291,27 @@
                                         </c:if>
                                     </p>
                                 </div>
-                                <div class="roomTitle">[${teamGameList.teamGameSeq}] ${teamGameList.title}</div>
+                                <div class="roomTitle">[${teamGameList.teamGameSeq}/${teamGameList.positionSeq}] ${teamGameList.title}</div>
                                 <p style="margin: 10px 0px 3px;">
                                     <c:set var="posiSeq" value="${teamGameList.positionSeq}"/>
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq][0].top eq 'y'}">
+                                        <c:when test="${teamPosition[posiSeq].top eq 'y'}">
                                             <button type="button" class="positionTop checked-position"
-                                                    onclick="fn_blockRoom()">
+                                                    onclick="fn_blockRoom()">${teamPosition[posiSeq].top}
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png"/>
                                             </button>
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionTop blank-position ${teamGameList.teamGameSeq}"
-                                                    onclick="fn_chatRoom(this)" id="top">
+                                                    class="positionTop blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
+                                                    onclick="fn_chatRoom(this)" id="top">${teamPosition[posiSeq].top}
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png"/>
                                             </button>
                                         </c:otherwise>
                                     </c:choose>
 
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq][0].jun eq 'y'}">
+                                        <c:when test="${teamPosition[posiSeq].jun eq 'y'}">
                                             <button type="button" class="positionJun checked-position"
                                                     onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png"/>
@@ -310,7 +319,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionJun blank-position ${teamGameList.teamGameSeq}"
+                                                    class="positionJun blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="jun">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png"/>
                                             </button>
@@ -318,7 +327,7 @@
                                     </c:choose>
 
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq][0].mid eq 'y'}">
+                                        <c:when test="${teamPosition[posiSeq].mid eq 'y'}">
                                             <button type="button" class="positionMid checked-position"
                                                     onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png"/>
@@ -326,7 +335,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionMid blank-position ${teamGameList.teamGameSeq}"
+                                                    class="positionMid blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="mid">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png"/>
                                             </button>
@@ -334,7 +343,7 @@
                                     </c:choose>
 
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq][0].bot eq 'y'}">
+                                        <c:when test="${teamPosition[posiSeq].bot eq 'y'}">
                                             <button type="button" class="positionAd checked-position"
                                                     onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png"/>
@@ -342,7 +351,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionAd blank-position ${teamGameList.teamGameSeq}"
+                                                    class="positionAd blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="bot">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png"/>
                                             </button>
@@ -350,7 +359,7 @@
                                     </c:choose>
 
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq][0].sup eq 'y'}">
+                                        <c:when test="${teamPosition[posiSeq].sup eq 'y'}">
                                             <button type="button" class="positionSup checked-position"
                                                     onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png"/>
@@ -358,7 +367,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionSup blank-position ${teamGameList.teamGameSeq}"
+                                                    class="positionSup blank-position ${teamGameList.teamGameSeq} ${posiSeq}"
                                                     onclick="fn_chatRoom(this)" id="sup">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png"/>
                                             </button>
