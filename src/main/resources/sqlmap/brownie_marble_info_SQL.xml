@@ -126,5 +126,10 @@
         DELETE FROM BROWNIE_MARBLE_LOG 
         WHERE USER_ID=#{userId}
     </delete>
+    
+    <delete id="deleteMarblePlayer">
+        DELETE FROM BROWNIE_MARBLE 
+        WHERE USER_ID=#{userId}
+    </delete>
 
 </mapper>

@@ -339,6 +339,7 @@
 	}
 	
 	#modalCon{
+		line-height:1.2em;
 		padding: 10px;
     	text-align: center;
     	font-size: 25px;
@@ -802,7 +803,7 @@
     	changeRainbow()
     	console.log(4);
         var objposition = "start";
-        
+        playerPos = Number(playerPos);
         if (playerPos != 0) {
             objposition = recentMap[playerPos - 1];
         } else {
@@ -840,6 +841,16 @@
                 "throwType": listResult[1]            },
             success: function (data) {
                    console.log("data 삽입성공!");
+                   if(data.dead==1){
+ 	                   $("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/use/skull.png' />"); 
+	               	   	$("#modalTitle").html("즉 사");
+	   	           		$("#modalCon").html("당신은 끔찍하게 즉사했습니다.<br> 브라우니마블을 다시 시작합니다.");
+                	    $(".modal").fadeIn();
+		   	           	setTimeout(function(){
+		   	           		location.reload();
+		   	           	},5000);
+		   	         	return ;
+                   }
                    
                    $("#gameInfoImg").html("<img id='infoImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.obj.degree + "/" + data.obj.imgName+"'/>");
                    
@@ -861,6 +872,12 @@
                    viewItem(data);
                    
                    viewHp(recentHp,hp);
+                   if(playerPos<0){
+                	   playerPos = 0;
+                   }
+                   
+					$(".modal").fadeIn();
+	           		selectmarbelInfo(playerPos,1);
                    
                    if (data.doubleD) {
                 	   flagDouble = true;
@@ -894,26 +911,35 @@
         })
     }
     
-    function selectmarbelInfo(landNum) {
+    function selectmarbelInfo(landNum, typeInt) {
+    	var type = typeInt;
     	var number = 0;
     	if(landNum==0){
     		number = 0;
     	} else if(landNum==="self") {
-    		number=10;	
+    		return;
     	} else {
 	    	number = recentMap[Number(landNum)-1];
     	}
+    	
     	
         $.ajax({
             url: "./ajax.selectmarbelinfo",
             type: "post",
             data: {
             	"landNum": number,
+            	"type": type
             },
             success: function (data) {
-           		$("#modalTitle").html(data.name);
-           		$("#modalCon").html(data.detailedExpl);
-           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.degree + "/" + data.imgName+"'/>");
+            	if(type==0){
+	           		$("#modalTitle").html(data.name);
+	           		$("#modalCon").html(data.briefExpl);
+	           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.degree + "/" + data.imgName+"'/>");
+            	} else {
+	           		$("#modalTitle").html(data.name);
+	           		$("#modalCon").html(data.detailedExpl);
+	           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.degree + "/" + data.imgName+"'/>");
+            	}
             },
             error: function () {
                 alert("랜드정보 불러오기 실패ㅡ!");
@@ -1101,7 +1127,7 @@ $(function(){
 	$(".landI").click(function(){
 		$(".modal").fadeIn();
 		var landNum = $(this).attr('id');
-		selectmarbelInfo(landNum);
+		selectmarbelInfo(landNum,0);
 	});
 	
 	$(".modal_content").click(function(){

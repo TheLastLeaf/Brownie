@@ -460,6 +460,11 @@ public class MiniGameController {
                 param.put("recentHp", recentHp);
                 saveCnt = this.miniGameService.updatePlayer(param);
                 act = "냠냠";
+            } else if (ObjSeq==48) {
+            	act = "마주";
+        		recentHp = hp;
+        		param.put("point", Integer.parseInt(str[0]));
+        		saveCnt = this.miniGameService.modifyGamePoint(param);
             }
         }
         
@@ -491,6 +496,12 @@ public class MiniGameController {
         
     	map.put("site",this.userService.userOneSelect(id)); 
         
+    	if(recentHp<=0) {
+    		this.miniGameService.deleteLog(id);
+    		int deadCnt = this.miniGameService.deleteMarblePlayer(id);
+    		map.put("dead",deadCnt); 
+    	}
+    	
     	System.out.println("성공");
         return map;
     }
