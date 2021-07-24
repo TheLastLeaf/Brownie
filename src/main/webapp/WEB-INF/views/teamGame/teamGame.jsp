@@ -138,6 +138,7 @@
         const data = {
             "userId": userId,
             "roomNumber" : roomNumber,
+            "teamGameSeq": roomNumber,
             "positionSeq": positionSeq,
             "position": selectPosi
         }

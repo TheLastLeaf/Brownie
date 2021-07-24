@@ -112,7 +112,7 @@ public class TeamGameController {
         System.out.println("update posi map : " + map);
         //{userId=1786827527, roomNumber=480, positionSeq=480, position=top}
 
-        String teamGameSeq = map.get("roomNumber").toString();
+        String teamGameSeq = map.get("teamGameSeq").toString();
         String positionSeq = map.get("positionSeq").toString();
         String selectedPosition = map.get("position").toString();
 
@@ -138,7 +138,7 @@ public class TeamGameController {
         if (selectedPosition.equals("top")) {
             exsitedPosi = teamPosition.getTop();
             if(exsitedPosi.equals("n")){
-                System.out.println("exsitedPosi.equals(nnnnnnnnnn-----------------");
+                System.out.println("exsitedPosi.equals(nnnnnnnnnn-----------------" + map);
                 teamGameService.updateTeamGamePosition(map);
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);

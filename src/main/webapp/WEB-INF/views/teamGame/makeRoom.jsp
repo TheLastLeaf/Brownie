@@ -230,10 +230,10 @@
             bot = 'n';
         }
 
-        var mike = 'n';
-        if($('#flexSwitchCheck:checked').length == 1){
-            mike = 'y';
-        }
+        // var mike = 'n';
+        // if($('#flexSwitchCheck:checked').length == 1){
+        //     mike = 'y';
+        // }
 
         var usePoint = 'n';
         if($('#usePointCheck:checked').length == 1){
@@ -431,12 +431,12 @@
                         <br/>1000포인트를 사용해 10분간 상단에 띄워주기
                     </label>
                 </div>
-                <div class="appleSwitch">
-                    <label class="form-check-label font-family-maple-light" for="flexSwitchCheck">
-                        <input class="apple-switch" type="checkbox" id="flexSwitchCheck">
-                        <br/>인게임 마이크 사용
-                    </label>
-                </div>
+<%--                <div class="appleSwitch">--%>
+<%--                    <label class="form-check-label font-family-maple-light" for="flexSwitchCheck">--%>
+<%--                        <input class="apple-switch" type="checkbox" id="flexSwitchCheck">--%>
+<%--                        <br/>인게임 마이크 사용--%>
+<%--                    </label>--%>
+<%--                </div>--%>
             </div>
             <br/>
             <div class="submit font-family-maple-light">
