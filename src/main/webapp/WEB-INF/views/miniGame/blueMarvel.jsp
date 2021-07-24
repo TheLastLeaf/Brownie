@@ -354,6 +354,13 @@
 		width:90px;
 		margin:4px; 	
 	}
+	
+	.diceNum{
+		color : black;
+    	text-align: center;
+    	font-size: 35px;
+    	font-weight:bolder; 	
+	}
     
 </style>
 
@@ -536,7 +543,6 @@
 			green = Math.floor((g1 + m) * 255);
 			blue = Math.floor((b1 + m) * 255);
 			for (var i = 0; i < button1.length; i++) {
-				button1[i].style.boxShadow = '0px 0px 30px -5px rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
 				button1[i].style.backgroundColor = 'rgba(' + red + ',' + green + ',' + blue + ',' + 1 + ')';
 			}
 		  hue++;
@@ -563,14 +569,28 @@
 	
 	 function viewItem(data) {
 		temp="";
-		for (var i = 0; i < (data.items).length; i++) {
-		 	temp += "<img class='item' src='${pageContext.request.contextPath}/img/miniGame/"+data.items[i].degree+"/"+data.items[i].imgName+"'/>";
+		if(data.items!=null){
+			for (var i = 0; i < (data.items).length; i++) {
+			 	temp += "<img class='item' src='${pageContext.request.contextPath}/img/miniGame/"+data.items[i].degree+"/"+data.items[i].imgName+"'/>";
+			}
 		}
-		
 		console.log(temp);
 		
 		$('.itemList').html(temp);
-		 
+	}
+	 
+	function changeRainbow() {
+		temp="";
+		$('.landI').each(function(index, item) {
+			if("rgb(112, 128, 144)"==$(this).css("background-color")){
+				$(this).addClass('rainbow');
+			};
+		});
+
+		/* for (var i = 0; i < 15; i++) {
+			var color = $.each(".landI").css("background-color");
+			console.log(color);
+		} */
 	}
 	
     var playerPos = ${player.position};	//플레이어 위치
@@ -597,7 +617,9 @@
     //var playerImg = "<div class='player'><i style='color: red;' class='fas fa-chess-knight fa-8x'></i></div>";
     var diceSpeed = 450; // 주사위속도
     var side1 = 0;
-
+    var flagDouble = false;
+    var listResult = [];
+    
     /* 주사위 */
     window.onload = function () {
     	viewHp(recentHp,hp);
@@ -608,7 +630,8 @@
     	//
 		
         $(".l" + playerPos + "").append(playerImg);
-
+		
+        changeRainbow();
         for (var i = 0; i < bubblyButtons.length; i++) {
             bubblyButtons[i].addEventListener('click', animateButton, false);
         }
@@ -634,7 +657,7 @@
                 
     }
 
-
+    
     var animateButton = function (e) {
     	if(0 <= playerPos && playerPos <= 3){
         	$(".playerImg").removeClass('flipped');
@@ -660,8 +683,6 @@
 
     var bubblyButtons = document.getElementsByClassName("learn-more");
 
-    /*  */
-
 
     function diceDis() {
         $('#btnRoll').css('visibility', 'hidden')
@@ -677,44 +698,6 @@
         $('.tamin').css('visibility', 'visible')
     }
 
-    //반환점 돌면 맵랜덤리셋하기(ajax)
-    function autoRenew() {
-    	
-        temp = "[";
-        for (var i = 0; i < 15; i++) {
-            if (i != 0) {
-                temp += ", "
-            }
-            temp += recentMap[i]
-            if (i == 14) {
-                temp += "]"
-            }
-        }
-        console.log("temp" + temp);
-        $.ajax({
-            url: "./ajax.autorenew",
-            type: "post",
-            data: {
-                "position": playerPos,
-                "round": round,
-                "hp": hp,
-                "item": item,
-                "point": point,
-                "recentMap": temp,
-                "quest": quest,
-                "dicetimes": dicetimes,
-                "recentHp": recentHp
-            },
-            success: function (data) {
-                if (data == 1) {
-                    console.log("갱신저장 성공!");
-                }
-            },
-            error: function () {
-                console.log("갱신저장 실패!");
-            }
-        })
-    }
 
     function rndMapCreate() {
     	console.log("맵생성");
@@ -769,10 +752,9 @@
                 $('.l13').css('background-color', data.landColor[12]);
                 $('.l14').css('background-color', data.landColor[13]);
                 $('.l15').css('background-color', data.landColor[14]);
-                
                 for (var i = 0; i < 15; i++) {
                 	name = ".l"+(i+1)+"";
-					if(data.landColor[i]=="rainbow"){
+					if(data.landColor[i]=="slategray"){
 						$(name).addClass('rainbow');						
 					} else {
 						$(name).removeClass('rainbow');
@@ -785,15 +767,48 @@
             }
         })
     }
-
+	
+    //내기
+    function bet(objposition){
+        var thorwResult = "back";
+        var thorwType = "half";
+        if(objposition==15){
+        	if(!confirm("내기꾼 : 동전던지기로 내기하지않을래 ?")) {
+        	$("#gameInfoText").html("재미없네.");
+        	} else {
+        		if(confirm("내기꾼 : 전재산을 걸고??")) {
+        			$("#gameInfoText").html("전재산 가보자~가보자~");
+        			if(confirm("앞면 : 예, 뒷면 : 아니오")){
+        				thorwResult = "front";
+        				thorwType="all";
+        			} else {
+        				thorwResult = "back";
+        				thorwType="all";
+        			}
+        		} else {
+        			$("#gameInfoText").html("반만걸고 가보자~가보자~");
+        			if(confirm("앞면 : 예, 뒷면 : 아니오")){
+        				thorwResult = "front";
+        				thorwType="half";
+        			}
+        		}
+        	}
+        }
+        listResult = [thorwResult,thorwType]; 
+    }
+    
     //랜드효과발동
-    function effectAct() {
+    function effectAct(side1) {
+    	changeRainbow()
+    	console.log(4);
         var objposition = "start";
+        
         if (playerPos != 0) {
             objposition = recentMap[playerPos - 1];
         } else {
         	objposition = 0;
         }
+        
         temp2 = "[";
         for (var i = 0; i < 15; i++) {
             if (i != 0) {
@@ -813,7 +828,6 @@
                 "UserPosition": playerPos,
                 "ObjPosition": objposition,
                 "diceNum" : side1,
-                "position": playerPos,
                 "round": round,
                 "hp": hp,
                 "item": item,
@@ -821,8 +835,9 @@
                 "recentMap": temp2,
                 "quest": quest,
                 "dicetimes": dicetimes,
-                "recentHp": recentHp
-            },
+                "recentHp": recentHp,
+                "throw": listResult[0],
+                "throwType": listResult[1]            },
             success: function (data) {
                    console.log("data 삽입성공!");
                    
@@ -837,12 +852,19 @@
                    
                    $("#logHome").html(data.log);
                    
+                   $(".diceNums").html("<p class='diceNum'>남은횟수 : "+data.player.dicetimes+"</p>");
+                   
                    dicetimes=data.player.dicetimes;
 				   hp=data.player.hp;
                    recentHp=data.player.recentHp;
                    
                    viewItem(data);
+                   
                    viewHp(recentHp,hp);
+                   
+                   if (data.doubleD) {
+                	   flagDouble = true;
+                   }
             },
             error: function () {
                 alert("효과 실패!");
@@ -901,6 +923,18 @@
 
     //디폴트주사위
     function dice() {
+    	if (flagDouble) {
+    		doubleDice();
+    		flagDouble = false;
+    		return;
+    	}
+    	
+    	if(dicetimes==0){
+    		alert("오늘 기회를 전부 소진했습니다!");
+    		return;
+    	}
+    	
+    	$('#dice-side-2').css('display', 'none');
     	$('#btnRoll').attr("disabled", true);
         const buttonRoolDice = document.querySelector('.learn-more');
         const diceSide1 = document.getElementById('dice-side-1');
@@ -939,10 +973,12 @@
 
     //한번더! 주사위 더블이벤트
     function doubleDice() {
+    	$('#btnRoll').attr("disabled", true);
         const buttonRoolDice = document.querySelector('.learn-more');
 
         const diceSide1 = document.getElementById('dice-side-1');
         const diceSide2 = document.getElementById('dice-side-2');
+        $('#dice-side-2').css('display', 'inline-block');
         const status1 = document.getElementById('status');
 
         side1 = Math.floor(Math.random() * 6) + 1;
@@ -977,12 +1013,13 @@
         diceSide2.innerHTML = num[1];
 
         status1.innerHTML = diceTotal + "!";
-
+		
         if (side1 === side2) {
             status1.innerHTML += ' 더블! 한접시 더!<br>';
+            doubleDice();
         }
 
-        setTimeout('move(' + side1 + ')', 2000);
+        setTimeout('move(' + diceTotal + ')', 2000);
     }
 
     //상인
@@ -1016,8 +1053,22 @@
                 rndMapCreate();
             }
         }
-        effectAct(side1);
-
+        //effectAct(side1,bet());
+		var objposition = "start";
+        var tempList = [];
+        
+        if (playerPos != 0) {
+            objposition = recentMap[playerPos - 1];
+        } else {
+        	objposition = 0;
+        }
+        if (objposition!=15){
+        	effectAct(side1);
+        } else {
+        	setTimeout('bet('+objposition+')', 1300);
+        	setTimeout('effectAct('+side1+')', 1400);
+        }
+        
         setTimeout('diceApper()', 1500);
     }
 
@@ -1121,6 +1172,10 @@ $(function(){
                         </div>
 						
 						<br/>
+						
+                        <div class="diceNums" style="margin-top:20px;">
+                        	<p class="diceNum">남은횟수 : ${player.dicetimes}</p>
+                        </div>
 						
                     </div>
                 </div>
