@@ -235,6 +235,8 @@
         //     mike = 'y';
         // }
 
+        //마이크 나중에 쿼리문까지 포함해서 수정해야함 *
+
         var usePoint = 'n';
         if($('#usePointCheck:checked').length == 1){
             usePoint = 'y';
@@ -256,7 +258,7 @@
                 , "sup": sup
                 , "jun": jun
                 , "bot": bot
-                , "mike": mike
+                , "mike": 'n'
                 , "position": myPosition
             },
             success: function (data) {
