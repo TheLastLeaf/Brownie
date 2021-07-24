@@ -8,7 +8,7 @@
         const formData = new FormData();
         formData.append("writer",$(".writer").val());
         $.ajax({
-            url: "./chatlog.ajax",
+            url: "./chatLog.ajax",
             type: "POST",
             data: formData,
             processData: false,

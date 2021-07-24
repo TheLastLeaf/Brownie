@@ -17,7 +17,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
 
 
 @Controller
@@ -206,7 +205,7 @@ public class AdminController {
     }
 
     @ResponseBody
-    @PostMapping(path = "/chatlog.ajax" , produces = "application/text;charset=UTF-8")
+    @PostMapping(path = "/chatLog.ajax", produces = "application/text;charset=UTF-8")
     public Object chatlog(HttpServletRequest httpServletRequest, Model model){
         int currentPageNumber;
         String writer = null;
