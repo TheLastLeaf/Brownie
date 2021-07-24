@@ -297,7 +297,7 @@
                                 <c:forEach var="leagueCalendar" items="${leagueCalendarList}">
                                 <fmt:formatDate var="date" type="date" value="${leagueCalendar.date}" pattern="M-d"/>
                                 <fmt:formatDate var="time" type="time" value="${leagueCalendar.date}" pattern="hh:mm"/>
-                                data = "<span class=\"badge badge-dark\">${time} ${leagueCalendar.ATeam} vs ${leagueCalendar.BTeam}</span>";
+                                data = "<p><span class=\"badge badge-dark\">${time}</span> ${leagueCalendar.ATeam} vs ${leagueCalendar.BTeam}</p>";
 
                                 $("#${date}").append(data);
                                 console.log("#${date}")
