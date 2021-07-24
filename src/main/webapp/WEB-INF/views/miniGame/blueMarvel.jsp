@@ -266,7 +266,7 @@
         background-repeat: no-repeat;
         background-position: center;
         background-size: 128px;
-        background-color: ${landColor[14]};
+        background-color: snow;
     }
     .playerImg{
     	filter: drop-shadow(0 0 0 white);
