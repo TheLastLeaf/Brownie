@@ -47,4 +47,9 @@
         WHERE IN_DATE
                   BETWEEN SYSDATE - 7 AND SYSDATE
     </select>
+
+    <select id="chatCount" resultType="kr.co.brownie.admin.service.AdminVO">
+        SELECT COUNT(*) AS chatCount
+        FROM CHAT
+    </select>
 </mapper>

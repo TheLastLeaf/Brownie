@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.brownie.teamGame.service.impl.TeamGamePagingVO;
+
 public interface TeamGameService {
     void insertTeamGameRoom(Map<String, Object> map);
 
-    List<TeamGameVO> selectTeamGameList();
+    List<TeamGameVO> selectTeamGameList(TeamGamePagingVO page);
 
     TeamGameVO selectTeamGamePosition(int positionSeq);
 
@@ -26,4 +28,6 @@ public interface TeamGameService {
     void updateStatus(Map<String, Object> map);
 
     TeamGameVO selectOne(Map<String, Object> map);
+
+	int countAllRoom(TeamGamePagingVO page);
 }

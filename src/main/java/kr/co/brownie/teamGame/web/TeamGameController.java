@@ -3,6 +3,7 @@ package kr.co.brownie.teamGame.web;
 import com.google.gson.JsonObject;
 import kr.co.brownie.teamGame.service.TeamGameService;
 import kr.co.brownie.teamGame.service.TeamGameVO;
+import kr.co.brownie.teamGame.service.impl.TeamGamePagingVO;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Controller;
@@ -27,11 +28,22 @@ public class TeamGameController {
     UserService userService;
 
     @GetMapping({"", "/teamGame"})
-    public String teamMaker(Model model, HttpSession httpSession) throws IOException {
+    public String teamMaker(Model model, HttpSession httpSession, TeamGamePagingVO page, @RequestParam Map<String, Object> map) throws IOException {
         //팀게임 리스트
-        List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList();
+		// 나은이 커밋후 35, 39줄 추가함
+		System.out.println("searchPositions: " + page.getSearchPositions());
+		System.out.println("searchGameType: " + page.getSearchGameType());
+		page.setTotalCount(teamGameService.countAllRoom(page));
+		System.out.println("map: " + map);
+		page.setSearchRoomTitle(map.get("searchRoomTitle") == null ? "" : map.get("searchRoomTitle").toString().trim());
+		page.setSearchGameType(map.get("searchGameType") == null ? "" : map.get("searchGameType").toString());
+		page.setSearchPositions(map.get("searchPositions") == null ? "" : map.get("searchPositions").toString());
 
+		List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList(page);
 
+		System.out.println("teamGameVO: " + teamGameList);
+		System.out.println("방 총 갯수 : " + page.getTotalCount());
+		System.out.println("page: " + page);
         Map<Integer, Object> teamPosition = new HashMap<>();
         for (TeamGameVO tgvo : teamGameList) {
 
@@ -60,6 +72,7 @@ public class TeamGameController {
         }
         model.addAttribute("userInfo", userInfo);
         model.addAttribute("teamGameList", teamGameList);
+        model.addAttribute("page", page);
         model.addAttribute("teamPosition", teamPosition);
 
         System.out.println("teamgame page httpSession.getAttribute() : "+httpSession.getAttribute("id"));
@@ -110,6 +123,7 @@ public class TeamGameController {
         //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
 
         System.out.println("update posi map : " + map);
+        //{userId=1786827527, roomNumber=480, positionSeq=480, position=top}
 
         String teamGameSeq = map.get("roomNumber").toString();
         String positionSeq = map.get("positionSeq").toString();
@@ -125,8 +139,10 @@ public class TeamGameController {
         TeamGameVO teamPosition = teamGameService.selectTeamGamePosition(Integer.parseInt(positionSeq));
         System.out.println("--? now teamPosition : "+teamPosition);
 
-        //방에 있는 사람이 없어서 조회가 안 될 경우
+        //방에 있는 사람이 없어서 조회가 안 될 경우 그냥 바로 삽입
         if(teamPosition == null){
+            teamGameService.updateTeamGamePosition(map);
+            teamGameService.insertMemberPosi(map);
             jsonObject.addProperty("info", "nobody");
             return jsonObject.toString();
         }
@@ -135,13 +151,14 @@ public class TeamGameController {
         if (selectedPosition.equals("top")) {
             exsitedPosi = teamPosition.getTop();
             if(exsitedPosi.equals("n")){
+                System.out.println("exsitedPosi.equals(nnnnnnnnnn-----------------");
                 teamGameService.updateTeamGamePosition(map);
-
                 //새 포지션 들어갈때 삽입해주는거
                 teamGameService.insertMemberPosi(map);
                 jsonObject.addProperty("info", "good");
 
             } else {
+                System.out.println("exsitedPosi.equals(yyyyyyyy-----------------");
                 jsonObject.addProperty("info", "exist");
                 return jsonObject.toString();
             }

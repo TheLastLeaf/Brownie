@@ -19,9 +19,9 @@ public class TeamGameServiceImpl implements TeamGameService {
         teamGameMapper.insertTeamGameRoom(map);
     }
 
-    @Override
-    public List<TeamGameVO> selectTeamGameList() {
-        return teamGameMapper.selectTeamGameList();
+	@Override
+    public List<TeamGameVO> selectTeamGameList(TeamGamePagingVO page) {
+        return teamGameMapper.selectTeamGameList(page);
     }
 
     @Override
@@ -68,4 +68,9 @@ public class TeamGameServiceImpl implements TeamGameService {
     public TeamGameVO selectOne(Map<String, Object> map) {
         return teamGameMapper.selectOne(map);
     }
+
+	@Override
+	public int countAllRoom(TeamGamePagingVO page) {
+		return teamGameMapper.countAllRoom(page);
+	}
 }

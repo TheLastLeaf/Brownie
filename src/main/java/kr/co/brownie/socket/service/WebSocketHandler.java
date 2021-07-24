@@ -62,6 +62,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
         System.out.println("방주소 : " + session.getUri() + " / 글자수 : " + message.getPayloadLength());
         System.out.println("session.getAttributes() : " + session.getAttributes());
 
+        //여기서 받아온 메시지 그대로 삽입해주면 됨
+
+
+
         //여기는 받아온 메시지를 전달해주는 구간! 해당하는 세션으로 보내주기 위해서 세션 판별이 필요함
 
         //세션이 들어가있는 방 번호 뽑아내기
@@ -122,10 +126,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
             if(tgvo.getUserId().equals(userId)){
                 System.out.println("tgvo.getUserId() : "+ tgvo.getUserId());
 
-                String delPosi = tgvo.getPosition();
-                map.put("position", delPosi);
-                map.put("positionSeq", roomNumber);
-                System.out.println("delPosi : "+ delPosi + "map : " + map);
+                map.put("position", tgvo.getPosition());
+                map.put("positionSeq", tgvo.getPositionSeq());
+
+                System.out.println("websocketHandler 128line map : " + map);
 
                 //TEAMGAME_POSITION update 'y' to 'n'
                 teamGameService.deleteTeamGamePosition(map);

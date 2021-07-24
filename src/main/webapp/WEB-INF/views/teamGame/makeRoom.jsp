@@ -230,10 +230,10 @@
             bot = 'n';
         }
 
-        var mike = 'n';
-        if($('#flexSwitchCheck:checked').length == 1){
-            mike = 'y';
-        }
+        // var mike = 'n';
+        // if($('#flexSwitchCheck:checked').length == 1){
+        //     mike = 'y';
+        // }
 
         var usePoint = 'n';
         if($('#usePointCheck:checked').length == 1){
@@ -286,9 +286,61 @@
     }
 
     $(document).ready(function() {
-        //팀원 모집 포지션으로 선택한거 방장포지션 선택 불가능하게 하기
+        //팀원 모집 포지션으로 선택한거 내 포지션으로 선택하면 팀원모집선택한거 해제됨
+        var topNum = 1;
+        $('#top').on("change", function () {
+            if(topNum % 2 != 0) {
+                $('#mmtop').prop('disabled',true);
+                topNum += 1;
+            } else {
+                $('#mmtop').prop('disabled',false);
+                topNum += 1;
+            }
+        })
 
+        var midNum = 1;
+        $('#mid').on("change", function () {
+            if(midNum % 2 != 0) {
+                $('#mmmid').prop('disabled',true);
+                midNum += 1;
+            } else {
+                $('#mmmid').prop('disabled',false);
+                midNum += 1;
+            }
+        })
 
+        var junNum = 1;
+        $('#jun').on("change", function () {
+            if(junNum % 2 != 0) {
+                $('#mmjun').prop('disabled',true);
+                junNum += 1;
+            } else {
+                $('#mmjun').prop('disabled',false);
+                junNum += 1;
+            }
+        })
+
+        var botNum = 1;
+        $('#bot').on("change", function () {
+            if(botNum % 2 != 0) {
+                $('#mmbot').prop('disabled',true);
+                botNum += 1;
+            } else {
+                $('#mmbot').prop('disabled',false);
+                botNum += 1;
+            }
+        })
+
+        var supNum = 1;
+        $('#sup').on("change", function () {
+            if(supNum % 2 != 0) {
+                $('#mmsup').prop('disabled',true);
+                supNum += 1;
+            } else {
+                $('#mmsup').prop('disabled',false);
+                supNum += 1;
+            }
+        })
 
         //방장이 선택한 포지션 선택불가능으로 지정하기
         $('input[type="radio"][name="myPosi"]').click(function(){
@@ -359,28 +411,28 @@
                 <div class="font-family-maple-light btn-group btn-group-toggle" id="chooseMyPosition"
                      data-toggle="buttons">
                     <label class="btn btn-danger position" id="mtop">
-                        <input type="radio" name="myPosi" value="top">
+                        <input type="radio" name="myPosi" value="top" class="mp" id="mmtop">
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" alt=""/>
                     </label>
                     &nbsp;
                     <label class="btn btn-danger position" id="mjun">
-                        <input type="radio" name="myPosi" value="jun">
+                        <input type="radio" name="myPosi" value="jun" class="mp" id="mmjun">
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png"
                              alt=""/>
                     </label>
                     &nbsp;
                     <label class="btn btn-danger position" id="mmid">
-                        <input type="radio" name="myPosi" value="mid">
+                        <input type="radio" name="myPosi" value="mid" class="mp" id="mmmid" >
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" alt=""/>
                     </label>
                     &nbsp;
                     <label class="btn btn-danger position" id="mbot">
-                        <input type="radio" name="myPosi" value="bot">
+                        <input type="radio" name="myPosi" value="bot" class="mp" id="mmbot" >
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" alt=""/>
                     </label>
                     &nbsp;
                     <label class="btn btn-danger position" id="msup">
-                        <input type="radio" name="myPosi" value="sup">
+                        <input type="radio" name="myPosi" value="sup" class="mp" id="mmsup" >
                         <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png"
                              alt=""/>
                     </label>
@@ -431,12 +483,12 @@
                         <br/>1000포인트를 사용해 10분간 상단에 띄워주기
                     </label>
                 </div>
-                <div class="appleSwitch">
-                    <label class="form-check-label font-family-maple-light" for="flexSwitchCheck">
-                        <input class="apple-switch" type="checkbox" id="flexSwitchCheck">
-                        <br/>인게임 마이크 사용
-                    </label>
-                </div>
+<%--                <div class="appleSwitch">--%>
+<%--                    <label class="form-check-label font-family-maple-light" for="flexSwitchCheck">--%>
+<%--                        <input class="apple-switch" type="checkbox" id="flexSwitchCheck">--%>
+<%--                        <br/>인게임 마이크 사용--%>
+<%--                    </label>--%>
+<%--                </div>--%>
             </div>
             <br/>
             <div class="submit font-family-maple-light">

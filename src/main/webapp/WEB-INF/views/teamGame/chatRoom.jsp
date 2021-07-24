@@ -187,7 +187,7 @@
         const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=" + ROOM_NUMBER);
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
-        //websocket.onclose = onClose;
+        websocket.onclose = onClose;
 
         websocket.onclose = function (event) {
             if (event.wasClean) {
@@ -221,10 +221,10 @@
             websocket.send(str);
         }
 
-        // function onClose(evt) {
-        //     var str = username + ": 님이 방을 나가셨습니다.:"+IN_USER_ID;
-        //     websocket.send(str);
-        // }
+        function onClose(evt) {
+            var str = username + ": 님이 방을 나가셨습니다.:"+IN_USER_ID;
+            websocket.send(str);
+        }
 
         function onMessage(msg) {
             var data = msg.data;

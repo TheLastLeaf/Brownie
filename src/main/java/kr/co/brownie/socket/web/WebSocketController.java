@@ -25,13 +25,6 @@ public class WebSocketController {
     @Resource(name = "teamGameService")
     TeamGameService teamGameService;
 
-
-    @GetMapping("/chat")
-    public String websocket(Model model, HttpServletRequest httpServletRequest) {
-
-        return "websocket/websocket";
-    }
-
     @PostMapping (value="/chat2", produces="application/text;charset=utf-8")
     public String websocket2(@RequestParam Map<String, Object> map, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
         //httpSession.getId() : 585B494F93981E7A684E5E02C6DE7CB8

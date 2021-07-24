@@ -148,24 +148,26 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row">
-                                <div style="width: 100%; color: white; text-align: center;">
-                                    <table border="1" style="width: 100%; color: white; text-align: center;">
-                                        <tr>
-                                            <th style="width: 20%">제목</th>
-                                            <th style="width: 20%">게시판</th>
-                                            <th style="width: 30%">작성일</th>
-                                            <th style="width: 20%">작성자</th>
-                                        </tr>
+                                <div class="col-md-12" style="color: white; text-align: center;">
+                                    <table style="color: white; text-align: center;" class="table">
+                                        <thead>
+                                            <th scope="col">제목</th>
+                                            <th scope="col">게시판</th>
+                                            <th scope="col">작성일</th>
+                                            <th scope="col">작성자</th>
+                                        </thead>
                                         <c:forEach items="${boardPagingVO.boardVOList}" var="boardVO" begin="0"
                                                    end="10">
-                                            <tr>
-                                                <th><span
-                                                        onclick="location.href='${boardVO.boardKind}/details/${boardVO.boardSeq}'"
-                                                        style="cursor: pointer">${boardVO.title}</span></th>
-                                                <th>${fn:toUpperCase(boardVO.boardKind)}</th>
-                                                <th>${boardVO.boardInDateToString}</th>
-                                                <th>${boardVO.nickName}</th>
-                                            </tr>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"><span
+                                                            onclick="location.href='${boardVO.boardKind}/details/${boardVO.boardSeq}'"
+                                                            style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">${boardVO.title}</span></th>
+                                                    <th>${fn:toUpperCase(boardVO.boardKind)}</th>
+                                                    <th>${boardVO.boardInDateToString}</th>
+                                                    <th>${boardVO.nickName}</th>
+                                                </tr>
+                                            </tbody>
                                         </c:forEach>
                                     </table>
                                 </div>

@@ -11,7 +11,7 @@ import java.util.Map;
 public interface TeamGameMapper {
     void insertTeamGameRoom(Map<String, Object> map);
 
-    List<TeamGameVO> selectTeamGameList();
+    List<TeamGameVO> selectTeamGameList(TeamGamePagingVO page);
 
     TeamGameVO selectTeamGamePosition(int positionSeq);
 
@@ -30,4 +30,6 @@ public interface TeamGameMapper {
     void updateStatus(Map<String, Object> map);
 
     TeamGameVO selectOne(Map<String, Object> map);
+
+	int countAllRoom(TeamGamePagingVO page);
 }

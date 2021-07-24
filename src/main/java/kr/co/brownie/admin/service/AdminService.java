@@ -10,4 +10,6 @@ public interface AdminService {
     AdminVO BlackUserCnt();
 
     AdminVO todayUser();
+
+    AdminVO chatCount();
 }
