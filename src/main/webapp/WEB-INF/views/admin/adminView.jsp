@@ -84,6 +84,12 @@
                                                               onclick="location.href='admin/adminBlackList'">블랙 리스트</span>
                                                         <div class="follow">${blackUserCnt.blackUserCnt}명</div>
                                                     </li>
+                                                    <li class="list">
+                                                        <div class="sm-icon"><i class="fas fa-comment-dots"></i></div>
+                                                        <span class="adminMenu"
+                                                              onclick="location.href='admin/adminBlackList'">채팅 내역</span>
+                                                        <div class="follow">${chatCount.chatcount}명</div>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>

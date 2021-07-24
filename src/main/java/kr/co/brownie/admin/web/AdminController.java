@@ -71,6 +71,9 @@ public class AdminController {
         AdminVO todayUser = adminService.todayUser();
         model.addAttribute("todayUser", todayUser);
 
+        AdminVO chatCount = adminService.chatCount();
+        model.addAttribute("chatCount",chatCount);
+
 
         return "admin/adminView"; //관리자 화면 기본
     }
