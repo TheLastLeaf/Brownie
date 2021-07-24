@@ -87,7 +87,7 @@
                                                     <li class="list">
                                                         <div class="sm-icon"><i class="fas fa-comment-dots"></i></div>
                                                         <span class="adminMenu"
-                                                              onclick="location.href='admin/adminBlackList'">채팅 내역</span>
+                                                              onclick="location.href='admin/chatList'">채팅 내역</span>
                                                         <div class="follow">${chatCount.chatcount}명</div>
                                                     </li>
                                                 </ul>

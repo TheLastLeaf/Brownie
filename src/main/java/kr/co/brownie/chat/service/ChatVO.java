@@ -13,4 +13,5 @@ public class ChatVO {
     private Date upDate;
     private String upUserId;
     private Integer teamGameSep;
+    private String nickName;
 }

@@ -4,6 +4,7 @@ import kr.co.brownie.admin.service.AdminService;
 import kr.co.brownie.admin.service.AdminVO;
 import kr.co.brownie.blackList.service.BlackListService;
 import kr.co.brownie.blackList.service.BlackUserService;
+import kr.co.brownie.chat.service.ChatService;
 import kr.co.brownie.report.service.ReportService;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
@@ -37,6 +38,9 @@ public class AdminController {
 
     @Resource(name = "reportService")
     ReportService reportService;
+
+    @Resource(name = "chatService")
+    ChatService chatService;
 
 
     @GetMapping(path = {"", "/adminView"})
@@ -194,5 +198,22 @@ public class AdminController {
             e.printStackTrace();
         }
         return "ok";
+    }
+
+    @GetMapping("/chatList")
+    public String chatList(HttpServletRequest httpServletRequest, Model model){
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+            model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
+            return "common/message";
+        }
+        int currentPageNumber;
+        try {
+            currentPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("pageNum")), 1);
+        } catch (NullPointerException | NumberFormatException e) {
+            currentPageNumber = 1;
+        }
+        model.addAttribute("ChatPagingVO", chatService.selectChatting(currentPageNumber));
+        //유저 리스트 셀렉트
+        return "admin/adminChatList";
     }
 }
