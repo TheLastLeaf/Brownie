@@ -10,10 +10,7 @@ import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -202,18 +199,26 @@ public class AdminController {
 
     @GetMapping("/chatList")
     public String chatList(HttpServletRequest httpServletRequest, Model model){
+        return "admin/adminChatList";
+    }
+
+    @ResponseBody
+    @PostMapping("/chatlog.ajax")
+    public Object chatlog(HttpServletRequest httpServletRequest, Model model){
         if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
-            model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
-            return "common/message";
-        }
+        model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
+        return "common/message";
+    }
         int currentPageNumber;
+        String writer = null;
         try {
+            writer = httpServletRequest.getParameter("writer");
             currentPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("pageNum")), 1);
         } catch (NullPointerException | NumberFormatException e) {
             currentPageNumber = 1;
         }
-        model.addAttribute("ChatPagingVO", chatService.selectChatting(currentPageNumber));
+        model.addAttribute("ChatPagingVO",chatService.selectChatting(currentPageNumber, writer));
         //유저 리스트 셀렉트
-        return "admin/adminChatList";
+        return "ok";
     }
 }

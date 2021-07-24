@@ -4,5 +4,5 @@ public interface ChatService {
 
     int CONTENT_PER_PAGE = 10;
 
-    ChatPagingVO selectChatting(int currentPageNumber);
+    ChatPagingVO selectChatting(int currentPageNumber,String writer);
 }

@@ -14,8 +14,9 @@ public class ChatServiceImpl implements ChatService {
     ChatMapper chatMapper;
 
     @Override
-    public ChatPagingVO selectChatting(int currentPageNumber) {
+    public ChatPagingVO selectChatting(int currentPageNumber,String writer) {
         Map<String, Object> map = new HashMap<>();
+        map.put("writer",writer);
         map.put("contentPerPage", CONTENT_PER_PAGE);
         map.put("currentPageNumber", currentPageNumber);
 

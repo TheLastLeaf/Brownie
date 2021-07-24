@@ -2,7 +2,33 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
+<script>
+    function fn_log(){
+        const writer = $(".writer").val();
 
+
+        $.ajax({
+            url: "./chatlog.ajax",
+            type: "POST",
+            data: {
+                "writer": writer
+            },
+            success: function (data) {
+                console.log(data)
+                if (data === "ok") {
+                    var log = "<c:forEach items='${ChatPagingVO.chatVO}' var='log'>"
+                        log += ""
+                    $(".chatlog").append()
+                }
+            },
+            error: function () {
+                alert("에러");
+            }
+        })
+
+    }
+
+</script>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
          data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/kayle.png">
@@ -40,6 +66,9 @@
         <div class="row">
             <div class="col-lg-12"
                  style="justify-content: center; align-content: center; text-align: center; color:white;">
+                <div class="innerBox text-right">
+                    <input type="text" class="writer" name="writer" id="writer" style="background-color: black; border:1px solid #666666">&nbsp;<button type="button" class="btn btn-outline-light" onclick="fn_log()">검색</button>
+                </div>
                 <div class="">
                     <table border="1px solid grey" style="margin: auto;">
                         <tr>
@@ -48,15 +77,9 @@
                             <th>작성자</th>
                             <th>날짜</th>
                         </tr>
-                        <c:forEach var="chatlog" items="${ChatPagingVO.chatVO}">
-                            <fmt:formatDate value="${chatlog.upDate}" var="update" type="both" pattern="yyyy-MM-dd hh:mm:ss" />
-                            <tr>
-                                <th>${chatlog.teamGameSep}</th>
-                                <th>${chatlog.content}</th>
-                                <th>${chatlog.nickName}</th>
-                                <th>${update}</th>
+                            <tr class="chatlog">
+
                             </tr>
-                        </c:forEach>
                     </table>
                     <div class="chatLogPageBottom">
                         <div class="pagination-item">
