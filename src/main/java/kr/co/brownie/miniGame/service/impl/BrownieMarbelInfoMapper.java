@@ -38,4 +38,6 @@ public interface BrownieMarbelInfoMapper {
     BrownieMarbelInfoVO selectInfo(int seq);
     
     int deleteLog(String userId);
+    
+    int deleteMarblePlayer(String userId);
 }

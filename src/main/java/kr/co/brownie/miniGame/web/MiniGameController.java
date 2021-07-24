@@ -6,7 +6,6 @@ import kr.co.brownie.miniGame.service.BrownieMarbelLogVO;
 import kr.co.brownie.miniGame.service.BrownieMarbelVO;
 import kr.co.brownie.user.service.UserService;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +14,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -42,7 +40,7 @@ public class MiniGameController {
         //처음 생성할때 data
         if (player == null) {
             System.out.println("플레이어 데이터 생성");
-            String quest = "beginer[x]";
+            String quest = "[0, 0, 0]";
             list = addMap(list,true);
             String recentMap = list.toString();
             param.put("userId", id);
@@ -63,7 +61,8 @@ public class MiniGameController {
         String items = player.getItem();
         items = items.replace("[", "");
         items = items.replace("]", "");
-        if(items!="") {
+        if(!items.equals("")) {
+        	System.out.println(1);
         	String[] item = items.split(", ");
 	        int[] itemInt = Arrays.asList(item).stream().mapToInt(Integer::parseInt).toArray();
 	        
@@ -136,7 +135,7 @@ public class MiniGameController {
         String item = servletRequest.getParameter("item");
         int point = Integer.parseInt(servletRequest.getParameter("point"));
         String quest = servletRequest.getParameter("quest");
-        String dicetimes = servletRequest.getParameter("dicetimes");
+        int dicetimes = Integer.parseInt(servletRequest.getParameter("dicetimes"));
         int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
         
         List<Integer> list = new ArrayList<>();
@@ -189,39 +188,6 @@ public class MiniGameController {
         return map;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/ajax.autorenew", method = RequestMethod.POST)
-    public int autoRenew(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
-        System.out.println("!!!!저장");
-        String id = (String) session.getAttribute("id");
-
-        int position = Integer.parseInt(servletRequest.getParameter("position"));
-        int round = Integer.parseInt(servletRequest.getParameter("round"));
-        int hp = Integer.parseInt(servletRequest.getParameter("hp"));
-        String item = servletRequest.getParameter("item");
-        String recentMap = servletRequest.getParameter("recentMap");
-        String quest = servletRequest.getParameter("quest");
-        String dicetimes = servletRequest.getParameter("dicetimes");
-        int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
-
-        HashMap<String, Object> param = new HashMap<>();
-        param.put("position", position);
-        param.put("round", round);
-        param.put("hp", hp);
-        param.put("item", item);
-        param.put("recentMap", recentMap);
-        param.put("quest", quest);
-        param.put("dicetimes", dicetimes);
-        param.put("recentHp", recentHp);
-        param.put("userId", id);
-
-        System.out.println("paramrecent2 : " + recentMap);
-
-        int cnt = this.miniGameService.updatePlayer(param);
-
-        return cnt;
-    }
-
 
     @ResponseBody
     @RequestMapping(value = "/ajax.deletelog", method = RequestMethod.POST)
@@ -260,16 +226,26 @@ public class MiniGameController {
         HashMap<String, Object> param = new HashMap<String, Object>();
         
         //DB 유저 마블정보
-        int position = Integer.parseInt(servletRequest.getParameter("position"));
+        int position = Integer.parseInt(servletRequest.getParameter("UserPosition"));
         int round = Integer.parseInt(servletRequest.getParameter("round"));
         int hp = Integer.parseInt(servletRequest.getParameter("hp"));
         String item = servletRequest.getParameter("item");
         String recentMap = servletRequest.getParameter("recentMap");
         String quest = servletRequest.getParameter("quest");
-        String dicetimes = servletRequest.getParameter("dicetimes");
+        int dicetimes = Integer.parseInt(servletRequest.getParameter("dicetimes"));
         int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
         int pointG = player.getPoint();
         int pointB = player.getBrowniePoint();
+
+        
+        
+        String throwResult = servletRequest.getParameter("throw");
+        String throwType = servletRequest.getParameter("throwType");
+        System.out.println(throwResult);
+        System.out.println(throwType);
+        //주사위 기회 줄이기
+    	dicetimes -= 1; 
+        
         
         param.put("userId", id);
         param.put("hp", hp);
@@ -300,7 +276,7 @@ public class MiniGameController {
         item = item.replace("]", "");
         
         List<Integer> itemList = new ArrayList<>();
-        if(item!="") {
+        if(!item.equals("")) {
         	String[] items = item.split(", ");
         
 	        for (String n : items) {
@@ -337,7 +313,7 @@ public class MiniGameController {
     		}
 			objName = ""+sum + " POINT";
 			pointG += sum;
-			param.put("point", pointG);
+			param.put("point", sum);
 			param.put("item", "[]");
 			this.miniGameService.updatePlayer(param);
         	saveCnt = this.miniGameService.modifyGamePoint(param);
@@ -356,13 +332,17 @@ public class MiniGameController {
             	
             } else if (objKind.equals("theif")) {
             	if(ObjSeq==5) {
-        			pointG /= 2;
-        			
+        			int temp = pointG / 2;
+        			temp -= pointG;
+        			pointG = temp;
         		} else {
-        			pointG += Integer.parseInt(str[0]);
+        			pointG += Integer.parseInt(str[0])-pointG;
         		}
             	if(pointG<0) {
             		pointG = 0;
+            	}
+            	if(pointB<0) {
+            		pointB = 0;
             	}
             	param.put("point", pointG);
             	saveCnt = this.miniGameService.modifyGamePoint(param);
@@ -370,13 +350,13 @@ public class MiniGameController {
             } else if (objKind.equals("both")){
             	if (ObjSeq==1) {
         			recentHp += Integer.parseInt(str[0]);
-        			pointG= -100;
+        			pointG= -100-pointG;
         		} else if (ObjSeq==6) {
         			recentHp += Integer.parseInt(str[0]);
-        			pointG = 300;
+        			pointG = 300-pointG;
         		} else {
         			recentHp += Integer.parseInt(str[0]);
-        			pointG = -200;
+        			pointG = -200-pointG;
         		}
             	
             	if(recentHp>=hp) {
@@ -385,6 +365,9 @@ public class MiniGameController {
             	
             	if(pointG<0) {
             		pointG = 0;
+            	}
+            	if(pointB<0) {
+            		pointB = 0;
             	}
             	
             	param.put("point", pointG);
@@ -397,16 +380,47 @@ public class MiniGameController {
         	act = "조우";
         } else if (objDegree.equals("ne")) {
         	if (ObjSeq==12) {
-        		pointB += pointG;
-        		pointG = 0; 
-        		param.put("point", pointB);
+        		param.put("point", pointG);
         		saveCnt = this.miniGameService.modifyBPoint(param);
-        		param.put("point", 0);
+        		param.put("point", -pointG);
         		this.miniGameService.modifyGamePoint(param);
         		act = "조우";
         	} else if (ObjSeq==13) {
+        		map.put("doubleD","double");
+        		dicetimes += 1;
+        		param.put("dicetimes", dicetimes);
         	} else if (ObjSeq==14) {
+        		map.put("oneMore","oneMore");
+        		dicetimes += 1;
+        		param.put("dicetimes", dicetimes);
         	} else if (ObjSeq==15) {
+        		if (throwType.equals("all")) {
+        			if(add()) {
+        				param.put("point", -pointG);
+        				this.miniGameService.modifyGamePoint(param);
+        				param.put("point", -pointB);
+                		saveCnt = this.miniGameService.modifyBPoint(param);
+        			} else {
+                		param.put("point", pointG);
+        				this.miniGameService.modifyGamePoint(param);
+        				param.put("point", pointB);
+                		saveCnt = this.miniGameService.modifyBPoint(param);
+        			}
+        		} else {
+    				if(add()) {
+    					param.put("point", pointG/2);
+        				this.miniGameService.modifyGamePoint(param);
+        				param.put("point", pointB/2);
+                		saveCnt = this.miniGameService.modifyBPoint(param);
+        			} else {
+        				pointG += pointG/2-pointG;
+        				param.put("point", pointG);
+        				this.miniGameService.modifyGamePoint(param);
+        				pointB += pointB/2-pointG;
+        				param.put("point", pointB);
+                		saveCnt = this.miniGameService.modifyBPoint(param);
+        			}
+        		}
         	}
         	
         } else if (objDegree.equals("good")) {
@@ -446,6 +460,11 @@ public class MiniGameController {
                 param.put("recentHp", recentHp);
                 saveCnt = this.miniGameService.updatePlayer(param);
                 act = "냠냠";
+            } else if (ObjSeq==48) {
+            	act = "마주";
+        		recentHp = hp;
+        		param.put("point", Integer.parseInt(str[0]));
+        		saveCnt = this.miniGameService.modifyGamePoint(param);
             }
         }
         
@@ -477,11 +496,26 @@ public class MiniGameController {
         
     	map.put("site",this.userService.userOneSelect(id)); 
         
+    	if(recentHp<=0) {
+    		this.miniGameService.deleteLog(id);
+    		int deadCnt = this.miniGameService.deleteMarblePlayer(id);
+    		map.put("dead",deadCnt); 
+    	}
+    	
     	System.out.println("성공");
         return map;
     }
 
-    
+	public boolean add () {
+		boolean ans = false;
+        int d = (int) (Math.random() * 100);
+        if (0 <= d && d <= 49) {
+        	ans = true;
+        } else if (50 <= d && d <= 99) {
+        	ans = false;
+        } 
+    	return ans;
+    }
     
     public List<Integer> addMap(List<Integer> list,boolean bool) {
     	for (int i = 0; i < 15; i++) {
@@ -509,6 +543,7 @@ public class MiniGameController {
 
         return list;
     }
+    
     public List<Integer> badMap(List<Integer> list){
         int d = (int) (Math.random() * 11 + 1);
         list.add(d);

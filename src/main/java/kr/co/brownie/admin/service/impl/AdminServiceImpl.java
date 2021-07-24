@@ -36,4 +36,7 @@ public class AdminServiceImpl implements AdminService {
     public AdminVO todayUser() {
         return adminMapper.todayUser();
     }
+
+    @Override
+    public AdminVO chatCount() { return adminMapper.chatCount(); }
 }

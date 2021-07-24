@@ -131,6 +131,10 @@
         var roomNumber = selectObject.className.split(" ")[2];
         var positionSeq = selectObject.className.split(" ")[3];
 
+        console.log("positionSeq : "+positionSeq)
+        console.log("roomNumber : "+roomNumber)
+        console.log("positionSeq : "+positionSeq)
+
         const data = {
             "userId": userId,
             "roomNumber" : roomNumber,
@@ -149,7 +153,7 @@
                     alert("이미 선택된 포지션입니다.");
                     location.reload();
                 } else if(data.info=="good") {
-                    console.log(data.roomNumber);
+                    console.log(data.roomNumber, data.position, data.positionSeq);
                     openRoom(data.roomNumber, data.position, data.positionSeq);
                     location.reload();
                 } else if(data.info=="nobody") {
@@ -219,37 +223,64 @@
                         <tr>
                             <th>방 제목</th>
                             <td>
-                                <input type="text"
-                                       style="margin-bottm:7px; background: #ffffff; border: 1px solid black; width: 300px;"/>
+                                <input type="text" name="searchRoomTitle" style="margin-bottm: 7px; background: #ffffff; border: 1px solid black; width: 300px;" />
                             </td>
-                            <th rowspan="3" style="width: 100px; text-align: center;"><input type='submit' value="검색">
+                            <th rowspan="3" style="width: 100px; text-align: center;">
+                            <!-- 나은커밋후넣기 (라벨)------------------------------------------------>
+								<button type="submit" id="searchBtn" class="btn btn-primary">검색</button>
                             </th>
                         </tr>
                         <tr>
                             <th style="width: 140px;">게임 모드</th>
                             <td style="width: auto;">
-                                <input type='checkbox' name='gametype' value='solo'/>
-                                솔로 랭크
-                                <input type='checkbox' name='gametype' value='free'/>
-                                자유 랭크
-                                <input type='checkbox' name='gametype' value='normal'/>
-                                일반 게임
-                                <input type='checkbox' name='gametype' value='abyss'/>
-                                칼바람
+                                <!-- 나은커밋후넣기 (라벨)------------------------------------------------>
+								<label for="all">
+									<input type='radio' id="solo" name='gametype' value='all' checked="checked"/>
+									전체
+								</label>
+								<label for="solo">
+									<input type='radio' id="solo" name='gametype' value='솔로랭크'/>
+									솔로 랭크
+								</label>
+								<label for="free">
+									<input type='radio' id="free" name='gametype' value='자유랭크' />
+									자유 랭크
+								</label>
+								<label for="normal">
+									<input type='radio' id="normal" name='gametype' value='일반게임' />
+									일반 게임
+								</label>
+								<label for="abyss">
+									<input type='radio' id="abyss" name='gametype' value='칼바람' />
+									칼바람
+								</label>
+								<!-- 나은커밋후넣기 (라벨)------------------------------------------------>
                             </td>
                         <tr>
                             <th>희망 포지션</th>
                             <td>
-                                <input type='checkbox' name='position' value='t'/>
-                                탑
-                                <input type='checkbox' name='position' value='m'/>
-                                미드
-                                <input type='checkbox' name='position' value='j'/>
-                                정글
-                                <input type='checkbox' name='position' value='b'/>
-                                바텀
-                                <input type='checkbox' name='position' value='a'/>
-                                젓가락
+                                <!-- 나은커밋후넣기 (라벨)------------------------------------------------>
+								<label for="top">
+									<input type='checkbox' id="top" name='position' value='top' />
+									탑
+								</label>
+								<label for="jun">
+									<input type='checkbox' id="jun" name='position' value='jun' />
+									정글
+								</label>
+								<label for="mid">
+									<input type='checkbox' id="mid" name='position' value='mid' />
+									미드
+								</label>
+								<label for="bot">
+									<input type='checkbox' id="bot" name='position' value='bot' />
+									바텀
+								</label>
+								<label id="sup">
+									<input type='checkbox' id="sup" name='position' value='sup' />
+									젓가락
+								</label>
+								<!-- 나은커밋후넣기 (라벨)------------------------------------------------>
                             </td>
                         </tr>
                     </table>
@@ -270,48 +301,47 @@
                     <div class="row outBox" style="margin: auto;">
                         <!-- 방만들기 begin -->
                         <div class="innerBox text-center justify-content-center align-items-center d-flex">
-                            <label for="makeRoom" onclick="fn_makeRoom()">
-                                <img id="makeRoom" style="width: 50px; margin: 5px"
-                                     src="${pageContext.request.contextPath}/img/teamGame/button.png">
-                                &nbsp; 방만들기
-                            </label>
+                            <!-- 나은커밋후넣기 (라벨)------------------------------------------------>
+							<label for="makeRoom" onclick="fn_makeRoom()" style="cursor: pointer;">
+								<img id="makeRoom" style="width: 50px; margin: 5px;" src="${pageContext.request.contextPath}/img/teamGame/button.png">
+								&nbsp; 방만들기
+							</label>
                         </div>
 
-                        <c:forEach var="teamGame" items="${teamGameList }">
-
+                        <c:forEach var="teamGameList" items="${teamGameList }">
                             <div class="innerBox text-center" id="roomBox">
                                 <div class="row text-white" style="margin: 0; background: black; font-size: 14px;">
                                     <p class="col-sm gmode" style="text-align: left;">
-                                        <b>${teamGame.matchMode}</b>
+                                        <b>${teamGameList.matchMode}</b>
                                     </p>
                                     <p class="col-sm" style="margin: 0; text-align: right;">
-                                        <c:if test="${teamGame.mike eq 'y'}">
+                                        <c:if test='${teamGameList.mike eq "y"}'>
                                             <img class="micPic"
                                                  src="${pageContext.request.contextPath}/img/teamGame/mic_o.jpg"/>
                                         </c:if>
                                     </p>
                                 </div>
-                                <div class="roomTitle">[${teamGame.teamGameSeq}/${teamGame.positionSeq}] ${teamGame.title}</div>
+                                <div class="roomTitle">[${teamGameList.teamGameSeq}/${teamGameList.positionSeq}] ${teamGameList.title}</div>
                                 <p style="margin: 10px 0px 3px;">
-                                    <c:set var="posiSeq" value="${teamGame.positionSeq}"/>
+                                    <c:set var="TGSeq" value="${teamGameList.teamGameSeq}"/>
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq].top eq 'y'}">
+                                        <c:when test='${teamPosition[TGSeq].top eq "y"}'>
                                             <button type="button" class="positionTop checked-position"
-                                                    onclick="fn_blockRoom()">${teamPosition[posiSeq].top}
+                                                    onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png"/>
                                             </button>
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionTop blank-position ${teamGame.teamGameSeq} ${posiSeq}"
-                                                    onclick="fn_chatRoom(this)" id="top">${teamPosition[posiSeq].top}
+                                                    class="positionTop blank-position ${teamGameList.teamGameSeq} ${teamGameList.positionSeq}"
+                                                    onclick="fn_chatRoom(this)" id="top">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Top.png"/>
                                             </button>
                                         </c:otherwise>
                                     </c:choose>
 
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq].jun eq 'y'}">
+                                        <c:when test='${teamPosition[TGSeq].jun eq "y"}'>
                                             <button type="button" class="positionJun checked-position"
                                                     onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png"/>
@@ -319,7 +349,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionJun blank-position ${teamGame.teamGameSeq} ${posiSeq}"
+                                                    class="positionJun blank-position ${teamGameList.teamGameSeq} ${teamGameList.positionSeq}"
                                                     onclick="fn_chatRoom(this)" id="jun">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Jungle.png"/>
                                             </button>
@@ -327,7 +357,7 @@
                                     </c:choose>
 
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq].mid eq 'y'}">
+                                        <c:when test='${teamPosition[TGSeq].mid eq "y"}'>
                                             <button type="button" class="positionMid checked-position"
                                                     onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png"/>
@@ -335,7 +365,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionMid blank-position ${teamGame.teamGameSeq} ${posiSeq}"
+                                                    class="positionMid blank-position ${teamGameList.teamGameSeq} ${teamGameList.positionSeq}"
                                                     onclick="fn_chatRoom(this)" id="mid">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Mid.png"/>
                                             </button>
@@ -343,7 +373,7 @@
                                     </c:choose>
 
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq].bot eq 'y'}">
+                                        <c:when test='${teamPosition[TGSeq].bot eq "y"}'>
                                             <button type="button" class="positionAd checked-position"
                                                     onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png"/>
@@ -351,7 +381,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionAd blank-position ${teamGame.teamGameSeq} ${posiSeq}"
+                                                    class="positionAd blank-position ${teamGameList.teamGameSeq} ${teamGameList.positionSeq}"
                                                     onclick="fn_chatRoom(this)" id="bot">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Bot.png"/>
                                             </button>
@@ -359,7 +389,7 @@
                                     </c:choose>
 
                                     <c:choose>
-                                        <c:when test="${teamPosition[posiSeq].sup eq 'y'}">
+                                        <c:when test='${teamPosition[TGSeq].sup eq "y"}'>
                                             <button type="button" class="positionSup checked-position"
                                                     onclick="fn_blockRoom()">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png"/>
@@ -367,7 +397,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <button type="button"
-                                                    class="positionSup blank-position ${teamGame.teamGameSeq} ${posiSeq}"
+                                                    class="positionSup blank-position ${teamGameList.teamGameSeq} ${teamGameList.positionSeq}"
                                                     onclick="fn_chatRoom(this)" id="sup">
                                                 <img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Grandmaster-Support.png"/>
                                             </button>
@@ -376,7 +406,7 @@
                                 </p>
                                 <div class=""
                                      style="width: 100%; display: flex; justify-content: center; margin-bottom: 30px;">
-                                    <p class="message">${teamGame.message}</p>
+                                    <p class="message">${teamGameList.message}</p>
                                 </div>
                                 <div class="row text-white"
                                      style="margin: 0; position: absolute; bottom: 0; width: 100%; border-top: 1px solid white; border-radius: 10px;">
@@ -384,12 +414,12 @@
                                          style=" white-space: nowrap; margin: 0; display: flex;">
                                         <img class="tierImg" src="${pageContext.request.contextPath}/img/lol/lolTier/grandMaster.png"/>
                                         <span style="text-overflow: ellipsis; overflow: hidden; width: 100px; white-space: nowrap;">
-                                                ${teamGame.lolId}
+                                                ${teamGameList.lolId}
                                         </span>
                                     </div>
 
                                     <div class="col-sm-4"
-                                         style=" white-space: nowrap; margin: 0; display: flex; justify-content: flex-end;">${teamGame.nickName}
+                                         style=" white-space: nowrap; margin: 0; display: flex; justify-content: flex-end;">${teamGameList.nickName}
                                     </div>
 
                                 </div>
@@ -401,15 +431,31 @@
                     </div>
                 </div>
 
-                <!-- 페이징 처리 -->
-                <div class="pagind" style="display: flex; justify-content: center;">
-                    <a href="#">[prev]</a>
-                    <a href="#">[1]</a>
-                    <a href="#">[2]</a>
-                    <a href="#">[3]</a>
-                    <a href="#">[4]</a>
-                    <a href="#">[next]</a>
-                </div>
+                <!-- 페이징처리 begin -->
+				<!-- 나은커밋후넣기 (페이징처리)------------------------------------------------>
+				<div class="paging col-12 pagination-item" style="position: relative;">
+					<div class="col-12" style="display: flex; justify-content: center;">
+						<c:if test="${page.prev}">
+							<a href="/teamGame?num=${page.startPageNum-1}&searchRoomTitle=${page.searchRoomTitle}&searchGameType=${page.searchGameType}&searchPositions=${page.searchPositions}">prev</a>
+						</c:if>
+						<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}" var="num">
+							<c:choose>
+								<c:when test="${page.num != num}">
+									<a href="/teamGame?num=${num}&searchRoomTitle=${page.searchRoomTitle}&searchGameType=${page.searchGameType}&searchPositions=${page.searchPositions}">${num}</a>
+								</c:when>
+								<c:otherwise>
+									<a href="#">${num}</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						<c:if test="${page.next}">
+							<a href="/teamGame?num=${page.endPageNum+1}&searchRoomTitle=${page.searchRoomTitle}&searchGameType=${page.searchGameType}&searchPositions=${page.searchPositions}">next</a>
+							<%-- 							<a href="/user/info/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a> --%>
+						</c:if>
+					</div>
+				</div>
+				<!-- 페이징처리 end -->
+				<!-- 나은커밋후넣기 (페이징처리)------------------------------------------------>
                 <br/>
 
             </div>
@@ -417,6 +463,20 @@
     </div>
 </section>
 <!-- Details Post Section End -->
+<!-- 나은커밋후넣기 (스크립트)------------------------------------------------>
+<script>
+var searchPositions = [];
+document.getElementById("searchBtn").onclick = function() {
+	var searchRoomTitle = $("input[name='searchRoomTitle']").val();
+	let searchGameType = $("input[name='gametype']:checked").val();
+	$('input[name=position]:checked').each(function() {
+		searchPositions.push($(this).val());
+	});
+	location.href = "/teamGame?num=1" + "&searchRoomTitle="
+			+ searchRoomTitle + "&searchGameType=" + searchGameType
+			+ "&searchPositions=" + searchPositions;
+}
+</script>
 
 <c:import url="../layout/footer.jsp">
     <c:param name="path" value="${pageContext.request.contextPath}"/>

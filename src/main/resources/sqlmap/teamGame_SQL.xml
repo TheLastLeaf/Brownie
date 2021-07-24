@@ -55,57 +55,92 @@
     </insert>
 
 
-    <select id="selectTeamGameList" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
-        select *
-        from (
-                 select BU.LOL_ID as lolId
-                      , BU.NICK_NAME as nickName
-                      , TG.TEAMGAME_SEQ as teamGameSeq
-                      , TG.USER_ID      as userId
-                      , TG.TITLE        as title
-                      , TG.MATCH_MODE   as matchMode
-                      , TG.MESSAGE      as message
-                      , TG.POSITION_SEQ as positionSeq
-                      , TG.STATUS       as status
-                      , TG.LEADER       as leader
-                      , TG.MIKE         as mike
-                      , TG.USE_POINT    as usePoint
-                      , TG.IN_DATE      as inDate
-                      , TG.IN_USER_ID   as inUserId
-                      , TG.UP_DATE      as modDate
-                      , TG.UP_USER_ID   as upUserId
-                 from TEAMGAME TG, BROWNIE_USER BU
-                 where TG.USER_ID = BU.USER_ID
-                   and USE_POINT = 'y'
-                   and LEADER = 'y'
-                 order by TEAMGAME_SEQ desc
-             )
-        union all
-        select *
-        from (
-                 select BU.LOL_ID as lolId
-                      , BU.NICK_NAME as nickName
-                      , TG.TEAMGAME_SEQ as teamgameSeq
-                      , TG.USER_ID      as userId
-                      , TG.TITLE        as title
-                      , TG.MATCH_MODE   as matchMode
-                      , TG.MESSAGE      as message
-                      , TG.POSITION_SEQ as positionSeq
-                      , TG.STATUS       as status
-                      , TG.LEADER       as leader
-                      , TG.MIKE         as mike
-                      , TG.USE_POINT    as usePoint
-                      , TG.IN_DATE      as inDate
-                      , TG.IN_USER_ID   as inUserId
-                      , TG.UP_DATE      as modDate
-                      , TG.UP_USER_ID   as upUserId
-                 from teamgame TG, BROWNIE_USER BU
-                 where TG.USER_ID = BU.USER_ID
-                   and USE_POINT = 'n'
-                   and LEADER = 'y'
-                 order by TEAMGAME_SEQ desc
-             )
-
+    <select id="selectTeamGameList" parameterType="kr.co.brownie.teamGame.service.impl.TeamGamePagingVO" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
+                <![CDATA[
+        SELECT LOLID,
+               NICKNAME,
+               TEAMGAMESEQ,
+               USERID,
+               TITLE,
+               MATCHMODE,
+               MESSAGE,
+               POSITIONSEQ,
+               STATUS,
+               LEADER,
+               MIKE,
+               USEPOINT,
+               INDATE,
+               INUSERID,
+               MODDATE,
+               UPUSERID,
+               POSISEQ,
+               TOP,
+               JUN,
+               MID,
+               BOT,
+               SUP
+               FROM (SELECT ROWNUM AS RN,
+                            TEAMGAME_QUERY.*
+                     FROM (
+                              SELECT LOL_ID                         AS LOLID,
+                                     NICK_NAME                      AS NICKNAME,
+                                     TEAMGAME_SEQ                   AS TEAMGAMESEQ,
+                                     BROWNIE_USER.USER_ID           AS USERID,
+                                     TITLE                          AS TITLE,
+                                     MATCH_MODE                     AS MATCHMODE,
+                                     MESSAGE                        AS MESSAGE,
+                                     TEAMGAME.POSITION_SEQ          AS POSITIONSEQ,
+                                     TEAMGAME.STATUS                AS STATUS,
+                                     TEAMGAME.LEADER                AS LEADER,
+                                     MIKE                           AS MIKE,
+                                     USE_POINT                      AS USEPOINT,
+                                     TEAMGAME.IN_DATE               AS INDATE,
+                                     TEAMGAME.IN_USER_ID            AS INUSERID,
+                                     TEAMGAME.UP_DATE               AS MODDATE,
+                                     TEAMGAME.UP_USER_ID            AS UPUSERID,
+                                     TEAMGAME_POSITION.POSITION_SEQ AS POSISEQ,
+                                     TOP                            AS TOP,
+                                     JUN                            AS JUN,
+                                     MID                            AS MID,
+                                     BOT                            AS BOT,
+                                     SUP                            AS SUP
+                              FROM (SELECT *
+                                    FROM TEAMGAME
+                                    WHERE UPPER(LEADER) = 'Y'
+                                      AND UPPER(STATUS) = 'Y'
+                                   ) TEAMGAME
+                                       INNER JOIN BROWNIE_USER ON TEAMGAME.USER_ID = BROWNIE_USER.USER_ID
+                                       INNER JOIN TEAMGAME_POSITION ON TEAMGAME.POSITION_SEQ = TEAMGAME_POSITION.POSITION_SEQ
+                                  ]]>
+                    <where>
+						<if test='searchRoomTitle != null or searchRoomTitle != ""'>
+								AND LOWER(TITLE) LIKE LOWER('%'||#{searchRoomTitle}||'%')
+						</if>
+						<if test='searchGameType != "all" and searchGameType != ""'>
+								AND match_Mode = #{searchGameType}
+						</if>
+                        <if test='searchPositions.contains("top")'>
+                             AND UPPER(TOP) = 'N'
+                         </if>
+                         <if test='searchPositions.contains("jun")'>
+                             AND UPPER(JUN) = 'N'
+                         </if>
+                         <if test='searchPositions.contains("mid")'>
+                             AND UPPER(MID) = 'N'
+                         </if>
+                         <if test='searchPositions.contains("bot")'>
+                             AND UPPER(BOT) = 'N'
+                         </if>
+                         <if test='searchPositions.contains("sup")'>
+                             AND UPPER(SUP) = 'N'
+                         </if>
+                  </where>
+                     <![CDATA[
+                         ORDER BY USE_POINT DESC, TEAMGAME.IN_DATE DESC
+                         ) TEAMGAME_QUERY
+               )
+        WHERE ${startPost} <= RN AND RN <= ${endPost}
+        ]]>
     </select>
 
     <select id="selectTeamGamePosition" resultType="kr.co.brownie.teamGame.service.TeamGameVO">
@@ -147,7 +182,6 @@
                    , #{userId}
                    , SYSDATE
                    , #{userId})
-
     </insert>
 
     <update id="updateTeamGamePosition">
@@ -239,6 +273,13 @@
         where TEAMGAME_SEQ = #{teamgameSeq}
           and USER_ID = #{userId}
     </update>
+    <select id="countAllRoom" resultType="int">
+    	SELECT 
+    		COUNT(*)
+    	FROM 
+    		TEAMGAME 
+		WHERE STATUS = 'y' AND LEADER = 'y'
+    </select>
 
 
 </mapper>

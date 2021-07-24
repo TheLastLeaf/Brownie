@@ -14,4 +14,6 @@ public interface AdminMapper {
     AdminVO BlackUserCnt();
 
     AdminVO todayUser();
+
+    AdminVO chatCount();
 }

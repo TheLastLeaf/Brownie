@@ -20,4 +20,7 @@ public class AdminVO {
 
     //오늘 신규 가입한 회원
     private int todayUser;
+
+    //채팅 내역 수 집계
+    private int chatcount;
 }

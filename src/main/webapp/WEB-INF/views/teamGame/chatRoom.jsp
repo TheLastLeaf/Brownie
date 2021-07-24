@@ -187,20 +187,21 @@
         const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=" + ROOM_NUMBER);
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
-        //websocket.onclose = onClose;
+        websocket.onclose = onClose;
 
-        websocket.onclose = function (event) {
-            if (event.wasClean) {
-                alert("[close] 커넥션이 정상적으로 종료되었습니다(code=" + event.code + " reason=" + event.reason + ")");
-            } else {
-                // https://ko.javascript.info/websocket#ref-1158 여기에 오류 코드별 설명이 있음
-                // 1000 : 일반폐쇄
-                alert('[close] 커넥션이 죽었습니다.');
-            }
-            setTimeout(function () {
-                connect();
-            }, 1000); // retry connection!!
-        };
+        // websocket.onclose = function (event) {
+        //     if (event.wasClean) {
+        //         alert("[close] 커넥션이 정상적으로 종료되었습니다(code=" + event.code + " reason=" + event.reason + ")");
+        //     } else {
+        //         // https://ko.javascript.info/websocket#ref-1158 여기에 오류 코드별 설명이 있음
+        //         // 1000 : 일반폐쇄
+        //         alert('[close] 커넥션이 죽었습니다.');
+        //     }
+        //     setTimeout(function () {
+        //         connect();
+        //     }, 1000); // retry connection!!
+        // };
+
         websocket.onerror = function (err) {
             console.log('Error:', err);
             setTimeout(function () {
@@ -221,10 +222,10 @@
             websocket.send(str);
         }
 
-        // function onClose(evt) {
-        //     var str = username + ": 님이 방을 나가셨습니다.:"+IN_USER_ID;
-        //     websocket.send(str);
-        // }
+        function onClose(evt) {
+            var str = username + ": 님이 방을 나가셨습니다.:"+IN_USER_ID;
+            websocket.send(str);
+        }
 
         function onMessage(msg) {
             var data = msg.data;

@@ -67,7 +67,7 @@
 
     <insert id="insertPlayer" parameterType="hashMap">
         INSERT INTO BROWNIE_MARBLE(USER_ID, ROUND, HP, ITEM, POSITION, POINT, RECENT_MAP, QUEST, DICETIMES, RECENT_HP)
-        VALUES (#{userId}, 1, 3, '[]', 0, 100, #{recentMap}, #{quest}, 8, 3)
+        VALUES (#{userId}, 1, 4, '[]', 0, 100, #{recentMap}, #{quest}, 8, 4)
     </insert>
 
     <update id="updatePlayer" parameterType="hashMap">
@@ -124,6 +124,11 @@
     
     <delete id="deleteLog">
         DELETE FROM BROWNIE_MARBLE_LOG 
+        WHERE USER_ID=#{userId}
+    </delete>
+    
+    <delete id="deleteMarblePlayer">
+        DELETE FROM BROWNIE_MARBLE 
         WHERE USER_ID=#{userId}
     </delete>
 

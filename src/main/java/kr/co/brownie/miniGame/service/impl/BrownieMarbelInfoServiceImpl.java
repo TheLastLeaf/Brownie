@@ -83,5 +83,10 @@ public class BrownieMarbelInfoServiceImpl implements BrownieMarbelInfoService {
 	public int deleteLog(String userId) {
 		return brownieMarbelMapper.deleteLog(userId);
 	}
+	
+	@Override
+	public int deleteMarblePlayer(String userId) {
+		return brownieMarbelMapper.deleteMarblePlayer(userId);
+	}
 
 }
