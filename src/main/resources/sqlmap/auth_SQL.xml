@@ -107,4 +107,10 @@
                     '${writeUserId}')
 
     </update>
+
+    <select id="nickName" resultType="String" parameterType="String">
+        SELECT NICK_NAME
+        FROM BROWNIE_USER
+        WHERE USER_ID = #{userId}
+    </select>
 </mapper>
