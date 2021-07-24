@@ -24,26 +24,30 @@
             <div class="col-lg-4 col-md-6">
                 <div class="editor-choice">
                     <div class="section-title">
-                        <h5 >BROWNIE CONTENTS</h5>
+                        <h5>BROWNIE CONTENTS</h5>
                     </div>
-                    <div class="ec-item">
-                        <div class="ec-pic">
-                            <img src="${pageContext.request.contextPath}/img/trending/dice.png" style="width: 120px; height: 80px;" alt="">
+                    <div class="row text-center">
+                        <div class="col-6 my-auto">
+                            <a href="${pageContext.request.contextPath}/miniGame/blueMarvel">
+                                <i class="fas fa-dice fa-5x" style="color: white;"></i>
+                            </a>
                         </div>
-                        <div class="ec-text">
-                            <h6 style="padding-top: 15%;">
-                                <a href="${pageContext.request.contextPath}/miniGame/blueMarvel" style="font-size: x-large; font-family: MapleLight;">부루마블</a>
-                            </h6>
+                        <div class="col-6 my-auto">
+                            <h3 class="text-white text-left">
+                                <a href="${pageContext.request.contextPath}/miniGame/blueMarvel"
+                                   style="font-family: MapleBold;">부루마블</a>
+                            </h3>
                         </div>
-                    </div>
-                    <div class="ec-item">
-                        <div class="ec-pic">
-                            <img src="${pageContext.request.contextPath}/img/trending/check.png" style="width: 120px; height: 80px;" alt="">
+                        <div class="col-6 my-auto pt-2">
+                            <a href="${pageContext.request.contextPath}/attendance">
+                                <i class="far fa-calendar-check fa-5x" style="color: white"></i>
+                            </a>
                         </div>
-                        <div class="ec-text">
-                            <h6 style="padding-top: 15%;">
-                                <a href="${pageContext.request.contextPath}/attendance" style="font-size: x-large; font-family: MapleLight;">출석체크</a>
-                            </h6>
+                        <div class="col-6 my-auto pt-2">
+                            <h3 class="text-white text-left">
+                                <a href="${pageContext.request.contextPath}/attendance"
+                                   style="font-family: MapleBold;">출석체크</a>
+                            </h3>
                         </div>
                     </div>
                 </div>
