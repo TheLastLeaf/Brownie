@@ -16,4 +16,6 @@ public interface AuthMapper {
     void insertReview(Map<String, Object> map);
 
     int permitlevel(String userId);
+
+    String nickName(String userId);
 }

@@ -28,14 +28,23 @@ public class TeamGameController {
 
     @GetMapping({"", "/teamGame"})
     public String teamMaker(Model model, HttpSession httpSession) throws IOException {
+        //팀게임 리스트
         List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList();
+
 
         Map<Integer, Object> teamPosition = new HashMap<>();
         for (TeamGameVO tgvo : teamGameList) {
+
+            //현재 리더가 있는 방 상태 활성화 여부 판단
             if (tgvo.getStatus().equals("y")) {
-                int positionSeq = tgvo.getPositionSeq();
-                List<TeamGameVO> posiList = teamGameService.selectTeamGamePosition(positionSeq);
-                teamPosition.put(positionSeq, posiList);
+                //방에서 포지션 시퀀스 빼옴
+                int teamGameSeq = tgvo.getTeamGameSeq(); //방번호
+                int positionSeq = tgvo.getPositionSeq(); //방에 해당하는 포지션 값
+
+                System.out.println("teamGameSeq : " + teamGameSeq + " --- positionSeq : " +  positionSeq);
+                //해당 방에 해당하는 포지션 시퀀스 넣음
+                TeamGameVO posiList = teamGameService.selectTeamGamePosition(positionSeq);
+                teamPosition.put(teamGameSeq, posiList);
             }
         }
 
@@ -53,11 +62,13 @@ public class TeamGameController {
         model.addAttribute("teamGameList", teamGameList);
         model.addAttribute("teamPosition", teamPosition);
 
+        System.out.println("teamgame page httpSession.getAttribute() : "+httpSession.getAttribute("id"));
+
         return "teamGame/teamGame";
     }
 
     @GetMapping("/makeRoom")
-    public String makeRoom(Model model, HttpServletRequest servletRequest) throws IOException {
+    public String makeRoom(Model model) throws IOException {
         //로그인 안하면 터져서 잠깐 주석처리했음
         //String inUserId = servletRequest.getSession().getAttribute("id").toString();
         //UserVO userInfo = userService.userOneSelect(inUserId);
@@ -66,14 +77,9 @@ public class TeamGameController {
         //model.addAttribute("userInfo",userInfo);
         //model.addAttribute("userExp",userExp);
 
-
         //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
-
-
-
         model.addAttribute("userInfo", "경험치~");
         model.addAttribute("nickName", "닉네임~");
-
         return "teamGame/makeRoom";
     }
 
@@ -81,12 +87,14 @@ public class TeamGameController {
     @ResponseBody
     @PostMapping(path = "/insert-room", produces="application/text;charset=utf-8")
     public String ajaxInsertRoom(@RequestParam Map<String, Object> map, HttpSession httpSession) throws IOException {
-
         //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
         String userId = httpSession.getAttribute("id").toString();
         UserVO userInfo = userService.userOneSelect(userId);
 
         teamGameService.insertTeamGameRoom(map);
+
+        System.out.println("insert map : : "+map);
+
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("TEAMGAME_SEQ", map.get("TEAMGAME_SEQ").toString());
         jsonObject.addProperty("nickName", userInfo.getNickName());
@@ -95,42 +103,37 @@ public class TeamGameController {
         return jsonObject.toString();
     }
 
-    private void statusTest(String teamgameSeq, String userId){
-        //기존에 회원이 있는 경우 status만 업데이트
-        //merge into와 insert all을 동시에 사용할 수 없어서 따로 적음
-        Map<String, Object> statusMap = new HashMap<>();
-        statusMap.put("teamgameSeq", teamgameSeq);
-        statusMap.put("userId", userId);
-        TeamGameVO checkStatus = teamGameService.checkStatus(statusMap);
-        //값이 있는 경우
-        if(checkStatus.getStatus().equals("n")){
-            statusMap.put("status", "y");
-        } else if (checkStatus.getStatus().equals("y")){
-            statusMap.put("status", "n");
-        }
-        teamGameService.updateStatus(statusMap);
-    }
-
     @ResponseBody
     @PostMapping(path = "/update-position", produces="application/text;charset=utf-8")
     public String ajaxUpdatePosition(@RequestParam Map<String, Object> map) {
         // map {userId=1786827527, positionSeq=346, position=sup}
         //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
 
-        System.out.printf("update posi map : " + map);
+        System.out.println("update posi map : " + map);
 
+        String teamGameSeq = map.get("roomNumber").toString();
         String positionSeq = map.get("positionSeq").toString();
         String selectedPosition = map.get("position").toString();
 
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("roomNumber", positionSeq);
+        jsonObject.addProperty("roomNumber", teamGameSeq);
+        jsonObject.addProperty("positionSeq", positionSeq);
         jsonObject.addProperty("position", selectedPosition);
 
         //들어온 값 이미 포지션 존재하는지 판별해야함  와  코드 진심 개못생겼네
         String exsitedPosi = "";
-        List<TeamGameVO> teamPosition = teamGameService.selectTeamGamePosition(Integer.parseInt(positionSeq));
+        TeamGameVO teamPosition = teamGameService.selectTeamGamePosition(Integer.parseInt(positionSeq));
+        System.out.println("--? now teamPosition : "+teamPosition);
+
+        //방에 있는 사람이 없어서 조회가 안 될 경우
+        if(teamPosition == null){
+            jsonObject.addProperty("info", "nobody");
+            return jsonObject.toString();
+        }
+
+        System.out.println("=,포지션 판별 진입=======================");
         if (selectedPosition.equals("top")) {
-            exsitedPosi = teamPosition.get(0).getTop();
+            exsitedPosi = teamPosition.getTop();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
 
@@ -143,7 +146,7 @@ public class TeamGameController {
                 return jsonObject.toString();
             }
         } else if (selectedPosition.equals("jun")) {
-            exsitedPosi = teamPosition.get(0).getJun();
+            exsitedPosi = teamPosition.getJun();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
 
@@ -155,7 +158,7 @@ public class TeamGameController {
                 return jsonObject.toString();
             }
         } else if (selectedPosition.equals("mid")) {
-            exsitedPosi = teamPosition.get(0).getMid();
+            exsitedPosi = teamPosition.getMid();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
 
@@ -167,7 +170,7 @@ public class TeamGameController {
                 return jsonObject.toString();
             }
         } else if (selectedPosition.equals("bot")) {
-            exsitedPosi = teamPosition.get(0).getBot();
+            exsitedPosi = teamPosition.getBot();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
 
@@ -179,7 +182,7 @@ public class TeamGameController {
                 return jsonObject.toString();
             }
         } else if (selectedPosition.equals("sup")) {
-            exsitedPosi = teamPosition.get(0).getSup();
+            exsitedPosi = teamPosition.getSup();
             if(exsitedPosi.equals("n")){
                 teamGameService.updateTeamGamePosition(map);
 

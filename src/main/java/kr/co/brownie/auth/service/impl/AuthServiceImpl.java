@@ -115,6 +115,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
+    public String nickName(String userId) {
+        return authMapper.nickName(userId);
+    }
+
+    @Override
     public void insertPermitLevel(String userId) throws IOException {
         authMapper.insertPermitLevel(userId);
     }

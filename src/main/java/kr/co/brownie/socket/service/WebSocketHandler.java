@@ -28,6 +28,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         System.out.println("afterConnectionEstablished : " + session);
+        System.out.println("session.getAttributes() : " + session.getAttributes());
 
         //새로 들어온 세션의 방 번호 뽑아내기
         String roomNumber = session.getUri().getQuery().split("=")[1];
@@ -59,6 +60,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         System.out.println("handleTextMessage : " + session + " / message : " + message);
         System.out.println("아이디 : " + session.getId() + " / 메시지 : " + message.getPayload());
         System.out.println("방주소 : " + session.getUri() + " / 글자수 : " + message.getPayloadLength());
+        System.out.println("session.getAttributes() : " + session.getAttributes());
 
         //여기는 받아온 메시지를 전달해주는 구간! 해당하는 세션으로 보내주기 위해서 세션 판별이 필요함
 
@@ -82,6 +84,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
         //afterConnectionClosed session : StandardWebSocketSession[id=11, uri=ws://1.245.30.134/WebEcho?roomNumber=284]
         //session.getAttributes() : {HTTP.SESSION.ID=496834BDBAC682608FBF3B7D9759E2ED, permit_level=9, id=1786827527}
         System.out.println("status : " + status);
+        System.out.println("session.getAttributes() : " + session.getAttributes());
         //status : CloseStatus[code=1001, reason=null]
         //session.getAttributes().get("id") 이 유저의 닉네임을 골라와서 WebSocketSession .sendMessage(msg)
 
@@ -97,6 +100,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
         //이게 세션에 들어온 유저의 정보를 가지고 있음 이 아이디가 일치하는 사람의 어트리뷰트를 뽑아서 아이디 가져오면 도미
         for(WebSocketSession wsId : sessions){
             if(wsId.getId().equals(session.getId())){
+                System.out.println("wsId : " + wsId);
+                System.out.println("wsId.getId() : " + wsId.getId());
+                System.out.println("session.getId() : " + session.getId());
+                System.out.println("wsId.getAttributes() : " + wsId.getAttributes());
                 userId = wsId.getAttributes().get("id").toString();
             }
         }
@@ -110,15 +117,27 @@ public class WebSocketHandler extends TextWebSocketHandler {
         TeamGameVO tgvo = teamGameService.selectOne(map);
         System.out.println("tgvo : "+ tgvo);
 
-        if(tgvo.getUserId().equals(userId)){
-            System.out.println("tgvo.getUserId() : "+ tgvo.getUserId());
-            String delPosi = tgvo.getPosition();
-            map.put("position", delPosi);
-            map.put("positionSeq", roomNumber);
-            System.out.println("delPosi : "+ delPosi + "map : " + map);
-            teamGameService.deleteTeamGamePosition(map);
-            System.out.println("성공 ?");
+        //왜 가끔씩 null이 들어가는지 모르겠음 찾아봐야함
+        try {
+            if(tgvo.getUserId().equals(userId)){
+                System.out.println("tgvo.getUserId() : "+ tgvo.getUserId());
+
+                String delPosi = tgvo.getPosition();
+                map.put("position", delPosi);
+                map.put("positionSeq", roomNumber);
+                System.out.println("delPosi : "+ delPosi + "map : " + map);
+
+                //TEAMGAME_POSITION update 'y' to 'n'
+                teamGameService.deleteTeamGamePosition(map);
+                System.out.println("성공 ?");
+            }
+        } catch (Exception e){
+            System.out.println("---------------");
+            System.out.println(e.getStackTrace());
+            System.out.println("tgvo에서 오류남");
         }
+
+
         //팀게임 방번호 . 해당 유저 아이디 스테이터스 n으로 바꿔서 화면에 출력 안 되게 하기
 
 

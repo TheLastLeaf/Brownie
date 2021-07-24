@@ -118,8 +118,6 @@ public class CommonController {
             String access_token = authService.getToken(code, redirectUrl);
             String id = authService.getUserInfoByToken(access_token);
 
-            UserVO userVO = userService.userOneSelect(id);
-            httpSession.setAttribute("nickname" , userVO.getNickName());
             /*로그인 시 회원의 아이디가 블랙유저인지 확인*/
             BlackUserVO blackUserVO = blackUserService.oneBlackUser(id);
 
@@ -157,6 +155,9 @@ public class CommonController {
             /* 로그인 할 때 권한 레벨 세션에 넣어줘야 게시글 조회 시 사용 */
             int permitlevel = authService.permitLevel(id);
             httpSession.setAttribute("permit_level", permitlevel);
+
+            String nickName = authService.nickName(id);
+            httpSession.setAttribute("nickname" , nickName);
 
         } catch (IOException e) {
             e.printStackTrace();

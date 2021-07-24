@@ -24,26 +24,30 @@
             <div class="col-lg-4 col-md-6">
                 <div class="editor-choice">
                     <div class="section-title">
-                        <h5 >BROWNIE CONTENTS</h5>
+                        <h5>BROWNIE CONTENTS</h5>
                     </div>
-                    <div class="ec-item">
-                        <div class="ec-pic">
-                            <img src="${pageContext.request.contextPath}/img/trending/editor-1.jpg" alt="">
+                    <div class="row text-center">
+                        <div class="col-6 my-auto">
+                            <a href="${pageContext.request.contextPath}/miniGame/blueMarvel">
+                                <i class="fas fa-dice fa-5x" style="color: white;"></i>
+                            </a>
                         </div>
-                        <div class="ec-text" style="margin-top: 2%; font-size: large">
-                            <h6>
-                                <a href="${pageContext.request.contextPath}/miniGame/blueMarvel" style="font-size: medium">부루마블</a>
-                            </h6>
+                        <div class="col-6 my-auto">
+                            <h3 class="text-white text-left">
+                                <a href="${pageContext.request.contextPath}/miniGame/blueMarvel"
+                                   style="font-family: MapleBold;">부루마블</a>
+                            </h3>
                         </div>
-                    </div>
-                    <div class="ec-item">
-                        <div class="ec-pic">
-                            <img src="img/trending/editor-2.jpg" alt="">
+                        <div class="col-6 my-auto pt-2">
+                            <a href="${pageContext.request.contextPath}/attendance">
+                                <i class="far fa-calendar-check fa-5x" style="color: white"></i>
+                            </a>
                         </div>
-                        <div class="ec-text" style="margin-top: 2%; font-size: large">
-                            <h6>
-                                <a href="${pageContext.request.contextPath}/attendance" style="font-size: medium">출석체크</a>
-                            </h6>
+                        <div class="col-6 my-auto pt-2">
+                            <h3 class="text-white text-left">
+                                <a href="${pageContext.request.contextPath}/attendance"
+                                   style="font-family: MapleBold;">출석체크</a>
+                            </h3>
                         </div>
                     </div>
                 </div>
