@@ -28,21 +28,21 @@
                     </div>
                     <div class="ec-item">
                         <div class="ec-pic">
-                            <img src="${pageContext.request.contextPath}/img/trending/editor-1.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/trending/dice.png" style="width: 120px; height: 80px;" alt="">
                         </div>
-                        <div class="ec-text" style="margin-top: 2%; font-size: large">
-                            <h6>
-                                <a href="${pageContext.request.contextPath}/miniGame/blueMarvel" style="font-size: medium">부루마블</a>
+                        <div class="ec-text">
+                            <h6 style="padding-top: 15%;">
+                                <a href="${pageContext.request.contextPath}/miniGame/blueMarvel" style="font-size: x-large; font-family: MapleLight;">부루마블</a>
                             </h6>
                         </div>
                     </div>
                     <div class="ec-item">
                         <div class="ec-pic">
-                            <img src="img/trending/editor-2.jpg" alt="">
+                            <img src="${pageContext.request.contextPath}/img/trending/check.png" style="width: 120px; height: 80px;" alt="">
                         </div>
-                        <div class="ec-text" style="margin-top: 2%; font-size: large">
-                            <h6>
-                                <a href="${pageContext.request.contextPath}/attendance" style="font-size: medium">출석체크</a>
+                        <div class="ec-text">
+                            <h6 style="padding-top: 15%;">
+                                <a href="${pageContext.request.contextPath}/attendance" style="font-size: x-large; font-family: MapleLight;">출석체크</a>
                             </h6>
                         </div>
                     </div>
