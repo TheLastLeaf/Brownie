@@ -153,15 +153,11 @@
                                 <div class="col-3">
                                     <select class="w-100" name="champion">
                                         <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
-                                            <c:choose>
-                                                <c:when test="${champion.id == boardVO.boardCategory}">
-                                                    <option value="${champion.id}"
-                                                            selected>${champion.name}</option>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <option value="${champion.id}">${champion.name}</option>
-                                                </c:otherwise>
-                                            </c:choose>
+                                            <option value="${champion.id}"
+                                                    <c:if test="${champion.id == boardVO.boardCategory}">
+                                                        selected
+                                                    </c:if>
+                                            >${champion.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
