@@ -365,29 +365,29 @@ public class MiniGameController {
             	saveCnt = this.miniGameService.modifyGamePoint(param);
             	
             } else if (objKind.equals("both")){
+            	int temp = 0;
             	if (objSeq==1) {
         			recentHp += Integer.parseInt(str[0]);
-        			pointG= -100-pointG;
+        			temp= -100-pointG;
+        			if (pointG<=100) {
+        				temp = 0;
+        			}
         		} else if (objSeq==6) {
         			recentHp += Integer.parseInt(str[0]);
-        			pointG = 300-pointG;
+        			temp = 300-pointG;
         		} else {
         			recentHp += Integer.parseInt(str[0]);
-        			pointG = -200-pointG;
+        			temp = -200-pointG;
+        			if (pointG<=200) {
+        				temp = 0;
+        			}
         		}
             	
             	if(recentHp>=hp) {
             		recentHp=hp;
             	}
             	
-            	if(pointG<0) {
-            		pointG = 0;
-            	}
-            	if(pointB<0) {
-            		pointB = 0;
-            	}
-            	
-            	param.put("point", pointG);
+            	param.put("point", temp);
             	this.miniGameService.modifyGamePoint(param);
             	
             	param.put("hp", hp);

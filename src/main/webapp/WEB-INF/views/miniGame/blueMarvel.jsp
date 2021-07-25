@@ -312,7 +312,7 @@
     
     .modal{ 
 	  position:absolute; 
-	  background: rgba(0,0,0,0.5);
+	  background: rgba(0,0,0,0.2);
 	  display:none;
 	  height: 225%;
 	}
@@ -321,7 +321,7 @@
 	  width:500px; height:500px;
 	  background:#fff; border-radius:10px;
 	  position:relative; top:50%; left:50%;
-      margin-top: -155px;
+      margin-top: -270px;
  	  margin-left: -250px;
 	  text-align:center;
 	  box-sizing:border-box; padding:74px 0;
