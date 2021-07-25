@@ -25,6 +25,7 @@
         font-weight: 500;
         text-transform: uppercase;
     }
+
     .reply{
         color: #c4c4c4 !important;
     }
