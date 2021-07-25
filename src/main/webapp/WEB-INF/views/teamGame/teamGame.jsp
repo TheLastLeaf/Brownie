@@ -235,7 +235,7 @@
                             <td style="width: auto;">
                                 <!-- 나은커밋후넣기 (라벨)------------------------------------------------>
 								<label for="all">
-									<input type='radio' id="solo" name='gametype' value='all' checked="checked"/>
+									<input type='radio' id="all" name='gametype' value='all' checked="checked"/>
 									전체
 								</label>
 								<label for="solo">
