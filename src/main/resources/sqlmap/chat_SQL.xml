@@ -3,27 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.chat.service.impl.ChatMapper">
-    <select id="chatList" resultType="kr.co.brownie.chat.service.ChatVO" parameterType="hashMap">
+    <select id="chatList" resultType="kr.co.brownie.chat.service.ChatVO" parameterType="String">
         <![CDATA[
-        SELECT CHATSEQ,
-               CONTENT,
-               INDATE,
-               "UPDATE",
-               INUSERID,
-               UPUSERID,
-               TEAMGAMESEP,
-               NICKNAME
-        FROM (SELECT ROWNUM AS RN,
-                     CHATSEQ,
-                     CONTENT,
-                     INDATE,
-                     "UPDATE",
-                     INUSERID,
-                     UPUSERID,
-                     TEAMGAMESEP,
-                     NICKNAME
-              FROM (
-                       SELECT A.CHAT_SEQ AS CHATSEQ,
+        SELECT A.CHAT_SEQ AS CHATSEQ,
                               A.CONTENT AS CONTENT,
                               A.IN_DATE AS INDATE,
                               A.IN_USER_ID AS INUSERID,
@@ -34,10 +16,6 @@
                        FROM CHAT A LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID= A.IN_USER_ID)
                        WHERE B.NICK_NAME LIKE '%' || #{writer} || '%'
                        ORDER BY TEAMGAME_SEP
-                   )
-             )
-        WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN
-          AND RN <= ${contentPerPage} * ${currentPageNumber}
         ]]>
     </select>
 

@@ -4,36 +4,23 @@
 <c:import url="../layout/header.jsp"/>
 <script>
     function fn_log(){
+        const writer = $(".writer").val();
 
-        const formData = new FormData();
-        formData.append("writer",$(".writer").val());
         $.ajax({
             url: "./chatLog.ajax",
             type: "POST",
-            data: formData,
-            processData: false,
-            enctype: 'multipart/form-data',
-            contentType: false,
-            dataType: "json",
+            data: {
+                "writer" : writer
+            },
             success: function (data) {
-                console.log(data)
                 if (data.message === "success") {
-                    var log =  "<c:forEach items='${ChatPagingVO.chatVO}' var='log'>"
-                        log += "<fmt:formatDate value='${log.upDate}' type='both' pattern='yyyy-MM-dd hh:mm:ss' var='update'/>"
-                        log += "<tr>"
-                        log += "<th>${log.teamGameSep}</th>"
-                        log += "<th>${log.content}</th>"
-                        log += "<th>${log.nickName}</th>"
-                        log += "<th>${update}</th>"
-                        log += "</tr>"
-                        log += "</c:forEach>"
-                    $(".chatlog").append(log)
+
                 }else{
-                    alert("에러")
+                    alert("에러1")
                 }
             },
             error: function () {
-                alert("에러");
+                alert("에러2");
             }
         })
 

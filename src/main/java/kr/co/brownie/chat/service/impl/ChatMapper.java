@@ -11,5 +11,6 @@ public interface ChatMapper {
 
     int count();
 
-    List<ChatVO> chatList(Map<String,Object> map);
+//    List<ChatVO> chatList(Map<String,Object> map);
+    List<ChatVO> chatList(String writer);
 }
