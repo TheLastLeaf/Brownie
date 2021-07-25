@@ -165,12 +165,13 @@
 <script>
     $(document).ready(function () {
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
-        const LOL_NICK = [['${userInfo.lolId}']];
+        const LOL_NICK = '${userInfo.lolId}';
         const USER_NAME = [['${userInfo.nickName}']];
         const IN_USER_ID = '${userInfo.userId}';
         const ROOM_NUMBER = '${userInfo.roomNumber}';
 
         console.log("IN_USER_ID : "+IN_USER_ID);
+        console.log("LOL_NICK : "+LOL_NICK);
         console.log("ROOM_NUMBER : " + ROOM_NUMBER);
 
         $("#button-send").on("click", (e) => {
@@ -189,18 +190,18 @@
         websocket.onopen = onOpen;
         websocket.onclose = onClose;
 
-        // websocket.onclose = function (event) {
-        //     if (event.wasClean) {
-        //         alert("[close] 커넥션이 정상적으로 종료되었습니다(code=" + event.code + " reason=" + event.reason + ")");
-        //     } else {
-        //         // https://ko.javascript.info/websocket#ref-1158 여기에 오류 코드별 설명이 있음
-        //         // 1000 : 일반폐쇄
-        //         alert('[close] 커넥션이 죽었습니다.');
-        //     }
-        //     setTimeout(function () {
-        //         connect();
-        //     }, 1000); // retry connection!!
-        // };
+        websocket.onclose = function (event) {
+            if (event.wasClean) {
+                alert("[close] 커넥션이 정상적으로 종료되었습니다(code=" + event.code + " reason=" + event.reason + ")");
+            } else {
+                // https://ko.javascript.info/websocket#ref-1158 여기에 오류 코드별 설명이 있음
+                // 1000 : 일반폐쇄
+                alert('[close] 커넥션이 죽었습니다.');
+            }
+            setTimeout(function () {
+                connect();
+            }, 1000); // retry connection!!
+        };
 
         websocket.onerror = function (err) {
             console.log('Error:', err);
@@ -222,16 +223,17 @@
             websocket.send(str);
         }
 
-        function onClose(evt) {
-            var str = username + ": 님이 방을 나가셨습니다.:"+IN_USER_ID;
-            websocket.send(str);
-        }
+        // function onClose(evt) {
+        //     var str = USER_NAME + ": 님이 방을 나가셨습니다.:"+IN_USER_ID;
+        //     websocket.send(str);
+        // }
 
         function onMessage(msg) {
             var data = msg.data;
             var sessionId = null;
             //데이터를 보낸 사람
             var message = null;
+            var sessionLolNick = null;
             var arr = data.split(":");
 
             for (var i = 0; i < arr.length; i++) {
@@ -245,10 +247,9 @@
             sessionId = arr[0];
             message = arr[1];
             speakerId = arr[2];
+            sessionLolNick = arr[3];
 
-            console.log($('#'+speakerId)===null)
-
-            console.log("sessionID : " + sessionId + " / speakerId : " + speakerId);
+            console.log("sessionID : " + sessionId + " / speakerId : " + speakerId+ " / sessionLolNick : " + sessionLolNick);
             console.log("cur_session : " + cur_session);
             console.log("type of message : ", typeof message);
             var str = "<div class='col-6'>";
@@ -265,7 +266,7 @@
                 if($('#'+speakerId).length == 0){
                     var newUser ="<div class='user' id="+speakerId+">"
                     newUser += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
-                    newUser += "<div class='userInfo'>"+ sessionId+ "[" +  "롤닉만가져오면됨" + "]"+"</div>"
+                    newUser += "<div class='userInfo'>"+ sessionId+ "[" +  sessionLolNick + "]"+"</div>"
                     newUser += "</div>"
                     $("#chatUserList").append(newUser);
                 }

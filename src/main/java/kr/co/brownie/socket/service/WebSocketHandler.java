@@ -2,6 +2,8 @@ package kr.co.brownie.socket.service;
 
 import kr.co.brownie.teamGame.service.TeamGameService;
 import kr.co.brownie.teamGame.service.TeamGameVO;
+import kr.co.brownie.user.service.UserService;
+import kr.co.brownie.user.service.UserVO;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
@@ -18,6 +20,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Resource(name = "teamGameService")
     TeamGameService teamGameService;
 
+    @Resource(name = "userService")
+    UserService userService;
 
 
     //소켓 세션 관리를 위한 맵 : Map <"방번호", 세션리스트>
@@ -75,9 +79,13 @@ public class WebSocketHandler extends TextWebSocketHandler {
         //해당 방 번호를 가진 리스트 가져오기!
         List<WebSocketSession> sessions = userSessions.get(roomNumber);
 
+        UserVO userInfo = userService.userOneSelect(session.getAttributes().get("id").toString());
+
+        System.out.println("userInfo : " + userInfo);
+
         //리스트에 존재하는 세션을 뽑아서 메시지로 보내주기
         for (WebSocketSession sess : sessions) {
-            TextMessage msg = new TextMessage(message.getPayload());
+            TextMessage msg = new TextMessage(message.getPayload()+":"+userInfo.getLolId());
             sess.sendMessage(msg);
         }
     }
