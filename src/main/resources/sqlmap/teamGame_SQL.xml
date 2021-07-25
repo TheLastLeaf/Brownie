@@ -173,7 +173,7 @@
                    , IN_USER_ID
                    , UP_DATE
                    , UP_USER_ID)
-            VALUES ( #{positionSeq}
+            VALUES ( #{teamGameSeq}
                    , #{userId}
                    , #{positionSeq}
                    , #{position}
