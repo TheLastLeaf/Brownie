@@ -97,7 +97,6 @@ public class MiniGameController {
         for (int n : a) {
         	colorList.add(n);
         }
-        System.out.println("야 씨발");
 
         List<BrownieMarbelInfoVO> brownieMarbelInfo = new ArrayList<BrownieMarbelInfoVO>();
         List<String> landColor = new ArrayList();
@@ -128,23 +127,51 @@ public class MiniGameController {
     public Map<String, Object> rndMapCreate(@RequestParam Map<String, Object> map, Model model, HttpServletRequest response, HttpSession session, HttpServletRequest servletRequest) {
         System.out.println("!!!!맵만드는것");
         String id = (String) session.getAttribute("id");
+        BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
 
         int position = Integer.parseInt(servletRequest.getParameter("position"));
         int round = Integer.parseInt(servletRequest.getParameter("round"));
         int hp = Integer.parseInt(servletRequest.getParameter("hp"));
         String item = servletRequest.getParameter("item");
         int point = Integer.parseInt(servletRequest.getParameter("point"));
-        String quest = servletRequest.getParameter("quest");
+        String quest = player.getQuest();
         int dicetimes = Integer.parseInt(servletRequest.getParameter("dicetimes"));
         int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
         
+        HashMap<String, Object> param = new HashMap<>();
+        
+        
+        String questTemp = quest.replace("[", "");
+        questTemp = questTemp.replace("]", "");
+        String[] quests = questTemp.split(", ");
+        
+        boolean key = false;
+        
+        if (quests[0].equals("0")) {
+        	key = true;
+        }
+        
         List<Integer> list = new ArrayList<>();
-        list = addMap(list, true);
+        List<Integer> questList = new ArrayList<>();
+        
+        if (quests[1].equals("1")) {
+        	list = addMapClover(list);
+        	for (String str : quests) {
+        		questList.add(Integer.parseInt(str));
+        	}
+        	questList.set(1, 0);
+        	param.put("quest", questList.toString());
+        	System.out.println("클로버맨 " + list.toString());
+        } else {
+        	list = addMap(list, key);
+        	param.put("quest", quest);
+        }
+        
         String recentMap = list.toString();
 
         System.out.println("recentMap : " + recentMap);
         System.out.println("position : " + position);
-        HashMap<String, Object> param = new HashMap<>();
+        
 
         param.put("position", position);
         param.put("round", round);
@@ -152,18 +179,13 @@ public class MiniGameController {
         param.put("item", item);
         param.put("point", point);
         param.put("recentMap", recentMap);
-        param.put("quest", quest);
         param.put("dicetimes", dicetimes);
         param.put("recentHp", recentHp);
         param.put("userId", id);
 
         int cnt = this.miniGameService.updatePlayer(param);
-        BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
-        System.out.println("playerr" + player.getRecentMap());
 
-        //HashMap<String, Object> passmap = transMapPoint(player);
         HashMap<String, Object> passmap = transMapPoint(list);
-        //List<BrownieMarbelInfoVO> brownieMarbelInfo = this.miniGameService.getBrownieMarbelList(passmap);
         List<BrownieMarbelInfoVO> brownieMarbelInfo = new ArrayList<BrownieMarbelInfoVO>();
 
         for (int n : list) {
@@ -231,7 +253,7 @@ public class MiniGameController {
         int hp = Integer.parseInt(servletRequest.getParameter("hp"));
         String item = servletRequest.getParameter("item");
         String recentMap = servletRequest.getParameter("recentMap");
-        String quest = servletRequest.getParameter("quest");
+        String quest = player.getQuest();
         int dicetimes = Integer.parseInt(servletRequest.getParameter("dicetimes"));
         int recentHp = Integer.parseInt(servletRequest.getParameter("recentHp"));
         int pointG = player.getPoint();
@@ -244,8 +266,7 @@ public class MiniGameController {
         System.out.println(throwResult);
         System.out.println(throwType);
         //주사위 기회 줄이기
-    	dicetimes -= 1; 
-        
+        System.out.println("주사위 횟수 -------------"+dicetimes);
         
         param.put("userId", id);
         param.put("hp", hp);
@@ -257,14 +278,12 @@ public class MiniGameController {
         param.put("quest", quest);
         param.put("dicetimes", dicetimes);
         
-        //유저의 위치정보
-        int UserPosition = Integer.parseInt(servletRequest.getParameter("UserPosition"));
         //유저의 주사위 숫자
         int diceNum = Integer.parseInt(servletRequest.getParameter("diceNum"));
 
         //밟은 땅의 seq 및 오브젝트 정보
-        int ObjSeq = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
-        BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(ObjSeq);
+        int objSeq = Integer.parseInt(servletRequest.getParameter("ObjPosition"));
+        BrownieMarbelInfoVO obj = this.miniGameService.selectInfo(objSeq);
         String objName = obj.getName();
         String objDegree = obj.getDegree();
         String objKind = obj.getKind();
@@ -276,19 +295,15 @@ public class MiniGameController {
         item = item.replace("]", "");
         
         List<Integer> itemList = new ArrayList<>();
+        List<BrownieMarbelInfoVO> itemInfo = new ArrayList<BrownieMarbelInfoVO>();
+        
         if(!item.equals("")) {
         	String[] items = item.split(", ");
         
-	        for (String n : items) {
-	        	System.out.println(n);
-	        }
-	        
 	        
 	        for (String n : items) {
 	        	itemList.add(Integer.parseInt(n));
 	        }
-	        
-	        List<BrownieMarbelInfoVO> itemInfo = new ArrayList<BrownieMarbelInfoVO>();
 	
 	        for (int n : itemList) {
 	        	itemInfo.add(this.miniGameService.selectInfo(n));
@@ -296,6 +311,7 @@ public class MiniGameController {
 	        
 	        map.put("items", itemInfo);
         }
+        
         //변수저장
         String[] str = (obj.getFunction()).split(",");
         
@@ -304,23 +320,23 @@ public class MiniGameController {
         int saveCnt = 0;
         
         if(objDegree.equals("start")) {
-        	act = "시작점";
+        	act = "환전";
     		int sum = 0;
     		if(item!="") {
 				for (int n : itemList) {
 					sum += Integer.parseInt(this.miniGameService.selectInfo(n).getFunction().split(",")[0]);
+					System.out.println("환전중"+sum);
 				}
     		}
-			objName = ""+sum + " POINT";
-			pointG += sum;
+    		System.out.println("총합"+sum);
+			objName = sum + " POINT";
 			param.put("point", sum);
 			param.put("item", "[]");
 			this.miniGameService.updatePlayer(param);
         	saveCnt = this.miniGameService.modifyGamePoint(param);
-        	act = "조우";
         } else if (objDegree.equals("bad")) {
         	if (objKind.equals("attack")) {
-        		if(ObjSeq==4) {
+        		if(objSeq==4) {
         			hp -= 1;
         			recentHp += Integer.parseInt(str[0]);
         		} else {
@@ -331,27 +347,28 @@ public class MiniGameController {
             	saveCnt = this.miniGameService.updatePlayer(param);
             	
             } else if (objKind.equals("theif")) {
-            	if(ObjSeq==5) {
-        			int temp = pointG / 2;
+            	int temp = 0;
+            	if(objSeq==5) {
+        			temp = pointG / 2;
         			temp -= pointG;
-        			pointG = temp;
+        			
         		} else {
-        			pointG += Integer.parseInt(str[0])-pointG;
+        			
+        			temp = Integer.parseInt(str[0]);
         		}
-            	if(pointG<0) {
-            		pointG = 0;
+            	
+            	if(pointG+temp<0) {
+            		temp = 0;
             	}
-            	if(pointB<0) {
-            		pointB = 0;
-            	}
-            	param.put("point", pointG);
+            	
+            	param.put("point", temp);
             	saveCnt = this.miniGameService.modifyGamePoint(param);
             	
             } else if (objKind.equals("both")){
-            	if (ObjSeq==1) {
+            	if (objSeq==1) {
         			recentHp += Integer.parseInt(str[0]);
         			pointG= -100-pointG;
-        		} else if (ObjSeq==6) {
+        		} else if (objSeq==6) {
         			recentHp += Integer.parseInt(str[0]);
         			pointG = 300-pointG;
         		} else {
@@ -379,21 +396,17 @@ public class MiniGameController {
             } 
         	act = "조우";
         } else if (objDegree.equals("ne")) {
-        	if (ObjSeq==12) {
+        	if (objSeq==12) {
         		param.put("point", pointG);
         		saveCnt = this.miniGameService.modifyBPoint(param);
         		param.put("point", -pointG);
         		this.miniGameService.modifyGamePoint(param);
-        		act = "조우";
-        	} else if (ObjSeq==13) {
+        		act = "이용";
+        	} else if (objSeq==13) {
         		map.put("doubleD","double");
-        		dicetimes += 1;
-        		param.put("dicetimes", dicetimes);
-        	} else if (ObjSeq==14) {
+        	} else if (objSeq==14) {
         		map.put("oneMore","oneMore");
-        		dicetimes += 1;
-        		param.put("dicetimes", dicetimes);
-        	} else if (ObjSeq==15) {
+        	} else if (objSeq==15) {
         		if (throwType.equals("all")) {
         			if(add()) {
         				param.put("point", -pointG);
@@ -437,15 +450,15 @@ public class MiniGameController {
             	
             } else if (objKind.equals("luxury")){
             	if (itemList.size()<=8) {
-            		itemList.add(ObjSeq);
+            		itemList.add(objSeq);
             	}
             	System.out.println("itemList : "+itemList);
             	param.put("item", itemList.toString());
             	saveCnt = this.miniGameService.updatePlayer(param);
             } else if (objKind.equals("food")){
-            	 if (ObjSeq==28) {
+            	 if (objSeq==28) {
             		recentHp = hp;
-            	} else if (ObjSeq==23) {
+            	} else if (objSeq==23) {
             		hp += 1;
             		recentHp = hp;
             	} else {
@@ -460,28 +473,65 @@ public class MiniGameController {
                 param.put("recentHp", recentHp);
                 saveCnt = this.miniGameService.updatePlayer(param);
                 act = "냠냠";
-            } else if (ObjSeq==48) {
-            	act = "마주";
+            } else if (objSeq==48) {
+            	quest = "[1, 0, 0]";
+            	param.put("quest", quest);
         		recentHp = hp;
+        		param.put("recentHp", recentHp);
         		param.put("point", Integer.parseInt(str[0]));
-        		saveCnt = this.miniGameService.modifyGamePoint(param);
-            }
+        		this.miniGameService.modifyGamePoint(param);
+        		saveCnt = this.miniGameService.updatePlayer(param);
+        		act = "마주";
+            } else if (objSeq==30) {
+            	 int ins = 0;
+                 int d = (int) (Math.random() * 101);
+                 if (0 <= d && d <= 64) {
+                	 ins = 41;
+                 } else if (65 <= d && d <= 77) {
+                	 ins = 44;
+                 } else if (78 <= d && d <= 97) {
+                	 ins = 45;
+                 } else if (98 <= d && d <= 99) {
+                 	ins = 42;
+                 } else if (d==100) {
+                 	ins = 47;
+                 }
+            	if (itemList.size()<=8) {
+            		itemList.add(ins);
+            	}
+            	
+            	map.put("boxIn", ins);
+            	param.put("item", itemList.toString());
+            	saveCnt = this.miniGameService.updatePlayer(param);
+        		act = "습득";
+        		
+            } else if (objSeq==29) {
+            	if(quest.equals("[1, 0, 0]")) {
+            		quest = "[1, 1, 0]";
+            	} else {
+            		quest = "[0, 1, 0]";
+            	}
+            	param.put("quest", quest);
+        		saveCnt = this.miniGameService.updatePlayer(param);
+	    		act = "습득";
+	        }
         }
+        
+        this.miniGameService.selectPlayer(id);
         
         //로그 저장
         int cntSaveLog = 0;
         
-        if (saveCnt == 1) {
-            param.put("object", objName);
-            param.put("act", act);
-            param.put("userId", id);
-            param.put("result", str[1] + objName);
-            param.put("dicenum", diceNum);
-            param.put("round", round);
-            
-            System.out.println("param : " + param);
-            cntSaveLog = this.miniGameService.insertLog(param);
-        }
+        param.put("object", objName);
+        param.put("act", act);
+        param.put("userId", id);
+        param.put("result", str[1] + objName);
+        param.put("dicenum", diceNum);
+        param.put("round", round);
+        
+        System.out.println("param : " + param);
+        
+        cntSaveLog = this.miniGameService.insertLog(param);
         
         List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
         
@@ -491,11 +541,34 @@ public class MiniGameController {
         	log += "<p class='logWrite'><i class='far fa-clock'></i> "+vo.getTime() + "(주사위눈 : "+vo.getDicenum()+") ("+vo.getResult()+")<br>"+vo.getRound()+"-"+vo.getLogSeq()+". "+vo.getUserId()+"은(는) "+vo.getObject()+"을(를) "+vo.getAct()+"했다.</p>";
 		}
         
+        //
+        String item2 = this.miniGameService.selectPlayer(id).getItem();
+        
+        item2 = item2.replace("[", "");
+        item2 = item2.replace("]", "");
+        
+        List<Integer> itemList2 = new ArrayList<>();
+        List<BrownieMarbelInfoVO> itemInfo2 = new ArrayList<BrownieMarbelInfoVO>();
+        map.put("items", "");
+        if(!item2.equals("")) {
+        	String[] items = item2.split(", ");
+        
+	        
+	        for (String n : items) {
+	        	itemList2.add(Integer.parseInt(n));
+	        }
+	
+	        for (int n : itemList2) {
+	        	itemInfo2.add(this.miniGameService.selectInfo(n));
+	        }
+	        
+	        map.put("items", itemInfo2);
+        }
+        
         map.put("log",log);
         map.put("player",this.miniGameService.selectPlayer(id)); 
-        
     	map.put("site",this.userService.userOneSelect(id)); 
-        
+    	this.miniGameService.updatePlayer(param);
     	if(recentHp<=0) {
     		this.miniGameService.deleteLog(id);
     		int deadCnt = this.miniGameService.deleteMarblePlayer(id);
@@ -665,25 +738,25 @@ public class MiniGameController {
     		int ins = 0;
     		int d = (int) (Math.random() * 101);
     		if (94 <= d && d <= 96) {
-    			ins = 46;
+    			ins = 34;
     		} else if (0 <= d && d <= 25) {
-    			ins = 38;
+    			ins = 35;
     		} else if (26 <= d && d <= 50) {
-    			ins = 42;
+    			ins = 36;
     		} else if (51 <= d && d <= 60) {
-    			ins = 39;
+    			ins = 37;
     		} else if (61 <= d && d <= 75) {
-    			ins = 47;
+    			ins = 100;
     		} else if (76 <= d && d <= 80) {
-    			ins = 40;
+    			ins = 33;
     		} else if (81 <= d && d <= 85) {
-    			ins = 44;
+    			ins = 38;
     		} else if (86 <= d && d <= 90) {
-    			ins = 43;
+    			ins = 100;
     		} else if (91 <= d && d <= 93) {
-    			ins = 41;
+    			ins = 100;
     		} else if (97 <= d && d <= 100) {
-    			ins = 45;
+    			ins = 39;
     		}
     		list.add(ins);
     	}
@@ -692,27 +765,27 @@ public class MiniGameController {
     	Collections.shuffle(list);
     	Collections.shuffle(list);
     	
-    	if (list.contains(47)) {
+    	if (list.contains(100)) {
     		for (int i = 0; i < list.size(); i++) {
-    			if (list.get(i) == 47) {
+    			if (list.get(i) == 100) {
     				int ins = 0;
     				int d = (int) (Math.random() * 101);
     				if (d == 100) {
-    					ins = 68;
+    					ins = 47;
     				} else if (0 <= d && d <= 55) {
-    					ins = 61;
+    					ins = 40;
     				} else if (56 <= d && d <= 70) {
-    					ins = 62;
+    					ins = 41;
     				} else if (71 <= d && d <= 80) {
-    					ins = 67;
+    					ins = 46;
     				} else if (81 <= d && d <= 87) {
-    					ins = 64;
+    					ins = 43;
     				} else if (88 <= d && d <= 93) {
-    					ins = 66;
+    					ins = 45;
     				} else if (94 <= d && d <= 96) {
-    					ins = 65;
+    					ins = 44;
     				} else if (97 <= d && d <= 99) {
-    					ins = 63;
+    					ins = 42;
     				}
     				list.set(i, ins);
     			}
