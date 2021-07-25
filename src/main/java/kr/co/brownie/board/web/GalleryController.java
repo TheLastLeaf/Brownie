@@ -4,14 +4,13 @@ import kr.co.brownie.board.hit.service.BoardHitService;
 import kr.co.brownie.board.reply.service.ReplyService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
-import kr.co.brownie.fileUpload.service.FileService;
-import kr.co.brownie.leagueoflegends.champions.service.LeagueOfLegendsChampionsService;
-import kr.co.brownie.user.service.UserService;
-import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/tip")
-public class TipController {
+@RequestMapping("/gallery")
+public class GalleryController {
     @Resource(name = "boardService")
     BoardService boardService;
 
@@ -31,32 +30,29 @@ public class TipController {
     @Resource(name = "boardHitService")
     BoardHitService boardHitService;
 
-    @Resource(name = "leagueOfLegendsChampionsService")
-    LeagueOfLegendsChampionsService leagueOfLegendsChampionsService;
-
     @GetMapping("/write")
-    public String write(HttpSession httpSession,
-                        Model model) {
+    public String details_add_gallery(HttpSession httpSession,
+                                      Model model) {
         Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
-        model.addAttribute("leagueOfLegendsChampionsVOList", this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
-        model.addAttribute("boardKind", "tip");
 
-        return "board/tip/write";
+        int randomImageNumber = (int) ((Math.random() * 11) + 1);
+        model.addAttribute("randomImageNumber", randomImageNumber);
+
+        return "board/gallery/write";
     }
 
     @GetMapping({"", "/list"})
-    public String list(HttpSession httpSession,
-                       Model model,
-                       @RequestParam(defaultValue = "", required = false) String champion,
-                       @RequestParam(defaultValue = "1", required = false) int pageNum,
-                       @RequestParam(required = false) String type,
-                       @RequestParam(required = false) String query) {
+    public String galleryList(HttpSession httpSession,
+                              Model model,
+                              @RequestParam(defaultValue = "1", required = false) int pageNum,
+                              @RequestParam(required = false) String type,
+                              @RequestParam(required = false) String query) {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", httpSession.getAttribute("id"));
-        map.put("boardKind", "tip");
-        map.put("boardCategory", champion);
+        map.put("boardKind", "gallery");
         map.put("pageNum", pageNum);
-        map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
+        map.put("contentPerPage", 18);
+        model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
 
         if (type != null && !"".equals(type) && query != null && !"".equals(query)) {
             map.put(type, query);
@@ -65,20 +61,27 @@ public class TipController {
             model.addAttribute("query", query);
         }
 
-        model.addAttribute("champion", champion);
-        model.addAttribute("leagueOfLegendsChampionsVOList", this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
+        map.put("pageNum", 1);
+        map.put("contentPerPage", 4);
+        model.addAttribute("hitBoardPagingVO", boardService.selectPagingList(map));
+
+        int randomImageNumber = (int) ((Math.random() * 11) + 1);
+        model.addAttribute("randomImageNumber", randomImageNumber);
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
 
-        return "board/tip/list";
+        return "board/gallery/list";
     }
 
     @GetMapping("/details/{boardSeq}")
     public String details(@PathVariable int boardSeq,
                           HttpServletRequest httpServletRequest,
                           Model model) {
+        int randomImageNumber = (int) ((Math.random() * 11) + 1);
+        model.addAttribute("randomImageNumber", randomImageNumber);
+
         Map<String, Object> map = new HashMap<>();
         map.put("userId", httpServletRequest.getSession().getAttribute("id"));
-        map.put("boardKind", "tip");
+        map.put("boardKind", "gallery");
         map.put("boardSeq", boardSeq);
         map.put("ip", httpServletRequest.getRemoteAddr());
 
@@ -106,17 +109,19 @@ public class TipController {
         model.addAttribute("replyPagingVO", this.replyService.selectPagingList(map));
         model.addAttribute("prevNextBoardVO", this.boardService.selectPrevNextList(map));
 
-        return "board/tip/details";
+        return "board/gallery/details";
     }
 
     @GetMapping("/modify/{boardSeq}")
     public String modify(@PathVariable int boardSeq,
                          HttpSession httpSession,
                          Model model) {
+        int randomImageNumber = (int) ((Math.random() * 11) + 1);
+        model.addAttribute("randomImageNumber", randomImageNumber);
         Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
 
         Map<String, Object> map = new HashMap<>();
-        map.put("boardKind", "tip");
+        map.put("boardKind", "gallery");
         map.put("boardSeq", boardSeq);
 
         BoardVO boardVO = this.boardService.select(map);
@@ -125,9 +130,7 @@ public class TipController {
                 "작성자만 게시글을 수정할 수 있습니다.");
 
         model.addAttribute("boardVO", boardVO);
-        model.addAttribute("leagueOfLegendsChampionsVOList",
-                this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
 
-        return "board/tip/modify";
+        return "board/gallery/modify";
     }
 }

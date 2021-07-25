@@ -568,15 +568,11 @@
 		 
 	}
 	
-	 function viewItem(data) {
+	 function viewItem(items) {
 		temp="";
-		if(data.items!=null){
-			for (var i = 0; i < (data.items).length; i++) {
-			 	temp += "<img class='item' src='${pageContext.request.contextPath}/img/miniGame/"+data.items[i].degree+"/"+data.items[i].imgName+"'/>";
-			}
+		for (var i = 0; i < items.length; i++) {
+		 	temp += "<img class='item' src='${pageContext.request.contextPath}/img/miniGame/"+items[i].degree+"/"+items[i].imgName+"'/>";
 		}
-		console.log(temp);
-		
 		$('.itemList').html(temp);
 	}
 	 
@@ -619,6 +615,7 @@
     var diceSpeed = 450; // 주사위속도
     var side1 = 0;
     var flagDouble = false;
+    var flagoneMore = false;
     var listResult = [];
     
     /* 주사위 */
@@ -841,6 +838,7 @@
                 "throwType": listResult[1]            },
             success: function (data) {
                    console.log("data 삽입성공!");
+                   $(".diceNum").html("남은횟수 : "+dicetimes);
                    if(data.dead==1){
  	                   $("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/use/skull.png' />"); 
 	               	   	$("#modalTitle").html("즉 사");
@@ -863,24 +861,32 @@
                    
                    $("#logHome").html(data.log);
                    
-                   $(".diceNums").html("<p class='diceNum'>남은횟수 : "+data.player.dicetimes+"</p>");
-                   
-                   dicetimes=data.player.dicetimes;
 				   hp=data.player.hp;
                    recentHp=data.player.recentHp;
                    
-                   viewItem(data);
+                   viewItem(data.items);
                    
                    viewHp(recentHp,hp);
+                   
                    if(playerPos<0){
                 	   playerPos = 0;
                    }
                    
-					$(".modal").fadeIn();
-	           		selectmarbelInfo(playerPos,1);
+                   var inst = 1;
+                   if (objposition==30) {
+                	   inst = 2;
+                	   $(".modal").fadeIn();
+		           		selectmarbelInfo(data.boxIn, inst);
+                   } else {
+						$(".modal").fadeIn();
+		           		selectmarbelInfo(playerPos, inst);
+                   }
                    
                    if (data.doubleD) {
                 	   flagDouble = true;
+                   }
+                   if (data.oneMore) {
+                	   flagoneMore = true;
                    }
             },
             error: function () {
@@ -912,14 +918,16 @@
     }
     
     function selectmarbelInfo(landNum, typeInt) {
-    	var type = typeInt;
+    	var type = Number(typeInt);
     	var number = 0;
-    	if(landNum==0){
+    	if (Number(landNum)==0){
     		number = 0;
-    	} else if(landNum==="self") {
-    		return;
-    	} else {
+    	} else if (type==1||type==0) {
 	    	number = recentMap[Number(landNum)-1];
+    	} else if (type==2) {
+    		number = Number(landNum);
+    	} else if (landNum==="self") {
+    		return;
     	}
     	
     	
@@ -931,12 +939,16 @@
             	"type": type
             },
             success: function (data) {
-            	if(type==0){
+            	if (type==0) {
 	           		$("#modalTitle").html(data.name);
 	           		$("#modalCon").html(data.briefExpl);
 	           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.degree + "/" + data.imgName+"'/>");
-            	} else {
+            	} else if(type==1) {
 	           		$("#modalTitle").html(data.name);
+	           		$("#modalCon").html(data.detailedExpl);
+	           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.degree + "/" + data.imgName+"'/>");
+            	} else {
+            		$("#modalTitle").html("상자속에 있던것은...<br><br><br>"+data.name);
 	           		$("#modalCon").html(data.detailedExpl);
 	           		$("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/" + data.degree + "/" + data.imgName+"'/>");
             	}
@@ -953,11 +965,19 @@
     		doubleDice();
     		flagDouble = false;
     		return;
-    	}
+    	} 
+    	
+    	if (flagoneMore) {
+    		dice();
+    		flagoneMore = false;
+    		return;
+    	} 
     	
     	if(dicetimes==0){
     		alert("오늘 기회를 전부 소진했습니다!");
     		return;
+    	} else {
+    		dicetimes = dicetimes - 1;
     	}
     	
     	$('#dice-side-2').css('display', 'none');
@@ -1088,11 +1108,12 @@
         } else {
         	objposition = 0;
         }
-        if (objposition!=15){
-        	effectAct(side1);
+        
+        if (objposition==15){
+        	setTimeout('bet('+objposition+')', 1500);
+        	setTimeout('effectAct('+side1+')', 1700);
         } else {
-        	setTimeout('bet('+objposition+')', 1300);
-        	setTimeout('effectAct('+side1+')', 1400);
+        	effectAct(side1);
         }
         
         setTimeout('diceApper()', 1500);

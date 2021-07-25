@@ -6,17 +6,20 @@ import kr.co.brownie.admin.service.AdminVO;
 import kr.co.brownie.blackList.service.BlackListService;
 import kr.co.brownie.blackList.service.BlackUserService;
 import kr.co.brownie.chat.service.ChatService;
+import kr.co.brownie.chat.service.ChatVO;
 import kr.co.brownie.report.service.ReportService;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 
 @Controller
@@ -207,23 +210,14 @@ public class AdminController {
     @ResponseBody
     @PostMapping(path = "/chatLog.ajax", produces = "application/text;charset=UTF-8")
     public Object chatlog(HttpServletRequest httpServletRequest, Model model){
-        int currentPageNumber;
-        String writer = null;
-        try {
-            writer = httpServletRequest.getParameter("writer");
-            currentPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("pageNum")), 1);
-        } catch (NullPointerException | NumberFormatException e) {
-            currentPageNumber = 1;
-        }
-        JsonObject jsonObject = new JsonObject();
-        if(writer == null){
-            model.addAttribute("message","alert('검색결과가 없습니다'); location.reload();");
-            return "common/message";
-        }
-        model.addAttribute("ChatPagingVO",chatService.selectChatting(currentPageNumber,writer));
-        System.out.println(chatService.selectChatting(currentPageNumber,writer));
-        jsonObject.addProperty("message","success");
+        ModelAndView mav = new ModelAndView();
+        String writer = httpServletRequest.getParameter("writer");
+        List<ChatVO> chat = chatService.selectChatting(writer);
+        mav.addObject("chatLog",chat);
+        mav.addObject("message","success");
+        mav.setViewName("admin/adminChatList");
+        System.out.println(mav);
         //유저 리스트 셀렉트
-        return jsonObject.toString();
+        return mav;
     }
 }

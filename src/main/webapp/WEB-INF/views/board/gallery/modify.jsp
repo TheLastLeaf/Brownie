@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:import url="../layout/header.jsp"/>
+<c:import url="../../layout/header.jsp"/>
 
 <!-- -->
 
@@ -9,12 +9,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
 <script>
-    var fileName = [];
-    /*   $(function(){
-           $('.notice_content').html(
-               $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
-       });*/
-
     $(function () {
         const toolbar = [
             // 글꼴 설정
@@ -73,36 +67,9 @@
             processData: false,
             success: function (data) {
                 $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
-                fileName.push(data.url);
-                alert
             }
         });
     }
-
-    function fn_update() {
-        var title = $(".title").val();
-        var summernote = $(".summernote").val();
-
-        $.ajax({
-            url: "./ajax.galleryupdate",
-            type: "post",
-            data: {
-                "title": title,
-                "summernote": summernote,
-                "boardSeq": ${galleryVO.boardSeq},
-                "fileName": fileName[0]
-            },
-            success: function (data) {
-                if (data == 1) {
-                    location.href = 'detail?boardSeq=${galleryVO.boardSeq}'
-                }
-            },
-            error: function () {
-                alert("글이 등록되지 않았습니다.");
-            }
-        })
-    }
-
 </script>
 <style>
     .spad {
@@ -113,7 +80,6 @@
     .cont-spad {
         padding-top: 50px;
         padding-bottom: 50px;
-        height: 100%;
     }
 
     .title {
@@ -121,14 +87,6 @@
         background-color: black;
         border: 1px solid #666666;
         color: white;
-    }
-
-    .card-block {
-        height: 840px !important;
-    }
-
-    .summernote {
-        color: #666666;
     }
 
     .card {
@@ -139,6 +97,10 @@
         border: 1px solid #666666;
     }
 
+    .summernote {
+        color: #666666;
+    }
+
     .submit {
         width: 100%;
         background-color: black;
@@ -146,32 +108,27 @@
         color: white;
     }
 
-    .galleryCon {
+    .content {
         border: 1px solid #666666;
-        height: 900px;
     }
 
     .pad {
         padding-top: 10px;
     }
-
 </style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" style="height: 430px; padding-top:200px;"
-         data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${rnd}.jpg">
+         data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${randomImageNumber}.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-
                 <div class="breadcrumb-text" style="text-align: center">
                     <h3>
                         <div class="breadcrumb-text">
-                            <h3>
-                                <h1 data-heading="Brownie  Gallery" style="z-index: 5">
+                            <h1 data-heading="Brownie  Gallery" style="z-index: 5">
 									<span data-heading="Brownie  Gallery" contenteditable>
 										Brownie  Gallery </span>
-                                </h1>
-                            </h3>
+                            </h1>
                             <div class="bt-option"></div>
                         </div>
                     </h3>
@@ -190,17 +147,58 @@
                 <div class="contact-text">
                     <div class="contact-form">
                         <div class="dt-leave-comment">
-                            <input type="hidden" name="inUserId" value="${id}" id="inUserId">
-                            <div class="input-list" style="padding-bottom: 10px;">
-                                <input type="text" placeholder="Title" class="title" id="title" name="title"
-                                       required="required" value="${ galleryVO.title }">
+                            <div class="row">
+                                <div class="col-3">
+                                    <select class="w-100" name="boardCategory">
+                                        <option value="웃긴짤"
+                                                <c:if test='${boardVO.boardCategory == "웃긴짤"}'>
+                                                    selected
+                                                </c:if>
+                                        >웃긴짤
+                                        </option>
+                                        <option value="귀여운짤"
+                                                <c:if test='${boardVO.boardCategory == "귀여운짤"}'>
+                                                    selected
+                                                </c:if>
+                                        >귀여운짤
+                                        </option>
+                                        <option value="셀카"
+                                                <c:if test='${boardVO.boardCategory == "셀카"}'>
+                                                    selected
+                                                </c:if>
+                                        >셀카
+                                        </option>
+                                        <option value="카툰"
+                                                <c:if test='${boardVO.boardCategory == "카툰"}'>
+                                                    selected
+                                                </c:if>
+                                        >카툰
+                                        </option>
+                                        <option value="일러스트"
+                                                <c:if test='${boardVO.boardCategory == "일러스트"}'>
+                                                    selected
+                                                </c:if>
+                                        >일러스트
+                                        </option>
+                                        <option value="기타"
+                                                <c:if test='${boardVO.boardCategory == "기타"}'>
+                                                    selected
+                                                </c:if>
+                                        >기타
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-list col-9" style="padding-bottom: 10px;">
+                                    <input type="text" placeholder="Title" class="title" id="title" name="title"
+                                           value="${boardVO.title}" required="required">
+                                </div>
                             </div>
-                            <div class="galleryCon">
-                                <textarea style="height: height: 100%;" class="summernote"
-                                          name="summernote">${ galleryVO.content }</textarea>
+                            <div class="content">
+                                    <textarea class="summernote" name="content" id="content"
+                                              required="required">${boardVO.content}</textarea>
                             </div>
                             <div class="pad">
-                                <input onclick="fn_update()" type="submit" value="등록" class="submit">
+                                <input type="button" onclick="boardModify(${boardSeq})" value="수정" class="submit">
                             </div>
                         </div>
                     </div>
@@ -210,4 +208,4 @@
     </div>
 </section>
 <!-- Contact Section End -->
-<c:import url="../layout/footer.jsp"/>
+<c:import url="../../layout/footer.jsp"/>

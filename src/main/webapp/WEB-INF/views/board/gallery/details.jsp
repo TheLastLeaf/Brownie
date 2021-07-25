@@ -1,8 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:import url="../../layout/header.jsp"/>
+
+<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
+
 <style>
+    .dThumb {
+        height: 100px;
+    }
+
     .skewXButton {
         display: inline-block;
         padding: 4px 12px 4px 12px;
@@ -26,52 +33,83 @@
         text-transform: uppercase;
     }
 
-    .reply{
+    .reply {
         color: #c4c4c4 !important;
     }
 </style>
 
 <script>
-    function fn_report(Seq) {
-        if(${boardVO.userId} == ${sessionScope.id}){
-            alert("본인이 작성한 글은 신고할 수 없습니다.")
-            return false;
-        }
-        window.open("/report/write?Seq=" + Seq , "REPORT", "width=660, height=500, left=250,top=200");
+    function likeHateCheck(kind) {
+        console.log(${galleryVO.boardSeq})
+        console.log(kind)
+
+        $.ajax({
+            url: "./ajax.gallerylikeHate",
+            type: "get",
+            data: {
+                "boardSeq": ${galleryVO.boardSeq},
+                "inUserId": '1786827',
+                "kind": kind
+            },
+            success: function (data) {
+                $('#hateCnt').html(data.hateCnt);
+                $('#likeCnt').html(data.likeCnt);
+                console.log(data.hateCnt);
+                console.log(data.likeCnt);
+            },
+            error: function () {
+                alert("에러나요");
+            }
+        })
     }
-    function fn_replyReport(Seq,boardSeq,userId) {
-        if(userId == ${sessionScope.id}){
-            alert("본인이 작성한 댓글은 신고할 수 없습니다.")
-            return false;
+
+    function fn_delete() {
+        if (!confirm("정말 삭제하시겠습니까?")) {
+            return;
         }
-        window.open("/replyReport/write?Seq=" + Seq + "&boardSeq=" + boardSeq , "REPORT", "width=660, height=500, left=250,top=200");
+
+        $.ajax({
+            url: "./ajax.gallerydelete",
+            type: "post",
+            data: {
+                "boardSeq": ${galleryVO.boardSeq}
+            },
+            success: function (data) {
+                if (data == 1) {
+                    location.href = 'list'
+                }
+            },
+            error: function () {
+                alert("삭제실패");
+            }
+        })
     }
+
 </script>
 
-<!-- Details Hero Section Begin -->
-<section class="details-hero-section set-bg"
-         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${boardVO.boardCategory}_0.jpg">
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg spad" style="height: 430px; padding-top:200px;"
+         data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${randomImageNumber}.jpg">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6" style="background-color: rgba(0, 0, 0, 0.75);">
-                <div class="details-hero-text m-5">
-                    <div class="label"><span>${boardVO.boardCategory}</span></div>
-                    <h3>${boardVO.title}</h3>
-                    <ul>
-                        <li>by <span>${boardVO.nickName}</span></li>
-                        <li>
-                            <i class="far fa-clock"></i>
-                            ${boardVO.boardInDateToString}
-                        </li>
-                        <li><i class="fas fa-eye"></i> ${boardVO.hitCnt}</li>
-                        <li><i class="far fa-comment"></i> ${boardVO.replyCnt}</li>
-                    </ul>
+            <div class="col-lg-12 text-center">
+
+                <div class="breadcrumb-text" style="text-align: center">
+                    <h3>
+                        <div class="breadcrumb-text">
+                            <h1 data-heading="Brownie  Gallery" style="z-index: 5">
+									<span data-heading="Brownie  Gallery" contenteditable>
+										Brownie  Gallery </span>
+                            </h1>
+                            <div class="bt-option"></div>
+                        </div>
+                    </h3>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- Details Hero Section End -->
+<!-- Breadcrumb Section End -->
 
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -84,7 +122,7 @@
                         <div class="d-flex flex-row-reverse">
                             <form>
                                 <input type="hidden" name="boardSeq" value="${boardSeq}"/>
-                                <button type="button" onclick="location.href='/tip/modify/${boardSeq}'"
+                                <button type="button" onclick="location.href='/gallery/modify/${boardSeq}'"
                                         class="skewXButton position-relative ml-3 mb-3"><span>Modify</span>
                                 </button>
                                 <button type="button" class="skewXButton position-relative ml-3 mb-3"
@@ -244,7 +282,8 @@
                                     </button>
                                 </c:if>
                                 <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
-                                    <button type="button" onclick='if(confirm("정말 삭제하시겠습니까?"))replyDelete(${boardSeq}, ${replyVO.replySeq})'
+                                    <button type="button"
+                                            onclick='if(confirm("정말 삭제하시겠습니까?"))replyDelete(${boardSeq}, ${replyVO.replySeq})'
                                             class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
                                     </button>
                                 </c:if>
