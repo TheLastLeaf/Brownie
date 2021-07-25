@@ -160,9 +160,9 @@
     <insert id="insertMemberPosi">
         MERGE INTO TEAMGAME
         USING DUAL
-        ON( TEAMGAME_SEQ = #{positionSeq} AND USER_ID = #{userId} )
+        ON( TEAMGAME_SEQ = #{teamGameSeq} AND USER_ID = #{userId} )
         WHEN MATCHED THEN
-            UPDATE SET STATUS = 'y'
+            UPDATE SET STATUS = 'y', POSITION = #{position}
         WHEN NOT MATCHED THEN
             INSERT ( TEAMGAME_SEQ
                    , USER_ID
