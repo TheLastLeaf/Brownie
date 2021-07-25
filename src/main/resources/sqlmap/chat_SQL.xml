@@ -3,6 +3,27 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.chat.service.impl.ChatMapper">
+    <insert id="insertChatLog">
+        insert into chat(
+                            CHAT_SEQ
+                            ,CONTENT
+                            ,IN_DATE
+                            ,IN_USER_ID
+                            ,UP_DATE
+                            ,UP_USER_ID
+                            ,TEAMGAME_SEP
+                        )
+                    values(
+                           CHAT_SEQ.nextval
+                          ,#{content}
+                          ,sysdate
+                          ,#{inUserId}
+                          ,sysdate
+                          ,#{inUserId}
+                          ,#{teamGameSep}
+                          )
+    </insert>
+
     <select id="chatList" resultType="kr.co.brownie.chat.service.ChatVO" parameterType="String">
         <![CDATA[
         SELECT A.CHAT_SEQ AS CHATSEQ,

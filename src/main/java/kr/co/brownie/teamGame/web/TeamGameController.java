@@ -53,7 +53,7 @@ public class TeamGameController {
                 int teamGameSeq = tgvo.getTeamGameSeq(); //방번호
                 int positionSeq = tgvo.getPositionSeq(); //방에 해당하는 포지션 값
 
-                System.out.println("teamGameSeq : " + teamGameSeq + " --- positionSeq : " +  positionSeq);
+                //System.out.println("teamGameSeq : " + teamGameSeq + " --- positionSeq : " +  positionSeq);
                 //해당 방에 해당하는 포지션 시퀀스 넣음
                 TeamGameVO posiList = teamGameService.selectTeamGamePosition(positionSeq);
                 teamPosition.put(teamGameSeq, posiList);

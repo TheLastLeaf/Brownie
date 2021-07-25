@@ -1,5 +1,7 @@
 package kr.co.brownie.socket.service;
 
+import kr.co.brownie.chat.service.ChatService;
+import kr.co.brownie.chat.service.ChatVO;
 import kr.co.brownie.teamGame.service.TeamGameService;
 import kr.co.brownie.teamGame.service.TeamGameVO;
 import kr.co.brownie.user.service.UserService;
@@ -23,6 +25,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Resource(name = "userService")
     UserService userService;
 
+    @Resource(name = "chatService")
+    ChatService chatService;
 
     //소켓 세션 관리를 위한 맵 : Map <"방번호", 세션리스트>
     //방 번호 : uri=ws://192.168.41.27/WebEcho?roomNumber=1 에서 roomNumber에 해당함
@@ -66,8 +70,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
         System.out.println("방주소 : " + session.getUri() + " / 글자수 : " + message.getPayloadLength());
         System.out.println("session.getAttributes() : " + session.getAttributes());
 
-        //여기서 받아온 메시지 그대로 삽입해주면 됨
-
 
 
         //여기는 받아온 메시지를 전달해주는 구간! 해당하는 세션으로 보내주기 위해서 세션 판별이 필요함
@@ -79,9 +81,21 @@ public class WebSocketHandler extends TextWebSocketHandler {
         //해당 방 번호를 가진 리스트 가져오기!
         List<WebSocketSession> sessions = userSessions.get(roomNumber);
 
-        UserVO userInfo = userService.userOneSelect(session.getAttributes().get("id").toString());
+        //메시지 디비에 삽입
+        String[] chatLogArr = message.getPayload().split(":");
+//        ChatVO chatLog = new ChatVO();
+//        chatLog.setContent(chatLogArr[1]);
+//        chatLog.setInUserId(chatLogArr[2]);
+//        chatLog.setTeamGameSep(roomNumber);
+        Map<String, Object> chatLog = new HashMap<>();
+        chatLog.put("content",chatLogArr[1]);
+        chatLog.put("inUserId",chatLogArr[2]);
+        chatLog.put("teamGameSep",roomNumber);
+        chatService.insertChatLog(chatLog);
 
-        System.out.println("userInfo : " + userInfo);
+
+        //유저 롤 아이디 가져오기용
+        UserVO userInfo = userService.userOneSelect(session.getAttributes().get("id").toString());
 
         //리스트에 존재하는 세션을 뽑아서 메시지로 보내주기
         for (WebSocketSession sess : sessions) {

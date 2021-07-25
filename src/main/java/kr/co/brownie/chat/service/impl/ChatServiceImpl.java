@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 @Service("chatService")
 public class ChatServiceImpl implements ChatService {
@@ -15,6 +16,11 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public List<ChatVO> selectChatting(String writer) {
         return chatMapper.chatList(writer);
+    }
+
+    @Override
+    public void insertChatLog(Map<String, Object> map) {
+        chatMapper.insertChatLog(map);
     }
 
 //    @Override
