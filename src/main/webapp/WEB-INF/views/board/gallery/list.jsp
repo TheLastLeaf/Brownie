@@ -149,7 +149,9 @@
                         <div class="col-lg-3">
                             <div class="cg-item">
                                 <div class="cg-pic set-bg thumbnail"
-                                     data-setbg="${boardVO.imgSrc}">
+                                     data-setbg="${boardVO.imgSrc}"
+                                     onclick="location.href='${pageContext.request.contextPath}/gallery/details/${boardVO.boardSeq}'"
+                                     style="cursor: pointer;">
                                     <c:if test='${boardVO.boardCategory != null and boardVO.boardCategory != ""}'>
                                         <div class="label">
                                             <span>${boardVO.boardCategory}</span>
@@ -158,7 +160,7 @@
                                 </div>
                                 <div class="cg-text">
                                     <h5>
-                                        <a href="#">${boardVO.title}</a>
+                                        <a href="${pageContext.request.contextPath}/gallery/details/${boardVO.boardSeq}">${boardVO.title}</a>
                                     </h5>
                                     <ul>
                                         <li>by <span>${boardVO.nickName}</span></li>
@@ -188,7 +190,8 @@
                                 <div class="cg-item">
                                     <div class="cg-pic set-bg thumbnail"
                                          data-setbg="${boardVO.imgSrc}"
-                                         onclick="location.href='${pageContext.request.contextPath}/gallery/details/${boardVO.boardSeq}'">
+                                         onclick="location.href='${pageContext.request.contextPath}/gallery/details/${boardVO.boardSeq}'"
+                                         style="cursor: pointer;">
                                         <c:if test='${boardVO.boardCategory != null and boardVO.boardCategory != ""}'>
                                             <div class="label">
                                                 <span>${boardVO.boardCategory}</span>
