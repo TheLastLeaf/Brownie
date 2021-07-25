@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:import url="../layout/header.jsp"/>
+<c:import url="../../layout/header.jsp"/>
 
 <!-- -->
 
@@ -9,12 +9,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
 <script>
-    var fileName = [];
-    /*   $(function(){
-           $('.notice_content').html(
-               $('.notice_content').html().replaceAll('\r','').replaceAll('\n','<br>'))
-       });*/
-
     $(function () {
         const toolbar = [
             // 글꼴 설정
@@ -73,35 +67,9 @@
             processData: false,
             success: function (data) {
                 $(el).summernote('editor.insertImage', '${pageContext.request.contextPath}' + data.url);
-                fileName.push(data.url);
             }
         });
     }
-
-    function fn_add() {
-        var title = $(".title").val();
-        var summernote = $(".summernote").val();
-
-        $.ajax({
-            url: "./ajax.galleryadd",
-            type: "post",
-            data: {
-                "title": title,
-                "summernote": summernote,
-                "fileName": fileName[0]
-            },
-            success: function (data) {
-                if (data == 1) {
-                    history.back();
-                    //location.href=''
-                }
-            },
-            error: function () {
-                alert("글이 등록되지 않았습니다.");
-            }
-        })
-    }
-
 </script>
 <style>
     .spad {
@@ -157,20 +125,17 @@
 </style>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" style="height: 430px; padding-top:200px;"
-         data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${rnd}.jpg">
+         data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${randomImageNumber}.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
-
-                <div class="breadcrumb-text" style="text-align: center">
+                <div class="breadcrumb-text text-center">
                     <h3>
                         <div class="breadcrumb-text">
-                            <h3>
-                                <h1 data-heading="Brownie  Gallery" style="z-index: 5">
+                            <h1 data-heading="Brownie  Gallery" style="z-index: 5">
 									<span data-heading="Brownie  Gallery" contenteditable>
 										Brownie  Gallery </span>
-                                </h1>
-                            </h3>
+                            </h1>
                             <div class="bt-option"></div>
                         </div>
                     </h3>
@@ -189,16 +154,28 @@
                 <div class="contact-text">
                     <div class="contact-form">
                         <div class="dt-leave-comment">
-                            <input type="hidden" name="inUserId" value="${id}" id="inUserId">
-                            <div class="input-list" style="padding-bottom: 10px;">
-                                <input type="text" placeholder="Title" class="title" id="title" name="title"
-                                       required="required">
+                            <div class="row">
+                                <div class="col-3">
+                                    <select class="w-100" name="boardCategory">
+                                        <option value="웃긴짤">웃긴짤</option>
+                                        <option value="귀여운짤">귀여운짤</option>
+                                        <option value="셀카">셀카</option>
+                                        <option value="카툰">카툰</option>
+                                        <option value="일러스트">일러스트</option>
+                                        <option value="기타">기타</option>
+                                    </select>
+                                </div>
+                                <div class="input-list col-9" style="padding-bottom: 10px;">
+                                    <input type="text" placeholder="Title" class="title" id="title" name="title"
+                                           required="required">
+                                </div>
                             </div>
-                            <div class="galleryCon">
-                                <textarea class="summernote" name="summernote"></textarea>
+                            <div class="content">
+                                    <textarea class="summernote" name="content" id="content"
+                                              required="required"></textarea>
                             </div>
                             <div class="pad">
-                                <input onclick="fn_add()" type="submit" value="등록" class="submit">
+                                <input type="button" onclick="boardWrite()" value="등록" class="submit">
                             </div>
                         </div>
                     </div>
@@ -208,4 +185,4 @@
     </div>
 </section>
 <!-- Contact Section End -->
-<c:import url="../layout/footer.jsp"/>
+<c:import url="../../layout/footer.jsp"/>
