@@ -17,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -45,8 +47,8 @@ public class AdminController {
 
 
     @GetMapping(path = {"", "/adminView"})
-    public String adminView(Model model, HttpServletRequest httpServletRequest) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+    public String adminView(HttpSession httpSession, Model model) {
+        if (httpSession.getAttribute("id") == null || (int) httpSession.getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
@@ -209,15 +211,37 @@ public class AdminController {
 
     @ResponseBody
     @PostMapping(path = "/chatLog.ajax", produces = "application/text;charset=UTF-8")
-    public Object chatlog(HttpServletRequest httpServletRequest, Model model){
-        ModelAndView mav = new ModelAndView();
-        String writer = httpServletRequest.getParameter("writer");
-        List<ChatVO> chat = chatService.selectChatting(writer);
-        mav.addObject("chatLog",chat);
-        mav.addObject("message","success");
-        mav.setViewName("admin/adminChatList");
-        System.out.println(mav);
-        //유저 리스트 셀렉트
-        return mav;
+    public Object chatlog(HttpSession httpSession,
+                          @RequestParam Map<String, Object> map){
+        // Map<String, Object> map: String userId, String TeamGameSeq
+
+        JsonObject jsonObject = new JsonObject();
+
+        if (httpSession.getAttribute("id") == null) {
+            jsonObject.addProperty("status", "ng");
+            jsonObject.addProperty("status", "권한이 없습니다.");
+        } else {
+            map.put("id", httpSession.getAttribute("id"));
+
+            List<ChatVO> chatVOList = chatService.selectChatting(map.get("userId").toString());
+            if (chatVOList == null || chatVOList.size() == 0) {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("status", "신고할 내용이 없습니다.");
+            } else {
+                StringBuilder content = new StringBuilder();
+                for (ChatVO chat : chatVOList) {
+                    content.append("<p>").append(chat.getNickName()).append(": ").append(chat.getContent()).append("</p>");
+                }
+                map.put("content", content);
+
+                if (reportService.insert(map) == 1) {
+                    jsonObject.addProperty("message", "ok");
+                } else {
+                    jsonObject.addProperty("status", "ng");
+                    jsonObject.addProperty("status", "신고가 접수되지 않았습니다.");
+                }
+            }
+        }
+        return jsonObject.toString();
     }
 }
