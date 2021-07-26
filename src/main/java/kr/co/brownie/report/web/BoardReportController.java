@@ -1,8 +1,8 @@
 package kr.co.brownie.report.web;
 
 import com.google.gson.JsonObject;
-import kr.co.brownie.board.reply.service.ReplyService;
-import kr.co.brownie.board.reply.service.ReplyVO;
+import kr.co.brownie.board.service.BoardService;
+import kr.co.brownie.board.service.BoardVO;
 import kr.co.brownie.report.service.ReportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,32 +15,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/replyReport")
-public class ReportController {
+@RequestMapping("/report")
+public class BoardReportController {
 
     @Resource(name = "reportService")
     ReportService reportService;
 
-    @Resource(name = "replyService")
-    ReplyService replyService;
+    @Resource(name = "boardService")
+    BoardService boardService;
 
     @GetMapping("/write")
     public String report(HttpServletRequest request, Model model, HttpSession session) {
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         String Seq = request.getParameter("Seq");
-        int replySeq = Integer.parseInt(Seq);
-        String bSeq = request.getParameter("boardSeq");
-        int boardSeq = Integer.parseInt(bSeq);
-        map.put("replySeq",replySeq);
+        int boardSeq = Integer.parseInt(Seq);
         map.put("boardSeq",boardSeq);
-
-        ReplyVO replyVO = replyService.select(map);
-        model.addAttribute("replyVO",replyVO);
-        return "board/report/replyReport";
+        BoardVO boardVO = boardService.select(map);
+        model.addAttribute("boardVO",boardVO);
+        return "report/boardReport";
     }
 
     @ResponseBody
-    @PostMapping(path = "/reportReply" , produces = "application/text;charset=UTF-8")
+    @PostMapping(path = "/reportBoard", produces = "application/text;charset=UTF-8")
     public Object reportPost(@RequestParam Map<String, Object> map, HttpSession session, HttpServletRequest servletRequest) {
         String id = (String) session.getAttribute("id");
         JsonObject jsonObject = new JsonObject();
@@ -49,10 +45,10 @@ public class ReportController {
             return "loginCheck";
         } else {
             if (reportService.insert(map) == 1) {
-                jsonObject.addProperty("message","success");
+                jsonObject.addProperty("message", "success");
                 return jsonObject.toString();
             } else {
-                jsonObject.addProperty("message","fail");
+                jsonObject.addProperty("message", "fail");
                 return jsonObject.toString();
             }
         }
