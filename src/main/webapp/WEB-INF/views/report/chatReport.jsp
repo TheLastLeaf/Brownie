@@ -33,6 +33,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
     <script>
         function fn_log() {
+            let reportName = [];
+            $.each($("input[name=reportName]:checked"), function() {
+                reportName.push($(this).val());
+            })
+
             $.ajax({
                 url: "/report/chat/report.ajax",
                 type: "POST",
@@ -40,7 +45,7 @@
                     userId: ${userId},
                     teamGameSeq: ${teamGameSeq},
                     content: $("textarea").val(),
-                    reportName: $("input[name=reportName]:selected").val()
+                    reportName: reportName.toString()
                 },
                 dataType: "json",
                 success: function (data) {
@@ -102,21 +107,21 @@
         <div class="col-12 text-center">
             <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${userVO.nickName}</h5>
             <div class="form-check">
-                <input class="form-check-input reportName" type="checkbox" value="욕설" name="reportName" id="abuse" required>
+                <input class="form-check-input reportName" type="checkbox" value="욕설" name="reportName" id="abuse">
                 <label class="form-check-label" for="abuse">
                     욕설
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input reportName" type="checkbox" value="부적절한 내용" name="reportName"
-                       id="abusecon" required>
+                       id="abusecon">
                 <label class="form-check-label" for="abusecon">
                     부적절한 내용
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input reportName" type="checkbox" value="부적절한 아이디" name="reportName"
-                       id="abuseId" required>
+                       id="abuseId">
                 <label class="form-check-label" for="abuseId">
                     부적절한 아이디
                 </label>

@@ -68,9 +68,8 @@ public class ChatReportController {
                 StringBuilder log = new StringBuilder();
                 for (ChatVO chat : chatVOList) {
                     log.append("<p>").append(chat.getNickName()).append(": ").append(chat.getContent()).append("</p>");
-
                 }
-                map.put("log", log);
+                map.put("log", log.toString());
 
                 System.out.println(map);
                 if (reportService.insert(map) == 1) {
