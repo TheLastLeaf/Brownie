@@ -28,7 +28,7 @@ public class ChatReportController {
     @Resource(name="reportService")
     ReportService reportService;
 
-    @GetMapping("/chatList")
+    @GetMapping("")
     public String chatList(HttpServletRequest httpServletRequest,
                            Model model,
                            @RequestParam Map<String, Object> map) {
@@ -46,13 +46,13 @@ public class ChatReportController {
     }
 
     @ResponseBody
-    @PostMapping(path = "/chatLog.ajax", produces = "application/text;charset=UTF-8")
+    @PostMapping(path = "/report.ajax", produces = "application/text;charset=UTF-8")
     public Object chatLog(HttpSession httpSession,
                           @RequestParam Map<String, Object> map) {
         // Map<String, Object> map: String userId, String TeamGameSeq
+        System.out.println(map);
 
         JsonObject jsonObject = new JsonObject();
-
         if (httpSession.getAttribute("id") == null) {
             jsonObject.addProperty("status", "ng");
             jsonObject.addProperty("message", "권한이 없습니다.");
@@ -72,6 +72,7 @@ public class ChatReportController {
                 }
                 map.put("log", log);
 
+                System.out.println(map);
                 if (reportService.insert(map) == 1) {
                     jsonObject.addProperty("message", "ok");
                 } else {

@@ -4,39 +4,37 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.chat.service.impl.ChatMapper">
     <insert id="insertChatLog">
-        insert into chat(
-                            CHAT_SEQ
-                            ,CONTENT
-                            ,IN_DATE
-                            ,IN_USER_ID
-                            ,UP_DATE
-                            ,UP_USER_ID
-                            ,TEAMGAME_SEP
-                        )
-                    values(
-                           CHAT_SEQ.nextval
-                          ,#{content}
-                          ,sysdate
-                          ,#{inUserId}
-                          ,sysdate
-                          ,#{inUserId}
-                          ,#{teamGameSep}
-                          )
+        insert into chat( CHAT_SEQ
+                        , CONTENT
+                        , IN_DATE
+                        , IN_USER_ID
+                        , UP_DATE
+                        , UP_USER_ID
+                        , TEAMGAME_SEP)
+        values ( CHAT_SEQ.nextval
+               , #{content}
+               , sysdate
+               , #{inUserId}
+               , sysdate
+               , #{inUserId}
+               , #{teamGameSep})
     </insert>
 
     <select id="chatList" resultType="kr.co.brownie.chat.service.ChatVO" parameterType="String">
         <![CDATA[
-        SELECT A.CHAT_SEQ AS CHATSEQ,
-                              A.CONTENT AS CONTENT,
-                              A.IN_DATE AS INDATE,
-                              A.IN_USER_ID AS INUSERID,
-                              A.UP_DATE AS "UPDATE",
-                              A.UP_USER_ID AS UPUSERID,
-                              A.TEAMGAME_SEP AS TEAMGAMESEP,
-                              B.NICK_NAME AS NICKNAME
-                       FROM CHAT A LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID= A.IN_USER_ID)
-                       WHERE B.NICK_NAME LIKE '%' || #{writer} || '%'
-                       ORDER BY TEAMGAME_SEP
+        SELECT A.CHAT_SEQ     AS CHATSEQ,
+               A.CONTENT      AS CONTENT,
+               A.IN_DATE      AS INDATE,
+               A.IN_USER_ID   AS INUSERID,
+               A.UP_DATE      AS "UPDATE",
+               A.UP_USER_ID   AS UPUSERID,
+               A.TEAMGAME_SEP AS TEAMGAMESEP,
+               B.NICK_NAME    AS NICKNAME
+        FROM CHAT A
+                 LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.IN_USER_ID)
+        WHERE A.IN_USER_ID = ${userId}
+          AND A.TEAMGAME_SEP = ${teamGameSeq}
+        ORDER BY TEAMGAME_SEP
         ]]>
     </select>
 

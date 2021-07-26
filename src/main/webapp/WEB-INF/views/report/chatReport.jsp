@@ -34,15 +34,17 @@
     <script>
         function fn_log() {
             $.ajax({
-                url: "./chatLog.ajax",
+                url: "/report/chat/report.ajax",
                 type: "POST",
                 data: {
                     userId: ${userId},
                     teamGameSeq: ${teamGameSeq},
-                    content: $("#content").html(),
+                    content: $("textarea").val(),
                     reportName: $("input[name=reportName]:selected").val()
                 },
+                dataType: "json",
                 success: function (data) {
+                    console.log(data);
                     if (data.status === "ng") {
                         alert(data.message);
 
@@ -122,11 +124,11 @@
             <p>
                 <b class="font-family-maple-bold">신고내용</b>
                 <br/>
-                <textarea cols="30" rows="5" id="content" name="content" class="content"></textarea>
+                <textarea cols="30" rows="5" id="content" name="content" class="content" required></textarea>
             <div id="content_cnt">(0 / 1000)</div>
             </p>
             <div class="submit">
-                <input type="button" value="신고하기" class="btn btn-light" onclick="fn_submit()">
+                <input type="button" value="신고하기" class="btn btn-light" onclick="fn_log()">
             </div>
         </div>
     </div>
