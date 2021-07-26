@@ -261,25 +261,25 @@
                             <th>희망 포지션</th>
                             <td>
                                 <!-- 나은커밋후넣기 (라벨)------------------------------------------------>
-								<label for="top">
-									<input type='checkbox' id="top" name='position' value='top' />
+								<label for="topP">
+									<input type='checkbox' id="topP" name='position' value='t' />
 									탑
 								</label>
-								<label for="jun">
-									<input type='checkbox' id="jun" name='position' value='jun' />
+								<label for="junP">
+									<input type='checkbox' id="junP" name='position' value='j' />
 									정글
 								</label>
-								<label for="mid">
-									<input type='checkbox' id="mid" name='position' value='mid' />
+								<label for="midP">
+									<input type='checkbox' id="midP" name='position' value='m' />
 									미드
 								</label>
-								<label for="bot">
-									<input type='checkbox' id="bot" name='position' value='bot' />
+								<label for="botP">
+									<input type='checkbox' id="botP" name='position' value='b' />
 									바텀
 								</label>
-								<label id="sup">
-									<input type='checkbox' id="sup" name='position' value='sup' />
-									젓가락
+								<label id="supP">
+									<input type='checkbox' id="supP" name='position' value='s' />
+									서포터
 								</label>
 								<!-- 나은커밋후넣기 (라벨)------------------------------------------------>
                             </td>

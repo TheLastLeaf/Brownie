@@ -119,19 +119,19 @@
 						<if test='searchGameType != "all" and searchGameType != ""'>
 								AND match_Mode = #{searchGameType}
 						</if>
-                        <if test='searchPositions.contains("top")'>
+                        <if test='searchPositions.contains("t")'>
                              AND UPPER(TOP) = 'N'
                          </if>
-                         <if test='searchPositions.contains("jun")'>
+                         <if test='searchPositions.contains("j")'>
                              AND UPPER(JUN) = 'N'
                          </if>
-                         <if test='searchPositions.contains("mid")'>
+                         <if test='searchPositions.contains("m")'>
                              AND UPPER(MID) = 'N'
                          </if>
-                         <if test='searchPositions.contains("bot")'>
+                         <if test='searchPositions.contains("b")'>
                              AND UPPER(BOT) = 'N'
                          </if>
-                         <if test='searchPositions.contains("sup")'>
+                         <if test='searchPositions.contains("s")'>
                              AND UPPER(SUP) = 'N'
                          </if>
                   </where>
