@@ -13,5 +13,5 @@ public interface ChatMapper {
 
     void insertChatLog(Map<String,Object> map);
 
-    List<ChatVO> chatList(String writer);
+    List<ChatVO> chatList(Map<String, Object> map);
 }

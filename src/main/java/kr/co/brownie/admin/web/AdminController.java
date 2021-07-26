@@ -223,7 +223,7 @@ public class AdminController {
         } else {
             map.put("id", httpSession.getAttribute("id"));
 
-            List<ChatVO> chatVOList = chatService.selectChatting(map.get("userId").toString());
+            List<ChatVO> chatVOList = chatService.selectChatting(map);
             if (chatVOList == null || chatVOList.size() == 0) {
                 jsonObject.addProperty("status", "ng");
                 jsonObject.addProperty("status", "신고할 내용이 없습니다.");

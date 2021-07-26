@@ -9,7 +9,7 @@ public interface ChatService {
 //
 //    ChatPagingVO selectChatting(int currentPageNumber,String writer);
 
-    List<ChatVO> selectChatting(String writer);
+    List<ChatVO> selectChatting(Map<String, Object> map);
 
     void insertChatLog(Map<String,Object> map);
 

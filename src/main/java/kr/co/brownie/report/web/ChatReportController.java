@@ -59,7 +59,7 @@ public class ChatReportController {
         } else {
             map.put("id", httpSession.getAttribute("id"));
 
-            List<ChatVO> chatVOList = chatService.selectChatting(map.get("userId").toString());
+            List<ChatVO> chatVOList = chatService.selectChatting(map);
             System.out.println(chatVOList);
             if (chatVOList == null || chatVOList.size() == 0) {
                 jsonObject.addProperty("status", "ng");

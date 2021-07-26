@@ -20,7 +20,7 @@
                , #{teamGameSep})
     </insert>
 
-    <select id="chatList" resultType="kr.co.brownie.chat.service.ChatVO" parameterType="String">
+    <select id="chatList" resultType="kr.co.brownie.chat.service.ChatVO" parameterType="hashMap">
         <![CDATA[
         SELECT A.CHAT_SEQ     AS CHATSEQ,
                A.CONTENT      AS CONTENT,

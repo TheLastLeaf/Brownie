@@ -14,8 +14,8 @@ public class ChatServiceImpl implements ChatService {
     ChatMapper chatMapper;
 
     @Override
-    public List<ChatVO> selectChatting(String writer) {
-        return chatMapper.chatList(writer);
+    public List<ChatVO> selectChatting(Map<String, Object> map) {
+        return chatMapper.chatList(map);
     }
 
     @Override
