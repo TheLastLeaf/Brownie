@@ -88,7 +88,7 @@
                                                         <div class="sm-icon"><i class="fas fa-comment-dots"></i></div>
                                                         <span class="adminMenu"
                                                               onclick="location.href='admin/chatList'">채팅 내역</span>
-                                                        <div class="follow">${chatCount.chatcount}명</div>
+                                                        <div class="follow">${chatCount.chatcount}건</div>
                                                     </li>
                                                 </ul>
                                             </div>

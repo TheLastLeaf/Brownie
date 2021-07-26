@@ -45,7 +45,6 @@ public class AdminController {
     @Resource(name = "chatService")
     ChatService chatService;
 
-
     @GetMapping(path = {"", "/adminView"})
     public String adminView(HttpSession httpSession, Model model) {
         if (httpSession.getAttribute("id") == null || (int) httpSession.getAttribute("permit_level") != 9) {
@@ -101,7 +100,6 @@ public class AdminController {
         //유저 리스트 셀렉트
         return "admin/adminMemberList"; //회원 리스트 화면
     }
-
 
     @GetMapping("/adminBlackList")
     public String adminBlackList(Model model, HttpServletRequest httpServletRequest) {
@@ -204,44 +202,15 @@ public class AdminController {
     }
 
     @GetMapping("/chatList")
-    public String chatList(HttpServletRequest httpServletRequest, Model model){
-
-        return "admin/adminChatList";
-    }
-
-    @ResponseBody
-    @PostMapping(path = "/chatLog.ajax", produces = "application/text;charset=UTF-8")
-    public Object chatlog(HttpSession httpSession,
-                          @RequestParam Map<String, Object> map){
-        // Map<String, Object> map: String userId, String TeamGameSeq
-
-        JsonObject jsonObject = new JsonObject();
-
-        if (httpSession.getAttribute("id") == null) {
-            jsonObject.addProperty("status", "ng");
-            jsonObject.addProperty("status", "권한이 없습니다.");
-        } else {
-            map.put("id", httpSession.getAttribute("id"));
-
-            List<ChatVO> chatVOList = chatService.selectChatting(map);
-            if (chatVOList == null || chatVOList.size() == 0) {
-                jsonObject.addProperty("status", "ng");
-                jsonObject.addProperty("status", "신고할 내용이 없습니다.");
-            } else {
-                StringBuilder content = new StringBuilder();
-                for (ChatVO chat : chatVOList) {
-                    content.append("<p>").append(chat.getNickName()).append(": ").append(chat.getContent()).append("</p>");
-                }
-                map.put("content", content);
-
-                if (reportService.insert(map) == 1) {
-                    jsonObject.addProperty("message", "ok");
-                } else {
-                    jsonObject.addProperty("status", "ng");
-                    jsonObject.addProperty("status", "신고가 접수되지 않았습니다.");
-                }
-            }
+    public String chatList(HttpServletRequest httpServletRequest,
+                           Model model,
+                           @RequestParam Map<String,Object> map){
+        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+            model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
+            return "common/message";
         }
-        return jsonObject.toString();
+        List<ChatVO> chatVOList = chatService.selectChatting(map);
+        model.addAttribute("chatVOList",chatVOList);
+        return "admin/adminChatList";
     }
 }

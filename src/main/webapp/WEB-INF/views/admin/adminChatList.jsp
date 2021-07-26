@@ -2,31 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
-<script>
-    function fn_log(){
-        const writer = $(".writer").val();
 
-        $.ajax({
-            url: "./chatLog.ajax",
-            type: "POST",
-            data: {
-                "writer" : writer
-            },
-            success: function (data) {
-                if (data.message === "success") {
-
-                }else{
-                    alert("에러1")
-                }
-            },
-            error: function () {
-                alert("에러2");
-            }
-        })
-
-    }
-
-</script>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
          data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/kayle.png">
@@ -66,7 +42,7 @@
                  style="justify-content: center; align-content: center; text-align: center; color:white;">
                 <div class="innerBox text-right">
                     <input type="text" class="writer" name="writer" id="writer" style="background-color: black; border:1px solid #666666; color: white;">
-                    <button type="button" class="btn btn-outline-light" onclick="fn_log()">검색</button>
+                    <button type="button" class="btn btn-outline-light" onclick='location.href = "?nickName=" + $("#writer").val()'>검색</button>
                 </div>
                 <div class="">
                     <table border="1px solid grey" style="margin: auto;">
@@ -76,25 +52,15 @@
                             <th>작성자</th>
                             <th>날짜</th>
                         </tr>
-                        <tr class="chatlog">
-
-                        </tr>
+                        <c:forEach items="${chatVOList}" var="chatVO">
+                            <tr class="chatlog">
+                                <th>${chatVO.teamGameSep}</th>
+                                <th>${chatVO.content}</th>
+                                <th>${chatVO.nickName}</th>
+                                <th>${chatVO.chatInDateToString}</th>
+                            </tr>
+                        </c:forEach>
                     </table>
-<%--                    <div class="chatLogPageBottom">--%>
-<%--                        <div class="pagination-item">--%>
-<%--                            <c:if test="${1 < ChatPagingVO.startPageNumber}">--%>
-<%--                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${ChatPagingVO.startPageNumber - 1}"><span>Prev</span></a>--%>
-<%--                            </c:if>--%>
-<%--                            <c:forEach var="pageNumber" begin="${ChatPagingVO.startPageNumber}"--%>
-<%--                                       end="${ChatPagingVO.endPageNumber}">--%>
-<%--                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${pageNumber}"><span>${pageNumber}</span></a>--%>
-<%--                            </c:forEach>--%>
-<%--                            <c:if test="${ChatPagingVO.endPageNumber < ChatPagingVO.totalPageNumber}">--%>
-<%--                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${ChatPagingVO.endPageNumber + 1}"><span>Next</span></a>--%>
-<%--                            </c:if>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-
                 </div>
             </div>
         </div>

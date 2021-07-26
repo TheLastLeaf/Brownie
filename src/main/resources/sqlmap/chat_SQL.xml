@@ -32,8 +32,19 @@
                B.NICK_NAME    AS NICKNAME
         FROM CHAT A
                  LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID = A.IN_USER_ID)
-        WHERE A.IN_USER_ID = ${userId}
-          AND A.TEAMGAME_SEP = ${teamGameSeq}
+        ]]>
+        <where>
+            <if test='userId != null and userId != ""'>
+                A.IN_USER_ID = #{userId}
+            </if>
+            <if test='nickName != null and nickName != ""'>
+                AND B.NICK_NAME = #{nickName}
+            </if>
+            <if test='teamGameSeq != null and teamGameSeq != ""'>
+                AND A.TEAMGAME_SEP = #{teamGameSeq}
+            </if>
+        </where>
+        <![CDATA[
         ORDER BY TEAMGAME_SEP
         ]]>
     </select>
@@ -42,5 +53,6 @@
         SELECT COUNT(*)
         FROM CHAT
     </select>
+
 
 </mapper>

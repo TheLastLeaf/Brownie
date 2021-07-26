@@ -49,7 +49,6 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
                     if (data.status === "ng") {
                         alert(data.message);
 
