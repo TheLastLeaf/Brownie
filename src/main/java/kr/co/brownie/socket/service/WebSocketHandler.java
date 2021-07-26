@@ -29,7 +29,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     ChatService chatService;
 
     //소켓 세션 관리를 위한 맵 : Map <"방번호", 세션리스트>
-    //방 번호 : uri=ws://192.168.41.27/WebEcho?roomNumber=1 에서 roomNumber에 해당함
+    //방 번호 : uri=ws:// + window.location.host + /WebEcho?roomNumber=1 에서 roomNumber에 해당함
     //세션리스트 : 같은 페이지를 공유하고 있는 사람들의 세션이 들어감
     Map<String, List> userSessions = new HashMap<>();
 

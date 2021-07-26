@@ -38,55 +38,6 @@
     }
 </style>
 
-<script>
-    function likeHateCheck(kind) {
-        console.log(${galleryVO.boardSeq})
-        console.log(kind)
-
-        $.ajax({
-            url: "./ajax.gallerylikeHate",
-            type: "get",
-            data: {
-                "boardSeq": ${galleryVO.boardSeq},
-                "inUserId": '1786827',
-                "kind": kind
-            },
-            success: function (data) {
-                $('#hateCnt').html(data.hateCnt);
-                $('#likeCnt').html(data.likeCnt);
-                console.log(data.hateCnt);
-                console.log(data.likeCnt);
-            },
-            error: function () {
-                alert("에러나요");
-            }
-        })
-    }
-
-    function fn_delete() {
-        if (!confirm("정말 삭제하시겠습니까?")) {
-            return;
-        }
-
-        $.ajax({
-            url: "./ajax.gallerydelete",
-            type: "post",
-            data: {
-                "boardSeq": ${galleryVO.boardSeq}
-            },
-            success: function (data) {
-                if (data == 1) {
-                    location.href = 'list'
-                }
-            },
-            error: function () {
-                alert("삭제실패");
-            }
-        })
-    }
-
-</script>
-
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" style="height: 430px; padding-top:200px;"
          data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${randomImageNumber}.jpg">

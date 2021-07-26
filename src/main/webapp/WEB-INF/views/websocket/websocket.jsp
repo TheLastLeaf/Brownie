@@ -22,7 +22,7 @@
         });
 
         //이게 방 주소
-        const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=1");
+        const websocket = new WebSocket("ws://" + window.location.host + ":80/WebEcho?roomNumber=1");
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
         websocket.onclose = onClose;

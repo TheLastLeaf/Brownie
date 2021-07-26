@@ -273,7 +273,7 @@
     }
     function openRoom(roomNumber, nickName, lolId, position){
         var chatPop= document.roomInfo;
-        var url = 'http://192.168.41.27/websocket/chat2';
+        var url = '/websocket/chat2';
         window.open('','chatingRoom' + roomNumber,'width=1000, height=700, scroll=no, left=500, top=250');
 
         chatPop.method = 'post';

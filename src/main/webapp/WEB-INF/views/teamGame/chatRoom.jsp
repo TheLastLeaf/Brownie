@@ -170,22 +170,23 @@
         const IN_USER_ID = '${userInfo.userId}';
         const ROOM_NUMBER = '${userInfo.roomNumber}';
 
-        console.log("IN_USER_ID : "+IN_USER_ID);
-        console.log("LOL_NICK : "+LOL_NICK);
+        console.log("IN_USER_ID : " + IN_USER_ID);
+        console.log("LOL_NICK : " + LOL_NICK);
         console.log("ROOM_NUMBER : " + ROOM_NUMBER);
 
         $("#button-send").on("click", (e) => {
             send();
         });
-        $(document).bind('keypress',pressed);
+        $(document).bind('keypress', pressed);
+
         function pressed(e) {
-            if(e.keyCode === 13) {
+            if (e.keyCode === 13) {
                 send();
             }
         }
 
         //이게 방 주소
-        const websocket = new WebSocket("ws://192.168.41.27:80/WebEcho?roomNumber=" + ROOM_NUMBER);
+        const websocket = new WebSocket("ws://" + window.location.host + ":80/WebEcho?roomNumber=" + ROOM_NUMBER);
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
         websocket.onclose = onClose;
@@ -219,7 +220,7 @@
 
         //채팅창에 들어왔을 때 이건 잘 됨
         function onOpen(evt) {
-            var str = USER_NAME + ": 님이 입장하셨습니다.:"+IN_USER_ID;
+            var str = USER_NAME + ": 님이 입장하셨습니다.:" + IN_USER_ID;
             websocket.send(str);
         }
 
@@ -249,7 +250,7 @@
             speakerId = arr[2];
             sessionLolNick = arr[3];
 
-            console.log("sessionID : " + sessionId + " / speakerId : " + speakerId+ " / sessionLolNick : " + sessionLolNick);
+            console.log("sessionID : " + sessionId + " / speakerId : " + speakerId + " / sessionLolNick : " + sessionLolNick);
             console.log("cur_session : " + cur_session);
             console.log("type of message : ", typeof message);
             var str = "<div class='col-6'>";
@@ -258,15 +259,15 @@
             str += "</div></div>";
             $("#chatBox").append(str);
 
-            if(message === " 님이 입장하셨습니다."){
+            if (message === " 님이 입장하셨습니다.") {
                 console.log("입장했댄다")
                 //포지션 받아서 div 아이디로 줄 건지 아닌지 고민
 
                 //유저아이디를 가진 div가 있을 경우 추가하지않음 없을경우 추가해줌
-                if($('#'+speakerId).length == 0){
-                    var newUser ="<div class='user' id="+speakerId+">"
+                if ($('#' + speakerId).length == 0) {
+                    var newUser = "<div class='user' id=" + speakerId + ">"
                     newUser += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
-                    newUser += "<div class='userInfo'>"+ sessionId+ "[" +  sessionLolNick + "]"+"</div>"
+                    newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
                     newUser += "</div>"
                     $("#chatUserList").append(newUser);
                 }
@@ -277,7 +278,7 @@
             }, 100);
         }
 
-        function addMemName(){
+        function addMemName() {
             //이게 동작할 때 마다 해당 섹션을 지우고 새 리스트를 받아와서 삽입이 가능한가?
             //시도해보자
             $.ajax({
@@ -285,7 +286,7 @@
                 type: "POST",
                 data: {
                     "userId": IN_USER_ID
-                    ,"TEAMGAME_SEQ": ROOM_NUMBER
+                    , "TEAMGAME_SEQ": ROOM_NUMBER
                 },
                 success: function (data) {
                     console.log("ajax Success")
@@ -293,10 +294,10 @@
                     // $("#chatUserList").load(location.href + "#chatUserList");
                     var responseData = JSON.parse(data);
 
-                    var userListStr ="<div class='user'>"
+                    var userListStr = "<div class='user'>"
                     userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
                     //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
-                    userListStr += "<div class='userInfo'>"+responseData.nickName+ "[" + responseData.lolId + "]"+"</div>"
+                    userListStr += "<div class='userInfo'>" + responseData.nickName + "[" + responseData.lolId + "]" + "</div>"
                     userListStr += "</div>"
                     $("#chatUserList").empty();
                     $("#chatUserList").append(userListStr);
@@ -324,8 +325,8 @@
             <div class="enterBox row">
                 <input type="text" id="msg" class="form-control" aria-label="Recipient's username"
                        aria-describedby="button-addon2">
-<%--                <button type="button" class="btn btn-success btn-outline-secondary" id="button-send2">전송</button>--%>
-                <input type="sumbit" value="전송" class="btn btn-success btn-outline-secondary" id="button-send" />
+                <%--                <button type="button" class="btn btn-success btn-outline-secondary" id="button-send2">전송</button>--%>
+                <input type="sumbit" value="전송" class="btn btn-success btn-outline-secondary" id="button-send"/>
             </div>
         </div>
 
