@@ -4,7 +4,6 @@ import kr.co.brownie.board.hit.service.BoardHitService;
 import kr.co.brownie.board.reply.service.ReplyService;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.board.service.BoardVO;
-import kr.co.brownie.fileUpload.service.FileService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.Assert;

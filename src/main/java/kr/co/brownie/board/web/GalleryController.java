@@ -61,13 +61,12 @@ public class GalleryController {
             model.addAttribute("query", query);
         }
 
-        map.put("pageNum", 1);
-        map.put("contentPerPage", 4);
-        model.addAttribute("hitBoardPagingVO", boardService.selectPagingList(map));
+        map.put("days", 7);
+        map.put("limit", 4);
+        model.addAttribute("boardVOListOrderByLike", boardService.selectListOrderByLike(map));
 
         int randomImageNumber = (int) ((Math.random() * 11) + 1);
         model.addAttribute("randomImageNumber", randomImageNumber);
-        model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
 
         return "board/gallery/list";
     }

@@ -122,54 +122,73 @@
                     console.log(data)
                     let headerNoticeSection = "";
                     let headerTipSection = "";
+                    let headerGallerySection = "";
                     let headerFreeSection = "";
-                    $.each(data.noticeVOList, function (index, jsonArr) {
+                    $.each(data.noticeBoardVOList, function (index, boardVO) {
                         headerNoticeSection += "<div class=\"mw-post-item\">"
                             + "<div class=\"mw-pic col-xl-\">"
-                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "<img src=\"" + boardVO.imgSrc + "\" alt=\"\">"
                             + "</div>"
                             + "<div class=\"mw-text\">"
                             + "<h6>"
-                            + "<a href=\"${pageContext.request.contextPath}/notice/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "<a href=\"${pageContext.request.contextPath}/notice/details/" + boardVO.boardSeq + "\">" + boardVO.title + "</a>"
                             + "</h6>"
                             + "<ul>"
-                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDateToString + "</li>"
+                            + "<li><i class=\"far fa-clock\"></i> " + boardVO.boardInDateToString + "</li>"
                             + "</ul>"
                             + "</div>"
                             + "</div>"
                     });
                     $("#header-notice-section").html(headerNoticeSection);
 
-                    $.each(data.tipVOList, function (index, jsonArr) {
+                    $.each(data.tipBoardVOList, function (index, boardVO) {
                         headerTipSection += "<div class=\"mw-post-item\">"
                             + "<div class=\"mw-pic col-xl-\">"
-                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "<img src=\"" + boardVO.imgSrc + "\" alt=\"\">"
                             + "</div>"
                             + "<div class=\"mw-text\">"
                             + "<h6>"
-                            + "<a href=\"${pageContext.request.contextPath}/tip/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "<a href=\"${pageContext.request.contextPath}/tip/details/" + boardVO.boardSeq + "\">" + boardVO.title + "</a>"
                             + "</h6>"
                             + "<ul>"
-                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDateToString + "</li>"
-                            + "<li><i class=\"far fa-comment\"></i> " + jsonArr.replyCnt + "</li>"
+                            + "<li><i class=\"far fa-clock\"></i> " + boardVO.boardInDateToString + "</li>"
+                            + "<li><i class=\"far fa-comment\"></i> " + boardVO.replyCnt + "</li>"
                             + "</ul>"
                             + "</div>"
                             + "</div>"
                     });
                     $("#header-tip-section").html(headerTipSection);
 
-                    $.each(data.freeVOList, function (index, jsonArr) {
-                        headerFreeSection += "<div class=\"mw-post-item\">"
+                    $.each(data.galleryBoardVOList, function (index, boardVO) {
+                        headerGallerySection += "<div class=\"mw-post-item\">"
                             + "<div class=\"mw-pic col-xl-\">"
-                            + "<img src=\"" + jsonArr.imgSrc + "\" alt=\"\">"
+                            + "<img src=\"" + boardVO.imgSrc + "\" alt=\"\">"
                             + "</div>"
                             + "<div class=\"mw-text\">"
                             + "<h6>"
-                            + "<a href=\"${pageContext.request.contextPath}/free/details/" + jsonArr.boardSeq + "\">" + jsonArr.title + "</a>"
+                            + "<a href=\"${pageContext.request.contextPath}/gallery/details/" + boardVO.boardSeq + "\">" + boardVO.title + "</a>"
                             + "</h6>"
                             + "<ul>"
-                            + "<li><i class=\"far fa-clock\"></i> " + jsonArr.boardInDateToString + "</li>"
-                            + "<li><i class=\"far fa-comment\"></i> " + jsonArr.replyCnt + "</li>"
+                            + "<li><i class=\"far fa-clock\"></i> " + boardVO.boardInDateToString + "</li>"
+                            + "<li><i class=\"far fa-comment\"></i> " + boardVO.replyCnt + "</li>"
+                            + "</ul>"
+                            + "</div>"
+                            + "</div>"
+                    });
+                    $("#header-gallery-section").html(headerGallerySection);
+
+                    $.each(data.freeBoardVOList, function (index, boardVO) {
+                        headerFreeSection += "<div class=\"mw-post-item\">"
+                            + "<div class=\"mw-pic col-xl-\">"
+                            + "<img src=\"" + boardVO.imgSrc + "\" alt=\"\">"
+                            + "</div>"
+                            + "<div class=\"mw-text\">"
+                            + "<h6>"
+                            + "<a href=\"${pageContext.request.contextPath}/free/details/" + boardVO.boardSeq + "\">" + boardVO.title + "</a>"
+                            + "</h6>"
+                            + "<ul>"
+                            + "<li><i class=\"far fa-clock\"></i> " + boardVO.boardInDateToString + "</li>"
+                            + "<li><i class=\"far fa-comment\"></i> " + boardVO.replyCnt + "</li>"
                             + "</ul>"
                             + "</div>"
                             + "</div>"
@@ -521,7 +540,7 @@
                     <li class="mega-menu"><a href="${pageContext.request.contextPath}/gallery"><span>FANART
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
-                            <div class="mw-post">
+                            <div id="header-gallery-section" class="mw-post">
                                 <div class="mw-post-item">
                                     <div class="mw-pic col-xl-">
                                         <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"

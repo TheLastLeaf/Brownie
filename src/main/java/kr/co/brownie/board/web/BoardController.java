@@ -157,7 +157,7 @@ public class BoardController {
                 jsonArray.add(subJsonObject);
             }
 
-            jsonObject.add("noticeVOList", jsonArray);
+            jsonObject.add("noticeBoardVOList", jsonArray);
         }
 
         {
@@ -174,7 +174,24 @@ public class BoardController {
                 subJsonObject.addProperty("boardInDateToString", boardVO.getBoardInDateToString());
                 jsonArray.add(subJsonObject);
             }
-            jsonObject.add("tipVOList", jsonArray);
+            jsonObject.add("tipBoardVOList", jsonArray);
+        }
+
+        {
+            JsonArray jsonArray = new JsonArray();
+
+            Map<String, Object> map = new HashMap<>();
+            map.put("boardKind", "gallery");
+            map.put("days", 30);
+            map.put("limit", 5);
+
+            for (BoardVO boardVO : this.boardService.selectListOrderByLike(map)) {
+                JsonObject subJsonObject = gson.fromJson(gson.toJson(boardVO), JsonObject.class);
+                subJsonObject.addProperty("imgSrc", boardVO.getImgSrc());
+                subJsonObject.addProperty("boardInDateToString", boardVO.getBoardInDateToString());
+                jsonArray.add(subJsonObject);
+            }
+            jsonObject.add("galleryBoardVOList", jsonArray);
         }
 
         {
@@ -191,7 +208,7 @@ public class BoardController {
                 subJsonObject.addProperty("boardInDateToString", boardVO.getBoardInDateToString());
                 jsonArray.add(subJsonObject);
             }
-            jsonObject.add("freeVOList", jsonArray);
+            jsonObject.add("freeBoardVOList", jsonArray);
         }
 
         return jsonObject.toString();

@@ -145,7 +145,7 @@
                         <h3 class="text-white">이주의 베스트</h3>
                     </div>
 
-                    <c:forEach var="boardVO" items="${hitBoardPagingVO.boardVOList}">
+                    <c:forEach var="boardVO" items="${boardVOListOrderByLike}">
                         <div class="col-lg-3">
                             <div class="cg-item">
                                 <div class="cg-pic set-bg thumbnail"
