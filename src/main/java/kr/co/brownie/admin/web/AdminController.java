@@ -79,7 +79,7 @@ public class AdminController {
         model.addAttribute("todayUser", todayUser);
 
         AdminVO chatCount = adminService.chatCount();
-        model.addAttribute("chatCount",chatCount);
+        model.addAttribute("chatCount", chatCount);
 
 
         return "admin/adminView"; //관리자 화면 기본
@@ -205,7 +205,7 @@ public class AdminController {
     @GetMapping("/chatList")
     public String chatList(HttpServletRequest httpServletRequest,
                            Model model,
-                           @RequestParam Map<String,Object> map){
+                           @RequestParam Map<String, Object> map) {
         if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
@@ -221,21 +221,21 @@ public class AdminController {
 
             model.addAttribute("nickName", map.get("nickName"));
         }
-        model.addAttribute("chatVOList",chatService.chatAllList(currentPageNumber,(String)map.get("nickName")));
+        model.addAttribute("chatVOList", chatService.chatAllList(currentPageNumber, (String) map.get("nickName")));
 
         return "admin/adminChatList";
     }
 
     @ResponseBody
     @PostMapping("deleteReport.ajax")
-    public Object deleteReport(@RequestParam int reportSeq){
+    public Object deleteReport(@RequestParam int reportSeq) {
         int cnt = reportService.deleteReport(reportSeq);
         return cnt;
     }
 
     @GetMapping("reportDetail")
-    public String reportDetail(@RequestParam int reportSeq,Model model){
-        model.addAttribute("reportDetail",reportService.selectOneReport(reportSeq));
+    public String reportDetail(@RequestParam int reportSeq, Model model) {
+        model.addAttribute("reportDetail", reportService.selectOneReport(reportSeq));
         return "admin/reportDetail";
     }
 }
