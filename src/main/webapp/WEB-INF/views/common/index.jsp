@@ -300,36 +300,36 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="un-big-item set-bg"
-                                             data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
+                                             data-setbg="${galleryBoardVOList[0].imgSrc}">
                                             <div class="ub-text">
                                                 <div class="label">
                                                     <span>Best Art</span>
                                                 </div>
                                                 <h5>
-                                                    <a href="#">쓰레쉬 한번 그려봤습니ㅏ</a>
+                                                    <a href="${pageContext.request.contextPath}/gallery/details/${galleryBoardVOList[0].boardSeq}">${galleryBoardVOList[0].title}</a>
                                                 </h5>
                                                 <ul>
-                                                    <li>by <span>ㄹㄹㄹ</span></li>
-                                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                                    <li><i class="far fa-comment"></i> 20</li>
+                                                    <li>by <span>${galleryBoardVOList[0].nickName}</span></li>
+                                                    <li><i class="far fa-clock"></i> ${galleryBoardVOList[0].boardInDateToString}</li>
+                                                    <li><i class="far fa-comment"></i> ${galleryBoardVOList[0].replyCnt}</li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="un-big-item set-bg"
-                                             data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
+                                             data-setbg="${galleryBoardVOList[1].imgSrc}">
                                             <div class="ub-text">
                                                 <div class="label">
                                                     <span>Best Art</span>
                                                 </div>
                                                 <h5>
-                                                    <a href="#">징크스 귀여워</a>
+                                                    <a href="${pageContext.request.contextPath}/gallery/details/${galleryBoardVOList[1].boardSeq}">${galleryBoardVOList[0].title}</a>
                                                 </h5>
                                                 <ul>
-                                                    <li>by <span>351</span></li>
-                                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                                    <li><i class="far fa-comment"></i> 20</li>
+                                                    <li>by <span>${galleryBoardVOList[1].nickName}</span></li>
+                                                    <li><i class="far fa-clock"></i> ${galleryBoardVOList[1].boardInDateToString}</li>
+                                                    <li><i class="far fa-comment"></i> ${galleryBoardVOList[1].replyCnt}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -339,15 +339,15 @@
                                     <div class="col-4">
                                         <div class="un-item">
                                             <div class="un_pic set-bg"
-                                                 data-setbg="${pageContext.request.contextPath}/img/news/news-3.jpg">
+                                                 data-setbg="${galleryBoardVOList[2].imgSrc}">
                                             </div>
                                             <div class="un_text">
                                                 <h6>
-                                                    <a href="#">ㅂ배고프고 졸리다</a>
+                                                    <a href="${pageContext.request.contextPath}/gallery/details/${galleryBoardVOList[2].boardSeq}">${galleryBoardVOList[2].title}</a>
                                                 </h6>
                                                 <ul>
-                                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                                    <li><i class="far fa-comment"></i> 20</li>
+                                                    <li><i class="far fa-clock"></i> ${galleryBoardVOList[2].boardInDateToString}</li>
+                                                    <li><i class="far fa-comment"></i> ${galleryBoardVOList[2].replyCnt}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -355,15 +355,15 @@
                                     <div class="col-4">
                                         <div class="un-item">
                                             <div class="un_pic set-bg"
-                                                 data-setbg="${pageContext.request.contextPath}/img/news/news-4.jpg">
+                                                 data-setbg="${galleryBoardVOList[3].imgSrc}">
                                             </div>
                                             <div class="un_text">
                                                 <h6>
-                                                    <a href="#">눕고싶다 눈이 시려워</a>
+                                                    <a href="${pageContext.request.contextPath}/gallery/details/${galleryBoardVOList[3].boardSeq}">${galleryBoardVOList[3].title}</a>
                                                 </h6>
                                                 <ul>
-                                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                                    <li><i class="far fa-comment"></i> 20</li>
+                                                    <li><i class="far fa-clock"></i> ${galleryBoardVOList[3].boardInDateToString}</li>
+                                                    <li><i class="far fa-comment"></i> ${galleryBoardVOList[3].replyCnt}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -371,83 +371,15 @@
                                     <div class="col-4">
                                         <div class="un-item">
                                             <div class="un_pic set-bg"
-                                                 data-setbg="${pageContext.request.contextPath}/img/news/news-2.jpg">
+                                                 data-setbg="${galleryBoardVOList[4].imgSrc}">
                                             </div>
                                             <div class="un_text">
                                                 <h6>
-                                                    <a href="#">낡고 지친 노인</a>
+                                                    <a href="${pageContext.request.contextPath}/gallery/details/${galleryBoardVOList[4].boardSeq}">${galleryBoardVOList[4].title}</a>
                                                 </h6>
                                                 <ul>
-                                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                                    <li><i class="far fa-comment"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="un-big-item set-bg"
-                                     data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
-                                    <div class="ub-text">
-                                        <div class="label">
-                                            <span>Best of Best</span>
-                                        </div>
-                                        <h5>
-                                            <a href="#">롤 팬아트 공모전 당선작</a>
-                                        </h5>
-                                        <ul>
-                                            <li>by <span>ㅎㄱㄷㄴ</span></li>
-                                            <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                            <li><i class="far fa-comment"></i> 20</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4">
-                                        <div class="un-item">
-                                            <div class="un_pic set-bg"
-                                                 data-setbg="${pageContext.request.contextPath}/img/news/news-3.jpg">
-                                            </div>
-                                            <div class="un_text">
-                                                <h6>
-                                                    <a href="#">꿔바로우</a>
-                                                </h6>
-                                                <ul>
-                                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                                    <li><i class="far fa-comment"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="un-item">
-                                            <div class="un_pic set-bg"
-                                                 data-setbg="${pageContext.request.contextPath}/img/news/news-4.jpg">
-                                            </div>
-                                            <div class="un_text">
-                                                <h6>
-                                                    <a href="#">마라탕</a>
-                                                </h6>
-                                                <ul>
-                                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                                    <li><i class="far fa-comment"></i> 20</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="un-item">
-                                            <div class="un_pic set-bg"
-                                                 data-setbg="${pageContext.request.contextPath}/img/news/news-2.jpg">
-                                            </div>
-                                            <div class="un_text">
-                                                <h6>
-                                                    <a href="#">굴국밥</a>
-                                                </h6>
-                                                <ul>
-                                                    <li><i class="far fa-clock"></i> Aug 01, 2019</li>
-                                                    <li><i class="far fa-comment"></i> 20</li>
+                                                    <li><i class="far fa-clock"></i> ${galleryBoardVOList[4].boardInDateToString}</li>
+                                                    <li><i class="far fa-comment"></i> ${galleryBoardVOList[4].replyCnt}</li>
                                                 </ul>
                                             </div>
                                         </div>

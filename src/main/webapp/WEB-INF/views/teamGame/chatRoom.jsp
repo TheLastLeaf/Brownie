@@ -166,13 +166,7 @@
         float: right;
         padding: 2px;
         margin: 10px 3px 0px;
-    }
-
-    .act-btn {
-
-    }
-
-
+    } 
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -311,6 +305,10 @@
     	window.open("/teamGame/search?title="+lolId, "search",
         "width=1100px, height=700px, left=450px,top=120px");
     }
+
+    function fn_chatReport(userId,teamGameSeq){
+        window.open("/report/chat?userId=" + userId + "&teamGameSeq=" + teamGameSeq, "REPORT", "width=660, height=500, left=250,top=200");
+    }
 </script>
 
 <body>
@@ -338,14 +336,14 @@
                 <div class="user" id="${memList.userId}">
                     <span>
                         <img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>
-<%--                        <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>--%>
                     </span>
                     <span class='act-btn'>
-                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick=""/>
+                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick="fn_chatReport('${memList.userId}','${memList.teamGameSeq}')"/>
                         <c:set var = "lolId" value = "${memList.lolId}"/>
                         <c:if test = '${not fn:contains(lolId, "_")}'>
                         <input type='sumbit' value='정보' id="${memList.lolId}" class='user-act-btn btn btn-outline-secondary' onclick="fn_isSearch(this.id)"/>
                         </c:if>
+
                     </span>
                     <div class="userInfo"><span class="memNick">${memList.nickName}</span> [${memList.lolId}]</div>
                 </div>

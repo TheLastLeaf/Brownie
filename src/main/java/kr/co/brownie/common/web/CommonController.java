@@ -7,7 +7,6 @@ import kr.co.brownie.blackList.service.BlackUserVO;
 import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.common.service.CommonService;
 import kr.co.brownie.user.service.UserService;
-import kr.co.brownie.user.service.UserVO;
 import kr.co.brownie.youtube.service.YouTubeService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -72,6 +71,12 @@ public class CommonController {
             e.printStackTrace();
         }
 
+        map.put("boardKind", "gallery");
+        map.put("days", 30);
+        map.put("limit", 5);
+
+        model.addAttribute("galleryBoardVOList",this.boardService.selectListOrderByLike(map));
+
         return "common/index";
     }
 
@@ -110,6 +115,58 @@ public class CommonController {
     public String login(HttpServletRequest httpServletRequest) {
         String redirectUrl = httpServletRequest.getScheme() + "://" + httpServletRequest.getServerName() + ":" + httpServletRequest.getServerPort() + "/oauth";
         return authService.getAuthorize(redirectUrl);
+    }
+
+    @GetMapping("/login/{id}")
+    public String loginUsingUserId(HttpSession httpSession,
+                                   RedirectAttributes redirectAttributes,
+                                   @PathVariable String id) {
+        try {
+            /*로그인 시 회원의 아이디가 블랙유저인지 확인*/
+            BlackUserVO blackUserVO = blackUserService.oneBlackUser(id);
+
+            if (blackUserVO != null) {
+                redirectAttributes.addFlashAttribute("blackUserVO", blackUserVO);
+                return "redirect:/";
+            }
+
+            httpSession.setAttribute("id", id);
+
+            /* 첫 로그인 세웅 */
+            // 소환사명 및 세팅
+            String tempLolNick = "익명의소환사_" + (int) (Math.random() * 100 + 1);
+            String tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 100 + 1);
+            String position = "[empty]";
+            // 경험치 테이블 세팅
+            int exp = 0;
+            // REVIEW 테이블 세팅
+            int reviewSeq = 1;
+            int starCnt = 0;
+            String reply = "empty";
+            String writeUserId = "admin";
+
+            // 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
+
+
+            /* service 호출해서 집어넣기 */
+            authService.insertUser(id, tempLolNick, tempBrownieNick, position);
+            authService.insertReview(reviewSeq, id, starCnt, reply, writeUserId);
+
+            /* 첫 로그인일 경우 권한 레벨 및 사이트 레벨 지정, 유저가 존재해야 삽입가능*/
+            authService.insertPermitLevel(id);
+            authService.insertExp(id, exp);
+
+            /* 로그인 할 때 권한 레벨 세션에 넣어줘야 게시글 조회 시 사용 */
+            int permitlevel = authService.permitLevel(id);
+            httpSession.setAttribute("permit_level", permitlevel);
+
+            String nickName = authService.nickName(id);
+            httpSession.setAttribute("nickname" , nickName);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
