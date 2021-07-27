@@ -155,6 +155,15 @@
              BROWNIE_POINT = #{browniePoint}
             ,UP_DATE = sysdate
             ,UP_USER_ID = #{userId}
+        WHERE USER_ID = #{userId}
+    </update>
+
+    <update id="usePointForChat" parameterType="hashMap">
+        update BROWNIE_USER set
+             BROWNIE_POINT = BROWNIE_POINT - #{browniePoint}
+            ,UP_DATE = sysdate
+            ,UP_USER_ID = #{userId}
+        WHERE USER_ID = #{userId}
     </update>
 
     <select id="userList" parameterType="hashMap" resultType="kr.co.brownie.user.service.UserVO">

@@ -52,4 +52,6 @@ public interface UserService {
     int saveLolId(Map<String, Object> map);
 
     void updatePoint(Map<String, Object> map);
+
+    void usePointForChat(Map<String, Object> map);
 }
