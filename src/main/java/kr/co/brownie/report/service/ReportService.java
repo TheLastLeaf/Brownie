@@ -10,4 +10,8 @@ public interface ReportService {
     int insert(Map<String, Object> map);
 
     int update(int reportSeq, String id);
+
+    int deleteReport(int reportSeq);
+
+    ReportVO selectOneReport(int reportSeq);
 }
