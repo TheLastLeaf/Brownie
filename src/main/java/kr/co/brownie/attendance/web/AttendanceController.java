@@ -3,6 +3,7 @@ package kr.co.brownie.attendance.web;
 import com.google.gson.JsonObject;
 import kr.co.brownie.attendance.service.AttendanceService;
 import kr.co.brownie.attendance.service.AttendanceVO;
+import kr.co.brownie.user.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,9 @@ public class AttendanceController {
 
     @Resource(name = "attendanceService")
     AttendanceService attendanceService;
+
+    @Resource(name = "userService")
+    UserService userService;
 
     @GetMapping(path = {"", "/day"})
     public String dayView(Model model, HttpSession session) {
@@ -50,7 +54,8 @@ public class AttendanceController {
 
     @ResponseBody
     @PostMapping(path = "/ajax.dayCheck", produces = "application/text;charset=UTF-8")
-    public String ajaxDayCheck(HttpSession session) {
+    public String ajaxDayCheck(HttpSession session, @RequestParam Map<String, Object> map) {
+        System.out.println("dayyyyyyyyyyyyyy : "+map );
         JsonObject jsonObject = new JsonObject();
         if (session.getAttribute("id") == null) {
             jsonObject.addProperty("status", "ng");
@@ -58,14 +63,23 @@ public class AttendanceController {
         } else {
             if (attendanceService.insertOne(session.getAttribute("id").toString()) == 1) {
                 jsonObject.addProperty("status", "ok");
+
+                Map<String, Object> dayCheck = new HashMap<>();
+                dayCheck.put("userId", session.getAttribute("id").toString());
+                dayCheck.put("browniePoint",map.get("browniePoint").toString());
+                userService.updatePoint(dayCheck);
+
+                System.out.println("day complete");
+
             } else {
                 jsonObject.addProperty("status", "ng");
                 jsonObject.addProperty("message", "출석체크 중 문제가 발생했습니다.");
             }
         }
-
         return jsonObject.toString();
     }
+
+
 
     public HashMap<String, Integer> dateForDayMethod() {
         Calendar cal = Calendar.getInstance();
