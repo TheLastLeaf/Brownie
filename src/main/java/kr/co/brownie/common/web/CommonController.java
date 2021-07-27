@@ -147,7 +147,7 @@ public class CommonController {
                 String tempBrownieNick;
                 do {
                     tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 10000 + 1);
-                } while (userService.validating(tempLolNick) == 1);
+                } while (userService.validating(tempBrownieNick) == 1);
                 String position = "[empty]";
                 // 경험치 테이블 세팅
                 int exp = 0;
@@ -270,6 +270,32 @@ public class CommonController {
             e.printStackTrace();
             jsonObject.addProperty("status", "ng");
             jsonObject.addProperty("message", "오류가 발생했습니다. 잠시 뒤 시도해주세요.");
+        }
+
+        return jsonObject.toString();
+    }
+
+    @PostMapping(path = "/authCancel", produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String authCancle(HttpSession httpSession) {
+        JsonObject jsonObject = new JsonObject();
+        Map<String, Object> map = new HashMap<>();
+
+        String lolId = "익명_" + (int) (Math.random() * 10000 + 1);
+        map.put("lolId", lolId);
+
+        map.put("userId", httpSession.getAttribute("id"));
+        try {
+            if (this.userService.deleteLolId(map) == 1) {
+                jsonObject.addProperty("status", "ok");
+            } else {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("message", "문제가 발생했습니다.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonObject.addProperty("status", "ng");
+            jsonObject.addProperty("message", "문제가 발생했습니다.");
         }
 
         return jsonObject.toString();

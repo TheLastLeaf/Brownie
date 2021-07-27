@@ -138,6 +138,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int deleteLolId(Map<String, Object> map) {
+        return this.userMapper.deleteLolId(map);
+    }
+
+    @Override
     public void updatePoint(Map<String, Object> map) {
         userMapper.updatePoint(map);
     }
