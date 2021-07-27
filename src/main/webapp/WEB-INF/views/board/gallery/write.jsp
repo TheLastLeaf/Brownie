@@ -4,10 +4,6 @@
 
 <!-- -->
 
-<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
-
 <script>
     $(function () {
         const toolbar = [
@@ -147,10 +143,10 @@
 <!-- Breadcrumb Section End -->
 
 <!-- Contact Section Begin -->
-<section class="contact-section cont-spad">
+<section class="details-post-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 p-0">
                 <div class="contact-text">
                     <div class="contact-form">
                         <div class="dt-leave-comment">

@@ -2,17 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../../layout/header.jsp"/>
 
-<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
-
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
-
-
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" style="height: 500px; padding-top:200px;"
          data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${randomImageNumber}.jpg">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-12 text-center">
                 <div class="breadcrumb-text text-center">
                     <h3>
                         <div class="breadcrumb-text">
@@ -137,16 +132,16 @@
 <section class="categories-grid-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 p-0">
+            <div class="col-12 p-0">
 
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         <hr class="gallery_hr">
                         <h3 class="text-white">이주의 베스트</h3>
                     </div>
 
                     <c:forEach var="boardVO" items="${boardVOListOrderByLike}">
-                        <div class="col-lg-3">
+                        <div class="col-3">
                             <div class="cg-item">
                                 <div class="cg-pic set-bg thumbnail"
                                      data-setbg="${boardVO.imgSrc}"
@@ -172,11 +167,11 @@
                         </div>
                     </c:forEach>
 
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         <hr class="gallery_hr">
                         <c:if test="${sessionScope.id ne null}">
                     </div>
-                    <div class="col-lg-12">
+                    <div class="col-12">
                         <div class="pagination-item d-flex flex-row-reverse">
                             <a href="${pageContext.request.contextPath}/gallery/write"><span>Write</span></a>
                         </div>
@@ -184,9 +179,9 @@
                         </c:if>
                         <h3 class="text-white">전체 글</h3>
                     </div>
-                    <div class="col-lg-12 p-0">
+                    <div class="col-12 p-0">
                         <c:forEach var="boardVO" items="${boardPagingVO.boardVOList}">
-                            <div class="col-lg-2">
+                            <div class="col-2">
                                 <div class="cg-item">
                                     <div class="cg-pic set-bg thumbnail"
                                          data-setbg="${boardVO.imgSrc}"
@@ -220,7 +215,7 @@
 
                     <hr class="gallery_hr">
 
-                    <div class="col-lg-12" style="justify-content: center; align-content: center; text-align: center;">
+                    <div class="col-12" style="justify-content: center; align-content: center; text-align: center;">
                         <div class="board-search" style="margin-bottom: 30px;">
                             <select name="type"
                                     style="border:1px solid black; font-size: 13px; color: #ffffff; background-color: #222222;">
