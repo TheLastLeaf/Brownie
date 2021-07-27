@@ -277,7 +277,7 @@
 									<input type='checkbox' id="botP" name='position' value='b' />
 									바텀
 								</label>
-								<label id="supP">
+								<label for="supP">
 									<input type='checkbox' id="supP" name='position' value='s' />
 									서포터
 								</label>
