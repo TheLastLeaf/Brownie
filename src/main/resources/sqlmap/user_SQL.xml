@@ -152,7 +152,7 @@
 
     <update id="updatePoint" parameterType="hashMap">
         update BROWNIE_USER set
-             BROWNIE_POINT = #{browniePoint}
+             BROWNIE_POINT = BROWNIE_POINT + #{browniePoint}
             ,UP_DATE = sysdate
             ,UP_USER_ID = #{userId}
         WHERE USER_ID = #{userId}
