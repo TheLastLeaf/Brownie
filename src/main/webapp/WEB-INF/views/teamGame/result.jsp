@@ -204,7 +204,7 @@
                 </c:forEach>
             </div>
         </div>
-        <input type="submit" class="btn btn-outline-light btn-sm" value="연동하기"/>
+<!--         <input type="submit" class="btn btn-outline-light btn-sm" value="연동하기"/> -->
     </form>
 
 </div>
@@ -240,16 +240,16 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
 <script>
-    function fn_check() {
-        if (confirm('자신의 lol 아이디로 인증해야합니다!')) {
-            if (prompt('실제 LoL로그인 후 [안뇽하세욤]을 친추 후 난수 6자리를 받으세요!',
-                '난수 6자리를 기입하세요!')) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
-    }
+//     function fn_check() {
+//         if (confirm('자신의 lol 아이디로 인증해야합니다!')) {
+//             if (prompt('실제 LoL로그인 후 [안뇽하세욤]을 친추 후 난수 6자리를 받으세요!',
+//                 '난수 6자리를 기입하세요!')) {
+//                 return true;
+//             } else {
+//                 return false;
+//             }
+//         }
+//         return false;
+//     }
 </script>
 </html>
