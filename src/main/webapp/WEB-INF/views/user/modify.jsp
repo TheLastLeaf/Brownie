@@ -308,13 +308,15 @@
             if (userNick.val() === $('input[name=nickNameHidden]').val()) {
                 $('#user_nick').addClass('check_success');
             } else {
+                const sendData = {userNickname: userNick.val()}
                 $.ajax({
                         url: "/user/idCheck.ajax",
                         type: "POST",
-                        data: {userNickname: userNick.val()},
-                        processData: false,
-                        contentType: false,
+                        data: sendData,
+                        async: false,
                         success: function (data) {
+                            console.log(sendData)
+                            console.log(data)
                             if (userNick.val() === "" || userNick.val() == null || data === "ng") { // 아이디가 중복됨
                                 $('#user_nick').addClass('check_fail');
                             } else { // 아이디가 실제로 올바른 값인지 체킹
@@ -328,7 +330,6 @@
                             }
                         },
                         error: function (e) {
-                            alert("실패ㅜㅜ err");
                             console.log(e);
                         }
                     }

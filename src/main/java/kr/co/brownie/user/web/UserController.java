@@ -44,9 +44,6 @@ public class UserController {
     public String userInfo(@PathVariable String user_id,
                            Model model,
                            ReviewPagingVO page) {
-
-        // LOGGER.debug(" page {}", page);
-
         UserVO userOneSelect = userService.userOneSelect(user_id);
 
         if (userOneSelect == null) {
@@ -96,10 +93,6 @@ public class UserController {
 
         model.addAttribute("reviewVOs", reviewVOs);
         model.addAttribute("page", page);
-
-        System.out.println("UserController 111줄 호출: userOneSelect: " + userOneSelect);
-        System.out.println("UserController 112줄 호출: reviewVOs" + reviewVOs);
-        System.out.println();
 
         return "user/info";
     }
@@ -185,8 +178,9 @@ public class UserController {
 
     @PostMapping("/idCheck.ajax")
     @ResponseBody
-    public String userPostModify(Model model, @RequestParam Map<String, Object> map, HttpServletRequest httpServletRequest) throws IOException {
-        String userNick = (String) map.get("user_nick");
+    public String userPostModify(@RequestParam Map<String, Object> map) {
+        String userNick = (String)map.get("userNickname");
+        System.out.println(map);
         int checkValue = userService.validating(userNick);
         String msg;
         if (checkValue == 1) {
