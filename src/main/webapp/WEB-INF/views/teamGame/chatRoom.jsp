@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -278,14 +279,24 @@
 
                 //유저아이디를 가진 div가 있을 경우 추가하지않음 없을경우 추가해줌
                 if ($('#' + speakerId).length == 0) {
-                    var newUser = "<div class='user' id=" + speakerId + ">"
-                    newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
-                    userListStr += "<span class='act-btn'>" +
-                                    "<input type='sumbit' value='정보' class='user-act-btn btn btn-outline-secondary' />" +
-                                    "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' />" +
-                                    "</span>"
-                    newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
-                    newUser += "</div>"
+
+                    if(!sessionLolNick.contains("_")){
+                        var newUser = "<div class='user' id=" + speakerId + ">"
+                        newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
+                        userListStr += "<span class='act-btn'>" +
+                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' />" +
+                                        "<input type='sumbit' value='정보' id="+sessionLolNick+" class='user-act-btn btn btn-outline-secondary' onclick='fn_isSearch(this.id)'/>" +
+                                        "</span>"
+                        newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
+                    } else {
+                        var newUser = "<div class='user' id=" + speakerId + ">"
+                        newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
+                        userListStr += "<span class='act-btn'>" +
+                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' />" +
+                                        "</span>"
+                        newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
+                        newUser += "</div>"
+                    }
                     $("#chatUserList").append(newUser);
                 }
             }
@@ -295,42 +306,9 @@
             }, 100);
         }
 
-        function addMemName() {
-            //이게 동작할 때 마다 해당 섹션을 지우고 새 리스트를 받아와서 삽입이 가능한가?
-            //시도해보자
-            $.ajax({
-                url: "../teamGame/select-member",
-                type: "POST",
-                data: {
-                    "userId": IN_USER_ID
-                    , "TEAMGAME_SEQ": ROOM_NUMBER
-                },
-                success: function (data) {
-                    console.log("ajax Success")
-                    // $("#chatUserList").load(window.location.href + "#chatUserList");
-                    // $("#chatUserList").load(location.href + "#chatUserList");
-                    var responseData = JSON.parse(data);
-
-                    var userListStr = "<div class='user'>"
-                    userListStr += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
-                    userListStr += "<span class='act-btn'>" +
-                                    "<input type='sumbit' value='정보' class='user-act-btn btn btn-outline-secondary' />" +
-                                    "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' />" +
-                                    "</span>"
-                    //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
-                    userListStr += "<div class='userInfo'>" + responseData.nickName + "[" + responseData.lolId + "]" + "</div>"
-                    userListStr += "</div>"
-                    $("#chatUserList").empty();
-                    $("#chatUserList").append(userListStr);
-                },
-                error: function () {
-                    alert("에러나요");
-                }
-            })
-        }
     })
-    function fn_isSearch(){
-    	window.open("/teamGame/search", "search",
+    function fn_isSearch(lolId){
+    	window.open("/teamGame/search?title="+lolId, "search",
         "width=1100px, height=700px, left=450px,top=120px");
     }
 </script>
@@ -363,8 +341,11 @@
 <%--                        <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>--%>
                     </span>
                     <span class='act-btn'>
-                        <input type='sumbit' value='정보' class='user-act-btn btn btn-outline-secondary' onclick="fn_isSearch()"/>
                         <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick=""/>
+                        <c:set var = "lolId" value = "${memList.lolId}"/>
+                        <c:if test = '${not fn:contains(lolId, "_")}'>
+                        <input type='sumbit' value='정보' id="${memList.lolId}" class='user-act-btn btn btn-outline-secondary' onclick="fn_isSearch(this.id)"/>
+                        </c:if>
                     </span>
                     <div class="userInfo"><span class="memNick">${memList.nickName}</span> [${memList.lolId}]</div>
                 </div>
