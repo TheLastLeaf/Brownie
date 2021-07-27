@@ -313,6 +313,8 @@
                         url: "/user/idCheck.ajax",
                         type: "POST",
                         data: sendData,
+                        processData: false,
+                        contentType: false,
                         async: false,
                         success: function (data) {
                             console.log(sendData)
@@ -361,8 +363,8 @@
             url: "/user/info",
             type: "POST",
             data: formData,
-            processData: false,
             enctype: 'multipart/form-data',
+            processData: false,
             contentType: false,
             dataType: "json",
             success: function (data) {
