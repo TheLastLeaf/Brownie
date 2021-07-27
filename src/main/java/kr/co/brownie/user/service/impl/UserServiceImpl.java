@@ -136,4 +136,9 @@ public class UserServiceImpl implements UserService {
     public int saveLolId(Map<String, Object> map) {
         return this.userMapper.saveLolId(map);
     }
+
+    @Override
+    public void updatePoint(Map<String, Object> map) {
+        userMapper.updatePoint(map);
+    }
 }

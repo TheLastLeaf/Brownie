@@ -150,6 +150,13 @@
         WHERE USER_ID = #{userId}
     </update>
 
+    <update id="updatePoint" parameterType="hashMap">
+        update BROWNIE_USER set
+             BROWNIE_POINT = #{browniePoint}
+            ,UP_DATE = sysdate
+            ,UP_USER_ID = #{userId}
+    </update>
+
     <select id="userList" parameterType="hashMap" resultType="kr.co.brownie.user.service.UserVO">
         <![CDATA[
         SELECT USERID,

@@ -50,4 +50,6 @@ public interface UserMapper {
     int saveToken(Map<String, Object> map);
 
     int saveLolId(Map<String, Object> map);
+
+    void updatePoint(Map<String, Object> map);
 }
