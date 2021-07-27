@@ -183,7 +183,7 @@
         console.log('방 번호 : ', roomNumber);
         var chatPop = document.roomInfo;
         var url = '/websocket/chat2';
-        window.open('', 'chatingRoom' + roomNumber, 'width=1000, height=700, scroll=no, left=500, top=250');
+        window.open('', 'chatingRoom' + roomNumber, 'width=900, height=600, scroll=no, left=500, top=250');
 
         chatPop.action = url;
         chatPop.method = 'post';
