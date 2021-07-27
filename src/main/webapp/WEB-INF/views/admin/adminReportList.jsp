@@ -22,7 +22,9 @@
 
 <script>
     function fn_submit(reportSeq) {
-        alert("블랙리스트로 추가하시겠습니까?")
+        if(!confirm("블랙리스트로 추가하시겠습니까?")){
+            return false;
+        }
         const userId = $("#" + reportSeq + " .userId").val();
         const log = $("#" + reportSeq + " .log").val();
         const reasonSeq = $("#" + reportSeq + " #reason option:selected").val();
@@ -51,6 +53,33 @@
                 alert("신고 접수 실패");
             }
         })
+    }
+
+    function fn_deleteReport(reportSeq){
+        if(!confirm("접수취소하시겠습니까?")){
+            return false;
+        }
+        $.ajax({
+            url: "./deleteReport.ajax",
+            type: "POST",
+            data: {
+                "reportSeq": reportSeq
+            },
+            success: function (data) {
+                if (data === 1) {
+                    alert("신고접수 취소 완료!")
+                    location.reload();
+                }
+            },
+            error: function () {
+                alert("신고접수 취소 실패");
+            }
+        })
+    }
+
+    function fn_detail(reportSeq){
+        window.open("/admin/reportDetail?reportSeq=" + reportSeq ,"REPORTDETAIL", "width=660, height=500, left=250,top=200")
+
     }
 </script>
 
@@ -131,12 +160,15 @@
                             <th class="reportListTd">신고자</th>
                             <th class="reportListTd" style="width: 20%">신고일자</th>
                             <th class="reportListTd" style="width: 10%">재재 항목</th>
-                            <th class="reportListTd">처리상태</th>
+                            <th class="reportListTd">신고접수</th>
+                            <th class="reportListTd">접수취소</th>
                         </tr>
                         <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }">
                             <c:if test="${reportList.status eq 'N'}">
                                 <tr id="${reportList.reportSeq}">
-                                    <th class="reportListTd">${reportList.targetNickname}</th>
+                                    <th class="reportListTd" onclick="fn_detail('${reportList.reportSeq}')" style="cursor: pointer;">
+                                            ${reportList.targetNickname}
+                                    </th>
                                     <th class="reportListTd">${reportList.reportName }</th>
                                     <c:choose>
                                         <c:when test="${reportList.content ne null}">
@@ -161,10 +193,13 @@
                                     <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
                                     <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq"
                                            class="reportSeq">
-                                    <th class="reportListTd"><i class="fas fa-times"
+                                    <th class="reportListTd"><i class="fas fa-check"
                                                                 onclick="fn_submit(${reportList.reportSeq})"
                                                                 id="but"></i>
                                     </th>
+                                        <th class="reportListTd">
+                                            <i class="fas fa-times" id="del" style="cursor: pointer " onclick="fn_deleteReport('${reportList.reportSeq}')"></i>
+                                        </th>
                                 </tr>
                             </c:if>
                         </c:forEach>

@@ -169,7 +169,8 @@
                 <div class="sf-input-list ">
                     <div class="profileBox" style="border: none;">
                         <label for="file">
-                            <img class="profile" id="img" src="${pageContext.request.contextPath}${userOneSelect.image}">
+                            <img class="profile" id="img"
+                                 src="${pageContext.request.contextPath}${userOneSelect.image}">
                             <input type="file" id="file" name="file"/>
                         </label>
                     </div>
@@ -308,12 +309,11 @@
             if (userNick.val() === $('input[name=nickNameHidden]').val()) {
                 $('#user_nick').addClass('check_success');
             } else {
+                const sendData = {userNickname: userNick.val()}
                 $.ajax({
                         url: "/user/idCheck.ajax",
                         type: "POST",
-                        data: {userNickname: userNick.val()},
-                        processData: false,
-                        contentType: false,
+                        data: sendData,
                         success: function (data) {
                             if (userNick.val() === "" || userNick.val() == null || data === "ng") { // 아이디가 중복됨
                                 $('#user_nick').addClass('check_fail');
@@ -328,7 +328,6 @@
                             }
                         },
                         error: function (e) {
-                            alert("실패ㅜㅜ err");
                             console.log(e);
                         }
                     }
@@ -360,8 +359,8 @@
             url: "/user/info",
             type: "POST",
             data: formData,
-            processData: false,
             enctype: 'multipart/form-data',
+            processData: false,
             contentType: false,
             dataType: "json",
             success: function (data) {

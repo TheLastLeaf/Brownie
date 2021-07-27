@@ -15,4 +15,8 @@ public interface ReportMapper {
     int count();
 
     int update(Map<String, Object> map);
+
+    int deleteReport(int reportSeq);
+
+    ReportVO selectOneReport(int reportSeq);
 }

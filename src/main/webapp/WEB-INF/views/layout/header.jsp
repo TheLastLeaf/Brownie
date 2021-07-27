@@ -104,7 +104,6 @@
             $.ajax({
                 url: "/time.ajax",
                 type: "POST",
-                async: false,
                 success: function (data) {
                     $("#clock").html("<i class=\"far fa-clock\"></i>" + data);
                 },
