@@ -147,7 +147,7 @@ public class CommonController {
                 String tempBrownieNick;
                 do {
                     tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 10000 + 1);
-                } while (userService.validating(tempLolNick) != 1);
+                } while (userService.validating(tempLolNick) == 1);
                 String position = "[empty]";
                 // 경험치 테이블 세팅
                 int exp = 0;
@@ -219,7 +219,7 @@ public class CommonController {
                 String tempBrownieNick;
                 do {
                     tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 10000 + 1);
-                } while (userService.validating(tempLolNick) != 1);
+                } while (userService.validating(tempLolNick) == 1);
                 String position = "[empty]";
                 // 경험치 테이블 세팅
                 int exp = 0;
