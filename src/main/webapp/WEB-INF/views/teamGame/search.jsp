@@ -97,7 +97,7 @@ input[type="text"] {
 			<!-- Copyright -->
 			<div class="col-sm-12" style="text-align: center; padding: 10px;">
 				© 2021 Copyright:
-				<a href="/noxikaGG">BROWNIE.GG</a>
+				<a href="#">BROWNIE.GG</a>
 			</div>
 		</div>
 	</footer>
