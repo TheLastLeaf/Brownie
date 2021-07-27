@@ -10,6 +10,7 @@ import kr.co.brownie.chat.service.ChatVO;
 import kr.co.brownie.report.service.ReportService;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
+import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -222,5 +223,18 @@ public class AdminController {
         }
         model.addAttribute("chatVOList",chatService.chatAllList(currentPageNumber,(String)map.get("nickName")));
         return "admin/adminChatList";
+    }
+
+    @ResponseBody
+    @PostMapping("deleteReport.ajax")
+    public Object deleteReport(@RequestParam int reportSeq){
+        int cnt = reportService.deleteReport(reportSeq);
+        return cnt;
+    }
+
+    @GetMapping("reportDetail")
+    public String reportDetail(@RequestParam int reportSeq,Model model){
+        model.addAttribute("reportDetail",reportService.selectOneReport(reportSeq));
+        return "admin/reportDetail";
     }
 }

@@ -2,6 +2,7 @@ package kr.co.brownie.report.service.impl;
 
 import kr.co.brownie.report.service.ReportPagingVO;
 import kr.co.brownie.report.service.ReportService;
+import kr.co.brownie.report.service.ReportVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -43,4 +44,15 @@ public class ReportServiceImpl implements ReportService {
         map.put("id", id);
         return reportMapper.update(map);
     }
+
+    @Override
+    public int deleteReport(int reportSeq) {
+        return reportMapper.deleteReport(reportSeq);
+    }
+
+    @Override
+    public ReportVO selectOneReport(int reportSeq) {
+        return reportMapper.selectOneReport(reportSeq);
+    }
+
 }
