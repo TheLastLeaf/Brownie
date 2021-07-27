@@ -5,9 +5,9 @@ import java.util.Map;
 
 public interface ChatService {
 
-//    int CONTENT_PER_PAGE = 10;
-//
-//    ChatPagingVO selectChatting(int currentPageNumber,String writer);
+    int CONTENT_PER_PAGE = 10;
+
+    ChatPagingVO chatAllList(int currentPageNumber,String nickName);
 
     List<ChatVO> selectChatting(Map<String, Object> map);
 

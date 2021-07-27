@@ -209,8 +209,18 @@ public class AdminController {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
-        List<ChatVO> chatVOList = chatService.selectChatting(map);
-        model.addAttribute("chatVOList",chatVOList);
+        int currentPageNumber;
+        try {
+            currentPageNumber = Math.max(Integer.parseInt(httpServletRequest.getParameter("pageNum")), 1);
+        } catch (NullPointerException | NumberFormatException e) {
+            currentPageNumber = 1;
+        }
+        if (map.get("nickName") != null) {
+            map.put("nickName", map.get("nickName"));
+
+            model.addAttribute("nickName", map.get("nickName"));
+        }
+        model.addAttribute("chatVOList",chatService.chatAllList(currentPageNumber,(String)map.get("nickName")));
         return "admin/adminChatList";
     }
 }

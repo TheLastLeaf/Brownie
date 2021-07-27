@@ -54,5 +54,55 @@
         FROM CHAT
     </select>
 
+    <select id="chatAllList" resultType="kr.co.brownie.chat.service.ChatVO" parameterType="hashMap">
+        <![CDATA[
+        SELECT CHATSEQ,
+               CONTENT,
+               INDATE,
+               "UPDATE",
+               INUSERID,
+               UPUSERID,
+               TEAMGAMESEP,
+               NICKNAME
+        FROM (SELECT ROWNUM AS RN,
+                     CHATSEQ,
+                     CONTENT,
+                     INDATE,
+                     "UPDATE",
+                     INUSERID,
+                     UPUSERID,
+                     TEAMGAMESEP,
+                     NICKNAME
+              FROM (
+                       SELECT A.CHAT_SEQ AS CHATSEQ,
+                              A.CONTENT AS CONTENT,
+                              A.IN_DATE AS INDATE,
+                              A.IN_USER_ID AS INUSERID,
+                              A.UP_DATE AS "UPDATE",
+                              A.UP_USER_ID AS UPUSERID,
+                              A.TEAMGAME_SEP AS TEAMGAMESEP,
+                              B.NICK_NAME AS NICKNAME
+                       FROM CHAT A LEFT OUTER JOIN BROWNIE_USER B ON (B.USER_ID= A.IN_USER_ID)
+        ]]>
+        <where>
+            <if test='userId != null and userId != ""'>
+                A.IN_USER_ID = #{userId}
+            </if>
+            <if test='nickName != null and nickName != ""'>
+                AND B.NICK_NAME = #{nickName}
+            </if>
+            <if test='teamGameSeq != null and teamGameSeq != ""'>
+                AND A.TEAMGAME_SEP = #{teamGameSeq}
+            </if>
+        </where>
+        ORDER BY TEAMGAME_SEP
+        )
+        )
+        <![CDATA[
+        WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN
+          AND RN <= ${contentPerPage} * ${currentPageNumber}
+        ]]>
+    </select>
+
 
 </mapper>

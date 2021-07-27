@@ -32,6 +32,10 @@
     .update {
         width: 100%;
     }
+
+    .ChatPageBottom {
+         padding-top: 50px;
+    }
 </style>
 
 <!-- Details Post Section Begin -->
@@ -42,7 +46,7 @@
                  style="justify-content: center; align-content: center; text-align: center; color:white;">
                 <div class="innerBox text-right">
                     <input type="text" class="writer" name="writer" id="writer" style="background-color: black; border:1px solid #666666; color: white;">
-                    <button type="button" class="btn btn-outline-light" onclick='location.href = "?nickName=" + $("#writer").val()'>검색</button>
+                    <button type="button" class="btn btn-outline-light" onclick='location.href = "?pageNum=${pageNumber}&nickName=" + $("#writer").val()'>검색</button>
                 </div>
                 <div class="">
                     <table border="1px solid grey" style="margin: auto;">
@@ -52,7 +56,7 @@
                             <th>작성자</th>
                             <th>날짜</th>
                         </tr>
-                        <c:forEach items="${chatVOList}" var="chatVO">
+                        <c:forEach items="${chatVOList.chatVO}" var="chatVO">
                             <tr class="chatlog">
                                 <th>${chatVO.teamGameSep}</th>
                                 <th>${chatVO.content}</th>
@@ -61,6 +65,20 @@
                             </tr>
                         </c:forEach>
                     </table>
+                    <div class="ChatPageBottom">
+                        <div class="pagination-item">
+                            <c:if test="${1 < chatVOList.startPageNumber}">
+                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${chatVOList.startPageNumber - 1}&nickName=${nickName}"><span>Prev</span></a>
+                            </c:if>
+                            <c:forEach var="pageNumber" begin="${chatVOList.startPageNumber}"
+                                       end="${chatVOList.endPageNumber}">
+                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${pageNumber}&nickName=${nickName}"><span>${pageNumber}</span></a>
+                            </c:forEach>
+                            <c:if test="${chatVOList.endPageNumber < chatVOList.totalPageNumber}">
+                                <a href="${pageContext.request.contextPath}/admin/chatList?pageNum=${chatVOList.endPageNumber + 1}&nickName=${nickName}"><span>Next</span></a>
+                            </c:if>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
