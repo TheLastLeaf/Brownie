@@ -72,6 +72,12 @@ public class CommonController {
             e.printStackTrace();
         }
 
+        map.put("boardKind", "gallery");
+        map.put("days", 30);
+        map.put("limit", 5);
+
+        model.addAttribute("galleryBoardVOList", this.boardService.selectListOrderByLike(map));
+
         return "common/index";
     }
 
@@ -112,6 +118,67 @@ public class CommonController {
         return authService.getAuthorize(redirectUrl);
     }
 
+    @GetMapping("/login/{id}")
+    public String loginUsingUserId(HttpSession httpSession,
+                                   RedirectAttributes redirectAttributes,
+                                   @PathVariable String id) {
+        try {
+            /*로그인 시 회원의 아이디가 블랙유저인지 확인*/
+            BlackUserVO blackUserVO = blackUserService.oneBlackUser(id);
+
+            if (blackUserVO != null) {
+                redirectAttributes.addFlashAttribute("blackUserVO", blackUserVO);
+                return "redirect:/";
+            }
+
+            httpSession.setAttribute("id", id);
+
+            UserVO userVO = userService.userOneSelect(id);
+            if (userVO != null) {
+                int permitlevel = authService.permitLevel(id);
+                httpSession.setAttribute("permit_level", permitlevel);
+
+                String nickName = authService.nickName(id);
+                httpSession.setAttribute("nickname", nickName);
+            } else {
+                /* 첫 로그인 세웅 */
+                // 소환사명 및 세팅
+                String tempLolNick = "익명_" + (int) (Math.random() * 10000 + 1);
+                String tempBrownieNick;
+                do {
+                    tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 10000 + 1);
+                } while (userService.validating(tempBrownieNick) == 1);
+                String position = "[empty]";
+                // 경험치 테이블 세팅
+                int exp = 0;
+                // REVIEW 테이블 세팅
+                int reviewSeq = 1;
+                int starCnt = 0;
+                String reply = "empty";
+                String writeUserId = "admin";
+
+                // 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
+                /* service 호출해서 집어넣기 */
+                authService.insertUser(id, tempLolNick, tempBrownieNick, position);
+                authService.insertReview(reviewSeq, id, starCnt, reply, writeUserId);
+
+                /* 첫 로그인일 경우 권한 레벨 및 사이트 레벨 지정, 유저가 존재해야 삽입가능*/
+                authService.insertPermitLevel(id);
+                authService.insertExp(id, exp);
+
+                /* 로그인 할 때 권한 레벨 세션에 넣어줘야 게시글 조회 시 사용 */
+                int permitlevel = authService.permitLevel(id);
+                httpSession.setAttribute("permit_level", permitlevel);
+
+                String nickName = authService.nickName(id);
+                httpSession.setAttribute("nickname", nickName);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/";
+    }
+
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();
@@ -138,37 +205,46 @@ public class CommonController {
 
             httpSession.setAttribute("id", id);
 
-            /* 첫 로그인 세웅 */
-            // 소환사명 및 세팅
-            String tempLolNick = "익명의소환사_" + (int) (Math.random() * 100 + 1);
-            String tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 100 + 1);
-            String position = "[empty]";
-            // 경험치 테이블 세팅
-            int exp = 0;
-            // REVIEW 테이블 세팅
-            int reviewSeq = 1;
-            int starCnt = 0;
-            String reply = "empty";
-            String writeUserId = "admin";
+            UserVO userVO = userService.userOneSelect(id);
+            if (userVO != null) {
+                int permitlevel = authService.permitLevel(id);
+                httpSession.setAttribute("permit_level", permitlevel);
 
-            // 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
+                String nickName = authService.nickName(id);
+                httpSession.setAttribute("nickname", nickName);
+            } else {
+                /* 첫 로그인 세웅 */
+                // 소환사명 및 세팅
+                String tempLolNick = "익명_" + (int) (Math.random() * 10000 + 1);
+                String tempBrownieNick;
+                do {
+                    tempBrownieNick = "커뮤닉_" + (int) (Math.random() * 10000 + 1);
+                } while (userService.validating(tempLolNick) == 1);
+                String position = "[empty]";
+                // 경험치 테이블 세팅
+                int exp = 0;
+                // REVIEW 테이블 세팅
+                int reviewSeq = 1;
+                int starCnt = 0;
+                String reply = "empty";
+                String writeUserId = "admin";
 
+                // 게시글 갯수, 댓글 갯수, 좋아요, 싫어요 초기값 세팅
+                /* service 호출해서 집어넣기 */
+                authService.insertUser(id, tempLolNick, tempBrownieNick, position);
+                authService.insertReview(reviewSeq, id, starCnt, reply, writeUserId);
 
-            /* service 호출해서 집어넣기 */
-            authService.insertUser(id, tempLolNick, tempBrownieNick, position);
-            authService.insertReview(reviewSeq, id, starCnt, reply, writeUserId);
+                /* 첫 로그인일 경우 권한 레벨 및 사이트 레벨 지정, 유저가 존재해야 삽입가능*/
+                authService.insertPermitLevel(id);
+                authService.insertExp(id, exp);
 
-            /* 첫 로그인일 경우 권한 레벨 및 사이트 레벨 지정, 유저가 존재해야 삽입가능*/
-            authService.insertPermitLevel(id);
-            authService.insertExp(id, exp);
+                /* 로그인 할 때 권한 레벨 세션에 넣어줘야 게시글 조회 시 사용 */
+                int permitlevel = authService.permitLevel(id);
+                httpSession.setAttribute("permit_level", permitlevel);
 
-            /* 로그인 할 때 권한 레벨 세션에 넣어줘야 게시글 조회 시 사용 */
-            int permitlevel = authService.permitLevel(id);
-            httpSession.setAttribute("permit_level", permitlevel);
-
-            String nickName = authService.nickName(id);
-            httpSession.setAttribute("nickname" , nickName);
-
+                String nickName = authService.nickName(id);
+                httpSession.setAttribute("nickname", nickName);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -190,10 +266,36 @@ public class CommonController {
                 jsonObject.addProperty("status", "ng");
                 jsonObject.addProperty("message", "token을 다시 확인해주세요.");
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             jsonObject.addProperty("status", "ng");
             jsonObject.addProperty("message", "오류가 발생했습니다. 잠시 뒤 시도해주세요.");
+        }
+
+        return jsonObject.toString();
+    }
+
+    @PostMapping(path = "/authCancel", produces = "application/text;charset=UTF-8")
+    @ResponseBody
+    public String authCancle(HttpSession httpSession) {
+        JsonObject jsonObject = new JsonObject();
+        Map<String, Object> map = new HashMap<>();
+
+        String lolId = "익명_" + (int) (Math.random() * 10000 + 1);
+        map.put("lolId", lolId);
+
+        map.put("userId", httpSession.getAttribute("id"));
+        try {
+            if (this.userService.deleteLolId(map) == 1) {
+                jsonObject.addProperty("status", "ok");
+            } else {
+                jsonObject.addProperty("status", "ng");
+                jsonObject.addProperty("message", "문제가 발생했습니다.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonObject.addProperty("status", "ng");
+            jsonObject.addProperty("message", "문제가 발생했습니다.");
         }
 
         return jsonObject.toString();

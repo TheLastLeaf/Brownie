@@ -50,4 +50,10 @@ public interface UserService {
     int saveToken(Map<String, Object>map);
 
     int saveLolId(Map<String, Object> map);
+
+    int deleteLolId(Map<String, Object> map);
+
+    void updatePoint(Map<String, Object> map);
+
+    void usePointForChat(Map<String, Object> map);
 }

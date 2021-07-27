@@ -12,7 +12,7 @@
 
     <!-- Application Loggers -->
     <logger name="kr.co.brownie">
-        <level value="DEBUG"/>
+        <level value="info"/>
     </logger>
 
     <!-- 3rdparty Loggers -->

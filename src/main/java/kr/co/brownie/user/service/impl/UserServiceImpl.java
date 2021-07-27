@@ -136,4 +136,19 @@ public class UserServiceImpl implements UserService {
     public int saveLolId(Map<String, Object> map) {
         return this.userMapper.saveLolId(map);
     }
+
+    @Override
+    public int deleteLolId(Map<String, Object> map) {
+        return this.userMapper.deleteLolId(map);
+    }
+
+    @Override
+    public void updatePoint(Map<String, Object> map) {
+        userMapper.updatePoint(map);
+    }
+
+    @Override
+    public void usePointForChat(Map<String, Object> map) {
+        userMapper.usePointForChat(map);
+    }
 }

@@ -52,6 +52,10 @@
     <select id="count" resultType="int">
         SELECT COUNT(*)
         FROM CHAT
+        INNER JOIN BROWNIE_USER ON BROWNIE_USER.USER_ID = CHAT.IN_USER_ID
+        <if test='nickName != null and nickName != ""'>
+            WHERE BROWNIE_USER.NICK_NAME = #{nickName}
+        </if>
     </select>
 
     <select id="chatAllList" resultType="kr.co.brownie.chat.service.ChatVO" parameterType="hashMap">

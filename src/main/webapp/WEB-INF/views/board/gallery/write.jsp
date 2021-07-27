@@ -161,6 +161,7 @@
                                         <option value="셀카">셀카</option>
                                         <option value="카툰">카툰</option>
                                         <option value="일러스트">일러스트</option>
+                                        <option value="코스프레">코스프레</option>
                                         <option value="기타">기타</option>
                                     </select>
                                 </div>

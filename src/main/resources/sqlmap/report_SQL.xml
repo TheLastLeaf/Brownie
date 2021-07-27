@@ -93,5 +93,29 @@
         WHERE REPORT_SEQ = #{reportSeq}
     </update>
 
+    <delete id="deleteReport" parameterType="int">
+        DELETE FROM REPORT
+        WHERE REPORT_SEQ = #{reportSeq}
+    </delete>
+
+    <select id="selectOneReport" resultType="kr.co.brownie.report.service.ReportVO" parameterType="int">
+        SELECT REPORT.REPORT_SEQ      AS REPORTSEQ,
+               REPORT.CONTENT         AS CONTENT,
+               REPORT.STATUS          AS STATUS,
+               REPORT.REPORT_NAME     AS REPORTNAME,
+               REPORT.USER_ID         AS USERID,
+               REPORT.IN_DATE         AS INDATE,
+               REPORT.UP_DATE         AS "UPDATE",
+               REPORT.IN_USER_ID      AS INUSERID,
+               REPORT.UP_USER_ID      AS UPUSERID,
+               REPORT.LOG             AS "LOG",
+               TARGET_USER.NICK_NAME  AS TARGETNICKNAME,
+               BROWNIE_USER.NICK_NAME AS INUSERNICKNAME
+        FROM REPORT
+                 INNER JOIN BROWNIE_USER TARGET_USER ON REPORT.USER_ID = TARGET_USER.USER_ID
+                 INNER JOIN BROWNIE_USER on BROWNIE_USER.USER_ID = REPORT.IN_USER_ID
+        WHERE REPORT_SEQ = #{reportSeq}
+    </select>
+
 
 </mapper>

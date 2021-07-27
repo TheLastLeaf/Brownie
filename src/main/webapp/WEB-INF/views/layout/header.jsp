@@ -104,7 +104,6 @@
             $.ajax({
                 url: "/time.ajax",
                 type: "POST",
-                async: false,
                 success: function (data) {
                     $("#clock").html("<i class=\"far fa-clock\"></i>" + data);
                 },
@@ -222,7 +221,7 @@
             <li><a href="${pageContext.request.contextPath}/notice">NOTICE</a></li>
             <li><a href="${pageContext.request.contextPath}/teamGame">GROUP</a></li>
             <li><a href="${pageContext.request.contextPath}/tip">CHAMPIONS TIP</a></li>
-            <li><a href="${pageContext.request.contextPath}/gallery">FANART</a></li>
+            <li><a href="${pageContext.request.contextPath}/gallery">GALLERY</a></li>
             <li><a href="${pageContext.request.contextPath}/free">LOUNGE</a></li>
         </ul>
     </div>
@@ -537,7 +536,7 @@
                             </div>
                         </div>
                     </li>
-                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/gallery"><span>FANART
+                    <li class="mega-menu"><a href="${pageContext.request.contextPath}/gallery"><span>GALLERY
 						<i class="fas fa-angle-down"></i></span></a>
                         <div class="megamenu-wrapper">
                             <div id="header-gallery-section" class="mw-post">
