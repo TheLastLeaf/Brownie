@@ -65,6 +65,7 @@
             }
 
             const today = $("#" + i);
+            const todaysPoint = Math.floor(Math.random() * (200) + 2);
 
             //이미 체크된 날짜 마우스 커서 바꿔주기
             if (UserCheckedDates.indexOf(i) !== -1) {
@@ -78,14 +79,18 @@
                 }
             } else if (i === day) {
                 today.on('click', function () {
+
                     $.ajax({
                         url: "../attendance/ajax.dayCheck",
                         type: "POST",
+                        data : { "browniePoint" : todaysPoint },
                         dataType: "json",
                         success: function (data) {
                             if (data.status === "ng") {
                                 alert(data.message);
                             }
+
+                            alert("오늘의 출석체크 포인트는 " + todaysPoint + "포인트 입니다!");
                             location.reload();
                         },
                         error: function () {
