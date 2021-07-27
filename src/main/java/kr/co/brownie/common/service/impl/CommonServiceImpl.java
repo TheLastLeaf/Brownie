@@ -1,7 +1,11 @@
 package kr.co.brownie.common.service.impl;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import kr.co.brownie.common.service.CommonService;
 import kr.co.brownie.common.service.LeagueCalendar;
+import kr.co.brownie.common.service.TeamInfo;
 import lombok.SneakyThrows;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -22,13 +26,6 @@ public class CommonServiceImpl implements CommonService {
     @Resource(name = "commonMapper")
     CommonMapper commonMapper;
 
-    public static void main(String[] args) {
-        CommonService commonService = new CommonServiceImpl();
-
-        List<LeagueCalendar> leagueCalendarList = commonService.leagueCalendarList();
-        System.out.println(leagueCalendarList);
-    }
-
     @Override
     @SneakyThrows
     public List<LeagueCalendar> leagueCalendarList() {
@@ -42,7 +39,7 @@ public class CommonServiceImpl implements CommonService {
                 )
         );
 
-        for (Element E: Jsoup.parse(responseContent).select("dl.dateList")) {
+        for (Element E : Jsoup.parse(responseContent).select("dl.dateList")) {
             String href = E.select("a").attr("href");
             int dateStartIndex = href.indexOf("date=") + 5;
             String datePart = href.substring(dateStartIndex);
@@ -65,35 +62,53 @@ public class CommonServiceImpl implements CommonService {
 
     @Override
     @SneakyThrows
-    public List<LeagueCalendar> teamInfoList() {
-        List<LeagueCalendar> leagueCalendarList = new ArrayList<>();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm");
+    public List<TeamInfo> teamInfoList() {
+        Gson gson = new Gson();
+        List<TeamInfo> TeamInfoList = new ArrayList<>();
 
-        String responseContent = sendGet(
-                String.format(
-                        "https://esports.inven.co.kr/schedule/?mode=month&date=%s&game=1368",
-                        new SimpleDateFormat("yyyy-MM-dd").format(new Date())
-                )
-        );
+        String responseContent = sendGet("https://game.naver.com/esports/record/lck/team/lck_2021_summer");
 
-        for (Element element : Jsoup.parse(responseContent).select("li.display[data-league=\"524\"]")) {
-            String href = element.select("a").attr("href");
-            int dateStartIndex = href.indexOf("date=") + 5;
-            int dateEndIndex = dateStartIndex + href.substring(dateStartIndex).indexOf("&");
+        for (JsonElement jsonElement : gson.fromJson(Jsoup.parse(responseContent).select("#__NEXT_DATA__").html(),
+                JsonObject.class).getAsJsonObject("props")
+                .getAsJsonObject("initialState")
+                .getAsJsonObject("ranking")
+                .getAsJsonArray("teamRanking")) {
+            JsonObject jsonObject = jsonElement.getAsJsonObject();
+            JsonObject addInfo = jsonObject.getAsJsonObject("addInfo");
+            JsonObject team = jsonObject.getAsJsonObject("team");
 
-            String datePart = href.substring(dateStartIndex, dateEndIndex);
-            String timePart = element.select("span").get(0).text();
-            String[] teams = element.select("span").get(1).text().split("vs");
-            leagueCalendarList.add(
-                    LeagueCalendar.builder()
-                            .date(simpleDateFormat.parse(datePart + timePart))
-                            .aTeam(teams[0])
-                            .bTeam(teams[1])
-                            .build()
-            );
+            TeamInfoList.add(TeamInfo.builder()
+                    .teamId(jsonObject.get("teamId").getAsString())
+                    .leagueId(jsonObject.get("leagueId").getAsString())
+                    .bracket(jsonObject.get("bracket").getAsString())
+                    .rank(jsonObject.get("rank").getAsInt())
+                    .wins(jsonObject.get("wins").getAsInt())
+                    .loses(jsonObject.get("loses").getAsInt())
+                    .draws(jsonObject.get("draws").getAsInt())
+                    .score(jsonObject.get("score").getAsInt())
+                    .winRate(jsonObject.get("winRate").getAsFloat())
+
+                    .kda(addInfo.get("kda").getAsFloat())
+                    .kills(addInfo.get("kills").getAsInt())
+                    .deaths(addInfo.get("deaths").getAsInt())
+                    .assists(addInfo.get("assists").getAsInt())
+                    .firstKillRate(addInfo.get("firstKillRate").getAsFloat())
+                    .firstTowerRate(addInfo.get("firstTowerRate").getAsFloat())
+                    .firstBaronRate(addInfo.get("firstBaronRate").getAsFloat())
+
+                    .gameCode(team.get("gameCode").getAsString())
+                    .name(team.get("name").getAsString())
+                    .nameAcronym(team.get("nameAcronym").getAsString())
+                    .nameEng(team.get("nameEng").getAsString())
+                    .nameEngAcronym(team.get("nameEngAcronym").getAsString())
+                    .imageUrl(team.get("imageUrl").getAsString())
+                    .colorImageUrl(team.get("colorImageUrl").getAsString())
+                    .whiteImageUrl(team.get("whiteImageUrl").getAsString())
+                    .blackImageUrl(team.get("blackImageUrl").getAsString())
+
+                    .build());
         }
-
-        return leagueCalendarList;
+        return TeamInfoList;
     }
 
     @SneakyThrows

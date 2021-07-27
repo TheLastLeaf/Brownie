@@ -7,5 +7,5 @@ public interface CommonService {
 
     List<LeagueCalendar> leagueCalendarList();
 
-    List<LeagueCalendar> teamInfoList();
+    List<TeamInfo> teamInfoList();
 }
