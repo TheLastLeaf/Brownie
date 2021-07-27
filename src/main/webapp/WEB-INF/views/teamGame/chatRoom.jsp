@@ -159,6 +159,19 @@
         height: auto;
         width: 500px;
     }
+    .user-act-btn {
+        width: 50px;
+        font-size: 12px;
+        float: right;
+        padding: 2px;
+        margin: 10px 3px 0px;
+    }
+
+    .act-btn {
+
+    }
+
+
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -266,7 +279,11 @@
                 //유저아이디를 가진 div가 있을 경우 추가하지않음 없을경우 추가해줌
                 if ($('#' + speakerId).length == 0) {
                     var newUser = "<div class='user' id=" + speakerId + ">"
-                    newUser += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
+                    newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
+                    userListStr += "<span class='act-btn'>" +
+                                    "<input type='sumbit' value='정보' class='user-act-btn btn btn-outline-secondary' />" +
+                                    "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' />" +
+                                    "</span>"
                     newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
                     newUser += "</div>"
                     $("#chatUserList").append(newUser);
@@ -295,7 +312,11 @@
                     var responseData = JSON.parse(data);
 
                     var userListStr = "<div class='user'>"
-                    userListStr += "<img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>"
+                    userListStr += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
+                    userListStr += "<span class='act-btn'>" +
+                                    "<input type='sumbit' value='정보' class='user-act-btn btn btn-outline-secondary' />" +
+                                    "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' />" +
+                                    "</span>"
                     //userListStr += "<img class='siteLv' src='${pageContext.request.contextPath}/img/teamGame/adminIcon.png'/>"
                     userListStr += "<div class='userInfo'>" + responseData.nickName + "[" + responseData.lolId + "]" + "</div>"
                     userListStr += "</div>"
@@ -333,8 +354,14 @@
         <div class="userBox col-sm-3" id="chatUserList">
             <c:forEach var="memList" items="${memList}">
                 <div class="user" id="${memList.userId}">
-                    <img src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png"/>
-                    <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>
+                    <span>
+                        <img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>
+<%--                        <img class="siteLv" src="${pageContext.request.contextPath}/img/teamGame/adminIcon.png"/>--%>
+                    </span>
+                    <span class='act-btn'>
+                        <input type='sumbit' value='정보' class='user-act-btn btn btn-outline-secondary' onclick=""/>
+                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick=""/>
+                    </span>
                     <div class="userInfo"><span class="memNick">${memList.nickName}</span> [${memList.lolId}]</div>
                 </div>
             </c:forEach>
