@@ -97,7 +97,7 @@
 <section class="video-guide-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-12">
                 <div class="section-title">
                     <h5>League of Legends</h5>
                 </div>
@@ -146,7 +146,7 @@
                 <!-- News 시작 -->
                 <div class="tab-pane fade" id="tabs-2" role="tabpanel">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <div class="row">
                                 <div class="col-md-12 text-white text-center">
                                     <table class="table text-white text-center">
@@ -177,7 +177,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <div class="row">
 
                             </div>
@@ -193,27 +193,27 @@
                 <!-- League Member 시작 -->
                 <div class="tab-pane fade" id="tabs-3" role="tabpanel">
                     <div class="row">
-                        <div class="col-lg-12 row text-center text-white row">
+                        <div class="col-12 row text-center text-white row">
                             <div class="col-12 row mt-2 mb-2">
-                                <div class="col-4">팀 순위</div>
-                                <div class="col-2">승</div>
-                                <div class="col-2">패</div>
-                                <div class="col-2">득실차</div>
-                                <div class="col-2">승률</div>
+                                <div class="col-6 m-auto">팀 순위</div>
+                                <div class="col-1 m-auto">승</div>
+                                <div class="col-1 m-auto">패</div>
+                                <div class="col-2 m-auto">득실차</div>
+                                <div class="col-2 m-auto">승률</div>
                             </div>
                             <c:forEach var="teamInfo" items="${teamInfoList}">
                                 <div class="col-12 row mt-2 mb-2">
-                                    <div class="col-1">
+                                    <div class="col-1 m-auto">
                                         <strong>${teamInfo.rank}</strong>
                                     </div>
-                                    <div class="col-1">
-                                        <img width="auto" height="auto" src="${teamInfo.imageUrl}" alt=""/>
+                                    <div class="col-2 m-auto">
+                                        <img width="auto" style="max-height: 60px;" src="${teamInfo.imageUrl}" alt=""/>
                                     </div>
-                                    <div class="col-2">${teamInfo.nameAcronym}</div>
-                                    <div class="col-2">${teamInfo.wins}</div>
-                                    <div class="col-2">${teamInfo.loses}</div>
-                                    <div class="col-2">${teamInfo.score}</div>
-                                    <div class="col-2">${teamInfo.winRate}</div>
+                                    <div class="col-3 m-auto">${teamInfo.nameAcronym}</div>
+                                    <div class="col-1 m-auto">${teamInfo.wins}</div>
+                                    <div class="col-1 m-auto">${teamInfo.loses}</div>
+                                    <div class="col-2 m-auto">${teamInfo.score}</div>
+                                    <div class="col-2 m-auto">${teamInfo.winRate}</div>
                                 </div>
                             </c:forEach>
                         </div>
@@ -225,16 +225,16 @@
                 <div class="tab-pane fade" id="tabs-4" role="tabpanel">
                     <!-- https://esports.inven.co.kr/schedule/ 여기서 긁어오면 될 듯 -->
                     <div class="row">
-                        <div class="col-lg-12">
-                            <table id="leagueCalendar" class="w-100 text-white" border="1">
+                        <div class="col-12">
+                            <table id="leagueCalendar" class="w-100 text-white" border="1" style="table-layout: fixed">
                                 <tr>
-                                    <td>SUN</td>
-                                    <td>MON</td>
-                                    <td>TUE</td>
-                                    <td>WED</td>
-                                    <td>THU</td>
-                                    <td>FRI</td>
-                                    <td>SAT</td>
+                                    <th>SUN</th>
+                                    <th>MON</th>
+                                    <th>TUE</th>
+                                    <th>WED</th>
+                                    <th>THU</th>
+                                    <th>FRI</th>
+                                    <th>SAT</th>
                                 </tr>
                             </table>
                             <script>
@@ -245,7 +245,7 @@
                                     data += "<td></td>";
                                 }
                                 for (let i = 1; i <= lastDay.getDate(); i++) {
-                                    data += "<td id='" + (today.getMonth() + 1) + "-" + i + "'>";
+                                    data += "<td id='" + (today.getMonth() + 1) + "-" + i + "' class='align-top'>";
                                     data += i;
                                     data += "</td>";
 
@@ -263,11 +263,12 @@
                                 <c:forEach var="leagueCalendar" items="${leagueCalendarList}">
                                 <fmt:formatDate var="date" type="date" value="${leagueCalendar.date}" pattern="M-d"/>
                                 <fmt:formatDate var="time" type="time" value="${leagueCalendar.date}" pattern="HH:mm"/>
-                                data = "<p><span class=\"badge badge-dark\">${time}</span> ${leagueCalendar.ATeam} vs ${leagueCalendar.BTeam}</p>";
+                                data = "<div>"
+                                data += "<div><span class='badge badge-dark'>${time}</span></div>";
+                                data += "<div class='text-right'>${leagueCalendar.ATeam} vs ${leagueCalendar.BTeam}<div>";
+                                data += "</div>";
 
                                 $("#${date}").append(data);
-                                console.log("#${date}")
-                                console.log(data)
                                 </c:forEach>
                             </script>
                         </div>
@@ -286,7 +287,7 @@
 <section class="update-news-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-12">
                 <div class="section-title">
                     <h5>
                         <span>GALLERY</span>
@@ -305,9 +306,9 @@
                              role="tabpanel">
                             <div class="row">
                                 <div class="un-slider owl-carousel">
-                                    <div class="col-lg-12">
+                                    <div class="col-12">
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-6">
                                                 <div class="un-big-item set-bg"
                                                      data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
                                                     <div class="ub-text">
@@ -325,7 +326,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-6">
                                                 <div class="un-big-item set-bg"
                                                      data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
                                                     <div class="ub-text">
@@ -395,7 +396,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
+                                    <div class="col-12">
                                         <div class="un-big-item set-bg"
                                              data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
                                             <div class="ub-text">
@@ -470,7 +471,7 @@
                         <div class="tab-pane fade" id="tabs-10" role="tabpanel">
                             <div class="row">
                                 <div class="un-slider owl-carousel">
-                                    <div class="col-lg-12">
+                                    <div class="col-12">
                                         <div class="un-big-item set-bg"
                                              data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
                                             <div class="ub-text">
@@ -538,7 +539,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
+                                    <div class="col-12">
                                         <div class="un-big-item set-bg"
                                              data-setbg="${pageContext.request.contextPath}/img/news/news-1.jpg">
                                             <div class="ub-text">
