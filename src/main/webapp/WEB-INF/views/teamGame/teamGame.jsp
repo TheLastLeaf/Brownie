@@ -183,7 +183,7 @@
         console.log('방 번호 : ', roomNumber);
         var chatPop = document.roomInfo;
         var url = '/websocket/chat2';
-        window.open('', 'chatingRoom' + roomNumber, 'width=1000, height=700, scroll=no, left=500, top=250');
+        window.open('', 'chatingRoom' + roomNumber, 'width=900, height=600, scroll=no, left=500, top=250');
 
         chatPop.action = url;
         chatPop.method = 'post';
@@ -277,7 +277,7 @@
 									<input type='checkbox' id="botP" name='position' value='b' />
 									바텀
 								</label>
-								<label id="supP">
+								<label for="supP">
 									<input type='checkbox' id="supP" name='position' value='s' />
 									서포터
 								</label>

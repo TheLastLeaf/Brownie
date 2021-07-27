@@ -274,7 +274,7 @@
     function openRoom(roomNumber, nickName, lolId, position){
         var chatPop= document.roomInfo;
         var url = '/websocket/chat2';
-        window.open('','chatingRoom' + roomNumber,'width=1000, height=700, scroll=no, left=500, top=250');
+        window.open('','chatingRoom' + roomNumber,'width=900, height=600, scroll=no, left=500, top=250');
 
         chatPop.method = 'post';
         chatPop.action = url;
