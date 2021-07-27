@@ -228,13 +228,13 @@
                         <div class="col-12">
                             <table id="leagueCalendar" class="w-100 text-white" border="1" style="table-layout: fixed">
                                 <tr>
-                                    <th>SUN</th>
-                                    <th>MON</th>
-                                    <th>TUE</th>
-                                    <th>WED</th>
-                                    <th>THU</th>
-                                    <th>FRI</th>
-                                    <th>SAT</th>
+                                    <th class="text-center">SUN</th>
+                                    <th class="text-center">MON</th>
+                                    <th class="text-center">TUE</th>
+                                    <th class="text-center">WED</th>
+                                    <th class="text-center">THU</th>
+                                    <th class="text-center">FRI</th>
+                                    <th class="text-center">SAT</th>
                                 </tr>
                             </table>
                             <script>
