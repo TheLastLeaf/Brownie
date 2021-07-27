@@ -222,6 +222,7 @@ public class AdminController {
             model.addAttribute("nickName", map.get("nickName"));
         }
         model.addAttribute("chatVOList",chatService.chatAllList(currentPageNumber,(String)map.get("nickName")));
+
         return "admin/adminChatList";
     }
 

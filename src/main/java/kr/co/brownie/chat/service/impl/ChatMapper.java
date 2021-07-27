@@ -9,7 +9,7 @@ import java.util.Map;
 @Repository("chatMapper")
 public interface ChatMapper {
 
-    int count();
+    int count(String nickName);
 
     void insertChatLog(Map<String,Object> map);
 

@@ -31,8 +31,8 @@ public class ChatServiceImpl implements ChatService {
         map.put("nickName",nickName);
         map.put("contentPerPage", CONTENT_PER_PAGE);
         map.put("currentPageNumber", currentPageNumber);
-        System.out.println("map"+map);
-        int total = chatMapper.count();
+
+        int total = chatMapper.count(nickName);
 
         return ChatPagingVO.builder()
                 .chatVO(chatMapper.chatAllList(map))
