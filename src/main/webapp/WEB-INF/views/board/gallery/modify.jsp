@@ -186,6 +186,12 @@
                                                 </c:if>
                                         >기타
                                         </option>
+                                        <option value="코스프레"
+                                                <c:if test='${boardVO.boardCategory == "코스프레"}'>
+                                                    selected
+                                                </c:if>
+                                        >코스프레
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="input-list col-9" style="padding-bottom: 10px;">
