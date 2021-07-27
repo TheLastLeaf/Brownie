@@ -105,8 +105,6 @@ public class UserController {
         List<String> changed = new ArrayList<>();
         JsonObject jsonObject = new JsonObject();
 
-        System.out.println(map);
-
         if (httpSession.getAttribute("id") == null) {
             jsonObject.addProperty("responseCode", "error");
             jsonObject.addProperty("message", "로그인 후 이용하세요.");
@@ -118,7 +116,7 @@ public class UserController {
             if (!userVO.getNickName().equals(map.get("nickNameBox").toString())) {
                 if (userService.dateChecking(id).equals("no")) {
                     jsonObject.addProperty("responseCode", "error");
-                    jsonObject.addProperty("message", "로그인 후 이용하세요.");
+                    jsonObject.addProperty("message", "30일 이내에 변경된 아이디입니다.");
                     return jsonObject.toString();
                 } else {
                     userService.updateNick(map);
@@ -170,7 +168,6 @@ public class UserController {
 
     @GetMapping("/modify/{user_id}")
     public String userModify(Model model, @PathVariable String user_id) throws IOException {
-        System.out.println("get");
         UserVO userVO = userService.userOneSelect(user_id);
         model.addAttribute("userOneSelect", userVO);
         return "user/modify";
@@ -179,8 +176,8 @@ public class UserController {
     @PostMapping("/idCheck.ajax")
     @ResponseBody
     public String userPostModify(@RequestParam Map<String, Object> map) {
-        String userNick = (String)map.get("userNickname");
-        System.out.println(map);
+        String userNick = (String) map.get("userNickname");
+
         int checkValue = userService.validating(userNick);
         String msg;
         if (checkValue == 1) {
@@ -193,7 +190,7 @@ public class UserController {
     }
 
     @GetMapping("/declare")
-    public String userDeclar(HttpServletRequest request, Model model) {
+    public String userDeclare(HttpServletRequest request, Model model) {
         String userId = request.getParameter("userId");
         String nickName = userService.nickName(userId);
         String log = request.getParameter("log");
