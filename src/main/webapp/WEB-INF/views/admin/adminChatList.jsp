@@ -44,8 +44,8 @@
         <div class="row">
             <div class="col-lg-12"
                  style="justify-content: center; align-content: center; text-align: center; color:white;">
-                <div class="innerBox text-right">
-                    <input type="text" class="writer" name="writer" id="writer" style="background-color: black; border:1px solid #666666; color: white;">
+                <div class="innerBox text-right" style="margin-bottom: 5px;">
+                    <input type="text" class="writer" name="writer" id="writer" style="background-color: black; border:1px solid #666666; color: white; height: 36px;">
                     <button type="button" class="btn btn-outline-light" onclick='location.href = "?pageNum=${pageNumber}&nickName=" + $("#writer").val()'>검색</button>
                 </div>
                 <div class="">
