@@ -248,10 +248,5 @@ public class TeamGameController {
 
         return "teamGame/chatRoom";
     }
-    
-    @GetMapping("/search")
-    public String userSearch() {
 
-        return "teamGame/search";
-    }
 }
