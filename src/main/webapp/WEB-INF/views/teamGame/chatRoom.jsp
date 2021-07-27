@@ -302,7 +302,7 @@
 
     })
     function fn_isSearch(lolId){
-    	window.open("/teamGame/search?title="+lolId, "search",
+    	window.open("/search?title="+lolId, "search",
         "width=1100px, height=700px, left=450px,top=120px");
     }
 
