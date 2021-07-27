@@ -151,22 +151,23 @@
                                 <div class="col-md-12" style="color: white; text-align: center;">
                                     <table style="color: white; text-align: center;" class="table">
                                         <thead>
-                                            <th scope="col">제목</th>
-                                            <th scope="col">게시판</th>
-                                            <th scope="col">작성일</th>
-                                            <th scope="col">작성자</th>
+                                        <th scope="col">제목</th>
+                                        <th scope="col">게시판</th>
+                                        <th scope="col">작성일</th>
+                                        <th scope="col">작성자</th>
                                         </thead>
                                         <c:forEach items="${boardPagingVO.boardVOList}" var="boardVO" begin="0"
                                                    end="10">
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row"><span
-                                                            onclick="location.href='${boardVO.boardKind}/details/${boardVO.boardSeq}'"
-                                                            style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">${boardVO.title}</span></th>
-                                                    <th>${fn:toUpperCase(boardVO.boardKind)}</th>
-                                                    <th>${boardVO.boardInDateToString}</th>
-                                                    <th>${boardVO.nickName}</th>
-                                                </tr>
+                                            <tr>
+                                                <th scope="row"><span
+                                                        onclick="location.href='${boardVO.boardKind}/details/${boardVO.boardSeq}'"
+                                                        style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">${boardVO.title}</span>
+                                                </th>
+                                                <th>${fn:toUpperCase(boardVO.boardKind)}</th>
+                                                <th>${boardVO.boardInDateToString}</th>
+                                                <th>${boardVO.nickName}</th>
+                                            </tr>
                                             </tbody>
                                         </c:forEach>
                                     </table>
@@ -189,67 +190,29 @@
                 <!-- League Member 시작 -->
                 <div class="tab-pane fade" id="tabs-3" role="tabpanel">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <table border="1" style="width: 100%; color: white; text-align: center;">
-                                    <tr>
-                                        <th colspan="6">여기에는 선수정보 긁어오면 되나? 이 페이지 뭔 역할 하는지 사실 잘 모르겠음</th>
-                                    </tr>
-                                    <tr>
-                                        <th>이름</th>
-                                        <th>소속</th>
-                                        <th>주챔피언</th>
-                                        <th>승률</th>
-                                        <th>킬데스</th>
-                                        <th>킬관여</th>
-                                    </tr>
-                                    <tr>
-                                        <th>이상혁</th>
-                                        <th>T1</th>
-                                        <th>Faker</th>
-                                        <th>66.1%</th>
-                                        <th>4.4</th>
-                                        <th>67%</th>
-                                    </tr>
-                                    <tr>
-                                        <th>이상혁</th>
-                                        <th>T1</th>
-                                        <th>Faker</th>
-                                        <th>66.1%</th>
-                                        <th>4.4</th>
-                                        <th>67%</th>
-                                    </tr>
-                                    <tr>
-                                        <th>이상혁</th>
-                                        <th>T1</th>
-                                        <th>Faker</th>
-                                        <th>66.1%</th>
-                                        <th>4.4</th>
-                                        <th>67%</th>
-                                    </tr>
-                                    <tr>
-                                        <th>이상혁</th>
-                                        <th>T1</th>
-                                        <th>Faker</th>
-                                        <th>66.1%</th>
-                                        <th>4.4</th>
-                                        <th>67%</th>
-                                    </tr>
-                                    <tr>
-                                        <th>이상혁</th>
-                                        <th>T1</th>
-                                        <th>Faker</th>
-                                        <th>66.1%</th>
-                                        <th>4.4</th>
-                                        <th>67%</th>
-                                    </tr>
-                                </table>
+                        <div class="col-lg-12 row text-center text-white row">
+                            <div class="col-12 row mt-2 mb-2">
+                                <div class="col-4">팀 순위</div>
+                                <div class="col-2">승</div>
+                                <div class="col-2">패</div>
+                                <div class="col-2">득실차</div>
+                                <div class="col-2">승률</div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="row">
-
-                            </div>
+                            <c:forEach var="teamInfo" items="${teamInfoList}">
+                                <div class="col-12 row mt-2 mb-2">
+                                    <div class="col-1">
+                                        <strong>${teamInfo.rank}</strong>
+                                    </div>
+                                    <div class="col-1">
+                                        <img width="auto" height="auto" src="${teamInfo.imageUrl}" alt=""/>
+                                    </div>
+                                    <div class="col-2">${teamInfo.nameAcronym}</div>
+                                    <div class="col-2">${teamInfo.wins}</div>
+                                    <div class="col-2">${teamInfo.loses}</div>
+                                    <div class="col-2">${teamInfo.score}</div>
+                                    <div class="col-2">${teamInfo.winRate}</div>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

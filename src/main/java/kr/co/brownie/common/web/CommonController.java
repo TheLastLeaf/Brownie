@@ -58,11 +58,16 @@ public class CommonController {
         map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
 
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
-
-        //main youtube list
         model.addAttribute("youTubeVoList", youTubeService.selectList());
+
         try {
             model.addAttribute("leagueCalendarList", this.commonService.leagueCalendarList());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            model.addAttribute("teamInfoList", this.commonService.teamInfoList());
         } catch (Exception e) {
             e.printStackTrace();
         }
