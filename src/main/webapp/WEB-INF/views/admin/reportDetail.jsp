@@ -66,7 +66,7 @@
             <div class="signup-title" style="margin: 10px;">
                 <h3 class="title" style="color: white;">Log</h3>
             </div>
-            <div style="border: 1px solid white; overflow: auto; width: 500px; height: 300px; color: white;">
+            <div style="border: 1px solid white; overflow: auto; width: 98%; height: 300px; color: white;">
                 ${reportDetail.log}
             </div>
             <button onclick="window.close()" class="btn btn-outline-light" style="margin-left: 336px;">CLOSE</button>
