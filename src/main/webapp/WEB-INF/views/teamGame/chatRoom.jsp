@@ -333,6 +333,10 @@
     	window.open("/teamGame/search", "search",
         "width=1100px, height=700px, left=450px,top=120px");
     }
+
+    function fn_chatReport(userId,teamGameSeq){
+        window.open("/report/chat?userId=" + userId + "&teamGameSeq=" + teamGameSeq, "REPORT", "width=660, height=500, left=250,top=200");
+    }
 </script>
 
 <body>
@@ -364,7 +368,7 @@
                     </span>
                     <span class='act-btn'>
                         <input type='sumbit' value='정보' class='user-act-btn btn btn-outline-secondary' onclick="fn_isSearch()"/>
-                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick=""/>
+                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick="fn_chatReport('${memList.userId}','${memList.teamGameSeq}')"/>
                     </span>
                     <div class="userInfo"><span class="memNick">${memList.nickName}</span> [${memList.lolId}]</div>
                 </div>
