@@ -6,6 +6,7 @@ import kr.co.brownie.miniGame.service.BrownieMarbelLogVO;
 import kr.co.brownie.miniGame.service.BrownieMarbelVO;
 import kr.co.brownie.user.service.UserService;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -73,13 +75,37 @@ public class MiniGameController {
         }
         
         
+        //주사위 기회 주기
+        SimpleDateFormat dataFormat = new SimpleDateFormat ( "yy.MM.dd");
+        		
+        Date time = new Date();
+        		
+        String resetTime = dataFormat.format(time);
+        String round = player.getRound();
+        
+        System.out.println("today : " + resetTime);
+        System.out.println("db : " + round);
+        
+        if(!resetTime.equals(round)) {
+        	param.put("round", resetTime);
+            param.put("hp", player.getHp());
+            param.put("item", player.getItem());
+            param.put("position", player.getPosition());
+            param.put("recentMap", player.getRecentMap());
+            param.put("quest", player.getQuest());
+            param.put("dicetimes", 8);
+            param.put("recentHp", player.getRecentHp());
+            param.put("userId", id);
+            this.miniGameService.updatePlayer(param);
+        }
+        
+        player = this.miniGameService.selectPlayer(id);
         System.out.println("player:" + player);
         model.addAttribute("player", player);
-
+        
         //로그목록
-        int round = player.getRound();
+        param.put("round", 1);
         param.put("userId", id);
-        param.put("round", round);
         
         List<BrownieMarbelLogVO> logs = this.miniGameService.selectLogs(param);
         System.out.println(logs);
@@ -117,7 +143,8 @@ public class MiniGameController {
         
         model.addAttribute("infoList", brownieMarbelInfo); //
         model.addAttribute("landColor", landColor); //
-
+        System.out.println("일단 넘어는감");
+        
         return "miniGame/blueMarvel";
     }
 
@@ -130,7 +157,7 @@ public class MiniGameController {
         BrownieMarbelVO player = this.miniGameService.selectPlayer(id);
 
         int position = Integer.parseInt(servletRequest.getParameter("position"));
-        int round = Integer.parseInt(servletRequest.getParameter("round"));
+        String round = player.getRound(); 
         int hp = Integer.parseInt(servletRequest.getParameter("hp"));
         String item = servletRequest.getParameter("item");
         int point = Integer.parseInt(servletRequest.getParameter("point"));
@@ -249,7 +276,7 @@ public class MiniGameController {
         
         //DB 유저 마블정보
         int position = Integer.parseInt(servletRequest.getParameter("UserPosition"));
-        int round = Integer.parseInt(servletRequest.getParameter("round"));
+        String round = player.getRound();
         int hp = Integer.parseInt(servletRequest.getParameter("hp"));
         String item = servletRequest.getParameter("item");
         String recentMap = servletRequest.getParameter("recentMap");
@@ -368,18 +395,20 @@ public class MiniGameController {
             	int temp = 0;
             	if (objSeq==1) {
         			recentHp += Integer.parseInt(str[0]);
-        			temp= -100-pointG;
         			if (pointG<=100) {
         				temp = 0;
+        			} else {
+        				temp= -100-pointG;
         			}
         		} else if (objSeq==6) {
         			recentHp += Integer.parseInt(str[0]);
-        			temp = 300-pointG;
+    				temp = 300;
         		} else {
         			recentHp += Integer.parseInt(str[0]);
-        			temp = -200-pointG;
         			if (pointG<=200) {
         				temp = 0;
+        			} else {
+        				temp = -200-pointG;
         			}
         		}
             	
@@ -400,7 +429,7 @@ public class MiniGameController {
         		param.put("point", pointG);
         		saveCnt = this.miniGameService.modifyBPoint(param);
         		param.put("point", -pointG);
-        		this.miniGameService.modifyGamePoint(param);
+        		saveCnt = this.miniGameService.modifyGamePoint(param);
         		act = "이용";
         	} else if (objSeq==13) {
         		map.put("doubleD","double");
@@ -538,7 +567,7 @@ public class MiniGameController {
         String log = "";
         
         for (BrownieMarbelLogVO vo : logs) {
-        	log += "<p class='logWrite'><i class='far fa-clock'></i> "+vo.getTime() + "(주사위눈 : "+vo.getDicenum()+") ("+vo.getResult()+")<br>"+vo.getRound()+"-"+vo.getLogSeq()+". "+vo.getUserId()+"은(는) "+vo.getObject()+"을(를) "+vo.getAct()+"했다.</p>";
+        	log += "<p class='logWrite'><i class='far fa-clock'></i> "+vo.getTime() + "(주사위눈 : "+vo.getDicenum()+") ("+vo.getResult()+")<br>"+vo.getLogSeq()+". "+vo.getUserId()+"은(는) "+vo.getObject()+"을(를) "+vo.getAct()+"했다.</p>";
 		}
         
         //

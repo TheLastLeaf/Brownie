@@ -321,7 +321,7 @@
 	  width:500px; height:500px;
 	  background:#fff; border-radius:10px;
 	  position:relative; top:50%; left:50%;
-      margin-top: -270px;
+      margin-top: -150px;
  	  margin-left: -250px;
 	  text-align:center;
 	  box-sizing:border-box; padding:74px 0;
@@ -591,7 +591,7 @@
 	}
 	
     var playerPos = ${player.position};	//플레이어 위치
-    var round = ${player.round};		//회차 
+    var round = "${player.hp}";		//회차
     var hp = Number(${player.hp});				//HP
     var item = '${player.item}';		//item
     var point = ${player.point};
@@ -774,7 +774,7 @@
         	if(!confirm("내기꾼 : 동전던지기로 내기하지않을래 ?")) {
         	$("#gameInfoText").html("재미없네.");
         	} else {
-        		if(confirm("내기꾼 : 전재산을 걸고??")) {
+        		if(confirm("내기꾼 : 전재산을 걸고??  (아니오 = 재산의 절반)")) {
         			$("#gameInfoText").html("전재산 가보자~가보자~");
         			if(confirm("앞면 : 예, 뒷면 : 아니오")){
         				thorwResult = "front";
@@ -798,7 +798,6 @@
     //랜드효과발동
     function effectAct(side1) {
     	changeRainbow()
-    	console.log(4);
         var objposition = "start";
         playerPos = Number(playerPos);
         if (playerPos != 0) {
@@ -1287,7 +1286,7 @@ $(function(){
                             <c:forEach var="log" items="${logs}" varStatus="status">
                                 <p class="logWrite"><i class="far fa-clock"></i> ${log.time} (주사위눈 : ${log.dicenum})
                                     (${log.result})<br>
-                                        ${log.round}-${log.logSeq}. ${log.userId}은(는) ${log.object}을(를) ${log.act}했다.
+                                        ${log.logSeq}. ${log.userId}은(는) ${log.object}을(를) ${log.act}했다.
                                 </p>
                             </c:forEach>
                             	</div>

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class BrownieMarbelVO {
     private String userId;
-    private int round;
+    private String round;
     private int hp;
     private int recentHp;
     private String item;

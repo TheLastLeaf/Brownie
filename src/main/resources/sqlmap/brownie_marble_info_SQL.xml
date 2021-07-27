@@ -51,7 +51,7 @@
 
     <select id="selectPlayer" resultType="kr.co.brownie.miniGame.service.BrownieMarbelVO">
         SELECT USER_ID                                                            AS USERID,
-               ROUND                                                              AS ROUND,
+               ROUND                    AS ROUND,
                HP,
                RECENT_HP                                                          AS RECENTHP,
                ITEM                                                               AS ITEM,
@@ -67,7 +67,7 @@
 
     <insert id="insertPlayer" parameterType="hashMap">
         INSERT INTO BROWNIE_MARBLE(USER_ID, ROUND, HP, ITEM, POSITION, POINT, RECENT_MAP, QUEST, DICETIMES, RECENT_HP)
-        VALUES (#{userId}, 1, 4, '[]', 0, 100, #{recentMap}, #{quest}, 8, 4)
+        VALUES (#{userId}, (SELECT to_char(SYSDATE, 'rr.mm.dd') FROM dual), 4, '[]', 0, 100, #{recentMap}, #{quest}, 8, 4)
     </insert>
 
     <update id="updatePlayer" parameterType="hashMap">
@@ -106,14 +106,13 @@
                RESULT
         FROM BROWNIE_MARBLE_LOG
         WHERE USER_ID = #{userId}
-          AND ROUND = #{round}
         ORDER BY LOG_SEQ DESC
     </select>
     
     <insert id="insertLog" parameterType="hashMap">
         INSERT INTO BROWNIE_MARBLE_LOG(USER_ID, ROUND, LOG_SEQ, DICENUM, TIME, OBJECT, ACT, RESULT)
         VALUES ( #{userId}
-               , (SELECT ROUND FROM BROWNIE_MARBLE WHERE USER_ID = #{userId})
+               , 1
                , (SELECT NVL(MAX(LOG_SEQ),0)+1 FROM BROWNIE_MARBLE_LOG WHERE USER_ID=#{userId})
                , #{dicenum}
                , SYSDATE
