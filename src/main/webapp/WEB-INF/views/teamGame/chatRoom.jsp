@@ -278,7 +278,7 @@
                         var newUser = "<div class='user' id=" + speakerId + ">"
                         newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
                         userListStr += "<span class='act-btn'>" +
-                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' />" +
+                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick='fn_chatReport("+sessionId+","+ROOM_NUMBER+")' />" +
                                         "<input type='sumbit' value='정보' id="+sessionLolNick+" class='user-act-btn btn btn-outline-secondary' onclick='fn_isSearch(this.id)'/>" +
                                         "</span>"
                         newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
@@ -286,7 +286,7 @@
                         var newUser = "<div class='user' id=" + speakerId + ">"
                         newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
                         userListStr += "<span class='act-btn'>" +
-                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' />" +
+                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick='fn_chatReport("+sessionId+","+ROOM_NUMBER+")' />" +
                                         "</span>"
                         newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
                         newUser += "</div>"
