@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../../layout/header.jsp"/>
 
+<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
+
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad" style="height: 500px; padding-top:200px;"
          data-setbg="${pageContext.request.contextPath}/img/gallery/main/main${randomImageNumber}.jpg">
@@ -179,7 +182,7 @@
                         </c:if>
                         <h3 class="text-white">전체 글</h3>
                     </div>
-                    <div class="col-12 p-0">
+                    <div class="col-12 p-0 row">
                         <c:forEach var="boardVO" items="${boardPagingVO.boardVOList}">
                             <div class="col-2">
                                 <div class="cg-item">

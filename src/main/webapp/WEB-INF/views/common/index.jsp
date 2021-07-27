@@ -148,8 +148,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row">
-                                <div class="col-md-12" style="color: white; text-align: center;">
-                                    <table style="color: white; text-align: center;" class="table">
+                                <div class="col-md-12 text-white text-center">
+                                    <table class="table text-white text-center">
                                         <thead>
                                         <th scope="col">제목</th>
                                         <th scope="col">게시판</th>
@@ -160,9 +160,12 @@
                                                    end="10">
                                             <tbody>
                                             <tr>
-                                                <th scope="row"><span
-                                                        onclick="location.href='${boardVO.boardKind}/details/${boardVO.boardSeq}'"
-                                                        style="cursor: pointer; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;">${boardVO.title}</span>
+                                                <th scope="row">
+                                                    <span class="overflow-hidden text-nowrap"
+                                                          onclick="location.href='${boardVO.boardKind}/details/${boardVO.boardSeq}'"
+                                                          style="cursor: pointer; text-overflow: ellipsis;">
+                                                            ${boardVO.title}
+                                                    </span>
                                                 </th>
                                                 <th>${fn:toUpperCase(boardVO.boardKind)}</th>
                                                 <th>${boardVO.boardInDateToString}</th>
@@ -259,7 +262,7 @@
                                 $("#leagueCalendar").append(data);
                                 <c:forEach var="leagueCalendar" items="${leagueCalendarList}">
                                 <fmt:formatDate var="date" type="date" value="${leagueCalendar.date}" pattern="M-d"/>
-                                <fmt:formatDate var="time" type="time" value="${leagueCalendar.date}" pattern="hh:mm"/>
+                                <fmt:formatDate var="time" type="time" value="${leagueCalendar.date}" pattern="HH:mm"/>
                                 data = "<p><span class=\"badge badge-dark\">${time}</span> ${leagueCalendar.ATeam} vs ${leagueCalendar.BTeam}</p>";
 
                                 $("#${date}").append(data);

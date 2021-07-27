@@ -4,6 +4,9 @@
 
 <!-- -->
 
+<script src="${pageContext.request.contextPath}/js/marvel.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
+
 <script>
     $(function () {
         const toolbar = [
