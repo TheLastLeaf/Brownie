@@ -249,7 +249,7 @@ public class UserController {
     public String userSync(HttpSession httpSession,
                            Model model) {
         UserVO userVO = userService.userOneSelect(httpSession.getAttribute("id").toString());
-        if (userVO.getLolId() == null || "".equalsIgnoreCase(userVO.getLolId())) {
+        if (userVO.getLolId() == null || "".equalsIgnoreCase(userVO.getLolId()) || userVO.getLolId().contains("_")) {
             Map<String, Object> map = new HashMap<>();
             map.put("userId", httpSession.getAttribute("id").toString());
 
