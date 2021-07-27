@@ -22,9 +22,50 @@ public class CommonServiceImpl implements CommonService {
     @Resource(name = "commonMapper")
     CommonMapper commonMapper;
 
+    public static void main(String[] args) {
+        CommonService commonService = new CommonServiceImpl();
+
+        List<LeagueCalendar> leagueCalendarList = commonService.leagueCalendarList();
+        System.out.println(leagueCalendarList);
+    }
+
     @Override
     @SneakyThrows
     public List<LeagueCalendar> leagueCalendarList() {
+        List<LeagueCalendar> leagueCalendarList = new ArrayList<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm");
+
+        String responseContent = sendGet(
+                String.format(
+                        "https://esports.inven.co.kr/schedule/?mode=month&date=%s&game=1368",
+                        new SimpleDateFormat("yyyy-MM-dd").format(new Date())
+                )
+        );
+
+        for (Element E: Jsoup.parse(responseContent).select("dl.dateList")) {
+            String href = E.select("a").attr("href");
+            int dateStartIndex = href.indexOf("date=") + 5;
+            String datePart = href.substring(dateStartIndex);
+
+            for (Element element : E.select("li.display[data-league=\"524\"]")) {
+                String timePart = element.select("span").get(0).text();
+                String[] teams = element.select("span").get(1).text().split("vs");
+                leagueCalendarList.add(
+                        LeagueCalendar.builder()
+                                .date(simpleDateFormat.parse(datePart + timePart))
+                                .aTeam(teams[0])
+                                .bTeam(teams[1])
+                                .build()
+                );
+            }
+        }
+
+        return leagueCalendarList;
+    }
+
+    @Override
+    @SneakyThrows
+    public List<LeagueCalendar> teamInfoList() {
         List<LeagueCalendar> leagueCalendarList = new ArrayList<>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-ddHH:mm");
 
@@ -45,7 +86,7 @@ public class CommonServiceImpl implements CommonService {
             String[] teams = element.select("span").get(1).text().split("vs");
             leagueCalendarList.add(
                     LeagueCalendar.builder()
-                            .date(simpleDateFormat.parse(datePart+timePart))
+                            .date(simpleDateFormat.parse(datePart + timePart))
                             .aTeam(teams[0])
                             .bTeam(teams[1])
                             .build()
@@ -63,7 +104,6 @@ public class CommonServiceImpl implements CommonService {
         httpURLConnection.setRequestMethod("GET");
         httpURLConnection.setRequestProperty("User-Agent", USER_AGENT);
 
-        int responseCode = httpURLConnection.getResponseCode();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
         String inputLine;
         StringBuilder stringBuilder = new StringBuilder();
