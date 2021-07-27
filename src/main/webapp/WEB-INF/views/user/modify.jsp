@@ -169,7 +169,8 @@
                 <div class="sf-input-list ">
                     <div class="profileBox" style="border: none;">
                         <label for="file">
-                            <img class="profile" id="img" src="${pageContext.request.contextPath}${userOneSelect.image}">
+                            <img class="profile" id="img"
+                                 src="${pageContext.request.contextPath}${userOneSelect.image}">
                             <input type="file" id="file" name="file"/>
                         </label>
                     </div>
@@ -313,12 +314,7 @@
                         url: "/user/idCheck.ajax",
                         type: "POST",
                         data: sendData,
-                        processData: false,
-                        contentType: false,
-                        async: false,
                         success: function (data) {
-                            console.log(sendData)
-                            console.log(data)
                             if (userNick.val() === "" || userNick.val() == null || data === "ng") { // 아이디가 중복됨
                                 $('#user_nick').addClass('check_fail');
                             } else { // 아이디가 실제로 올바른 값인지 체킹

@@ -19,6 +19,7 @@ import com.google.gson.JsonParser;
 import kr.co.brownie.userSearch.Service.LeagueEntryVO;
 import kr.co.brownie.userSearch.Service.SummonerVO;
 import kr.co.brownie.userSearch.config.VersionCheck;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SearchSummoner {
