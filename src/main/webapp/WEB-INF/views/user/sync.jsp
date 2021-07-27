@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +47,7 @@
 <div class="container">
     <div class="container-fluid">
         <c:choose>
-            <c:when test='${userVO.lolId == null or userVO.lolId == ""}'>
+            <c:when test='${fn:contains(userVO.lolId, "_")}'>
                 <div style="color: white">
                     <h1 class="text-center" style="color: white">아래 프로그램을</h1>
                     <h1 class="text-center" style="color: white">다운로드 받고</h1>
@@ -63,7 +64,25 @@
                     <h1 style="color: white">연동되어</h1>
                     <h1 style="color: white">있습니다.</h1>
 
-                    <button type="button" class="btn btn-danger">연동 해제</button>
+                    <script>
+                        function authCancel() {
+                            $.ajax({
+                                    url: "/authCancel",
+                                    type: "POST",
+                                    success: function (data) {
+                                        if (data.status === "ng") {
+                                            alert(data.message);
+                                        }
+                                        location.reload();
+                                    },
+                                    error: function (e) {
+                                        console.log(e);
+                                    }
+                                }
+                            );
+                        }
+                    </script>
+                    <button type="button" class="btn btn-danger" onclick="authCancel()">연동 해제</button>
                 </div>
             </c:otherwise>
         </c:choose>
