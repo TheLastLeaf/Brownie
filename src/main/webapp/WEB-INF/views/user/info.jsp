@@ -670,6 +670,21 @@ h1 {
 	};
 
 	function fn_SyncTierLv(lolId) {
-		alert("갱신하시겠습니까???");
+		
+		if(confirm("갱신하시겠습니까???")){
+			$.ajax({
+	            url: "/user/search",
+	            type: "POST",
+	            data: lolId,
+	            dataType: "text",
+	            success: function (data) {
+	                alert(data);
+	            },
+	            error: function (e) {
+	                alert("실패ㅜㅜ err");
+	                console.log(e);
+	            }
+	        });
+		};
 	}
 </script>
