@@ -273,7 +273,8 @@ h1 {
 #searchBtn {
 	width: 60px;
 }
-.selectedPosition>img{
+
+.selectedPosition>img {
 	width: 60px;
 }
 </style>
@@ -368,46 +369,68 @@ h1 {
 					</div>
 				</div>
 				<!-- 연동/게시글/같이플레이한놈 begin -->
-				<div class="row" style="color: white;">
+				<div class="row" style="color: white; position: relative;">
 					<!-- 뭉태기1 -->
 					<div class="userInfoBox col-sm-4">
+						<c:set var="lolId" value="${userOneSelect.lolId}" />
 						<div class="sync">
-							<button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
+							<c:choose>
+								<c:when test="${lolId.contains('_')}">
+									<button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
+								</c:when>
+								<c:otherwise>
+									<img src="${pageContext.request.contextPath}/img/details/LOL.png" style="width: 95px;" />
+								</c:otherwise>
+							</c:choose>
+
 						</div>
 						<div class="sync">
 							<!-- 연동이 되었다는 가정하에 만들어짐 default 는 ??? | ??? | ??? -->
-							${userOneSelect.lolId} | 롤Lv. | 롤Tier
+							${lolId}
+							<!-- 롤아이디 -->
+							<c:choose>
+								<c:when test="${lolId.contains('_')}">
+									| 롤 Lv. | 롤 tier
+								</c:when>
+								<c:otherwise>
+									<!-- 								${summoner.name} ${leagueInfo[0].tier} -->
+									<div style="position: absolute; top:20px; left: 240px;">
+									<button style="background: pink; color: white; margin: 0px;" onclick="fn_SyncTierLv('${lolId}')">
+										<i class="fas fa-sync-alt"></i>
+									</button>
+									</div>
+										| GD | GD
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<hr>
 						<div class="sync row">
-							<div class="col-sm-12">
-							【메인포지션】
-							</div>
+							<div class="col-sm-12">【메인포지션】</div>
 							<div class="selectedPosition">
-							<c:set var="position" value="${userOneSelect.userPosition}" />
-							<c:if test="${position.contains('top')}">
-								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" />
-							</c:if>
-							<c:if test="${position.contains('jun')}">
-								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" />
-							</c:if>
-							<c:if test="${position.contains('mid')}">
-								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" />
-							</c:if>
-							<c:if test="${position.contains('bot')}">
-								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" />
-							</c:if>
-							<c:if test="${position.contains('sup')}">
-								<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" />
-							</c:if>
-							<c:if test="${position.contains('empty')}">
-								<img src="${pageContext.request.contextPath}/img/details/QUESTION.gif" />
-							</c:if>
+								<c:set var="position" value="${userOneSelect.userPosition}" />
+								<c:if test="${position.contains('top')}">
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Top.png" />
+								</c:if>
+								<c:if test="${position.contains('jun')}">
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Jungle.png" />
+								</c:if>
+								<c:if test="${position.contains('mid')}">
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Mid.png" />
+								</c:if>
+								<c:if test="${position.contains('bot')}">
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Bot.png" />
+								</c:if>
+								<c:if test="${position.contains('sup')}">
+									<img src="${pageContext.request.contextPath}/img/lol/lolLaneTier/Position_Diamond-Support.png" />
+								</c:if>
+								<c:if test="${position.contains('empty')}">
+									<img src="${pageContext.request.contextPath}/img/details/QUESTION.gif" />
+								</c:if>
 							</div>
 						</div>
 					</div>
 					<!-- 뭉태기2 -->
-					<div class="userInfoBox col-sm-4">
+					<div class="userInfoBox col-sm-4" style="padding-top: 15px;">
 						<div>
 							<div class="infoDetail">게시글 갯수: ${boardTotalCnt}</div>
 							<div class="infoDetail">댓글 갯수: ${replyTotalCnt}</div>
@@ -646,5 +669,7 @@ h1 {
 		console.log("keyword: " + keyword)
 	};
 
-	//
+	function fn_SyncTierLv(lolId) {
+		alert("갱신하시겠습니까???");
+	}
 </script>

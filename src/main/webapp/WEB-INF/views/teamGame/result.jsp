@@ -239,17 +239,4 @@
         integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
-<script>
-//     function fn_check() {
-//         if (confirm('자신의 lol 아이디로 인증해야합니다!')) {
-//             if (prompt('실제 LoL로그인 후 [안뇽하세욤]을 친추 후 난수 6자리를 받으세요!',
-//                 '난수 6자리를 기입하세요!')) {
-//                 return true;
-//             } else {
-//                 return false;
-//             }
-//         }
-//         return false;
-//     }
-</script>
 </html>
