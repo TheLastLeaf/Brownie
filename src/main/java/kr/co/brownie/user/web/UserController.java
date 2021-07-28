@@ -265,10 +265,13 @@ public class UserController {
 		return "user/sync";
 	}
 
-	@PostMapping("/search")
+	@PostMapping("/search/{userId}")
 	@ResponseBody
-	public String userPostSearch(@RequestParam Map<String, Object> map, HttpSession httpsession) {
-		System.out.println("map: " + map);
+	public String userPostSearch(@PathVariable String userId) {
+		UserVO userVO = this.userService.userOneSelect(userId);
+		System.out.println("userId: " + userId);
+		System.out.println(userVO);
+
 		return "ok";
 	}
 }
