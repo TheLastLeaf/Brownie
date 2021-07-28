@@ -114,8 +114,8 @@ public class TeamGameController {
                 return jsonObject.toString();
             } else {
                 Map<String, Object> mapForPoint = new HashMap<>();
-                map.put("userId",map.get("userId"));
-                map.put("browniePoint", 500);
+                mapForPoint.put("userId",map.get("userId"));
+                mapForPoint.put("browniePoint", 500);
                 userService.usePointForChat(mapForPoint);
                 System.out.println("-----포인트차감");
             }
