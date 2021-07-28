@@ -9,8 +9,6 @@ public interface UserService {
 
     UserVO userOneSelect(String id);
 
-    int selectExp(String id);
-
     float starCntSelect(String id);
 
     int boardTotalCnt(String id);

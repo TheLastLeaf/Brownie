@@ -274,7 +274,7 @@
     function openRoom(roomNumber, nickName, lolId, position){
         var chatPop= document.roomInfo;
         var url = '/websocket/chat2';
-        window.open('','chatingRoom' + roomNumber,'width=900, height=600, scroll=no, left=500, top=250');
+        window.open('','chatingRoom' + roomNumber,'width=1000, height=700, scroll=no, left=500, top=250');
 
         chatPop.method = 'post';
         chatPop.action = url;
@@ -361,12 +361,12 @@
     <div class="loader"></div>
 </div>
 
-<div class="container d-flex justify-content-end">Lv.백신 / exp : ${userExp}</div>
+<div class="container d-flex justify-content-end">Point : ${userInfo.browniePoint}</div>
 <div class="container">
     <div class="row">
         <div class="col text-center" style="border: 1px solid white;">
             <p>
-            <h5 class="font-family-maple-light">방장 : ${nickName}</h5>
+            <h5 class="font-family-maple-light">방장 : ${userInfo.nickName} [ ${userInfo.lolId} ]</h5>
             </p>
             <!------------------------------------------------------------------->
             <form name="roomInfo">
@@ -481,8 +481,8 @@
             <div class="container appleSwitchDiv">
                 <div class="appleSwitch">
                     <label class="form-check-label font-family-maple-light" for="usePointCheck">
-                        <input class="apple-switch" type="checkbox" id="usePointCheck">
-                        <br/>1000포인트를 사용해 10분간 상단에 띄워주기
+                        <input class="apple-switch" type="checkbox" id="usePointCheck" value="usePointForTop">
+                        <br/>500포인트를 사용해 10분간 상단에 띄워주기
                     </label>
                 </div>
 <%--                <div class="appleSwitch">--%>

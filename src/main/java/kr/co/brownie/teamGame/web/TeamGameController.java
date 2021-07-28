@@ -82,18 +82,13 @@ public class TeamGameController {
     }
 
     @GetMapping("/makeRoom")
-    public String makeRoom(Model model) throws IOException {
+    public String makeRoom(Model model, HttpSession httpSession) throws IOException {
         //로그인 안하면 터져서 잠깐 주석처리했음
-        //String inUserId = servletRequest.getSession().getAttribute("id").toString();
-        //UserVO userInfo = userService.userOneSelect(inUserId);
-        //int userExp = userService.selectExp(inUserId);
-
-        //model.addAttribute("userInfo",userInfo);
-        //model.addAttribute("userExp",userExp);
+        String inUserId = httpSession.getAttribute("id").toString();
+        UserVO userInfo = userService.userOneSelect(inUserId);
 
         //블랙회원인 경우 진입이 불가능해야함. 세션 불러와서 권한 if문 돌리기
-        model.addAttribute("userInfo", "경험치~");
-        model.addAttribute("nickName", "닉네임~");
+        model.addAttribute("userInfo", userInfo);
         return "teamGame/makeRoom";
     }
 
@@ -105,8 +100,11 @@ public class TeamGameController {
         String userId = httpSession.getAttribute("id").toString();
         UserVO userInfo = userService.userOneSelect(userId);
 
-        teamGameService.insertTeamGameRoom(map);
+        if(map.get("usePoint").equals("y")){
+            //여기서 유저 포인트 500 빼는거 해줘야함
+        }
 
+        teamGameService.insertTeamGameRoom(map);
         System.out.println("insert map : : "+map);
 
         JsonObject jsonObject = new JsonObject();

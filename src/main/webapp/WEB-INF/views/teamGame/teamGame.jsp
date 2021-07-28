@@ -115,6 +115,10 @@
 
 <script type="text/javascript">
     function fn_makeRoom() {
+        if(${sessionScope.id == null}){
+            alert('로그인 후 이용해주세요.');
+            return;
+        }
         window.open("teamGame/makeRoom", "makeTeam",
             "width=660, height=570, left=250,top=200");
     }
@@ -183,7 +187,7 @@
         console.log('방 번호 : ', roomNumber);
         var chatPop = document.roomInfo;
         var url = '/websocket/chat2';
-        window.open('', 'chatingRoom' + roomNumber, 'width=900, height=600, scroll=no, left=500, top=250');
+        window.open('', 'chatingRoom' + roomNumber, 'width=1000, height=700, scroll=no, left=500, top=250');
 
         chatPop.action = url;
         chatPop.method = 'post';

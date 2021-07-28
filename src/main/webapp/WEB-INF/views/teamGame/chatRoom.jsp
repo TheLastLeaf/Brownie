@@ -267,6 +267,10 @@
             str += "</div></div>";
             $("#chatBox").append(str);
 
+            // if(message === " 님이 퇴장하셨습니다.") {
+            //     $( 'div' ).remove( '#'+speakerId );
+            // }
+
             if (message === " 님이 입장하셨습니다.") {
                 console.log("입장했댄다")
                 //포지션 받아서 div 아이디로 줄 건지 아닌지 고민

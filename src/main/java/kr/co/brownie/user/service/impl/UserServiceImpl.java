@@ -22,11 +22,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int selectExp(String id) {
-        return userMapper.selectExp(id);
-    }
-
-    @Override
     public float starCntSelect(String id) {
         return userMapper.starCntSelect(id);
     }

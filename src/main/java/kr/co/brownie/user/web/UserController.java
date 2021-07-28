@@ -51,9 +51,6 @@ public class UserController {
             return "common/message";
         }
 
-        // 경험치 select
-        int exp = userService.selectExp(user_id);
-
         // 별카운트
         float starCnt = userService.starCntSelect(user_id);
         int fullStar = (int) starCnt;
@@ -80,7 +77,6 @@ public class UserController {
 
         // model.addattribute
         model.addAttribute("userOneSelect", userOneSelect);
-        model.addAttribute("exp", exp);
         model.addAttribute("fullStar", fullStar);
         if (halfStar == 1) {
             model.addAttribute("halfStar", halfStar);
