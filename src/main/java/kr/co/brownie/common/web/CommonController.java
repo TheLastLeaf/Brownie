@@ -172,6 +172,7 @@ public class CommonController {
 
                 String nickName = authService.nickName(id);
                 httpSession.setAttribute("nickname", nickName);
+                httpSession.setAttribute("nickname", nickName);
             }
         } catch (IOException e) {
             e.printStackTrace();

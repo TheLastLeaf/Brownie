@@ -42,7 +42,7 @@ public class TeamGameController {
 		List<TeamGameVO> teamGameList = teamGameService.selectTeamGameList(page);
 
 		System.out.println("teamGameVO: " + teamGameList);
-		System.out.println("방 총 갯수 : " + page.getTotalCount());
+		System.out.println("방 총 개수 : " + page.getTotalCount());
 		System.out.println("page: " + page);
         Map<Integer, Object> teamPosition = new HashMap<>();
         for (TeamGameVO tgvo : teamGameList) {
@@ -75,9 +75,10 @@ public class TeamGameController {
         model.addAttribute("page", page);
         model.addAttribute("teamPosition", teamPosition);
 
-        System.out.println(model.getAttribute("teamGameList"));
-        System.out.println(model.getAttribute("teamPosition"));
+        System.out.println("teamGameList : "+model.getAttribute("teamGameList"));
+        System.out.println("teamPosition : "+model.getAttribute("teamPosition"));
 
+        System.out.println("방목록리스트 출력 끝");
         return "teamGame/teamGame";
     }
 

@@ -35,6 +35,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        System.out.println("웹소켓 접속 시작 -------------------------------------------------------------");
         System.out.println("afterConnectionEstablished : " + session);
         System.out.println("session.getAttributes() : " + session.getAttributes());
 
@@ -49,13 +50,13 @@ public class WebSocketHandler extends TextWebSocketHandler {
             sessions.add(session);
 
             userSessions.replace(roomNumber, sessions);
-            System.out.println("여기는 방이 존재하는 경우에 출력됩니다.");
+            System.out.println("여기는 방이 존재하는 경우에 출력됩니다.----------------------------------");
         } else if (!userSessions.containsKey(roomNumber)) {
             //존재하는 세션 방이 없기 때문에 새로 삽입하기
             List<WebSocketSession> sessions = new ArrayList<>();
             sessions.add(session);
             userSessions.put(roomNumber, sessions);
-            System.out.println("크아악!! 방이 존재하지 않아!!");
+            System.out.println("크아악!! 방이 존재하지 않아!!---------------------------------");
         }
 
         //접속 할 때 마다 웹소켓쪽으로 메시지 보내주는걸 고려해보기
@@ -65,6 +66,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        System.out.println("웹소켓 메시지 전송 시 출력됩니다 -------------------------------------------------------------");
         System.out.println("handleTextMessage : " + session + " / message : " + message);
         System.out.println("아이디 : " + session.getId() + " / 메시지 : " + message.getPayload());
         System.out.println("방주소 : " + session.getUri() + " / 글자수 : " + message.getPayloadLength());
@@ -102,10 +104,13 @@ public class WebSocketHandler extends TextWebSocketHandler {
             TextMessage msg = new TextMessage(message.getPayload()+":"+userInfo.getLolId());
             sess.sendMessage(msg);
         }
+
+        System.out.println("웹소켓 메시지 전송 끝 -------------------------------------------------------------");
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        System.out.println("웹소켓 종료 안내 시작 -------------------------------------------------------------");
         System.out.println("afterConnectionClosed session : " + session);
         //afterConnectionClosed session : StandardWebSocketSession[id=11, uri=ws://1.245.30.134/WebEcho?roomNumber=284]
         //session.getAttributes() : {HTTP.SESSION.ID=496834BDBAC682608FBF3B7D9759E2ED, permit_level=9, id=1786827527}
@@ -163,17 +168,18 @@ public class WebSocketHandler extends TextWebSocketHandler {
             System.out.println("tgvo에서 오류남");
         }
 
-//        try{
-//            //리스트에 존재하는 세션을 뽑아서 메시지로 보내주기
-//            for (WebSocketSession sess : sessions) {
-//                TextMessage msg = new TextMessage("유저닉네임 : 님이 퇴장하셨습니다"+": 롤닉네임");
-//                sess.sendMessage(msg);
-//            }
-//        } catch (Exception e){
-//
-//        } finally {
-//        }
-        sessions.remove(session);
+        try{
+            //리스트에 존재하는 세션을 뽑아서 메시지로 보내주기
+            for (WebSocketSession sess : sessions) {
+                TextMessage msg = new TextMessage("유저닉네임 : 님이 퇴장하셨습니다"+": 롤닉네임");
+                sess.sendMessage(msg);
+            }
+        } catch (Exception e){
+
+        } finally {
+            sessions.remove(session);
+            System.out.println("웹소켓 종료 안내 끝-------------------------------------------------------------");
+        }
         //팀게임 방번호 . 해당 유저 아이디 스테이터스 n으로 바꿔서 화면에 출력 안 되게 하기
         //sessions.get(0).getAttributes() : {HTTP.SESSION.ID=437649508DF2FF3CC7C3E4266F3A90CD, permit_level=9, id=1786827527}
         //해당 아이디가 가진 포지션 n으로 바꿔줘야함 / 해당 아이디의 status n으로 바꿔줘야함 > 이거 존재하는애들 삽입 안되는거라서 업뎃이나 머지문으로 바꿔줘야할듯

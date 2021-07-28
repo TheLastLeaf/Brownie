@@ -197,7 +197,7 @@
         const websocket = new WebSocket("ws://" + window.location.host + ":80/WebEcho?roomNumber=" + ROOM_NUMBER);
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
-        websocket.onclose = onClose;
+        //websocket.onclose = onClose;
 
         websocket.onclose = function (event) {
             if (event.wasClean) {
@@ -267,9 +267,9 @@
             str += "</div></div>";
             $("#chatBox").append(str);
 
-            // if(message === " 님이 퇴장하셨습니다.") {
-            //     $( 'div' ).remove( '#'+speakerId );
-            // }
+            if(message === " 님이 퇴장하셨습니다.") {
+                $( 'div' ).remove( '#'+speakerId );
+            }
 
             if (message === " 님이 입장하셨습니다.") {
                 console.log("입장했댄다")
@@ -278,10 +278,10 @@
                 //유저아이디를 가진 div가 있을 경우 추가하지않음 없을경우 추가해줌
                 if ($('#' + speakerId).length == 0) {
 
-                    if(!sessionLolNick.contains("_")){
+                    if(!sessionLolNick.includes("_")){
                         var newUser = "<div class='user' id=" + speakerId + ">"
                         newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
-                        userListStr += "<span class='act-btn'>" +
+                        newUser += "<span class='act-btn'>" +
                                         "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick='fn_chatReport("+sessionId+","+ROOM_NUMBER+")' />" +
                                         "<input type='sumbit' value='정보' id="+sessionLolNick+" class='user-act-btn btn btn-outline-secondary' onclick='fn_isSearch(this.id)'/>" +
                                         "</span>"
@@ -289,7 +289,7 @@
                     } else {
                         var newUser = "<div class='user' id=" + speakerId + ">"
                         newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
-                        userListStr += "<span class='act-btn'>" +
+                        newUser += "<span class='act-btn'>" +
                                         "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick='fn_chatReport("+sessionId+","+ROOM_NUMBER+")' />" +
                                         "</span>"
                         newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
@@ -342,8 +342,10 @@
                         <img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/>
                     </span>
                     <span class='act-btn'>
-                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick="fn_chatReport('${memList.userId}','${memList.teamGameSeq}')"/>
                         <c:set var = "lolId" value = "${memList.lolId}"/>
+                        <c:if test = '${not lolId eq memList.lolId}'>
+                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick="fn_chatReport('${memList.userId}','${memList.teamGameSeq}')"/>
+                        </c:if>
                         <c:if test = '${not fn:contains(lolId, "_")}'>
                         <input type='sumbit' value='정보' id="${memList.lolId}" class='user-act-btn btn btn-outline-secondary' onclick="fn_isSearch(this.id)"/>
                         </c:if>
