@@ -967,7 +967,7 @@
     	} 
     	
     	if (flagoneMore) {
-    		dice();
+    		oneMoreDice();
     		flagoneMore = false;
     		return;
     	} 
@@ -1015,15 +1015,54 @@
 
         setTimeout('move(' + side1 + ')', 1900);
     }
+    
+    function oneMoreDice() {
+    	
+    	$('#dice-side-2').css('display', 'none');
+    	$('#btnRoll').attr("disabled", true);
+        const buttonRoolDice = document.querySelector('.learn-more');
+        const diceSide1 = document.getElementById('dice-side-1');
+        const status1 = document.getElementById('status');
+
+        side1 = Math.floor(Math.random() * 6) + 1;
+
+        var num = side1;
+
+
+        if (num == 1) {
+            num = "<i class='fas fa-dice-one fa-7x'></i>";
+        }
+        if (num == 2) {
+            num = "<i class='fas fa-dice-two fa-7x'></i>";
+        }
+        if (num == 3) {
+            num = "<i class='fas fa-dice-three fa-7x'></i>";
+        }
+        if (num == 4) {
+            num = "<i class='fas fa-dice-four fa-7x'></i>";
+        }
+        if (num == 5) {
+            num = "<i class='fas fa-dice-five fa-7x'></i>";
+        }
+        if (num == 6) {
+            num = "<i class='fas fa-dice-six fa-7x'></i>";
+        }
+
+        diceSide1.innerHTML = num;
+
+        status1.innerHTML = side1 + "!";
+
+        setTimeout('move(' + side1 + ')', 1900);
+    }
 
     //한번더! 주사위 더블이벤트
     function doubleDice() {
     	$('#btnRoll').attr("disabled", true);
+        $('#dice-side-2').css('display', 'inline-block');
         const buttonRoolDice = document.querySelector('.learn-more');
 
         const diceSide1 = document.getElementById('dice-side-1');
         const diceSide2 = document.getElementById('dice-side-2');
-        $('#dice-side-2').css('display', 'inline-block');
         const status1 = document.getElementById('status');
 
         side1 = Math.floor(Math.random() * 6) + 1;
@@ -1063,8 +1102,8 @@
             status1.innerHTML += ' 더블! 한접시 더!<br>';
             doubleDice();
         }
-
-        setTimeout('move(' + diceTotal + ')', 2000);
+		side1 = diceTotal;
+        setTimeout('move(' + side1 + ')', 2000);
     }
 
     //상인
