@@ -32,4 +32,6 @@ public interface TeamGameMapper {
     TeamGameVO selectOne(Map<String, Object> map);
 
 	int countAllRoom(TeamGamePagingVO page);
+
+	void deleteTeamGame(Map<String, Object> map);
 }

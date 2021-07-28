@@ -169,6 +169,7 @@
                    , POSITION_SEQ
                    , POSITION
                    , STATUS
+                   , LEADER
                    , IN_DATE
                    , IN_USER_ID
                    , UP_DATE
@@ -178,6 +179,7 @@
                    , #{positionSeq}
                    , #{position}
                    , 'y'
+                   , 'n'
                    , SYSDATE
                    , #{userId}
                    , SYSDATE
@@ -194,6 +196,13 @@
         UPDATE TEAMGAME_POSITION
         SET ${position} = 'n'
         WHERE POSITION_SEQ = #{positionSeq}
+    </update>
+
+    <update id="deleteTeamGame">
+        UPDATE TEAMGAME
+        SET STATUS = 'n'
+        WHERE TEAMGAME_SEQ = #{teamGameSeq}
+          and USER_ID = #{userId}
     </update>
 
     <select id="selectOne" resultType="kr.co.brownie.teamGame.service.TeamGameVO">

@@ -172,7 +172,6 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
     $(document).ready(function () {
-
         $('#msg').focus();
 
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
@@ -269,11 +268,22 @@
             str += "<b>" + sessionId + " : " + message + "</b>";
             str += "</div></div>";
             $("#chatBox").append(str);
+            $('#msg').focus();
 
-            if(message === " 님이 퇴장하셨습니다.") {
-                $( 'div' ).remove( '#'+speakerId );
+            if(sessionId === "오류"){
+                console.log("오류")
             }
 
+            if(speakerId.includes("방장퇴장")) {
+                alert("방장이 퇴장하였습니다. 팀원 모집이 종료됩니다.");
+                $('.act-btn input').prop('disabled',true);
+                $('div').remove('#'+sessionLolNick);
+            }
+
+            if(speakerId.includes("유저퇴장")) {
+                $('div').remove('#'+sessionLolNick);
+            }
+ 
             if (message === " 님이 입장하셨습니다.") {
                 console.log("입장했댄다")
                 //포지션 받아서 div 아이디로 줄 건지 아닌지 고민
@@ -305,6 +315,7 @@
             $('#chatBox').animate({
                 scrollTop: chatBox.scrollHeight - chatBox.clientHeight
             }, 100);
+            $('#msg').focus();
         }
 
     })

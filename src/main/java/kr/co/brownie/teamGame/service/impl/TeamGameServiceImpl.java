@@ -73,4 +73,9 @@ public class TeamGameServiceImpl implements TeamGameService {
 	public int countAllRoom(TeamGamePagingVO page) {
 		return teamGameMapper.countAllRoom(page);
 	}
+
+    @Override
+    public void deleteTeamGame(Map<String, Object> map) {
+        teamGameMapper.deleteTeamGame(map);
+    }
 }

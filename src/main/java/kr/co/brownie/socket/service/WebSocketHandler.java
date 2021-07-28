@@ -150,8 +150,9 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         //왜 가끔씩 null이 들어가는지 모르겠음 찾아봐야함
         try {
-            if(tgvo.getUserId().equals(userId)){
-                System.out.println("tgvo.getUserId() : "+ tgvo.getUserId());
+            String tgvoId = tgvo.getUserId();
+            if(tgvoId.equals(userId)){
+                System.out.println("tgvo.getUserId() : "+ tgvoId);
 
                 map.put("position", tgvo.getPosition());
                 map.put("positionSeq", tgvo.getPositionSeq());
@@ -160,32 +161,40 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
                 //TEAMGAME_POSITION update 'y' to 'n'
                 teamGameService.deleteTeamGamePosition(map);
-                System.out.println("성공 ?");
+                System.out.println("tgvo.getLeader().equals(y) : " + tgvo.getLeader());
+                //방장일 경우 방 상태도 n으로 변경해줌
+                if(tgvo.getLeader().equals("y")){
+                    System.out.println("not null map : "+map);
+                    teamGameService.deleteTeamGame(map);
+                    System.out.println("deleteteamgamemap");
+                }
+                System.out.println("성공 ? "+ tgvoId);
             }
-        } catch (Exception e){
-            System.out.println("---------------");
-            System.out.println(e.getStackTrace());
-            System.out.println("tgvo에서 오류남");
-        }
 
-        try{
             //리스트에 존재하는 세션을 뽑아서 메시지로 보내주기
+            TextMessage msg = new TextMessage("오류:발생:");
             for (WebSocketSession sess : sessions) {
-                TextMessage msg = new TextMessage("유저닉네임 : 님이 퇴장하셨습니다"+": 롤닉네임");
+                System.out.println("오류:발생:" + tgvoId);
+                if(tgvo.getLeader().equals("y")){
+                    msg = new TextMessage(tgvo.getNickName() +": 님이 퇴장하셨습니다.:방장퇴장:"+tgvoId);
+                    System.out.println("방장나감"+tgvoId);
+                } else {
+                    msg = new TextMessage(tgvo.getNickName()+": 님이 퇴장하셨습니다.:팀원퇴장:"+tgvoId);
+                    System.out.println("팀우ㅡㅓㅏㄴ나감");
+                }
                 sess.sendMessage(msg);
+                System.out.println(msg);
             }
         } catch (Exception e){
-
+            System.out.println("---------------catch here");
+            System.out.println(e.getStackTrace());
         } finally {
             sessions.remove(session);
             System.out.println("웹소켓 종료 안내 끝-------------------------------------------------------------");
         }
-        //팀게임 방번호 . 해당 유저 아이디 스테이터스 n으로 바꿔서 화면에 출력 안 되게 하기
+
         //sessions.get(0).getAttributes() : {HTTP.SESSION.ID=437649508DF2FF3CC7C3E4266F3A90CD, permit_level=9, id=1786827527}
-        //해당 아이디가 가진 포지션 n으로 바꿔줘야함 / 해당 아이디의 status n으로 바꿔줘야함 > 이거 존재하는애들 삽입 안되는거라서 업뎃이나 머지문으로 바꿔줘야할듯
-                                                                                    //그러면 이제 기존에 값 삽입할 때  teamgame_position에서 해당 포지션이 n이면 진행하고
-                                                                                    // teamgame에서 해당 포지션이 y인지 n인지 판단해서 y일땐 안들어가고 n일땐 들어가게해야할듯
-                                                                                    //정리다시해야함
+
         //sessions : [StandardWebSocketSession[id=19, uri=ws://1.245.30.134/WebEcho?roomNumber=292], StandardWebSocketSession[id=1a, uri=ws://1.245.30.134/WebEcho?roomNumber=292]]
         //sessions 22 : [StandardWebSocketSession[id=19, uri=ws://1.245.30.134/WebEcho?roomNumber=292]]
 
