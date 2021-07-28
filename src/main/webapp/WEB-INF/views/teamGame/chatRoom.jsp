@@ -172,6 +172,9 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
     $(document).ready(function () {
+
+        $('#msg').focus();
+
         //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
         const LOL_NICK = '${userInfo.lolId}';
         const USER_NAME = [['${userInfo.nickName}']];
