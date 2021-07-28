@@ -101,10 +101,25 @@ public class TeamGameController {
         String userId = httpSession.getAttribute("id").toString();
         UserVO userInfo = userService.userOneSelect(userId);
 
+
         if(map.get("usePoint").equals("y")){
             //여기서 유저 포인트 500 빼는거 해줘야함
-        }
 
+            int userPoint = userService.userOneSelect(userId).getBrowniePoint();
+            if(userPoint < 500){
+                JsonObject jsonObject = new JsonObject();
+                jsonObject.addProperty("result", 0);
+                jsonObject.addProperty("browniePoint", userPoint);
+                System.out.println("-----포인트부족");
+                return jsonObject.toString();
+            } else {
+                Map<String, Object> mapForPoint = new HashMap<>();
+                map.put("userId",map.get("userId"));
+                map.put("browniePoint", 500);
+                userService.usePointForChat(mapForPoint);
+                System.out.println("-----포인트차감");
+            }
+        }
         teamGameService.insertTeamGameRoom(map);
         System.out.println("insert map : : "+map);
 

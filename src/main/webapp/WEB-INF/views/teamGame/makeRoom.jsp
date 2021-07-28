@@ -263,8 +263,15 @@
             },
             success: function (data) {
                 var responseData = JSON.parse(data);
-                openRoom(responseData.TEAMGAME_SEQ, responseData.nickName, responseData.lolId, myPosition);
-                window.close();
+
+                if(responseData.result == 0){
+                    alert("포인트가 부족합니다. [ 잔여 포인트 : "+ responseData.browniePoint + " ]");
+                    $('#usePointCheck').prop('checked',false);
+                    return;
+                } else {
+                    openRoom(responseData.TEAMGAME_SEQ, responseData.nickName, responseData.lolId, myPosition);
+                    window.close();
+                }
             },
             error: function () {
                 alert("에러나요");
