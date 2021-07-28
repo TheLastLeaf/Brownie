@@ -100,6 +100,7 @@
 <style>
     .userName {
         color: white;
+        margin-top: 10%;
     }
 
     #content_cnt {

@@ -32,6 +32,18 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
     <script>
+
+        $(document).ready(function () {
+            $('#content').on('keyup', function () {
+                $('#content_cnt').html("(" + $(this).val().length + " / 1000)");
+
+                if ($(this).val().length > 1000) {
+                    $(this).val($(this).val().substring(0, 1000));
+                    $('#content_cnt').html("(1000 / 1000)");
+                }
+            });
+        });
+
         function fn_log() {
             let reportName = [];
             $.each($("input[name=reportName]:checked"), function() {
@@ -70,6 +82,7 @@
 <style>
     .userName {
         color: white;
+        margin-top: 10%;
     }
 
     #content_cnt {
