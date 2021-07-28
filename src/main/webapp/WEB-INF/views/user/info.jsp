@@ -363,10 +363,10 @@
                                 </h3>
                             </div>
                         </div>
-                        <c:if test="${userOneSelect.upUserId == sessionScope.id}">
+                        <c:if test="${userOneSelect.userId == sessionScope.id}">
                             <div class="modInfo col-3">
                                 <button type="button" class="btn btn-dark"
-                                        onclick="fn_infoMod('${userOneSelect.upUserId}')">정보수정
+                                        onclick="fn_infoMod('${userOneSelect.userId}')">정보수정
                                 </button>
                                 <button type="button" class="btn btn-danger" onclick="fn_infoDel()">탈퇴</button>
                             </div>
