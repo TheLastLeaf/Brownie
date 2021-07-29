@@ -295,7 +295,7 @@
                         var newUser = "<div class='user' id=" + speakerId + ">"
                         newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
                         newUser += "<span class='act-btn'>" +
-                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick='fn_chatReport("+sessionId+","+ROOM_NUMBER+")' />" +
+                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick='fn_chatReport("+speakerId+","+ROOM_NUMBER+")' />" +
                                         "<input type='sumbit' value='정보' id="+sessionLolNick+" class='user-act-btn btn btn-outline-secondary' onclick='fn_isSearch(this.id)'/>" +
                                         "</span>"
                         newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
@@ -303,7 +303,7 @@
                         var newUser = "<div class='user' id=" + speakerId + ">"
                         newUser += "<span><img src='${pageContext.request.contextPath}/img/lol/lolTier/challenger.png'/></span>"
                         newUser += "<span class='act-btn'>" +
-                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick='fn_chatReport("+sessionId+","+ROOM_NUMBER+")' />" +
+                                        "<input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick='fn_chatReport("+speakerId+","+ROOM_NUMBER+")' />" +
                                         "</span>"
                         newUser += "<div class='userInfo'>" + sessionId + "[" + sessionLolNick + "]" + "</div>"
                         newUser += "</div>"
@@ -358,7 +358,7 @@
                     <span class='act-btn'>
                         <c:set var = "lolId" value = "${memList.lolId}"/>
                         <c:if test = '${not fn:contains(lolId, memList.lolId)}'>
-                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick="fn_chatReport('${memList.userId}','${memList.teamGameSeq}')"/>
+                        <input type='sumbit' id=value='신고' class='user-act-btn btn btn-outline-secondary' onclick="fn_chatReport('${memList.userId}','${memList.teamGameSeq}')"/>
                         </c:if>
                         <c:if test = '${not fn:contains(lolId, "_")}'>
                         <input type='sumbit' value='정보' id="${memList.lolId}" class='user-act-btn btn btn-outline-secondary' onclick="fn_isSearch(this.id)"/>
