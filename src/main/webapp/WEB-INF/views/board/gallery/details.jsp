@@ -62,13 +62,21 @@
 </section>
 <!-- Breadcrumb Section End -->
 
+
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
         <div class="p-0">
             <div class="details-text">
                 <div class="dt-desc">
-                    ${boardVO.content}
+                    <div class="details-text">
+                        <div class="dt-quote">
+                            <p>${boardVO.title}</p>
+                        </div>
+                        <div class="dp-text">
+                            <p>${boardVO.content} </p>
+                        </div>
+                    </div>
                     <c:if test="${sessionScope.id != null and sessionScope.id == boardVO.boardInUserId}">
                         <div class="d-flex flex-row-reverse">
                             <form>
@@ -218,7 +226,8 @@
                                         </c:otherwise>
                                     </c:choose>
                                     ml-3" onclick="replyLike(${replyVO.replySeq}, 0)"><i
-                                            class="far fa-thumbs-up fa-flip-vertical"></i> ${replyVO.unlikeCnt}</button>
+                                            class="far fa-thumbs-up fa-flip-vertical"></i> ${replyVO.unlikeCnt}
+                                    </button>
                                     <c:if test="${sessionScope.id != null}">
                                         <button type="button" class="btn btn-outline-light ml-5"
                                                 onclick="fn_replyReport(${replyVO.replySeq},${boardVO.boardSeq},'${replyVO.userId}')">
@@ -228,7 +237,8 @@
                                 </div>
                                 <p>${replyVO.replyContent}</p>
                                 <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
-                                    <button type="button" onclick="commentReplyButton(${boardSeq}, ${replyVO.replySeq})"
+                                    <button type="button"
+                                            onclick="commentReplyButton(${boardSeq}, ${replyVO.replySeq})"
                                             class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
                                     </button>
                                 </c:if>

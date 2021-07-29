@@ -33,7 +33,6 @@
                 <div class="">
                     <table border="1px solid #d2d2d2" style="margin: auto; width: 100%; cursor: default;">
                         <tr>
-                            <th>순번</th>
                             <th>아이디</th>
                             <th>롤 닉네임</th>
                             <th>브라우니 닉네임</th>
@@ -44,8 +43,8 @@
                         </tr>
                         <c:forEach var="userList" items="${UserPagingVO.userVOList}" varStatus="status">
                             <tr>
-                                <th>${status.index }</th>
-                                <th onclick="location.href='/user/info/${userList.userId}'" style="cursor: pointer">${userList.userId }</th>
+                                <th onclick="location.href='/user/info/${userList.userId}'"
+                                    style="cursor: pointer">${userList.userId }</th>
                                 <th>${userList.lolId }</th>
                                 <th>${userList.nickName }</th>
                                 <th>Lv. ${userList.userLevel }</th>
@@ -65,7 +64,6 @@
                                 </c:choose>
                             </tr>
                         </c:forEach>
-
                     </table>
                     <div class="UserPageBottom">
                         <div class="pagination-item">
@@ -81,7 +79,6 @@
                             </c:if>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -50,16 +50,13 @@ public class BoardController {
                     jsonObject.addProperty("message", "내용을 입력하세요.");
                 } else {
                     map.put("userId", httpSession.getAttribute("id"));
-
                     if (this.boardService.insert(map) != 1) {
                         jsonObject.addProperty("status", "ng");
                         jsonObject.addProperty("message", "작성에 실패하였습니다.");
                     } else {
                         jsonObject.addProperty("status", "ok");
                     }
-
                 }
-
             }
         }
         return jsonObject.toString();

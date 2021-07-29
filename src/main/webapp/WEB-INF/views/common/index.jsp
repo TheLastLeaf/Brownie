@@ -324,7 +324,7 @@
                                                     <span>Best Art</span>
                                                 </div>
                                                 <h5>
-                                                    <a href="${pageContext.request.contextPath}/gallery/details/${galleryBoardVOList[1].boardSeq}">${galleryBoardVOList[0].title}</a>
+                                                    <a href="${pageContext.request.contextPath}/gallery/details/${galleryBoardVOList[1].boardSeq}">${galleryBoardVOList[1].title}</a>
                                                 </h5>
                                                 <ul>
                                                     <li>by <span>${galleryBoardVOList[1].nickName}</span></li>
