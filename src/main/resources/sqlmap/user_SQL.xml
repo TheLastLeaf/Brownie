@@ -40,7 +40,9 @@
                USER_POSITION AS USERPOSITION,
                BROWNIE_POINT AS BROWNIEPOINT,
                IMAGE         AS IMAGE,
-               TOKEN         AS TOKEN
+               TOKEN         AS TOKEN,
+               LOLTIER		 AS LOLTIER,
+               LOLLEVEL		 AS LOLLEVEL
         FROM BROWNIE_USER
         WHERE USER_ID = #{id}
     </select>

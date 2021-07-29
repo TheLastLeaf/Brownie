@@ -313,7 +313,6 @@ public class UserController {
 			// 레벨정보를 넣어야함
 			map.put("name", name);
 			map.put("summonerLevel", summonerLevel);
-			System.out.println("temp:" + temp);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -378,7 +377,7 @@ public class UserController {
 		model.addAttribute("leagueName", leagueName);
 
 		System.out.println("temp: "+temp);
-		if(map.get("tier")== null) {
+		if(map.get("tier")== null || map.get("tier").equals("")) {
 			map.put("tier", "TBD");
 			}
 		

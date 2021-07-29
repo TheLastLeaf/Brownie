@@ -409,7 +409,9 @@
                                             <i class="fas fa-sync-alt"></i>
                                         </button>
                                     </div>
-                                    |  | 
+                                    <div class="">
+                                    | <span id="getLv">Lv. ${userOneSelect.lolLevel}</span> | <span id="getTier">${userOneSelect.lolTier}</span>
+                                    </div>
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -697,12 +699,8 @@
                 type: "POST",
                 dataType: "json",
                 success: function (data) {
-                	alert(data.tier); // 나옴
-                	alert(data.summonerLevel); // 나옴
-                	
-                	
-                	
-                    
+                	$("#getLv").html("Lv. "+data.summonerLevel);
+                	$("#getTier").html(data.tier);
                 },
                 error: function (e) {
                     alert("실패ㅜㅜ err");
