@@ -55,6 +55,7 @@ public class CommonController {
         Map<String, Object> map = new HashMap<>();
         map.put("userId", httpSession.getAttribute("id"));
         map.put("pageNum", 1);
+        map.put("boardKind", "notice");
         map.put("contentPerPage", this.boardService.CONTENT_PER_PAGE);
 
         model.addAttribute("boardPagingVO", boardService.selectPagingList(map));
