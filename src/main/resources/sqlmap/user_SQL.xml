@@ -48,7 +48,7 @@
     </select>
 
     <select id="starCntSelect" resultType="float">
-        SELECT SUM(STAR_CNT) / COUNT(STAR_CNT)
+        SELECT nvl(SUM(STAR_CNT) / COUNT(STAR_CNT), 0)
         FROM REVIEW
         WHERE USER_ID = '${id}'
     </select>

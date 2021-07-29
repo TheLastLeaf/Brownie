@@ -367,7 +367,7 @@ public class UserController {
 			System.out.print("leagueInfo[0]: " + leagueInfo[0]);
 			model.addAttribute("leagueInfo", leagueInfo);
 			model.addAttribute("tierImgURL", "img/emblems/Emblem_" + leagueInfo[0].getTier() + ".png");
-			//			userVO.setLolTier(leagueInfo[0].getTier());
+			// userVO.setLolTier(leagueInfo[0].getTier());
 			map.put("tier", leagueInfo[0].getTier());
 		}
 
@@ -376,11 +376,11 @@ public class UserController {
 		model.addAttribute("summoner", temp);
 		model.addAttribute("leagueName", leagueName);
 
-		System.out.println("temp: "+temp);
-		if(map.get("tier")== null || map.get("tier").equals("")) {
+		System.out.println("temp: " + temp);
+		if (map.get("tier") == null || map.get("tier").equals("")) {
 			map.put("tier", "TBD");
-			}
-		
+		}
+
 		userService.updateSummonerLv(map);
 		return map;
 
