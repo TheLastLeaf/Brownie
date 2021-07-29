@@ -1,8 +1,12 @@
 package kr.co.brownie.user.web;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,7 +29,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import kr.co.brownie.report.service.ReportService;
 import kr.co.brownie.review.service.ReviewService;
@@ -33,6 +39,9 @@ import kr.co.brownie.review.service.ReviewVO;
 import kr.co.brownie.review.service.impl.ReviewPagingVO;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
+import kr.co.brownie.userSearch.Service.LeagueEntryVO;
+import kr.co.brownie.userSearch.Service.SummonerVO;
+import kr.co.brownie.userSearch.config.VersionCheck;
 
 @Controller
 @RequestMapping("/user")
@@ -45,6 +54,8 @@ public class UserController {
 
 	@Resource(name = "reportService")
 	ReportService reportService;
+
+	final static String API_KEY = "RGAPI-fd870f92-a75f-4d43-88b9-94a6457fe185";
 
 	/**
 	 * @param user_id: String
@@ -267,11 +278,112 @@ public class UserController {
 
 	@PostMapping("/search/{userId}")
 	@ResponseBody
-	public String userPostSearch(@PathVariable String userId) {
-		UserVO userVO = this.userService.userOneSelect(userId);
-		System.out.println("userId: " + userId);
-		System.out.println(userVO);
+	public Map<String, Object> userPostSearch(@PathVariable String userId, Model model, HttpServletRequest httpServletRequest) {
+		UserVO userVO = userService.userOneSelect(userId);
+		String SummonerName = userVO.getLolId().toString();
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(SummonerName);
 
-		return "ok";
+		VersionCheck.checkVersion();
+		BufferedReader br = null;
+
+		SummonerVO temp = null;
+		LeagueEntryVO[] leagueInfo = null;
+		try {
+			String urlstr = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + SummonerName.replace(" ", "") + "?api_key=" + API_KEY;
+			URL url = new URL(urlstr);
+			HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+			urlconnection.setRequestMethod("GET");
+			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8")); // 여기에 문자열을 받아와라.
+			String result = "";
+			String line;
+			while ((line = br.readLine()) != null) { // 그 받아온 문자열을 계속 br에서 줄단위로 받고 출력하겠다.
+				result = result + line;
+			}
+			JsonParser jsonParser = new JsonParser();
+			JsonObject k = (JsonObject) jsonParser.parse(result);
+			int profileIconId = k.get("profileIconId").getAsInt();
+			String name = k.get("name").getAsString();
+			String puuid = k.get("puuid").getAsString();
+			long summonerLevel = k.get("summonerLevel").getAsLong();
+			long revisionDate = k.get("revisionDate").getAsLong();
+			String id = k.get("id").getAsString();
+			String accountId = k.get("accountId").getAsString();
+			temp = new SummonerVO(profileIconId, name, puuid, summonerLevel, revisionDate, id, accountId);
+			// 레벨정보를 넣어야함
+			map.put("name", name);
+			map.put("summonerLevel", summonerLevel);
+			System.out.println("temp:" + temp);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		String[] leagueName = null;
+		try {
+			String urlstr = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/" + temp.getId() + "?api_key=" + API_KEY;
+			URL url = new URL(urlstr);
+			HttpURLConnection urlconnection = (HttpURLConnection) url.openConnection();
+			urlconnection.setRequestMethod("GET");
+			br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8")); // 여기에 문자열을 받아와라.
+			String result = "";
+			String line;
+			while ((line = br.readLine()) != null) { // 그 받아온 문자열을 계속 br에서 줄단위로 받고 출력하겠다.
+				result = result + line;
+			}
+			JsonParser jsonParser = new JsonParser();
+			JsonArray arr = (JsonArray) jsonParser.parse(result);
+			leagueInfo = new LeagueEntryVO[arr.size()];
+			leagueName = new String[arr.size()];
+			for (int i = 0; i < arr.size(); i++) {
+				JsonObject k = (JsonObject) arr.get(i);
+				int wins = k.get("wins").getAsInt();
+				int losses = k.get("losses").getAsInt();
+				String rank = k.get("rank").getAsString();
+				String tier = k.get("tier").getAsString();
+				String queueType = k.get("queueType").getAsString();
+				int leaguePoints = k.get("leaguePoints").getAsInt();
+				String leagueId = k.get("leagueId").getAsString();
+				System.out.println("tier: " + tier);
+
+				leagueInfo[i] = new LeagueEntryVO(queueType, wins, losses, leagueId, rank, tier, leaguePoints);
+				urlstr = "https://kr.api.riotgames.com/lol/league/v4/leagues/" + leagueInfo[i].getLeagueId() + "?api_key=" + API_KEY;
+				url = new URL(urlstr);
+				urlconnection = (HttpURLConnection) url.openConnection();
+				urlconnection.setRequestMethod("GET");
+				br = new BufferedReader(new InputStreamReader(urlconnection.getInputStream(), "UTF-8")); // 여기에 문자열을 받아와라.
+				result = "";
+				line = "";
+				while ((line = br.readLine()) != null) { // 그 받아온 문자열을 계속 br에서 줄단위로 받고 출력하겠다.
+					result = result + line;
+				}
+				jsonParser = new JsonParser();
+				k = (JsonObject) jsonParser.parse(result);
+				leagueName[i] = k.get("name").getAsString();
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (leagueInfo.length > 0) {
+			System.out.print("leagueInfo[0]: " + leagueInfo[0]);
+			model.addAttribute("leagueInfo", leagueInfo);
+			model.addAttribute("tierImgURL", "img/emblems/Emblem_" + leagueInfo[0].getTier() + ".png");
+			//			userVO.setLolTier(leagueInfo[0].getTier());
+			map.put("tier", leagueInfo[0].getTier());
+		}
+
+		model.addAttribute("profileImgURL",
+				"http://ddragon.leagueoflegends.com/cdn/" + VersionCheck.profileiconVersion + "/img/profileicon/" + temp.getProfileIconId() + ".png");
+		model.addAttribute("summoner", temp);
+		model.addAttribute("leagueName", leagueName);
+
+		System.out.println("temp: "+temp);
+		if(map.get("tier")== null) {
+			map.put("tier", "TBD");
+			}
+		
+		userService.updateSummonerLv(map);
+		return map;
+
 	}
 }

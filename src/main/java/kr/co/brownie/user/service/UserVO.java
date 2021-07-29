@@ -21,6 +21,6 @@ public class UserVO {
     private String userLevel;
     private String permitLevel;
     
-//    private String lolTier;
-//    private int lolLv;
+    private String lolTier;
+    private long lolLevel;
 }

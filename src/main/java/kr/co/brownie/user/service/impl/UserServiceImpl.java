@@ -146,4 +146,11 @@ public class UserServiceImpl implements UserService {
     public void usePointForChat(Map<String, Object> map) {
         userMapper.usePointForChat(map);
     }
+
+	@Override
+	public void updateSummonerLv(Map<String, Object> map) {
+		userMapper.updateSummonerLv(map);
+	}
+
+
 }

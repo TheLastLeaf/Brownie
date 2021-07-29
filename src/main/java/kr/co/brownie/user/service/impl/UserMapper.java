@@ -54,4 +54,7 @@ public interface UserMapper {
     void updatePoint(Map<String, Object> map);
 
     void usePointForChat(Map<String, Object> map);
+
+	void updateSummonerLv(Map<String, Object> map);
+
 }

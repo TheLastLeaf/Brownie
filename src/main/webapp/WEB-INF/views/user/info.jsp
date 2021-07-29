@@ -409,7 +409,7 @@
                                             <i class="fas fa-sync-alt"></i>
                                         </button>
                                     </div>
-                                    | GD | GD
+                                    |  | 
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -695,9 +695,14 @@
             $.ajax({
                 url: "/user/search/${userOneSelect.userId}",
                 type: "POST",
-                dataType: "text",
+                dataType: "json",
                 success: function (data) {
-                    alert(data);
+                	alert(data.tier); // 나옴
+                	alert(data.summonerLevel); // 나옴
+                	
+                	
+                	
+                    
                 },
                 error: function (e) {
                     alert("실패ㅜㅜ err");
