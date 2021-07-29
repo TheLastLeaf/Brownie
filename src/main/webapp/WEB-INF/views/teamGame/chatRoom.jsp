@@ -357,8 +357,8 @@
                     </span>
                     <span class='act-btn'>
                         <c:set var = "lolId" value = "${memList.lolId}"/>
-                        <c:if test = '${not fn:contains(lolId, memList.lolId)}'>
-                        <input type='sumbit' id=value='신고' class='user-act-btn btn btn-outline-secondary' onclick="fn_chatReport('${memList.userId}','${memList.teamGameSeq}')"/>
+                        <c:if test = '${not fn:contains(lolId, userInfo.lolId)}'>
+                        <input type='sumbit' value='신고' class='user-act-btn btn btn-outline-secondary' onclick="fn_chatReport('${memList.userId}','${memList.teamGameSeq}')"/>
                         </c:if>
                         <c:if test = '${not fn:contains(lolId, "_")}'>
                         <input type='sumbit' value='정보' id="${memList.lolId}" class='user-act-btn btn btn-outline-secondary' onclick="fn_isSearch(this.id)"/>

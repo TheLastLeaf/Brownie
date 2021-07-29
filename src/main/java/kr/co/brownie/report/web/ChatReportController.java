@@ -32,7 +32,7 @@ public class ChatReportController {
     public String chatList(HttpServletRequest httpServletRequest,
                            Model model,
                            @RequestParam Map<String, Object> map) {
-        if (httpServletRequest.getSession().getAttribute("id") == null || (int) httpServletRequest.getSession().getAttribute("permit_level") != 9) {
+        if (httpServletRequest.getSession().getAttribute("id") == null) {
             model.addAttribute("message", "alert('권한이 없습니다.'); location.href='/'");
             return "common/message";
         }
