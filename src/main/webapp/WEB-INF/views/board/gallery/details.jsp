@@ -36,6 +36,13 @@
     .reply {
         color: #c4c4c4 !important;
     }
+    .writerInfo {
+        margin: 33px;
+    }
+
+    .writerInfoBox {
+        height: 150px;
+    }
 </style>
 
 <!-- Breadcrumb Section Begin -->
@@ -93,15 +100,12 @@
                     </c:if>
                 </div>
 
-                <div class="dt-author">
+                <div class="dt-author writerInfoBox">
                     <div class="da-pic">
                         <img src="${pageContext.request.contextPath}${boardVO.image}">
                     </div>
-                    <div class="da-text">
+                    <div class="da-text writerInfo">
                         <h5>${boardVO.nickName}</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     </div>
                 </div>
 

@@ -24,93 +24,16 @@
         margin-top: 10px;
     }
 
-    .actForReply, .actForBoard {
-        font-size: 10px;
-        margin-top: 3px;
-        margin-bottom: 5px;
-        justify-content: right;
-        text-align: right;
-    }
-
-    .replyHate {
-        border: 1px solid #336666;
-        padding: 2px;
-        cursor: pointer;
-        margin: 3px;
-        color: #336666;
-    }
-
-    .replyLike {
-        border: 1px solid #ffffcc;
-        padding: 2px;
-        cursor: pointer;
-        margin: 3px;
-        color: #ffffcc;
-    }
-
-    .reReply {
-        border: 1px solid #007bff;
-        padding: 2px;
-        cursor: pointer;
-        margin: 3px;
-        color: #007bff;
-    }
-
-    .replyCall, #freeModify, #freeDelete {
-        border: 1px solid #DC143C;
-        padding: 2px;
-        cursor: pointer;
-        margin: 3px;
-        color: #DC143C;
-    }
-
-    .blackReplys {
-        height: 5px;
-        color: #5d5d5d;
-        font-size: 12px;
-        visibility: hidden;
-    }
-
-    .blackClick {
-        font-size: 12px;
-        color: #e57373;
-    }
-
-    .userReplys {
-        font-size: 12px;
-        word-break: break-word;
-    }
-
-    .blackReplysId {
-        visibility: hidden;
-    }
-
-
-    .replyMod, .reReplyToUser {
-        width: 100%;
-        background-color: black;
-        font-size: 12px;
-        color: #666666;
-    }
-
-    .replyModArea, .reModComBut, .reReplyBox {
-        display: none;
-    }
-
-    .modReplyBut {
-        border: 1px solid #ffffff;
-        padding: 2px;
-        cursor: pointer;
-        margin: 3px;
-        color: #ffffff;
-    }
-
-    .reReplyBox {
-        margin-bottom: 20px;
-    }
-
     .reply {
         color: #c4c4c4 !important;
+    }
+
+    .writerInfo {
+        margin: 33px;
+    }
+
+    .writerInfoBox {
+        height: 150px;
     }
 </style>
 
@@ -142,15 +65,12 @@
                         </c:forTokens>
                     </div>
 
-                    <div class="dt-author">
+                    <div class="dt-author writerInfoBox">
                         <div class="da-pic">
                             <img src="${pageContext.request.contextPath}${boardVO.image}">
                         </div>
-                        <div class="da-text">
+                        <div class="da-text writerInfo">
                             <h5>${boardVO.nickName}</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                         </div>
                     </div>
 
