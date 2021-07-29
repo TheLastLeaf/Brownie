@@ -101,7 +101,12 @@
     .userName {
         color: white;
         margin-top: 10%;
+        margin-bottom: 20px;
     }
+    .submit {
+        margin-bottom: 10%;
+    }
+
 
     #content_cnt {
         color: white;
@@ -127,47 +132,48 @@
         margin-bottom: 10px;
     }
 
-    .container {
-        height: 490px;
+    .reportBox {
+        margin: auto;
+        border: 1px solid white;
     }
 </style>
 <body style="background-color: black">
-<div class="container" style="border: 1px solid white;">
+<div class="container">
     <div class="row">
         <div class="col text-center">
-            <input type="hidden" name="userId" value="${boardVO.userId}" class="userId">
-            <input type="hidden" name="log" value="${boardVO.content}" class="log">
-            <p>
-            <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${boardVO.nickName}</h5>
-            </p>
-            <div class="form-check">
-                <input class="form-check-input reportName" type="checkbox" value="욕설" name="reportName" id="abuse">
-                <label class="form-check-label" for="abuse">
-                    욕설
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input reportName" type="checkbox" value="부적절한 내용" name="reportName"
-                       id="abusecon">
-                <label class="form-check-label" for="abusecon">
-                    부적절한 내용
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input reportName" type="checkbox" value="부적절한 아이디" name="reportName"
-                       id="abuseId">
-                <label class="form-check-label" for="abuseId">
-                    부적절한 아이디
-                </label>
-            </div>
-            <p>
-                <b class="font-family-maple-bold">신고내용</b>
-                <br/>
-                <textarea cols="30" rows="5" id="content" name="content" class="content"></textarea>
-            <div id="content_cnt">(0 / 1000)</div>
-            </p>
-            <div class="submit">
-                <input type="button" value="신고하기" class="btn btn-light" onclick="fn_submit()">
+            <div class="reportBox">
+                <h5 class="font-family-maple-bold userName">REPORT할 계정 : ${boardVO.nickName}</h5>
+                <div class="form-check">
+                    <input class="form-check-input reportName" type="checkbox" value="욕설" name="reportName" id="abuse">
+                    <label class="form-check-label" for="abuse">
+                        욕설
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input reportName" type="checkbox" value="부적절한 내용" name="reportName"
+                           id="abusecon">
+                    <label class="form-check-label" for="abusecon">
+                        부적절한 내용
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input reportName" type="checkbox" value="부적절한 아이디" name="reportName"
+                           id="abuseId">
+                    <label class="form-check-label" for="abuseId">
+                        부적절한 아이디
+                    </label>
+                </div>
+                <p>
+                    <b class="font-family-maple-bold">신고내용</b>
+                    <br/>
+                    <textarea cols="30" rows="5" id="content" name="content" class="content"></textarea>
+                <div id="content_cnt">(0 / 1000)</div>
+                </p>
+                <div class="submit">
+                    <input type="button" value="신고하기" class="btn btn-light" onclick="fn_submit()">
+                </div>
+                <input type='hidden' name='userId' value='${boardVO.userId}' class='userId'>
+                <input type='hidden' name='log' value='${boardVO.content}' class='log'>
             </div>
         </div>
     </div>
