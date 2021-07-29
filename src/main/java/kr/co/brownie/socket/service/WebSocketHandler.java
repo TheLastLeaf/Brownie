@@ -58,10 +58,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
             userSessions.put(roomNumber, sessions);
             System.out.println("크아악!! 방이 존재하지 않아!!---------------------------------");
         }
-
-        //접속 할 때 마다 웹소켓쪽으로 메시지 보내주는걸 고려해보기
-
-
     }
 
     @Override
@@ -72,10 +68,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
         System.out.println("방주소 : " + session.getUri() + " / 글자수 : " + message.getPayloadLength());
         System.out.println("session.getAttributes() : " + session.getAttributes());
 
-
-
-        //여기는 받아온 메시지를 전달해주는 구간! 해당하는 세션으로 보내주기 위해서 세션 판별이 필요함
-
         //세션이 들어가있는 방 번호 뽑아내기
         String roomNumber = session.getUri().getQuery().split("=")[1];
         System.out.println("roomNumber : " + roomNumber);
@@ -85,16 +77,11 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         //메시지 디비에 삽입
         String[] chatLogArr = message.getPayload().split(":");
-//        ChatVO chatLog = new ChatVO();
-//        chatLog.setContent(chatLogArr[1]);
-//        chatLog.setInUserId(chatLogArr[2]);
-//        chatLog.setTeamGameSep(roomNumber);
         Map<String, Object> chatLog = new HashMap<>();
         chatLog.put("content",chatLogArr[1]);
         chatLog.put("inUserId",chatLogArr[2]);
         chatLog.put("teamGameSep",roomNumber);
         chatService.insertChatLog(chatLog);
-
 
         //유저 롤 아이디 가져오기용
         UserVO userInfo = userService.userOneSelect(session.getAttributes().get("id").toString());
@@ -104,7 +91,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
             TextMessage msg = new TextMessage(message.getPayload()+":"+userInfo.getLolId());
             sess.sendMessage(msg);
         }
-
         System.out.println("웹소켓 메시지 전송 끝 -------------------------------------------------------------");
     }
 
@@ -112,7 +98,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         System.out.println("웹소켓 종료 안내 시작 -------------------------------------------------------------");
         System.out.println("afterConnectionClosed session : " + session);
-        //afterConnectionClosed session : StandardWebSocketSession[id=11, uri=ws://1.245.30.134/WebEcho?roomNumber=284]
+        //afterConnectionClosed session : StandardWebSocketSession[id=11, uri=ws:// 주소 /WebEcho?roomNumber=284]
         //session.getAttributes() : {HTTP.SESSION.ID=496834BDBAC682608FBF3B7D9759E2ED, permit_level=9, id=1786827527}
         System.out.println("status : " + status);
         System.out.println("session.getAttributes() : " + session.getAttributes());
@@ -195,8 +181,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         //sessions.get(0).getAttributes() : {HTTP.SESSION.ID=437649508DF2FF3CC7C3E4266F3A90CD, permit_level=9, id=1786827527}
 
-        //sessions : [StandardWebSocketSession[id=19, uri=ws://1.245.30.134/WebEcho?roomNumber=292], StandardWebSocketSession[id=1a, uri=ws://1.245.30.134/WebEcho?roomNumber=292]]
-        //sessions 22 : [StandardWebSocketSession[id=19, uri=ws://1.245.30.134/WebEcho?roomNumber=292]]
+        //sessions : [StandardWebSocketSession[id=19, uri=ws:// 주소 /WebEcho?roomNumber=292], StandardWebSocketSession[id=1a, uri=ws:// 주소 /WebEcho?roomNumber=292]]
+        //sessions 22 : [StandardWebSocketSession[id=19, uri=ws:// 주소 /WebEcho?roomNumber=292]]
 
         //서버종료 또는 브라우저 종료가 아닌 경우
         if (status.getCode() != 1001 || status.getCode() != 1000 ) {
