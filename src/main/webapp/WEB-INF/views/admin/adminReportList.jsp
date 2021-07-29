@@ -127,101 +127,105 @@
         text-align-last: center;
     }
 
+    .reportInfo {
+        color: wheat;
+    }
 </style>
 
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
     <div class="container">
         <div class="row">
+            <div class="reportInfo">
+                 * 좌측 유저 닉네임을 클릭할 경우 신고 내용에 해당하는 자료가 팝업됩니다.
+            </div>
             <div class="col-lg-12 reportListdiv">
-                <div class="">
-                    <c:forEach var="blacklist" items="${blackList}">
-                        <input type="hidden" value="${blacklist.BListSeq}" name="bListSeq" class="bListSeq">
-                        <c:choose>
-                            <c:when test="${blacklist.reasonSeq == 1 || blacklist.reasonSeq eq 1}">
-                                <input type="hidden" value="7" name="endDate" class="endDate">
-                            </c:when>
-                            <c:when test="${blacklist.reasonSeq == 2 || blacklist.reasonSeq eq 2}">
-                                <input type="hidden" value="7" name="endDate" class="endDate">
-                            </c:when>
-                            <c:when test="${blacklist.reasonSeq == 3 || blacklist.reasonSeq eq 3}">
-                                <input type="hidden" value="7" name="endDate" class="endDate">
-                            </c:when>
-                            <c:otherwise>
-                                <input type="hidden" value="3" name="endDate" class="endDate">
-                            </c:otherwise>
-                        </c:choose>
+                <table class="reportListTable" border="1px solid grey" style="margin-bottom: auto">
+                    <tr>
+                        <th class="reportListTd" style="width: 10%">닉네임</th>
+                        <th class="reportListTd" style="width: 30%">신고분류</th>
+                        <th class="reportListTd">신고내용</th>
+                        <th class="reportListTd">신고자</th>
+                        <th class="reportListTd" style="width: 20%">신고일자</th>
+                        <th class="reportListTd" style="width: 10%">재재 항목</th>
+                        <th class="reportListTd">신고접수</th>
+                        <th class="reportListTd">접수취소</th>
+                    </tr>
+                    <c:forEach var="reportList" items='${ReportPagingVO.reportVOList }'>
+                        <c:if test='${reportList.status eq "N"}'>
+                            <tr id='${reportList.reportSeq}'>
+                                <th class="reportListTd" onclick="fn_detail('${reportList.reportSeq}')" style="cursor: pointer;">
+                                        ${reportList.targetNickname}
+                                </th>
+                                <th class="reportListTd">${reportList.reportName }</th>
+                                <c:choose>
+                                    <c:when test='${reportList.content ne null}'>
+                                        <th class="reportContent">${reportList.content }</th>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <th>-신고내용 없음-</th>
+                                    </c:otherwise>
+                                </c:choose>
+                                <th class="reportListTd">${reportList.inuserNickname }</th>
+                                <th class="reportListTd">${reportList.inDate }</th>
+                                <th style="text-align: center">
+                                    <select id="reason">
+                                        <option class="reason" selected value="1">욕설</option>
+                                        <option class="reason" value="2">사칭</option>
+                                        <option class="reason" value="3">광고</option>
+                                        <option class="reason" value="4">그냥</option>
+                                    </select>
+                                </th>
+                                <input type="hidden" name="userId" value='${reportList.userId}' id="userId"
+                                       class="userId">
+                                <input type="hidden" name="log" value='${reportList.log}' id="log" class="log">
+                                <input type="hidden" name="reportSeq" value='${reportList.reportSeq}' id="reportSeq"
+                                       class="reportSeq">
+                                <th class="reportListTd"><i class="fas fa-check"
+                                                            onclick="fn_submit(${reportList.reportSeq})"
+                                                            id="but"></i>
+                                </th>
+                                    <th class="reportListTd">
+                                        <i class="fas fa-times" id="del" style="cursor: pointer " onclick="fn_deleteReport('${reportList.reportSeq}')"></i>
+                                    </th>
+                            </tr>
+                        </c:if>
                     </c:forEach>
-                    <table class="reportListTable" border="1px solid grey" style="margin-bottom: auto">
-                        <tr>
-                            <th class="reportListTd" style="width: 10%">아이디</th>
-                            <th class="reportListTd" style="width: 30%">신고분류</th>
-                            <th class="reportListTd">신고내용</th>
-                            <th class="reportListTd">신고자</th>
-                            <th class="reportListTd" style="width: 20%">신고일자</th>
-                            <th class="reportListTd" style="width: 10%">재재 항목</th>
-                            <th class="reportListTd">신고접수</th>
-                            <th class="reportListTd">접수취소</th>
-                        </tr>
-                        <c:forEach var="reportList" items="${ReportPagingVO.reportVOList }">
-                            <c:if test="${reportList.status eq 'N'}">
-                                <tr id="${reportList.reportSeq}">
-                                    <th class="reportListTd" onclick="fn_detail('${reportList.reportSeq}')" style="cursor: pointer;">
-                                            ${reportList.targetNickname}
-                                    </th>
-                                    <th class="reportListTd">${reportList.reportName }</th>
-                                    <c:choose>
-                                        <c:when test="${reportList.content ne null}">
-                                            <th class="reportContent">${reportList.content }</th>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <th>-신고내용 없음-</th>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <th class="reportListTd">${reportList.inuserNickname }</th>
-                                    <th class="reportListTd">${reportList.inDate }</th>
-                                    <th style="text-align: center">
-                                        <select id="reason">
-                                            <option class="reason" selected value="1">욕설</option>
-                                            <option class="reason" value="2">사칭</option>
-                                            <option class="reason" value="3">광고</option>
-                                            <option class="reason" value="4">그냥</option>
-                                        </select>
-                                    </th>
-                                    <input type="hidden" name="userId" value="${reportList.userId}" id="userId"
-                                           class="userId">
-                                    <input type="hidden" name="log" value="${reportList.log}" id="log" class="log">
-                                    <input type="hidden" name="reportSeq" value="${reportList.reportSeq}" id="reportSeq"
-                                           class="reportSeq">
-                                    <th class="reportListTd"><i class="fas fa-check"
-                                                                onclick="fn_submit(${reportList.reportSeq})"
-                                                                id="but"></i>
-                                    </th>
-                                        <th class="reportListTd">
-                                            <i class="fas fa-times" id="del" style="cursor: pointer " onclick="fn_deleteReport('${reportList.reportSeq}')"></i>
-                                        </th>
-                                </tr>
-                            </c:if>
+                </table>
+                <div class="reportPageBottom">
+                    <div class="pagination-item">
+                        <c:if test="${1 < ReportPagingVO.startPageNumber}">
+                            <a href='${pageContext.request.contextPath}/admin/adminReportList?pageNum=${ReportPagingVO.startPageNumber - 1}'><span>Prev</span></a>
+                        </c:if>
+                        <c:forEach var="pageNumber" begin="${ReportPagingVO.startPageNumber}"
+                                   end="${ReportPagingVO.endPageNumber}">
+                            <a href='${pageContext.request.contextPath}/admin/adminReportList?pageNum=${pageNumber}'><span>${pageNumber}</span></a>
                         </c:forEach>
-                    </table>
-                    <div class="reportPageBottom">
-                        <div class="pagination-item">
-                            <c:if test="${1 < ReportPagingVO.startPageNumber}">
-                                <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${ReportPagingVO.startPageNumber - 1}"><span>Prev</span></a>
-                            </c:if>
-                            <c:forEach var="pageNumber" begin="${ReportPagingVO.startPageNumber}"
-                                       end="${ReportPagingVO.endPageNumber}">
-                                <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${pageNumber}"><span>${pageNumber}</span></a>
-                            </c:forEach>
-                            <c:if test="${ReportPagingVO.endPageNumber < ReportPagingVO.totalPageNumber}">
-                                <a href="${pageContext.request.contextPath}/admin/adminReportList?pageNum=${ReportPagingVO.endPageNumber + 1}"><span>Next</span></a>
-                            </c:if>
-                        </div>
+                        <c:if test='${ReportPagingVO.endPageNumber < ReportPagingVO.totalPageNumber}'>
+                            <a href='${pageContext.request.contextPath}/admin/adminReportList?pageNum=${ReportPagingVO.endPageNumber + 1}'><span>Next</span></a>
+                        </c:if>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <c:forEach var='blacklist' items='${blackList}'>
+        <input type='hidden' value='${blacklist.BListSeq}' name='bListSeq' class='bListSeq'>
+        <c:choose>
+            <c:when test='${blacklist.reasonSeq == 1 || blacklist.reasonSeq eq 1}'>
+                <input type='hidden' value='7' name='endDate' class='endDate'>
+            </c:when>
+            <c:when test='${blacklist.reasonSeq == 2 || blacklist.reasonSeq eq 2}'>
+                <input type='hidden' value='7' name='endDate' class='endDate'>
+            </c:when>
+            <c:when test='${blacklist.reasonSeq == 3 || blacklist.reasonSeq eq 3}'>
+                <input type='hidden' value='7' name='endDate' class='endDate'>
+            </c:when>
+            <c:otherwise>
+                <input type='hidden' value='3' name='endDate' class='endDate'>
+            </c:otherwise>
+        </c:choose>
+    </c:forEach>
 </section>
 <!-- Details Post Section End -->
 
