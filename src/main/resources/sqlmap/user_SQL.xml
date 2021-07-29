@@ -254,11 +254,11 @@
     <update id="updateSummonerLv" parameterType="hashMap">
     	MERGE INTO BROWNIE_USER
         	USING DUAL
-        ON (LOL_ID = #{name})
+        ON (LOL_ID = '${name}')
         WHEN MATCHED THEN
             UPDATE
-        SET LOLLEVEL = #{summonerLevel}
-        	,LOLTIER = #{tier}
+        SET LOLLEVEL = ${summonerLevel}
+        	,LOLTIER = '${tier}'
     </update>
     
 </mapper>
