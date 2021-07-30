@@ -90,6 +90,7 @@ public class UserController {
 		int likeReplyCnt = userService.likeReplyCnt(user_id);
 		int hateReplyCnt = userService.hateReplyCnt(user_id);
 
+		// 브라우니 포인트로 레벨체킹
 		// 로그인한 사람의 최근 게시글 3개가져오기
 		List<Map<String, Object>> recentBoard = userService.recentBoard(user_id);
 
@@ -258,10 +259,10 @@ public class UserController {
 	public String userPostReview(@RequestParam Map<String, Object> map, HttpSession httpsession) {
 		String sessionId = (String) httpsession.getAttribute("id");
 		map.put("sessionId", sessionId);
-		if(map.get("rating") == null) {
+		if (map.get("rating") == null) {
 			map.put("rating", 0);
 		}
-		
+
 		reviewService.insertReview(map);
 
 		return "<script>window.close();</script>";
