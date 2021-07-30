@@ -123,7 +123,7 @@
                 <div class="row champion-select overflow-auto overflow-x-hidden rounded">
                     <div class="col-sm-2 col-lg-1 league-of-legends-champion">
                         <a href="${pageContext.request.contextPath}/tip/list">
-                            <img src="https://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/29.png"
+                            <img src="https://ddragon.leagueoflegends.com/cdn/11.15.1/img/profileicon/29.png"
                                  alt=""/>
                             <p class="text-nowrap-overflow-ellipsis-hidden">전체</p>
                         </a>
@@ -155,7 +155,7 @@
                             <div class="details-text">
                                 <div class="dt-author writerInfoBox">
                                     <div class="da-pic">
-                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/${champion}.png">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/${champion}.png">
                                     </div>
                                     <div class="da-text writerInfo">
                                         <h5>${championVO.name}</h5>

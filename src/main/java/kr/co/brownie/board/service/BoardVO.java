@@ -53,7 +53,7 @@ public class BoardVO {
     public String getImgSrc() {
         if (content == null || "".equals(Jsoup.parse(content).select("img").attr("src"))) {
             if (boardKind.equalsIgnoreCase("TIP")) {
-                return "https://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/" + Character.toUpperCase(boardCategory.charAt(0)) + boardCategory.substring(1) + ".png";
+                return "https://ddragon.leagueoflegends.com/cdn/11.15.1/img/champion/" + Character.toUpperCase(boardCategory.charAt(0)) + boardCategory.substring(1) + ".png";
             }
             return "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
         }
