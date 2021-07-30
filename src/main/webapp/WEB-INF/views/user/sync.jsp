@@ -52,7 +52,7 @@
                     <h1 class="text-center" style="color: white">아래 프로그램을</h1>
                     <h1 class="text-center" style="color: white">다운로드 받고</h1>
                     <h1 class="text-center" style="color: white">실행해주세요.</h1>
-                    <h3 class="text-center"><a href="#">다운로드</a></h3>
+                    <h3 class="text-center"><a href="/download/brownie.exe">다운로드</a></h3>
 
                     <label class="text-left" for="token">Token</label>
                     <input id="token" type="text" class="form-control" value="${userVO.token}">
