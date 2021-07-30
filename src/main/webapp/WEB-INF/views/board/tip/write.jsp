@@ -113,8 +113,10 @@
 </style>
 <script>
     $(function () {
-        $("select[name=champion]").on("change", function () {
-            const champion = $("select>option:selected").val();
+        const boardCategory = $("select[name=boardCategory]");
+
+        boardCategory.on("change", function () {
+            const champion = $("select[name=boardCategory]>option:selected").val();
             $("#tip_add_banner_image")
                 .attr("data-setbg", "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + champion + "_0.jpg")
                 .css({backgroundImage: 'url("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' + champion + '_0.jpg'})
@@ -124,7 +126,7 @@
 <!-- Breadcrumb Section Begin -->
 <section id="tip_add_banner_image"
          class="breadcrumb-section set-bg spad"
-         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/Garen_0.jpg">
+         data-setbg="http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${champion}_0.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -152,8 +154,12 @@
                             <div class="row">
                                 <div class="col-3">
                                     <select class="w-100" name="boardCategory">
-                                        <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
-                                            <option value="${champion.id}">${champion.name}</option>
+                                        <c:forEach var="championVO" items="${leagueOfLegendsChampionsVOList}">
+                                            <option value="${championVO.id}"
+                                                    <c:if test='${champion != null and champion != "" and champion == championVO.id}'>
+                                                        selected
+                                                    </c:if>
+                                            >${championVO.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>

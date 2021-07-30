@@ -128,12 +128,12 @@
                             <p class="text-nowrap-overflow-ellipsis-hidden">전체</p>
                         </a>
                     </div>
-                    <c:forEach var="champion" items="${leagueOfLegendsChampionsVOList}">
+                    <c:forEach var="championVO" items="${leagueOfLegendsChampionsVOList}">
                         <div class="col-sm-2 col-lg-1 league-of-legends-champion">
-                            <a href="?champion=${champion.id}">
-                                <img src="http://ddragon.leagueoflegends.com/cdn/${champion.version}/img/champion/${champion.imageFull}"
+                            <a href="?champion=${championVO.id}">
+                                <img src="http://ddragon.leagueoflegends.com/cdn/${championVO.version}/img/champion/${championVO.imageFull}"
                                      alt=""/>
-                                <p class="text-nowrap-overflow-ellipsis-hidden">${champion.name}</p>
+                                <p class="text-nowrap-overflow-ellipsis-hidden">${championVO.name}</p>
                             </a>
                         </div>
                     </c:forEach>
@@ -147,12 +147,41 @@
 <!-- Categories list Section Begin -->
 <section class="categories-list-section spad">
     <div class="container">
-        <c:if test="${sessionScope.id ne null}">
-            <div class="pagination-item d-flex flex-row-reverse">
-                <a href="${pageContext.request.contextPath}/tip/write"><span>Write</span></a>
-            </div>
-        </c:if>
         <div class="row">
+            <c:if test='${champion != null and champion != ""}'>
+                <c:forEach var="championVO" items="${leagueOfLegendsChampionsVOList}">
+                    <c:if test='${champion != null and champion != "" and champion == championVO.id}'>
+                        <div class="col-lg-12 p-0">
+                            <div class="details-text">
+                                <div class="dt-author writerInfoBox">
+                                    <div class="da-pic">
+                                        <img src="https://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/${champion}.png">
+                                    </div>
+                                    <div class="da-text writerInfo">
+                                        <h5>${championVO.name}</h5>
+                                        <p>${championVO.blurb}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </c:if>
+            <div class="col-lg-12 p-0">
+                <c:if test="${sessionScope.id ne null}">
+                    <div class="pagination-item d-flex flex-row-reverse">
+                        <c:choose>
+                            <c:when test='${champion != null and champion != ""}'>
+                                <a href="${pageContext.request.contextPath}/tip/write?champion=${champion}"><span>Write</span></a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="${pageContext.request.contextPath}/tip/write"><span>Write</span></a>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </c:if>
+            </div>
+
             <div class="col-lg-12 p-0">
                 <c:forEach var="boardVO" items="${boardPagingVO.boardVOList}">
                     <div class="cl-item">

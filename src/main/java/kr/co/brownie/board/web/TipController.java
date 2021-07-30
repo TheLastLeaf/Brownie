@@ -36,10 +36,12 @@ public class TipController {
 
     @GetMapping("/write")
     public String write(HttpSession httpSession,
-                        Model model) {
+                        Model model,
+                        @RequestParam(required = false) String champion) {
         Assert.notNull(httpSession.getAttribute("id"), "로그인이 필요합니다.");
         model.addAttribute("leagueOfLegendsChampionsVOList", this.leagueOfLegendsChampionsService.selectRecentlyChampionsList());
         model.addAttribute("boardKind", "tip");
+        model.addAttribute("champion", champion);
 
         return "board/tip/write";
     }
