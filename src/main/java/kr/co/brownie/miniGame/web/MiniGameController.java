@@ -345,7 +345,7 @@ public class MiniGameController {
         String act = "";
         //밟은랜드가 good 일 경우
         int saveCnt = 0;
-        
+        act = "조우";
         if(objDegree.equals("start")) {
         	act = "환전";
     		int sum = 0;
