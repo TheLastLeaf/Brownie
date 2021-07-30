@@ -571,7 +571,7 @@
 	 function viewItem(items) {
 		temp="";
 		for (var i = 0; i < items.length; i++) {
-		 	temp += "<img class='item' src='${pageContext.request.contextPath}/img/miniGame/"+items[i].degree+"/"+items[i].imgName+"'/>";
+		 	temp += "<img id='"+items[i].seq+"' class='item landI' src='${pageContext.request.contextPath}/img/miniGame/"+items[i].degree+"/"+items[i].imgName+"'/>";
 		}
 		$('.itemList').html(temp);
 	}
@@ -611,6 +611,7 @@
 
     //설정
     var playerImg = "<div class='player'><img id='self' class='playerImg landI' src='${pageContext.request.contextPath}/img/miniGame/chr/rabbit.png' /></div>";
+    $('.player').unbind('click');
     //var playerImg = "<div class='player'><i style='color: red;' class='fas fa-chess-knight fa-8x'></i></div>";
     var diceSpeed = 450; // 주사위속도
     var side1 = 0;
@@ -839,7 +840,7 @@
                    console.log("data 삽입성공!");
                    $(".diceNum").html("남은횟수 : "+dicetimes);
                    if(data.dead==1){
- 	                   $("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/use/skull.png' />"); 
+ 	                    $("#modalImgD").html("<img id='modalImg' src='${pageContext.request.contextPath}/img/miniGame/use/skull.png' />"); 
 	               	   	$("#modalTitle").html("즉 사");
 	   	           		$("#modalCon").html("당신은 끔찍하게 즉사했습니다.<br> 브라우니마블을 다시 시작합니다.");
                 	    $(".modal").fadeIn();
@@ -862,7 +863,7 @@
                    
 				   hp=data.player.hp;
                    recentHp=data.player.recentHp;
-                   
+                   item=data.player.item; 
                    viewItem(data.items);
                    
                    viewHp(recentHp,hp);
@@ -872,12 +873,23 @@
                    }
                    
                    var inst = 1;
+                   
+                   var dT = 0; 
+                   if(side1<2){
+                	   dT = 0;
+                   } else {
+                	   dT = 300;
+                   }
                    if (objposition==30) {
                 	   inst = 2;
-                	   $(".modal").fadeIn();
+                	   setTimeout(function(){
+                		   $(".modal").fadeIn();
+		   	           	},side1*dT);
 		           		selectmarbelInfo(data.boxIn, inst);
                    } else {
-						$(".modal").fadeIn();
+                	   setTimeout(function(){
+                		   $(".modal").fadeIn();
+		   	           	},side1*dT);
 		           		selectmarbelInfo(playerPos, inst);
                    }
                    
@@ -957,7 +969,7 @@
             }
         })
     }
-
+	var delayTime = 1500;
     //디폴트주사위
     function dice() {
     	if (flagDouble) {
@@ -1012,8 +1024,11 @@
         diceSide1.innerHTML = num;
 
         status1.innerHTML = side1 + "!";
-
-        setTimeout('move(' + side1 + ')', 1900);
+		if(side1 > 3){
+			delayTime = 2000;
+		}
+        
+        setTimeout('move(' + side1 + ')', delayTime);
     }
     
     function oneMoreDice() {
@@ -1051,8 +1066,10 @@
         diceSide1.innerHTML = num;
 
         status1.innerHTML = side1 + "!";
-
-        setTimeout('move(' + side1 + ')', 1900);
+        if(side1 > 3){
+			delayTime = side1*450;
+		}
+        setTimeout('move(' + side1 + ')', delayTime);
     }
 
     //한번더! 주사위 더블이벤트
@@ -1102,14 +1119,15 @@
             status1.innerHTML += ' 더블! 한접시 더!<br>';
             doubleDice();
         }
+        
 		side1 = diceTotal;
-        setTimeout('move(' + side1 + ')', 2000);
+		
+        if(side1 > 5){
+			delayTime = side1*450;
+		}
+        setTimeout('move(' + side1 + ')', delayTime);
     }
 
-    //상인
-    function merchant() {
-
-    }
 
     //이동
     function move(diceTotal) {
@@ -1137,7 +1155,6 @@
                 rndMapCreate();
             }
         }
-        //effectAct(side1,bet());
 		var objposition = "start";
         var tempList = [];
         
@@ -1183,10 +1200,17 @@
     }
     
 $(function(){ 
+
 	$(".landI").click(function(){
 		$(".modal").fadeIn();
 		var landNum = $(this).attr('id');
-		selectmarbelInfo(landNum,0);
+		if (Number(landNum)>=40){
+			selectmarbelInfo(landNum,2);
+			
+		} else {
+			selectmarbelInfo(landNum,0);
+			
+		}
 	});
 	
 	$(".modal_content").click(function(){
@@ -1337,7 +1361,7 @@ $(function(){
 						<!-- 시간나면 -->
 						<div class="itemList" style="margin-top:20px;">
 							<c:forEach var="item" items="${playerItem}" varStatus="status">
-							<img class='item' src='${pageContext.request.contextPath}/img/miniGame/${item.degree}/${item.imgName}'/>
+							<img id='${item.seq}' class='item landI' src='${pageContext.request.contextPath}/img/miniGame/${item.degree}/${item.imgName}'/>
 							</c:forEach>
 						</div>
 						<!-- 시간나면 -->

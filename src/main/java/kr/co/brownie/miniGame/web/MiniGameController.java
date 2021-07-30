@@ -359,7 +359,8 @@ public class MiniGameController {
 			objName = sum + " POINT";
 			param.put("point", sum);
 			param.put("item", "[]");
-			this.miniGameService.updatePlayer(param);
+			int c = this.miniGameService.updatePlayer(param);
+			System.out.println(c);
         	saveCnt = this.miniGameService.modifyGamePoint(param);
         } else if (objDegree.equals("bad")) {
         	if (objKind.equals("attack")) {
@@ -582,7 +583,6 @@ public class MiniGameController {
         if(!item2.equals("")) {
         	String[] items = item2.split(", ");
         
-	        
 	        for (String n : items) {
 	        	itemList2.add(Integer.parseInt(n));
 	        }
