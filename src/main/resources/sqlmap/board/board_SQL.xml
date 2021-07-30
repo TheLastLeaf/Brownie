@@ -251,7 +251,7 @@
                                                      IN (1 AS LIKE_CNT,
                                                          0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE_CNT
                                                 ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE_CNT.BOARD_SEQ
-                       ORDER BY BOARDSEQ DESC
+                       ORDER BY BROWNIE_BOARD.IN_DATE DESC
                       ) BOARD
              )
         ]]>
@@ -386,7 +386,7 @@
         </if>
         <![CDATA[
                        ORDER BY LIKECNT - UNLIKECNT DESC,
-                                BOARDSEQ DESC
+                                BROWNIE_BOARD.IN_DATE DESC
                       ) BOARD
              )
         WHERE RN <= #{limit}
@@ -518,7 +518,7 @@
                                                      IN (1 AS LIKE_CNT,
                                                          0 AS UNLIKE_CNT))) BROWNIE_BOARD_LIKE_CNT
                                                 ON BROWNIE_BOARD.BOARD_SEQ = BROWNIE_BOARD_LIKE_CNT.BOARD_SEQ
-                       ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC
+                       ORDER BY BROWNIE_BOARD.IN_DATE DESC
                       ) BOARD
              )
         ]]>
@@ -561,13 +561,13 @@
                NVL(BROWNIE_BOARD_LIKE_CNT.LIKE_CNT, 0)   AS LIKECNT,
                NVL(BROWNIE_BOARD_LIKE_CNT.UNLIKE_CNT, 0) AS UNLIKECNT
         FROM (SELECT *
-              FROM BROWNIE_BOARD
+              FROM BROWNIE_BOARD.
               WHERE BOARD_SEQ IN (
                   WITH BOARD AS (
                       SELECT *
-                      FROM (SELECT LEAD(BROWNIE_BOARD.BOARD_SEQ, 1) OVER (ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC) AS LEAD_BOARD_SEQ,
+                      FROM (SELECT LEAD(BROWNIE_BOARD.BOARD_SEQ, 1) OVER (ORDER BY BROWNIE_BOARD.IN_DATE DESC) AS LEAD_BOARD_SEQ,
                                    BROWNIE_BOARD.BOARD_SEQ AS BOARD_SEQ,
-                                   LAG(BROWNIE_BOARD.BOARD_SEQ, 1)  OVER (ORDER BY BROWNIE_BOARD.BOARD_SEQ DESC)  AS LAG_BOARD_SEQ
+                                   LAG(BROWNIE_BOARD.BOARD_SEQ, 1)  OVER (ORDER BY BROWNIE_BOARD.IN_DATE DESC)  AS LAG_BOARD_SEQ
                             FROM BROWNIE_BOARD
                                      INNER JOIN BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
                             WHERE UPPER(BOARD_KIND) = UPPER(#{boardKind}))
