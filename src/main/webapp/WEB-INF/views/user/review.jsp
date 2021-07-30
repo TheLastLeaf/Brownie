@@ -192,7 +192,6 @@ hr {
 		}
 		function fn_check() {
 			if(confirm("글쓰겠습니까?")){
-				alert("정상등록이 되었습니다.");
 				opener.parent.location.reload();
 				return true;
 			}
