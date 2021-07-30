@@ -210,13 +210,13 @@
                             <div class="dc-pic">
                                 <img src="${pageContext.request.contextPath}${replyVO.image}" alt="">
                             </div>
-                            <c:choose>
-                            <c:when test='${replyVO.boardStatus == "y"}'>
                             <div class="dc-text">
                                 <a href="/user/info/${replyVO.replyInUserId}"><h5>${replyVO.nickName}</h5></a>
                                 <span class="c-date">${replyVO.replyInDate}</span>
-                                <div class="float-right">
-                                    <button type="button" class="like btn
+                                <c:choose>
+                                    <c:when test='${replyVO.boardStatus == "y"}'>
+                                        <div class="float-right">
+                                            <button type="button" class="like btn
                                     <c:choose>
                                         <c:when test='${replyVO.likeKind != null and replyVO.likeKind eq "1"}'>
                                             btn-primary
@@ -226,8 +226,8 @@
                                         </c:otherwise>
                                     </c:choose>
                                     mr-3" onclick="replyLike(${replyVO.replySeq}, 1)"><i
-                                            class="far fa-thumbs-up"></i> ${replyVO.likeCnt}</button>
-                                    <button type="button" class="unlike btn
+                                                    class="far fa-thumbs-up"></i> ${replyVO.likeCnt}</button>
+                                            <button type="button" class="unlike btn
                                     <c:choose>
                                         <c:when test='${replyVO.likeKind != null and replyVO.likeKind eq "0"}'>
                                             btn-danger
@@ -237,30 +237,32 @@
                                         </c:otherwise>
                                     </c:choose>
                                     ml-3" onclick="replyLike(${replyVO.replySeq}, 0)"><i
-                                            class="far fa-thumbs-up fa-flip-vertical"></i> ${replyVO.unlikeCnt}</button>
-                                    <c:if test="${sessionScope.id != null}">
-                                        <button type="button" class="btn btn-outline-light ml-5"
-                                                onclick="fn_replyReport(${replyVO.replySeq},${boardVO.boardSeq},'${replyVO.userId}')">
-                                            <i
-                                                    class="fas fa-bomb"></i></button>
-                                    </c:if>
-                                </div>
-                                <p>${replyVO.replyContent}</p>
-                                <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
-                                    <button type="button" onclick="commentReplyButton(${boardSeq}, ${replyVO.replySeq})"
-                                            class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
-                                    </button>
-                                </c:if>
-                                <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
-                                    <button type="button"
-                                            onclick='if(confirm("정말 삭제하시겠습니까?"))replyDelete(${boardSeq}, ${replyVO.replySeq})'
-                                            class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
-                                    </button>
-                                </c:if>
-                                </c:when>
-                                <c:otherwise>
-                                    <p>삭제된 댓글입니다.</p>
-                                </c:otherwise>
+                                                    class="far fa-thumbs-up fa-flip-vertical"></i> ${replyVO.unlikeCnt}
+                                            </button>
+                                            <c:if test="${sessionScope.id != null}">
+                                                <button type="button" class="btn btn-outline-light ml-5"
+                                                        onclick="fn_replyReport(${replyVO.replySeq},${boardVO.boardSeq},'${replyVO.userId}')">
+                                                    <i
+                                                            class="fas fa-bomb"></i></button>
+                                            </c:if>
+                                        </div>
+                                        <p>${replyVO.replyContent}</p>
+                                        <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
+                                            <button type="button"
+                                                    onclick="commentReplyButton(${boardSeq}, ${replyVO.replySeq})"
+                                                    class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>
+                                            </button>
+                                        </c:if>
+                                        <c:if test="${sessionScope.id eq replyVO.replyInUserId}">
+                                            <button type="button"
+                                                    onclick='if(confirm("정말 삭제하시겠습니까?"))replyDelete(${boardSeq}, ${replyVO.replySeq})'
+                                                    class="reply-btn position-relative ml-3 mb-3"><span>Delete</span>
+                                            </button>
+                                        </c:if>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <p>삭제된 댓글입니다.</p>
+                                    </c:otherwise>
                                 </c:choose>
                             </div>
                         </div>
