@@ -561,7 +561,7 @@
                NVL(BROWNIE_BOARD_LIKE_CNT.LIKE_CNT, 0)   AS LIKECNT,
                NVL(BROWNIE_BOARD_LIKE_CNT.UNLIKE_CNT, 0) AS UNLIKECNT
         FROM (SELECT *
-              FROM BROWNIE_BOARD.
+              FROM BROWNIE_BOARD
               WHERE BOARD_SEQ IN (
                   WITH BOARD AS (
                       SELECT *
