@@ -39,7 +39,6 @@ public class ReveiwServiceImpl implements ReviewService {
 
 	@Override
 	public void insertReview(Map<String, Object> map) {
-		System.out.println("map" + map);
 		reviewMapper.insertReview(map);
 	}
 }

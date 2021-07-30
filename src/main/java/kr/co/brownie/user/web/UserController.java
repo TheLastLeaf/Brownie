@@ -255,6 +255,10 @@ public class UserController {
 	public String userPostReview(@RequestParam Map<String, Object> map, HttpSession httpsession) {
 		String sessionId = (String) httpsession.getAttribute("id");
 		map.put("sessionId", sessionId);
+		if(map.get("rating") == null) {
+			map.put("rating", 0);
+		}
+		
 		reviewService.insertReview(map);
 
 		return "<script>window.close();</script>";
