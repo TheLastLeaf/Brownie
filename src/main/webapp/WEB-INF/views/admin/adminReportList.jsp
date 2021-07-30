@@ -142,14 +142,14 @@
             <div class="col-lg-12 reportListdiv">
                 <table class="reportListTable" border="1px solid grey" style="margin-bottom: auto">
                     <tr>
-                        <th class="reportListTd" style="width: 10%">닉네임</th>
-                        <th class="reportListTd" style="width: 30%">신고분류</th>
+                        <th class="reportListTd" style="width: 130px">닉네임</th>
+                        <th class="reportListTd" style="width: 400px">신고분류</th>
                         <th class="reportListTd">신고내용</th>
-                        <th class="reportListTd">신고자</th>
-                        <th class="reportListTd" style="width: 20%">신고일자</th>
-                        <th class="reportListTd" style="width: 10%">재재 항목</th>
-                        <th class="reportListTd">신고접수</th>
-                        <th class="reportListTd">접수취소</th>
+                        <th class="reportListTd" style="width: 100px">신고자</th>
+                        <th class="reportListTd" style="width: 250px">신고일자</th>
+                        <th class="reportListTd" style="width: 100px">재재 항목</th>
+                        <th class="reportListTd">접수</th>
+                        <th class="reportListTd">취소</th>
                     </tr>
                     <c:forEach var="reportList" items='${ReportPagingVO.reportVOList }'>
                         <c:if test='${reportList.status eq "N"}'>
