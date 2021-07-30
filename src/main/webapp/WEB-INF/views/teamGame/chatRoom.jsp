@@ -280,7 +280,7 @@
                 $('div').remove('#'+sessionLolNick);
             }
 
-            if(speakerId.includes("유저퇴장")) {
+            if(speakerId.includes("팀원퇴장")) {
                 $('div').remove('#'+sessionLolNick);
             }
  
