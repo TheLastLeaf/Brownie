@@ -65,9 +65,9 @@ public class UserController {
 	 * @author 박세웅
 	 */
 	@GetMapping("/info/{user_id}")
-	public String userInfo(@PathVariable String user_id, HttpSession httpSession, Model model, ReviewPagingVO page) {
+	public String userInfo(@PathVariable String user_id, Model model, ReviewPagingVO page) {
 		Map<String, Object> map = new HashMap<>();
-		map.put("userId", httpSession.getAttribute("id"));
+		map.put("userId", user_id);
 		UserVO userOneSelect = userService.userOneSelect(user_id);
 		// 유저레벨
 		int permitLevel = userService.selectPermitLevel(user_id);
