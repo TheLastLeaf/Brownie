@@ -70,7 +70,7 @@
                             <img src="${pageContext.request.contextPath}${boardVO.image}">
                         </div>
                         <div class="da-text writerInfo">
-                            <h5>${boardVO.nickName}</h5>
+                            <a href="/user/info/${boardVO.boardInUserId}"><h5>${boardVO.nickName}</h5></a>
                         </div>
                     </div>
 
@@ -174,7 +174,7 @@
                                          alt="">
                                 </div>
                                 <div class="dc-text">
-                                    <h5>${replyVO.nickName}</h5>
+                                    <a href="/user/info/${replyVO.replyInUserId}"><h5>${replyVO.nickName}</h5></a>
                                     <span class="c-date">${replyVO.replyInDate}</span>
                                     <div class="float-right">
                                         <button type="button" class="like btn

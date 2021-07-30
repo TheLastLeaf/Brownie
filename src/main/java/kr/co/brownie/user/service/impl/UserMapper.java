@@ -60,4 +60,5 @@ public interface UserMapper {
 
 	int selectPermitLevel(String user_id);
 
+    List<UserVO> recentlyChatUsers(Map<String, Object> map);
 }

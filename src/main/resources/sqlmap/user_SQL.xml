@@ -268,5 +268,19 @@
 			FROM PERMIT
 		WHERE USER_ID = '${userId}'
     </select>
-    
+
+
+    <select id="recentlyChatUsers" parameterType="hashMap" resultType="kr.co.brownie.user.service.UserVO">
+        SELECT CHAT.IN_USER_ID AS USERID,
+               NICK_NAME       AS NICKNAME
+        FROM CHAT
+                 INNER JOIN (SELECT MAX(TEAMGAME_SEP) AS TEAMGAMESEP
+                             FROM CHAT
+                             WHERE IN_USER_ID = #{userId}) SEQ
+                            ON CHAT.TEAMGAME_SEP = SEQ.TEAMGAMESEP
+                 INNER JOIN BROWNIE_USER ON CHAT.IN_USER_ID = BROWNIE_USER.USER_ID
+        WHERE CHAT.IN_USER_ID != #{userId}
+        GROUP BY CHAT.IN_USER_ID,
+                 NICK_NAME
+    </select>
 </mapper>

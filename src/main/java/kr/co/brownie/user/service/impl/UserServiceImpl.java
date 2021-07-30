@@ -150,4 +150,8 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectPermitLevel(user_id);
 	}
 
+	@Override
+	public List<UserVO> recentlyChatUsers(Map<String, Object> map) {
+		return this.userMapper.recentlyChatUsers(map);
+	}
 }
