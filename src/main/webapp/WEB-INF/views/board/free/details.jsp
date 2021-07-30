@@ -4,18 +4,19 @@
 <c:import url="../../layout/header.jsp"/>
 <script>
     function fn_report(Seq) {
-        if(${boardVO.userId} == ${sessionScope.id}){
+        if (${boardVO.userId} == ${sessionScope.id}) {
             alert("본인이 작성한 글은 신고할 수 없습니다.")
             return false;
         }
-        window.open("/report/write?Seq=" + Seq , "REPORT", "width=660, height=500, left=250,top=200");
+        window.open("/report/write?Seq=" + Seq, "REPORT", "width=660, height=500, left=250,top=200");
     }
-    function fn_replyReport(Seq,boardSeq,userId) {
-        if(userId == ${sessionScope.id}){
+
+    function fn_replyReport(Seq, boardSeq, userId) {
+        if (userId == ${sessionScope.id}) {
             alert("본인이 작성한 댓글은 신고할 수 없습니다.")
             return false;
         }
-        window.open("/replyReport/write?Seq=" + Seq + "&boardSeq=" + boardSeq , "REPORT", "width=660, height=500, left=250,top=200");
+        window.open("/replyReport/write?Seq=" + Seq + "&boardSeq=" + boardSeq, "REPORT", "width=660, height=500, left=250,top=200");
     }
 </script>
 
@@ -207,7 +208,16 @@
                                             </button>
                                         </c:if>
                                     </div>
-                                    <p>${replyVO.replyContent}</p>
+                                    <p>
+                                        <c:choose>
+                                            <c:when test='${replyVO.boardStatus == "y"}'>
+                                                ${replyVO.replyContent}
+                                            </c:when>
+                                            <c:otherwise>
+                                                삭제된 댓글입니다.
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </p>
                                     <form>
                                         <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
                                             <button type="button"

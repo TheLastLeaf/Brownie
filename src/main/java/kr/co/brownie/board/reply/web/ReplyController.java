@@ -70,7 +70,7 @@ public class ReplyController {
                 jsonObject.addProperty("status", "ng");
                 jsonObject.addProperty("message", "작성자만 댓글을 삭제할 수 있습니다..");
             } else {
-                if (this.replyService.delete(map) != 1) {
+                if (this.replyService.updateStatus(map) != 1) {
                     jsonObject.addProperty("status", "ng");
                     jsonObject.addProperty("message", "삭제에 실패하였습니다.");
                 } else {

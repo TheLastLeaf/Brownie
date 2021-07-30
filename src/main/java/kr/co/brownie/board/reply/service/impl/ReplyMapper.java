@@ -18,5 +18,5 @@ public interface ReplyMapper {
 
     int update(Map<String, Object> map);
 
-    int delete(Map<String, Object> map);
+    int updateStatus(Map<String, Object> map);
 }

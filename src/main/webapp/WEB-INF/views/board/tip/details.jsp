@@ -242,7 +242,16 @@
                                                     class="fas fa-bomb"></i></button>
                                     </c:if>
                                 </div>
-                                <p>${replyVO.replyContent}</p>
+                                <p>
+                                    <c:choose>
+                                        <c:when test='${replyVO.boardStatus == "y"}'>
+                                            ${replyVO.replyContent}
+                                        </c:when>
+                                        <c:otherwise>
+                                            삭제된 댓글입니다.
+                                        </c:otherwise>
+                                    </c:choose>
+                                </p>
                                 <c:if test="${sessionScope.id ne null and replyVO.lv < 3}">
                                     <button type="button" onclick="commentReplyButton(${boardSeq}, ${replyVO.replySeq})"
                                             class="reply-btn position-relative ml-3 mb-3"><span>Reply</span>

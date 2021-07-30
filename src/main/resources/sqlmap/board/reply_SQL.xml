@@ -238,9 +238,9 @@
         WHERE BROWNIE_BOARD_REPLY.REPLY_SEQ = #{replySeq}
     </update>
 
-    <delete id="delete" parameterType="hashMap">
-        DELETE
-        FROM BROWNIE_BOARD_REPLY
+    <update id="updateStatus" parameterType="hashMap">
+        UPDATE BROWNIE_BOARD_REPLY
+        SET STATUS = 'n'
         WHERE REPLY_SEQ = #{replySeq}
-    </delete>
+    </update>
 </mapper>

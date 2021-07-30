@@ -52,7 +52,7 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public int delete(Map<String, Object> map) {
-        return this.replyMapper.delete(map);
+    public int updateStatus(Map<String, Object> map) {
+        return this.replyMapper.updateStatus(map);
     }
 }
