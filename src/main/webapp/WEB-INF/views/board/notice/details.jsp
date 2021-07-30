@@ -14,6 +14,12 @@
     .writerInfoBox {
         height: 150px;
     }
+    #title{
+        color: whitesmoke !important;
+    }
+    #content > p{
+        color: white !important;
+    }
 </style>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
@@ -39,9 +45,9 @@
                             </div>
                         </div>
                         <hr class="w-auto bg-white">
-                        <h4 class="text-secondary font-family-maple-bold">${boardVO.title}</h4>
+                        <h4 class="text-secondary font-family-maple-bold" id="title">${boardVO.title}</h4>
                     </div>
-                    <div class="dt-desc">
+                    <div class="dt-desc" id="content">
                         ${boardVO.content}
                     </div>
                     <div class="dt-author border writerInfoBox">
