@@ -277,7 +277,8 @@ h1 {
 .selectedPosition>img {
 	width: 60px;
 }
-#tierPic2{
+
+#tierPic2 {
 	width: 100px;
 }
 </style>
@@ -347,7 +348,17 @@ h1 {
 						</div>
 						<div class="col-7" style="color: white;">
 							<div class="Hierarchy font-family-maple-bold">
-								<i>일반회원</i>
+								<i>
+									<c:set var="permitLv" value="${permitLevel}" />
+									<c:choose>
+									<c:when test="${permitLv != 9}">
+										일반회원
+									</c:when>
+									<c:otherwise>
+										관리자
+									</c:otherwise>
+									</c:choose>
+								</i>
 							</div>
 							<div class="nameLv">
 								<h3 class="font-family-maple-bold text-white">
@@ -388,25 +399,25 @@ h1 {
 									<div id="tierPic2" style="display: none;">
 
 										<c:if test="${userOneSelect.lolTier eq 'TBD'}">
-											<img src="${pageContext.request.contextPath}/img/details/LOL.png"/>
+											<img src="${pageContext.request.contextPath}/img/details/LOL.png" />
 										</c:if>
 										<c:if test="${userOneSelect.lolTier eq 'IRON'}">
 											<img src="${pageContext.request.contextPath}/img/lol/lolTier/iron.png" />
 										</c:if>
 										<c:if test="${userOneSelect.lolTier eq 'BRONZE'}">
-											<img src="${pageContext.request.contextPath}/img/lol/lolTier/bronze.png"/>
+											<img src="${pageContext.request.contextPath}/img/lol/lolTier/bronze.png" />
 										</c:if>
 										<c:if test="${userOneSelect.lolTier eq 'SILVER'}">
-											<img src="${pageContext.request.contextPath}/img/lol/lolTier/silver.png"/>
+											<img src="${pageContext.request.contextPath}/img/lol/lolTier/silver.png" />
 										</c:if>
 										<c:if test="${userOneSelect.lolTier eq 'GOLD'}">
 											<img src="${pageContext.request.contextPath}/img/lol/lolTier/gold.png" />
 										</c:if>
 										<c:if test="${userOneSelect.lolTier eq 'PLATINUM'}">
-											<img src="${pageContext.request.contextPath}/img/lol/lolTier/platinum.png"/>
+											<img src="${pageContext.request.contextPath}/img/lol/lolTier/platinum.png" />
 										</c:if>
 										<c:if test="${userOneSelect.lolTier eq 'DIAMOND'}">
-											<img src="${pageContext.request.contextPath}/img/lol/lolTier/diamond.jpg"/>
+											<img src="${pageContext.request.contextPath}/img/lol/lolTier/diamond.jpg" />
 										</c:if>
 										<c:if test="${userOneSelect.lolTier eq 'MASTER'}">
 											<img src="${pageContext.request.contextPath}/img/lol/lolTier/master.png" />

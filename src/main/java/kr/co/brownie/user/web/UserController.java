@@ -67,7 +67,8 @@ public class UserController {
 	@GetMapping("/info/{user_id}")
 	public String userInfo(@PathVariable String user_id, Model model, ReviewPagingVO page) {
 		UserVO userOneSelect = userService.userOneSelect(user_id);
-
+		// 유저레벨
+		int permitLevel = userService.selectPermitLevel(user_id);
 		if (userOneSelect == null) {
 			model.addAttribute("message", "alert(\"등록되지 않은 유저입니다.\");history.go(-1);");
 			return "common/message";
@@ -103,6 +104,7 @@ public class UserController {
 		if (halfStar == 1) {
 			model.addAttribute("halfStar", halfStar);
 		}
+		model.addAttribute("permitLevel", permitLevel);
 		model.addAttribute("boardTotalCnt", boardTotalCnt);
 		model.addAttribute("replyTotalCnt", replyTotalCnt);
 		model.addAttribute("likeReplyCnt", likeReplyCnt);

@@ -57,4 +57,6 @@ public interface UserService {
 
 	void updateSummonerLv(Map<String, Object> map);
 
+	int selectPermitLevel(String user_id);
+
 }

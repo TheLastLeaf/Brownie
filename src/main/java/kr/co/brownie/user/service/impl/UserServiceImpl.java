@@ -150,4 +150,9 @@ public class UserServiceImpl implements UserService {
 		userMapper.updateSummonerLv(map);
 	}
 
+	@Override
+	public int selectPermitLevel(String user_id) {
+		return userMapper.selectPermitLevel(user_id);
+	}
+
 }

@@ -261,4 +261,10 @@
         	,LOLTIER = '${tier}'
     </update>
     
+    <select id="selectPermitLevel" resultType="int">
+    	SELECT PERMIT_LEVEL
+			FROM PERMIT
+		WHERE USER_ID = '${userId}'
+    </select>
+    
 </mapper>
