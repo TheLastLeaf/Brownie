@@ -5,6 +5,23 @@
 <script src="${pageContext.request.contextPath}/js/marvel.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/marvel.css" type="text/css">
 
+<script>
+    function fn_report(Seq) {
+        if(${boardVO.userId} == ${sessionScope.id}){
+            alert("본인이 작성한 글은 신고할 수 없습니다.")
+            return false;
+        }
+        window.open("/report/write?Seq=" + Seq , "REPORT", "width=660, height=500, left=250,top=200");
+    }
+    function fn_replyReport(Seq,boardSeq,userId) {
+        if(userId == ${sessionScope.id}){
+            alert("본인이 작성한 댓글은 신고할 수 없습니다.")
+            return false;
+        }
+        window.open("/replyReport/write?Seq=" + Seq + "&boardSeq=" + boardSeq , "REPORT", "width=660, height=500, left=250,top=200");
+    }
+</script>
+
 <style>
     .dThumb {
         height: 100px;
