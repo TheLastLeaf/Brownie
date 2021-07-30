@@ -142,7 +142,7 @@
             <div class="col-lg-12 reportListdiv">
                 <table class="reportListTable" border="1px solid grey" style="margin-bottom: auto">
                     <tr>
-                        <th class="reportListTd" style="width: 130px">닉네임</th>
+                        <th class="reportListTd" style="width: 160px">닉네임</th>
                         <th class="reportListTd" style="width: 400px">신고분류</th>
                         <th class="reportListTd">신고내용</th>
                         <th class="reportListTd" style="width: 100px">신고자</th>
