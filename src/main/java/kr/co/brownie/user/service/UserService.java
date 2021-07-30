@@ -21,7 +21,8 @@ public interface UserService {
 
     int updateImage(Map<String, Object> map);
 
-    List<String> recentBoard(String id);
+    // 최근 게시글 3개
+    List<Map<String, Object>> recentBoard(String id);
 
     String nickName(String id);
 

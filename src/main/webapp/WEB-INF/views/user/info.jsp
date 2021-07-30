@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:import url="../layout/header.jsp" />
 <style>
 .profileBox {
@@ -281,6 +282,10 @@ h1 {
 #tierPic2 {
 	width: 100px;
 }
+
+.tierPic1 {
+	width: 30%;
+}
 </style>
 
 <!-- Main Content Post Section Begin -->
@@ -351,10 +356,10 @@ h1 {
 								<i>
 									<c:set var="permitLv" value="${permitLevel}" />
 									<c:choose>
-									<c:when test="${permitLv != 9}">
+										<c:when test="${permitLv != 9}">
 										일반회원
 									</c:when>
-									<c:otherwise>
+										<c:otherwise>
 										관리자
 									</c:otherwise>
 									</c:choose>
@@ -377,7 +382,7 @@ h1 {
 						<c:if test="${userOneSelect.userId == sessionScope.id}">
 							<div class="modInfo col-3">
 								<button type="button" class="btn btn-dark" onclick="fn_infoMod('${userOneSelect.userId}')">정보수정</button>
-								<button type="button" class="btn btn-danger" onclick="fn_infoDel()">탈퇴</button>
+								<!-- 								<button type="button" class="btn btn-danger" onclick="fn_infoDel()">탈퇴</button> -->
 							</div>
 						</c:if>
 					</div>
@@ -394,7 +399,41 @@ h1 {
 								</c:when>
 								<c:otherwise>
 									<div id="tierPic1">
-										<img src="${pageContext.request.contextPath}/img/details/LOL.png" style="width: 95px;" />
+										<c:choose>
+											<c:when test="${userOneSelect.lolTier eq 'TBD'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/details/LOL.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'IRON'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/iron.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'BRONZE'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/bronze.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'SILVER'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/silver.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'GOLD'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/gold.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'PLATINUM'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/platinum.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'DIAMOND'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/diamond.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'MASTER'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/master.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'GRANDMASTER'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/grandmaster.png" />
+											</c:when>
+											<c:when test="${userOneSelect.lolTier eq 'CHALLENGER'}">
+												<img class="tierPic1" src="${pageContext.request.contextPath}/img/lol/lolTier/challenger.png" />
+											</c:when>
+											<c:otherwise>
+												<img src="${pageContext.request.contextPath}/img/details/LOL.png" />
+											</c:otherwise>
+										</c:choose>
 									</div>
 									<div id="tierPic2" style="display: none;">
 
@@ -491,15 +530,23 @@ h1 {
 						</div>
 						<hr />
 						<div class="infoDetail">【 최근 게시글 내역 】</div>
-						<c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
-							<div class="upload">
-								${vs.index+1}.
-								<a href="">${recentBoard}</a>
-							</div>
-						</c:forEach>
+
+						<c:choose>
+							<c:when test="${fn:length(recentBoard) == 0}">
+									???
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="recentBoard" items="${recentBoard}" varStatus="vs">
+									<div class="upload">
+										${vs.index+1}.
+										<a href="${pageContext.request.contextPath}/${recentBoard.BOARD_KIND}/details/${recentBoard.BOARD_SEQ}"> ${recentBoard.TITLE} </a>
+									</div>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<!-- 뭉태기3 -->
-					<div class="userInfoBox col-sm-4">
+					<div class="userInfoBox col-sm-4" style="padding-top: 20px;">
 						<div class="col playWith">최근 채팅한 플레이어</div>
 						<div class="col">
 							<div class="nickBox">

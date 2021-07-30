@@ -79,13 +79,15 @@
           AND KIND = '1'
     </select>
 
-    <select id="recentBoard" resultType="String">
+
+    <select id="recentBoard" resultType="hashMap">
 	<![CDATA[
-        SELECT TITLE
+        SELECT TITLE, BOARD_SEQ, BOARD_KIND
         FROM BROWNIE_BOARD
         WHERE IN_USER_ID IN '${id}'
           AND ROWNUM <= 3
-          AND LOWER(notice_yn) = LOWER('y')
+          AND LOWER(notice_yn) = LOWER('n')
+          AND LOWER(STATUS) = LOWER('y')
         ORDER BY UP_DATE DESC
         ]]>
 	</select>

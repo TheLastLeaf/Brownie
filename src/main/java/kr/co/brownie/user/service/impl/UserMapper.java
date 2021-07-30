@@ -23,7 +23,8 @@ public interface UserMapper {
 
     int updateImage(Map<String, Object> map);
 
-    List<String> recentBoard(String id);
+    // 최근 게시글 3개 가져오기
+    List<Map<String, Object>> recentBoard(String id);
 
     String nickName(String id);
 

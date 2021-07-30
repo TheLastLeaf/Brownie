@@ -89,7 +89,7 @@ public class UserController {
 		int hateReplyCnt = userService.hateReplyCnt(user_id);
 
 		// 로그인한 사람의 최근 게시글 3개가져오기
-		List<String> recentBoard = userService.recentBoard(user_id);
+		List<Map<String, Object>> recentBoard = userService.recentBoard(user_id);
 
 		// 후기 페이징
 		page.setId(user_id);
