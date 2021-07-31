@@ -62,7 +62,7 @@
                             href="https://github.com/RIRINTO" target="_blank"><span>이학재</span></a>
                         <a href="https://github.com/ParkSeWoong95" target="_blank"><span>박세웅</span></a> <a
                             href="https://github.com/JH1550" target="_blank"><span>곽지훈</span></a>
-                        <a href="https://github.com/9-better" target="_blank"><span>구나은</span></a>
+                        <a href="https://github.com/better-nine" target="_blank"><span>구나은</span></a>
                     </div>
                 </div>
             </div>
