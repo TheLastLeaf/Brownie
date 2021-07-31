@@ -326,7 +326,7 @@
                                         </c:if>
                                     </p>
                                 </div>
-                                <div class="roomTitle">[${teamGameList.teamGameSeq}/${teamGameList.positionSeq}] ${teamGameList.title}</div>
+                                <div class="roomTitle">[${teamGameList.teamGameSeq}] ${teamGameList.title}</div>
                                 <p style="margin: 10px 0px 3px;">
                                     <c:set var="TGSeq" value="${teamGameList.teamGameSeq}"/>
                                     <c:choose>
