@@ -79,10 +79,10 @@
         window.open("/admin/reportDetail?reportSeq=" + reportSeq ,"REPORTDETAIL", "width=660, height=500, left=250,top=200")
 
     }
-
     $(document).ready(function(){
-        $('[data-toggle="popover"]').popover();
+        $('[data-trigger="hover"]').popover();
     });
+
 </script>
 
 <style>
@@ -158,7 +158,7 @@
                                 <th class="reportListTd" onclick="fn_detail('${reportList.reportSeq}')" style="cursor: pointer;">
                                         ${reportList.targetNickname}
                                 </th>
-                                <th title="신고내용" data-toggle="popover" data-placement="right" data-content="${reportList.content}" class="reportListTd" style="cursor: pointer">
+                                <th title="신고내용" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="${reportList.content}" class="reportListTd" style="cursor: pointer;">
                                         ${reportList.reportName }
                                 </th>
                                 <th class="reportListTd">${reportList.inuserNickname }</th>
