@@ -640,7 +640,8 @@ h1 {
 								<a href="/user/info/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
 							</c:if>
 						</div>
-						<c:if test="${sessionScope.id ne userOneSelect.userId}">
+						<c:if test="${sessionScope.id ne userOneSelect.userId and reviewCnt == 0}">
+<!-- 						이미 한개의 글을 썼을 경우 못쓰게 수정해야함 -->
 							<div class="writeReview">
 								<button type="button" class="btn btn-secondary" style="margin: 0px;" onclick="fn_review('${userOneSelect.upUserId}')">후기작성</button>
 							</div>

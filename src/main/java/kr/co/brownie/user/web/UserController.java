@@ -65,7 +65,7 @@ public class UserController {
 	 * @author 박세웅
 	 */
 	@GetMapping("/info/{user_id}")
-	public String userInfo(@PathVariable String user_id, Model model, ReviewPagingVO page) {
+	public String userInfo(@PathVariable String user_id, Model model, ReviewPagingVO page, HttpSession httpsession) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("userId", user_id);
 		UserVO userOneSelect = userService.userOneSelect(user_id);
@@ -101,6 +101,16 @@ public class UserController {
 		// 리뷰
 		List<ReviewVO> reviewVOs = reviewService.selectReviewList(page);
 
+		if (httpsession.getAttribute("id") != null) {
+			Map<String, Object> reviewMap = new HashMap<String, Object>();
+			reviewMap.put("user_id", user_id);
+			reviewMap.put("sessionid", httpsession.getAttribute("id"));
+			int reviewCnt = reviewService.selectReviewCnt(reviewMap);
+			model.addAttribute("reviewCnt", reviewCnt);
+		} else {
+			model.addAttribute("reviewCnt", 1);			
+		}
+		
 		// model.addattribute
 		model.addAttribute("userOneSelect", userOneSelect);
 		model.addAttribute("fullStar", fullStar);

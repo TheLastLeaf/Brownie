@@ -41,4 +41,10 @@ public class ReveiwServiceImpl implements ReviewService {
 	public void insertReview(Map<String, Object> map) {
 		reviewMapper.insertReview(map);
 	}
+
+	@Override
+	public int selectReviewCnt(Map<String, Object> reviewMap) {
+		return reviewMapper.selectReviewCnt(reviewMap) ;
+	}
+
 }

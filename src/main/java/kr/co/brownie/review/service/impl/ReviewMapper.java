@@ -16,4 +16,6 @@ public interface ReviewMapper {
 
 	void insertReview(Map<String, Object> map);
 
+	int selectReviewCnt(Map<String, Object> reviewMap);
+
 }

@@ -89,4 +89,11 @@
 		        '${sessionId}'
 		    )
     </insert>
+    
+    <select id="selectReviewCnt" parameterType="hashMap" resultType="Integer">
+    	SELECT COUNT(*)
+			FROM REVIEW
+		WHERE IN_USER_ID = #{sessionid}
+		AND User_Id = #{user_id}
+    </select>
 </mapper>
