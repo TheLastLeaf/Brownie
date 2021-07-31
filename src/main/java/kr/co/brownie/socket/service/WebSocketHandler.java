@@ -159,21 +159,26 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
             //리스트에 존재하는 세션을 뽑아서 메시지로 보내주기
             TextMessage msg = new TextMessage("오류:발생:");
+            System.out.println("websocket session size : "+sessions.size());
             for (WebSocketSession sess : sessions) {
-                System.out.println("오류:발생:" + tgvoId);
-                if(tgvo.getLeader().equals("y")){
-                    msg = new TextMessage(tgvo.getNickName() +": 님이 퇴장하셨습니다.:방장퇴장:"+tgvoId);
-                    System.out.println("방장나감"+tgvoId);
-                } else {
-                    msg = new TextMessage(tgvo.getNickName()+": 님이 퇴장하셨습니다.:팀원퇴장:"+tgvoId);
-                    System.out.println("팀우ㅡㅓㅏㄴ나감");
+                try {
+                    System.out.println("웹소켓 포문 동작 :" + tgvoId);
+                    if(tgvo.getLeader().equals("y")){
+                        msg = new TextMessage(tgvo.getNickName() +": 님이 퇴장하셨습니다.:방장퇴장:"+tgvoId);
+                        System.out.println("방장나감"+tgvoId);
+                    } else {
+                        msg = new TextMessage(tgvo.getNickName()+": 님이 퇴장하셨습니다.:팀원퇴장:"+tgvoId);
+                        System.out.println("팀우ㅡㅓㅏㄴ나감");
+                    }
+                    sess.sendMessage(msg);
+                    System.out.println(msg);
+                } catch (Exception e){
+                    System.out.println("======= 1111 ======");
                 }
-                sess.sendMessage(msg);
-                System.out.println(msg);
             }
         } catch (Exception e){
             System.out.println("---------------catch here");
-            System.out.println(e.getStackTrace());
+            System.out.println(e.getMessage());
         } finally {
             sessions.remove(session);
             System.out.println("웹소켓 종료 안내 끝-------------------------------------------------------------");
