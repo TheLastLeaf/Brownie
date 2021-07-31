@@ -3,7 +3,7 @@
 <c:import url="../layout/header.jsp"/>
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg spad"
-         data-setbg="${pageContext.request.contextPath}/img/lol/lolChamp/nunu2.jpg">
+         data-setbg="${pageContext.request.contextPath}/img/admin/admin.jpg">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
@@ -21,6 +21,10 @@
 
 <style>
 
+    .spad{
+        padding-bottom: 300px;
+        padding-top: 100px;
+    }
     .adminMenu {
         cursor: pointer;
    }
