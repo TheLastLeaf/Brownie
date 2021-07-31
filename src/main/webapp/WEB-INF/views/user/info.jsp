@@ -485,11 +485,13 @@ h1 {
 											<i class="fas fa-sync-alt"></i>
 										</button>
 									</div>
+									<c:if test="${sessionScope.id ne userOneSelect.userId}">
 									<div style="position: absolute; top: 20px; left: 275px;">
 										<button style="background: black; color: white; margin: 0px;" onclick="fn_SyncDel()" title="연동해제">
 											<i class="far fa-trash-alt"></i>
 										</button>
 									</div>
+									</c:if>
 									<div>
 										| <span id="getLv">Lv. ${userOneSelect.lolLevel}</span> | <span id="getTier"> ${userOneSelect.lolTier} </span>
 									</div>
