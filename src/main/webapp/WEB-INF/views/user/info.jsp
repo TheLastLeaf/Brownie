@@ -391,7 +391,7 @@ h1 {
 						<c:set var="lolId" value="${userOneSelect.lolId}" />
 						<div class="sync">
 							<c:choose>
-								<c:when test="${lolId.contains('_')}">
+								<c:when test="${lolId.contains('_') and sessionScope.id eq userOneSelect.userId}">
 									<button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
 								</c:when>
 								<c:otherwise>
