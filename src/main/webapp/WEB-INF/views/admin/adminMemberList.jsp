@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="../layout/header.jsp"/>
 
 <!-- Breadcrumb Section Begin -->
@@ -47,7 +48,10 @@
                                     style="cursor: pointer">${userList.userId }</th>
                                 <th>${userList.lolId }</th>
                                 <th>${userList.nickName }</th>
-                                <th>Lv. ${userList.userLevel }</th>
+
+                                <th>Lv. <fmt:parseNumber var="lvnum" integerOnly="true" value="${userList.browniePoint / 100}" /><c:out value="${lvnum}" /></th>
+
+
                                 <th>${userList.inDate }</th>
                                 <th>${userList.permitLevel }</th>
                                 <c:set var="userStatus" value="${userList.status }"/>
