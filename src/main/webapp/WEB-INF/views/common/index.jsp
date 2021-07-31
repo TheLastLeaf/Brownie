@@ -10,9 +10,11 @@
         </div>
     </div>
     <div class="hero-slider owl-carousel">
-        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/hero-1.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/hero-2.jpg"></div>
-        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/hero-3.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/main1.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/main2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/main3.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/main4.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="${pageContext.request.contextPath}/img/hero/main5.jpg"></div>
     </div>
 </section>
 <!-- Hero Section End -->
@@ -81,6 +83,7 @@
     .deletepop {
         margin-left: 3px;
     }
+    .owl
 </style>
 <script>
     function show_video(video_id) {
