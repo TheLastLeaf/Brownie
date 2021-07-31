@@ -201,8 +201,6 @@ public class UserController {
 	public String userPostModify(@RequestParam Map<String, Object> map) {
 		String userNick = (String) map.get("userNickname");
 
-		System.out.println(map);
-
 		int checkValue = userService.validating(userNick);
 		String msg;
 		if (checkValue == 1) {
