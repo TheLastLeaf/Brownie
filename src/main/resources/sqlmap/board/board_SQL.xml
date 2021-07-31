@@ -388,7 +388,7 @@
               ]]>
         </if>
         <![CDATA[
-                       ORDER BY LIKECNT - UNLIKECNT DESC,
+                       ORDER BY LIKECNT DESC,
                                 BROWNIE_BOARD.IN_DATE DESC
                       ) BOARD
              )
