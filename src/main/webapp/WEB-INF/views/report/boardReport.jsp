@@ -60,12 +60,14 @@
         }
 
         const formData = new FormData();
-        formData.append("userId",$(".userId").val());
+        formData.append("userId", $(".userId").val());
         formData.append("reportName", reportName);
         formData.append("content", $(".content").val());
-        formData.append("log",$(".log").val());
+        formData.append("log", $(".log").val());
+        formData.append("targetType", "board");
+        formData.append("targetSeq", ${boardVO.boardSeq});
 
-        if(!confirm("정말 신고하시겠습니까?")){
+        if (!confirm("정말 신고하시겠습니까?")) {
             alert("신고 접수가 취소되었습니다")
             window.close();
             return false;
@@ -103,6 +105,7 @@
         margin-top: 10%;
         margin-bottom: 20px;
     }
+
     .submit {
         margin-bottom: 10%;
     }

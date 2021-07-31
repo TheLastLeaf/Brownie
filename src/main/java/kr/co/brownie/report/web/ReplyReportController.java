@@ -25,12 +25,12 @@ public class ReplyReportController {
     ReplyService replyService;
 
     @GetMapping("/write")
-    public String report(HttpServletRequest request, Model model, HttpSession session) {
+    public String report(HttpServletRequest request,
+                         Model model,
+                         HttpSession session,
+                         @RequestParam int boardSeq,
+                         @RequestParam int replySeq) {
         Map<String,Object> map = new HashMap<>();
-        String Seq = request.getParameter("Seq");
-        int replySeq = Integer.parseInt(Seq);
-        String bSeq = request.getParameter("boardSeq");
-        int boardSeq = Integer.parseInt(bSeq);
         map.put("replySeq",replySeq);
         map.put("boardSeq",boardSeq);
 

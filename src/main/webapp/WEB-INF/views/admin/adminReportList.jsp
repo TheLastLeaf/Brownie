@@ -26,17 +26,15 @@
             return false;
         }
         const userId = $("#" + reportSeq + " .userId").val();
-        const log = $("#" + reportSeq + " .log").val();
         const reasonSeq = $("#" + reportSeq + " #reason option:selected").val();
         const bListSeq = $(".bListSeq").val();
         const endDate = $(".endDate").val();
 
         $.ajax({
-            url: "./addblacklist",
+            url: "./blackList",
             type: "POST",
             data: {
                 "userId": userId,
-                "log": log,
                 "reportSeq": reportSeq,
                 "reasonSeq": reasonSeq,
                 "bListSeq": bListSeq,
@@ -114,7 +112,7 @@
         padding-top: 50px;
     }
 
-    #but {
+    .but {
         cursor: pointer;
     }
 
@@ -176,17 +174,16 @@
                                         <option class="reason" value="4">그냥</option>
                                     </select>
                                 </th>
-                                <input type="hidden" name="userId" value='${reportList.userId}' id="userId"
+                                <input type="hidden" name="userId" value='${reportList.userId}'
                                        class="userId">
-                                <input type="hidden" name="log" value='${reportList.log}' id="log" class="log">
-                                <input type="hidden" name="reportSeq" value='${reportList.reportSeq}' id="reportSeq"
+                                <input type="hidden" name="reportSeq" value='${reportList.reportSeq}'
                                        class="reportSeq">
                                 <th class="reportListTd"><i class="fas fa-check"
                                                             onclick="fn_submit(${reportList.reportSeq})"
-                                                            id="but"></i>
+                                                            class="but"></i>
                                 </th>
                                     <th class="reportListTd">
-                                        <i class="fas fa-times" id="del" style="cursor: pointer " onclick="fn_deleteReport('${reportList.reportSeq}')"></i>
+                                        <i class="fas fa-times" style="cursor: pointer " onclick="fn_deleteReport('${reportList.reportSeq}')"></i>
                                     </th>
                             </tr>
                         </c:if>

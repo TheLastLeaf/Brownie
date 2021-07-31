@@ -64,6 +64,8 @@
         formData.append("reportName", reportName);
         formData.append("content", $(".content").val());
         formData.append("log",$(".log").val());
+        formData.append("targetType", "reply");
+        formData.append("targetSeq", ${replyVO.replySeq});
 
         if(!confirm("정말 신고하시겠습니까?")){
             alert("신고 접수가 취소되었습니다")

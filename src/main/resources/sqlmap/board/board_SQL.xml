@@ -92,8 +92,9 @@
                                  FROM BROWNIE_USER
         ]]>
         <where>
+            UPPER(STATUS) = 'Y'
             <if test='nickName != null and nickName != ""'>
-                UPPER(NICK_NAME) = UPPER(#{nickName})
+                AND UPPER(NICK_NAME) = UPPER(#{nickName})
             </if>
             <if test='userId != null and userId != ""'>
                 AND UPPER(USER_ID) = UPPER(#{userId})
@@ -172,8 +173,9 @@
                           FROM BROWNIE_BOARD
         ]]>
         <where>
+                              UPPER(STATUS) = 'Y'
             <if test='boardSeq != null and boardSeq != ""'>
-                BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
+                AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
             </if>
             <if test='boardKind != null and boardKind != ""'>
                 AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
@@ -329,6 +331,7 @@
                     FROM (SELECT *
                           FROM BROWNIE_BOARD
                           WHERE UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
+                            AND UPPER(STATUS) = 'Y'
                            ) BROWNIE_BOARD
                                 INNER JOIN (SELECT *
                                             FROM BROWNIE_USER
@@ -462,8 +465,9 @@
                           FROM BROWNIE_BOARD
         ]]>
         <where>
+            UPPER(STATUS) = 'Y'
             <if test='boardSeq != null and boardSeq != ""'>
-                BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
+                AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
             </if>
             <if test='boardKind != null and !boardKind.equals("")'>
                 AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
@@ -570,7 +574,8 @@
                                    LAG(BROWNIE_BOARD.BOARD_SEQ, 1)  OVER (ORDER BY BROWNIE_BOARD.IN_DATE DESC)  AS LAG_BOARD_SEQ
                             FROM BROWNIE_BOARD
                                      INNER JOIN BROWNIE_USER ON BROWNIE_BOARD.IN_USER_ID = BROWNIE_USER.USER_ID
-                            WHERE UPPER(BOARD_KIND) = UPPER(#{boardKind}))
+                           WHERE UPPER(BROWNIE_BOARD.STATUS) = 'Y'
+                             AND UPPER(BOARD_KIND) = UPPER(#{boardKind}))
                       WHERE BOARD_SEQ = #{boardSeq}
                   )
                   SELECT LEAD_BOARD_SEQ

@@ -25,13 +25,14 @@ public class BoardReportController {
     BoardService boardService;
 
     @GetMapping("/write")
-    public String report(HttpServletRequest request, Model model, HttpSession session) {
+    public String report(HttpServletRequest request,
+                         Model model,
+                         HttpSession session,
+                         @RequestParam int boardSeq) {
         Map<String, Object> map = new HashMap<>();
-        String Seq = request.getParameter("Seq");
-        int boardSeq = Integer.parseInt(Seq);
-        map.put("boardSeq",boardSeq);
+        map.put("boardSeq", boardSeq);
         BoardVO boardVO = boardService.select(map);
-        model.addAttribute("boardVO",boardVO);
+        model.addAttribute("boardVO", boardVO);
         return "report/boardReport";
     }
 

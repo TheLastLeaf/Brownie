@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.brownie.report.service.impl.ReportMapper">
-
     <select id="selectReportList" resultType="kr.co.brownie.report.service.ReportVO" parameterType="hashMap">
         <![CDATA[
         SELECT REPORTSEQ,
@@ -17,7 +16,9 @@
                UPUSERID,
                LOG,
                TARGETNICKNAME,
-               INUSERNICKNAME
+               INUSERNICKNAME,
+               TARGETTYPE,
+               TARGETSEQ
         FROM (SELECT ROWNUM AS RN,
                      REPORTSEQ,
                      CONTENT,
@@ -30,7 +31,9 @@
                      UPUSERID,
                      LOG,
                      TARGETNICKNAME,
-                     INUSERNICKNAME
+                     INUSERNICKNAME,
+                     TARGETTYPE,
+                     TARGETSEQ
               FROM (SELECT REPORT.REPORT_SEQ      AS REPORTSEQ,
                            REPORT.CONTENT         AS CONTENT,
                            REPORT.STATUS          AS STATUS,
@@ -42,7 +45,9 @@
                            REPORT.UP_USER_ID      AS UPUSERID,
                            REPORT.LOG             AS "LOG",
                            TARGET_USER.NICK_NAME  AS TARGETNICKNAME,
-                           BROWNIE_USER.NICK_NAME AS INUSERNICKNAME
+                           BROWNIE_USER.NICK_NAME AS INUSERNICKNAME,
+                           TARGET_TYPE            AS TARGETTYPE,
+                           TARGET_SEQ             AS TARGETSEQ
                     FROM REPORT
                              INNER JOIN BROWNIE_USER TARGET_USER ON REPORT.USER_ID = TARGET_USER.USER_ID
                              INNER JOIN BROWNIE_USER on BROWNIE_USER.USER_ID = REPORT.IN_USER_ID
@@ -63,6 +68,7 @@
     </select>
 
     <insert id="insert" parameterType="hashMap">
+        <![CDATA[
         INSERT INTO REPORT(REPORT_SEQ,
                            CONTENT,
                            REPORT_NAME,
@@ -72,7 +78,16 @@
                            IN_USER_ID,
                            UP_USER_ID,
                            STATUS,
-                           LOG)
+                           LOG
+                               ]]>
+        <if test='targetType != null and targetType != ""'>
+            , TARGET_TYPE
+        </if>
+        <if test='targetSeq != null and targetSeq != ""'>
+            , TARGET_SEQ
+        </if>
+        <![CDATA[
+                           )
         VALUES (REPORT_SEQ.NEXTVAL,
                 #{content},
                 #{reportName},
@@ -82,7 +97,17 @@
                 #{id},
                 #{id},
                 'N',
-                #{log})
+                #{log}
+                    ]]>
+        <if test='targetType != null and targetType != ""'>
+            , #{targetType}
+        </if>
+        <if test='targetSeq != null and targetSeq != ""'>
+            , #{targetSeq}
+        </if>
+        <![CDATA[
+                )
+        ]]>
     </insert>
 
     <update id="update" parameterType="hashMap">
@@ -94,7 +119,8 @@
     </update>
 
     <delete id="deleteReport" parameterType="int">
-        DELETE FROM REPORT
+        DELETE
+        FROM REPORT
         WHERE REPORT_SEQ = #{reportSeq}
     </delete>
 
@@ -110,7 +136,9 @@
                REPORT.UP_USER_ID      AS UPUSERID,
                REPORT.LOG             AS "LOG",
                TARGET_USER.NICK_NAME  AS TARGETNICKNAME,
-               BROWNIE_USER.NICK_NAME AS INUSERNICKNAME
+               BROWNIE_USER.NICK_NAME AS INUSERNICKNAME,
+               TARGET_TYPE            AS TARGETTYPE,
+               TARGET_SEQ             AS TARGETSEQ
         FROM REPORT
                  INNER JOIN BROWNIE_USER TARGET_USER ON REPORT.USER_ID = TARGET_USER.USER_ID
                  INNER JOIN BROWNIE_USER on BROWNIE_USER.USER_ID = REPORT.IN_USER_ID

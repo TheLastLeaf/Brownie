@@ -1,27 +1,25 @@
 package kr.co.brownie.admin.web;
 
-import com.google.gson.JsonObject;
 import kr.co.brownie.admin.service.AdminService;
 import kr.co.brownie.admin.service.AdminVO;
 import kr.co.brownie.blackList.service.BlackListService;
 import kr.co.brownie.blackList.service.BlackUserService;
+import kr.co.brownie.board.reply.service.ReplyService;
+import kr.co.brownie.board.service.BoardService;
 import kr.co.brownie.chat.service.ChatService;
-import kr.co.brownie.chat.service.ChatVO;
 import kr.co.brownie.report.service.ReportService;
+import kr.co.brownie.report.service.ReportVO;
 import kr.co.brownie.user.service.UserService;
 import kr.co.brownie.user.service.UserVO;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -45,6 +43,12 @@ public class AdminController {
 
     @Resource(name = "chatService")
     ChatService chatService;
+
+    @Resource(name = "boardService")
+    BoardService boardService;
+
+    @Resource(name = "replyService")
+    ReplyService replyService;
 
     @GetMapping(path = {"", "/adminView"})
     public String adminView(HttpSession httpSession, Model model) {
@@ -147,18 +151,36 @@ public class AdminController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/addblacklist", method = {RequestMethod.GET, RequestMethod.POST})
-    public Object reportPost(Model model, HttpServletRequest httpServletRequest) {
+    @PostMapping(path = "/blackList")
+    public Object reportPost(Model model,
+                             HttpServletRequest httpServletRequest,
+                             @RequestParam String userId,
+                             @RequestParam int reportSeq,
+                             @RequestParam int reasonSeq,
+                             @RequestParam int bListSeq,
+                             @RequestParam int endDate) {
         try {
             String id = httpServletRequest.getSession().getAttribute("id").toString();
-            String Seq = httpServletRequest.getParameter("reportSeq");
-            int reportSeq = Integer.parseInt(Seq);
-            String userId = httpServletRequest.getParameter("userId");
-            String result = httpServletRequest.getParameter("log");
-            String rSeq = httpServletRequest.getParameter("reasonSeq");
-            int reasonSeq = Integer.parseInt(rSeq);
             int cnt = reportService.update(reportSeq, id);
             if (cnt == 1) {
+                ReportVO reportVO = this.reportService.selectOneReport(reportSeq);
+                String result = reportVO.getLog();
+                if ("board".equalsIgnoreCase(reportVO.getTargetType())) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("userId", id);
+                    map.put("boardSeq", reportVO.getTargetSeq());
+                    map.put("status", "n");
+
+                    this.boardService.update(map);
+                } else if ("reply".equalsIgnoreCase(reportVO.getTargetType())) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("userId", id);
+                    map.put("replySeq", reportVO.getTargetSeq());
+                    map.put("status", "n");
+
+                    this.replyService.update(map);
+                }
+
                 int ucount = userService.blackstack(userId);
                 userService.updateStatus(userId);
                 //블랙 카운트 update 시 블랙 스택 확인 후 활동상태 변경하기
@@ -166,10 +188,6 @@ public class AdminController {
                     int count = blackListService.insert(userId, result, id, reasonSeq);
                     model.addAttribute("count", count);
                     if (count == 1) {
-                        String bSeq = httpServletRequest.getParameter("bListSeq");
-                        int bListSeq = Integer.parseInt(bSeq);
-                        String endD = httpServletRequest.getParameter("endDate");
-                        int endDate = Integer.parseInt(endD);
                         UserVO user = userService.userOneSelect(userId);
                         int stack = user.getBlackStack();
                         switch (stack) {

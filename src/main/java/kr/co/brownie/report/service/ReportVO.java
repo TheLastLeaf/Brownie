@@ -16,4 +16,6 @@ public class ReportVO {
     private String log;
     private String targetNickname;
     private String inuserNickname;
+    private String targetType;
+    private String targetSeq;
 }
