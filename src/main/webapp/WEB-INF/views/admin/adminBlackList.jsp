@@ -21,7 +21,9 @@
 <!-- Breadcrumb Section End -->
 <script>
     function fn_upDateBlack() {
-        alert("블랙해제 하시겠습니까?")
+        if(!confirm("블랙해제 하시겠습니까?")){
+            return false;
+        }
         const bUserSeq = $(".bUserSeq").val()
 
         $.ajax({
