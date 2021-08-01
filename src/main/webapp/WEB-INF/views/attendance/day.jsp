@@ -88,6 +88,7 @@
                         success: function (data) {
                             if (data.status === "ng") {
                                 alert(data.message);
+                                return;
                             }
 
                             alert("오늘의 출석체크 포인트는 " + todaysPoint + "포인트 입니다!");
