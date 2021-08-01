@@ -546,8 +546,10 @@ public class MiniGameController {
 	    		act = "습득";
 	        }
         }
-        if(pointG<0) {
-        	param.put("point", 0);
+        
+        if(this.miniGameService.selectPlayer(id).getPoint() <0) {
+        	param.put("point", -this.miniGameService.selectPlayer(id).getPoint());
+        	this.miniGameService.modifyGamePoint(param);
         }
         
         this.miniGameService.selectPlayer(id);
