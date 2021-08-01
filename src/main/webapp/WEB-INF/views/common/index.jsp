@@ -3,6 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:import url="../layout/header.jsp" />
+
+<style>
+	#leagueCalendar td {
+		height: 125px;
+	}
+</style>
+
 <!-- Hero Section Begin -->
 <section class="hero-section">
 	<div class="container">
