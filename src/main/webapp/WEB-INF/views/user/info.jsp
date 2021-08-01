@@ -330,23 +330,7 @@ h1 {
 									</c:otherwise>
 								</c:choose>
 								<div class="profileFrameLv">
-									<c:choose>
-										<c:when test="${userOneSelect.browniePoint > 400}">
-                                            4
-                                        </c:when>
-										<c:when test="${userOneSelect.browniePoint > 300}">
-                                            3
-                                        </c:when>
-										<c:when test="${userOneSelect.browniePoint > 200}">
-                                            2
-                                        </c:when>
-										<c:when test="${userOneSelect.browniePoint > 100}">
-                                            1
-                                        </c:when>
-										<c:otherwise>
-                                            0
-                                        </c:otherwise>
-									</c:choose>
+									<fmt:parseNumber var="lvnum" integerOnly="true" value="${userOneSelect.browniePoint / 100}" /><c:out value="${lvnum}" />
 								</div>
 							</div>
 						</div>
