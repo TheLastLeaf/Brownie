@@ -174,6 +174,7 @@
     $(document).ready(function () {
         $('#msg').focus();
 
+        var enterFlag = true;
         const LOL_NICK = '${userInfo.lolId}';
         const USER_NAME = [['${userInfo.nickName}']];
         const IN_USER_ID = '${userInfo.userId}';
@@ -186,8 +187,8 @@
         $("#button-send").on("click", (e) => {
             send();
         });
-        $(document).bind('keypress', pressed);
 
+        $(document).bind('keypress', pressed);
         function pressed(e) {
             if (e.keyCode === 13) {
                 send();
@@ -221,6 +222,9 @@
         };
 
         function send() {
+            if(!enterFlag){
+                return;
+            }
             let msg = document.getElementById("msg");
             console.log(USER_NAME + ":" + msg.value + ":" + IN_USER_ID);
             websocket.send(USER_NAME + ":" + msg.value + ":" + IN_USER_ID);
@@ -267,8 +271,11 @@
 
             if(speakerId.includes("방장퇴장")) {
                 alert("방장이 퇴장하였습니다. 팀원 모집이 종료됩니다.");
-                $('.act-btn input').prop('disabled',true);
+                enterFlag = false;
                 $('div').remove('#'+sessionLolNick);
+                $('#button-send').attr('disabled', true);
+                $('#msg').attr('disabled', true);
+                $('#msg').attr('readonly', true);
             }
 
             if(speakerId.includes("팀원퇴장")) {
