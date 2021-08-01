@@ -148,7 +148,7 @@
                         <th class="reportListTd" style="width: 400px">신고내용</th>
                         <th class="reportListTd" style="width: 150px">신고자</th>
                         <th class="reportListTd" style="width: 250px">신고일자</th>
-                        <th class="reportListTd" style="width: 100px">재재 항목</th>
+                        <th class="reportListTd" style="width: 100px">제재 항목</th>
                         <th class="reportListTd">접수</th>
                         <th class="reportListTd">취소</th>
                     </tr>
