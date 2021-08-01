@@ -24,7 +24,7 @@
     .innerBox {
         display: inline-block;
         width: 24%;
-        height: auto;
+        height: 160px;
         border: 1px solid white;
         border-radius: 5px;
         color: white;
