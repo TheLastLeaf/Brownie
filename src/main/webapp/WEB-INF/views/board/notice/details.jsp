@@ -20,7 +20,7 @@
     #content > p{
         color: white !important;
     }
-    .dp-text{
+    .dt-desc{
         word-break: break-word;
     }
 </style>

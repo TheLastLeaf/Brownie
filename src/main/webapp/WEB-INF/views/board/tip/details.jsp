@@ -37,7 +37,7 @@
     .writerInfoBox {
         height: 150px;
     }
-    .dp-text{
+    .dt-desc{
         word-break: break-word;
     }
 </style>
