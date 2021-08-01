@@ -625,6 +625,10 @@
     
     /* 주사위 */
     window.onload = function () {
+    	if(dicetimes==0){
+    		alert("주사위 기회가 모두 소진되었습니다.");
+    		$('#btnRoll').css('display', 'none');
+    	}
     	viewHp(recentHp,hp);
     	playerPos = ${player.position};	//플레이어 위치
     	
