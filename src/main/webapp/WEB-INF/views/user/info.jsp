@@ -590,6 +590,11 @@ h1 {
 							<input type="text" class="input-value" id="writeUser" name="keyword" style="display: block;" placeholder="작성자입력">
 							<input type="date" class="input-value" id="dateSelect" name="keyword" style="display: none; width: 45%; background: gray;">
 							<button type="button" id="searchBtn" class="btn btn-primary">검색</button>
+							<c:if test="${sessionScope.id ne userOneSelect.userId and reviewCnt == 0}">
+							<!-- 						이미 한개의 글을 썼을 경우 못쓰게 수정해야함 -->
+							<span class="writeReview" style=" display: contents;">
+								<button type="button" class="btn btn-secondary" style="margin: 0px;" onclick="fn_review('${userOneSelect.upUserId}')">후기작성</button>
+							</span>
 						</div>
 					</div>
 					<!-- 검색 end-->
@@ -640,11 +645,6 @@ h1 {
 								<a href="/user/info/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
 							</c:if>
 						</div>
-						<c:if test="${sessionScope.id ne userOneSelect.userId and reviewCnt == 0}">
-<!-- 						이미 한개의 글을 썼을 경우 못쓰게 수정해야함 -->
-							<div class="writeReview">
-								<button type="button" class="btn btn-secondary" style="margin: 0px;" onclick="fn_review('${userOneSelect.upUserId}')">후기작성</button>
-							</div>
 						</c:if>
 					</div>
 					<!-- 페이징처리 end -->
