@@ -1001,6 +1001,7 @@
     	
     	if(dicetimes==0){
     		$('#btnRoll').css('display', 'none');
+    		alert("주사위를 모두 소진했습니다.");
     	} 
     	
     	$('#dice-side-2').css('display', 'none');
