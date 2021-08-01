@@ -20,6 +20,9 @@
     #content > p{
         color: white !important;
     }
+    .dp-text{
+        word-break: break-word;
+    }
 </style>
 <!-- Details Post Section Begin -->
 <section class="details-post-section spad">
