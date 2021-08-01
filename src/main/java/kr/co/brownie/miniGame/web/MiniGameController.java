@@ -411,7 +411,7 @@ public class MiniGameController {
         	act = "조우";
         } else if (objDegree.equals("ne")) {
         	if (objSeq==12) {
-        		param.put("point", pointG+pointB);
+        		param.put("point", pointG);
         		saveCnt = this.miniGameService.modifyBPoint(param);
         		param.put("point", 0);
         		saveCnt = this.miniGameService.modifyGamePoint(param);
@@ -443,13 +443,15 @@ public class MiniGameController {
         } else if (objDegree.equals("good")) {
         	int pointNum = 0;
         	pointNum = Integer.parseInt(str[0]);
-        	param.put("point", pointG+pointNum);
+        	
         	act = "습득";
         	
             if (objKind.equals("site")) {
+            	param.put("point", pointNum);
             	saveCnt = this.miniGameService.modifyBPoint(param);
             	
             } else if (objKind.equals("game")) {
+            	param.put("point", pointG+pointNum);
             	saveCnt = this.miniGameService.modifyGamePoint(param);
             	
             } else if (objKind.equals("luxury")){
@@ -482,7 +484,7 @@ public class MiniGameController {
             	param.put("quest", quest);
         		recentHp = hp;
         		param.put("recentHp", recentHp);
-        		param.put("point", Integer.parseInt(str[0]));
+        		param.put("point", pointG+Integer.parseInt(str[0]));
         		this.miniGameService.modifyGamePoint(param);
         		saveCnt = this.miniGameService.updatePlayer(param);
         		act = "마주";

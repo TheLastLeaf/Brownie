@@ -1126,11 +1126,6 @@
         diceSide2.innerHTML = num[1];
 
         status1.innerHTML = diceTotal + "!";
-		
-        if (side1 === side2) {
-            status1.innerHTML += ' 더블! 한접시 더!<br>';
-            doubleDice();
-        }
         
 		side1 = diceTotal;
 		
