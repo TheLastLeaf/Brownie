@@ -546,6 +546,9 @@ public class MiniGameController {
 	    		act = "습득";
 	        }
         }
+        if(pointG<0) {
+        	param.put("point", 0);
+        }
         
         this.miniGameService.selectPlayer(id);
         
