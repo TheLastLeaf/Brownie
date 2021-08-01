@@ -451,7 +451,11 @@
 	 $('#gameAlert1').css({
 	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
 	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-	  
+	 
+	 $('#logBtn').css({
+		 background: "-webkit-gradient(linear, left top, right top, from("+color2+"), to("+color2+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color2+" 0%, "+color2+" 100%)"});
+	 
 	  step += gradientSpeed;
 	  if ( step >= 1 )
 	  {
@@ -985,6 +989,7 @@
     	} 
     	
     	if(dicetimes==0){
+    		$('#btnRoll').css('display', 'none');
     		alert("오늘 기회를 전부 소진했습니다!");
     		return;
     	} else {
@@ -1356,7 +1361,7 @@ $(function(){
                             	
                         </div>
                         <br>
-                        <button style="width:55px;" onclick="deleteLog()" >로그청소</button>
+                        <button id="logBtn" style="width:55px;" onclick="deleteLog()" >로그청소</button>
                         <br><br><br>
 						<!-- 시간나면 -->
 						<div class="itemList" style="margin-top:20px;">
