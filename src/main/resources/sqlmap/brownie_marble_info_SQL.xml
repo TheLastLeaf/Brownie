@@ -91,10 +91,10 @@
 
     <update id="updateGamePoint" parameterType="hashMap">
         UPDATE BROWNIE_MARBLE
-        SET POINT = POINT + #{point}
+        SET POINT =  #{point}
         WHERE USER_ID = #{userId}
     </update>
-
+    
     <select id="selectLogs" resultType="kr.co.brownie.miniGame.service.BrownieMarbelLogVO">
         SELECT (SELECT NICK_NAME FROM BROWNIE_USER WHERE USER_ID = #{userId}) AS USERID,
                ROUND,

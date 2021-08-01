@@ -625,9 +625,12 @@
     
     /* 주사위 */
     window.onload = function () {
+    	
     	if(dicetimes==0){
     		alert("주사위 기회가 모두 소진되었습니다.");
+    		
     		$('#btnRoll').css('display', 'none');
+    		$('#status').text("던질 주사위가 없습니다.");
     	}
     	viewHp(recentHp,hp);
     	playerPos = ${player.position};	//플레이어 위치
@@ -992,13 +995,13 @@
     		return;
     	} 
     	
+    	if(dicetimes!=0){
+    		dicetimes = dicetimes - 1;
+   		}
+    	
     	if(dicetimes==0){
     		$('#btnRoll').css('display', 'none');
-    		alert("오늘 기회를 전부 소진했습니다!");
-    		return;
-    	} else {
-    		dicetimes = dicetimes - 1;
-    	}
+    	} 
     	
     	$('#dice-side-2').css('display', 'none');
     	$('#btnRoll').attr("disabled", true);

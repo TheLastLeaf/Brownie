@@ -357,7 +357,7 @@ public class MiniGameController {
     		}
     		System.out.println("총합"+sum);
 			objName = sum + " POINT";
-			param.put("point", sum);
+			param.put("point", sum+pointG);
 			param.put("item", "[]");
 			int c = this.miniGameService.updatePlayer(param);
 			System.out.println(c);
@@ -375,49 +375,33 @@ public class MiniGameController {
             	saveCnt = this.miniGameService.updatePlayer(param);
             	
             } else if (objKind.equals("theif")) {
-            	int temp = 0;
             	if(objSeq==5) {
-        			temp = pointG / 2;
-        			temp -= pointG;
+        			pointG /= 2;
         			
         		} else {
-        			
-        			temp = Integer.parseInt(str[0]);
+        			pointG += Integer.parseInt(str[0]);
         		}
             	
-            	if(pointG+temp<0) {
-            		temp = 0;
-            	}
-            	
-            	param.put("point", temp);
+            	param.put("point", pointG);
             	saveCnt = this.miniGameService.modifyGamePoint(param);
             	
             } else if (objKind.equals("both")){
-            	int temp = 0;
             	if (objSeq==1) {
         			recentHp += Integer.parseInt(str[0]);
-        			if (pointG<=100) {
-        				temp = 0;
-        			} else {
-        				temp= -100-pointG;
-        			}
+        			pointG -= 100;
         		} else if (objSeq==6) {
         			recentHp += Integer.parseInt(str[0]);
-    				temp = 300;
+        			pointG += 300;
         		} else {
         			recentHp += Integer.parseInt(str[0]);
-        			if (pointG<=200) {
-        				temp = 0;
-        			} else {
-        				temp = -200-pointG;
-        			}
+        			pointG -= 200;
         		}
             	
             	if(recentHp>=hp) {
             		recentHp=hp;
             	}
             	
-            	param.put("point", temp);
+            	param.put("point", pointG);
             	this.miniGameService.modifyGamePoint(param);
             	
             	param.put("hp", hp);
@@ -427,9 +411,9 @@ public class MiniGameController {
         	act = "조우";
         } else if (objDegree.equals("ne")) {
         	if (objSeq==12) {
-        		param.put("point", pointG);
+        		param.put("point", pointG+pointB);
         		saveCnt = this.miniGameService.modifyBPoint(param);
-        		param.put("point", -pointG);
+        		param.put("point", 0);
         		saveCnt = this.miniGameService.modifyGamePoint(param);
         		act = "이용";
         	} else if (objSeq==13) {
@@ -439,29 +423,19 @@ public class MiniGameController {
         	} else if (objSeq==15) {
         		if (throwType.equals("all")) {
         			if(add()) {
-        				param.put("point", -pointG);
+        				param.put("point", 0);
         				this.miniGameService.modifyGamePoint(param);
-        				param.put("point", -pointB);
-                		saveCnt = this.miniGameService.modifyBPoint(param);
         			} else {
-                		param.put("point", pointG);
+                		param.put("point", pointG*2);
         				this.miniGameService.modifyGamePoint(param);
-        				param.put("point", pointB);
-                		saveCnt = this.miniGameService.modifyBPoint(param);
         			}
         		} else {
     				if(add()) {
     					param.put("point", pointG/2);
-        				this.miniGameService.modifyGamePoint(param);
-        				param.put("point", pointB/2);
-                		saveCnt = this.miniGameService.modifyBPoint(param);
+    					saveCnt = this.miniGameService.modifyGamePoint(param);
         			} else {
-        				pointG += pointG/2-pointG;
-        				param.put("point", pointG);
-        				this.miniGameService.modifyGamePoint(param);
-        				pointB += pointB/2-pointG;
-        				param.put("point", pointB);
-                		saveCnt = this.miniGameService.modifyBPoint(param);
+        				param.put("point", pointG+pointG/2);
+        				saveCnt = this.miniGameService.modifyGamePoint(param);
         			}
         		}
         	}
@@ -469,7 +443,7 @@ public class MiniGameController {
         } else if (objDegree.equals("good")) {
         	int pointNum = 0;
         	pointNum = Integer.parseInt(str[0]);
-        	param.put("point", pointNum);
+        	param.put("point", pointG+pointNum);
         	act = "습득";
         	
             if (objKind.equals("site")) {
@@ -547,8 +521,8 @@ public class MiniGameController {
 	        }
         }
         
-        if(this.miniGameService.selectPlayer(id).getPoint() <0) {
-        	param.put("point", -this.miniGameService.selectPlayer(id).getPoint());
+        if(this.miniGameService.selectPlayer(id).getPoint() < 0) {
+        	param.put("point", 0);
         	this.miniGameService.modifyGamePoint(param);
         }
         
