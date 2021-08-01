@@ -321,7 +321,7 @@
 	  width:500px; height:500px;
 	  background:#fff; border-radius:10px;
 	  position:relative; top:50%; left:50%;
-      margin-top: -150px;
+      margin-top: -270px;
  	  margin-left: -250px;
 	  text-align:center;
 	  box-sizing:border-box; padding:74px 0;
