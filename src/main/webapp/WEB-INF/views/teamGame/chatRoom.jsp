@@ -174,7 +174,7 @@
     $(document).ready(function () {
         $('#msg').focus();
 
-        //여기다가 세션에서 받아온 유저 닉네임 or 아이디 넣어주면 됨
+        var enterFlag = true;
         const LOL_NICK = '${userInfo.lolId}';
         const USER_NAME = [['${userInfo.nickName}']];
         const IN_USER_ID = '${userInfo.userId}';
@@ -187,8 +187,8 @@
         $("#button-send").on("click", (e) => {
             send();
         });
-        $(document).bind('keypress', pressed);
 
+        $(document).bind('keypress', pressed);
         function pressed(e) {
             if (e.keyCode === 13) {
                 send();
@@ -199,18 +199,18 @@
         const websocket = new WebSocket("ws://" + window.location.host + ":80/WebEcho?roomNumber=" + ROOM_NUMBER);
         websocket.onmessage = onMessage;
         websocket.onopen = onOpen;
-        //websocket.onclose = onClose;
-
         websocket.onclose = function (event) {
             if (event.wasClean) {
-                alert("[close] 커넥션이 정상적으로 종료되었습니다(code=" + event.code + " reason=" + event.reason + ")");
+                console.log("[info] 커넥션이 정상적으로 종료되었습니다(code=" + event.code + " reason=" + event.reason + ")");
+                // alert("[close] 커넥션이 정상적으로 종료되었습니다(code=" + event.code + " reason=" + event.reason + ")");
             } else {
                 // https://ko.javascript.info/websocket#ref-1158 여기에 오류 코드별 설명이 있음
                 // 1000 : 일반폐쇄
-                alert('[close] 커넥션이 죽었습니다.');
+                alert('[info] 서버와 연결이 끊어졌습니다.');
             }
             setTimeout(function () {
                 connect();
+                alert('[info] 서버에 다시 연결되었습니다.')
             }, 1000); // retry connection!!
         };
 
@@ -222,27 +222,23 @@
         };
 
         function send() {
+            if(!enterFlag){
+                return;
+            }
             let msg = document.getElementById("msg");
             console.log(USER_NAME + ":" + msg.value + ":" + IN_USER_ID);
             websocket.send(USER_NAME + ":" + msg.value + ":" + IN_USER_ID);
             msg.value = '';
         }
 
-        //채팅창에 들어왔을 때 이건 잘 됨
         function onOpen(evt) {
             var str = USER_NAME + ": 님이 입장하셨습니다.:" + IN_USER_ID;
             websocket.send(str);
         }
 
-        // function onClose(evt) {
-        //     var str = USER_NAME + ": 님이 방을 나가셨습니다.:"+IN_USER_ID;
-        //     websocket.send(str);
-        // }
-
         function onMessage(msg) {
             var data = msg.data;
             var sessionId = null;
-            //데이터를 보낸 사람
             var message = null;
             var sessionLolNick = null;
             var arr = data.split(":");
@@ -253,7 +249,6 @@
 
             var cur_session = USER_NAME;
 
-            //현재 세션에 로그인 한 사람
             console.log("cur_session : " + cur_session);
             sessionId = arr[0];
             message = arr[1];
@@ -276,8 +271,11 @@
 
             if(speakerId.includes("방장퇴장")) {
                 alert("방장이 퇴장하였습니다. 팀원 모집이 종료됩니다.");
-                $('.act-btn input').prop('disabled',true);
+                enterFlag = false;
                 $('div').remove('#'+sessionLolNick);
+                $('#button-send').attr('disabled', true);
+                $('#msg').attr('disabled', true);
+                $('#msg').attr('readonly', true);
             }
 
             if(speakerId.includes("팀원퇴장")) {
@@ -286,9 +284,7 @@
  
             if (message === " 님이 입장하셨습니다.") {
                 console.log("입장했댄다")
-                //포지션 받아서 div 아이디로 줄 건지 아닌지 고민
 
-                //유저아이디를 가진 div가 있을 경우 추가하지않음 없을경우 추가해줌
                 if ($('#' + speakerId).length == 0) {
 
                     if(!sessionLolNick.includes("_")){
@@ -344,7 +340,6 @@
             <div class="enterBox row">
                 <input type="text" id="msg" class="form-control" aria-label="Recipient's username"
                        aria-describedby="button-addon2">
-                <%--                <button type="button" class="btn btn-success btn-outline-secondary" id="button-send2">전송</button>--%>
                 <input type="sumbit" value="전송" class="btn btn-success btn-outline-secondary" id="button-send"/>
             </div>
         </div>

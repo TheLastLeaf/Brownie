@@ -75,7 +75,7 @@ public class CommonController {
 
         map.put("boardKind", "gallery");
         map.put("days", 30);
-        map.put("limit", 5);
+        map.put("limit", 7);
 
         model.addAttribute("galleryBoardVOList", this.boardService.selectListOrderByLike(map));
 

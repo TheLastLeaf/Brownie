@@ -101,8 +101,8 @@
     <select id="dateChecking" parameterType="String" resultType="String">
 	<![CDATA[
         SELECT CASE
-                   WHEN SYSDATE < UP_DATE + 31 THEN 'no'
-                   WHEN SYSDATE > UP_DATE + 31 THEN 'yes'
+                   WHEN SYSDATE < UP_DATE + 30 THEN 'no'
+                   WHEN SYSDATE > UP_DATE + 30 THEN 'yes'
                    END AS "check"
         FROM BROWNIE_USER
         WHERE BROWNIE_USER.USER_ID = '${id}'
@@ -179,7 +179,7 @@
                IMAGE,
                TOKEN,
                PERMITLEVEL,
-               USERLEVEL
+               browniePoint
         FROM (SELECT ROWNUM AS RN,
                      USERID,
                      LOLID,
@@ -194,7 +194,7 @@
                      IMAGE,
                      TOKEN,
                      PERMITLEVEL,
-                     USERLEVEL
+                     browniePoint
               FROM (
                        SELECT BU.USER_ID       AS USERID,
                               BU.LOL_ID        AS LOLID,
@@ -209,12 +209,10 @@
                               BU.IMAGE         AS IMAGE,
                               BU.TOKEN         AS TOKEN,
                               PM.PERMIT_LEVEL  AS PERMITLEVEL,
-                              BE.USER_LEVEL    AS USERLEVEL
+                              BU.BROWNIE_POINT as browniePoint
                        FROM BROWNIE_USER BU,
-                            PERMIT PM,
-                            BROWNIE_EXP BE
+                            PERMIT PM
                        WHERE BU.USER_ID = PM.USER_ID
-                         AND BU.USER_ID = BE.USER_ID
                    )
              )
         WHERE ${contentPerPage} * (${currentPageNumber} - 1) < RN

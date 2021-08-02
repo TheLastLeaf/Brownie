@@ -13,4 +13,6 @@ public interface ReviewService {
 
 	void insertReview(Map<String, Object> map);
 
+	int selectReviewCnt(Map<String, Object> reviewMap);
+
 }

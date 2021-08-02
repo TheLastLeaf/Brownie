@@ -57,15 +57,16 @@
         )
     </insert>
 
-    <select id="count" parameterType="hashMap" resultType="int">
+    <select id="count" parameterType="hashMap" resultType="Integer">
         <![CDATA[
         SELECT COUNT(*)
         FROM (SELECT *
               FROM BROWNIE_BOARD
         ]]>
         <where>
+            UPPER(STATUS) = 'Y'
             <if test='boardSeq != null and boardSeq != ""'>
-                BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
+                AND BROWNIE_BOARD.BOARD_SEQ = #{boardSeq}
             </if>
             <if test='boardKind != null and boardKind != ""'>
                 AND UPPER(BROWNIE_BOARD.BOARD_KIND) = UPPER(#{boardKind})
@@ -92,12 +93,8 @@
                                  FROM BROWNIE_USER
         ]]>
         <where>
-            UPPER(STATUS) = 'Y'
             <if test='nickName != null and nickName != ""'>
-                AND UPPER(NICK_NAME) = UPPER(#{nickName})
-            </if>
-            <if test='userId != null and userId != ""'>
-                AND UPPER(USER_ID) = UPPER(#{userId})
+                UPPER(NICK_NAME) = UPPER(#{nickName})
             </if>
         </where>
         <![CDATA[
@@ -388,7 +385,7 @@
               ]]>
         </if>
         <![CDATA[
-                       ORDER BY LIKECNT - UNLIKECNT DESC,
+                       ORDER BY LIKECNT DESC,
                                 BROWNIE_BOARD.IN_DATE DESC
                       ) BOARD
              )

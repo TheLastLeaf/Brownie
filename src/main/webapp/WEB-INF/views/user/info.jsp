@@ -280,7 +280,7 @@ h1 {
 }
 
 #tierPic2 {
-	width: 25%;
+	width: 70px;
 }
 
 .tierPic1 {
@@ -330,23 +330,7 @@ h1 {
 									</c:otherwise>
 								</c:choose>
 								<div class="profileFrameLv">
-									<c:choose>
-										<c:when test="${userOneSelect.browniePoint > 400}">
-                                            4
-                                        </c:when>
-										<c:when test="${userOneSelect.browniePoint > 300}">
-                                            3
-                                        </c:when>
-										<c:when test="${userOneSelect.browniePoint > 200}">
-                                            2
-                                        </c:when>
-										<c:when test="${userOneSelect.browniePoint > 100}">
-                                            1
-                                        </c:when>
-										<c:otherwise>
-                                            0
-                                        </c:otherwise>
-									</c:choose>
+									<fmt:parseNumber var="lvnum" integerOnly="true" value="${userOneSelect.browniePoint / 100}" /><c:out value="${lvnum}" />
 								</div>
 							</div>
 						</div>
@@ -391,7 +375,7 @@ h1 {
 						<c:set var="lolId" value="${userOneSelect.lolId}" />
 						<div class="sync">
 							<c:choose>
-								<c:when test="${lolId.contains('_')}">
+								<c:when test="${lolId.contains('_') and sessionScope.id eq userOneSelect.userId}">
 									<button type="button" class="btn btn-danger" onclick="fn_sync()">연동</button>
 								</c:when>
 								<c:otherwise>
@@ -485,11 +469,13 @@ h1 {
 											<i class="fas fa-sync-alt"></i>
 										</button>
 									</div>
+									<c:if test="${sessionScope.id eq userOneSelect.userId}">
 									<div style="position: absolute; top: 20px; left: 275px;">
 										<button style="background: black; color: white; margin: 0px;" onclick="fn_SyncDel()" title="연동해제">
 											<i class="far fa-trash-alt"></i>
 										</button>
 									</div>
+									</c:if>
 									<div>
 										| <span id="getLv">Lv. ${userOneSelect.lolLevel}</span> | <span id="getTier"> ${userOneSelect.lolTier} </span>
 									</div>
@@ -588,6 +574,12 @@ h1 {
 							<input type="text" class="input-value" id="writeUser" name="keyword" style="display: block;" placeholder="작성자입력">
 							<input type="date" class="input-value" id="dateSelect" name="keyword" style="display: none; width: 45%; background: gray;">
 							<button type="button" id="searchBtn" class="btn btn-primary">검색</button>
+							<c:if test="${sessionScope.id ne userOneSelect.userId and reviewCnt == 0}">
+							<!-- 						이미 한개의 글을 썼을 경우 못쓰게 수정해야함 -->
+							<span class="writeReview" style=" display: contents;">
+								<button type="button" class="btn btn-secondary" style="margin: 0px;" onclick="fn_review('${userOneSelect.upUserId}')">후기작성</button>
+							</span>
+							</c:if>
 						</div>
 					</div>
 					<!-- 검색 end-->
@@ -638,11 +630,6 @@ h1 {
 								<a href="/user/info/${userOneSelect.userId}?num=${page.endPageNum+1}&searchType=${page.searchType}&keyword=${page.keyword}">next</a>
 							</c:if>
 						</div>
-						<c:if test="${sessionScope.id ne userOneSelect.userId}">
-							<div class="writeReview">
-								<button type="button" class="btn btn-secondary" style="margin: 0px;" onclick="fn_review('${userOneSelect.upUserId}')">후기작성</button>
-							</div>
-						</c:if>
 					</div>
 					<!-- 페이징처리 end -->
 				</div>

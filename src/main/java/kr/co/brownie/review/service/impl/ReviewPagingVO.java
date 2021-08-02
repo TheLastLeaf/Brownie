@@ -11,7 +11,7 @@ public class ReviewPagingVO {
 	private int totalCount;
 
 	// 한 페이지에 출력할 게시물 갯수
-	private int postNum = 9;
+	private int postNum = 6;
 
 	// 하단 페이징 번호([게시물 총 갯수 ÷ 한페이지에 출력할 갯수의]의 올림)
 	private int pageNum;

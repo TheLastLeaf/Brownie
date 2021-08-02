@@ -79,6 +79,10 @@
         window.open("/admin/reportDetail?reportSeq=" + reportSeq ,"REPORTDETAIL", "width=660, height=500, left=250,top=200")
 
     }
+    $(document).ready(function(){
+        $('[data-trigger="hover"]').popover();
+    });
+
 </script>
 
 <style>
@@ -141,11 +145,10 @@
                 <table class="reportListTable" border="1px solid grey" style="margin-bottom: auto">
                     <tr>
                         <th class="reportListTd" style="width: 160px">닉네임</th>
-                        <th class="reportListTd" style="width: 400px">신고분류</th>
-                        <th class="reportListTd">신고내용</th>
-                        <th class="reportListTd" style="width: 100px">신고자</th>
+                        <th class="reportListTd" style="width: 400px">신고내용</th>
+                        <th class="reportListTd" style="width: 150px">신고자</th>
                         <th class="reportListTd" style="width: 250px">신고일자</th>
-                        <th class="reportListTd" style="width: 100px">재재 항목</th>
+                        <th class="reportListTd" style="width: 100px">제재 항목</th>
                         <th class="reportListTd">접수</th>
                         <th class="reportListTd">취소</th>
                     </tr>
@@ -155,15 +158,9 @@
                                 <th class="reportListTd" onclick="fn_detail('${reportList.reportSeq}')" style="cursor: pointer;">
                                         ${reportList.targetNickname}
                                 </th>
-                                <th class="reportListTd">${reportList.reportName }</th>
-                                <c:choose>
-                                    <c:when test='${reportList.content ne null}'>
-                                        <th class="reportContent">${reportList.content }</th>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <th>-신고내용 없음-</th>
-                                    </c:otherwise>
-                                </c:choose>
+                                <th title="신고내용" data-toggle="popover" data-trigger="hover" data-placement="right" data-content="${reportList.content}" class="reportListTd" style="cursor: pointer;">
+                                        ${reportList.reportName }
+                                </th>
                                 <th class="reportListTd">${reportList.inuserNickname }</th>
                                 <th class="reportListTd">${reportList.inDate }</th>
                                 <th style="text-align: center">

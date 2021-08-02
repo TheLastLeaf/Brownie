@@ -28,9 +28,9 @@ public class BoardServiceImpl implements BoardService {
         return BoardPagingVO.builder()
                 .boardVOList(this.boardMapper.selectList(map))
                 .contentPerPage(contentPerPage)
-                .startPageNumber((pageNum - 1) / contentPerPage + 1)
+                .startPageNumber((pageNum - 1) / 10 + 1)
                 .currentPageNumber(pageNum)
-                .endPageNumber(Math.min((pageNum - 1) / contentPerPage + 10, (totalContent - 1) / contentPerPage + 1))
+                .endPageNumber(Math.min((pageNum - 1) / 10 + 10, (totalContent - 1) / contentPerPage + 1))
                 .totalPageNumber((totalContent - 1) / contentPerPage + 1)
                 .build();
     }

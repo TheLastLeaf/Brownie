@@ -321,7 +321,7 @@
 	  width:500px; height:500px;
 	  background:#fff; border-radius:10px;
 	  position:relative; top:50%; left:50%;
-      margin-top: -150px;
+      margin-top: -270px;
  	  margin-left: -250px;
 	  text-align:center;
 	  box-sizing:border-box; padding:74px 0;
@@ -451,7 +451,11 @@
 	 $('#gameAlert1').css({
 	   background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
 	    background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
-	  
+	 
+	 $('#logBtn').css({
+		 background: "-webkit-gradient(linear, left top, right top, from("+color2+"), to("+color2+"))"}).css({
+	    background: "-moz-linear-gradient(left, "+color2+" 0%, "+color2+" 100%)"});
+	 
 	  step += gradientSpeed;
 	  if ( step >= 1 )
 	  {
@@ -621,6 +625,13 @@
     
     /* 주사위 */
     window.onload = function () {
+    	
+    	if(dicetimes==0){
+    		alert("주사위 기회가 모두 소진되었습니다.");
+    		
+    		$('#btnRoll').css('display', 'none');
+    		$('#status').text("던질 주사위가 없습니다.");
+    	}
     	viewHp(recentHp,hp);
     	playerPos = ${player.position};	//플레이어 위치
     	
@@ -984,12 +995,14 @@
     		return;
     	} 
     	
-    	if(dicetimes==0){
-    		alert("오늘 기회를 전부 소진했습니다!");
-    		return;
-    	} else {
+    	if(dicetimes!=0){
     		dicetimes = dicetimes - 1;
-    	}
+   		}
+    	
+    	if(dicetimes==0){
+    		$('#btnRoll').css('display', 'none');
+    		alert("주사위를 모두 소진했습니다.");
+    	} 
     	
     	$('#dice-side-2').css('display', 'none');
     	$('#btnRoll').attr("disabled", true);
@@ -1114,11 +1127,6 @@
         diceSide2.innerHTML = num[1];
 
         status1.innerHTML = diceTotal + "!";
-		
-        if (side1 === side2) {
-            status1.innerHTML += ' 더블! 한접시 더!<br>';
-            doubleDice();
-        }
         
 		side1 = diceTotal;
 		
@@ -1356,7 +1364,7 @@ $(function(){
                             	
                         </div>
                         <br>
-                        <button style="width:55px;" onclick="deleteLog()" >로그청소</button>
+                        <button id="logBtn" style="width:55px;" onclick="deleteLog()" >로그청소</button>
                         <br><br><br>
 						<!-- 시간나면 -->
 						<div class="itemList" style="margin-top:20px;">
