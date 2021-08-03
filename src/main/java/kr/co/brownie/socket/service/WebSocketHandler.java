@@ -81,9 +81,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
                 map.put("position", tgvo.getPosition());
                 map.put("positionSeq", tgvo.getPositionSeq());
                 teamGameService.deleteTeamGamePosition(map);
-                //if(tgvo.getLeader().equals("y")){
                     teamGameService.deleteTeamGame(map);
-                //}
             }
             TextMessage msg = new TextMessage("오류:발생:");
             for (WebSocketSession sess : sessions) {

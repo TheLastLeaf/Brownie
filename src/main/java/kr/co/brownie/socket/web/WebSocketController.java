@@ -26,8 +26,7 @@ public class WebSocketController {
     TeamGameService teamGameService;
 
     @PostMapping (value="/chat2", produces="application/text;charset=utf-8")
-    public String websocket2(@RequestParam Map<String, Object> map, Model model, HttpServletRequest httpServletRequest, HttpSession httpSession) {
-        //httpSession.getId() : 585B494F93981E7A684E5E02C6DE7CB8
+    public String websocket2(@RequestParam Map<String, Object> map, Model model) {
         System.out.println("websocket Map : "+map);
         List<TeamGameVO> roomInfo = teamGameService.selectLeader(Integer.parseInt(map.get("roomNumber").toString()));
         List<TeamGameVO> memList = teamGameService.selectRoomMember(Integer.parseInt(map.get("roomNumber").toString()));
