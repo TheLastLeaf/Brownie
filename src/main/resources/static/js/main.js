@@ -81,8 +81,9 @@
         animateIn: 'fadeIn',
         smartSpeed: 1200,
         autoHeight: false,
-        autoplay: true,
-        autoplayTimeout: 2000
+        autoplay:true,
+        autoplayTimeout:1000,
+        autoplayHoverPause:true
     });
 
     /*------------------
