@@ -27,16 +27,13 @@ public class WebSocketController {
 
     @PostMapping (value="/chat2", produces="application/text;charset=utf-8")
     public String websocket2(@RequestParam Map<String, Object> map, Model model) {
-        System.out.println("websocket Map : "+map);
         List<TeamGameVO> roomInfo = teamGameService.selectLeader(Integer.parseInt(map.get("roomNumber").toString()));
         List<TeamGameVO> memList = teamGameService.selectRoomMember(Integer.parseInt(map.get("roomNumber").toString()));
 
-        System.out.println("roooooooooooo : " + roomInfo.get(0));
         model.addAttribute("userInfo", map);
         model.addAttribute("memList", memList);
         model.addAttribute("roomInfo", roomInfo.get(0));
 
-        //해당 방 번호를 가진 유저 닉네임과 롤 닉네임, 티어 목록이 필요함
         return "teamGame/chatRoom";
     }
 }
